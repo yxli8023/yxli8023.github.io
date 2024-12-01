@@ -28,11 +28,11 @@ show_author_profile: true
 {:.info}
 <!--more-->
 # 前言
-对于一个量子态$\lvert u(\bm{k}\rangle$，它的量子几何张量为
+对于一个量子态$\lvert u(\mathbf{k}\rangle$，它的量子几何张量为
 
 $$
 \begin{equation}
-    \!\!\mathfrak{G}_{ab}\!=\!\langle\partial_{a}u(\bm{k})|\partial_{b}u(\bm{k})\rangle-\langle\partial_{a}u(\bm{k})|u(\bm{k})\rangle\langle u(\bm{k})|\partial_{b}u(\bm{k})\rangle.
+    \!\!\mathfrak{G}_{ab}\!=\!\langle\partial_{a}u(\mathbf{k})|\partial_{b}u(\mathbf{k})\rangle-\langle\partial_{a}u(\mathbf{k})|u(\mathbf{k})\rangle\langle u(\mathbf{k})|\partial_{b}u(\mathbf{k})\rangle.
 \end{equation}
 $$
 
@@ -40,7 +40,7 @@ $$
 
 $$
 \begin{equation}
-    \mathcal{G}_{ab}(\bm{k})=\mathrm{Re}\left[\langle\partial_{a}u(\bm{k})\vert\partial_{b}u(\bm{k})\rangle-\langle\partial_{a}u(\bm{k})\vert u(\bm{k})\rangle\langle u(\bm{k})\vert\partial_{b}u(\bm{k})\rangle\right],
+    \mathcal{G}_{ab}(\mathbf{k})=\mathrm{Re}\left[\langle\partial_{a}u(\mathbf{k})\vert\partial_{b}u(\mathbf{k})\rangle-\langle\partial_{a}u(\mathbf{k})\vert u(\mathbf{k})\rangle\langle u(\mathbf{k})\vert\partial_{b}u(\mathbf{k})\rangle\right],
 \end{equation}
 $$
 
@@ -49,15 +49,15 @@ $$
 
 $$
 \begin{equation}
-    h_s(\bm{k})=-t [\sin(\alpha_{\bm{k}})\lambda_x+ s_z \cos(\alpha_{\bm{k}})\lambda_y]+[-2t_2(\cos k_x+\cos k_y)-\mu]\lambda_0~,
+    h_s(\mathbf{k})=-t [\sin(\alpha_{\mathbf{k}})\lambda_x+ s_z \cos(\alpha_{\mathbf{k}})\lambda_y]+[-2t_2(\cos k_x+\cos k_y)-\mu]\lambda_0~,
 \end{equation}
 $$
 
-其中$\alpha(\bm{k})=\chi[\cos(k_x a)+\cos(k_y a)]$, $t_2$是最近邻跃迁大小，$\mu$是化学势，$s=\{ \uparrow,\downarrow \}$是自旋指标$s_z=\pm 1$。该哈密顿量具有时间反演对称性$h_{\uparrow}(\bm{k})=h^{*}_{\downarrow}(-\bm{k})$，其能带色散为
+其中$\alpha(\mathbf{k})=\chi[\cos(k_x a)+\cos(k_y a)]$, $t_2$是最近邻跃迁大小，$\mu$是化学势，$s=\{ \uparrow,\downarrow \}$是自旋指标$s_z=\pm 1$。该哈密顿量具有时间反演对称性$h_{\uparrow}(\mathbf{k})=h^{*}_{\downarrow}(-\mathbf{k})$，其能带色散为
 
 $$
 \begin{equation}
-\varepsilon_{\pm}(\bm{k})=\pm t+2t_2(\cos k_x+\cos k_y)-\mu
+\varepsilon_{\pm}(\mathbf{k})=\pm t+2t_2(\cos k_x+\cos k_y)-\mu
 \end{equation}
 $$
 
@@ -67,10 +67,10 @@ $$
 \begin{equation}
     \vert u_{+}\rangle =\frac{1}{\sqrt{2}}\begin{pmatrix}
         1 \\
-        i s_ze^{is_z \alpha_{\bm{k}}}
+        i s_ze^{is_z \alpha_{\mathbf{k}}}
     \end{pmatrix},\\\\\vert u_{-}\rangle =\frac{1}{\sqrt{2}}\begin{pmatrix}
         -1 \\
-        i s_ze^{is_z \alpha_{\bm{k}}}
+        i s_ze^{is_z \alpha_{\mathbf{k}}}
     \end{pmatrix}~.
 \end{equation}
 $$
@@ -79,7 +79,7 @@ $$
 
 $$
 \begin{equation}
-    \mathfrak G_{ab}=\frac{1}{4}\partial_a \alpha_{\bm{k}}\partial_b \alpha_{\bm{k}}.
+    \mathfrak G_{ab}=\frac{1}{4}\partial_a \alpha_{\mathbf{k}}\partial_b \alpha_{\mathbf{k}}.
 \end{equation}
 $$
 
