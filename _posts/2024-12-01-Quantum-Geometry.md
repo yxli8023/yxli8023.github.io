@@ -453,6 +453,142 @@ end
 
 ![png](/assets/images/QuantumGrometry/QGT-lieb.png)
 
+# 石墨烯模型
+```julia
+# ========================================================================================================================
+# 计算Lieb模型的量子几何张量
+# Ref: Anomalous Coherence Length in Superconductors with Quantum Metric(http://arxiv.org/abs/2308.05686)
+# ========================================================================================================================
+@everywhere using SharedArrays,LinearAlgebra,Distributed,DelimitedFiles,Printf,BenchmarkTools,Arpack,Dates
+#----------------------------------------------------------------------------------------------------------------------------
+@everywhere function PauliMatrix()
+    s0 = zeros(ComplexF64,2,2)
+    sx = zeros(ComplexF64,2,2)
+    sy = zeros(ComplexF64,2,2)
+    sz = zeros(ComplexF64,2,2)
+    s0[1,1] = 1
+    s0[2,2] = 1
+    sx[1,2] = 1
+    sx[2,1] = 1
+    sy[1,2] = -im
+    sy[2,1] = im
+    sz[1,1] = 1
+    sz[2,2] = -1
+    return s0,sx,sy,sz
+end
+#----------------------------------------------------------------------------------------------------------------------------
+@everywhere function matset(kx::Float64,ky::Float64)::Matrix
+    t1::Float64 = 1.0
+    delta::Float64 = 0.05
+    hn::Int64 = 2
+    Ham = zeros(ComplexF64,hn,hn)
+    s0,sx,sy,sz = PauliMatrix()
+    Ham = t1 * (cos(sqrt(3)/2 * kx + 1/2 * ky) + cos(-sqrt(3)/2 * kx + 1/2 * ky) + cos(-ky)) * sx + t1 * (sin(sqrt(3)/2 * kx + 1/2 * ky) + sin(-sqrt(3)/2 * kx + 1/2 * ky) + sin(-ky)) * sy + delta * sz
+    return Ham
+end 
+#----------------------------------------------------------------------------------------------------------------------------
+@everywhere function matset_dkxky(hn::Int64,kx::Float64,ky::Float64)
+    # 计算哈密顿量的导数
+    dk::Float64 = 1E-5
+    Ham = zeros(ComplexF64,hn,hn)
+    Hamdk = zeros(ComplexF64,hn,hn)
+    D_Ham = zeros(ComplexF64,2,hn,hn) # 哈密顿量偏导
+    # DH_kx
+    Ham = matset(kx - dk,ky)
+    Hamdk = matset(kx + dk,ky)
+    D_Ham[1,:,:] = (Hamdk - Ham)/(2.0 * dk)
+    # DH_ky
+    Ham = matset(kx,ky - dk)
+    Hamdk = matset(kx,ky + dk)
+    D_Ham[2,:,:] = (Hamdk - Ham)/(2.0 * dk)
+    return D_Ham
+end 
+#----------------------------------------------------------------------------------------------------------------------------
+@everywhere function QGT_cal(kx::Float64,ky::Float64)
+    # 计算给定能带(bandindex)的量子几何张量(Qxx,Qxy,Qyx,Qyy)
+    eta::Float64 = 1E-3
+    ham = matset(kx,ky)
+    hn = size(ham)[1]  # 根据哈密顿量来确定矩阵维度
+    ham_dk = matset_dkxky(hn,kx,ky)
+    vals,vecs = eigen(ham)  
+    re1 = zeros(ComplexF64,hn,2,2)
+    for mu in 1:2,nu in 1:2
+        for bandindex in 1:hn
+            for ie in 1:hn
+                if ie != bandindex
+                    re1[bandindex,mu,nu] += ((vecs[:,bandindex]' * ham_dk[mu,:,:] * vecs[:,ie]) * (vecs[:,ie]' * ham_dk[nu,:,:] * vecs[:,bandindex]))/(vals[bandindex] - vals[ie] + eta)^2
+                end
+            end
+        end
+    end
+    return re1
+end
+#----------------------------------------------------------------------------------------------------------------------------
+@everywhere function QGT(bandindex::Int64)
+    kn::Int64 = 100
+    ham = matset(0.1,0.1)
+    hn = size(ham)[1]  # 根据哈密顿量来确定矩阵维度
+    klist = range(-pi,pi,length = kn)
+    kxlist = zeros(Float64,kn^2)
+    kylist = zeros(Float64,kn^2)
+    re1 = zeros(ComplexF64,kn^2,hn,2,2)
+    for ikx in 1:kn,iky in 1:kn
+        ik0 = Int((ikx - 1) * kn + iky)
+        kxlist[ik0] = klist[ikx]/pi
+        kylist[ik0] = klist[iky]/pi
+        re1[ik0,:,:,:] = QGT_cal(klist[ikx],klist[iky])  # 计算每个动量点上的QGT并存储
+    end 
+
+    fx1 ="QGT-graphene.dat"
+    f1 = open(fx1,"w")
+    x0 = (a->(@sprintf "%15.8f" a)).(kxlist)
+    y0 = (a->(@sprintf "%15.8f" a)).(kylist)
+    z0 = (a->(@sprintf "%15.8f" a)).(real(re1[:,bandindex,1,2]))
+    z1 = (a->(@sprintf "%15.8f" a)).(imag(re1[:,bandindex,1,2]))
+
+    writedlm(f1,[x0 y0 z0 z1],"\t")
+    close(f1)
+    return
+end 
+#----------------------------------------------------------------------------------------------------------------------------
+@everywhere function QGT_parallel(bandindex::Int64)
+    kn::Int64 = 100
+    hn::Int64 = 2
+    klist = range(-pi,pi,length = kn)
+    kxlist = SharedArray(zeros(Float64,kn^2))
+    kylist = SharedArray(zeros(Float64,kn^2))
+    re1 = SharedArray(zeros(ComplexF64,kn^2,hn,2,2))
+    @sync @distributed for ikx in 1:kn
+        for iky in 1:kn
+            ik0 = Int((ikx - 1) * kn + iky)
+            kxlist[ik0] = klist[ikx]/pi
+            kylist[ik0] = klist[iky]/pi
+            re1[ik0,:,:,:] = QGT_cal(klist[ikx],klist[iky])  # 计算每个动量点上的QGT并存储
+        end
+    end 
+
+    fx1 ="QGT-lieb.dat"
+    f1 = open(fx1,"w")
+    x0 = (a->(@sprintf "%15.8f" a)).(kxlist)
+    y0 = (a->(@sprintf "%15.8f" a)).(kylist)
+    z0 = (a->(@sprintf "%15.8f" a)).(real(re1[:,bandindex,1,2]))
+    z1 = (a->(@sprintf "%15.8f" a)).(imag(re1[:,bandindex,1,2]))
+    writedlm(f1,[x0 y0 z0 z1],"\t")
+    close(f1)
+    return
+end 
+#----------------------------------------------------------------------------------------------------------------------------
+@everywhere function main()
+
+    return
+end 
+#----------------------------------------------------------------------------------------------------------------------------
+@time QGT(2)
+```
+
+![png](/assets/images/QuantumGrometry/QGT-graphene.png)
+
+
 # 参考文献
 
 - [Anomalous Coherence Length in Superconductors with Quantum Metric](http://arxiv.org/abs/2308.05686)
