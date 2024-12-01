@@ -309,6 +309,26 @@ if __name__=="__main__":
 ![png](/assets/images/QuantumGrometry/QGT.png)
 
 # Lieb模型
+Lieb模型也具有一个平带，但是该模型可以是拓扑非平庸的，这里就只关注其度规部分。哈密顿量为
+
+$$
+\begin{equation}\left(
+\begin{array}{cc}
+0&f_x&f_2\\
+f_x^*&0&f_y\\
+f_x^*&f_y^*&0
+\end{array}\right)
+\end{equation}
+$$
+
+其中
+
+$$
+\begin{equation}
+f_x=2J(\cos(kx/2) + i\eta\sin(kx/2))\qquad f_y=2J(\cos(ky/2) + i\eta\sin(ky/2))\qquad f_2=2t_2(\cos((k_x+k_y)/2.0) + \cos((k_x-k_y)/2.0))
+\end{equation}
+$$
+
 这里给出Lieb模型量子几何张量实部量子度规的计算
 ```julia
 # ========================================================================================================================
@@ -435,7 +455,7 @@ end
 
 # 参考文献
 
-- Anomalous Coherence Length in Superconductors with Quantum Metric(http://arxiv.org/abs/2308.05686)
+- [Anomalous Coherence Length in Superconductors with Quantum Metric](http://arxiv.org/abs/2308.05686)
 
 # 公众号
 相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
