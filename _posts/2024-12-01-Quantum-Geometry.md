@@ -226,7 +226,7 @@ end
 
 ```
 
-# 绘图
+## 绘图
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
@@ -325,7 +325,11 @@ $$
 
 $$
 \begin{equation}
-f_x=2J(\cos(kx/2) + i\eta\sin(kx/2))\qquad f_y=2J(\cos(ky/2) + i\eta\sin(ky/2))\qquad f_2=2t_2(\cos((k_x+k_y)/2.0) + \cos((k_x-k_y)/2.0))
+\begin{aligned}
+&f_x=2J(\cos(kx/2) + i\eta\sin(kx/2))\\
+& f_y=2J(\cos(ky/2) + i\eta\sin(ky/2))\\
+& f_2=2t_2(\cos((k_x+k_y)/2.0) + \cos((k_x-k_y)/2.0))
+\end{aligned}
 \end{equation}
 $$
 
