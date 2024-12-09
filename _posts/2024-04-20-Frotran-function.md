@@ -442,6 +442,50 @@ function Kronecker_delta(i1,i2)
 end function
 ```
 
+## $<\psi|H|\psi>$
+
+```fortran
+function Ave_Ham(matdim,psi1,Ham,psi2)
+    ! 计算  <psi_1|Ham|psi_2>
+    implicit none
+    integer, parameter :: dp = kind(1.0)
+    complex(dp) Ave_Ham,expectation,Ham(matdim,matdim),temp(matdim),psi1(matdim),psi2(matdim)
+    integer i0,j0,matdim
+    expectation = 0.0
+    do i0 =1,matdim
+        temp(i0) = 0.0
+        do j0 = 1,matdim
+            temp(i0) = temp(i0) + Ham(i0, j0) * psi2(j0)
+        end do
+    end do
+
+    do i0 = 1,matdim
+        expectation = expectation + conjg(psi1(i0)) * temp(i0)
+    end do
+    Ave_Ham = expectation
+    return
+end function
+```
+
+## 向量点积
+```fortran
+complex(dp) function dot(vecdim,vec1,vec2)
+    ! 计算两个向量的乘积
+    implicit none
+    integer, parameter :: dp = kind(1.0)
+    integer vecdim,i0
+    complex(dp) temp1
+    complex(dp),intent(in) :: vec1(vecdim)
+    complex(dp),intent(in) :: vec2(vecdim)
+    temp1 = 0.0
+    do i0 = 1,vecdim
+        temp1 = temp1 + vec1(i0) * vec2(i0)
+    end do
+    dot = temp1
+    return 
+end function
+```
+
 # 完整代码&测试
 ```fortran
 module param
