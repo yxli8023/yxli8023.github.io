@@ -1,5 +1,5 @@
 ---
-title: 量子几何张量计算
+title: 几个简单模型的量子几何张量计算
 tags:  Julia Code QuantumGeometry
 layout: article
 license: true
@@ -24,7 +24,7 @@ mathjax: true
 author: YuXuan
 show_author_profile: true
 ---
-这篇博客整理了两个具有平带的模型如何计算量子几何张量的实部，是一份简单的学习笔记。
+这篇博客整理了几个简单平带模型中量子度规的计算，作为学习笔记整理了一下。
 {:.info}
 <!--more-->
 # 前言
@@ -592,10 +592,175 @@ end
 
 ![png](/assets/images/QuantumGrometry/QGT-graphene.png)
 
+# Sawtooth模型
+
+Sawtooth模型的晶格结构如下图所示
+
+![png](/assets/images/QuantumGrometry/sawtooth-1.png)
+
+每个原胞内有两个轨道$(A,B)$，其哈密顿量为
+
+$$
+\begin{equation}
+\left[
+\begin{array}{cc}
+2J_0 \cos(k)-\mu & 2\sqrt{2}J_0\cos(k/2)\\
+2\sqrt{2}J_0\cos(k/2)& -\mu
+\end{array}
+\right]
+\end{equation}
+$$
+
+该模型两个能带的度规是相同的
+
+$$
+\begin{equation}
+g=\frac{1-\cos(k)}{2(2+\cos(k))^2}
+\end{equation}
+$$
+
+下面直接上数值计算的代码了
+```julia
+# ========================================================================================================================
+# 计算Sawthhod 模型的量子度规
+# Ref: Wave-packet dynamics of Bogoliubov quasiparticles: Quantum metric effects(https://link.aps.org/doi/10.1103/PhysRevB.96.064511)
+# ========================================================================================================================
+@everywhere using SharedArrays,LinearAlgebra,Distributed,DelimitedFiles,Printf,BenchmarkTools,Arpack,Dates
+#----------------------------------------------------------------------------------------------------------------------------
+@everywhere function matset(kx::Float64,)::Matrix
+    J0::Float64 = 1.0
+    mu::Float64 = -2
+    hn::Int64 = 2
+    Ham = zeros(ComplexF64,hn,hn)
+    Ham[1,1] = 2 * J0 * cos(kx) - mu
+    Ham[1,2] = 2 * J0 * cos(kx/2.0)
+    Ham[2,1] = 2 * J0 * cos(kx/2.0)
+    Ham[2,2] = -mu
+    return Ham
+end 
+#----------------------------------------------------------------------------------------------------------------------------
+@everywhere function matset_dkxky(hn::Int64,kx::Float64)
+    # 计算哈密顿量的导数
+    dk::Float64 = 1E-5
+    Ham = zeros(ComplexF64,hn,hn)
+    Hamdk = zeros(ComplexF64,hn,hn)
+    D_Ham = zeros(ComplexF64,hn,hn) # 哈密顿量偏导
+    # DH_kx
+    Ham = matset(kx - dk)
+    Hamdk = matset(kx + dk)
+    D_Ham = (Hamdk - Ham)/(2.0 * dk)
+    return D_Ham
+end 
+#----------------------------------------------------------------------------------------------------------------------------
+@everywhere function QGT_cal(kx::Float64,)
+    # 计算给定能带(bandindex)的量子几何张量(Qxx) 
+    eta::Float64 = 1E-3
+    ham = matset(kx)
+    hn = size(ham)[1]  # 根据哈密顿量来确定矩阵维度
+    ham_dk = matset_dkxky(hn,kx)
+    vals,vecs = eigen(ham)  
+    re1 = zeros(ComplexF64,hn)
+    for bandindex in 1:hn
+        for ie in 1:hn
+            if ie != bandindex
+                re1[bandindex] += ((vecs[:,bandindex]' * ham_dk * vecs[:,ie]) * (vecs[:,ie]' * ham_dk * vecs[:,bandindex]))/(vals[bandindex] - vals[ie] + eta)^2
+            end
+        end
+    end
+    return re1
+end
+#----------------------------------------------------------------------------------------------------------------------------
+@everywhere function QGT(bandindex::Int64)
+    kn::Int64 = 2E2
+    ham = matset(0.1)
+    hn = size(ham)[1]  # 根据哈密顿量来确定矩阵维度
+    klist = range(-pi,pi,length = kn)
+    re1 = SharedArray(zeros(ComplexF64,kn,hn))
+    re2 = SharedArray(zeros(Float64,kn))
+    @sync @distributed for ikx in 1:kn
+        kx = klist[ikx]/pi
+        re1[ikx,:] = QGT_cal(kx)  # 计算每个动量点上的QGT并存储
+        re2[ikx] = (1 - cos(kx))/(2(2 + cos(kx))^2)  # 解析结果
+    end 
+    fx1 ="QGT-Sawthhod.dat"
+    f1 = open(fx1,"w")
+    x0 = (a->(@sprintf "%15.8f" a)).(klist)
+    z0 = (a->(@sprintf "%15.8f" a)).(real(re1[:,bandindex]))
+    z1 = (a->(@sprintf "%15.8f" a)).(imag(re1[:,bandindex]))
+    z2 = (a->(@sprintf "%15.8f" a)).(real(re2))
+
+    writedlm(f1,[x0 z0 z1 z2],"\t")
+    close(f1)
+    return
+end 
+#----------------------------------------------------------------------------------------------------------------------------
+@time QGT(1)
+```
+
+绘图代码
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib import rcParams
+import os
+import matplotlib.gridspec as gridspec
+from matplotlib.path import Path
+import matplotlib.colors as mcolors
+
+
+plt.rc('font', family='Times New Roman')
+config = {
+"font.size": 30,
+"mathtext.fontset":'stix',
+"font.serif": ['SimSun'],
+}
+rcParams.update(config) # Latex 字体设置
+#---------------------------------------------------------------------------------------------------------------------------------------------------------
+def plot_QGT_Sawthhod():
+    dataname = "QGT-Sawthhod.dat"
+    picname = os.path.splitext(dataname)[0] + ".png"
+    da = np.loadtxt(dataname) 
+    
+    # 使用第一列和第二列分别作为 kx 和 ky
+    x0 = da[:, 0]
+    y0 = da[:, 1]   # Quantum Metric numerical
+    y1 = da[:, 3]   # Quantum Metric analy
+    plt.figure(figsize=(10, 9))
+
+    num_ticks = 3
+    Umax = np.max(da[:,0])
+    Umin = np.min(da[:,0])
+    plt.scatter(x0,y0,c = "b", marker = "*", label = r"Numerical")
+    plt.scatter(x0,y1,c = "r", marker = "h", label = r"Analcial")
+    plt.xlabel(r"$k$")
+    plt.ylabel(r"$\mathcal{G}_{xx}$")
+    plt.xlim(Umin,Umax)
+    
+    plt.tick_params(direction = 'in' ,axis = 'x',width = 0,length = 10)
+    plt.tick_params(direction = 'in' ,axis = 'y',width = 0,length = 10)
+    plt.legend(loc='best', fontsize = 30, markerscale = 2)
+    # plt.axis('scaled')
+    ax = plt.gca()
+    ax.spines["bottom"].set_linewidth(1.5)
+    ax.spines["left"].set_linewidth(1.5) 
+    ax.spines["right"].set_linewidth(1.5)
+    ax.spines["top"].set_linewidth(1.5)
+    ax.locator_params(axis='x', nbins = num_ticks)  # x 轴最多显示 3 个刻度
+    ax.locator_params(axis='y', nbins = num_ticks)  # y 轴最多显示 3 个刻度
+    # plt.show()
+    plt.savefig(picname, dpi = 100,bbox_inches = 'tight')
+    plt.close()
+
+```
+
+数值结果与解析结果对比
+
+![png](/assets/images/QuantumGrometry/QGT-Sawthhod.png)
 
 # 参考文献
 
 - [Anomalous Coherence Length in Superconductors with Quantum Metric](http://arxiv.org/abs/2308.05686)
+- [Wave-packet dynamics of Bogoliubov quasiparticles: Quantum metric effects](https://link.aps.org/doi/10.1103/PhysRevB.96.064511)
 
 # 公众号
 相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
