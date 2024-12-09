@@ -307,7 +307,8 @@ if __name__=="__main__":
 ```
 
 再给一下Mathematica计算的代码
-```
+
+```python
 ClearAll["`*"]
 {s0,sx,sy,sz}=PauliMatrix[{0,1,2,3}];
 t2=0.0;t=1.0;\[Mu]=0.0;\[Chi]=0.5;
