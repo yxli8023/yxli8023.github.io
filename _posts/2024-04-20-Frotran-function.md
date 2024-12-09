@@ -1,5 +1,5 @@
 ---
-title: Fortran常用对角化函数的封装
+title: Fortran常用函数的封装与收集
 tags:  Fortran Code 
 layout: article
 license: true
@@ -397,6 +397,50 @@ subroutine diagonalize_real_matrix(matdim,matin,matout,mateigval)
 end subroutine diagonalize_real_matrix
 ```
 实数矩阵的双精度版本实际上就是一般矩阵对角化
+
+## 高斯展宽
+计算态密度等响应系数的时候用到
+
+
+```fortran
+function Gaussian_broadening(energy) 
+    implicit none
+    integer, parameter :: dp = kind(1.0)
+    real(dp), intent(in) :: energy 
+    real(dp) Gaussian_broadening
+    Gaussian_broadening = exp(-(energy**2) / (2.0 * sigma**2))
+  end function Gaussian_broadening
+```
+
+## 费米分布
+
+```fortran
+function fermi(ek)
+    implicit none
+    integer, parameter :: dp = kind(1.0)
+    real(dp) fermi,ek,engcut,kbt
+    engcut = 100
+    kbt = 1e-10
+    if(ek/kbt > -engcut .and. ek/kbt < engcut) fermi = 1.0/(exp(ek/kbt) + 1) 
+    if(ek/kbt < -engcut) fermi = 1.0
+    if(ek/kbt > engcut) fermi = 0.0
+    return
+end 
+```
+
+## KroneckerDelta 函数
+```fortran
+function Kronecker_delta(i1,i2)
+    implicit none
+    integer i1,i2,Kronecker_delta
+    if(i1 .eq. i2)then
+        Kronecker_delta = 1
+    else
+        Kronecker_delta = 0
+    end if
+    return
+end function
+```
 
 # 完整代码&测试
 ```fortran
