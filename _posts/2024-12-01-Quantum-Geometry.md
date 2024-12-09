@@ -306,6 +306,29 @@ if __name__=="__main__":
     plotQGT()
 ```
 
+再给一下Mathematica计算的代码
+```
+ClearAll["`*"]
+{s0,sx,sy,sz}=PauliMatrix[{0,1,2,3}];
+t2=0.0;t=1.0;\[Mu]=0.0;\[Chi]=0.5;
+ak=\[Chi](Cos[kx]+Cos[ky]);
+H=-t(Sin[ak]sx+Cos[ak]sy)+(-2t2(Cos[kx]+Cos[ky])-\[Mu])s0;
+Plot3D[Eigenvalues[H],{kx,-Pi,Pi},{ky,-Pi,Pi},ImageSize->Large,PlotStyle->Directive[Blue,Thickness[0.005]]]
+hn=Length[H];(*获取矩阵维度*)
+DHkx=D[H,kx];
+DHky=D[H,ky];
+{vals,vecs}=Eigensystem[H];
+QGT[kxx_,kyy_,\[Alpha]_,\[Beta]_]:=Module[{func1,re1},
+kx=kxx;ky=kyy;
+func1[n_,m_,mat_]:=ConjugateTranspose[{#}&/@vecs[[n]]] . mat . vecs[[m]];
+re1=Table[func1[n,m,DHkx] . func1[m,n,DHky]/(vals[[n]]-vals[[m]]+0.0001)^2,{n,1,hn},{m,1,hn}];
+re1[[\[Alpha]]][[\[Beta]]]]
+QGTRe=Flatten[ParallelTable[{kx,ky,Re[QGT[kx,ky,1,2]]},{kx,-Pi,Pi,0.05},{ky,-Pi,Pi,0.05}],1];
+QGTIm=Flatten[ParallelTable[{kx,ky,Im[QGT[kx,ky,1,2]]},{kx,-Pi,Pi,0.05},{ky,-Pi,Pi,0.05}],1];
+ListDensityPlot[QGTRe,ColorFunction->"ThermometerColors",PlotLegends->Automatic,FrameStyle->Directive[Black,24,FontFamily->"Times New Roman"],FrameLabel->{Style["\!\(\*SubscriptBox[\(k\), \(x\)]\)",24,
+FontFamily->"Times New Roman"],Style["\!\(\*SubscriptBox[\(k\), \(y\)]\)",24,FontFamily->"Times New Roman"]},ClippingStyle->Automatic,ImageSize->Large,FrameTicksStyle->Directive[Black,FontFamily->"Times New Roman",20]]
+```
+
 ![png](/assets/images/QuantumGrometry/QGT.png)
 
 # Lieb模型
@@ -457,7 +480,7 @@ end
 
 ![png](/assets/images/QuantumGrometry/QGT-lieb.png)
 
-# 石墨烯模型
+# Graphene Quantum Metric
 ```julia
 # ========================================================================================================================
 # 计算Lieb模型的量子几何张量
