@@ -1,12 +1,12 @@
 ---
-title: Title
-tags:  Julia Code QuantumGeometry
+title: 超导序参量中的傅里叶分析
+tags:  Code Mathematica Superconductor
 layout: article
 license: true
 toc: true
-key: a20241201
+key: a20241215
 pageview: true
-cover: /assets/images/QuantumGrometry/QGT.png
+cover: /assets/images/Mma/fft-2.png
 header:
   theme: dark
   background: 'linear-gradient(to right, rgb(101, 78, 163), rgb(234, 175, 200))'
@@ -24,9 +24,15 @@ mathjax: true
 author: YuXuan
 show_author_profile: true
 ---
-这篇博客整理了几个简单平带模型中量子度规的计算，作为学习笔记整理了一下。
+
+
+
 {:.info}
 <!--more-->
+
+
+
+
 
 
 # 公众号

@@ -1,6 +1,6 @@
 ---
 title: 根据哈密顿量获得其对称操作算符
-tags:  Mathematica Topolog
+tags:  Mathematica Topology
 layout: article
 license: true
 toc: true
