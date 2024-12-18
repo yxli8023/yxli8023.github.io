@@ -6,7 +6,7 @@ license: true
 toc: true
 key: a20241218
 pageview: true
-cover: /assets/images/Mma/fft-2.png
+cover: /assets/images/GroupTheory/sym-2.png
 header:
   theme: dark
   background: 'linear-gradient(to right, rgb(101, 78, 163), rgb(234, 175, 200))'
