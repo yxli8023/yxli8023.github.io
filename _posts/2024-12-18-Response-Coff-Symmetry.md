@@ -46,13 +46,9 @@ $$
 其中的$\delta M_a^{(1)}$是体系的磁化，$q_b$是Cooper的动量(其实这里可以不用局限于这里是Cooper对，只要认为这是一个物理量，要分析它在对称性下面的变换关系即可)。假如体系具有时间反演对称性$\mathcal{T}$，那么在$\mathcal{T}$的操作下$\delta M_a^{(1)}$是要发生反号的
 
 $$
-\begin{equation}
-\begin{aligned}
-{\color{blue}\mathcal{T}\delta M_a^{(1)}\mathcal{T}^{-1}}&=-\delta M_a^{(1)}\\
-{\color{blue}\color{blue}\mathcal{T}(\alpha_{ab}q_b)\mathcal{T}^{-1}}&=-\delta M_a^{(1)}\qquad \mathcal{T}q_b\mathcal{T}^{-1}=-q_b\\
-\alpha_{ab}{\color{red}(-q)}&=-\delta M_a^{(1)}=-\alpha_{ab}q_b\Longrightarrow \alpha_{ab}\neq 0 
-\end{aligned}
-\end{equation}
+{\color{blue}\mathcal{T}\delta M_a^{(1)}\mathcal{T}^{-1}}=-\delta M_a^{(1)}\\
+{\color{blue}\color{blue}\mathcal{T}(\alpha_{ab}q_b)\mathcal{T}^{-1}}=-\delta M_a^{(1)}\qquad \mathcal{T}q_b\mathcal{T}^{-1}=-q_b\\
+\alpha_{ab}{\color{red}(-q)}=-\delta M_a^{(1)}=-\alpha_{ab}q_b\Longrightarrow \alpha_{ab}\neq 0 
 $$
 
 因此可以发现当系统具有时间反演对称性的时候，一阶响应系数非零，即不会被时间反演对称性禁止。
@@ -60,13 +56,9 @@ $$
 接下来再看空间反演对称性$\mathcal{P}$，首先要知道的是在空间反演操作下动量$q_b$会反号，而磁化是不会反号的，从而有
 
 $$
-\begin{equation}
-\begin{aligned}
-{\color{blue}\mathcal{P}\delta M_a^{(1)}\mathcal{P}^{-1}}&=\delta M_a^{(1)}\\
-{\color{blue}\color{blue}\mathcal{P}(\alpha_{ab}q_b)\mathcal{P}^{-1}}&=\delta M_a^{(1)}\qquad \mathcal{P}q_b\mathcal{P}^{-1}=-q_b\\
-\alpha_{ab}{\color{red}(-q)}&=\delta M_a^{(1)}=\alpha_{ab}q_b\Longrightarrow {\color{teal}\alpha_{ab}\equiv 0 }
-\end{aligned}
-\end{equation}
+{\color{blue}\mathcal{P}\delta M_a^{(1)}\mathcal{P}^{-1}}=\delta M_a^{(1)}\\
+{\color{blue}\color{blue}\mathcal{P}(\alpha_{ab}q_b)\mathcal{P}^{-1}}=\delta M_a^{(1)}\qquad \mathcal{P}q_b\mathcal{P}^{-1}=-q_b\\
+\alpha_{ab}{\color{red}(-q)}=\delta M_a^{(1)}=\alpha_{ab}q_b\Longrightarrow {\color{teal}\alpha_{ab}\equiv 0 }
 $$
 
 因此如果体系除了时间反演对称性，还存在空间反演对称性$\mathcal{P}$，此时是不会存在一阶响应的。
@@ -84,13 +76,9 @@ $$
 首先还是分析时间反演对称性$\mathcal{T}$
 
 $$
-\begin{equation}
-\begin{aligned}
-{\color{blue}\mathcal{T}\delta M_c^{(2)}\mathcal{T}^{-1}}&=-\delta M_a^{(2)}\\
-{\color{blue}\color{blue}\mathcal{T}(\chi^c_{ab}q_aq_b)\mathcal{T}^{-1}}&=-\delta M_a^{(2)}\qquad \mathcal{T}q_i\mathcal{T}^{-1}=-q_i\\
-\chi^c_{ab}{\color{red}(-q_a)(-q_b)}&=-\delta M_a^{(2)}=-\chi^c_{ab}q_aq_b\Longrightarrow {\color{teal}\chi^c_{ab}\equiv 0} 
-\end{aligned}
-\end{equation}
+{\color{blue}\mathcal{T}\delta M_c^{(2)}\mathcal{T}^{-1}}=-\delta M_a^{(2)}\\
+{\color{blue}\color{blue}\mathcal{T}(\chi^c_{ab}q_aq_b)\mathcal{T}^{-1}}=-\delta M_a^{(2)}\qquad \mathcal{T}q_i\mathcal{T}^{-1}=-q_i\\
+\chi^c_{ab}{\color{red}(-q_a)(-q_b)}=-\delta M_a^{(2)}=-\chi^c_{ab}q_aq_b\Longrightarrow {\color{teal}\chi^c_{ab}\equiv 0} 
 $$
 
 可以发现在具有时间反演对称性时二阶响应不存在$\chi^c_{ab}\equiv 0$。
@@ -98,13 +86,10 @@ $$
 而对于空间反演对称性$\mathcal{P}$则有
 
 $$
-\begin{equation}
-\begin{aligned}
-{\color{blue}\mathcal{P}\delta M_c^{(2)}\mathcal{P}^{-1}}&=\delta M_a^{(2)}\\
-{\color{blue}\color{blue}\mathcal{P}(\chi^c_{ab}q_aq_b)\mathcal{P}^{-1}}&=\delta M_a^{(2)}\qquad \mathcal{P}q_i\mathcal{P}^{-1}=-q_i\\
-\chi^c_{ab}{\color{red}(-q_a)(-q_b)}&=\delta M_a^{(2)}=\chi^c_{ab}q_aq_b\Longrightarrow {\color{teal}\chi^c_{ab}\neq 0} 
-\end{aligned}
-\end{equation}
+
+{\color{blue}\mathcal{P}\delta M_c^{(2)}\mathcal{P}^{-1}}=\delta M_a^{(2)}\\
+{\color{blue}\color{blue}\mathcal{P}(\chi^c_{ab}q_aq_b)\mathcal{P}^{-1}}=\delta M_a^{(2)}\qquad \mathcal{P}q_i\mathcal{P}^{-1}=-q_i\\
+\chi^c_{ab}{\color{red}(-q_a)(-q_b)}=\delta M_a^{(2)}=\chi^c_{ab}q_aq_b\Longrightarrow {\color{teal}\chi^c_{ab}\neq 0} 
 $$
 
 因此在空间反演对称性下，体系是具有二阶响应的，也就是如果该体系破坏了时间反演对称性$\mathcal{T}$，但具有空间反演对称性$\mathcal{P}$，那么体系则只会存在二阶响应。
@@ -127,7 +112,7 @@ $$
 
 ## 一阶响应
 
-前面提到的都是比较简单的对称性，这里考虑晶体对称性对响应系数的约束。假设系统具有绕着$z$轴的$\mathcal{C}_4$对称操作，这是一个二维平面上逆时针旋转$90^\degree$的操作，对动量$\boldsymbol{q}=(q_x,q_y)$的操作为
+前面提到的都是比较简单的对称性，这里考虑晶体对称性对响应系数的约束。假设系统具有绕着$z$轴的$\mathcal{C}_4$对称操作，这是一个二维平面上逆时针旋转$90^o$的操作，对动量$\boldsymbol{q}=(q_x,q_y)$的操作为
 
 $$
 \begin{equation}
@@ -313,10 +298,11 @@ $$
 \end{equation}
 $$
 
----
 
 
-因此在$\mathcal{C}_4$旋转对称性下，响应张量 $\alpha_{ab}$ 的形式被约束为：
+因此在$\mathcal{C}_4$旋转对称性下
+
+响应张量 $\alpha_{ab}$ 的形式被约束为：
 
 $$
 \begin{equation}
@@ -327,6 +313,7 @@ $$
 \end{pmatrix},
  \end{equation}
 $$
+
 其中：
 - $\alpha$ 是对角元，表示各向同性的部分。
 - $\beta$ 是反对称元，表示与方向相关的部分。
@@ -361,7 +348,9 @@ $$
 - $q_a q_b$ 是动量的二阶乘积项
 
 
-在$\mathcal{C}_4$变换下，二阶响应关系 $\delta M_c^{(2)} = \chi_{ab}^c q_a q_b$ 变为：
+在$\mathcal{C}_4$变换下
+
+二阶响应关系 $\delta M_c^{(2)} = \chi_{ab}^c q_a q_b$ 变为：
 
 $$
 \begin{equation}
@@ -415,10 +404,9 @@ $$
 
 $$
 \begin{equation}
-\chi_{ab}'^c =  R_{cd} \chi_{ef}^dR_{bf}R_{ae}.
+\chi_{ab}'^c =  R_{cd} \chi_{ef}^dR_{bf}R_{ae}.\qquad R^{-1}=R^T
  \end{equation}
 $$
-在得到这个表达式的时候利用了旋转操作$R^{-1}=R^T$的性质。
 {:.success}
 
 
@@ -624,13 +612,9 @@ $$
 首先知道在时间反演对称性$\mathcal{T}$使得二阶响应$\delta M_c^{(2)}$被禁戒，只会存在一阶响应$\delta M_a^{(1)}$，但此时$\mathcal{C}_4$操作对磁化$\delta M_z^{(1)}$是不改变符号的，但是会改变动量
 
 $$
-\begin{equation}
-\begin{aligned}
-&\mathcal{C}_4(\delta M_z^{(1)})\mathcal{C}_4^{-1}=\delta M_z^{(1)}=\alpha_{zb}q_b\quad b={x,y}\\
-&b=x:\quad {\color{blue}\mathcal{C}_4(\alpha_{zx}q_x)\mathcal{C}_4^{-1}}=\alpha_{zx}q_x={\color{blue}\alpha_{zx}q_y}\Longrightarrow \alpha_{zx}=0\\
-&b=y:\quad {\color{blue}\mathcal{C}_4(\alpha_{zy}q_y)\mathcal{C}_4^{-1}}=\alpha_{zy}q_y={\color{blue}-\alpha_{zy}q_x}\Longrightarrow \alpha_{zy}=0\\
-\end{aligned}
-\end{equation}
+\mathcal{C}_4(\delta M_z^{(1)})\mathcal{C}_4^{-1}=\delta M_z^{(1)}=\alpha_{zb}q_b\quad b={x,y}\\
+b=x:\quad {\color{blue}\mathcal{C}_4(\alpha_{zx}q_x)\mathcal{C}_4^{-1}}=\alpha_{zx}q_x={\color{blue}\alpha_{zx}q_y}\Longrightarrow \alpha_{zx}=0\\
+b=y:\quad {\color{blue}\mathcal{C}_4(\alpha_{zy}q_y)\mathcal{C}_4^{-1}}=\alpha_{zy}q_y={\color{blue}-\alpha_{zy}q_x}\Longrightarrow \alpha_{zy}=0\\
 $$
 
 可以发现$\mathcal{C}_z$操作使得一阶响应的$M_z$方向的磁化为零。而$\mathcal{C}_z$操作对于磁化分量的变化为
@@ -649,20 +633,20 @@ $$
 根据最开始的分析，在时间反演$\mathcal{T}$操作下，磁化的二阶响应是被禁戒的，但文献中考虑的系统没有单独的时间反演对称性，而是一个联合的$\mathcal{C}_4\mathcal{T}$，而且此时该对称性使得一阶响应$\delta M_z$被禁戒，但是对于二阶响应可以发现却是可以存在的
 
 $$
-\begin{equation}
-\begin{aligned}
-&\mathcal{C}_4(\delta M_c^{(2)})\mathcal{C}_4^{-1}=\delta M_c^{(2)}=\chi_{ab}^cq_aq_b,\qquad a,b=\{x,y\},\qquad c=\{z\}\\
-&a=x,b=y:{\color{blue}\mathcal{C}_4(\delta M_z^{(2)})\mathcal{C}_4^{-1}=-\chi_{xy}^zq_yq_x}=\chi^z_{xy}q_xq_y\Longrightarrow\chi^z_{xy}=0\\
-&a=x,b=x:{\color{blue}\mathcal{C}_4(\delta M_z^{(2)})\mathcal{C}_4^{-1}=\chi_{xx}^zq_yq_y}=\chi^z_{xx}q_xq_x\\
-&a=y,b=y:{\color{blue}\mathcal{C}_4(\delta M_z^{(2)})\mathcal{C}_4^{-1}=\chi_{yy}^{z}q_xq_x}=\chi^z_{yy}q_yq_y\\
-\end{aligned}
-\end{equation}
+\mathcal{C}_4(\delta M_c^{(2)})\mathcal{C}_4^{-1}=\delta M_c^{(2)}=\chi_{ab}^cq_aq_b,\qquad a,b=\{x,y\},\qquad c=\{z\}\\
+a=x,b=y:{\color{blue}\mathcal{C}_4(\delta M_z^{(2)})\mathcal{C}_4^{-1}=-\chi_{xy}^zq_yq_x}=\chi^z_{xy}q_xq_y\Longrightarrow\chi^z_{xy}=0\\
+a=x,b=x:{\color{blue}\mathcal{C}_4(\delta M_z^{(2)})\mathcal{C}_4^{-1}=\chi_{xx}^zq_yq_y}=\chi^z_{xx}q_xq_x\\
+a=y,b=y:{\color{blue}\mathcal{C}_4(\delta M_z^{(2)})\mathcal{C}_4^{-1}=\chi_{yy}^{z}q_xq_x}=\chi^z_{yy}q_yq_y\\
 $$
 
-此时可以发现$\chi_{xx},\chi_{yy}$在$\mathcal{C}_4$操作下是非零的，而且前面也已经证明过了这两个系数不仅是非零的，还满足$\chi^z_{xx}=\chi^z_{yy}$。综合前面所有的分析则可得到一个表格
+此时可以发现$\chi_{xx},\chi_{yy}$在$\mathcal{C}_4$操作下是非零的
+
+而且前面也已经证明过了这两个系数不仅是非零的，还满足$\chi^z_{xx}=\chi^z_{yy}$。
+
+综合前面所有的分析则可得到一个表格
 <div align="center">
 
-|          | $\mathcal{P}$ | $\mathcal{T}$ | $\mathcal{PT}$ | $C_4\mathcal{T}$ |
+|    $\quad $      | $\mathcal{P}$ | $\mathcal{T}$ | $\mathcal{PT}$ | $C_4\mathcal{T}$ |
 |----------|-----------------|-----------------|------------------|--------------------|
 | $M_x$  | $\checkmark(2)$   | $\checkmark(1)$   | $\times$       | $\checkmark(1)$      |
 | $M_y$  | $\checkmark(2)$   | $\checkmark(1)$   | $\times$       | $\checkmark(1)$      |
