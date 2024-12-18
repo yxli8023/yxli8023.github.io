@@ -46,8 +46,14 @@ $$
 其中的$\delta M_a^{(1)}$是体系的磁化，$q_b$是Cooper的动量(其实这里可以不用局限于这里是Cooper对，只要认为这是一个物理量，要分析它在对称性下面的变换关系即可)。假如体系具有时间反演对称性$\mathcal{T}$，那么在$\mathcal{T}$的操作下$\delta M_a^{(1)}$是要发生反号的
 
 $$
-{\color{blue}\mathcal{T}\delta M_a^{(1)}\mathcal{T}^{-1}}=-\delta M_a^{(1)}\\
-{\color{blue}\color{blue}\mathcal{T}(\alpha_{ab}q_b)\mathcal{T}^{-1}}=-\delta M_a^{(1)}\qquad \mathcal{T}q_b\mathcal{T}^{-1}=-q_b\\
+{\color{blue}\mathcal{T}\delta M_a^{(1)}\mathcal{T}^{-1}}=-\delta M_a^{(1)}
+$$
+
+$$
+{\color{blue}\color{blue}\mathcal{T}(\alpha_{ab}q_b)\mathcal{T}^{-1}}=-\delta M_a^{(1)}\qquad \mathcal{T}q_b\mathcal{T}^{-1}=-q_b
+$$
+
+$$
 \alpha_{ab}{\color{red}(-q)}=-\delta M_a^{(1)}=-\alpha_{ab}q_b\Longrightarrow \alpha_{ab}\neq 0 
 $$
 
@@ -56,8 +62,14 @@ $$
 接下来再看空间反演对称性$\mathcal{P}$，首先要知道的是在空间反演操作下动量$q_b$会反号，而磁化是不会反号的，从而有
 
 $$
-{\color{blue}\mathcal{P}\delta M_a^{(1)}\mathcal{P}^{-1}}=\delta M_a^{(1)}\\
-{\color{blue}\color{blue}\mathcal{P}(\alpha_{ab}q_b)\mathcal{P}^{-1}}=\delta M_a^{(1)}\qquad \mathcal{P}q_b\mathcal{P}^{-1}=-q_b\\
+{\color{blue}\mathcal{P}\delta M_a^{(1)}\mathcal{P}^{-1}}=\delta M_a^{(1)}
+$$
+
+$$
+{\color{blue}\color{blue}\mathcal{P}(\alpha_{ab}q_b)\mathcal{P}^{-1}}=\delta M_a^{(1)}\qquad \mathcal{P}q_b\mathcal{P}^{-1}=-q_b
+$$
+
+$$
 \alpha_{ab}{\color{red}(-q)}=\delta M_a^{(1)}=\alpha_{ab}q_b\Longrightarrow {\color{teal}\alpha_{ab}\equiv 0 }
 $$
 
@@ -76,8 +88,14 @@ $$
 首先还是分析时间反演对称性$\mathcal{T}$
 
 $$
-{\color{blue}\mathcal{T}\delta M_c^{(2)}\mathcal{T}^{-1}}=-\delta M_a^{(2)}\\
-{\color{blue}\color{blue}\mathcal{T}(\chi^c_{ab}q_aq_b)\mathcal{T}^{-1}}=-\delta M_a^{(2)}\qquad \mathcal{T}q_i\mathcal{T}^{-1}=-q_i\\
+{\color{blue}\mathcal{T}\delta M_c^{(2)}\mathcal{T}^{-1}}=-\delta M_a^{(2)}
+$$
+
+$$
+{\color{blue}\color{blue}\mathcal{T}(\chi^c_{ab}q_aq_b)\mathcal{T}^{-1}}=-\delta M_a^{(2)}\qquad \mathcal{T}q_i\mathcal{T}^{-1}=-q_i
+$$
+
+$$
 \chi^c_{ab}{\color{red}(-q_a)(-q_b)}=-\delta M_a^{(2)}=-\chi^c_{ab}q_aq_b\Longrightarrow {\color{teal}\chi^c_{ab}\equiv 0} 
 $$
 
@@ -86,9 +104,14 @@ $$
 而对于空间反演对称性$\mathcal{P}$则有
 
 $$
+{\color{blue}\mathcal{P}\delta M_c^{(2)}\mathcal{P}^{-1}}=\delta M_a^{(2)}
+$$
 
-{\color{blue}\mathcal{P}\delta M_c^{(2)}\mathcal{P}^{-1}}=\delta M_a^{(2)}\\
-{\color{blue}\color{blue}\mathcal{P}(\chi^c_{ab}q_aq_b)\mathcal{P}^{-1}}=\delta M_a^{(2)}\qquad \mathcal{P}q_i\mathcal{P}^{-1}=-q_i\\
+$$
+{\color{blue}\color{blue}\mathcal{P}(\chi^c_{ab}q_aq_b)\mathcal{P}^{-1}}=\delta M_a^{(2)}\qquad \mathcal{P}q_i\mathcal{P}^{-1}=-q_i
+$$
+
+$$
 \chi^c_{ab}{\color{red}(-q_a)(-q_b)}=\delta M_a^{(2)}=\chi^c_{ab}q_aq_b\Longrightarrow {\color{teal}\chi^c_{ab}\neq 0} 
 $$
 
@@ -612,8 +635,14 @@ $$
 首先知道在时间反演对称性$\mathcal{T}$使得二阶响应$\delta M_c^{(2)}$被禁戒，只会存在一阶响应$\delta M_a^{(1)}$，但此时$\mathcal{C}_4$操作对磁化$\delta M_z^{(1)}$是不改变符号的，但是会改变动量
 
 $$
-\mathcal{C}_4(\delta M_z^{(1)})\mathcal{C}_4^{-1}=\delta M_z^{(1)}=\alpha_{zb}q_b\quad b={x,y}\\
-b=x:\quad {\color{blue}\mathcal{C}_4(\alpha_{zx}q_x)\mathcal{C}_4^{-1}}=\alpha_{zx}q_x={\color{blue}\alpha_{zx}q_y}\Longrightarrow \alpha_{zx}=0\\
+\mathcal{C}_4(\delta M_z^{(1)})\mathcal{C}_4^{-1}=\delta M_z^{(1)}=\alpha_{zb}q_b\quad b={x,y}
+$$
+
+$$
+b=x:\quad {\color{blue}\mathcal{C}_4(\alpha_{zx}q_x)\mathcal{C}_4^{-1}}=\alpha_{zx}q_x={\color{blue}\alpha_{zx}q_y}\Longrightarrow \alpha_{zx}=0
+$$
+
+$$
 b=y:\quad {\color{blue}\mathcal{C}_4(\alpha_{zy}q_y)\mathcal{C}_4^{-1}}=\alpha_{zy}q_y={\color{blue}-\alpha_{zy}q_x}\Longrightarrow \alpha_{zy}=0\\
 $$
 
@@ -633,9 +662,18 @@ $$
 根据最开始的分析，在时间反演$\mathcal{T}$操作下，磁化的二阶响应是被禁戒的，但文献中考虑的系统没有单独的时间反演对称性，而是一个联合的$\mathcal{C}_4\mathcal{T}$，而且此时该对称性使得一阶响应$\delta M_z$被禁戒，但是对于二阶响应可以发现却是可以存在的
 
 $$
-\mathcal{C}_4(\delta M_c^{(2)})\mathcal{C}_4^{-1}=\delta M_c^{(2)}=\chi_{ab}^cq_aq_b,\qquad a,b=\{x,y\},\qquad c=\{z\}\\
-a=x,b=y:{\color{blue}\mathcal{C}_4(\delta M_z^{(2)})\mathcal{C}_4^{-1}=-\chi_{xy}^zq_yq_x}=\chi^z_{xy}q_xq_y\Longrightarrow\chi^z_{xy}=0\\
-a=x,b=x:{\color{blue}\mathcal{C}_4(\delta M_z^{(2)})\mathcal{C}_4^{-1}=\chi_{xx}^zq_yq_y}=\chi^z_{xx}q_xq_x\\
+\mathcal{C}_4(\delta M_c^{(2)})\mathcal{C}_4^{-1}=\delta M_c^{(2)}=\chi_{ab}^cq_aq_b,\qquad a,b=\{x,y\},\qquad c=\{z\}
+$$
+
+$$
+a=x,b=y:{\color{blue}\mathcal{C}_4(\delta M_z^{(2)})\mathcal{C}_4^{-1}=-\chi_{xy}^zq_yq_x}=\chi^z_{xy}q_xq_y\Longrightarrow\chi^z_{xy}=0
+$$
+
+$$
+a=x,b=x:{\color{blue}\mathcal{C}_4(\delta M_z^{(2)})\mathcal{C}_4^{-1}=\chi_{xx}^zq_yq_y}=\chi^z_{xx}q_xq_x
+$$
+
+$$
 a=y,b=y:{\color{blue}\mathcal{C}_4(\delta M_z^{(2)})\mathcal{C}_4^{-1}=\chi_{yy}^{z}q_xq_x}=\chi^z_{yy}q_yq_y\\
 $$
 
