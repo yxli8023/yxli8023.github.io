@@ -1,5 +1,5 @@
 ---
-title: 对称性约束响应系数
+title: 对称性约束响应系数(待完成)
 tags:  transport Group-Theory
 layout: article
 license: true
