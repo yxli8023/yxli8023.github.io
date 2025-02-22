@@ -246,12 +246,18 @@ end function fermi
 相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
 {:.info}
 
-![png](/assets/images/qrcode.jpg){:.border.rounded}{:width="300px" height="300px"}
-<div class="card">
-  <div class="card__content">
-    <div class="card__header">
-      <h4>Email</h4>
-    </div>
-    <p>yxli406@gmail.com</p>
-  </div>
-</div>
+<table>
+  <tr>
+    <!-- 图片单元格 -->
+    <td style="width: 300px; height: 300px; text-align: center; vertical-align: middle; border: 1px solid #ccc; border-radius: 8px;">
+      <img src="/assets/images/qrcode.jpg" alt="QR Code" width="300px" height="300px" style="border-radius: 8px;">
+    </td>
+    <!-- 文字单元格 -->
+    <td style="width: 300px; height: 300px; text-align: center; vertical-align: middle; padding-left: 20px; border: 1px solid #ccc; border-radius: 8px;">
+      <div>
+        <h4 style="margin: 0;">Email</h4>
+        <p style="margin: 5px 0;">yxli406@gmail.com</p>
+      </div>
+    </td>
+  </tr>
+</table>
