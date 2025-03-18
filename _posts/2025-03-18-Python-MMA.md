@@ -74,6 +74,21 @@ config = {
 "font.serif": ['SimSun'],
 }
 rcParams.update(config) # Latex 字体设置
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+def Make_color():
+    with open("LightTemperatureMap.dat", "r") as file:
+        lines = file.readlines()
+    # 解析颜色数据
+    colors = []
+    for line in lines:
+        # 去掉多余的字符（例如 "RGBColor[" 和 "]"）
+        line = line.replace("RGBColor[", "").replace("]", "").strip()
+        # 按逗号分割，提取 R, G, B 值
+        r, g, b = map(float, line.split(","))
+        colors.append((r, g, b))
+    # 将颜色数据转换为 matplotlib 的 colormap 格式
+    cmap = LinearSegmentedColormap.from_list("LightTemperatureMap", colors)
+    return cmap
 #-----------------------------------------------------------------------------------------------
 def plot_Chern_Number_2D_couple():
     dataname1 = "Phase-V0-delta0-HP.dat"    # 该数据有三列,分别是[x0,y0,z0]
@@ -96,19 +111,8 @@ def plot_Chern_Number_2D_couple():
 
     # 创建绘图
     plt.figure(figsize=(10, 10))
-    with open("LightTemperatureMap.dat", "r") as file:
-        lines = file.readlines()
-    # 解析颜色数据
-    colors = []
-    for line in lines:
-        # 去掉多余的字符（例如 "RGBColor[" 和 "]"）
-        line = line.replace("RGBColor[", "").replace("]", "").strip()
-        # 按逗号分割，提取 R, G, B 值
-        r, g, b = map(float, line.split(","))
-        colors.append((r, g, b))
-
     # 将颜色数据转换为 matplotlib 的 colormap 格式
-    cmap = LinearSegmentedColormap.from_list("LightTemperatureMap", colors)
+    cmap = Make_color()
     # sc = plt.imshow(z0, interpolation = 'bilinear', cmap="RdYlBu", origin='lower', extent=[d0_min, d0_max, delta0_min, delta0_max])
     # sc = plt.imshow(z0, cmap="RdYlBu", origin='lower', extent=[d0_min, d0_max, delta0_min, delta0_max])
     sc = plt.imshow(z0, interpolation = 'bilinear',cmap = cmap, origin='lower', extent=[d0_min, d0_max, delta0_min, delta0_max])
@@ -128,8 +132,8 @@ def plot_Chern_Number_2D_couple():
     # 设置坐标轴刻度
     plt.yticks(np.linspace(delta0_min, delta0_max, 5), fontproperties = 'Times New Roman', size=30)  # 显示 5 个刻度
     plt.xticks(np.linspace(d0_min, d0_max, 5), fontproperties = 'Times New Roman', size=30)  # 显示 5 个刻度
-    plt.tick_params(axis = 'x', width=1, length=8, direction = "in")
-    plt.tick_params(axis = 'y', width=1, length=8, direction = "in")
+    plt.tick_params(axis = 'x', width=1, length = 8, direction = "in")
+    plt.tick_params(axis = 'y', width=1, length = 8, direction = "in")
 
     # 设置横纵方向比例一致
     ax = plt.gca()
