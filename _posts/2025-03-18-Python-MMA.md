@@ -38,6 +38,30 @@ show_author_profile: true
   Export["LightTemperatureMap.dat", colorValues, "Table"];
 ```
 
+将Mathematica中中导数颜色的命令封装成一个函数
+```fortran
+func1[colorname_] := Module[{colorFunctionlist, colorValues},
+  colorFunctionlist = ColorData[colorname, "ColorFunction"];
+  colorValues = Table[colorFunctionlist[x], {x, 0, 1, 1/255}];
+  Export[StringJoin[colorname, ".dat"], colorValues, "Table"];]
+func1["DeepSeaColors"]
+```
+
+执行下面的命令获取Mathematica中渐变色的名称和颜色示例
+```fortran
+colornameList = 
+  Style[#, 20, Blue, FontFamily -> "Times New Roman"] & /@ 
+   ColorData["Gradients"];
+color = ColorData["Gradients", "Image"];
+partitionedData = 
+  Partition[Flatten[Transpose[{colornameList, color}], 1], 6, 
+   6, {1, 1}];
+Grid[partitionedData, Frame -> All]
+```
+
+![png](/assets/images/Mma/color-MMA.png)
+
+
 - 下面就将这个颜色数据导入到Python中创建自己的colorbar
 ```python
 with open("LightTemperatureMap.dat", "r") as file:
