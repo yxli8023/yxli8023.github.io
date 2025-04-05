@@ -1,0 +1,294 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>重学凝聚态拓扑(Class 4) | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="最近正好有些空闲的时间，发现自己对拓扑中的一些理解并不深刻，正好借这个机会重新学习一下，加深自己对其中内容的理解，也能让自己之后的研究走的更远。{:.info}">
+<meta property="og:type" content="article">
+<meta property="og:title" content="重学凝聚态拓扑(Class 4)">
+<meta property="og:url" content="http://example.com/2022/12/19/2022-12-19-Restudy-TP-4/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39;s Blog">
+<meta property="og:description" content="最近正好有些空闲的时间，发现自己对拓扑中的一些理解并不深刻，正好借这个机会重新学习一下，加深自己对其中内容的理解，也能让自己之后的研究走的更远。{:.info}">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/butterfly-icon.png">
+<meta property="article:published_time" content="2022-12-18T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-04-05T00:47:11.068Z">
+<meta property="article:author" content="Yu-Xuan">
+<meta property="article:tag" content="Topology">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "重学凝聚态拓扑(Class 4)",
+  "url": "http://example.com/2022/12/19/2022-12-19-Restudy-TP-4/",
+  "image": "http://example.com/img/butterfly-icon.png",
+  "datePublished": "2022-12-18T16:00:00.000Z",
+  "dateModified": "2025-04-05T00:47:11.068Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yu-Xuan",
+      "url": "http://example.com/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/12/19/2022-12-19-Restudy-TP-4/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '重学凝聚态拓扑(Class 4)',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-color: #D4F1F9;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">235</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background: linear-gradient(135deg, rgb(70, 220, 150), rgb(220, 70, 220));"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Yu-Xuan's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">重学凝聚态拓扑(Class 4)</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">重学凝聚态拓扑(Class 4)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-12-18T16:00:00.000Z" title="发表于 2022-12-19 00:00:00">2022-12-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-04-05T00:47:11.068Z" title="更新于 2025-04-05 08:47:11">2025-04-05</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>最近正好有些空闲的时间，发现自己对拓扑中的一些理解并不深刻，正好借这个机会重新学习一下，加深自己对其中内容的理解，也能让自己之后的研究走的更远。<br>{:.info}</p>
+<span id="more"></span>
+
+<h1 id="Topological-phases-from-the-bulk-spectrum"><a href="#Topological-phases-from-the-bulk-spectrum" class="headerlink" title="Topological phases from the bulk spectrum"></a>Topological phases from the bulk spectrum</h1><h2 id="Going-to-momentum-space"><a href="#Going-to-momentum-space" class="headerlink" title="Going to momentum space"></a>Going to momentum space</h2><p>从上面的分析可以看到，边界上的Majorana模式是受到体态能隙保护的，这是一种体边对应(bulk-edge correspondence)。这里就可以提出一个问题：<strong>能否通过体态的来预测边界上Majorana模式的存在？</strong> 为了回答这个问题，首先需要消除Kitaev链的边界，可以想象将Kitaev链的首尾相接，形成一个闭合的环(kitaev ring)，此时就不会存在边界了，那么BdG哈密顿量就满足平移对称性$\rvert n\rangle\rightarrow\rvert n+1\rangle$，而且此时所有的参数$\Delta,\mu,t$都是与位置无关的。当存在平移对称性之后，就可以利用前面提到过的<a href="(https://en.wikipedia.org/wiki/Bloch_wave#Preliminaries:_Crystal_symmetries.2C_lattice.2C_and_reciprocal_lattice)">Bloch定理</a>将BdG哈密顿量表示在动量空间中。一个动量为$k$的态既可以通过实空间中的态表示出来</p>
+<p>$$<br>\rvert k\rangle &#x3D;(N)^{-1&#x2F;2} \sum_{n&#x3D;1}^{N} e^{-ikn} \rvert n\rangle.<br>$$</p>
+<p>这里再利用周期边界条件$\langle k \rvert n&#x3D;0 \rangle&#x3D;\langle k \rvert n&#x3D;N \rangle$，此时动量$k$就是一个守恒量，它被允许在第一布里渊区中取值，如果此时实空间中的格点数量为$N$，那么$k$的取值为$2\pi p &#x2F;N，p&#x3D;0, 1, 2, \dots, N-1$。因为$k$是个好量子数，在动量空间中BdG哈密顿量就可以约化为$2\times 2$的矩阵形式</p>
+<p>$$<br>H(k) \equiv \langle k\rvert H_\textrm{BdG} \rvert  k \rangle &#x3D; (-2t\cos{k}-\mu),\tau_z + 2\Delta \sin{k},,\tau_y.<br>$$</p>
+<p>完整的哈密顿量就是对这些离散的子块进行求和</p>
+<p>$$<br>H_\textrm{BdG} &#x3D; \sum_k H(k) \rvert  k \rangle\langle k \rvert.<br>$$</p>
+<p>当实空间中的链长$N\rightarrow+\infty$时，动量$k$就可以取连续值，遍历整个$k\in[-\pi,\pi]$。</p>
+<h2 id="Particle-hole-symmetry-in-momentum-space"><a href="#Particle-hole-symmetry-in-momentum-space" class="headerlink" title="Particle-hole symmetry in momentum space"></a>Particle-hole symmetry in momentum space</h2><p>从实空间变换到动量空间中并不会影响体系的粒子空穴对称性，但是在进行Fourier变换的时候，还是需要分析一下粒子空穴反幺正操作对基矢的影响，因为它是一个反幺正操作，其中会包含了复共轭操作，因此基矢的选择会影响这个对称操作在动量空间中的形式。在当前的情况中</p>
+<p>$$<br>\mathcal{P}\rvert k\rangle\otimes\rvert \tau\rangle &#x3D; \left(\sum_n,e^{-ikn}\right)^<em>,\rvert n\rangle\otimes \tau_x\rvert \tau\rangle^</em>&#x3D;\rvert -k\rangle\otimes\tau_x\rvert \tau\rangle^*.<br>$$</p>
+<p>此时可以发现，粒子空穴对称操作会使得$k\rightarrow -k$，因此$\mathcal{P}$作用在BdG哈密顿量上，在动量空间中表示为</p>
+<p>$$<br>\mathcal{P}H_\textrm{BdG}\mathcal{P}^{-1} &#x3D; \sum_k \tau_xH^*(k)\tau_x \rvert  -k \rangle\langle -k \rvert&#x3D;\sum_k \tau_xH^*(-k)\tau_x \rvert  k \rangle\langle k \rvert,.<br>$$</p>
+<p>在最后一个等号处，因为每一个允许的$k$值都是成对出现的$(k,-k)$，包括$k&#x3D;0,\pi$这两点。所以粒子空穴对称性$\mathcal{P}H_\textrm{BdG}\mathcal{P}^{-1}&#x3D; -H_\textrm{BdG}$在动量空间中就可以表示为</p>
+<p>$$<br>H(k)&#x3D;-\tau_xH^*(-k)\tau_x.<br>$$</p>
+<p>对上面的模型同样可以验证这一点</p>
+<p>$$<br>\tau_x H^*(-k) \tau_x &#x3D; (2t\cos{k}+\mu),\tau_z - 2\Delta \sin{k},,\tau_y.<br>$$</p>
+<p>可以发现因为存在粒子空穴对称性，在$k$处如果存在能量为$E$的态，那么必然也会在$-k$处存在能量为$-E$的态。</p>
+<h2 id="Band-structure"><a href="#Band-structure" class="headerlink" title="Band structure"></a>Band structure</h2><p>到这里，我们只需要对动量空间中$2\times 2$的哈密顿量对角化可以得到Kitaev chain的能带$E(k)$，其实对于一个$2\times 2$哈密顿量是很容易得到本征值的</p>
+<p>$$<br>E(k) &#x3D; \pm\sqrt{(2t\cos{k}+\mu)^2 + 4\Delta^2\sin^2{k}}.<br>$$</p>
+<p>![png](&#x2F;assets&#x2F;images&#x2F;RestudyTP&#x2F;Pasted image 20221109163927.png)</p>
+<p>通过调整化学势可以发现能带存在一次闭合再打开的过程(<strong>这里我有个疑问，此时能带的闭合时打开，是否还是会对应前面在考虑能级随着$\alpha$演化是，简并代表着Fermion pairty改变</strong>)，当发生拓扑相变之后Kitaev链对应的Majorana边界态就会消失。虽然这里在调节参数的时候，的确实现了拓扑相变，但是在哪一个参数区间内体系是拓扑的，哪一个参数区间内体系又是平庸的，这是拓扑相变所不能告诉的，下面就来分析一下如何确定在各个参数区间内对应的是什么拓扑相。</p>
+<h2 id="Study-of-the-bulk-transition-with-an-effective-Dirac-model"><a href="#Study-of-the-bulk-transition-with-an-effective-Dirac-model" class="headerlink" title="Study of the bulk transition with an effective Dirac model"></a>Study of the bulk transition with an effective Dirac model</h2><p>首先来分析一下在gapless点$\mu&#x3D;-2t$的时候，在$k&#x3D;0$附近哈密顿量的性质，将BdG哈密顿量在$k&#x3D;0$展开到线性阶</p>
+<p>$$<br>H(k) \simeq m \tau_z + 2\Delta,k,\tau_y,,<br>$$</p>
+<p>这里$m&#x3D;-\mu-2t$，可以看到此时哈密顿量$H(k)$变成了Dirac哈密顿量，此时可以很容易的得到其对应的能谱$E(k) &#x3D; \pm\sqrt{m^2 + 4\Delta^2k^2}$，它在低能附近与紧束缚模型得到的能带结果是相同的。在Dirac哈密顿量中，<code>质量m</code>是一个很重要的参数，它描述了在参数变化的过程中到底发生了什么，它的大小在靠近能隙关闭的点位置能与能隙大小$\rvert \mu+2t\rvert$，它的符号可以联想到在之前遇到的两个相</p>
+<ul>
+<li><p>$m&lt;0$ for $\mu&gt;-2t$, which corresponds to the <strong>topological</strong> phase, the one with Majorana modes in the open chain.</p>
+</li>
+<li><p>$m&gt;0$ for $\mu&lt;-2t$, which corresponds to the <strong>trivial</strong> phase, the one without Majorana modes in the open chain.</p>
+</li>
+</ul>
+<p>很明显，$\mu&#x3D;-2t$是一个拓扑相变点，在相变点的两侧分别对应着有无Majorana零能模出现在Kitaev chain的两端。通过查看体态的哈密顿量可以发现，在相同的$\mu&#x3D;-2t$这个参数下，此时体态的能隙关闭并发生反号。</p>
+<p>当$m&#x3D;0$的时候，哈密顿量有两个能量为$E&#x3D;\pm 2\Delta k$的本征态，这两个态都是$\tau_y$的本征态，因此它们都是电子和空穴的等权重叠加。实际上它们就是Majorana模式，能量为$E&#x3D;-2\Delta k$的是向左运动的分支，能量为$E&#x3D;2\Delta k$的则是向右运动的分支(<strong>其实就是看准粒子的费米速度，为正则是向右运动，为负则是向左运动</strong>)。因为此时已经没有能隙了，所以这两个模式可以在chain中自由传播，在当前的这个简单模型中，这些模式运动的速度为$2\Delta$ 。</p>
+<h2 id="Majorana-modes-appearing-at-a-domain-wall-between-different-phases"><a href="#Majorana-modes-appearing-at-a-domain-wall-between-different-phases" class="headerlink" title="Majorana modes appearing at a domain wall between different phases"></a>Majorana modes appearing at a domain wall between different phases</h2><p>现在来考虑这样一个问题：当质量参数$m(x)$在空间中连续发生变化的时候，当其符号发生改变的时候会发生什么？为了回答这个问题，首先将Dirac哈密顿量表示在实空间中</p>
+<p>$$<br>H &#x3D; -v,\tau_y,i\partial_x + m(x), \tau_z.<br>$$</p>
+<p>正如所期待的，此时质量项是空间位置的函数$m(x)$，而且满足 </p>
+<p>$$m(x)\to \pm m,x\to\pm\infty,\quad m(x&#x3D;0)&#x3D;0$$</p>
+<p>在$x&#x3D;0$点的位置处会形成domain wall，它是质量为正和负的交界点。前面已经知道了，在$m&#x3D;0$的位置处会有零能量的Majorana模式，此时来更加细致的分析一下。首先我们需要求解方程$H\Psi&#x3D;0$，可以将其表示为</p>
+<p>$$<br>\partial_x\Psi(x) &#x3D; (1&#x2F;v),m(x),\tau_x,\Psi(x).<br>$$</p>
+<p>此时只出现了一个$\tau_x$矩阵，这个方程是比较容易求解的。解的形式为</p>
+<p>$$<br>\Psi(x) &#x3D; \exp,\left(\tau_x\int_0^x \frac{m(x’)}{v}, dx’\right) \Psi(0).<br>$$</p>
+<p>通过$\tau_x$的两个本征态，可以得到两个线性独立的解</p>
+<p>$$<br>\Psi(x) &#x3D; \exp,\left(\pm\int_0^x \frac{m(x’)}{v}, dx’\right) \begin{pmatrix} 1 \ \pm 1 \end{pmatrix},.<br>$$</p>
+<p>因为质量项$m(x)$在$x&#x3D;0$处发生反号，上面的两个解只有其中一个是归一化的，在这种情况下就可以得到局域在$x&#x3D;0$处的束缚态波函数，它在$x\neq0$时是指数衰减的。这个解就是我们要求解的Majorana模式，在这种情况下，它是束缚在domain wall上的。如果质量项$m(x)$在空间中不发生反号，那么此时就不会存在零能解。</p>
+<p>物理上可以考虑一个系统在$x&lt;0$的空间是拓扑的，在$x&gt;0$的区间内是平庸的。因此正是上面所研究的domain wall的情形，此时在两个区域的交界位置处会形成零能束缚态，如下图所示</p>
+<p><img src="/assets/images/RestudyTP/domain_wall_zero_mode.svg" alt="png"></p>
+<p>为了阐明这种情况，我们可以用多米诺骨牌表示相同的domain wall。当把两个以不同方式配对的多米诺骨牌链连接在一起时，中间必须留下一个未配对的马约拉纳，如下图所示</p>
+<p><img src="/assets/images/RestudyTP/domain_wall_with_dominoes.svg" alt="png"></p>
+<h1 id="Bulk-topological-invariant-and-the-bulk-edge-correspondence"><a href="#Bulk-topological-invariant-and-the-bulk-edge-correspondence" class="headerlink" title="Bulk topological invariant and the bulk-edge correspondence"></a>Bulk topological invariant and the bulk-edge correspondence</h1><h2 id="Bulk-topological-invariant"><a href="#Bulk-topological-invariant" class="headerlink" title="Bulk topological invariant"></a>Bulk topological invariant</h2><p>现在我们更详细地了解了拓扑相变，让我们回到Kitaev的体态哈密顿量$H(k)$，并尝试推广基于Dirac方程的马约拉纳模判据。在我们的有效狄拉克模型中，很容易确定一个量，即质量参数$m$，它的符号决定了系统在其末端是否支持未配对的马约拉纳模。现在让我们试着把这个有效的描述变成一个可以直接从$H(k)$计算出来的<strong>体态拓扑不变量</strong>。这里并不是通过很严格的推导来做这件事情，而是通过一种启发的方式得到的。</p>
+<p>我们可以从一些重要的线索开始。一方面，我们正在研究BdG哈密顿量，我们已经知道了具有粒子-空穴对称性的量子点，它有一个拓扑不变量可以进行表征，即Pfaffian的符号，它在每次能隙关闭时改变符号。另一方面，我们刚刚看到，Kitaev链模型中随着$m$符号的变化会是的能隙的变小，这就意味着可以爸$m$的变化与体系的Pfaffian联系联系起来。</p>
+<p>事实上，你可以把完整的$H_\textrm{BdG}$哈密顿量看作一个非常大的具有粒子-空穴对称性的矩阵。它可以写成反对称形式，此时可以计算它的Pfaffian。只有当特征值$H(k)$经过零时，这个Pfaffian函数才会改变。由于粒子空穴对称，对于每个特征值$E(k)$总会有一个在$E(-k)$处的特征值。如果$E(k)$经过零，它的partner也会经过零。此外，能谱在布里渊区中必须是周期性的，这意味着在有限动量下的间隙关闭总是成对出现的，所以Pfaffian的变化量总的就为零。但是只有两个点例外:$k&#x3D;0$和$k&#x3D;\pi$，它们通过粒子空穴对称映射到自身。在布里渊区中，这些对称性操作不变的动量点在分析拓扑性质的时候都会有很重要的作用。在这两个特殊的动量点有</p>
+<p>$$<br>\tau_x H^*(0)\tau_x&#x3D;-H(0),\quad \tau_x H^*(\pi)\tau_x&#x3D;-H(\pi).<br>$$</p>
+<p>此时可以分别将$H(0)$和$H(\pi)$变成反对称的形式，之后就可以计算对应的Pfaffian。同时可以看到，在这些动量特殊的动量点，恰好对应的就是在某些参数下面的能隙关闭的位置：</p>
+<p>$$k&#x3D;0\rightarrow \mu&#x3D;-2t\quad k&#x3D;\pi\rightarrow 2t$$</p>
+<p>综合考虑，我们有充分的理由专门关注$H(0)$和$H(\pi)$。根据前面已经知道的，可以将$H(0)$和$H(\pi)$变成反对称的形式</p>
+<p>$$<br>\tilde{H}(0) &#x3D; \frac{1}{2}<br>\begin{pmatrix} 1 &amp; 1 \ i &amp; -i \end{pmatrix}<br>\begin{pmatrix} -2t-\mu &amp; 0 \ 0 &amp; 2t+\mu \end{pmatrix}<br>\begin{pmatrix} 1 &amp; -i \ 1 &amp; i \end{pmatrix} &#x3D; -i<br>\begin{pmatrix} 0 &amp; -2t-\mu \ 2t+\mu &amp; 0\end{pmatrix},<br>$$</p>
+<p>$$<br>\tilde{H}(\pi) &#x3D; \frac{1}{2}<br>\begin{pmatrix} 1 &amp; 1 \ i &amp; -i \end{pmatrix}<br>\begin{pmatrix} 2t-\mu &amp; 0 \ 0 &amp; -2t+\mu \end{pmatrix}<br>\begin{pmatrix} 1 &amp; -i \ 1 &amp; i \end{pmatrix} &#x3D; -i<br>\begin{pmatrix} 0 &amp; 2t-\mu \ -2t+\mu &amp; 0\end{pmatrix}.<br>$$</p>
+<p>此时可以很简单的得到</p>
+<p>$$<br>\textrm{Pf}[iH(0)]&#x3D;-2t-\mu,\quad \textrm{Pf}[iH(\pi)]&#x3D;2t-\mu.<br>$$</p>
+<p>此时可以发现，在$\mu&#x3D;-2t$的时候$H(0)$的Pfaffian会改变符号，而$H(\pi)$的符号在$\mu&#x3D;2t$的时候则会发生反号，这与之前通过动量空间中的能带分析得到结论是相同的。单独来说，这两个pfaffian解释了模型中可能发生的两个体能带能隙闭合中的一个。要获得单个体态不变量$Q$，我们可以简单地将两者相乘!因此，我们得到以下表达式:</p>
+<p>$$<br>Q &#x3D; \textrm{sign}\left(, \textrm{Pf}[iH(0)],\textrm{Pf}[iH(\pi)],\right).<br>$$</p>
+<blockquote>
+<p>The topological invariant $Q$ cannot change under continuous deformations of the Hamiltonian unless the gap closes.</p>
+</blockquote>
+<h2 id="Connecting-the-bulk-invariant-and-the-edge-modes"><a href="#Connecting-the-bulk-invariant-and-the-edge-modes" class="headerlink" title="Connecting the bulk invariant and the edge modes"></a>Connecting the bulk invariant and the edge modes</h2><p>目前，上面定义的体态拓扑不变量$Q$可能看起来就像一个抽象的数学对象。我们知道$Q&#x3D;-1$对应的是拓扑相，但是这里还是需要对$Q$赋予一个更加具体的物理意义。</p>
+<p>我们已经把BdG哈密顿量的Pfaffian和一个物理量联系起来:系统的基态费米子宇称。我们的一维不变量涉及两个pfaffian的乘积，$\textrm{Pf}[iH(0)]$和$\textrm{Pf}[iH(\pi)]$。通过取它们的乘积，我们可以用$k&#x3D;0$和$k&#x3D;\pi$处的Pfaffian来比较链的两个态对应的费米子宇称的奇偶，当且仅当两个态的宇称(奇偶性)不同时，我们得到$Q&#x3D;-1$。通过前面在讨论具有粒子空穴对称性哈密顿量随着参数演化，能级发生交叉表示体系费米子的宇称发生了变化。此时可以知道，如果连续在保持粒子空穴对称性不变的前提下，将$H(0)$演化为$H(k)$，那么对应的就会存在能谱在$E&#x3D;0$的位置相交，那么体系的宇称就会发生变化。(<strong>其实通过拓扑态具有两个孤立的零能态可以看到，首尾两端对应的Majorana模式其实都是半个普通的费米子，它们复合在一起才会形成一个电子。而在平庸态则没有这样中孤立态的存在，所以两种不同的相对应的电子数目就是不同的，相应的费米子的宇称就一定是不同的</strong>)。</p>
+<p>在实践中，这可以通过以下方式实现。让我们想象一下，我们将具有$N$格点的Kitaev环的边界条件从周期变成反周期边界，即从$\langle k \rvert N &#x3D;0 \rangle&#x3D;\langle k \rvert N &#x3D;N \rangle$改为$\langle k \rvert N &#x3D;0 \rangle&#x3D;-\langle k \rvert N &#x3D;N \rangle$。这意味着动量的允许值从$k&#x3D;2\pi p&#x2F;N$转移到$k&#x3D;2\pi p&#x2F;N + \pi &#x2F;N$。那么这两种不同边界条件的Kitaev链，它们基态的费米子宇称有什么不同？$k&#x3D;0$总是会出现在具有周期性边界条件的链中，如果链中格点的数量$N$是偶数，那么$k&#x3D;\pi$就出现在周期边界系统中，而如果$N$是奇数，那么$k&#x3D;\pi$就出现在反周期边界系统中。这也就意味着在任何情况下，具有周期边界和反周期边界条件的额Kitaev链之间，基态费米子的奇偶之差总是等于$Q$。</p>
+<p>为了验证这一说法，我们现在将在实空间中改变边界条件。为了简单起见，我们将对一个Kitaev环这样做，其中$\Delta&#x3D;t$。前面讨论过，在Majorana基矢中，这对应于来自不同格点的相邻Majorana算符通过强度$t$的hopping耦合起来的极限情况。要从周期边界条件到反周期边界条件，我们可以将环的最后一个键(连接位置$n&#x3D; n -1$和$n&#x3D;0$的键)上的hopping从$t$改为$-t$(<strong>人为的加入了一个位相因子，变成反周期边界条件</strong>)。这可以在不破坏粒子空穴对称性的情况下很容易地连续完成，例如设置最后一个hopping等于$t*(1-2\lambda)$，并在区间$[0,1]$中缓慢的改变$\lambda$，如下图所示:</p>
+<p><img src="/assets/images/RestudyTP/majorana_ring.svg" alt="png"></p>
+<p>可以通过数值的方式进行验证，在对于不同值的$\lambda$，BdG哈密顿量都是满足粒子空穴对称性的，此时可以通过调节化学势$\mu$来看$E(\lambda)$是如何随着化学势变化的。当调节$\mu&#x3D;0\rightarrow 4t$的时候，在$\mu&#x3D;2t$的时候会经历一次能隙闭合</p>
+<p>![png](&#x2F;assets&#x2F;images&#x2F;RestudyTP&#x2F;Pasted image 20221109203917.png)<br>![png](&#x2F;assets&#x2F;images&#x2F;RestudyTP&#x2F;Pasted image 20221109203959.png)</p>
+<p>可以看到当$\mu&lt;2t$的时候，在$\lambda&#x3D;1&#x2F;2$的位置处总是存在零能的，因此在$\lambda&#x3D;0$和$\lambda&#x3D;1$时，它们的费米子宇称是不同的。当$\lambda&#x3D;1&#x2F;2$的时候最后一个bond上面的hipping为零，相当于此时将本来首尾相接的Kitaev链在最后的位置上切开来，又变成了开放边界的Kitaev。由于我们此时处在拓扑相($\mu&lt;2t$)，所以此时在边界上就会存在未配对的Majorana零能模。</p>
+<p>另一方面，当$\mu&gt;2t$的时候，是不存在零能能级交叉的，基态的费米子宇称在$\lambda&#x3D;0$和$\lambda&#x3D;1$是相同的。此时在$\lambda&#x3D;1&#x2F;2$时将周期的系统切开得到一个边界，此时并不会在边界上得到未配对的Majorana模式，这与前面在平庸相通过能带分析得到的结论是相同的。因此，我们了解了体边界对应的本质:闭链的体不变量的非平凡值$Q&#x3D;-1$表明了开边界情况下Kitaev链中存在未配对Majorana模。此外，将体态不变量的值与一个可测量的量联系起来，在这种情况下，就是闭合链的基态费米子宇称。</p>
+<h1 id="公众号"><a href="#公众号" class="headerlink" title="公众号"></a>公众号</h1><p>相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。<br>{:.info}</p>
+<table>
+  <tr>
+    <!-- 图片单元格 -->
+    <td style="width: 300px; height: 300px; text-align: center; vertical-align: middle; border: 1px solid #ccc; border-radius: 8px;">
+      <img src="/assets/images/qrcode.jpg" alt="QR Code" width="300px" height="300px" style="border-radius: 8px;">
+    </td>
+    <!-- 文字单元格 -->
+    <td style="width: 300px; height: 300px; text-align: center; vertical-align: middle; padding-left: 20px; border: 1px solid #ccc; border-radius: 8px;">
+      <div>
+        <h4 style="margin: 0;">Email</h4>
+        <p style="margin: 5px 0;">yxli406@gmail.com</p>
+      </div>
+    </td>
+  </tr>
+</table></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Yu-Xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/12/19/2022-12-19-Restudy-TP-4/">http://example.com/2022/12/19/2022-12-19-Restudy-TP-4/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Yu-Xuan's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Topology/">Topology</a></div><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2022/12/18/2022-12-18-Restudy-TP-3/" title="重学凝聚态拓扑(Class 3)"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">重学凝聚态拓扑(Class 3)</div></div><div class="info-2"><div class="info-item-1">最近正好有些空闲的时间，发现自己对拓扑中的一些理解并不深刻，正好借这个机会重新学习一下，加深自己对其中内容的理解，也能让自己之后的研究走的更远。{:.info}   Fermion parity switches通常情况下，能级发生表明此时存在一个守恒量，但是对于上面随机产生的这个BdG哈密顿量似乎不是那么直观的可以知道这个守恒量到底是什么。这里就来回想一下前面说过的：虽然在平均场处理下面，超导体中电子的数量不是一个守恒量，但是电子数量对应的宇称却是一个守恒量 。换而言之就是说，在超导联系量子点中产生或者破坏一对Cooper对并不会影响系统中电子数目是奇数个还是偶数个，简而言之就是说费米子的宇称是一个守恒量. 通过上面的分析就知道了，在BdG哈密顿量随参数演化过程中，能级交叉意味着存在费米子宇称是一个守恒量，但是费米子宇称是一个多体无量，原则上是不能通过BdG哈密顿量这种单粒子的物理图像来理解的、为了理解这里存在的能级交叉，回想一下前面在得到BdG哈密顿量的过程，我们将体系的自由度翻倍了，在基矢$C$中同时考虑的电子和空穴，因此与子晶格对称性不同，一对能量为$\pm E$的能级交叉并不对应两个不同的量子态，它其实是同一个量子态。这个量子态是电子和空穴的叠加态，即Bogoliubov quasiparticle：它的激发能量为$E$，对应的产生算符为$a^\dagger &#x3D; u c^\dagger + v...</div></div></div></a><a class="pagination-related" href="/2022/12/20/2022-12-20-AR-JE/" title="Andreev reflection and Fraction Josephson effect"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Andreev reflection and Fraction Josephson effect</div></div><div class="info-2"><div class="info-item-1">最近正好有些空闲的时间，发现自己对拓扑中的一些理解并不深刻，正好借这个机会重新学习一下，加深自己对其中内容的理解，也能让自己之后的研究走的更远。{:.info}   Andreev reflection要理解通过Majorana模式时电导是如何工作的，我们首先必须了解电荷是如何从金属铅转移到超导体的。一般来说，这种转移是通过一种叫做Andreev反射的机制进行的。在我们讨论Majorana零模的电导特征之前，了解一下Andreev反射是什么是有用的。让我们考虑以下两个电极的简单电路:  一个电极是普通金属，另一个是超导体，它们的电压差为$V$。在普通金属和超导体之间的界面(简称NS界面)有一个势垒。我们特别感兴趣的是，与超导体中的能隙$eV &lt; \Delta$相比，电压差非常小的情况，其中$e$是电子的电荷。当电子到达超导体的界面时会发生什么？超导体在费米能级附近没有能量不超过$\Delta$的状态，电压也不足以提供这种能量差，此时电流如何变化？为了理解这一点，首先仔细地观察到达超导体界面的电子。有两种可能发生的过程，正常反射和Andreev反射。在正常的反射中，电子只是在与超导体的界面处被反射：  正常反射时，左电极到右电极没有净电荷转移。因此，这个过程不贡献任何净电流。显然，正常的反射甚至不需要超导体，如果右电极不是超导体，同样会发生反射。 相反，Andreev反射是NS界面特有的。在Andreev反射中，一个电子被超导体转化为空穴，在超导体中形成一个库珀对  你可以看到，一个$2e$的净电荷从左电极转移到右电极，在低电压下，Andreev反射是唯一负责电流的过程。在超导能隙之上，入射电子进入超导体的$eV &gt; \Delta$传输也有助于产生电流。这里可以把Andreev反射看作是一个传输问题。由于超导体的存在，电子和空穴都参与了普通金属铅中的电荷转移。从概念上讲，可以想象把左边的电极分成两条，一条只带电子，另一条只带空穴。这两条引线由超导体连接，超导体将第一条引线中的传入电子转换为第二条引线中的输出空穴，反之亦然：  有了这张图，就能理解Andreev反射和通过双势垒的传输问题非常相似。 我们称$r_{eh}$为Andreev反射的振幅。它的绝对值平方，$\rvert r_{eh}\rvert...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2019/01/01/2019-01-01-TSC/" title="p-wave 超导体Vortex中的Majorana zero mode"><img class="cover" src="/assets/images/20190101/del.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2019-01-01</div><div class="info-item-2">p-wave 超导体Vortex中的Majorana zero mode</div></div><div class="info-2"><div class="info-item-1">整理研究生接触的第一个科研工作   研究生开始时，导师给的第一个任务就是重复一篇关于p-wave超导Vortex中Majorana零能模的文章。从刚开始一无所知的小白，到完整复现文章内容还是学到了很多东西，最后将自己学习中的想法和代码整理成一个项目，如果可以帮到别人最好了。整理的过程中也是自己对所学内容的进一步梳理，可以更好的理解文章内容和计算方法。{:.success} BdG equation solve在超导的问题中，通常会涉及到BdG方程的求解。本代码是用来重复Vortex pinning by the point potential in topological superconductors:A scheme for braiding Majorana bound states论文中关于Majorana费米子在拓扑超导中存在的一些问题。 BdG equation哈密顿量本征值问题求解的关键问题在于哈密顿量的对角化，而BdG方程的关键点在于引入Bogoliubov变换，引 进了准粒子算符来对非对角化的哈密顿量进行对角化处理，该准粒子算符具有粒子空穴对称性。 Important关于如何将论文中的模型一步步的转换成Fortran程序，在这里提供一份尚未完善的帮助手册，读者可以借助这份手册同时对照提供的程序，可以帮助读者更好的明白程序中每一步的含义，以及如何去重复该论文的结果，同时也可以在该程序的基础上进行进一步的数值计算。 文件地址为Manual 程序介绍 整个项目中有多个文件夹，按英文序号进行命名，记录了作者一步一步对代码的编写，同时里面也包括了对论文中公式到矩阵形式进行转换的想法。  final_version中有两个文件夹Linux 和Windows，分别是程序的Linux版本和windows版本  每个文件夹中都有程序源代码，已经通过了检验，同时也附上了计算得到的最终数据。  同时作者还提供了一个由Mathematic编写的简单的绘图程序，可以用来及时的展示计算得到的结果（visual.nb）  在运行Visual.nb文件时，只需将该文件和数据结果放在同一个文件夹之中即可  final_version中同时有origin的绘图文件pic，用来比较清晰的展示计算结果 ...</div></div></div></a><a class="pagination-related" href="/2019/04/17/2019-04-17-julia/" title="Majorana Corner State in High Temperature Superconductor"><img class="cover" src="/assets/images/research/juliaresult.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2019-04-17</div><div class="info-item-2">Majorana Corner State in High Temperature Superconductor</div></div><div class="info-2"><div class="info-item-1">最近刚刚学习了julia, 手头上也正好在重复一篇文章，就正好拿新学习的内容一边温习一边做研究。{:.success}  导入函数库1234567# Import external package that used in program import Pkg# Pkg.add(&quot;PyPlot&quot;)# Pkg.add(&quot;LinearAlgebra&quot;)# Pkg.add(&quot;CPUTime&quot;)...</div></div></div></a><a class="pagination-related" href="/2020/03/16/2020-03-16-Graphene/" title="石墨烯哈密顿量构造及边界态计算"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-03-16</div><div class="info-item-2">石墨烯哈密顿量构造及边界态计算</div></div><div class="info-2"><div class="info-item-1">想通过石墨烯重新学习一下拓扑，以此来记录学习成果。{:.success}    石墨烯的结构石墨烯的元胞是六角蜂窝状的，它的基元包含两个原子，将红黑表示的位置放在一起，则表示它的一个基元。以水平和垂直方向建立直角坐标系，并将它的晶格常数(红黑位置的距离)设置为a，基矢为绿色箭头表示$\vec{v_1}&#x3D;(\sqrt{3}a,0),\vec{v_2}&#x3D;(-\sqrt{3}&#x2F;2a,3&#x2F;2a)$。若只考虑最紧邻位置间的hopping，那么实空间中的Hamiltonian为 $$H&#x3D;-t\sum_{&lt;i,j&gt;}a_i^\dagger b_j - t\sum_{&lt;i,j&gt;}b_i^\dagger a_j$$ $&lt;i,j&gt;$表示的是格点上最近邻的位置。先忘记上面说过的基元的概念，同时忽略图中黑红位置的区别，将所有的格点位置视为相同，那么可以发现每个格点都是有三个最近邻的，这就是石墨烯六角结构和平时经常使用正方点阵的一个区别，正方点阵每个格点都是有四个最近邻的(上下左右，而且它们是相互垂直的)，石墨烯结构中则不然，三个最近邻位置的夹角是$120^o$，这三个最近邻的矢量表示为 $$\vec{e_1}&#x3D;(0,a)\quad \vec{e_2}&#x3D;(-\frac{\sqrt{3}}{2}a,-\frac{a}{2})\quad\vec{e_3}&#x3D;(\frac{\sqrt{3}}{2}a,-\frac{a}{2})$$ 最近邻的三个基矢确定时候，可以将上面的Hamiltonian写成更加具体的一个形式 $$H&#x3D;-t\sum_ia_\vec{r_i}^\dagger  b_{\vec{r_i}+\vec{e_1}}-t\sum_ia_\vec{r_i}^\dagger  b_{\vec{r_i}+\vec{e_2}}-t\sum_ia_\vec{r_i}^\dagger ...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description">整理科研笔记的地方</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">235</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Topological-phases-from-the-bulk-spectrum"><span class="toc-number">1.</span> <span class="toc-text">Topological phases from the bulk spectrum</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Going-to-momentum-space"><span class="toc-number">1.1.</span> <span class="toc-text">Going to momentum space</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Particle-hole-symmetry-in-momentum-space"><span class="toc-number">1.2.</span> <span class="toc-text">Particle-hole symmetry in momentum space</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Band-structure"><span class="toc-number">1.3.</span> <span class="toc-text">Band structure</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Study-of-the-bulk-transition-with-an-effective-Dirac-model"><span class="toc-number">1.4.</span> <span class="toc-text">Study of the bulk transition with an effective Dirac model</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Majorana-modes-appearing-at-a-domain-wall-between-different-phases"><span class="toc-number">1.5.</span> <span class="toc-text">Majorana modes appearing at a domain wall between different phases</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Bulk-topological-invariant-and-the-bulk-edge-correspondence"><span class="toc-number">2.</span> <span class="toc-text">Bulk topological invariant and the bulk-edge correspondence</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Bulk-topological-invariant"><span class="toc-number">2.1.</span> <span class="toc-text">Bulk topological invariant</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Connecting-the-bulk-invariant-and-the-edge-modes"><span class="toc-number">2.2.</span> <span class="toc-text">Connecting the bulk invariant and the edge modes</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AC%E4%BC%97%E5%8F%B7"><span class="toc-number">3.</span> <span class="toc-text">公众号</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-number">3.0.0.1.</span> <span class="toc-text">Email</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/04/05/info/" title="通知">通知</a><time datetime="2025-04-05T11:20:35.210Z" title="发表于 2025-04-05 19:20:35">2025-04-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/18/2025-03-18-Python-MMA/" title="利用Python实现Mathematica的配色方案"><img src="/assets/images/python/Phase-Chern-V0-delta0.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="利用Python实现Mathematica的配色方案"/></a><div class="content"><a class="title" href="/2025/03/18/2025-03-18-Python-MMA/" title="利用Python实现Mathematica的配色方案">利用Python实现Mathematica的配色方案</a><time datetime="2025-03-17T16:00:00.000Z" title="发表于 2025-03-18 00:00:00">2025-03-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/22/2025-02-22-Free-SC/" title="超导序参量自洽(自由能极小值方法)"><img src="/assets/images/Julia/fs-1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导序参量自洽(自由能极小值方法)"/></a><div class="content"><a class="title" href="/2025/02/22/2025-02-22-Free-SC/" title="超导序参量自洽(自由能极小值方法)">超导序参量自洽(自由能极小值方法)</a><time datetime="2025-02-21T16:00:00.000Z" title="发表于 2025-02-22 00:00:00">2025-02-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/18/2025-02-18-Julia-MPI-Set/" title="Mac上配置MPI并行Julia"><img src="/assets/images/Julia/a4.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Mac上配置MPI并行Julia"/></a><div class="content"><a class="title" href="/2025/02/18/2025-02-18-Julia-MPI-Set/" title="Mac上配置MPI并行Julia">Mac上配置MPI并行Julia</a><time datetime="2025-02-17T16:00:00.000Z" title="发表于 2025-02-18 00:00:00">2025-02-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/15/2024-12-15-Fourier-Spectrum/" title="超导序参量中的傅里叶分析"><img src="/assets/images/Mma/fft-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导序参量中的傅里叶分析"/></a><div class="content"><a class="title" href="/2024/12/15/2024-12-15-Fourier-Spectrum/" title="超导序参量中的傅里叶分析">超导序参量中的傅里叶分析</a><time datetime="2024-12-14T16:00:00.000Z" title="发表于 2024-12-15 00:00:00">2024-12-15</time></div></div></div></div></div></div></main><footer id="footer" style="background: linear-gradient(to right, rgb(150, 130, 210), rgb(255, 220, 240));"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;2025 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.0-b1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

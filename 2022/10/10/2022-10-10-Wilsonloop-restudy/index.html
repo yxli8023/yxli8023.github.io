@@ -1,0 +1,295 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>重学Wilson loop | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="这里整理一下自己在重新学习高阶拓扑过程中，对Wilson loop以及相关内容的一个重新理解，也为后面理解Nested Wilson loop做一个铺垫。{:.info}">
+<meta property="og:type" content="article">
+<meta property="og:title" content="重学Wilson loop">
+<meta property="og:url" content="http://example.com/2022/10/10/2022-10-10-Wilsonloop-restudy/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39;s Blog">
+<meta property="og:description" content="这里整理一下自己在重新学习高阶拓扑过程中，对Wilson loop以及相关内容的一个重新理解，也为后面理解Nested Wilson loop做一个铺垫。{:.info}">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/butterfly-icon.png">
+<meta property="article:published_time" content="2022-10-09T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-04-05T00:47:11.045Z">
+<meta property="article:author" content="Yu-Xuan">
+<meta property="article:tag" content="Topology">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "重学Wilson loop",
+  "url": "http://example.com/2022/10/10/2022-10-10-Wilsonloop-restudy/",
+  "image": "http://example.com/img/butterfly-icon.png",
+  "datePublished": "2022-10-09T16:00:00.000Z",
+  "dateModified": "2025-04-05T00:47:11.045Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yu-Xuan",
+      "url": "http://example.com/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/10/10/2022-10-10-Wilsonloop-restudy/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '重学Wilson loop',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-color: #D4F1F9;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">235</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background: linear-gradient(135deg, rgb(70, 220, 150), rgb(220, 70, 220));"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Yu-Xuan's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">重学Wilson loop</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">重学Wilson loop</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-10-09T16:00:00.000Z" title="发表于 2022-10-10 00:00:00">2022-10-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-04-05T00:47:11.045Z" title="更新于 2025-04-05 08:47:11">2025-04-05</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>这里整理一下自己在重新学习高阶拓扑过程中，对Wilson loop以及相关内容的一个重新理解，也为后面理解Nested Wilson loop做一个铺垫。<br>{:.info}</p>
+<span id="more"></span>
+
+<h1 id="重学Wilson-loop"><a href="#重学Wilson-loop" class="headerlink" title="重学Wilson loop"></a>重学Wilson loop</h1><p>最近重读经典文献<a target="_blank" rel="noopener" href="https://journals.aps.org/prb/abstract/10.1103/PhysRevB.96.245115">Electric multipole moments, topological multipole moment pumping, and chiral hinge states in crystalline insulators</a>，对Wilson loop其中的一些表示还有具体含义有了更多的理解，之前都只是参照公式进行计算，现在想重新整理一下具体的物理含义，而不是简简单单的计算一下。</p>
+<h1 id="位置算符"><a href="#位置算符" class="headerlink" title="位置算符"></a>位置算符</h1><p>在理解Berry位相的时候，除了通过参数空间中的演化来理解，在晶体中的电极化也是跟Berry位相有关的，实空间中极化问题的解决也就是现代极化理论。其中关键的一定就是将位置算符在周期系统中表示出来，首先在实空间中写出了位置算符，假设晶体中有$N$个原胞，每个原胞中的轨道数量为$N_{\rm orb}$，可以将位置算符表示为</p>
+<p>$$\hat{x}&#x3D;\sum_{R,\alpha}c^\dagger_{r,\alpha}\rvert 0\rangle e^{-i\delta_k(R+r_\alpha)}\langle 0\rvert c_{R,\alpha}$$</p>
+<p>这里的$\alpha\in1\cdots N_{\rm orb}$是轨道的指标，$R$则是原胞索引，$r_\alpha$是原胞中原子相对于原胞中心的位置，$\Delta_k&#x3D;2\pi&#x2F;N$，想要研究其在动量空间中的性质，进行傅立叶变换即可</p>
+<p>$$\begin{array}{l}c_{R, \alpha}&#x3D;\frac{1}{\sqrt{N}} \sum_{k} e^{-i k\left(R+r_{\alpha}\right)} c_{k, \alpha}, \c_{k, \alpha}&#x3D;\frac{1}{\sqrt{N}} \sum_{R} e^{i k\left(R+r_{\alpha}\right)} c_{R, \alpha}\end{array}$$</p>
+<p>这里的$k\in\Delta_k\cdot (0,1,\cdots,N-1)$，变换过程中利用周期边界条件</p>
+<p>$$c_{R+N, \alpha}&#x3D;c_{R, \alpha} \rightarrow c_{k+G, \alpha}&#x3D;e^{i G r_{\alpha}} c_{k, \alpha}$$</p>
+<p>在动量空间中就可以将位置算符表示为</p>
+<p>$$\hat{x}&#x3D;\sum_{k, \alpha} c_{k+\Delta_{k}, \alpha}^{\dagger}|0\rangle\langle 0| c_{k, \alpha}$$</p>
+<p>在二次量子化形式下，哈密顿量表示为</p>
+<p>$$H&#x3D;\sum_{k} c_{k, \alpha}^{\dagger}\left[h_{k}\right]^{\alpha, \beta} c_{k, \beta},$$</p>
+<p>通常情况下我们在计算的时候，输入其实是中间的矩阵部分$\left[h_{k}\right]^{\alpha, \beta}$，而且在求解本征值以及本征态的时候，也是在对角化这个矩阵，可以将对角化之后的哈密顿量表示为</p>
+<p>$$\left[h_{k}\right]^{\alpha, \beta}&#x3D;\sum_{n}\left[u_{k}^{n}\right]^{\alpha} \epsilon_{n, k}\left[u_{k}^{* n}\right]^{\beta},$$</p>
+<p>此时二次量子化形式的哈密顿量为</p>
+<p>$$H&#x3D;\sum_{n, k} \gamma_{n, k}^{\dagger} \epsilon_{n, k} \gamma_{n, k}$$</p>
+<p>这里的$\gamma_{n,k}$就是对角表象下面的准粒子，它与电子产生算符之间的变换关系为</p>
+<p>$$\gamma_{n, k}&#x3D;\sum_{\alpha}\left[u_{k}^{* n}\right]^{\alpha} c_{k, \alpha}$$</p>
+<p>其实就是通过本征矢量将电子算符表象和准粒子$\gamma_{n,k}$表象联系起来。</p>
+<h1 id="占据态空间"><a href="#占据态空间" class="headerlink" title="占据态空间"></a>占据态空间</h1><p>在研究拓扑问题的时候，通常要关心的都是占据态的性质。在前面通过对角化的方式得到了系统所有的本征态，那么就可以利用所有的占据态构建投影算符</p>
+<p>$$P^{\text {occ }}&#x3D;\sum_{n&#x3D;1}^{N_{\text {occ }}} \sum_{k} \gamma_{n, k}^{\dagger}|0\rangle\langle 0| \gamma_{n, k},$$</p>
+<p>这里$N_{\rm occ}$就是占据态的数量。接下来就是要将位置算符投影到占据态空间中</p>
+<p>$$P^{\mathrm{occ}} \hat{x}P^{\mathrm{occ}}&#x3D; \sum_{n, k} \sum_{n^{\prime}, k^{\prime}} \gamma_{n, k}^{\dagger}|0\rangle\langle 0| \gamma_{n^{\prime}, k^{\prime}}\left(\sum_{q, \alpha}\left\langle 0\left|\gamma_{n, k} c_{q+\Delta_{k}, \alpha}^{\dagger}\right| 0\right\rangle\left\langle 0\left|c_{q, \alpha} \gamma_{n^{\prime}, k^{\prime}}^{\dagger}\right| 0\right\rangle\right)$$</p>
+<p>现在就需要利用准粒子算符和电子算符之间的变换关系了$\gamma_{n, k}&#x3D;\sum_{\alpha}\left[u_{k}^{* n}\right]^{\alpha} c_{k, \alpha}$，利用这个关系可以得到</p>
+<p>$$\langle 0\rvert \gamma_{n,k}c^\dagger_{q,\alpha}\rvert 0\rangle&#x3D;[u_k^{*n}]^{\alpha}\delta_{k,q}$$</p>
+<p>利用这个关系可以将位置算符化简为</p>
+<p>$$P^{\mathrm{occ}} \hat{x} P^{\mathrm{occ}}&#x3D;\sum_{m, n&#x3D;1}^{N_{\text {occ }}} \sum_{k} \gamma_{m, k+\Delta_{k}}^{\dagger}\rvert 0\rangle\left\langle u_{k+\Delta_{k}}^{m} \mid u_{k}^{n}\right\rangle\langle 0\rvert \gamma_{n, k},$$</p>
+<p>在上面的表达式中，会有一点让人误解的地方，其实</p>
+<p>$$\langle u^m_q\rvert u^n_k\rangle&#x3D;\sum_\alpha[u_q^{*m}]^\alpha[u_k^n]^\alpha$$</p>
+<p>就是使用了一个简写的形式，并不代表$\langle u_k^m\rvert u_q^n\rangle\neq\delta_{m,n}\delta_{k,q}$，其实它们满足的是$\langle u_k^m\rvert u_k^n\rangle&#x3D;\delta_{m,n}$。到此就先得到了位置算符在占据态上的投影后的结果，因为我们在数值计算的时候，能处理的都是矩阵，basis实际上只是在考虑问题的时候涉及的，所以此时得到的也是一个矩阵</p>
+<p>$$[G_k]^{mn}&#x3D;\langle u_{k+\Delta}^m\rvert u_k^n\rangle$$</p>
+<p>可以看到它是哈密顿量不同$k$点处本征态的交叠矩阵，是非幺正的，不过<a target="_blank" rel="noopener" href="https://journals.aps.org/prb/abstract/10.1103/PhysRevB.96.245115">Electric multipole moments, topological multipole moment pumping, and chiral hinge states in crystalline insulators</a> 这篇文章中证明了，在热力学极限下面，这个矩阵仍然是幺正的。不过在真实的计算中肯定不能使得系统趋向于热力学极限，为了让其在有限大小$N$的情况下可以是幺正的，那么矩阵$G$进行奇异值分解</p>
+<p>$$G&#x3D;UDV^\dagger$$</p>
+<p>其实这个过程就是通常我们处理矩阵对角化的过程，只不过对于一般的矩阵，就先叫做奇异值分解。此时$D$是一个对角矩阵，矩阵$G$是非幺正的特征就是$D$矩阵的对角元素对应的奇异值都是小于1的，所以可以在每一个$k$点定义</p>
+<p>$$F&#x3D;UV^\dagger$$</p>
+<p>它是幺正矩阵，将$F$成为在$k$点处的Wilson line element。根据文章所说，在$N\rightarrow\infty$时，$[F_k]^{mn}&#x3D;[G_k]^{mn}$，这里我就暂时接受这件事情了。为了将投影位置算符$P^{\mathrm{occ}} \hat{x} P^{\mathrm{occ}}$对角化，此时可以得到其对应的本征值问题为</p>
+<p>$$P^{\mathrm{occ}} \hat{x} P^{\mathrm{occ}}\rvert\Psi^j\rangle&#x3D;E^j\rvert\psi^j\rangle$$</p>
+<p>根据投影位置算符在前面的表达式，在基矢$\gamma_{n,k}\rvert 0\rangle$下面，上面的本征方程形式为</p>
+<p>$$\begin{equation}<br>\left(\begin{array}{ccccc}<br>0 &amp; 0 &amp; 0 &amp; \ldots &amp; F_{k_{N}} \<br>F_{k_{1}} &amp; 0 &amp; 0 &amp; \ldots &amp; 0 \<br>0 &amp; F_{k_{2}} &amp; 0 &amp; \ldots &amp; 0 \<br>\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \<br>0 &amp; 0 &amp; 0 &amp; \ldots &amp; 0<br>\end{array}\right)\left(\begin{array}{c}<br>v_{k_{1}} \<br>v_{k_{2}} \<br>v_{k_{3}} \<br>\vdots \<br>v_{k_{N}}<br>\end{array}\right)^{j}&#x3D;E^{j}\left(\begin{array}{c}<br>v_{k_{1}} \<br>v_{k_{2}} \<br>v_{k_{3}} \<br>\vdots \<br>v_{k_{N}}<br>\end{array}\right)^{j},<br>\end{equation}$$</p>
+<p>这里离散的$k$点取值为$k_1&#x3D;0,k_2&#x3D;\Delta_k,\cdots,k_N&#x3D;\Delta_k(N-1)$，指标$j\in 1,\cdots N_{\rm occ}$表示占据态。这里先将上面的方程重新写一下</p>
+<p>$$<br>F\mathbf{v}&#x3D;E\mathbf{v}<br>$$<br>这里的</p>
+<p>$$<br>F&#x3D;\left(\begin{array}{ccccc}<br>0 &amp; 0 &amp; 0 &amp; \ldots &amp; F_{k_{N}} \<br>F_{k_{1}} &amp; 0 &amp; 0 &amp; \ldots &amp; 0 \<br>0 &amp; F_{k_{2}} &amp; 0 &amp; \ldots &amp; 0 \<br>\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \<br>0 &amp; 0 &amp; 0 &amp; \ldots &amp; 0<br>\end{array}\right)<br>$$</p>
+<p>可以将$F$重复的作用在方程左侧可以得到</p>
+<p>$$<br>F^{N}\mathbf{v}&#x3D;E\mathbf{v}<br>$$</p>
+<p>这里$N$其实就是这个矩阵的维数，其实自己可以验证一下，对于$F$这种具有特殊形式的矩阵，将其多次作用在一个列向量上之后有</p>
+<p>$$<br>\mathcal{W}<em>{k_f\leftarrow k_i}\rvert v^j</em>{k_i}\rangle&#x3D;(E^j)^{(k_f-k_i)&#x2F;\Delta_k}\rvert v^j_{k_f}\rangle<br>$$</p>
+<p>这里还是使用了Dirac符号表示了$[v_{k_l}^j]^n$这个列矢量，这里$n\in 1\cdots N_{\rm occ}$，此时可以定义处离散的Wilson line</p>
+<p>$$\mathcal{W}<em>{k_f\leftarrow k_i}&#x3D;F</em>{k_f-\Delta_k}F_{k_f-2\Delta_k}\cdots F_{k_f+\Delta_k}F_{k_i}$$</p>
+<p>对于足够大的Wilson loop，总是可以将其穿过整个BZ的，此时就可以上面的公式重新表示，令其能覆盖整个BZ</p>
+<p>$$\mathcal{W}_{k+2\pi\leftarrow k}\rvert v_k^j\rangle&#x3D;(E^j)^N\rvert v_k^j\rangle$$</p>
+<p>这里的$k$就是计算Wilson loop的起点(base point)，虽然选择不同的$k$可能使得Wilson loop的本征态会有些不同，但是其本征值并不会随着$k$的选择不同而发生变化。而且此时因为Wilson loop是幺正的，那么其本征值可以简单的表示为位相</p>
+<p>$$(E^j)^N&#x3D;e^{i2\pi v^j}$$</p>
+<p>即Wilson loop对应的本征方程为</p>
+<p>$$\mathcal{W}_{k+2\pi\leftarrow k}\rvert v_k^j\rangle&#x3D;e^{i2\pi v^j}\rvert v_k^j\rangle$$</p>
+<p>这里$j&#x3D;1\cdots N_{\rm occ}$还是遍历所有的占据态，而$v^j$就是占据态能带对应的Wannier center，因此有多少个占据态就会对应多少个Wannier center，而原胞中体态的极化通常是对所有的占据态进行的，即</p>
+<p>$$p&#x3D;\sum_jv^j$$</p>
+<p>将其用Wilson loop表示出来即</p>
+<p>$$P&#x3D;-\frac{i}{2\pi}\log\det[\mathcal{W}_{k+2\pi\leftarrow k}]$$</p>
+<p>此时来考虑前面提到的矩阵$[G_k]^{mn}&#x3D;\langle u^m_{k+\Delta_k}\rvert u^n_k\rangle$，这里$\Delta_k&#x3D;(k_f-k_i)&#x2F;N$，在热力学极限下$N\rightarrow\infty$，可以将本征态进行展开</p>
+<p>$$\langle u^m_{k+\Delta_k}\rvert&#x3D;\langle u^m_k\rvert+\Delta_k\partial_k\langle u^m_k\rvert+\cdots$$</p>
+<p>此时可以将矩阵中元素表示为</p>
+<p>$$[G_k]^{mn}&#x3D;\langle u_k^m\rvert u_k^n\rangle+\Delta_k\langle \partial_k u_k^m\rvert u_k^n\rangle+\cdots$$</p>
+<p>利用本征态之间的正交关系</p>
+<p>$$\langle u_k^m\rvert u_k^n\rangle&#x3D;\delta^{mn}\qquad \langle\partial_k u^m_k\rvert u_k^n\rangle&#x3D;-\langle u^m_k\rvert \partial_k u_k^n\rangle$$</p>
+<p>此时可以将其重新表示</p>
+<p>$$[G_k]^{mn}&#x3D;\delta^{mn}-\Delta_k\langle u^m_k\rvert\partial_k u_k^n\rangle&#x3D;\delta^{mn}-i\Delta_k[\mathcal{A}_k]^{mn}$$</p>
+<p>这里Berry联络定义为</p>
+<p>$$[\mathcal{A}_k]^{mn}&#x3D;-i\langle u^m_k\rvert\partial_k\rvert u_k^n\rangle$$</p>
+<p>它是一个纯实数量，因此在热力学极限下，可以将Wilson loop表示为</p>
+<p>$$\mathcal{W}<em>{k_f\leftarrow k_i}&#x3D;\lim</em>{N\rightarrow\infty}\Pi_{n&#x3D;1}^N[I-i\Delta_k\mathcal{A}<em>{k+n\Delta_k}]&#x3D;\exp[-i\int</em>{k_i}^{k_f}\mathcal{A}_kdk]$$</p>
+<p>此时极化就可以重新表示为</p>
+<p>$$p&#x3D;-\frac{i}{2\pi}\log\det[e^{-i\int_k^{k+2\pi}\mathcal{A}_kdk}]&#x3D;-\frac{1}{2\pi}\int_k^{k+2\pi}\text{Tr}[\mathcal{A}_k]dk\quad\text{mod}\quad 1$$</p>
+<p>所以电子的极化性质就是有占据态空间的Berry位相决定的。</p>
+<h1 id="公众号"><a href="#公众号" class="headerlink" title="公众号"></a>公众号</h1><p>相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。<br>{:.info}</p>
+<table>
+  <tr>
+    <!-- 图片单元格 -->
+    <td style="width: 300px; height: 300px; text-align: center; vertical-align: middle; border: 1px solid #ccc; border-radius: 8px;">
+      <img src="/assets/images/qrcode.jpg" alt="QR Code" width="300px" height="300px" style="border-radius: 8px;">
+    </td>
+    <!-- 文字单元格 -->
+    <td style="width: 300px; height: 300px; text-align: center; vertical-align: middle; padding-left: 20px; border: 1px solid #ccc; border-radius: 8px;">
+      <div>
+        <h4 style="margin: 0;">Email</h4>
+        <p style="margin: 5px 0;">yxli406@gmail.com</p>
+      </div>
+    </td>
+  </tr>
+</table></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Yu-Xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/10/10/2022-10-10-Wilsonloop-restudy/">http://example.com/2022/10/10/2022-10-10-Wilsonloop-restudy/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Yu-Xuan's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Topology/">Topology</a></div><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2022/09/19/2022-09-19-note-model/" title="笔记模板(Latex)"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">笔记模板(Latex)</div></div><div class="info-2"><div class="info-item-1">在科研中我通常需要整理一些笔记,虽然也想用iPad来整理,但是排版上总是不尽人意,字写得也不好看,所以干脆就整理一个Latex模板专门整理学习笔记.这篇Blog就是将自己的这个模板分享出来,主要还是基于project-logbook进行了一些改造.{:.info}   这个笔记的模板就是将科研日志模板(Latex)这个模板修改了一下，将其中的一些环境块修改了，最后只保留了以note环境块，可以通过对其设置不同的颜色框来达到不同的目的，其实这个模板还是很简单的。 高亮块想要将一些文字高亮起来,这里使用了一个note环境来实现 12\begin&#123;note&#125;&#123;这里写title&#125;&#123;blue!50&#125;	\end&#123;note&#125;  12\begin&#123;note&#125;&#123;Question&#125;&#123;red&#125;\end&#123;note&#125; 在使用note环境的时候，第一个参数title就是用来设置高亮标题的,第二个参数则是控制高亮块的颜色。可以将重要的结论或者要注意的一些内容通过设置不同的颜色来进行标记。  想要设置不同的颜色，可以通过修改颜色blue!50产生不同的颜色块,从而来对不同的内容进行高亮标记。下面给一个我整理的笔记示例。  除此之外，还可以考虑给自己的笔记增加水印，可以在导言区加入下面的命令，这是用来加入一个图片水印，可以自己设计一个专属图片(我这里的图片由办公室段师姐提供，在此致谢) 123456\makeatletter\@namedef&#123;ver@everypage.sty&#125;&#123;9999/99/99&#125;\makeatother\usepackage&#123;everypage-1x&#125;\usepackage[contents=DRAFT, color=red, opacity=0.2]&#123;background&#125;\backgroundsetup&#123;scale=0.5, angle=45, opacity = 0.1, contents = &#123;\includegraphics[width=\paperwidth, height=\paperwidth,...</div></div></div></a><a class="pagination-related" href="/2022/10/11/2022-10-11-Edge-polarization/" title="边界极化"><img class="cover" src="/assets/images/topology/edge-pora.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">边界极化</div></div><div class="info-2"><div class="info-item-1">在计算发生边界拓扑相变的高阶拓扑绝缘体的时候, 有时候会遇到需要计算体系的边界极化, 其实也就是要在一个cylinder结构上计算其对应的Wilson loop, 并计算每个格点上对极化的贡献, 这里就先详细的整理一下理论背景, 后面给一个详细的例子来给出计算记过.{:.info}  边界极化首先考虑一个2D系统$\mathbf{k}&#x3D;(k_x,k_y)$, 将其一个方向变换到实空间 $$c_{k,\alpha}\rightarrow c_{k_x,R_y,\alpha}$$ 此时二次量子化形式下的哈密顿量为 $$\begin{align}H &#x3D; \sum_{k_x} c^\dagger_{k_x,R_y,\alpha} [h_{k_x}]^{R_y,\alpha,R’y,\beta} c{k_x,R’_y,\beta},\label{eq1}\end{align}$$ 这里的$\alpha,\beta\in 1,\cdots N_{\rm orb}$为轨道指标, $R_y.R_y’\in 1\cdots N$则是$y$方向开边界之后的格点指标, 因为此时$x$方向仍然是周期的, 所以$k_x$还是一个好量子数, 此时计算需要的哈密顿量矩阵为 $$\begin{align}[h_{k_x}]^{R_y,\alpha,R’y,\beta} &#x3D; \sum_n [u^n{k_x}]^{R_y,\alpha} \epsilon_{n,k_x} [u^{*n}_{k_x}]^{R’_y\beta},\label{eq2}\end{align}$$ 这里的求和指标$n\in 1\cdots N_{\rm orb}\times N_y$. 如果二维系统的$x$方向和$y$方向都是周期的, 那么$h(k_x,k_y)$是有$N_{\rm orb}$个轨道的哈密顿量, 那么此时方程\eqref{eq2}中$h(k_x)$描述的就是一个具有$N_{\rm orb}\times R_y$个占据态能带的准1D体系, 与重学Wilson loop 中一样, 此时将哈密顿量进行对角化 $$\begin{align}H &#x3D; \sum_{n,{k_x}} \gamma^\dagger_{n,{k_x}} \epsilon_{n,k_x}...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2019/01/01/2019-01-01-TSC/" title="p-wave 超导体Vortex中的Majorana zero mode"><img class="cover" src="/assets/images/20190101/del.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2019-01-01</div><div class="info-item-2">p-wave 超导体Vortex中的Majorana zero mode</div></div><div class="info-2"><div class="info-item-1">整理研究生接触的第一个科研工作   研究生开始时，导师给的第一个任务就是重复一篇关于p-wave超导Vortex中Majorana零能模的文章。从刚开始一无所知的小白，到完整复现文章内容还是学到了很多东西，最后将自己学习中的想法和代码整理成一个项目，如果可以帮到别人最好了。整理的过程中也是自己对所学内容的进一步梳理，可以更好的理解文章内容和计算方法。{:.success} BdG equation solve在超导的问题中，通常会涉及到BdG方程的求解。本代码是用来重复Vortex pinning by the point potential in topological superconductors:A scheme for braiding Majorana bound states论文中关于Majorana费米子在拓扑超导中存在的一些问题。 BdG equation哈密顿量本征值问题求解的关键问题在于哈密顿量的对角化，而BdG方程的关键点在于引入Bogoliubov变换，引 进了准粒子算符来对非对角化的哈密顿量进行对角化处理，该准粒子算符具有粒子空穴对称性。 Important关于如何将论文中的模型一步步的转换成Fortran程序，在这里提供一份尚未完善的帮助手册，读者可以借助这份手册同时对照提供的程序，可以帮助读者更好的明白程序中每一步的含义，以及如何去重复该论文的结果，同时也可以在该程序的基础上进行进一步的数值计算。 文件地址为Manual 程序介绍 整个项目中有多个文件夹，按英文序号进行命名，记录了作者一步一步对代码的编写，同时里面也包括了对论文中公式到矩阵形式进行转换的想法。  final_version中有两个文件夹Linux 和Windows，分别是程序的Linux版本和windows版本  每个文件夹中都有程序源代码，已经通过了检验，同时也附上了计算得到的最终数据。  同时作者还提供了一个由Mathematic编写的简单的绘图程序，可以用来及时的展示计算得到的结果（visual.nb）  在运行Visual.nb文件时，只需将该文件和数据结果放在同一个文件夹之中即可  final_version中同时有origin的绘图文件pic，用来比较清晰的展示计算结果 ...</div></div></div></a><a class="pagination-related" href="/2019/04/17/2019-04-17-julia/" title="Majorana Corner State in High Temperature Superconductor"><img class="cover" src="/assets/images/research/juliaresult.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2019-04-17</div><div class="info-item-2">Majorana Corner State in High Temperature Superconductor</div></div><div class="info-2"><div class="info-item-1">最近刚刚学习了julia, 手头上也正好在重复一篇文章，就正好拿新学习的内容一边温习一边做研究。{:.success}  导入函数库1234567# Import external package that used in program import Pkg# Pkg.add(&quot;PyPlot&quot;)# Pkg.add(&quot;LinearAlgebra&quot;)# Pkg.add(&quot;CPUTime&quot;)...</div></div></div></a><a class="pagination-related" href="/2020/03/16/2020-03-16-Graphene/" title="石墨烯哈密顿量构造及边界态计算"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-03-16</div><div class="info-item-2">石墨烯哈密顿量构造及边界态计算</div></div><div class="info-2"><div class="info-item-1">想通过石墨烯重新学习一下拓扑，以此来记录学习成果。{:.success}    石墨烯的结构石墨烯的元胞是六角蜂窝状的，它的基元包含两个原子，将红黑表示的位置放在一起，则表示它的一个基元。以水平和垂直方向建立直角坐标系，并将它的晶格常数(红黑位置的距离)设置为a，基矢为绿色箭头表示$\vec{v_1}&#x3D;(\sqrt{3}a,0),\vec{v_2}&#x3D;(-\sqrt{3}&#x2F;2a,3&#x2F;2a)$。若只考虑最紧邻位置间的hopping，那么实空间中的Hamiltonian为 $$H&#x3D;-t\sum_{&lt;i,j&gt;}a_i^\dagger b_j - t\sum_{&lt;i,j&gt;}b_i^\dagger a_j$$ $&lt;i,j&gt;$表示的是格点上最近邻的位置。先忘记上面说过的基元的概念，同时忽略图中黑红位置的区别，将所有的格点位置视为相同，那么可以发现每个格点都是有三个最近邻的，这就是石墨烯六角结构和平时经常使用正方点阵的一个区别，正方点阵每个格点都是有四个最近邻的(上下左右，而且它们是相互垂直的)，石墨烯结构中则不然，三个最近邻位置的夹角是$120^o$，这三个最近邻的矢量表示为 $$\vec{e_1}&#x3D;(0,a)\quad \vec{e_2}&#x3D;(-\frac{\sqrt{3}}{2}a,-\frac{a}{2})\quad\vec{e_3}&#x3D;(\frac{\sqrt{3}}{2}a,-\frac{a}{2})$$ 最近邻的三个基矢确定时候，可以将上面的Hamiltonian写成更加具体的一个形式 $$H&#x3D;-t\sum_ia_\vec{r_i}^\dagger  b_{\vec{r_i}+\vec{e_1}}-t\sum_ia_\vec{r_i}^\dagger  b_{\vec{r_i}+\vec{e_2}}-t\sum_ia_\vec{r_i}^\dagger ...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description">整理科研笔记的地方</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">235</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%87%8D%E5%AD%A6Wilson-loop"><span class="toc-number">1.</span> <span class="toc-text">重学Wilson loop</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%8D%E7%BD%AE%E7%AE%97%E7%AC%A6"><span class="toc-number">2.</span> <span class="toc-text">位置算符</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%A0%E6%8D%AE%E6%80%81%E7%A9%BA%E9%97%B4"><span class="toc-number">3.</span> <span class="toc-text">占据态空间</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AC%E4%BC%97%E5%8F%B7"><span class="toc-number">4.</span> <span class="toc-text">公众号</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-number">4.0.0.1.</span> <span class="toc-text">Email</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/04/05/info/" title="通知">通知</a><time datetime="2025-04-05T11:20:35.210Z" title="发表于 2025-04-05 19:20:35">2025-04-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/18/2025-03-18-Python-MMA/" title="利用Python实现Mathematica的配色方案"><img src="/assets/images/python/Phase-Chern-V0-delta0.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="利用Python实现Mathematica的配色方案"/></a><div class="content"><a class="title" href="/2025/03/18/2025-03-18-Python-MMA/" title="利用Python实现Mathematica的配色方案">利用Python实现Mathematica的配色方案</a><time datetime="2025-03-17T16:00:00.000Z" title="发表于 2025-03-18 00:00:00">2025-03-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/22/2025-02-22-Free-SC/" title="超导序参量自洽(自由能极小值方法)"><img src="/assets/images/Julia/fs-1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导序参量自洽(自由能极小值方法)"/></a><div class="content"><a class="title" href="/2025/02/22/2025-02-22-Free-SC/" title="超导序参量自洽(自由能极小值方法)">超导序参量自洽(自由能极小值方法)</a><time datetime="2025-02-21T16:00:00.000Z" title="发表于 2025-02-22 00:00:00">2025-02-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/18/2025-02-18-Julia-MPI-Set/" title="Mac上配置MPI并行Julia"><img src="/assets/images/Julia/a4.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Mac上配置MPI并行Julia"/></a><div class="content"><a class="title" href="/2025/02/18/2025-02-18-Julia-MPI-Set/" title="Mac上配置MPI并行Julia">Mac上配置MPI并行Julia</a><time datetime="2025-02-17T16:00:00.000Z" title="发表于 2025-02-18 00:00:00">2025-02-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/15/2024-12-15-Fourier-Spectrum/" title="超导序参量中的傅里叶分析"><img src="/assets/images/Mma/fft-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导序参量中的傅里叶分析"/></a><div class="content"><a class="title" href="/2024/12/15/2024-12-15-Fourier-Spectrum/" title="超导序参量中的傅里叶分析">超导序参量中的傅里叶分析</a><time datetime="2024-12-14T16:00:00.000Z" title="发表于 2024-12-15 00:00:00">2024-12-15</time></div></div></div></div></div></div></main><footer id="footer" style="background: linear-gradient(to right, rgb(150, 130, 210), rgb(255, 220, 240));"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;2025 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.0-b1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

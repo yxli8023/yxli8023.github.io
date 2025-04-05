@@ -1,0 +1,255 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>利用投影子方法求解Square lattice边界态 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="在Square lattice上求解沿着$x$或者$y$方向求解边界态的时候，还可以使用另外一种投影子的方法，这里就介绍一下这个方法。{:.info}">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用投影子方法求解Square lattice边界态">
+<meta property="og:url" content="http://example.com/2021/11/21/2021-11-21-Project-edge-theory/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39;s Blog">
+<meta property="og:description" content="在Square lattice上求解沿着$x$或者$y$方向求解边界态的时候，还可以使用另外一种投影子的方法，这里就介绍一下这个方法。{:.info}">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/butterfly-icon.png">
+<meta property="article:published_time" content="2021-11-20T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-04-05T00:47:10.985Z">
+<meta property="article:author" content="Yu-Xuan">
+<meta property="article:tag" content="Topology">
+<meta property="article:tag" content="Study">
+<meta property="article:tag" content="Math">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "利用投影子方法求解Square lattice边界态",
+  "url": "http://example.com/2021/11/21/2021-11-21-Project-edge-theory/",
+  "image": "http://example.com/img/butterfly-icon.png",
+  "datePublished": "2021-11-20T16:00:00.000Z",
+  "dateModified": "2025-04-05T00:47:10.985Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yu-Xuan",
+      "url": "http://example.com/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/11/21/2021-11-21-Project-edge-theory/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '利用投影子方法求解Square lattice边界态',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-color: #D4F1F9;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">235</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background: linear-gradient(135deg, rgb(70, 220, 150), rgb(220, 70, 220));"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Yu-Xuan's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">利用投影子方法求解Square lattice边界态</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">利用投影子方法求解Square lattice边界态</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-11-20T16:00:00.000Z" title="发表于 2021-11-21 00:00:00">2021-11-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-04-05T00:47:10.985Z" title="更新于 2025-04-05 08:47:10">2025-04-05</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>在Square lattice上求解沿着$x$或者$y$方向求解边界态的时候，还可以使用另外一种投影子的方法，这里就介绍一下这个方法。<br>{:.info}</p>
+<span id="more"></span>
+<p>同样考虑BHZ模型加入Zeeman场这样的一个模型</p>
+<p>$$<br>    H(\mathbf{k})&#x3D;(m_0-t_x\cos k_x-t_y\cos k_y)\sigma_z+\lambda_x\sin k_x\sigma_xs_z+\lambda_y\sin k_y\sigma_y+h_0s_x<br>$$</p>
+<p>这里$\Gamma_1&#x3D;\sigma_zs_0,\Gamma_2&#x3D;\sigma_xs_z,\Gamma_3&#x3D;\sigma_ys_0,\Gamma_4&#x3D;\sigma_0s_x$。<br>将$h_0s_{x}$视为微扰，求解BHZ模型对应的边界态。先沿着$y$方向取开放边界条件，进行Fourier变换到实空间</p>
+<p>$$<br>H(k_{x})&#x3D;(m_0-t_x\cos k_x-t_y&#x2F;2(S_{y}+S_{y}^{\dagger}))\sigma_z+\lambda_x\sin k_x\sigma_xs_z+\lambda_y&#x2F;(2i)(S_{y}-S_{y}^{\dagger})\sigma_y\label{eq8}<br>$$</p>
+<p>$$<br>S_{y}\rvert i\rangle&#x3D;\rvert i+1\rangle,\quad S_{y}^{\dagger}\rvert i\rangle&#x3D;\rvert i-1\rangle<br>$$</p>
+<p>考虑一个半无限大的系统，考虑$y$轴的正方向满足$S_y^\dagger\rvert 0\rangle&#x3D;0$，此时可以见平移算符表示为</p>
+<p>$$<br>S_y&#x3D;\left[\begin{array}{ccccc}<br>0&amp;0&amp;0&amp;0&amp;\cdots\<br>1&amp;0&amp;0&amp;0&amp;\cdots\<br>0&amp;1&amp;0&amp;0&amp;\cdots\<br>0&amp;0&amp;1&amp;0&amp;\cdots\<br>\cdots&amp;\cdots&amp;\cdots&amp;\cdots<br>\end{array}\right],\quad S^\dagger_y&#x3D;\left[\begin{array}{ccccc}<br>0&amp;1&amp;0&amp;0&amp;\cdots\<br>0&amp;0&amp;1&amp;0&amp;\cdots\<br>0&amp;0&amp;0&amp;1&amp;\cdots\<br>0&amp;0&amp;0&amp;0&amp;\cdots\<br>\cdots&amp;\cdots&amp;\cdots&amp;\cdots<br>\end{array}\right]<br>$$</p>
+<p>考虑一个试探解$\rvert\psi_\mathbf{k}\rangle&#x3D;\sum_{i&#x3D;0}^{\infty}\lambda^i\rvert i\rangle\otimes\rvert\xi\rangle,\rvert\lambda\rvert&lt;1$，求解(\ref{eq8})对应的本征方程，在$i\geq 1$的体态可以得到</p>
+<p>$$<br>[(m_0-t_x\cos k_x-\frac{1}{2}(\lambda^{-1}+\lambda))\sigma_z+\lambda_x\sin k_x\sigma_xs_z+\frac{\lambda_y}{2i}(\lambda^{-1}-\lambda)\sigma_y]\rvert\xi\rangle&#x3D;E\rvert\xi\rangle\label{eq9}<br>$$</p>
+<p>在边界$i&#x3D;0$的位置上，可以得到</p>
+<p>$$<br>[(m_0-t_x\cos k_x-\frac{1}{2}\lambda^{-1})\sigma_z+\lambda_x\sin k_x\sigma_xs_z+\frac{\lambda_y}{2i}\lambda^{-1}\sigma_y]\rvert\xi\rangle&#x3D;E\rvert\xi\rangle\label{eq10}<br>$$</p>
+<p>通过联立(\ref{eq9})和(\ref{eq10})可以得到</p>
+<p>$$<br>\sigma_x\rvert\xi\rangle&#x3D;\rvert\xi\rangle\label{eq12}<br>$$</p>
+<p>这表明边界态波函数的spinor部分对应的是$\sigma_xs_0$本征值为1的本征态，可以利用这些本征态构建投影算符</p>
+<p>$$<br>\Pi^B&#x3D;\frac{1}{2}(1+\sigma_xs_0)<br>$$</p>
+<p>将投影算符作用在边界态的本征方程(\ref{eq10})上之后可以得到</p>
+<p>$$<br>\lambda_x\sin k_x\sigma_xs_z\rvert\xi\rangle&#x3D;E\rvert\xi\rangle\label{eq11}<br>$$</p>
+<p>结合(\ref{eq10})和(\ref{eq11})以及(\ref{eq12})可以得到</p>
+<p>$$<br>\lambda&#x3D;m_0-t_x\cos k_x<br>$$</p>
+<p>利用投影算符可以得到边界上的有效哈密顿量为</p>
+<p>$$<br>\mathcal{H}_\text{eff}^B(\mathbf{k})&#x3D;\Pi^BH(\mathbf{k})\Pi^B&#x3D;\lambda_x\sin k_x\sigma_xs_z\Pi^B<br>$$</p>
+<p>利用相同的方法，可以得到上边界的投影算符和有效哈密顿量</p>
+<p>$$<br>\Pi^U&#x3D;\frac{1}{2}(1-\sigma_zs_0),\quad\mathcal{H}_\text{eff}^U&#x3D;\lambda_x\sin k_x\sigma_xs_z\Pi^U<br>$$</p>
+<p> 当沿着$x$方向为开放边界的时候，可以分别求解得到左右两个边界上的投影算符和有效哈密顿量</p>
+<p>$$<br> \begin{aligned}<br> \Pi^L&amp;&#x3D;\frac{1}{2}(1+\sigma_ys_z),\quad\mathcal{H}_\text{eff}^L&#x3D;\lambda_y\sin k_y\sigma_y\Pi^L\<br> \Pi^R&amp;&#x3D;\frac{1}{2}(1-\sigma_ys_z),\quad\mathcal{H}_\text{eff}^R&#x3D;\lambda_y\sin k_y\sigma_y\Pi^R<br> \end{aligned}<br>$$</p>
+<p>投影子作用在哈密顿量中的$\Gamma_i$矩阵上满足</p>
+<p>$$<br>\begin{aligned}<br>&amp;\Pi^{U&#x2F;B}\Gamma_{1,3}\Pi^{U&#x2F;B}&#x3D;0,\quad\Pi^{R&#x2F;L}\Gamma_{1,2}\Pi^{R&#x2F;L}&#x3D;0\<br>&amp;\Pi^{U&#x2F;B}\Gamma_2\Pi^{U&#x2F;B}&#x3D;\Gamma_2\Pi^{U&#x2F;B},\quad\Pi^{L&#x2F;R}\Gamma_3\Pi^{L&#x2F;R}&#x3D;\Gamma_3\Pi^{L&#x2F;R}\<br>&amp;\Pi^{U&#x2F;B}\Gamma_4\Pi^{U&#x2F;B}\neq0,\quad\Pi^{L&#x2F;R}\Gamma_4\Pi^{L&#x2F;R}&#x3D;0<br>\end{aligned}<br>$$</p>
+<p>根据上面的计算，当考虑$h_0\sigma_0s_x$层间耦合时，从上面的投影关系可以看到，这一项仅在$y$方向开边界的时候作为质量项存在，而对于$x$方向开边界的时候，这一项在投影算符的作用下为零。所以可以通过投影算子的方法得到两个方向上的边界有效哈密顿量为</p>
+<p>$$<br>\begin{aligned}<br>H^{L&#x2F;R}<em>{\text{eff}}&amp;&#x3D;\lambda</em>{y}\sin k_{y}\sigma_{y}\Pi^{L&#x2F;R}\<br>H^{U&#x2F;B}<em>{\text{eff}}&amp;&#x3D;\lambda</em>{y}\sin k_{y}\sigma_{x}s_{z}\Pi^{U&#x2F;B}+h_{0}\sigma_{x}\Pi^{L&#x2F;R}\<br>\end{aligned}<br>$$</p>
+<p>即就是此时$k_x$的边界态被打开了一个能隙，但是$k_y$对应的边界态则始终是无能隙的，这与数值计算的结果是完全相同的。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>1.<a target="_blank" rel="noopener" href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.125.126403">Boundary Criticality of PT-Invariant Topology and Second-OrderNodal-Line Semimetals</a></p>
+<h1 id="公众号"><a href="#公众号" class="headerlink" title="公众号"></a>公众号</h1><p>相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。<br>{:.info}</p>
+<table>
+  <tr>
+    <!-- 图片单元格 -->
+    <td style="width: 300px; height: 300px; text-align: center; vertical-align: middle; border: 1px solid #ccc; border-radius: 8px;">
+      <img src="/assets/images/qrcode.jpg" alt="QR Code" width="300px" height="300px" style="border-radius: 8px;">
+    </td>
+    <!-- 文字单元格 -->
+    <td style="width: 300px; height: 300px; text-align: center; vertical-align: middle; padding-left: 20px; border: 1px solid #ccc; border-radius: 8px;">
+      <div>
+        <h4 style="margin: 0;">Email</h4>
+        <p style="margin: 5px 0;">yxli406@gmail.com</p>
+      </div>
+    </td>
+  </tr>
+</table></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Yu-Xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2021/11/21/2021-11-21-Project-edge-theory/">http://example.com/2021/11/21/2021-11-21-Project-edge-theory/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Yu-Xuan's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Topology/">Topology</a><a class="post-meta__tags" href="/tags/Study/">Study</a><a class="post-meta__tags" href="/tags/Math/">Math</a></div><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2021/11/21/2021-11-21-3D-TI-Model/" title="3D 拓扑绝缘体模型对称性分析及推导"><img class="cover" src="/assets/images/topology/3D-TI.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">3D 拓扑绝缘体模型对称性分析及推导</div></div><div class="info-2"><div class="info-item-1">虽然一直在利用2D和3D拓扑绝缘体的模型来进行一些研究，但是对这个模型的来源和对称性却并不明白是为什么，这里就来完整的整理一下到底这个模型是如何得到的，以及对应的对称性又是如何表示的。{:.info}  对称性分析Model Hamiltonian for topological insulators这篇文章中就是对模型的详细分析，博客的主要内容也是来源于这篇文章，主要是以Bi$_2$Se$_3$作为主要材料来得到3D拓扑绝缘体的模型，首先来看这个晶体的模型， 这个晶体结构具有如下对称性  $R^z_3$  $$x\rightarrow x\cos\theta-y\sin\theta,y\rightarrow x\sin\theta+y\cos\theta,z\rightarrow z$$  $R_2^x$  Se2$\rightarrow$Se2,Bi1$\rightarrow$Bi1$^{‘}$,Se1$\rightarrow$Se1$^{‘}$,$z\rightarrow -z,y\rightarrow -y,x\rightarrow x$，从这个对称操作可以看出Bi1(Se1)与Bi1$^{‘}$(Se1$^{‘}$)所在的层交换了位置  Inversion $\mathcal{P}$  Se2$\rightarrow$Se2,Bi1$\rightarrow$Bi1$^{‘}$,Se1$\rightarrow$Se1$^{‘}$,$z\rightarrow -z,x\rightarrow -x,y\rightarrow-y$,这里的反演操作是以Se2原子为反演中心，Bi1(Se1)与Bi1$^{‘}$(Se1$^{‘}$)所在的交换了位置。  Time reversal $\mathcal{T}$在spinfull的系统中，时间反演对称操作的作用满足$c_\uparrow\rightarrow c_\downarrow,c_\downarrow\rightarrow...</div></div></div></a><a class="pagination-related" href="/2021/11/21/2021-11-21-edge-2d-ring/" title="2D 环面上的边界态理论计算"><img class="cover" src="/assets/images/GroupTheory/ring.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">2D 环面上的边界态理论计算</div></div><div class="info-2"><div class="info-item-1">最近在学习各种方式的边界态理论求解，这个博客就整理一下如何在一个2D的环面上求解边界态理论。{:.info}  这里就采用最熟悉的BHZ模型，再考虑一项Zeeman场$h_0s_x$。 $$    H(\mathbf{k})&#x3D;(m_0-t_x\cos k_x-t_y\cos k_y)\sigma_z+\lambda_x\sin k_x\sigma_xs_z+\lambda_y\sin k_y\sigma_y+h_0s_x$$ 首先分析哈密顿量发生能带反转的位置，将哈密顿量在能带反转点$\Gamma&#x3D;(0,0)$处展开 $$H(\mathbf{k})&#x3D;(m_t-\frac{1}{2}tk_x^2-\frac{1}{2}tk_y^2)\sigma_z+\lambda k_x\sigma_xs_z+\lambda k_y\sigma_y+h_0s_x$$ 首先将问题转换到实空间$k_{x,y}\rightarrow -i\partial_{x,y}$，在实空间中，将问题转换到极坐标中进行处理 $$r&#x3D;\sqrt{x^{2}+y^{2}},\quad\theta&#x3D;\arctan\frac{y}{x},\quad x&#x3D;r\cos\theta,\quad y&#x3D;r\sin\theta$$ 利用函数的链式求导 $$\begin{aligned}x&amp;&#x3D;x(r,\theta),\quad\frac{\partial}{\partial x}&#x3D;\frac{\partial}{\partial r}\frac{\partial r }{\partial x }+\frac{\partial}{\partial\theta}\frac{\partial \theta }{\partial x }\y&amp;&#x3D;y(r,\theta),\quad\frac{\partial}{\partial y}&#x3D;\frac{\partial}{\partial r}\frac{\partial r }{\partial y }+\frac{\partial}{\partial\theta}\frac{\partial \theta }{\partial y...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2021/01/20/2021-01-20-Effective-Edge-Theory/" title="有效边界理论(space部分)"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-20</div><div class="info-item-2">有效边界理论(space部分)</div></div><div class="info-2"><div class="info-item-1">自己研究生期间的工作是在一个PRL的基础上进行的,那篇文章中的有效边界理论是个很好用的工具,文章作者严忠波老师将研究过程写的非常仔细,也给了我一个很好的学习机会,这里将文章中用到的有效边界理论进行一个仔细的推导{:.info}   微分方程通解因为涉及到求解微分方程,这里先预热一下,回顾如何求解一个2阶线性齐次微分方程 $$\begin{equation}my(x)+\frac{t}{2}y’’(x)+\lambda y’(x)&#x3D;0\qquad\textrm{with}\qquad y(0)&#x3D;y(+\infty)&#x3D;0\end{equation}$$ eigenroot equation is expressed as $$\begin{eqnarray}&amp;\frac{t}{2}r^2+\lambda r+m&#x3D;0\&amp;r_{1,2}&#x3D;-\frac{\lambda}{t}\pm\sqrt{\frac{\lambda^2}{t^2}-\frac{2m}{t}}&#x3D;\alpha\pm i\beta\end{eqnarray}$$ where $\alpha &#x3D; -\frac{\lambda}{t}$, $\beta&#x3D;\sqrt{\frac{2m}{t}-\frac{\lambda^2}{t^2}}$, in here we suppose $\frac{\lambda^2}{t^2}-\frac{2m}{t}&lt;0$,  general solution is $$\begin{equation}y(x)&#x3D;e^{\alpha x}(C_1\cos \beta x+C_2\sin \beta x)\end{equation}$$ with boundary condition $y(0)&#x3D;y(\infty)&#x3D;0$ we have  $$\begin{equation}y(x)&#x3D;\mathcal{N}\sin(\beta x)e^{-\alpha x}\end{equation}$$ $$\begin{equation}my(x)+\frac{t}{2}y’’(x)-\lambda...</div></div></div></a><a class="pagination-related" href="/2021/01/22/2021-01-22-Effective-Edge-Theory-spinor/" title="有效边界理论(spinor部分)"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-22</div><div class="info-item-2">有效边界理论(spinor部分)</div></div><div class="info-2"><div class="info-item-1">在有效边界这篇博客中,主要是求解了关于边界理论的微分方程,对于边界态波函数的spinor部分也只是利用Pauli矩阵的对易关系得到了spinor需要满足的本征方程,这里就来推导一下spinor部分到底如何计算,以及如何根据spinor部分来选择计算微扰时候的基矢.{:.info}  这里以文章Majorana Corner Modes in a High-Temperature Platform为基础,来重复其中spinor部分的计算和基矢的选取. 边界态计算$$\begin{equation}H(\mathbf{k})&#x3D;(m_0-t_x\cos k_x-t_y\cos k_y)\sigma_z\tau_z+\lambda_x\sin k_x\sigma_xs_z+\lambda_y\sin k_y\sigma_y\tau_z+\Delta(\mathbf{k})s_y\tau_y\end{equation}$$ by expanding around $\mathbf{\Gamma}&#x3D;(0,0)$ $$\begin{equation}H(\mathbf{k})&#x3D;(m_0+\frac{t_x}{2}k_x^2+\frac{t_y}{2}k_y^2)\sigma_z\tau_z+\lambda_xk_x\sigma_xs_z+\lambda_yk_y\sigma_y\tau_z-\frac{1}{2}(\Delta_xk_x^2+\Delta_yk_y^2)s_y\tau_y\end{equation}$$ replace $k_x\rightarrow -i\partial_x$ and decompose the Hamiltonian as $H&#x3D;H_0+H_p$, in...</div></div></div></a><a class="pagination-related" href="/2021/11/21/2021-11-21-edge-2d-ring/" title="2D 环面上的边界态理论计算"><img class="cover" src="/assets/images/GroupTheory/ring.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-21</div><div class="info-item-2">2D 环面上的边界态理论计算</div></div><div class="info-2"><div class="info-item-1">最近在学习各种方式的边界态理论求解，这个博客就整理一下如何在一个2D的环面上求解边界态理论。{:.info}  这里就采用最熟悉的BHZ模型，再考虑一项Zeeman场$h_0s_x$。 $$    H(\mathbf{k})&#x3D;(m_0-t_x\cos k_x-t_y\cos k_y)\sigma_z+\lambda_x\sin k_x\sigma_xs_z+\lambda_y\sin k_y\sigma_y+h_0s_x$$ 首先分析哈密顿量发生能带反转的位置，将哈密顿量在能带反转点$\Gamma&#x3D;(0,0)$处展开 $$H(\mathbf{k})&#x3D;(m_t-\frac{1}{2}tk_x^2-\frac{1}{2}tk_y^2)\sigma_z+\lambda k_x\sigma_xs_z+\lambda k_y\sigma_y+h_0s_x$$ 首先将问题转换到实空间$k_{x,y}\rightarrow -i\partial_{x,y}$，在实空间中，将问题转换到极坐标中进行处理 $$r&#x3D;\sqrt{x^{2}+y^{2}},\quad\theta&#x3D;\arctan\frac{y}{x},\quad x&#x3D;r\cos\theta,\quad y&#x3D;r\sin\theta$$ 利用函数的链式求导 $$\begin{aligned}x&amp;&#x3D;x(r,\theta),\quad\frac{\partial}{\partial x}&#x3D;\frac{\partial}{\partial r}\frac{\partial r }{\partial x }+\frac{\partial}{\partial\theta}\frac{\partial \theta }{\partial x }\y&amp;&#x3D;y(r,\theta),\quad\frac{\partial}{\partial y}&#x3D;\frac{\partial}{\partial r}\frac{\partial r }{\partial y }+\frac{\partial}{\partial\theta}\frac{\partial \theta }{\partial y...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description">整理科研笔记的地方</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">235</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">1.</span> <span class="toc-text">参考</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AC%E4%BC%97%E5%8F%B7"><span class="toc-number">2.</span> <span class="toc-text">公众号</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-number">2.0.0.1.</span> <span class="toc-text">Email</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/04/05/info/" title="通知">通知</a><time datetime="2025-04-05T11:20:35.210Z" title="发表于 2025-04-05 19:20:35">2025-04-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/18/2025-03-18-Python-MMA/" title="利用Python实现Mathematica的配色方案"><img src="/assets/images/python/Phase-Chern-V0-delta0.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="利用Python实现Mathematica的配色方案"/></a><div class="content"><a class="title" href="/2025/03/18/2025-03-18-Python-MMA/" title="利用Python实现Mathematica的配色方案">利用Python实现Mathematica的配色方案</a><time datetime="2025-03-17T16:00:00.000Z" title="发表于 2025-03-18 00:00:00">2025-03-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/22/2025-02-22-Free-SC/" title="超导序参量自洽(自由能极小值方法)"><img src="/assets/images/Julia/fs-1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导序参量自洽(自由能极小值方法)"/></a><div class="content"><a class="title" href="/2025/02/22/2025-02-22-Free-SC/" title="超导序参量自洽(自由能极小值方法)">超导序参量自洽(自由能极小值方法)</a><time datetime="2025-02-21T16:00:00.000Z" title="发表于 2025-02-22 00:00:00">2025-02-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/18/2025-02-18-Julia-MPI-Set/" title="Mac上配置MPI并行Julia"><img src="/assets/images/Julia/a4.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Mac上配置MPI并行Julia"/></a><div class="content"><a class="title" href="/2025/02/18/2025-02-18-Julia-MPI-Set/" title="Mac上配置MPI并行Julia">Mac上配置MPI并行Julia</a><time datetime="2025-02-17T16:00:00.000Z" title="发表于 2025-02-18 00:00:00">2025-02-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/15/2024-12-15-Fourier-Spectrum/" title="超导序参量中的傅里叶分析"><img src="/assets/images/Mma/fft-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导序参量中的傅里叶分析"/></a><div class="content"><a class="title" href="/2024/12/15/2024-12-15-Fourier-Spectrum/" title="超导序参量中的傅里叶分析">超导序参量中的傅里叶分析</a><time datetime="2024-12-14T16:00:00.000Z" title="发表于 2024-12-15 00:00:00">2024-12-15</time></div></div></div></div></div></div></main><footer id="footer" style="background: linear-gradient(to right, rgb(150, 130, 210), rgb(255, 220, 240));"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;2025 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.0-b1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
