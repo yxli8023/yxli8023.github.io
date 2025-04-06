@@ -2373,7 +2373,7 @@ figure.highlight pre .javascript .function {
 }
 #recent-posts .recent-post-item .post_cover {
   overflow: hidden;
-  width: 35%;
+  width: 42%;
   height: 100%;
 }
 @media screen and (max-width: 768px) {
