@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Julia多线程并行加速 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="在平时的计算过中,通常会遇到多层的循环嵌套求和,这是一个非常消耗时间的事情,自己现在除了在大型矩阵对角化的时候还是利用Fortran在写程序,平时一些涉及到矢量运算或者动量空间中的一些计算都是在利用Julia做的,那么将这个很耗时的事情变成多线程自然是可以节省很多时间,所以这里就折腾一下如何把一个求和分发到多个线程,然后将所有的结果在放到一起,实现多线程并行,可以节省很多的时间.{:.info}">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Julia多线程并行加速 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="在平时的计算过中,通常会遇到多层的循环嵌套求和,这是一个非常消耗时间的事情,自己现在除了在大型矩阵对角化的时候还是利用Fortran在写程序,平时一些涉及到矢量运算或者动量空间中的一些计算都是在利用Julia做的,那么将这个很耗时的事情变成多线程自然是可以节省很多时间,所以这里就折腾一下如何把一个求和分发到多个线程,然后将所有的结果在放到一起,实现多线程并行,可以节省很多的时间.{:.info}">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Julia多线程并行加速">
 <meta property="og:url" content="https://yxli8023.github.io/2020/12/23/2020-12-23-Julia-MultiProcess/index.html">
@@ -90,7 +90,7 @@
       const activateLightMode = () => {
         document.documentElement.setAttribute('data-theme', 'light')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
         }
       }
 

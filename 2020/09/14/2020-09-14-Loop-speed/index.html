@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Julia,Python,Fortran,Mathematica循环计算速度比较 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="在平时进行数值计算时，我经常会遇到的两种比较消耗时间计算，其一是对大型矩阵的对角化问题，这是在对哈密顿量厄密矩阵求解本征问题时经常遇到的；另外一个就是循环计算了，这个结构在动量空间计算体系格林函数等其它量时，也会经常遇到。在这里首先对比一下各编程语言对循环的计算速度，然后根据我的经验提供一些加速的方法。{:.info}">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Julia,Python,Fortran,Mathematica循环计算速度比较 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="在平时进行数值计算时，我经常会遇到的两种比较消耗时间计算，其一是对大型矩阵的对角化问题，这是在对哈密顿量厄密矩阵求解本征问题时经常遇到的；另外一个就是循环计算了，这个结构在动量空间计算体系格林函数等其它量时，也会经常遇到。在这里首先对比一下各编程语言对循环的计算速度，然后根据我的经验提供一些加速的方法。{:.info}">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Julia,Python,Fortran,Mathematica循环计算速度比较">
 <meta property="og:url" content="https://yxli8023.github.io/2020/09/14/2020-09-14-Loop-speed/index.html">
@@ -93,7 +93,7 @@
       const activateLightMode = () => {
         document.documentElement.setAttribute('data-theme', 'light')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
         }
       }
 

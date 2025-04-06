@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Mac上配置MPI并行Julia | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="这里记录一下怎么在本地电脑上配对Julia的MPI库实现并行 安装Julia下载安装即可，MPI只需要在包安装环境下执行安装 123julia&gt; import Pkgjulia&gt; Pkg.add(&quot;MPI&quot;) 安装完成之后，在用户的主目录下(主目录直接执行cd进入即可)会存在一个隐藏的.julia文件夹，这里前面有个英文句号，进入这个文件夹显示如下  所有安装的包都">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Mac上配置MPI并行Julia | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="这里记录一下怎么在本地电脑上配对Julia的MPI库实现并行 安装Julia下载安装即可，MPI只需要在包安装环境下执行安装 123julia&gt; import Pkgjulia&gt; Pkg.add(&quot;MPI&quot;) 安装完成之后，在用户的主目录下(主目录直接执行cd进入即可)会存在一个隐藏的.julia文件夹，这里前面有个英文句号，进入这个文件夹显示如下  所有安装的包都">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mac上配置MPI并行Julia">
 <meta property="og:url" content="https://yxli8023.github.io/2025/02/18/2025-02-18-Julia-MPI-Set/index.html">
@@ -91,7 +91,7 @@
       const activateLightMode = () => {
         document.documentElement.setAttribute('data-theme', 'light')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
         }
       }
 

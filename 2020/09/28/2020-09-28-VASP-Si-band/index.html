@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>VASP计算Si的Cubic diamond结构理解第一性计算的能带 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="之前在看第一性计算的文章时,总会看到对于哪个能带,它的主要贡献是来自于哪个原子的哪个轨道的贡献,一直对这一点都是很不解,因子自己的研究方向涉及到拓扑,那么经常也会接触到能带反转,这个时候区分哪个轨道对哪个能带产生贡献,分析是否发生能带反转就变的特别重要,最近正好在参考官网上面的实例学习vasp简单的计算,也接触到了这方面的内容,正好对这个内容进行一下整理,也整理一些自己的理解.{:.info}">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>VASP计算Si的Cubic diamond结构理解第一性计算的能带 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="之前在看第一性计算的文章时,总会看到对于哪个能带,它的主要贡献是来自于哪个原子的哪个轨道的贡献,一直对这一点都是很不解,因子自己的研究方向涉及到拓扑,那么经常也会接触到能带反转,这个时候区分哪个轨道对哪个能带产生贡献,分析是否发生能带反转就变的特别重要,最近正好在参考官网上面的实例学习vasp简单的计算,也接触到了这方面的内容,正好对这个内容进行一下整理,也整理一些自己的理解.{:.info}">
 <meta property="og:type" content="article">
 <meta property="og:title" content="VASP计算Si的Cubic diamond结构理解第一性计算的能带">
 <meta property="og:url" content="https://yxli8023.github.io/2020/09/28/2020-09-28-VASP-Si-band/index.html">
@@ -91,7 +91,7 @@
       const activateLightMode = () => {
         document.documentElement.setAttribute('data-theme', 'light')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
         }
       }
 

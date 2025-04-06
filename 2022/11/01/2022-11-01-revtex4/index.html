@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>APS revtex模版使用中的神神奇奇的操作 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="研究生期间的第一篇工作最后要使用revtex4这个模板来写,再整理内容的过程中也遇到了一些问题,比如补充材料中的公式编号修改,以及在往arxiv上传文件时候,可以把补充材料和正文放在一起,我最初的时候只是把正文上传到网站,因为补充材料是写在另外一个tex文件中,所以就没有办法一次性搞定,在这里也顺便整理一下如何可以把正文和补充材料同时写在一个文件中。因为又读了个博士，逃不过APS了，所以这里干脆就">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>APS revtex模版使用中的神神奇奇的操作 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="研究生期间的第一篇工作最后要使用revtex4这个模板来写,再整理内容的过程中也遇到了一些问题,比如补充材料中的公式编号修改,以及在往arxiv上传文件时候,可以把补充材料和正文放在一起,我最初的时候只是把正文上传到网站,因为补充材料是写在另外一个tex文件中,所以就没有办法一次性搞定,在这里也顺便整理一下如何可以把正文和补充材料同时写在一个文件中。因为又读了个博士，逃不过APS了，所以这里干脆就">
 <meta property="og:type" content="article">
 <meta property="og:title" content="APS revtex模版使用中的神神奇奇的操作">
 <meta property="og:url" content="https://yxli8023.github.io/2022/11/01/2022-11-01-revtex4/index.html">
@@ -90,7 +90,7 @@
       const activateLightMode = () => {
         document.documentElement.setAttribute('data-theme', 'light')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
         }
       }
 

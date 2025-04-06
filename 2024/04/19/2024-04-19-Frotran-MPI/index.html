@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Fortran结合MPI并行计算自旋极化率 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="在之前的博客Julia的MPI并行计算极化率(重复Bilayer Two-Orbital Model of La$_3$Ni$_2$O$_7$ under Pressure)利用Julia计算了一个模型的极化率，但是在撒点数量增加的时候计算速度还是堪忧。这里就返祖利用Fortran语言再结合MPI并行来重写code。根据测试发现计算速度显著提升。{:.info}">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Fortran结合MPI并行计算自旋极化率 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="在之前的博客Julia的MPI并行计算极化率(重复Bilayer Two-Orbital Model of La$_3$Ni$_2$O$_7$ under Pressure)利用Julia计算了一个模型的极化率，但是在撒点数量增加的时候计算速度还是堪忧。这里就返祖利用Fortran语言再结合MPI并行来重写code。根据测试发现计算速度显著提升。{:.info}">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Fortran结合MPI并行计算自旋极化率">
 <meta property="og:url" content="https://yxli8023.github.io/2024/04/19/2024-04-19-Frotran-MPI/index.html">
@@ -94,7 +94,7 @@
       const activateLightMode = () => {
         document.documentElement.setAttribute('data-theme', 'light')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
         }
       }
 

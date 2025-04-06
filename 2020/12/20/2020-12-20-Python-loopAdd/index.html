@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Python 循环加速实例 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="之前在Julia,Python,Fortran,Mathematica循环计算速度比较博客中，我简单的对集中编程语言的循环进行了对比，虽然没什么太大的使用价值，不过对我对自己写代码时候的速度考虑开了一个不错的头，所以这里就把自己利用循环加速改写了一个实例展示出来，看看到底效率如何。{:.info}">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Python 循环加速实例 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="之前在Julia,Python,Fortran,Mathematica循环计算速度比较博客中，我简单的对集中编程语言的循环进行了对比，虽然没什么太大的使用价值，不过对我对自己写代码时候的速度考虑开了一个不错的头，所以这里就把自己利用循环加速改写了一个实例展示出来，看看到底效率如何。{:.info}">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python 循环加速实例">
 <meta property="og:url" content="https://yxli8023.github.io/2020/12/20/2020-12-20-Python-loopAdd/index.html">
@@ -90,7 +90,7 @@
       const activateLightMode = () => {
         document.documentElement.setAttribute('data-theme', 'light')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
         }
       }
 

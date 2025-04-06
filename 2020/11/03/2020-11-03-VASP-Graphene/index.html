@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>VASP计算Graphene能带 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="最近看了很多和第一性原理计算相关的资料,知识总是要和实践结合,这里就利用VASP来计算一下Graphene的能带,作为研究很透彻的一个体系,起码在$\Gamma$点的Dirac锥的结构势清楚了,所以就拿这个体系来入门.下面的内容都是我最为一个初学者的理解,其中应该会包含一些错误的理解,希望可以指出.{:.info}">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>VASP计算Graphene能带 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="最近看了很多和第一性原理计算相关的资料,知识总是要和实践结合,这里就利用VASP来计算一下Graphene的能带,作为研究很透彻的一个体系,起码在$\Gamma$点的Dirac锥的结构势清楚了,所以就拿这个体系来入门.下面的内容都是我最为一个初学者的理解,其中应该会包含一些错误的理解,希望可以指出.{:.info}">
 <meta property="og:type" content="article">
 <meta property="og:title" content="VASP计算Graphene能带">
 <meta property="og:url" content="https://yxli8023.github.io/2020/11/03/2020-11-03-VASP-Graphene/index.html">
@@ -90,7 +90,7 @@
       const activateLightMode = () => {
         document.documentElement.setAttribute('data-theme', 'light')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
         }
       }
 

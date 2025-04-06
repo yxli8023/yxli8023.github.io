@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Julia 读取Wannier90hr数据 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="最近准备完全使用Julia进行科研了，所以就学习一下用该语言进行文件数据的读写如何进行，这里先是一个简单的尝试，就像用Julia读取紧束缚的hr数据来构建模型，顺便熟悉一下julia。{:.info}">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Julia 读取Wannier90hr数据 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="最近准备完全使用Julia进行科研了，所以就学习一下用该语言进行文件数据的读写如何进行，这里先是一个简单的尝试，就像用Julia读取紧束缚的hr数据来构建模型，顺便熟悉一下julia。{:.info}">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Julia 读取Wannier90hr数据">
 <meta property="og:url" content="https://yxli8023.github.io/2022/04/05/2022-04-05-hrRead-julia/index.html">
@@ -90,7 +90,7 @@
       const activateLightMode = () => {
         document.documentElement.setAttribute('data-theme', 'light')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
         }
       }
 

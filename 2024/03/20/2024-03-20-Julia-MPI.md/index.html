@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Julia的MPI并行 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="在之前搞计算的时候,虽然也用到了Julia的并行计算,但实现方法上并没有利用MPI,单速度上勉强也是够用的.最近遇到了计算量比较大的情形,此时如果可以在集群上多使用几个节点,多点CPU的话计算速度就可以显著提高.这里就整理一下如何结合MPI实现对Julia的并行。{:.info}">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Julia的MPI并行 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="在之前搞计算的时候,虽然也用到了Julia的并行计算,但实现方法上并没有利用MPI,单速度上勉强也是够用的.最近遇到了计算量比较大的情形,此时如果可以在集群上多使用几个节点,多点CPU的话计算速度就可以显著提高.这里就整理一下如何结合MPI实现对Julia的并行。{:.info}">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Julia的MPI并行">
 <meta property="og:url" content="https://yxli8023.github.io/2024/03/20/2024-03-20-Julia-MPI.md/index.html">
@@ -91,7 +91,7 @@
       const activateLightMode = () => {
         document.documentElement.setAttribute('data-theme', 'light')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
         }
       }
 

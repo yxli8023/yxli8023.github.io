@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Julia大型稀疏矩阵对角化 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="在之前的博客中Python稀疏矩阵对角化库,我虽然介绍了一个python的库,可以用来计算稀疏矩阵的一些特定要求的本征矢量和本征值,但是python通常情况下是比较慢的,幸运的是这个功能最近正好的Julia中科成功的实现了,而且用法和python中几乎相同,这里正好就拿Julia来实验一下.{:.info}">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Julia大型稀疏矩阵对角化 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="在之前的博客中Python稀疏矩阵对角化库,我虽然介绍了一个python的库,可以用来计算稀疏矩阵的一些特定要求的本征矢量和本征值,但是python通常情况下是比较慢的,幸运的是这个功能最近正好的Julia中科成功的实现了,而且用法和python中几乎相同,这里正好就拿Julia来实验一下.{:.info}">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Julia大型稀疏矩阵对角化">
 <meta property="og:url" content="https://yxli8023.github.io/2020/11/23/2020-11-23-Julia-Sparse/index.html">
@@ -90,7 +90,7 @@
       const activateLightMode = () => {
         document.documentElement.setAttribute('data-theme', 'light')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
         }
       }
 

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>准粒子(QPI)干涉计算 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="因为对格林函数很熟悉,在看文章的时候也有遇到计算体系准粒子干涉的文章,最后只明白可以通过干涉的分布样式来判断不同费米面之间的散射问题,从而来确定体系费米面上的一些性质,还有就是这些干涉的图案还是很好看的,所以一直也就想自己动手去算一下,这里我就想从一个很简单的例子来学习一些如何编程计算准粒子干涉的图样,同时也算是对文章的进一步理解.{:.info}">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>准粒子(QPI)干涉计算 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="因为对格林函数很熟悉,在看文章的时候也有遇到计算体系准粒子干涉的文章,最后只明白可以通过干涉的分布样式来判断不同费米面之间的散射问题,从而来确定体系费米面上的一些性质,还有就是这些干涉的图案还是很好看的,所以一直也就想自己动手去算一下,这里我就想从一个很简单的例子来学习一些如何编程计算准粒子干涉的图样,同时也算是对文章的进一步理解.{:.info}">
 <meta property="og:type" content="article">
 <meta property="og:title" content="准粒子(QPI)干涉计算">
 <meta property="og:url" content="https://yxli8023.github.io/2020/12/22/2020-12-22-QPI-Julia-Fortran/index.html">
@@ -93,7 +93,7 @@
       const activateLightMode = () => {
         document.documentElement.setAttribute('data-theme', 'light')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
         }
       }
 

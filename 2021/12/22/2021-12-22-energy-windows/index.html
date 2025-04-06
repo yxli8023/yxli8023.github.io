@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>通过python读取EIGENVAL获取wannier90构造tb模型的冻窗口和解纠缠窗口 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="在通过Wannier90构建tb模型的时候，总是需要比较好的确定冻窗口和解纠缠窗口，而且这两个窗口的选取会很大的影响构造的tb的好坏，这里就想通过代码，先粗略的估计一下这两个能量窗口的范围，再通过进一步的细致调节来构造处比较好的tb模型。{:.info}">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>通过python读取EIGENVAL获取wannier90构造tb模型的冻窗口和解纠缠窗口 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="在通过Wannier90构建tb模型的时候，总是需要比较好的确定冻窗口和解纠缠窗口，而且这两个窗口的选取会很大的影响构造的tb的好坏，这里就想通过代码，先粗略的估计一下这两个能量窗口的范围，再通过进一步的细致调节来构造处比较好的tb模型。{:.info}">
 <meta property="og:type" content="article">
 <meta property="og:title" content="通过python读取EIGENVAL获取wannier90构造tb模型的冻窗口和解纠缠窗口">
 <meta property="og:url" content="https://yxli8023.github.io/2021/12/22/2021-12-22-energy-windows/index.html">
@@ -92,7 +92,7 @@
       const activateLightMode = () => {
         document.documentElement.setAttribute('data-theme', 'light')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
         }
       }
 

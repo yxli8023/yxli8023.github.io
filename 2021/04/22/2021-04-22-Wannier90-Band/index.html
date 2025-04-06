@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>利用Wannier90计算能带 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="这里利用Wannier90得到Wannier轨道后, 通过其来计算一下对应的材料能带, 这个通常用来和vasp计算得到的能带来做对比, 二者在费米面附近通常是要吻合的非常好, 这样才能说明在Wannier90计算Wannier轨道的时候, 是比较成功的, 能带符合较好之后再用来计算拓扑相关的性质.{:.info}">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>利用Wannier90计算能带 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="这里利用Wannier90得到Wannier轨道后, 通过其来计算一下对应的材料能带, 这个通常用来和vasp计算得到的能带来做对比, 二者在费米面附近通常是要吻合的非常好, 这样才能说明在Wannier90计算Wannier轨道的时候, 是比较成功的, 能带符合较好之后再用来计算拓扑相关的性质.{:.info}">
 <meta property="og:type" content="article">
 <meta property="og:title" content="利用Wannier90计算能带">
 <meta property="og:url" content="https://yxli8023.github.io/2021/04/22/2021-04-22-Wannier90-Band/index.html">
@@ -90,7 +90,7 @@
       const activateLightMode = () => {
         document.documentElement.setAttribute('data-theme', 'light')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
         }
       }
 

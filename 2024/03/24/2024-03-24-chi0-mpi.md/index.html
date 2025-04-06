@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Julia的MPI并行计算极化率(重复Bilayer Two-Orbital Model of La$_3$Ni$_2$O$_7$ under Pressure) | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="这里将Julia的并行实操了一下,并行计算了自旋极化率,在通常的计算中这部分的计算量是非常大的,而使用Julia的宏@distributed我目前无法实现跨节点计算,这里就尝试用MPI并行实现跨节点计算.{:.info}">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Julia的MPI并行计算极化率(重复Bilayer Two-Orbital Model of La$_3$Ni$_2$O$_7$ under Pressure) | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="这里将Julia的并行实操了一下,并行计算了自旋极化率,在通常的计算中这部分的计算量是非常大的,而使用Julia的宏@distributed我目前无法实现跨节点计算,这里就尝试用MPI并行实现跨节点计算.{:.info}">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Julia的MPI并行计算极化率(重复Bilayer Two-Orbital Model of La$_3$Ni$_2$O$_7$ under Pressure)">
 <meta property="og:url" content="https://yxli8023.github.io/2024/03/24/2024-03-24-chi0-mpi.md/index.html">
@@ -92,7 +92,7 @@
       const activateLightMode = () => {
         document.documentElement.setAttribute('data-theme', 'light')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
         }
       }
 

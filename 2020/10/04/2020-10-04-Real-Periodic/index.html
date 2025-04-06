@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>实空间哈密顿量的周期边界设置 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="平时说到周期边界条件,如果对固体物理熟悉的话,第一时间想到的就是Bron-Von Karman边界条件,这就将实空间和动量空间联系了起来,但是有时候我们并不要在动量空间中研究问题,而是要在实空间研究体系Bulk的性质,那么我们就需要实现一个实空间的周期边界条件,这里我就整理一下如何对实空间的哈密顿量(紧束缚近似)实现这样的周期边界条件.{:.info}">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>实空间哈密顿量的周期边界设置 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="平时说到周期边界条件,如果对固体物理熟悉的话,第一时间想到的就是Bron-Von Karman边界条件,这就将实空间和动量空间联系了起来,但是有时候我们并不要在动量空间中研究问题,而是要在实空间研究体系Bulk的性质,那么我们就需要实现一个实空间的周期边界条件,这里我就整理一下如何对实空间的哈密顿量(紧束缚近似)实现这样的周期边界条件.{:.info}">
 <meta property="og:type" content="article">
 <meta property="og:title" content="实空间哈密顿量的周期边界设置">
 <meta property="og:url" content="https://yxli8023.github.io/2020/10/04/2020-10-04-Real-Periodic/index.html">
@@ -90,7 +90,7 @@
       const activateLightMode = () => {
         document.documentElement.setAttribute('data-theme', 'light')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
         }
       }
 

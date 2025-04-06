@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>利用Wannier90的hr数据构建动量空间能带并计算高对称点宇称 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="这里想整理一下如何利用已有的实空间的tight binding的数据,通过Fourier变换来得到动量空间中的模型,从而可以利用同时利用这两种不同表象下的数据进行计算研究。这里使用了BHZ模型作为例子来进行研究，并利用Fu-Kane判据计算了高对称点的宇称，从而达到计算拓扑不变量的目的。{:.info}">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>利用Wannier90的hr数据构建动量空间能带并计算高对称点宇称 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="这里想整理一下如何利用已有的实空间的tight binding的数据,通过Fourier变换来得到动量空间中的模型,从而可以利用同时利用这两种不同表象下的数据进行计算研究。这里使用了BHZ模型作为例子来进行研究，并利用Fu-Kane判据计算了高对称点的宇称，从而达到计算拓扑不变量的目的。{:.info}">
 <meta property="og:type" content="article">
 <meta property="og:title" content="利用Wannier90的hr数据构建动量空间能带并计算高对称点宇称">
 <meta property="og:url" content="https://yxli8023.github.io/2021/12/07/2021-12-07-HRToHK/index.html">
@@ -90,7 +90,7 @@
       const activateLightMode = () => {
         document.documentElement.setAttribute('data-theme', 'light')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
         }
       }
 

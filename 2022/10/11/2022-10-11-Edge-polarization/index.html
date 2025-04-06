@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>边界极化 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="在计算发生边界拓扑相变的高阶拓扑绝缘体的时候, 有时候会遇到需要计算体系的边界极化, 其实也就是要在一个cylinder结构上计算其对应的Wilson loop, 并计算每个格点上对极化的贡献, 这里就先详细的整理一下理论背景, 后面给一个详细的例子来给出计算记过.{:.info}">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>边界极化 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="在计算发生边界拓扑相变的高阶拓扑绝缘体的时候, 有时候会遇到需要计算体系的边界极化, 其实也就是要在一个cylinder结构上计算其对应的Wilson loop, 并计算每个格点上对极化的贡献, 这里就先详细的整理一下理论背景, 后面给一个详细的例子来给出计算记过.{:.info}">
 <meta property="og:type" content="article">
 <meta property="og:title" content="边界极化">
 <meta property="og:url" content="https://yxli8023.github.io/2022/10/11/2022-10-11-Edge-polarization/index.html">
@@ -90,7 +90,7 @@
       const activateLightMode = () => {
         document.documentElement.setAttribute('data-theme', 'light')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
         }
       }
 

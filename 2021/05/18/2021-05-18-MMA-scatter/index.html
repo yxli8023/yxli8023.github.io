@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Mathamatica 绘制旋转的散点密度图 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="这里整理一下如何利用散点数据绘制密度分布图,由于直接利用Mathematica的ListDensityPlot绘制得到的图实在不忍直视,所以改进了一下利用Graphics来对数据做一个漂亮的展示,并加上colorbar.{:.info}">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Mathamatica 绘制旋转的散点密度图 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="这里整理一下如何利用散点数据绘制密度分布图,由于直接利用Mathematica的ListDensityPlot绘制得到的图实在不忍直视,所以改进了一下利用Graphics来对数据做一个漂亮的展示,并加上colorbar.{:.info}">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mathamatica 绘制旋转的散点密度图">
 <meta property="og:url" content="https://yxli8023.github.io/2021/05/18/2021-05-18-MMA-scatter/index.html">
@@ -91,7 +91,7 @@
       const activateLightMode = () => {
         document.documentElement.setAttribute('data-theme', 'light')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
         }
       }
 

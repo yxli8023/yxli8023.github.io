@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Fortran + Gnu 批量计算 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="这篇博客主要介绍如何利用Fortran与Gunplot结合进行批量计算,主要针对模型研究时连续改变某个参数,批量的绘制想要结果图,这可以节省很多的时间,主要是在利用Fortran计算的时候,将相应参数绘图的gnuplot绘图代码写入相应文件,之后进行快速执行.{:.info}">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Fortran + Gnu 批量计算 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="这篇博客主要介绍如何利用Fortran与Gunplot结合进行批量计算,主要针对模型研究时连续改变某个参数,批量的绘制想要结果图,这可以节省很多的时间,主要是在利用Fortran计算的时候,将相应参数绘图的gnuplot绘图代码写入相应文件,之后进行快速执行.{:.info}">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Fortran + Gnu 批量计算">
 <meta property="og:url" content="https://yxli8023.github.io/2021/05/14/2021-05-14-Fortran-Gnu/index.html">
@@ -93,7 +93,7 @@
       const activateLightMode = () => {
         document.documentElement.setAttribute('data-theme', 'light')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
         }
       }
 

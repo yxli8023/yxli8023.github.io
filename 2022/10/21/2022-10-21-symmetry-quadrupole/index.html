@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>根据对称性计算体系电四极矩 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="这里整理一下如何通过Wannier band basis的高对称点对称性本征值来计算体系的电四极矩。想使用这个方法的主要原因是在计算Nested Wilson loop得到电四极矩的时候，如果占据态能带存在简并，这个时候直接利用公式计算会得到不稳定的结果，暂时也没找到解决的办法，所以换个方法来计算电四极矩，而且发现利用对称性指标计算效率更高。{:.info}">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>根据对称性计算体系电四极矩 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="这里整理一下如何通过Wannier band basis的高对称点对称性本征值来计算体系的电四极矩。想使用这个方法的主要原因是在计算Nested Wilson loop得到电四极矩的时候，如果占据态能带存在简并，这个时候直接利用公式计算会得到不稳定的结果，暂时也没找到解决的办法，所以换个方法来计算电四极矩，而且发现利用对称性指标计算效率更高。{:.info}">
 <meta property="og:type" content="article">
 <meta property="og:title" content="根据对称性计算体系电四极矩">
 <meta property="og:url" content="https://yxli8023.github.io/2022/10/21/2022-10-21-symmetry-quadrupole/index.html">
@@ -92,7 +92,7 @@
       const activateLightMode = () => {
         document.documentElement.setAttribute('data-theme', 'light')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
         }
       }
 

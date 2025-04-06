@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>wannier90_hr数据的可视化分析 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="通常会遇到WannierTools计算紧束缚模型的问题,有时候也会遇到只有wannier90_hr.dat这个数据,那么怎么样可以通过这个数据来分析出对应的紧束缚模型到底是什么样的,这里就利用Mathematica来计算一下如何将wannier90_hr.dat读入,然后可视化的将(x,y,z)方向上的对应的矩阵元素表示出来,这样可以便于问题的分析.">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>wannier90_hr数据的可视化分析 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="通常会遇到WannierTools计算紧束缚模型的问题,有时候也会遇到只有wannier90_hr.dat这个数据,那么怎么样可以通过这个数据来分析出对应的紧束缚模型到底是什么样的,这里就利用Mathematica来计算一下如何将wannier90_hr.dat读入,然后可视化的将(x,y,z)方向上的对应的矩阵元素表示出来,这样可以便于问题的分析.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="wannier90_hr数据的可视化分析">
 <meta property="og:url" content="https://yxli8023.github.io/2021/03/10/2021-03-10-Wannier90-Tight-Binding-Data/index.html">
@@ -90,7 +90,7 @@
       const activateLightMode = () => {
         document.documentElement.setAttribute('data-theme', 'light')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
         }
       }
 

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>根据哈密顿量获得其对称操作算符 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="通常给出的一个哈密顿量，它的对称性可能是比较高的，有时候在看文章的时候可能也并不会将哈密顿量满足的所有对称性都列举出来，但是在分析问题的时候总是会用到这些对称性，这里就整理个程序分析一下如果哈密顿量具有某种对称性，那么它对应的矩阵形式是怎样的。其实这里给出的也不一定就是正确的，因为我并不知道哈密顿量的基矢是什么，能给出的也就是一些操作矩阵满足对称操作对哈密顿量的变换。{:.info}">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>根据哈密顿量获得其对称操作算符 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="通常给出的一个哈密顿量，它的对称性可能是比较高的，有时候在看文章的时候可能也并不会将哈密顿量满足的所有对称性都列举出来，但是在分析问题的时候总是会用到这些对称性，这里就整理个程序分析一下如果哈密顿量具有某种对称性，那么它对应的矩阵形式是怎样的。其实这里给出的也不一定就是正确的，因为我并不知道哈密顿量的基矢是什么，能给出的也就是一些操作矩阵满足对称操作对哈密顿量的变换。{:.info}">
 <meta property="og:type" content="article">
 <meta property="og:title" content="根据哈密顿量获得其对称操作算符">
 <meta property="og:url" content="https://yxli8023.github.io/2022/10/22/2022-10-22-symmetry-construct/index.html">
@@ -91,7 +91,7 @@
       const activateLightMode = () => {
         document.documentElement.setAttribute('data-theme', 'light')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
         }
       }
 

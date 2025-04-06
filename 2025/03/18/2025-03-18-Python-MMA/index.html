@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>利用Python实现Mathematica的配色方案 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="前言 不得不说Mathematica中的一些颜色还是很好看的，但是当数据文件较大的时候用Mathematica绘图就会有点卡顿，不如用Python来的方便一些，这里就整理一下如何将Mathematica中的配色数据导出来，然后再加载到Python中用来绘图    首先将你喜欢的颜色数据导出来，这里可以通过改变变量dk来控制颜色间隔的大小  1234dk &#x3D; 1&#x2F;255;colorFunction">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>利用Python实现Mathematica的配色方案 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前言 不得不说Mathematica中的一些颜色还是很好看的，但是当数据文件较大的时候用Mathematica绘图就会有点卡顿，不如用Python来的方便一些，这里就整理一下如何将Mathematica中的配色数据导出来，然后再加载到Python中用来绘图    首先将你喜欢的颜色数据导出来，这里可以通过改变变量dk来控制颜色间隔的大小  1234dk &#x3D; 1&#x2F;255;colorFunction">
 <meta property="og:type" content="article">
 <meta property="og:title" content="利用Python实现Mathematica的配色方案">
 <meta property="og:url" content="https://yxli8023.github.io/2025/03/18/2025-03-18-Python-MMA/index.html">
@@ -92,7 +92,7 @@
       const activateLightMode = () => {
         document.documentElement.setAttribute('data-theme', 'light')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
         }
       }
 

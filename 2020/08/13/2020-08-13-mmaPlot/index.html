@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Mathematica高维度绘图及常用配色 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="在使用origin作图的过程中，发现其配色不是很丰富，而且一些高维图和向量图的做法并不是特别的友好，所以通过一番探索终于在Mathematica上实现了我自己平时科研中需要用到的一些作图，最主要的高维度作图展示，以及一些等能面的绘制。由于Mathematica同时也可以用来进行计算，而且对数据的操作也是非常方便，所以干脆将所有形式的图都利用Mathematica来绘制，后面有精力准备写一个自己的包">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Mathematica高维度绘图及常用配色 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="在使用origin作图的过程中，发现其配色不是很丰富，而且一些高维图和向量图的做法并不是特别的友好，所以通过一番探索终于在Mathematica上实现了我自己平时科研中需要用到的一些作图，最主要的高维度作图展示，以及一些等能面的绘制。由于Mathematica同时也可以用来进行计算，而且对数据的操作也是非常方便，所以干脆将所有形式的图都利用Mathematica来绘制，后面有精力准备写一个自己的包">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mathematica高维度绘图及常用配色">
 <meta property="og:url" content="https://yxli8023.github.io/2020/08/13/2020-08-13-mmaPlot/index.html">
@@ -92,7 +92,7 @@
       const activateLightMode = () => {
         document.documentElement.setAttribute('data-theme', 'light')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
         }
       }
 

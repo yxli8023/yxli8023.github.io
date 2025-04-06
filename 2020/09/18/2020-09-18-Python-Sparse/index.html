@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Python稀疏矩阵对角化库 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="平时在做计算的时候,因为总要对哈密顿量进行对角化,但是这个矩阵一般都是稀疏矩阵,虽然Fortran也有专门的稀疏矩阵对角化的程序,但是使用起来并不是很方便,于是就找到了python专门用来做稀疏矩阵对角化的库,而且利用这个库中的函数,还可以只求特殊要求下的本征值和本征矢量,这也是一个很好的优势,因为通常在做哈密顿量的计算时,也只是关系能量最低的本征态上的问题.{:.info}">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Python稀疏矩阵对角化库 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="平时在做计算的时候,因为总要对哈密顿量进行对角化,但是这个矩阵一般都是稀疏矩阵,虽然Fortran也有专门的稀疏矩阵对角化的程序,但是使用起来并不是很方便,于是就找到了python专门用来做稀疏矩阵对角化的库,而且利用这个库中的函数,还可以只求特殊要求下的本征值和本征矢量,这也是一个很好的优势,因为通常在做哈密顿量的计算时,也只是关系能量最低的本征态上的问题.{:.info}">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python稀疏矩阵对角化库">
 <meta property="og:url" content="https://yxli8023.github.io/2020/09/18/2020-09-18-Python-Sparse/index.html">
@@ -91,7 +91,7 @@
       const activateLightMode = () => {
         document.documentElement.setAttribute('data-theme', 'light')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
         }
       }
 
