@@ -1,0 +1,278 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Yu-Xuan's Blog - 欢迎来到Yu-Xuan Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="整理科研笔记的地方">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Yu-Xuan&#39;s Blog">
+<meta property="og:url" content="https://yxli8023.github.io/page/38/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39;s Blog">
+<meta property="og:description" content="整理科研笔记的地方">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yxli8023.github.io/img/logo.png">
+<meta property="article:author" content="Yu-Xuan">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yxli8023.github.io/img/logo.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://yxli8023.github.io/page/38/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Yu-Xuan\'s Blog',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load', preloader.endLoading)
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #D4F1F9;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">234</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><span> 关于作者</span></a></div><div class="menus_item"><a class="site-page" href="/webcollect/"><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> 博客总览</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(/img/head.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Yu-Xuan's Blog</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><span> 关于作者</span></a></div><div class="menus_item"><a class="site-page" href="/webcollect/"><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><span> 博客总览</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">Yu-Xuan's Blog</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="post_cover left"><a href="/2021/02/08/2021-02-08-Twist-bilayer/" title="转角石墨烯摩尔纹"><img class="post-bg" src="/img/head-3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="转角石墨烯摩尔纹"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/02/08/2021-02-08-Twist-bilayer/" title="转角石墨烯摩尔纹">转角石墨烯摩尔纹</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-02-07T16:00:00.000Z" title="发表于 2021-02-08 00:00:00">2021-02-08</time></span></div><div class="content">从转角石墨烯发现超导以来,转角已经成为了一个非常火热的研究方向,这里就简单的利用Mathematica实现转角石墨烯中的摩尔纹.作为凝聚态物理的研究生,转角石墨烯的火热让人感受颇深,这里我就想利用程序来看看转角石墨烯中的摩尔纹是怎么随着转角而变化的. code这里直接上代码和结果,这里第一种方案是利用点位置来作图   第二种方案是直接使用石墨烯的格点坐标来绘制   四方点阵转角既然转角很火,那么四方点阵也自然可以研究转角,比如最近在转角双层铜基超导上发现拓扑的存在  代码下载上面的代码可以点击这里下载 公众号相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。{:.info}                                                    Email         yxli406@gmail.com                </div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2021/02/07/2021-02-07-EdgeState-GF/" title="利用格林函数求解边界态"><img class="post-bg" src="/assets/images/Julia/edge-gf.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="利用格林函数求解边界态"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/02/07/2021-02-07-EdgeState-GF/" title="利用格林函数求解边界态">利用格林函数求解边界态</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-02-06T16:00:00.000Z" title="发表于 2021-02-07 00:00:00">2021-02-07</time></span></div><div class="content">这里是利用边界格林函数方法来计算边界态,相比于通常取cylinder的方法,计算速度上是要快一些,做出来的图可以更加清晰的反映边界态的特征.在之前的Hamiltonian构建时的基矢选择这篇博客中,虽然是和哈密顿量基矢选择有关的问题,但是我同样展示了如何通过一个紧束缚哈密顿量来计算拓扑边界态,虽然这个方法也很常见,用的也比较多,但是有时候为了反映一些局部的特征,可能需要把开边界的格点数目取的非常大,这就会使的计算量变得很大,耗时较长,这里就想利用边界格林函数的方法来计算边界态,它的优点是此时需要的矩阵维度是很小的,主要就是进行迭代计算,如果所需要的精度合适,计算速度上的提升是非常客观的,而且可以将边界态的某些细节反映的非常好,这里就整理一下如何利用边界格林函数来计算这样的边界态. 模型方法这里选用BHZ模型 H(\mathbf{k})=(m_0-t_x\cos k_x-t_y\cos k_y)\sigma_z+\lambda_x\sin k_x\sigma_xs_z+\lambda_y\sin k_y\sigma_y\label{ham}计算方法如下,已经知道了$H$之后,系统的格林函数可以写作 G^{-1}(z)=z-H=\left(\begin{array}{cccc} z-H_0&C&0&0\\ C^\dagger&z-H_0&C&0\\ 0&C^\dagger&z-H_0&C\\ 0&0&C^\dagger&\cdots \end{array}\right)\label{gf}where the diagonal block H0 describes the Hamiltonian within the same “principal...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2021/02/06/2021-02-06-Pauli-Ham/" title="从Pauli矩阵出发构造哈密顿量"><img class="post-bg" src="/img/head-3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="从Pauli矩阵出发构造哈密顿量"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/02/06/2021-02-06-Pauli-Ham/" title="从Pauli矩阵出发构造哈密顿量">从Pauli矩阵出发构造哈密顿量</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-02-05T16:00:00.000Z" title="发表于 2021-02-06 00:00:00">2021-02-06</time></span></div><div class="content">学过高量及量子场论之后,总是习惯将哈密顿量写成二次量子化的形式,但是在凝聚态的能带问题中,通常看到的只是动量$k$的一个写成Pauli矩阵的表达式,这里项把这两者之间的联系建立一下,顺便对自己也算是一个复习过程. 哈密顿量我一般在看拓扑的文章的时候,因为凝聚态关心的是低能的哈密顿量,所以会把哈密顿量表示为动量$k$的函数,里面通常还会有泡里矩阵的出现,而文章中给出的哈密顿量为 H(\mathbf{k})=2\lambda_x\sin k_x\sigma_xs_z\tau_z+2\lambda_y\sin k_y\sigma_y\tau_z+(\xi_k\sigma_z-\mu)\tau_z+\Delta(\mathbf{k})\tau_x\label{eq1}其实这是简写形式,因为做性质分析或者能带计算也确实只需要这种形式就足够了,但是是完整的形式应该为 \hat{H}=\sum_\mathbf{k}\Psi^\dagger_\mathbf{k}H(\mathbf{k})\Psi_\mathbf{k}...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2021/02/02/2021-02-02-Insulator-Surface-State/" title="拓扑绝缘体中任意方向表面态求解"><img class="post-bg" src="/img/head-3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="拓扑绝缘体中任意方向表面态求解"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/02/02/2021-02-02-Insulator-Surface-State/" title="拓扑绝缘体中任意方向表面态求解">拓扑绝缘体中任意方向表面态求解</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-02-01T16:00:00.000Z" title="发表于 2021-02-02 00:00:00">2021-02-02</time></span></div><div class="content">最近在学习整理边界态理论的内容,虽然对于一般$x,y$方向开边界计算边界态在前面的博客中已经整理学习过,但是如何对任意方向开边界,并利用解析的方式来计算边界态还不是很明白,这里就整理一下自己学习这个方法的一些笔记.{:.info} 前言前面在四方点阵沿对角线方向开边界博客中主要是沿对角线方向将一个紧束缚模型做了开边界处理,但是如何从解析的角度来计算这个方向的边界态,自己并不是很清楚,在阅读文献的过程中恰好看到如何沿任意方向,利用解析的方法计算边界态,这里就整理一下自己对文章中主要解析结果的重复.这里主要的内容都是重复Helical Hinge Majorana Modes in Iron-Based Superconductors这篇文章. 边界态计算文章的内容就不说了,直接从哈密顿量以及边界态的计算开始,首先就是拓扑铁基超导体的哈密顿量 \begin{equation}\begin{aligned}H(\mathbf{k})&=\left(\begin{array}{cc} H_0(\mathbf{k})-\mu&-iD(\mathbf{k})\\ iD(\mathbf{k})&\mu-H^{*}_0(\mathbf{k}) \end{array}\right)\\ H_0(\mathbf{k})&=v(\sin k_x\Gamma_1+\sin k_y\Gamma_2+\sin k_z\Gamma_3)+m(\mathbf{k})\\ m(\mathbf{k})&=m_0-m_1(\cos k_x+\cos k_y)-m_2\cos k_z \end{aligned} \end{equation}$\Gamma_1=\sigma_x\otimes s_x\qquad\Gamma_2=\sigma_x\otimes s_y\qquad\sigma_x\otimes s_z\qquad\Gamma_4=\sigma_y\otimes s_0\qquad\Gamma_5=\sigma_z\otimes s_0\qquad\Gamma_{ij}=\left[\Gamma_i,\Gamma_j...</div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/37/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/37/#content-inner">37</a><span class="page-number current">38</span><a class="page-number" href="/page/39/#content-inner">39</a><span class="space">&hellip;</span><a class="page-number" href="/page/59/#content-inner">59</a><a class="extend next" rel="next" href="/page/39/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description">整理科研笔记的地方</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">234</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yxli8023"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到Yu-Xuan's博客</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/03/18/2025-03-18-Python-MMA/" title="利用Python实现Mathematica的配色方案"><img src="/assets/images/python/Phase-Chern-V0-delta0.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="利用Python实现Mathematica的配色方案"/></a><div class="content"><a class="title" href="/2025/03/18/2025-03-18-Python-MMA/" title="利用Python实现Mathematica的配色方案">利用Python实现Mathematica的配色方案</a><time datetime="2025-03-17T16:00:00.000Z" title="发表于 2025-03-18 00:00:00">2025-03-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/22/2025-02-22-Free-SC/" title="超导序参量自洽(自由能极小值方法)"><img src="/assets/images/Julia/fs-1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导序参量自洽(自由能极小值方法)"/></a><div class="content"><a class="title" href="/2025/02/22/2025-02-22-Free-SC/" title="超导序参量自洽(自由能极小值方法)">超导序参量自洽(自由能极小值方法)</a><time datetime="2025-02-21T16:00:00.000Z" title="发表于 2025-02-22 00:00:00">2025-02-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/18/2025-02-18-Julia-MPI-Set/" title="Mac上配置MPI并行Julia"><img src="/assets/images/Julia/a4.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Mac上配置MPI并行Julia"/></a><div class="content"><a class="title" href="/2025/02/18/2025-02-18-Julia-MPI-Set/" title="Mac上配置MPI并行Julia">Mac上配置MPI并行Julia</a><time datetime="2025-02-17T16:00:00.000Z" title="发表于 2025-02-18 00:00:00">2025-02-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/15/2024-12-15-Fourier-Spectrum/" title="超导序参量中的傅里叶分析"><img src="/assets/images/Mma/fft-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导序参量中的傅里叶分析"/></a><div class="content"><a class="title" href="/2024/12/15/2024-12-15-Fourier-Spectrum/" title="超导序参量中的傅里叶分析">超导序参量中的傅里叶分析</a><time datetime="2024-12-14T16:00:00.000Z" title="发表于 2024-12-15 00:00:00">2024-12-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/11/2024-12-11-Screeing/" title="库仑势以及屏蔽库伦势的一些计算"><img src="/assets/images/Mma/Vscr-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="库仑势以及屏蔽库伦势的一些计算"/></a><div class="content"><a class="title" href="/2024/12/11/2024-12-11-Screeing/" title="库仑势以及屏蔽库伦势的一些计算">库仑势以及屏蔽库伦势的一些计算</a><time datetime="2024-12-10T16:00:00.000Z" title="发表于 2024-12-11 00:00:00">2024-12-11</time></div></div></div></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Latex/" style="font-size: 1.23em; color: #999ea6">Latex</a> <a href="/tags/Plot/" style="font-size: 1.23em; color: #999ea6">Plot</a> <a href="/tags/Group-Theory/" style="font-size: 1.28em; color: #99a0aa">Group-Theory</a> <a href="/tags/Fortran/" style="font-size: 1.41em; color: #99a5b7">Fortran</a> <a href="/tags/Shell/" style="font-size: 1.19em; color: #999da1">Shell</a> <a href="/tags/Linux/" style="font-size: 1.14em; color: #999b9d">Linux</a> <a href="/tags/Origin/" style="font-size: 1.1em; color: #999">Origin</a> <a href="/tags/Math/" style="font-size: 1.21em; color: #999da4">Math</a> <a href="/tags/Python/" style="font-size: 1.39em; color: #99a5b4">Python</a> <a href="/tags/Study/" style="font-size: 1.48em; color: #99a8bd">Study</a> <a href="/tags/Non-Hermitian/" style="font-size: 1.14em; color: #999b9d">Non-Hermitian</a> <a href="/tags/vasp/" style="font-size: 1.37em; color: #99a4b2">vasp</a> <a href="/tags/Superconductor/" style="font-size: 1.3em; color: #99a1ac">Superconductor</a> <a href="/tags/MPI/" style="font-size: 1.21em; color: #999da4">MPI</a> <a href="/tags/Topology/" style="font-size: 1.5em; color: #99a9bf">Topology</a> <a href="/tags/transport/" style="font-size: 1.14em; color: #999b9d">transport</a> <a href="/tags/Julia/" style="font-size: 1.43em; color: #99a6b9">Julia</a> <a href="/tags/Floquet/" style="font-size: 1.1em; color: #999">Floquet</a> <a href="/tags/Travel/" style="font-size: 1.17em; color: #999c9f">Travel</a> <a href="/tags/QuantumGeometry/" style="font-size: 1.1em; color: #999">QuantumGeometry</a> <a href="/tags/Method/" style="font-size: 1.32em; color: #99a2ae">Method</a> <a href="/tags/Field-Theory/" style="font-size: 1.12em; color: #999a9b">Field-Theory</a> <a href="/tags/Mathematica/" style="font-size: 1.34em; color: #99a3b0">Mathematica</a> <a href="/tags/Live/" style="font-size: 1.26em; color: #999fa8">Live</a> <a href="/tags/Code/" style="font-size: 1.46em; color: #99a7bb">Code</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      <a class="card-more-btn" href="/archives/"
+            title="查看更多">
+            <i class="fas fa-angle-right"></i>
+          </a>
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/03/">
+            <span class="card-archive-list-date">
+              三月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/02/">
+            <span class="card-archive-list-date">
+              二月 2025
+            </span>
+            <span class="card-archive-list-count">2</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/12/">
+            <span class="card-archive-list-date">
+              十二月 2024
+            </span>
+            <span class="card-archive-list-count">3</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/11/">
+            <span class="card-archive-list-date">
+              十一月 2024
+            </span>
+            <span class="card-archive-list-count">3</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/10/">
+            <span class="card-archive-list-date">
+              十月 2024
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/06/">
+            <span class="card-archive-list-date">
+              六月 2024
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">234</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-04-06T06:24:17.154Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background: linear-gradient(to right, rgb(150, 130, 210), rgb(255, 220, 240));"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;2025 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.0-b1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>window.typedJSFn = {
+  init: str => {
+    window.typed = new Typed('#subtitle', Object.assign({
+      strings: str,
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50,
+    }, 1))
+  },
+  run: subtitleType => {
+    if (true) {
+      if (typeof Typed === 'function') {
+        subtitleType()
+      } else {
+        btf.getScript('https://cdn.jsdelivr.net/npm/typed.js/dist/typed.umd.min.js').then(subtitleType)
+      }
+    } else {
+      subtitleType()
+    }
+  },
+  processSubtitle: (content, extraContents = []) => {
+    if (true) {
+      const sub = ["生活是沿途充满美景的旅程，而不是一场只有优胜者才能抵达终点的竞赛"].slice()
+
+      if (extraContents.length > 0) {
+        sub.unshift(...extraContents)
+      }
+
+      if (typeof content === 'string') {
+        sub.unshift(content)
+      } else if (Array.isArray(content)) {
+        sub.unshift(...content)
+      }
+
+      sub.length > 0 && typedJSFn.init(sub)
+    } else {
+      document.getElementById('subtitle').textContent = typeof content === 'string' ? content :
+        (Array.isArray(content) && content.length > 0 ? content[0] : '')
+    }
+  }
+}
+btf.addGlobalFn('pjaxSendOnce', () => { typed.destroy() }, 'typedDestroy')
+</script><script>function subtitleType () {
+  typedJSFn.processSubtitle(["生活是沿途充满美景的旅程，而不是一场只有优胜者才能抵达终点的竞赛"])
+}
+typedJSFn.run(subtitleType)</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
