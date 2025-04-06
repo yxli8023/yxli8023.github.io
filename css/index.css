@@ -2378,7 +2378,7 @@ figure.highlight pre .javascript .function {
 }
 @media screen and (max-width: 768px) {
   #recent-posts .recent-post-item .post_cover {
-    width: 100%;
+    width: 70%;
     height: 230px;
   }
 }
