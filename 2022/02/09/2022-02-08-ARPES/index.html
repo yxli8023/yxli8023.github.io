@@ -1,0 +1,510 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>ARPES的理论原理 | Yu-Xuan' Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="这里整理一下ARPES的理论原理，搞清楚一下到底它测量的是什么物理量。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ARPES的理论原理">
+<meta property="og:url" content="http://example.com/2022/02/09/2022-02-08-ARPES/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39; Blog">
+<meta property="og:description" content="这里整理一下ARPES的理论原理，搞清楚一下到底它测量的是什么物理量。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/assets/images/research/ARPRES-1.png">
+<meta property="article:published_time" content="2022-02-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-08-03T06:52:13.793Z">
+<meta property="article:author" content="Yu-Xuan">
+<meta property="article:tag" content="Experiment">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/images/research/ARPRES-1.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "ARPES的理论原理",
+  "url": "http://example.com/2022/02/09/2022-02-08-ARPES/",
+  "image": "http://example.com/assets/images/research/ARPRES-1.png",
+  "datePublished": "2022-02-08T16:00:00.000Z",
+  "dateModified": "2025-08-03T06:52:13.793Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yu-Xuan",
+      "url": "http://example.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/02/09/2022-02-08-ARPES/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'medium_zoom',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#f54966","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'ARPES的理论原理',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #dbeffd;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">232</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/assets/images/research/ARPRES-1.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Yu-Xuan' Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">ARPES的理论原理</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">ARPES的理论原理</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-02-08T16:00:00.000Z" title="发表于 2022-02-09 00:00:00">2022-02-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-08-03T06:52:13.793Z" title="更新于 2025-08-03 14:52:13">2025-08-03</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">4.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>18分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/2022/02/09/2022-02-08-ARPES/#post-comment"><span class="gitalk-comment-count"><i class="fa-solid fa-spinner fa-spin"></i></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;It has been&quot;,&quot;messageNext&quot;:&quot;days since the last update, the content of the article may be outdated.&quot;,&quot;postUpdate&quot;:&quot;2025-08-03 14:52:13&quot;}" hidden></div><div class="note blue no-icon flat"><p>这里整理一下ARPES的理论原理，搞清楚一下到底它测量的是什么物理量。</p>
+</div>
+<span id="more"></span>
+<h1 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h1><p>Angle-resolved photoemission spectroscopy (ARPES)的基本原理是基于光电效应，利用一束光对材料进行照射，将材料中的电子进行激发，可以探测逃逸电子的动能和动量分布，实验示意图如图1所示</p>
+<p><img src="/assets/images/research/ARPRES-1.png" alt="png"></p>
+<p>一般情况下固体系统都可以通过一个哈密顿量$H$的本征值和本征态来描述，最简单的情况就是系统的行为主要由电子的动能和晶体的周期势场来决定的时候，此时可以通过能带理论来很好的描述体系，其电子波函数$\psi(\mathbf{r})$是Bloch态，而本征值$\epsilon(\mathbf{k})$那表示着能量为$\mathbf{k}$的时候电子能带的色散关系，但是对于很多系统，其中的电子关联效应不可忽略，那么能带理论就不再能描述这类系统。但是即使是多体系统中，电子仍然是参与其中的，那么仍然是可以通过研究电子的的能量-动量谱来研究这类系统的性质，如图2所示</p>
+<p><img src="/assets/images/research/ARPRES-2.png" alt="png"></p>
+<p>在相互作用比较弱的时候。ARPES能谱的强度可以反映电子的能带结构$\epsilon(\mathbf{k})$，从能带结构同样可以得到体系的费米速度以及费米面的结构信息。</p>
+<p>由光电效应可以知道，当光子照射到材料上被电子吸收之后，电子可以从材料中逃逸，可以利用这个过程中的运动学方程反推出电子在材料中的束缚能$E_B$以及晶体动量$\hbar\mathbf{k}$。一般情况下在ARPES的实验中都是利用一束单色光能量为$h\nu$照射单晶材料，在所有的方向上探测辐射电子，其中的一部分电子会被光子探测仪收集并记录其这些电子的动能$E_\text{kin}$和发射角度$(\theta,\varphi)$，从图\ref{f1}中可以看到，这里的$\theta$角是相对于单晶表面的法向分量而言的，$\varphi$则是通常所说的方位角，它是以实验仪器的结构或者晶轴的方向为基准确定的。实验中探测到的动能是以样品的真空能级为为零点来定义的，利用动量和能量守恒定律可以得到发射前后电子态的能量动量关系</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\begin{aligned}
+E_\text{kin}&=h\nu-\phi-E_B\\
+\hbar\mathbf{k}_\parallel&=\sqrt{2mE_\text{kin}}\sin(\theta)\label{q3}
+\end{aligned}
+\end{equation}</script><p>这里其实是忽略了光子的动量，因为在紫外区间内，它的动量是可以忽略的。$\phi$是样品表面的功函数$\hbar\mathbf{k}$是平行于晶体表面方向电子的动量，$E_\text{kin}$是光电动能，$E_B$是电子在被激发之前的束缚能。晶体在面内的具有离散周期性结构，因此动量$\mathbf{k}_\parallel$在整个过程中是守恒的，而垂直表面方向的动量$\mathbf{k}_\perp$在电子的激发过程中是不守恒的。</p>
+<p>光电发射过程如图3所示</p>
+<p><img src="/assets/images/research/ARPRES-3.png" alt="png"></p>
+<p>相比较于直接给出$E_\text{kin}$与入射光照能量$h\nu$之间的关系，ARPES的数据给出的是$E-E_f=-E_B$这个能量信息，直接反映初始状态下电子的能量信息，这里的$E_F$则是样品的费米能级。利用费米黄金规则可以直接给出在光电发射过程中系统从初始状态$\rvert\Psi_i^N\rangle$到被激发末态$\rvert\Psi_f^N$的几率</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+w_{fi}=\frac{2\pi}{\hbar}\rvert \langle\Psi_f^N\rvert H_{int}\rvert \Psi_i^N\rangle\rvert^2\delta(E_f^N-E_i^N-h\nu)\label{q1}
+\end{equation}</script><p>这里的能量$E_i^N,E_f^N$分别是$N$电子体系初态和终态的能量，而$H_\text{int}$描述的是电子-光子相互作用的微扰哈密顿量</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\begin{aligned}
+H_\text{int}&=\frac{1}{2m}(\mathbf{p}+\frac{e}{c}\mathbf{A})^2-e\Phi-\frac{\mathbf{p}^2}{2m}\\
+&\simeq\frac{e}{2mc}(\mathbf{A}\cdot\mathbf{p}+\mathbf{p}\cdot\mathbf{A})\\
+&\simeq\frac{e}{2mc}\mathbf{A}\cdot\mathbf{p}
+\end{aligned}
+\end{equation}</script><p>这里$\mathbf{p}$是电子的动量算符，$\mathbf{A},\Phi$分别是电磁场的矢势和标势，而在上面的过程中选择了Weyl规范，将标势$\Phi=0$，这里使用了两个近似步骤，第一步是忽略了两光子过程$\mathbf{A}^2$，第二个近似则是认为光场$\mathbf{A}$在原子范围内是常数</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+[\mathbf{A},\mathbf{p}]\sim\nabla\cdot\mathbf{A}=0.
+\end{equation}</script><p>这里还有一点需要强调，费米黄金规则是有在弱微扰下才是有效的，如果是一束强度较大的超快激光脉冲，那么上面的微扰过程就需要进行修正，必须包含多光子过程才可以。</p>
+<p>方程(\ref{q1})描述的其实是个一步模型，光子吸收，电子激发，电子探测被当作一个相关联的过程。但是从实用主义的角度来讲，为了方便通常是将光电激发这个过程唯象的分为三步</p>
+<ul>
+<li><p>光子驱动材料中的电子直接发生光学跃迁(这个步骤中会包含材料本征的电子结构信息)。</p>
+</li>
+<li><p>电子传播到材料表面(这个过程是根据弹性和非弹性散射过程中的平均自由程$\lambda_\text{MFP}$来描述的)。</p>
+</li>
+<li><p>电子穿过表面势垒，电子最终在真空中占据自由电子平面波状态，并延伸至检测器。</p>
+</li>
+</ul>
+<p>这个三步模型的优势在于每一步其实都是解耦的。</p>
+<p>为了得到一个更加直观的图像来理解光电发射过程，这里从无相互作用的电子系统出发来理解，首先考虑一个N电子体系的初态和终态</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\begin{aligned}
+\rvert\Psi_f^N\rangle&=A\rvert\phi_f^\mathbf{k}\rangle\otimes\rvert\Psi_f^{N-1}\rangle\\
+\rvert\Psi_i^N\rangle&=A\rvert\phi_i^\mathbf{k}\rangle\otimes\rvert\Psi_i^{N-1}\rangle\\
+\end{aligned}\label{q6}
+\end{equation}</script><p>这里的$A$是反对称算符，系统需要满足Pauli不相容原理，$\rvert\phi_i^\mathbf{k}\rangle,\rvert\phi_f^\mathbf{k}\rangle$是吸收光子之前和之后电子的波函数，因为动量守恒的缘故，这两个态对应的动量都是$\mathbf{k}$，初态和终态的能量分别是$\epsilon_i,\epsilon_f$，$\rvert\Psi_i^{N-1}\rangle,\rvert \Psi_f^{N-1}\rangle$是剩下的$(N-1)$个电子系统对应的初态和终态。因为这里考虑的是无相互作用系统，所以从$N$电子系统中移走一个电子，并不会对$(N-1)$个电子的系统有影响，因此</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\rvert \Psi_i^{N-1}\rangle=\rvert \Psi_f^{N-1}\rangle
+\end{equation}</script><p>下面就来利用费米黄金规则计算整个过程中的光电流$I=\sum_{if}w_{fi}$，这里继续做一个假设，在每个动量$\mathbf{k}$上至少有一个$(i\rightarrow f)$的跃迁发生，那么就可以得到</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\begin{aligned}
+&I_{i\rightarrow f}\sim\rvert M_{f,i}^\mathbf{k}\rvert^2\delta(\epsilon_f-\epsilon_\mathbf{k}-h\nu)\\
+&M_{f,i}^\mathbf{k}\equiv\langle\phi_f^\mathbf{k}\rvert H_{int}\rvert \phi_i^\mathbf{k}\rangle\label{q2}
+\end{aligned}
+\end{equation}</script><p>这里的$M_{f,i}^\mathbf{k}$是单电子的偶极矩阵元，其实也就是跃迁选择定则。从方程(\ref{q2})就可以从一个即理论又实验的角度来理解到底ARPES是如何反映材料的能带信息的。首先可以看到这里有一个$\delta$函数，所以当</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\epsilon_f-\epsilon_\mathbf{k}-h\nu=0
+\end{equation}</script><p>的时候，就可以在ARPES的能谱上看到一个非常尖锐的峰，这也就是相当于探测到了材料的能带$\epsilon(\mathbf{k})$，而这个峰的强度则是由偶极矩阵元$M_{f,i}^\mathbf{k}$所决定的。所以这里也就可以看到为什么ARPES可以探测材料的能带结构。{\color{red}这里的讨论都是基于无相互作用的情形，如果存在电子相互作用，那么这个图像是要被修改的。}</p>
+<p>这里继续来回顾一下前面提到的三步模型，在第一步电子吸收光子的过程中，动量$\mathbf{k}$的所有分量都是守恒的，但是在第三步中电子电子穿过表面势垒激发之后平行于表面的动量$\mathbf{k}_\parallel$是守恒的。这里如果做一些假设同样是可以得到垂直方向的动量$\mathbf{k}_{\perp\text{solid}}$，假设在晶体中末态光电子的色散关系可以用自由电子色散关系和一个能量偏移来描述</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\epsilon_f=\frac{\hbar^2\mathbf{k}^2_{\perp\text{solid}}}{2m}-V_0
+\end{equation}</script><p>这个$V_0$被称为内势，就先简单的把它当作一个参数来理解就可以。假设光电子在表面没有受到非弹性碰撞，它在固体中的终态能量可以等同于真空中的动能</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+E_\text{kin}=\frac{\hbar^2\mathbf{k}_\text{vac}^2}{2m}
+\end{equation}</script><p>这里就可以看到前面提到的内势$V_0$就反映出了动量$\mathbf{k}_\perp$在表面上的不连续性</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\frac{\hbar^2\mathbf{k}^2_\text{vac}}{2m}=\frac{\hbar^2\mathbf{k}^2_{\perp\text{solid}}}{2m}-V_0
+\end{equation}</script><p>从而就可以得到</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\hbar\mathbf{k}_{\perp\text{solid}}=\sqrt{2m[E_\text{kin}\cos^2(\theta)+V_0]}\label{q4}
+\end{equation}</script><p>从光电效应的方程(\ref{q3})看到，动能$E_\text{kin}$是依赖于入射光子能量$h\nu$的，因此利用方程(\ref{q4})之后，通过调节入射光的频率就可以得到$\hbar\mathbf{k}_{\perp\text{solid}}$的色散关系，而这里的$V_0$是一个可以通过实验和方程(\ref{q3})决定的量，并利用下面的关系</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+E_B(\mathbf{k}_\parallel,\mathbf{k}_{\perp\text{solid}})=E_B(\mathbf{k}_\parallel,\mathbf{k}_{\perp\text{solid}}+n\mathbf{G}_\perp)
+\end{equation}</script><p>这里$\mathbf{G}_\perp$是平面外的倒空间晶格矢量，可以看到两位电子态并不会随着<br>$\mathbf{k}_{\perp\text{solid}}$存在色散，从而可以通过$h\nu$以来的测量来区分表面和体态的能带。</p>
+<p>这里表面的色散关系只是依赖于平面内的动量$\mathbf{k}_\parallel$，<br>但是体态的能带色散关系同时依赖于$(\mathbf{k}_\parallel,\mathbf{k}_{\perp\text{solid}})$，<br>因此通过改变入射光子的能量$h\nu$就可以区分到底哪些是体态的能带mapping，哪些是表面的能带mapping。<br>{:.warning}</p>
+<p>固体材料中电子的非弹性碰撞平均自由程$\lambda_\text{MFP}$会使得光电子在材料表面上开始衰减<br>，这个效应比较依赖于电子的功能，而于材料本身没有太大的关系，当能量在20-100eV的时候平均自由程的最小值小于1nm，<br>这意味着使用紫外光源执行的 ARPES 对表面高度敏感，大部分信号来自顶部的几个原子层。所以这就要求材料的表面需要非常的平整，<br>这样才可能通过ARPES来获得材料体态的信息。<br>{:.warning}</p>
+<p>影响ARPES分辨率的因素有很多，可以分为内在影响和外部影响。</p>
+<ul>
+<li>内在因素1</li>
+</ul>
+<p>其中重要的一个内在影响就是终态的寿命，电子处在某个态的寿命因为散射存在缘故总是有效的，而这个散射通常又是和平均自由程相关$\lambda_\text{MPF}$的，因此利用不确定原理可以估算位置-动量不确定关系</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\Delta\mathbf{k}_\perp\simeq\frac{\hbar}{\lambda_\text{MPF}}
+\end{equation}</script><p>对于一些典型能量$h\nu$下的分辨率展宽为</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\Delta\mathbf{k}_\perp\sim 0.1 A^{-1}
+\end{equation}</script><ul>
+<li>内在因素2</li>
+</ul>
+<p>另外一个影响分辨率的内在因素就是在前面提到的偶极近似不适用</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\nabla\cdot\mathbf{A}=0
+\end{equation}</script><p>实际上如果在表面附近介电函数发生突然的变化，将会使得$\mathbf{A}$在表面附近的原子尺度范围内发生很大的变化，这个时候偶极近似也就不再适用了，突然变化的$\mathbf{A}$同样会影响光电子的动量并且对$\mathbf{k}_\parallel$产生一个不确定的展宽。</p>
+<ul>
+<li>外在因素1</li>
+</ul>
+<p>在实验过程中样品的质量和样品表面的质量不好，会产生杂质散射，从而会使得能量分辨率变低从而产生展宽。</p>
+<ul>
+<li>内在因素2</li>
+</ul>
+<p>另外一个影响观测的因素就是实验上的能量分辨率，通常情况下入射的光束也是存在一定的能量展宽的，对应的能量分辨率为</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+(\Delta E_\text{tot})^2=(h\Delta\nu)^2+(\Delta E_\text{spec})^2
+\end{equation}</script><p>这里$h\Delta\nu$所带来的动量展宽是可以忽略的，能对动量展宽带来比较大的影响的则是光谱仪的角度分辨率$\Delta\theta$</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\hbar\Delta\mathbf{k}_\parallel=\sqrt{2mE_\text{kin}}\cos(\theta)\Delta\theta
+\end{equation}</script><p>从上面的分析中其实可以看到，ARPES所能看到的最深的能级$E_B$完全是有入射光的能量$h\nu$所决定的</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+E_B^\text{max}=h\nu-\phi
+\end{equation}</script><p>最大的$\mathbf{k}_\parallel$为</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\hbar\mathbf{k}_\parallel^\text{max}=\sqrt{2m(h\nu-\phi)}
+\end{equation}</script><h1 id="矩阵元效应"><a href="#矩阵元效应" class="headerlink" title="矩阵元效应"></a>矩阵元效应</h1><p>前面在通过三步模型介绍ARPES的基本原理的时候已经介绍过偶极矩阵元$M_{f,i}^\mathbf{k}$，</p>
+<script type="math/tex; mode=display">
+\begin{equation*}
+\begin{aligned}
+&I_{i\rightarrow f}\sim\rvert M_{f,i}^\mathbf{k}\rvert^2\delta(\epsilon_f-\epsilon_\mathbf{k}-h\nu)\\
+&M_{f,i}^\mathbf{k}\equiv\langle\phi_f^\mathbf{k}\rvert H_{int}\rvert\phi_i^\mathbf{k}\rangle
+\end{aligned}
+\end{equation*}</script><p>通过对偶极矩阵中的元素进行分析，在实验上可以通过ARPES探测出关于初态$\rvert\phi_i^\mathbf{k}\rangle$的波函数的微观信息。例如，当电子在样品的镜面对称平面上光发射时，$\rvert\phi_i^\mathbf{k}\rangle$ 的奇偶性可以通过测量各种线偏光的发射强度推导出来。利用这个手段可以探测能带所对应的轨道信息。利用左旋或者右旋的光泽可以用来探测时间反演对称的电子态，还可以用来探测拓扑绝缘体中的自旋动量锁定态，以及手性、Berry位相还有Dirac电子。</p>
+<p>利用极化的光在有自旋轨道耦合的系统中探测光电子的自旋也是ARPES的一个重要表征手段，初始态可以看作是不同自旋态的线性叠加</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\rvert\phi\rangle=\sum_\alpha c_{\alpha,\uparrow}\rvert\alpha,\uparrow\rangle+c_{\alpha,\downarrow}\rvert\alpha,\downarrow\rangle
+\end{equation}</script><p>这里的$\alpha$表示的是不同的轨道索引，光偏振以及轨道的空间对称性决定了波函数的哪些分量是光发射的，从而就可以通过改变光的极化来探测不同自旋取向的态，也就是自旋分别的ARPES。</p>
+<h1 id="多体系统"><a href="#多体系统" class="headerlink" title="多体系统"></a>多体系统</h1><p>对于存在相互作用的体系，它与无相互作用时候最大的不同就是多体的初态和末态不能直接分解为方程(\ref{q6})的形式，但是如果在某些近似的条件下，这个形式仍然是可以适用的。这里先做一个假设，{\color{blue}认为在系统中拿走一个电子是一个瞬时过程，称为瞬时近似}，在这个近似下光电子会具有很高的终态，因此不会有时间与剩余的$(N-1)$个电子发生相互作用，所以此时就可以使用</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\rvert\Psi_f^N\rangle=A\rvert\phi_f^\mathbf{k}\rangle\otimes\rvert\Psi_f^{N-1}\rangle
+\end{equation}</script><p>来描述末态，而初态则是利用平均场的方法来描述，所以此时的初态与无相互作用的初态是完全不同的，{\color{blue}$(N-1)$个电子的系统不再可以看作是从$N$电子系统中移走一个电子的态}</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\rvert\Psi_i^{N-1}\rangle\neq\rvert\Psi_f^{N-1}\rangle
+\end{equation}</script><p>在瞬时近似假设下，$(N-1)$个电子的终态可以处在任意数量的激发态，其本征波函数为$\rvert\Psi_m^{N-1}\rangle$对应的本征能量为$E_m^{N-1}$，那么总的转移几率就是所有的激发态求和</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\sum_{f,i}\rvert M^\mathbf{k}_{f,i}\rvert^2\sum_m\rvert\langle \Psi_m^{N-1}\rvert\Psi_i^{N-1}\rvert^2\delta(\epsilon_f+E_m^{N-1}-E_i^{N}-h\nu)
+\end{equation}</script><p>这里$\rvert M^\mathbf{k}_{f,i}\rvert^2$就是从初态$i$中拿走一个电子剩下$(N-1)$个电子处在激发本征态$m$上的几率。而对于强关联材料，这会在能谱上反映出丰富的信息，包括能带展宽等。利用格林函数可以写出从系统中移走一个单电子的谱函数$A^{-}(\mathbf{k},\omega)$</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+A^{-}(\mathbf{k},\omega)=\sum_m\rvert\langle\Psi_m^{N-1}\rvertc_\mathbf{k}\rvert\Psi^N_i\rvert^2\delta(\omega-E_m^{N-1}+E_i^N)
+\end{equation}</script><p>物理上$A^{-}(\mathbf{k},\omega)$表示剩余的$(N-1)$个电子系统移走一个波矢$\mathbf{k}$的电子之后能量变化为$\omega$的概率，$A^{-}(\mathbf{k},\omega)$与完全谱函数$A(\mathbf{k},\omega)$之间的关系是</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+A^{-}(\mathbf{k},\omega)=A(\mathbf{k},\omega)f(\omega)
+\end{equation}</script><p>这里的$f(\omega)$是费米分布函数，最终就可以得到光发射强度为</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+I(\mathbf{k},\omega)=I_0(\mathbf{k},h\nu,\mathbf{A})f(\omega)A(\mathbf{k},\omega)
+\end{equation}</script><p>在瞬时近似假设下，光发射强度的信号正比于单粒子的谱函数。<br>{:.warnning}</p>
+<p>这里的$f(\omega)$是因为光电子发射只能从占据态的电子中激发，这也就说明ARPES只能探测费米面一下的能带，而$I_0(\mathbf{k},h\nu,\mathbf{A})$则代表着由于矩阵元效应带来的光强调制。</p>
+<p>谱函数是与推迟格林函数相联系</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+G(\mathbf{k},\omega)=\frac{1}{\omega-\epsilon(\mathbf{k})-\Sigma(\mathbf{k},\omega)}\quad A(\mathbf{k},\omega)=-\frac{1}{\pi}\text{Im}G(\mathbf{k},\omega)
+\end{equation}</script><p>这里相互作用可以通过自能来描述</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\Sigma(\mathbf{k},\omega)=\Sigma^{'}(\mathbf{k},\omega)+i\Sigma^{'}(\mathbf{k},\omega)
+\end{equation}</script><p>从而可以得到谱函数为</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+A(\mathbf{k},\omega)=-\frac{1}{\pi}\frac{\Sigma^{''}(\mathbf{k},\omega)}{[\omega-\epsilon(\mathbf{k})-\Sigma^{'}(\mathbf{k},\omega)]^2+[\Sigma^{''}(\mathbf{k},\omega)]^2}
+\end{equation}</script><p>从这里就可以看到，自能中的$\Sigma^{‘}(\mathbf{k},\omega)$将会对电子能带$\epsilon(\mathbf{k})$进行平移修正，而$\Sigma^{‘’}$则会使得能谱进行展宽，物理上自能的虚部代表着单粒子的散射率，代表着准粒子的寿命。上面的这些分析是可以退化到无相互作用情况</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\Sigma(\mathbf{k},\omega)=0\quad A(\mathbf{k},\omega)=\delta(\omega-\epsilon(\mathbf{k}))
+\end{equation}</script><p>在弱相互作用下电子的自能$\Sigma(\mathbf{k},\omega)$可以展开到关于能量$\epsilon(\mathbf{k})$的一阶近似，此时谱函数为</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+A(\mathbf{k},\omega)=Z(\mathbf{k})\frac{\Gamma(\mathbf{k})/\pi}{(\omega-\epsilon(\mathbf{k}))^2+\Gamma(\mathbf{k})^2}+A_\text{inc}(\mathbf{k},\omega)
+\end{equation}</script><p>这里的一些符号为</p>
+<script type="math/tex; mode=display">
+\begin{equation*}
+Z(\mathbf{k})=(1-\partial\Sigma^{'})^{-1}\quad\epsilon(\mathbf{k})=Z(\mathbf{k})(\epsilon(\mathbf{k})+\Sigma^{'})\quad\Gamma(\mathbf{k})=Z(\mathbf{k})\rvert\Sigma^{''}\rvert
+\end{equation*}</script><p>这里自能和求导都是在$\omega=\epsilon(\mathbf{k})$的位置进行的，而且这个描述在费米面附近当满足条件</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\rvert\Sigma^{''}\rvert<<\epsilon(\mathbf{k})
+\end{equation}</script><p>在$\omega,\rvert\mathbf{k}-\mathbf{k}_F\rvert$比较小的情况下仍然是有效的。$A_\text{inc}$是谱函数的非相干部分，表示着由于自能$\Sigma(\mathbf{k},\omega)$在一阶近似带来的误差，而且$A_\text{inc}$需满足求和规则。</p>
+<h1 id="公众号"><a href="#公众号" class="headerlink" title="公众号"></a>公众号</h1><div class="note blue no-icon flat"><p>相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。</p>
+</div>
+<table>
+  <tr>
+    <!-- 图片单元格 -->
+    <td style="width: 300px; height: 300px; text-align: center; vertical-align: middle; border: 1px solid #ccc; border-radius: 8px;">
+      <img src="/assets/images/qrcode.jpg" alt="QR Code" width="300px" height="300px" style="border-radius: 8px;">
+    </td>
+    <!-- 文字单元格 -->
+    <td style="width: 300px; height: 300px; text-align: center; vertical-align: middle; padding-left: 20px; border: 1px solid #ccc; border-radius: 8px;">
+      <div>
+        <h4 style="margin: 0;">Email</h4>
+        <p style="margin: 5px 0;">yxliphy@gmail.com</p>
+      </div>
+    </td>
+  </tr>
+</table></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Yu-Xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/02/09/2022-02-08-ARPES/">http://example.com/2022/02/09/2022-02-08-ARPES/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Yu-Xuan' Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Experiment/">Experiment</a></div><div class="post-share"><div class="social-share" data-image="/assets/images/research/ARPRES-1.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg"/></a><div class="post-qr-code-desc"></div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg"/></a><div class="post-qr-code-desc"></div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2022/02/16/2022-02-16-Flod-python/" title="Python实现文件夹中文件批量处理"><img class="cover" src="/img/defult-cover.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Python实现文件夹中文件批量处理</div></div><div class="info-2"><div class="info-item-1">Python实现文件夹中问价批量复制并移动到其他位置。   问题描述一个文件中有许多个子文件夹，而子文件夹下面又有名称相同的一个文件夹，形成了一层多余的结果，所以想把最下面的文件提取出来，只保留最外层的这个文件夹下面就可以，实现代码如下，这里比较懒，没有进行函数化1234567891011121314151617181920212223242526272829303132333435363738394041import osimport shutil#--------------------------------------------------------filelist = os.listdir(os.getcwd() + &quot;/&quot; + &quot;new&quot;) # 获取当前文件夹中的所有文件名称(包括文件夹)flist2 = []i0 = 0for filename in filelist:    i0 += 1    f1 = filename  + &quot;/&quot; + filename    f2 = os.getcwd() +...</div></div></div></a><a class="pagination-related" href="/2022/02/08/2022-02-08-STM/" title="STM到底测量的是什么"><img class="cover" src="/img/defult-cover2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">STM到底测量的是什么</div></div><div class="info-2"><div class="info-item-1">这里整理一下到底实验中的STM测量的是什么物理量。   在STM的测量中，针尖与样品之间的隧穿电流大小为  \begin{equation} I\sim\int_0^{eV_B}\rho_T(eV-E)\rho_S(\mathbf{r}_T,E)T(z,eV,E)dE \end{equation}可以看到这个电流的大小依赖于针尖的态密度$\rho_T$和样品的态密度$\rho_T$以及两者之间的转移几率$T$，而能量为$E$的电子从样品到针尖的转移几率为  \begin{equation} T(z,eV,E)=\exp(-z(\mathbf{r})\sqrt{\frac{4m}{h^2}(\Phi_T+\Phi_S+eV-2E)}) \end{equation}这里先假设针尖的态密度是个常数，可以计算$dI/dV$谱  \begin{equation} \frac{dI}{dV}|_{V_s}\sim\rho_S(eV_B)T(z,eV)+\int_0^{eV_B}\rho_S(E)\frac{\partial T(eV,E)}{\partial V}dE \end{equati...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2020/09/22/2020-09-22-De%20Hass-Van%20Alphen/" title="德.哈斯-范.阿尔芬(De Hass-Van Alphen)效应"><img class="cover" src="/img/defult-cover2.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-22</div><div class="info-item-2">德.哈斯-范.阿尔芬(De Hass-Van Alphen)效应</div></div><div class="info-2"><div class="info-item-1">在固体物理的学习过程中,始终都要接触费米面这个概念,经常在学习理论知识,对实验的关注还是有些少,这里就整理一下实验上通过De Hass-Van Alphen效应测量费米面的一些理论知识,正好也梳理一下实验上的一些手法.   电子在磁场中的运动准经典分析这里先从准经典角度整理一下电子点外加磁场中是如何运动的.  \mathbf{v}(\mathbf{k})=\frac{1}{\hbar}\nabla_\mathbf{k}E(\mathbf{k})\\ \hbar\frac{d\mathbf{k}}{dt}=(-q)\mathbf{v}_k\times \mathbf{B}从上面的两个方程中可以有两个结论:  电子波矢$\mathbf{k}$沿着磁场方向是不随时间改变的,这点从第二个方程中可以得到,因为方程右端是速度和磁场的叉乘,结果中矢量的方向一定会同时垂直与速度和磁场的方向.   电子的能量$E(\mathbf{k})$是不会随时间变化的,也就是说电子始终在等能面上运动,这是因为磁场给电子的力是洛伦兹力,它是不会做功的,那么自然能量不会变化,电子就一直在等能面上运动.  量子分析...</div></div></div></a><a class="pagination-related" href="/2022/02/08/2022-02-08-STM/" title="STM到底测量的是什么"><img class="cover" src="/img/defult-cover2.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-08</div><div class="info-item-2">STM到底测量的是什么</div></div><div class="info-2"><div class="info-item-1">这里整理一下到底实验中的STM测量的是什么物理量。   在STM的测量中，针尖与样品之间的隧穿电流大小为  \begin{equation} I\sim\int_0^{eV_B}\rho_T(eV-E)\rho_S(\mathbf{r}_T,E)T(z,eV,E)dE \end{equation}可以看到这个电流的大小依赖于针尖的态密度$\rho_T$和样品的态密度$\rho_T$以及两者之间的转移几率$T$，而能量为$E$的电子从样品到针尖的转移几率为  \begin{equation} T(z,eV,E)=\exp(-z(\mathbf{r})\sqrt{\frac{4m}{h^2}(\Phi_T+\Phi_S+eV-2E)}) \end{equation}这里先假设针尖的态密度是个常数，可以计算$dI/dV$谱  \begin{equation} \frac{dI}{dV}|_{V_s}\sim\rho_S(eV_B)T(z,eV)+\int_0^{eV_B}\rho_S(E)\frac{\partial T(eV,E)}{\partial V}dE \end{equati...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">232</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yxli8023"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome to Yu-Xuan's Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">基本原理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9F%A9%E9%98%B5%E5%85%83%E6%95%88%E5%BA%94"><span class="toc-number">2.</span> <span class="toc-text">矩阵元效应</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%9A%E4%BD%93%E7%B3%BB%E7%BB%9F"><span class="toc-number">3.</span> <span class="toc-text">多体系统</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AC%E4%BC%97%E5%8F%B7"><span class="toc-number">4.</span> <span class="toc-text">公众号</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-number">4.0.0.1.</span> <span class="toc-text">Email</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/08/02/2025-08-02-Real-Space-Chern/" title="实空间Chern数计算(Half-BHZ模型)"><img src="/assets/images/Julia/Chern-m0.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实空间Chern数计算(Half-BHZ模型)"/></a><div class="content"><a class="title" href="/2025/08/02/2025-08-02-Real-Space-Chern/" title="实空间Chern数计算(Half-BHZ模型)">实空间Chern数计算(Half-BHZ模型)</a><time datetime="2025-08-01T16:00:00.000Z" title="发表于 2025-08-02 00:00:00">2025-08-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/22/2025-02-22-Free-SC/" title="超导序参量自洽(自由能极小值方法)"><img src="/assets/images/Julia/Bx_kbt-phase.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导序参量自洽(自由能极小值方法)"/></a><div class="content"><a class="title" href="/2025/02/22/2025-02-22-Free-SC/" title="超导序参量自洽(自由能极小值方法)">超导序参量自洽(自由能极小值方法)</a><time datetime="2025-02-21T16:00:00.000Z" title="发表于 2025-02-22 00:00:00">2025-02-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/18/2025-02-18-Julia-MPI-Set/" title="Mac上配置MPI并行Julia"><img src="/assets/images/Julia/a4.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Mac上配置MPI并行Julia"/></a><div class="content"><a class="title" href="/2025/02/18/2025-02-18-Julia-MPI-Set/" title="Mac上配置MPI并行Julia">Mac上配置MPI并行Julia</a><time datetime="2025-02-17T16:00:00.000Z" title="发表于 2025-02-18 00:00:00">2025-02-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/15/2024-12-15-Fourier-Spectrum/" title="超导序参量中的傅里叶分析"><img src="/assets/images/Mma/fft-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导序参量中的傅里叶分析"/></a><div class="content"><a class="title" href="/2024/12/15/2024-12-15-Fourier-Spectrum/" title="超导序参量中的傅里叶分析">超导序参量中的傅里叶分析</a><time datetime="2024-12-14T16:00:00.000Z" title="发表于 2024-12-15 00:00:00">2024-12-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/11/2024-12-11-Screeing/" title="库仑势以及屏蔽库伦势的一些计算"><img src="/assets/images/Mma/Vscr-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="库仑势以及屏蔽库伦势的一些计算"/></a><div class="content"><a class="title" href="/2024/12/11/2024-12-11-Screeing/" title="库仑势以及屏蔽库伦势的一些计算">库仑势以及屏蔽库伦势的一些计算</a><time datetime="2024-12-10T16:00:00.000Z" title="发表于 2024-12-11 00:00:00">2024-12-11</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  const initGitalk = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGitalk = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const gitalk = new Gitalk({
+      clientID: 'Ov23li0WvZEaIAZ7RFtH',
+      clientSecret: '03fcb77b7c28dafcdde00756e27f9b5bc76639e8',
+      repo: 'yxli8023.github.io',
+      owner: 'yxli8023',
+      admin: ['Yu-Xuan'],
+      updateCountCallback: commentCount,
+      ...option,
+      id: isShuoshuo ? path : (option && option.id) || '41e75f3de8d308b483863130fc5cd981'
+    })
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async(el, path) => {
+    if (typeof Gitalk === 'function') initGitalk(el, path)
+    else {
+      await btf.getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await btf.getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Gitalk' === 'Gitalk'
+      ? window.shuoshuoComment = { loadComment: loadGitalk }
+      : window.loadOtherComment = loadGitalk
+    return
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

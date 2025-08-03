@@ -1,0 +1,323 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>笔记模板(Latex) | Yu-Xuan' Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="在科研中我通常需要整理一些笔记,虽然也想用iPad来整理,但是排版上总是不尽人意,字写得也不好看,所以干脆就整理一个Latex模板专门整理学习笔记.这篇Blog就是将自己的这个模板分享出来,主要还是基于project-logbook进行了一些改造.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="笔记模板(Latex)">
+<meta property="og:url" content="http://example.com/2022/09/19/2022-09-19-note-model/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39; Blog">
+<meta property="og:description" content="在科研中我通常需要整理一些笔记,虽然也想用iPad来整理,但是排版上总是不尽人意,字写得也不好看,所以干脆就整理一个Latex模板专门整理学习笔记.这篇Blog就是将自己的这个模板分享出来,主要还是基于project-logbook进行了一些改造.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/defult-cover.jpg">
+<meta property="article:published_time" content="2022-09-18T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-08-03T06:26:11.966Z">
+<meta property="article:author" content="Yu-Xuan">
+<meta property="article:tag" content="Latex">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/defult-cover.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "笔记模板(Latex)",
+  "url": "http://example.com/2022/09/19/2022-09-19-note-model/",
+  "image": "http://example.com/img/defult-cover.jpg",
+  "datePublished": "2022-09-18T16:00:00.000Z",
+  "dateModified": "2025-08-03T06:26:11.966Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yu-Xuan",
+      "url": "http://example.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/09/19/2022-09-19-note-model/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'medium_zoom',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#f54966","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '笔记模板(Latex)',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #dbeffd;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">232</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/img/defult-cover.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Yu-Xuan' Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">笔记模板(Latex)</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">笔记模板(Latex)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-09-18T16:00:00.000Z" title="发表于 2022-09-19 00:00:00">2022-09-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-08-03T06:26:11.966Z" title="更新于 2025-08-03 14:26:11">2025-08-03</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">720</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>2分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/2022/09/19/2022-09-19-note-model/#post-comment"><span class="gitalk-comment-count"><i class="fa-solid fa-spinner fa-spin"></i></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;It has been&quot;,&quot;messageNext&quot;:&quot;days since the last update, the content of the article may be outdated.&quot;,&quot;postUpdate&quot;:&quot;2025-08-03 14:26:11&quot;}" hidden></div><div class="note blue no-icon flat"><p>在科研中我通常需要整理一些笔记,虽然也想用iPad来整理,但是排版上总是不尽人意,字写得也不好看,所以干脆就整理一个<code>Latex</code>模板专门整理学习笔记.这篇Blog就是将自己的这个模板分享出来,主要还是基于<a target="_blank" rel="noopener" href="https://github.com/apalha/project-logbook">project-logbook</a>进行了一些改造.</p>
+</div>
+<span id="more"></span>
+<p>这个笔记的模板就是将<a target="_blank" rel="noopener" href="https://yxli8023.github.io/2022/09/09/Research-Log.html">科研日志模板(Latex)</a>这个模板修改了一下，将其中的一些环境块修改了，最后只保留了以<code>note</code>环境块，可以通过对其设置不同的颜色框来达到不同的目的，其实这个模板还是很简单的。</p>
+<h1 id="高亮块"><a href="#高亮块" class="headerlink" title="高亮块"></a>高亮块</h1><p>想要将一些文字高亮起来,这里使用了一个<code>note</code>环境来实现<br><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;note&#125;&#123;这里写title&#125;&#123;blue!50&#125;	</span><br><span class="line"><span class="keyword">\end</span>&#123;note&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;note&#125;&#123;Question&#125;&#123;red&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;note&#125;</span><br></pre></td></tr></table></figure>
+<p>在使用<code>note</code>环境的时候，第一个参数<code>title</code>就是用来设置高亮标题的,第二个参数则是控制高亮块的颜色。可以将重要的结论或者要注意的一些内容通过设置不同的颜色来进行标记。</p>
+<p><img src="/assets/images/latex/note-1.png" alt="png"></p>
+<p>想要设置不同的颜色，可以通过修改颜色<code>blue!50</code>产生不同的颜色块,从而来对不同的内容进行高亮标记。下面给一个我整理的笔记示例。</p>
+<p><img src="/assets/images/latex/note-2.png" alt="png"></p>
+<p>除此之外，还可以考虑给自己的笔记增加水印，可以在导言区加入下面的命令，这是用来加入一个图片水印，可以自己设计一个专属图片(我这里的图片由办公室段师姐提供，在此致谢)<br><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\makeatletter</span></span><br><span class="line"><span class="keyword">\@namedef</span>&#123;ver@everypage.sty&#125;&#123;9999/99/99&#125;</span><br><span class="line"><span class="keyword">\makeatother</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;everypage-1x&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>[contents=DRAFT, color=red, opacity=0.2]&#123;background&#125;</span><br><span class="line"><span class="keyword">\backgroundsetup</span>&#123;scale=0.5, angle=45, opacity = 0.1, contents = &#123;<span class="keyword">\includegraphics</span>[width=<span class="keyword">\paperwidth</span>, height=<span class="keyword">\paperwidth</span>, keepaspectratio]&#123;back&#125;&#125;&#125;</span><br></pre></td></tr></table></figure><br>不过我尝试了一下，加入图片水印会使得产生的PDF有点大，如果是笔记的最终版，可以考虑加图片背景。效果如下图</p>
+<p><img src="/assets/images/latex/note-3.png" alt="png"></p>
+<p>在平时整理笔记的时候，可以选择加入文字水印<br><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\usepackage</span>&#123;draftwatermark&#125;         <span class="comment">% 所有页加水印</span></span><br><span class="line"><span class="comment">%\usepackage[firstpage]&#123;draftwatermark&#125; % 只有第一页加水印</span></span><br><span class="line"><span class="keyword">\SetWatermarkText</span>&#123;Draft&#125;           <span class="comment">% 设置水印内容</span></span><br><span class="line"><span class="comment">%\SetWatermarkText&#123;\includegraphics&#123;fig/texlion.png&#125;&#125;         % 设置水印logo</span></span><br><span class="line"><span class="keyword">\SetWatermarkLightness</span>&#123;0.9&#125;             <span class="comment">% 设置水印透明度 0-1</span></span><br><span class="line"><span class="keyword">\SetWatermarkScale</span>&#123;1&#125;        </span><br></pre></td></tr></table></figure><br>同样可以在导言区进行设置即可，效果如下图所示</p>
+<p><img src="/assets/images/latex/note-4.png" alt="png"></p>
+<h1 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h1><p>暂时先将模板整理到这里，我觉得我的需求是满足了，感兴趣的可以<a href="/assets/data/note-model.zip">点击这里下载</a></p>
+<h1 id="公众号"><a href="#公众号" class="headerlink" title="公众号"></a>公众号</h1><div class="note blue no-icon flat"><p>相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。</p>
+</div>
+<table>
+  <tr>
+    <!-- 图片单元格 -->
+    <td style="width: 300px; height: 300px; text-align: center; vertical-align: middle; border: 1px solid #ccc; border-radius: 8px;">
+      <img src="/assets/images/qrcode.jpg" alt="QR Code" width="300px" height="300px" style="border-radius: 8px;">
+    </td>
+    <!-- 文字单元格 -->
+    <td style="width: 300px; height: 300px; text-align: center; vertical-align: middle; padding-left: 20px; border: 1px solid #ccc; border-radius: 8px;">
+      <div>
+        <h4 style="margin: 0;">Email</h4>
+        <p style="margin: 5px 0;">yxliphy@gmail.com</p>
+      </div>
+    </td>
+  </tr>
+</table></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Yu-Xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/09/19/2022-09-19-note-model/">http://example.com/2022/09/19/2022-09-19-note-model/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Yu-Xuan' Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Latex/">Latex</a></div><div class="post-share"><div class="social-share" data-image="/img/defult-cover.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg"/></a><div class="post-qr-code-desc"></div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg"/></a><div class="post-qr-code-desc"></div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2022/10/10/2022-10-10-Wilsonloop-restudy/" title="重学Wilson loop"><img class="cover" src="/img/defult-cover2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">重学Wilson loop</div></div><div class="info-2"><div class="info-item-1">这里整理一下自己在重新学习高阶拓扑过程中，对Wilson loop以及相关内容的一个重新理解，也为后面理解Nested Wilson loop做一个铺垫。   重学Wilson loop最近重读经典文献Electric multipole moments, topological multipole moment pumping, and chiral hinge states in crystalline insulators，对Wilson loop其中的一些表示还有具体含义有了更多的理解，之前都只是参照公式进行计算，现在想重新整理一下具体的物理含义，而不是简简单单的计算一下。 位置算符在理解Berry位相的时候，除了通过参数空间中的演化来理解，在晶体中的电极化也是跟Berry位相有关的，实空间中极化问题的解决也就是现代极化理论。其中关键的一定就是将位置算符在周期系统中表示出来，首先在实空间中写出了位置算符，假设晶体中有$N$个原胞，每个原胞中的轨道数量为$N_{\rm orb}$，可以将位置算符表示为 \hat{x}=\sum_{R,\alpha}c^\dagger_{r,...</div></div></div></a><a class="pagination-related" href="/2022/09/09/2022-09-09-Research-Log/" title="科研日志模板(Latex)"><img class="cover" src="/img/defult-cover2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">科研日志模板(Latex)</div></div><div class="info-2"><div class="info-item-1">平时在阅读文献或者组会讨论的时候总会有一些需要记录的内容，这里就修改了别人的一个模板，整理了一个适合自己的记录科研log的Latex模板。   Research-Log这是用来整理平时科研过程中自己的想法，和别人合作时各方的讨论结果以及问题整理的一个模版。平时在开组会活着与同学讨论过程中总会有一些想法，顺便可以整理记录，时间久了应该也能从中找出一些不错的点子。 我这里的模版是基于project-logbook进行了一些改造。它是一个英文版本，就是用来写科研日志的，我在这里进行了中文化，并对其中的一些环境进行了修改，对高亮色块的颜色配置进行了修改。 Meeting首先是Meeting环境1234\begin&#123;Meeting&#125;&#123;会议日期&#125;&#123;main&#125;%最后一个参数是作者id，用来标记这次会议是谁的想法这里是一次会议讨论内容的记录，主导者第一个作者，用mian来作为他的id。在这次讨论中有一个重要任务先要完成\hightodo&#123;日期&#125;&#123;main&#125;&#123;这里是目前最优先要做的事情，这...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2020/07/07/2020-07-07-latex-cite/" title="Latex参考文献引用设置及补充材料公式编号修改"><img class="cover" src="/img/defult-cover2.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-07</div><div class="info-item-2">Latex参考文献引用设置及补充材料公式编号修改</div></div><div class="info-2"><div class="info-item-1">在科研写作中肯定要用到Latex的，正好最近遇到文献引用的问题，就想把自己使用的文献引用方式总结一些，并且探索了一下将自己想解释的内容直接放到参考文献中并引用，这种引用情况在阅读文献中经常看到，比如作者把某些内容放到了补充材料中，那么有时候在参考文献中就会看到写一段话，然后这段话解释了要去补充材料中哪里去寻找。   文献引用我通常使用的文献引用方式，是将参考文献单独写在一个文件中(file.bib)，里面的每条参考文献都会有唯一的引用号，这个引用号可以自行设定，正文中想要引用某一篇文献的时候，只需要\cite{文献号}即可，个人觉得这个方式很简单，而且file.bib中的内容可以直接从网站上面导出，下面以PHYSICAL REVIEW B为例，展示如何导出latex可用的文献引用。如下图所示，找到对应文献的导出连接，这里默认导出的是latex参考引用，点进去后也可以选择EndNote的格式。 {:width=”330px”,:height=”495px”}{:width=”330px”,:height=”495px”} 以这种方式组织的bib文件，在进行参考文献索引时每个文献的标...</div></div></div></a><a class="pagination-related" href="/2020/12/28/2020-12-28-note-ppt/" title="Latex PPT模板及笔记模板"><img class="cover" src="/img/defult-cover.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-28</div><div class="info-item-2">Latex PPT模板及笔记模板</div></div><div class="info-2"><div class="info-item-1">自从熟悉了Latex之后,我几乎所有的笔记包括PPT都是用Latex进行整理的,原因不外乎就是公式整理十分整洁,而且字体调节也很方便,关键是非常方便对于以后想用这部分内容时,直接从copy即可,不需要画太多的时间进行格矢及样式调节,因为我的审美不是很好,干脆就用默认Latex自带的样式,还是非常漂亮的,这里就整理一下自己用的Latex的PPT模板和写笔记时候用的一个文本的Latex的笔记模板.   PPT废话不多说,直接上图看看就知道了      至于PPT的源代码,可以在点击这里下载 Note笔记其实很简单,就是用最基本的Latex的article类写的,然后自己做了一些小的参数修改  Note的源代码,可以在点击这里下载 公众号相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。                                                     Email         yxliphy@gmail.com                </div></div></div></a><a class="pagination-related" href="/2021/01/30/2021-02-01-Latex-Styl/" title="Latex 排版中的技巧记录(....ing)"><img class="cover" src="/img/defult-cover2.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-30</div><div class="info-item-2">Latex 排版中的技巧记录(....ing)</div></div><div class="info-2"><div class="info-item-1">这里是想通过这个博客来整理一下平时在使用Latex进行排版的时候会用到的一些特殊的方法,所以这个博客我用在自己使用Latex过程中,慢慢进行整理.   前言平时在使用Latex排版的时候总会遇到一些特殊的排版需求,锁着就想在这里以一个长期笔记的形式来将机子遇到的这些排版方法都整理到一起,也方便自己之后再时用的时候可以反过来看看. 公式图片并排1234567891011121314151617181920212223242526272829\begin&#123;frame&#125;\frametitle&#123;PRL,124,227001&#125;\begin&#123;equation&#125;\begin&#123;aligned&#125;H(\mathbf&#123;k&#125;)&amp;=2\lambda_x\sin k_x\sigma_xs_z\tau_z+2\lambda_y\sin k_y\sigma_y\tau_z\\&amp;+\left[(m_0-2t_x\cos k_x-2t_y\cos k_y)\sigma_z-\mu\right]\tau...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">232</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yxli8023"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome to Yu-Xuan's Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%AB%98%E4%BA%AE%E5%9D%97"><span class="toc-number">1.</span> <span class="toc-text">高亮块</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD"><span class="toc-number">2.</span> <span class="toc-text">下载</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AC%E4%BC%97%E5%8F%B7"><span class="toc-number">3.</span> <span class="toc-text">公众号</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-number">3.0.0.1.</span> <span class="toc-text">Email</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/08/02/2025-08-02-Real-Space-Chern/" title="实空间Chern数计算(Half-BHZ模型)"><img src="/assets/images/Julia/Chern-m0.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实空间Chern数计算(Half-BHZ模型)"/></a><div class="content"><a class="title" href="/2025/08/02/2025-08-02-Real-Space-Chern/" title="实空间Chern数计算(Half-BHZ模型)">实空间Chern数计算(Half-BHZ模型)</a><time datetime="2025-08-01T16:00:00.000Z" title="发表于 2025-08-02 00:00:00">2025-08-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/22/2025-02-22-Free-SC/" title="超导序参量自洽(自由能极小值方法)"><img src="/assets/images/Julia/Bx_kbt-phase.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导序参量自洽(自由能极小值方法)"/></a><div class="content"><a class="title" href="/2025/02/22/2025-02-22-Free-SC/" title="超导序参量自洽(自由能极小值方法)">超导序参量自洽(自由能极小值方法)</a><time datetime="2025-02-21T16:00:00.000Z" title="发表于 2025-02-22 00:00:00">2025-02-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/18/2025-02-18-Julia-MPI-Set/" title="Mac上配置MPI并行Julia"><img src="/assets/images/Julia/a4.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Mac上配置MPI并行Julia"/></a><div class="content"><a class="title" href="/2025/02/18/2025-02-18-Julia-MPI-Set/" title="Mac上配置MPI并行Julia">Mac上配置MPI并行Julia</a><time datetime="2025-02-17T16:00:00.000Z" title="发表于 2025-02-18 00:00:00">2025-02-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/15/2024-12-15-Fourier-Spectrum/" title="超导序参量中的傅里叶分析"><img src="/assets/images/Mma/fft-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导序参量中的傅里叶分析"/></a><div class="content"><a class="title" href="/2024/12/15/2024-12-15-Fourier-Spectrum/" title="超导序参量中的傅里叶分析">超导序参量中的傅里叶分析</a><time datetime="2024-12-14T16:00:00.000Z" title="发表于 2024-12-15 00:00:00">2024-12-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/11/2024-12-11-Screeing/" title="库仑势以及屏蔽库伦势的一些计算"><img src="/assets/images/Mma/Vscr-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="库仑势以及屏蔽库伦势的一些计算"/></a><div class="content"><a class="title" href="/2024/12/11/2024-12-11-Screeing/" title="库仑势以及屏蔽库伦势的一些计算">库仑势以及屏蔽库伦势的一些计算</a><time datetime="2024-12-10T16:00:00.000Z" title="发表于 2024-12-11 00:00:00">2024-12-11</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  const initGitalk = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGitalk = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const gitalk = new Gitalk({
+      clientID: 'Ov23li0WvZEaIAZ7RFtH',
+      clientSecret: '03fcb77b7c28dafcdde00756e27f9b5bc76639e8',
+      repo: 'yxli8023.github.io',
+      owner: 'yxli8023',
+      admin: ['Yu-Xuan'],
+      updateCountCallback: commentCount,
+      ...option,
+      id: isShuoshuo ? path : (option && option.id) || '4871de1e0fd811286e574987e4ba9b0d'
+    })
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async(el, path) => {
+    if (typeof Gitalk === 'function') initGitalk(el, path)
+    else {
+      await btf.getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await btf.getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Gitalk' === 'Gitalk'
+      ? window.shuoshuoComment = { loadComment: loadGitalk }
+      : window.loadOtherComment = loadGitalk
+    return
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

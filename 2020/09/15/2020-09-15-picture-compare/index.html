@@ -1,0 +1,357 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Schrodinger,Heisenberg,Interaction绘景的区别与联系 | Yu-Xuan' Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="在量子力学进一步的学习中,通常会遇到Schrodinger,Heisenberg,Interaction这三种绘景,在处理不同的问题时,如果选取的绘景合适,那么问题的处理会较为方便,这里合适的绘景只是可以让问题变得容易处理,本质上三种不同的绘景所得到的结果都是相同的,在这里就把三种不同绘景之间的联系与区别进行整理,并整理自己的一些经验和理解.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Schrodinger,Heisenberg,Interaction绘景的区别与联系">
+<meta property="og:url" content="http://example.com/2020/09/15/2020-09-15-picture-compare/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39; Blog">
+<meta property="og:description" content="在量子力学进一步的学习中,通常会遇到Schrodinger,Heisenberg,Interaction这三种绘景,在处理不同的问题时,如果选取的绘景合适,那么问题的处理会较为方便,这里合适的绘景只是可以让问题变得容易处理,本质上三种不同的绘景所得到的结果都是相同的,在这里就把三种不同绘景之间的联系与区别进行整理,并整理自己的一些经验和理解.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/defult-cover.jpg">
+<meta property="article:published_time" content="2020-09-14T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-08-03T09:47:38.866Z">
+<meta property="article:author" content="Yu-Xuan">
+<meta property="article:tag" content="Many-Body">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/defult-cover.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Schrodinger,Heisenberg,Interaction绘景的区别与联系",
+  "url": "http://example.com/2020/09/15/2020-09-15-picture-compare/",
+  "image": "http://example.com/img/defult-cover.jpg",
+  "datePublished": "2020-09-14T16:00:00.000Z",
+  "dateModified": "2025-08-03T09:47:38.866Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yu-Xuan",
+      "url": "http://example.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2020/09/15/2020-09-15-picture-compare/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'medium_zoom',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#f54966","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Schrodinger,Heisenberg,Interaction绘景的区别与联系',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #dbeffd;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">232</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/img/defult-cover.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Yu-Xuan' Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">Schrodinger,Heisenberg,Interaction绘景的区别与联系</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Schrodinger,Heisenberg,Interaction绘景的区别与联系</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-09-14T16:00:00.000Z" title="发表于 2020-09-15 00:00:00">2020-09-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-08-03T09:47:38.866Z" title="更新于 2025-08-03 17:47:38">2025-08-03</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">3.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>11分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/2020/09/15/2020-09-15-picture-compare/#post-comment"><span class="gitalk-comment-count"><i class="fa-solid fa-spinner fa-spin"></i></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;It has been&quot;,&quot;messageNext&quot;:&quot;days since the last update, the content of the article may be outdated.&quot;,&quot;postUpdate&quot;:&quot;2025-08-03 17:47:38&quot;}" hidden></div><div class="note blue no-icon flat"><p>在量子力学进一步的学习中,通常会遇到Schrodinger,Heisenberg,Interaction这三种绘景,在处理不同的问题时,如果选取的绘景合适,那么问题的处理会较为方便,这里合适的绘景只是可以让问题变得容易处理,本质上三种不同的绘景所得到的结果都是相同的,在这里就把三种不同绘景之间的联系与区别进行整理,并整理自己的一些经验和理解.</p>
+</div>
+<span id="more"></span>
+<h1 id="Schrodinger绘景"><a href="#Schrodinger绘景" class="headerlink" title="Schrodinger绘景"></a>Schrodinger绘景</h1><p>最初学习量子力学的时候,接触的其实就是Schrodinger绘景,在自然单位制下的薛定谔方程为</p>
+<script type="math/tex; mode=display">i\frac{\partial}{\partial t}\psi(t)=H\psi(t)</script><p>$H$是体系的哈密顿量,$\psi$则是体系的波函数,上述方程的解为$\psi(t)=e^{-iHt}\psi(0)$.在Schrodinger绘景中可以看到,波函数是跟时间相关的,而算符H则是与时间无关的,且波函数的时间依赖仅仅是在$e^{-iEt}$中.</p>
+<h1 id="Heisenberg绘景"><a href="#Heisenberg绘景" class="headerlink" title="Heisenberg绘景"></a>Heisenberg绘景</h1><p>Heisenberg绘景和Schrodinger绘景的区别就是现在波函数是与时间无关的,而算符则是和时间相关的</p>
+<script type="math/tex; mode=display">O(t)=e^{iHt}O(0)e^{-iHt}</script><p>上式中H是系统完整的哈密顿量,其中可以包含相互作用等其它外部影响.算符$O(0)$则可以认为就是Schrodinger绘景中的算符,也就是说0时刻的Heisenberg绘景中的算符就是Schrodinger绘景中的算符,而之后的时刻就不是了,因为Schrodinger绘景中的算符是与时间无关的,而对应的,此时波函数就是一个与时间无关的量,即Heisenberg绘景中波函数$\psi(0)$就是Schrodinger绘景中0时刻的波函数$\psi(0)$.对含时间的算符求导,即得到Heisenberg绘景下的运动方程</p>
+<script type="math/tex; mode=display">i\frac{\partial}{\partial t}O(t)=[O(t),H]</script><p>下面对算符在Heisenberg绘景中求期望值,将两个绘景中联系起来</p>
+<script type="math/tex; mode=display">\langle\psi^\dagger_1(t)O(0)\psi_2(t)\rangle=\langle\psi^\dagger_1(0)e^{iHt}O(0)e^{-iHt}\psi_2(0)\rangle</script><script type="math/tex; mode=display">\langle\psi^\dagger_1(0)O(t)\psi_2(0)\rangle=\langle\psi^\dagger_1(0)e^{iHt}O(0)e^{-iHt}\psi_2(0)\rangle</script><p>通过上面两个公式可以看到,虽然是不同的表象,但是算符的期望值是相同的,结果一致</p>
+<h1 id="Interaction绘景"><a href="#Interaction绘景" class="headerlink" title="Interaction绘景"></a>Interaction绘景</h1><p>相互作用绘景通常在格林函数的计算中有很大的用途,首先将哈密顿量分解为两部分</p>
+<script type="math/tex; mode=display">H = H_0 + V</script><p>分解成两部分之后$H_0$是无相互作用部分,$V$则是系统的相互作用部分.通常情况下$H_0$部分的哈密顿量是可以精确求解的,在相互作用绘景中通过这个可以精确求解的本征态来计算加入相互作用之后系统的各种性质.在相互作用绘景中,算符和波函数都是和时间相关的,下面就构造相互作用绘景下的算符和波函数.</p>
+<script type="math/tex; mode=display">\hat{O}(t)=e^{iH_0t}Oe^{-iH_0t}</script><p>这里强调一下,此时构造时间依赖的算符时利用的是无相互作用$H_0$,这与Heisenberg绘景是不同的,在Heisenberg绘景中构造时间依赖的算符的时候,利用的是系统完整的哈密顿量$H = H_0 + V$.相互作用绘景中的波函数为</p>
+<script type="math/tex; mode=display">\hat{\psi}(t)=e^{iH_0t}e^{-iHt}\psi(0)</script><p>在这里加一个算符的性质$e^Ae^B=e^{A+B}$成立的条件是$[A,B]=0$,因为这里处理的是算符,所以算符的指数关系并不和普通数的指数关系相同.</p>
+<p>下面计算在相互作用绘景中算符的期望值</p>
+<script type="math/tex; mode=display">\langle\hat{\psi}^\dagger_1(t)\hat{O}(t)\hat{\psi}_2(t)\rangle=\langle\psi_1^\dagger(0)e^{iHt}e^{-iH_0t}(e^{iH_0t}Oe^{-iH_0t})e^{iH_0t}e^{-iHt}\psi_2(0)\rangle\\
+=\langle\psi^\dagger(0)e^{iHt}O(0)e^{-iHt}\psi_2(0)\rangle</script><p>在相互作用绘景中的期望值计算又和Schrodinger绘景中的计算完全一致,所以这三种不同的绘景只是用来简化问题的处理,实际的计算中结果是完全相同的.<br>对相互作用绘景波函数求时间的导数可得</p>
+<script type="math/tex; mode=display">\frac{\partial}{\partial t}\hat{\psi}(t)=ie^{iH_0t}(H_0-H)e^{-iHt}\psi(0)=-ie^{iH_0t}Ve^{-iHt}\psi(0)=-ie^{iH_0t}Ve^{-iH_0t}[e^{iH_0t}e^{-iHt}\psi(0)]</script><script type="math/tex; mode=display">\frac{\partial}{\partial t}\hat{\psi}(t)=-i\hat{V}(t)\hat{\psi}(t)</script><p>从上面的方程可以看到,波函数满足一个和$\hat{V}(t)$相关的微分方程.</p>
+<p>接下来介绍相互作用绘景中的时间演化算符<strong>$U(t)=e^{iH_0t}e^{-iHt}$</strong>,显然当$t=0$时,$U(0)=1$,对时间演化算符求时间导数后</p>
+<script type="math/tex; mode=display">\frac{\partial}{\partial t}U(t)=ie^{iH_0t}(H_0-H)e^{-iHt}=-ie^{iH_0t}V(e^{-iH_0t}e^{iH_0t})e^{-iHt}=-i\hat{V}(t)U(t)</script><p>时间演化算符也满足和相互作用绘景中的波函数满足同样的微分方程,求解这个微分方程可得</p>
+<script type="math/tex; mode=display">U(t)-U(0)=-i\int^t_0dt_1\hat{V}(t_1)U(t_1)</script><p>利用前面$t=0$时刻的条件后:$U(t) = 1-i\int^t_0dt_1\hat{V}(t_1)U(t_1)$</p>
+<p>从这个微分方程的解可以看到,这是一个关于$U(t)$的迭代方程,通过重复的回代,可以得到一个无穷多项的结果</p>
+<script type="math/tex; mode=display">U(t)=1-i\int^t_0dt_1\hat{V}(t_1)+(-i)^2\int^t_0dt_1\int^t_0dt_2\hat{V}(t_1)\hat{V}(t_2)+\dots\\
+=\sum_{n=0}^\infty(-i)^n\int^t_0dt_1\int^{t_1}_0dt_2\dots\int^{t_{n-1}}_0\hat{V}(t_1)\hat{V}(t_2)\dots\hat{V}(t_n)</script><h2 id="编时算符"><a href="#编时算符" class="headerlink" title="编时算符"></a>编时算符</h2><p>编时算符的引进目的,就是为了使得一些算符的作用是有意义的,而且可以使得一些公式在形式上可以写的很简单,使得在进行一些计算的时候很方便.编时算符通常是作用在一组与时间相关的算符上$T[\hat{V}(t_1)\hat{V}(t_2)\hat{V}(t_3)]$,编时算符作用之后展开为</p>
+<script type="math/tex; mode=display">T[\hat{V}(t_1)\hat{V}(t_2)\hat{V}(t_3)]=\hat{V}(t_3)\hat{V}(t_1)\hat{V}(t_2)\qquad if \quad t_3>t_2>t_1</script><p>编时算符的作用就是按照一定的时间顺序来将算符组织起来,使得时间较早的算符先作用,时间较后的算符后作用,这个是要符合因果律.将编时算符完全展开后其结果为</p>
+<script type="math/tex; mode=display">T[\hat{V}(t_1)\hat{V}(t_2)]=\Theta(t_1-t_2)\hat{V}(t_1)\hat{V}(t_2)+\Theta(t_2-t_1)\hat{V}(t_2)\hat{V}(t_1)</script><p>$\Theta(t)$是<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Step_function">阶跃函数</a>,可以发现利用阶跃函数之后,可以完美的控制算符作用的时间.</p>
+<div class="note red no-icon flat"><p>$\Theta(t_1-t_2)\hat{V}(t_1)\hat{V}(t_2)$这一项必须$t_1&gt;t_2$才不为零,所以也就保证了$\hat{V}(t_2)$是早于$\hat{V}(t_1)$作用的</p>
+</div>
+<p>接下来介绍一下便是算符引入后对表达式的一些简化</p>
+<script type="math/tex; mode=display">\frac{1}{2!}\int^t_0dt_1\int^t_0dt_2T[\hat{V}(t_1)\hat{V}(t_2)]=\frac{1}{2!}\int^t_0dt_1\int^{t_1}_0dt_2\hat{V}(t_1)\hat{V}(t_2)+\frac{1}{2!}\int_0^tdt_2\int_0^{t_1}\hat{V}(t_2)\hat{V}(t_1)</script><p>从上面的式子可以看到,编时算符$T$展开后由于阶跃函数的限制,会使得积分上下限有一些变化$\frac{1}{2!}\int_0^tdt_1\int_0^tdt_2T[\dots]\rightarrow\frac{1}{2!}\int_0^tdt_1\int_0^{t_1}dt_2\hat{V}(t_1)\hat{V}(t_2)+\frac{1}{2!}\int_0^tdt_2\int_0^{t_2}dt_1\hat{V}(t_2)\hat{V}(t_1)$,这是因为$\Theta(t_1-t_2)$限制了此时$t_1&gt;t_2$所以额外的积分区间表达式为0,同样的$\Theta(t_2-t_1)$限制了$t_2&gt;t_1$所以额外的积分区间结果也为0,正是因为在那些额外的区间内积分结果为0,所以就将积分的区间直接写在了表达式不为零的区间内,这也就是表达式中积分区间有所改变的原因.将这个结果向多个算符推广之后有</p>
+<script type="math/tex; mode=display">\frac{1}{3!}\int_0^tdt_1\int_0^tdt_2\int_0^tdt_3T[\hat{V}(t_1)\hat{V}(t_2)\hat{V}(t_3)]=\int_0^tdt_1\int_0^{t_1}dt_2\int_0^{t_2}dt_3\hat{V}(t_1)\hat{V}(t_2)\hat{V}(t_3)</script><p>有了上面对编时算符性质的认识之后,接下来就可以对相互作用绘景中的时间演化算符进行改写</p>
+<script type="math/tex; mode=display">U(t)=1+\sum_{n=1}^\infty\frac{(-i)^n}{n!}\int_0^tdt_1\int_0^tdt_2\dots\int_0^tdt_nT[\hat{V}(t_1)\hat{V}(t_2)\dots\hat{V}(t_n)]=Texp[-i\int_0^tdt_1\hat{V}(t_1)]</script><p>注意,上面的最后一个等号并不是相等,其实就只是在形式上看起来前面的内容可以写成后面的这样一个简单的形式,因为有编时算符的存在,所以它们并不是相等的,<strong>仅仅就是一个形式上的简写.</strong></p>
+<h1 id="S-Matrix"><a href="#S-Matrix" class="headerlink" title="S Matrix"></a>S Matrix</h1><p>前面已经介绍了相互作用绘景中的时间演化算符</p>
+<script type="math/tex; mode=display">\hat{\psi}(t)=U(t)\hat{\psi}(0)</script><p>在这里说明一下,此时$\hat{\psi}(0)=\psi(0)$,在零时刻相互作用绘景中的波函数即为Schrodinger绘景中零时刻波函数,同时也是Heisenberg绘景中的波函数.下面在相互作用绘景中定义S矩阵,它的作用就是把波函数(相互作用绘景)$\hat{\psi}(t’)$和$\hat{\psi}(t)$两个不同时刻的波函数联系起来</p>
+<script type="math/tex; mode=display">\hat{\psi}(t)=S(t,t')\hat{\psi}(t')\qquad S(t,t')=U(t)U(t')</script><p>从上面的形式来看,S矩阵和时间演化算符之间是有联系的.对S矩阵求导数</p>
+<script type="math/tex; mode=display">\frac{\partial}{\partial t}S(t,t')=\frac{\partial}{\partial t}U(t)U^\dagger(t')=-i\hat{V}(t)S(t,t')</script><p>上面这个方程又回到了之前微分方程形式,其解可以写作$S(t,t’)=Texp[-i\int_{t’}^tdt_1\hat{V}(t_1)]$.<br>在相互作用绘景中有$\hat{\psi}(t)=U(t)\psi(0)$,在这里将$\psi(0)$认为是系统的积态波函数.</p>
+<div class="note red no-icon flat"><p>在零温下,我们主要关注的系统的基态波函数,也就是说我们关心的只是能量最低的本征态.但是通常因为相互作用的存在,哈密顿量的基态是不容易求解的,而这个问题也就是需要利用格林函数来解决的.现在可以将问题转化,在相互作用绘景中已经将哈密顿量分解成了$H_0$和$V$这两个部分,对于$H_0$这个哈密顿量,我们是可以对它进行求解的,可以得到其本征态$\phi_0$,<strong>在这里做一个合理的猜测,认为相互作用存在后的基态和无相互作用$H_0$的基态之间是由一定联系的.</strong></p>
+</div>
+<p>相互作用存在的基态与无相互作用基态之间的关系,可以通过S矩阵联系起来</p>
+<script type="math/tex; mode=display">\psi(0)=S(0,-\infty)\phi_0</script><p>利用前面的公式</p>
+<script type="math/tex; mode=display">\hat{\psi}(t)=S(t,0)\psi(0)</script><p>公式逆用之后有</p>
+<script type="math/tex; mode=display">\psi(0)=S(0,t)\hat{\psi}(t)</script><div class="note orange no-icon flat"><p>对上式取$t\rightarrow-\infty$得到一个重要的关系$\psi(0)=S(0,-\infty)\hat{\psi}(-\infty)$.<strong>在这里做一个重要的声明$\hat{\psi}(-\infty)$即就是$\phi_0$</strong>.这是一个合理的猜测,在无穷远时间之前,相互作用是不存在的,随着时间慢慢的演化之后,相互作用慢慢增加,最后在0时刻的时候变完整,此时系统的哈密顿量为$H=H_0+V$.$S(0,-\infty)$的作用就是绝热的将无相互作用时的基态波函数演化到$t=0$时相互作用$V$完全存在时候的相互作用下的基态波函数$\psi(0)$</p>
+</div>
+<p>同样的可以有</p>
+<script type="math/tex; mode=display">\hat{\psi}(\infty)=S(\infty,0)\psi(0)</script><p>这个时候任然可以做出猜测,再$t\rightarrow\infty$的时候,$\hat{\psi}\rightarrow\phi_0$,即在相互作用存在无穷远时间之后,系统的基态波函数再次变换成了无相互作用时候的基态波函数.</p>
+<p>结合上面的分析之后,假设无穷远时间后的相互作用系统的基态波函数和无相互作用后时系统的基态波函数之间只是相差一个简单的因子,可以表示为</p>
+<script type="math/tex; mode=display">\phi_0e^{iL}=\hat{\psi}(\infty)=S(\infty,0)\psi(0)=S(\infty,-\infty)\phi_0</script><p>则最终可以得到这个因子为$e^{iL}=\langle\phi_0\lvert S(\infty,-\infty)\rvert\phi_0\rangle$</p>
+<div class="note red no-icon flat"><p>上面这个因子在格林函数中是一个很重要的结论,在之后进行相互作用存在后的格林函数计算是,是一个经常出现的量,同时在计算过程中也不容忽略,关于具体的应用,我在后面也会具体整理一些内容来对这个因子的应用进行展示.</p>
+</div>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>1.Many Particle Physics(Mahan,Third edition)</p>
+<h1 id="公众号"><a href="#公众号" class="headerlink" title="公众号"></a>公众号</h1><div class="note blue no-icon flat"><p>相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。</p>
+</div>
+<table>
+  <tr>
+    <!-- 图片单元格 -->
+    <td style="width: 300px; height: 300px; text-align: center; vertical-align: middle; border: 1px solid #ccc; border-radius: 8px;">
+      <img src="/assets/images/qrcode.jpg" alt="QR Code" width="300px" height="300px" style="border-radius: 8px;">
+    </td>
+    <!-- 文字单元格 -->
+    <td style="width: 300px; height: 300px; text-align: center; vertical-align: middle; padding-left: 20px; border: 1px solid #ccc; border-radius: 8px;">
+      <div>
+        <h4 style="margin: 0;">Email</h4>
+        <p style="margin: 5px 0;">yxliphy@gmail.com</p>
+      </div>
+    </td>
+  </tr>
+</table></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Yu-Xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2020/09/15/2020-09-15-picture-compare/">http://example.com/2020/09/15/2020-09-15-picture-compare/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Yu-Xuan' Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Many-Body/">Many-Body</a></div><div class="post-share"><div class="social-share" data-image="/img/defult-cover.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg"/></a><div class="post-qr-code-desc"></div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg"/></a><div class="post-qr-code-desc"></div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2020/09/16/2020-09-16-Kubo/" title="Kubo公式推导(线性响应理论)"><img class="cover" src="/img/defult-cover2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Kubo公式推导(线性响应理论)</div></div><div class="info-2"><div class="info-item-1">物理是个实验学科,在凝聚态物理中,若想知道一个给定物理系统的特性,首先是以某种方式扰动系统(如加外场或者通过粒子辐射),然后观察系统的物理量因外加扰动所引起的改变—-响应.通过扰动于响应的关系即可以知道系统元激发的信息.通常情况下这个外加的场是比较弱的,只有探测作用,所以系统对外场的响应可以认为是线性的,也就是说响应信号正比于外加场的强度.   电导计算首先通过一个外加电场来计算系统中诱导出来的电流,在计算过程中推导处Kubo公式,并计算系统的电导,含时的电场可表示为 E^{(ext)}_\alpha(\mathbf{r},t)=\Xi^{(ext)}_\alpha e^{i\mathbf{q}\cdot\mathbf{r}-i\omega t}\qquad (\alpha=x,y,z代表空间方向)外加电场之后,系统中诱导出的电流为 J_\alpha(\mathbf{r},t)=\sum_\beta\sigma^{'}(\mathbf{q},\omega)\Xi_\beta^{(ext)}e^{i\mathbf{q}\cdot\mathbf{r}-i\omega t}上式中尽管$...</div></div></div></a><a class="pagination-related" href="/2020/09/14/2020-09-14-Loop-speed/" title="Julia,Python,Fortran,Mathematica循环计算速度比较"><img class="cover" src="/img/defult-cover2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Julia,Python,Fortran,Mathematica循环计算速度比较</div></div><div class="info-2"><div class="info-item-1">在平时进行数值计算时，我经常会遇到的两种比较消耗时间计算，其一是对大型矩阵的对角化问题，这是在对哈密顿量厄密矩阵求解本征问题时经常遇到的；另外一个就是循环计算了，这个结构在动量空间计算体系格林函数等其它量时，也会经常遇到。在这里首先对比一下各编程语言对循环的计算速度，然后根据我的经验提供一些加速的方法。   速度对比在这里只是简单的展示一下计算速度，所以我只是采用了三层循环嵌套，每层的循环数为1000 python1234567891011121314import timedef f1():    c = 0    cont = 1000 #控制循环的次数    for i in range(cont):        for j in range(cont):            for k in range(cont):                c = c + i + j + k    return ct1 = time.time()print(f1())   # 计算循环求和t2 = time.time()print(&#x27;Timing cost is(s):...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2020/07/20/2020-07-20-GF-solve/" title="利用Green&#39;s function求态密度的两种方法"><img class="cover" src="/img/defult-cover.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-20</div><div class="info-item-2">利用Green&#39;s function求态密度的两种方法</div></div><div class="info-2"><div class="info-item-1">在这里先整理一个最简答的问题，再知道了体系的哈密顿量后，怎么求解系统的格林函数并求得态密度。   数值角度考虑在这里以一个陈绝缘体的哈密顿量为例来演示具体每一步是如何进行的。 H(k_x,k_y)=t(\sin(k_x)s_x+\sin(k_y)s_y)+(1-\cos(k_x)-\cos(k_y))s_z这里的$s_i$代表Pauli矩阵，这是一个2*2的Hamiltonian，通常格林函数为$G(k_x,k_y,\omega)=\frac{1}{i\omega-\hat{H}}$,虽然这里在写法上是个分数的形式，但注意这里分母上的\hat{H}其实是个算符，这里请理解这一点，先不要将它就当作是这里的哈密顿量。接下来我们要计算格林函数，这里是要求倒数，那么对应到矩阵形式就是要求解$i\omega-H$这个矩阵的逆，这个时候就已经把算符$\hat{H}$写成具体的矩阵形式了，这个关系要捋清楚。 那么矩阵求逆就没什么好讲的了，对于这个2*2的矩阵解析和数值都是可以很轻松的求解出来。态密度的话就是把$k_x$和$k_y$对应下的格林函数积分即可 A(\omega)=\int_0^{2...</div></div></div></a><a class="pagination-related" href="/2020/09/12/2020-09-12-Matsubara-sum/" title="松原频率求和"><img class="cover" src="/img/defult-cover2.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-12</div><div class="info-item-2">松原频率求和</div></div><div class="info-2"><div class="info-item-1">在学习格林函数的过程中，松原格林函数用来计算是很方便的，虽然它是用来处理有限温的问题，但是通过解析延拓之后，和零温下的格林函数的结果是相同的，而且相对于零温格林函数的计算，松原格林函数涉及到松原频率求和，在计算上面我觉得还是具有一定的简便性的，只需要扎实的掌握粒子分布函数和复变函数的留数定理之后，就可以快速的进行计算。   留数定理设区域G的边界C为以分段光滑的简单闭合曲线，若除有限个孤立奇点$b_k,(k=1,2,3,…,n)$外，函数$f(z)$在G内单值解析，在G上连续，并且在C上$f(z)$没有奇点，则$\int_Cf(z)dz=2\pi i\sum_{k=1}^nRes[f(b_k)]$，$Res[f(b_k)]$即为函数$f(z)$在$b_k$处的留数，它等于$f(z)$在$b_k$的邻域内洛朗展开 f(z)=\sum_{l=-\infty}^{\infty}a^{(k)}_l(z-b_k)^l中$(z-b_k)^{-1}$的系数$a_{-1}^{(k)}$。 留数计算理解假设$z=b$是函数的一阶极点，则有$f(z)=a_1(z-b)^{-1}+a_0+a_1(z-...</div></div></div></a><a class="pagination-related" href="/2020/09/14/2020-09-14-RPA/" title="RPA(Random Phase Approximiation)推导"><img class="cover" src="/assets/images/research/rpa1.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-14</div><div class="info-item-2">RPA(Random Phase Approximiation)推导</div></div><div class="info-2"><div class="info-item-1">在固体理论和量子场论的学习过程中都遇到了电极化函数的计算，在这里就详细的整理一下如何计算电子气中的电极化函数，这个计算有时候也成为RPA，当然这个方法并不仅限于计算电极化，还可以用来计算其它的一些量。   运动方程方法推导假设在系统中放入一个杂质点电荷$\rho_i(\mathbf{r},t)$或这其傅里叶变换形式为$\rho_i(\mathbf{q},\omega)$,那么有这个电荷产生的等效势为$V_i(\mathbf{q},\omega)=-e\phi_i(\mathbf{q},\omega)$.一旦存在了杂质电荷之后,那么在其周围就会形成屏蔽电荷,从而也会产生一个额外的屏蔽势$V_s(\mathbf{q},\omega)$,则可以由一下方程 V(\mathbf{q},\omega)=V_i(\mathbf{q},\omega)+V_s(\mathbf{q},\omega)\nabla^2V_s(\mathbf{r},t)=4\pi e\rho_s(\mathbf{r},t)\qquad  or\qquad V_s(\mathbf{q},\omega)=-\frac{4\p...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">232</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yxli8023"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome to Yu-Xuan's Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Schrodinger%E7%BB%98%E6%99%AF"><span class="toc-number">1.</span> <span class="toc-text">Schrodinger绘景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Heisenberg%E7%BB%98%E6%99%AF"><span class="toc-number">2.</span> <span class="toc-text">Heisenberg绘景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Interaction%E7%BB%98%E6%99%AF"><span class="toc-number">3.</span> <span class="toc-text">Interaction绘景</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E6%97%B6%E7%AE%97%E7%AC%A6"><span class="toc-number">3.1.</span> <span class="toc-text">编时算符</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#S-Matrix"><span class="toc-number">4.</span> <span class="toc-text">S Matrix</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AC%E4%BC%97%E5%8F%B7"><span class="toc-number">6.</span> <span class="toc-text">公众号</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-number">6.0.0.1.</span> <span class="toc-text">Email</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/08/02/2025-08-02-Real-Space-Chern/" title="实空间Chern数计算(Half-BHZ模型)"><img src="/assets/images/Julia/Chern-m0.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实空间Chern数计算(Half-BHZ模型)"/></a><div class="content"><a class="title" href="/2025/08/02/2025-08-02-Real-Space-Chern/" title="实空间Chern数计算(Half-BHZ模型)">实空间Chern数计算(Half-BHZ模型)</a><time datetime="2025-08-01T16:00:00.000Z" title="发表于 2025-08-02 00:00:00">2025-08-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/22/2025-02-22-Free-SC/" title="超导序参量自洽(自由能极小值方法)"><img src="/assets/images/Julia/Bx_kbt-phase.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导序参量自洽(自由能极小值方法)"/></a><div class="content"><a class="title" href="/2025/02/22/2025-02-22-Free-SC/" title="超导序参量自洽(自由能极小值方法)">超导序参量自洽(自由能极小值方法)</a><time datetime="2025-02-21T16:00:00.000Z" title="发表于 2025-02-22 00:00:00">2025-02-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/18/2025-02-18-Julia-MPI-Set/" title="Mac上配置MPI并行Julia"><img src="/assets/images/Julia/a4.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Mac上配置MPI并行Julia"/></a><div class="content"><a class="title" href="/2025/02/18/2025-02-18-Julia-MPI-Set/" title="Mac上配置MPI并行Julia">Mac上配置MPI并行Julia</a><time datetime="2025-02-17T16:00:00.000Z" title="发表于 2025-02-18 00:00:00">2025-02-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/15/2024-12-15-Fourier-Spectrum/" title="超导序参量中的傅里叶分析"><img src="/assets/images/Mma/fft-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导序参量中的傅里叶分析"/></a><div class="content"><a class="title" href="/2024/12/15/2024-12-15-Fourier-Spectrum/" title="超导序参量中的傅里叶分析">超导序参量中的傅里叶分析</a><time datetime="2024-12-14T16:00:00.000Z" title="发表于 2024-12-15 00:00:00">2024-12-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/11/2024-12-11-Screeing/" title="库仑势以及屏蔽库伦势的一些计算"><img src="/assets/images/Mma/Vscr-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="库仑势以及屏蔽库伦势的一些计算"/></a><div class="content"><a class="title" href="/2024/12/11/2024-12-11-Screeing/" title="库仑势以及屏蔽库伦势的一些计算">库仑势以及屏蔽库伦势的一些计算</a><time datetime="2024-12-10T16:00:00.000Z" title="发表于 2024-12-11 00:00:00">2024-12-11</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  const initGitalk = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGitalk = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const gitalk = new Gitalk({
+      clientID: 'Ov23li0WvZEaIAZ7RFtH',
+      clientSecret: '03fcb77b7c28dafcdde00756e27f9b5bc76639e8',
+      repo: 'yxli8023.github.io',
+      owner: 'yxli8023',
+      admin: ['Yu-Xuan'],
+      updateCountCallback: commentCount,
+      ...option,
+      id: isShuoshuo ? path : (option && option.id) || '36cd246619a34902d068de8223c1988a'
+    })
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async(el, path) => {
+    if (typeof Gitalk === 'function') initGitalk(el, path)
+    else {
+      await btf.getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await btf.getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Gitalk' === 'Gitalk'
+      ? window.shuoshuoComment = { loadComment: loadGitalk }
+      : window.loadOtherComment = loadGitalk
+    return
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

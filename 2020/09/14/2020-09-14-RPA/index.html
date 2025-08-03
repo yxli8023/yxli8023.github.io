@@ -1,0 +1,363 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>RPA(Random Phase Approximiation)推导 | Yu-Xuan' Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="在固体理论和量子场论的学习过程中都遇到了电极化函数的计算，在这里就详细的整理一下如何计算电子气中的电极化函数，这个计算有时候也成为RPA，当然这个方法并不仅限于计算电极化，还可以用来计算其它的一些量。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RPA(Random Phase Approximiation)推导">
+<meta property="og:url" content="http://example.com/2020/09/14/2020-09-14-RPA/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39; Blog">
+<meta property="og:description" content="在固体理论和量子场论的学习过程中都遇到了电极化函数的计算，在这里就详细的整理一下如何计算电子气中的电极化函数，这个计算有时候也成为RPA，当然这个方法并不仅限于计算电极化，还可以用来计算其它的一些量。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/assets/images/research/rpa1.png">
+<meta property="article:published_time" content="2020-09-13T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-08-03T09:48:37.969Z">
+<meta property="article:author" content="Yu-Xuan">
+<meta property="article:tag" content="Many-Body">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/images/research/rpa1.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "RPA(Random Phase Approximiation)推导",
+  "url": "http://example.com/2020/09/14/2020-09-14-RPA/",
+  "image": "http://example.com/assets/images/research/rpa1.png",
+  "datePublished": "2020-09-13T16:00:00.000Z",
+  "dateModified": "2025-08-03T09:48:37.969Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yu-Xuan",
+      "url": "http://example.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2020/09/14/2020-09-14-RPA/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'medium_zoom',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#f54966","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'RPA(Random Phase Approximiation)推导',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #dbeffd;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">232</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/assets/images/research/rpa1.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Yu-Xuan' Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">RPA(Random Phase Approximiation)推导</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">RPA(Random Phase Approximiation)推导</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-09-13T16:00:00.000Z" title="发表于 2020-09-14 00:00:00">2020-09-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-08-03T09:48:37.969Z" title="更新于 2025-08-03 17:48:37">2025-08-03</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">3.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>15分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/2020/09/14/2020-09-14-RPA/#post-comment"><span class="gitalk-comment-count"><i class="fa-solid fa-spinner fa-spin"></i></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;It has been&quot;,&quot;messageNext&quot;:&quot;days since the last update, the content of the article may be outdated.&quot;,&quot;postUpdate&quot;:&quot;2025-08-03 17:48:37&quot;}" hidden></div><div class="note blue no-icon flat"><p>在固体理论和量子场论的学习过程中都遇到了电极化函数的计算，在这里就详细的整理一下如何计算电子气中的电极化函数，这个计算有时候也成为RPA，当然这个方法并不仅限于计算电极化，还可以用来计算其它的一些量。</p>
+</div>
+<span id="more"></span>
+<h1 id="运动方程方法推导"><a href="#运动方程方法推导" class="headerlink" title="运动方程方法推导"></a>运动方程方法推导</h1><p>假设在系统中放入一个杂质点电荷$\rho_i(\mathbf{r},t)$或这其傅里叶变换形式为$\rho_i(\mathbf{q},\omega)$,那么有这个电荷产生的等效势为$V_i(\mathbf{q},\omega)=-e\phi_i(\mathbf{q},\omega)$.一旦存在了杂质电荷之后,那么在其周围就会形成屏蔽电荷,从而也会产生一个额外的屏蔽势$V_s(\mathbf{q},\omega)$,则可以由一下方程</p>
+<script type="math/tex; mode=display">V(\mathbf{q},\omega)=V_i(\mathbf{q},\omega)+V_s(\mathbf{q},\omega)</script><script type="math/tex; mode=display">\nabla^2V_s(\mathbf{r},t)=4\pi e\rho_s(\mathbf{r},t)\qquad  or\qquad V_s(\mathbf{q},\omega)=-\frac{4\pi e}{q^2}\rho_s(\mathbf{q},\omega)</script><script type="math/tex; mode=display">\nabla^2 V_i(\mathbf{r},t)=4\pi e\rho_i(\mathbf{r},t)\qquad or\qquad V_s(\mathbf{q},\omega)=-\frac{4\pi e}{q^2}\rho_i(\mathbf{q},\omega)</script><p>综上所述,可以知道由杂质电荷引起的势$V_i$是可以知道的,但是电子感受到的应该是$V(\mathbf{q},\omega)$,所以最终的问题就是如何求解这个总的势能,从而可以得到电极化函数</p>
+<script type="math/tex; mode=display">\epsilon(\mathbf{q},\omega)=\frac{V_i(\mathbf{q},\omega)}{V(\mathbf{q},\omega)}</script><p>电子的有效哈密顿量为</p>
+<script type="math/tex; mode=display">H=\sum_{\mathbf{p}\sigma}\epsilon_\mathbf{p} C^\dagger_{\mathbf{p}\sigma}C_{\mathbf{p}\sigma}+\frac{1}{v}\sum_\mathbf{q}V(\mathbf{q},t)\rho(\mathbf{q})</script><p>假设杂质是满足单频震动的$\qquad \rho_i(\mathbf{r},t)=\rho_i(\mathbf{r})e^{-i\omega t}\qquad V_i(\mathbf{r},t)=V_i(\mathbf{r})e^{-i\omega t}$,则系统的平均响应也是依赖于$\omega$的,$\langle \rho(\mathbf{q},t)\rangle=\rho(\mathbf{q},t)e^{-i\omega t}, \qquad \langle V(\mathbf{q},t)\rangle=V(\mathbf{q},\omega)e^{-i\omega t}$.<strong>对于均匀电子气,如果$\mathbf{q}\neq 0$,那么密度算符$\rho(\mathbf{q})$的期望值就是0,但是在杂质电荷存在时,其期望值不为0且正比于屏蔽电荷的平均值.</strong></p>
+<script type="math/tex; mode=display">\langle \rho_s(\mathbf{q},t)\rangle = -e\langle\rho(\mathbf{q},t)\rangle=-e\sum_{\mathbf{p}\sigma}\langle C^\dagger_{\mathbf{p+q},\sigma}C_{\mathbf{p},\sigma}\rangle=-e\rho(\mathbf{q},\omega)e^{-i\omega t}</script><p>既然$\rho_s$和$\rho$是成正比的,那么整体上就可以有很大的简化,可以得到下面这个公式</p>
+<script type="math/tex; mode=display">V_s(\mathbf{q},\omega)=\frac{4\pi e^2}{q^2}\rho(\mathbf{q},\omega)</script><p>在这里其实是对电子电子相互作用的一个粗糙处理,这里是将电子电子相互作用简单的由屏蔽势($V_s(\mathbf{q},t)$)来描述,即电子电子相互作用导致了电荷周围吸引相反电性的电子,从而产生了屏蔽势.而在这整个问题中,需要求解的也就是$V_s(\mathbf{q},t)$,在前面的分析中我们已经得到了$V_s$与$\rho_s$之间的关系,又因为$\rho_s$和$\rho$之间又是正比的关系,所以现在的问题就转变成了$\rho(\mathbf{q},t)$的具体表达式到底是怎么样的.</p>
+<p>下面就利用运动方程来求解$\rho(\mathbf{q},t)$的具体形式</p>
+<script type="math/tex; mode=display">i\frac{d}{dt}\rho(\mathbf{q},t)=[H,\rho(\mathbf{q},t)] \qquad \rho(\mathbf{q},t)=\sum_{\mathbf{q},\sigma}C^\dagger_{\mathbf{p+q},\sigma}C_{\mathbf{p}\sigma}</script><p>因为$\rho(\mathbf{q},t)$仅仅是对动量$\mathbf{q}$以及粒子内部自由度的求和,所以我们可以将求和分离开来,单独求解确定动量$\mathbf{q}$和内部自由度$\sigma$后的结果,之后再对这个量进行求和即可,所以问题转换为如何求解下面的表达式</p>
+<script type="math/tex; mode=display">i\frac{d}{dt}C^\dagger_{\mathbf{p+q},\sigma}C_{\mathbf{p}\sigma}=[H,C^\dagger_{\mathbf{p+q},\sigma}C_{\mathbf{p}\sigma}]</script><p>在线性屏蔽模型中,有$\langle \rho(\mathbf{q},t)\rangle\propto\langle V(\mathbf{q},t)\rangle$,杂质势$V(\mathbf{q},t)$是由一个振荡频率的$e^{-i\omega t}$,所以在对$\rho(\mathbf{q},t)$求导时,相当于只给出$-i\omega\sum_{\mathbf{p}\sigma}C^\dagger_{\mathbf{p+q},\sigma}C_{\mathbf{p}\sigma}$.</p>
+<p>下面来计算哈密顿量于算符之间的对易关系</p>
+<script type="math/tex; mode=display">\sum_{\mathbf{k},s}\epsilon_\mathbf{k}[C^\dagger_{\mathbf{k}s}C_{\mathbf{k}s},C^\dagger_{\mathbf{p+q},\sigma}C_{\mathbf{p}\sigma}]=(\epsilon_\mathbf{p+q}-\epsilon_\mathbf{p})C^\dagger_{\mathbf{p+q},\sigma}C_{\mathbf{p}\sigma}</script><p>在上面的对易关系展开后不为零的两项为$\sum_{\mathbf{k}s}[C^\dagger_{\mathbf{k}s},C_{\mathbf{p}\sigma}]\sim-\epsilon_\mathbf{p}C^\dagger_{\mathbf{p+q}\sigma}C_{\mathbf{p}\sigma},\quad \sum_{\mathbf{k}s}[C_{\mathbf{k}s},C^\dagger_{\mathbf{p+q},\sigma}]\sim\epsilon_\mathbf{p+q}C^\dagger_{\mathbf{p+q}\sigma}C_{\mathbf{p}\sigma}$</p>
+<blockquote>
+<p>在计算算符对易的时候,不同的两个动量指标$k,q$之间是需要满足一定限制的才可以,也可以简单的说这两个指标要相同它们才能满足对易关系,否则就是零.</p>
+</blockquote>
+<p>对于包含库伦势的这一项</p>
+<script type="math/tex; mode=display">\frac{1}{v}\sum_{\mathbf{q'k},s}V(\mathbf{q'},t)[C^\dagger_{\mathbf{k+q'},s}C_{\mathbf{k}s},C^\dagger_{\mathbf{p+q},\sigma}C_{\mathbf{p}\sigma}]=\frac{1}{v}\sum_\mathbf{q'}V(\mathbf{q'},t)(C^\dagger_{\mathbf{p+q+q'}}C_{\mathbf{p}\sigma}-C^\dagger_{\mathbf{p+q},\sigma}C_{\mathbf{\mathbf{p-q'},\sigma}})</script><blockquote>
+<p>在计算相互作用项与密度算符之间的对易关系时,同样使用算符下标之间的限制,最终就可以把求和的$\sum_k$消除,从而将不同的动量角标$p,q,k$联系起来.</p>
+</blockquote>
+<p>将上面所有的计算结果回代,则可以得到</p>
+<script type="math/tex; mode=display">(\epsilon_\mathbf{p}-\epsilon_\mathbf{p+q}+\omega)C^\dagger_{p+q,\sigma}C_{\mathbf{p}\sigma}=\frac{1}{v}\sum_\mathbf{q'}V(\mathbf{q'},t)(C^\dagger_{\mathbf{p+q+q'},\sigma}C_{\mathbf{p}\sigma}-C^\dagger_{\mathbf{p+q},\sigma}C_{\mathbf{\mathbf{p-q'},\sigma}})</script><p>下面开始做近似处理,也是RPA计算的关键.在上式的求和中,认为只有$\mathbf{q’}=-q$的贡献是最主要的,而其它的项则在平均之后相加等于0,这意思就是无规相近似的核心.这也说明这些被消去的项代表的是更高阶的相互作用.</p>
+<script type="math/tex; mode=display">\approx \frac{1}{v}V(\mathbf{q},t)(C^\dagger_{\mathbf{p}\sigma}C_{\mathbf{p}\sigma}-C^\dagger_{\mathbf{p+q},\sigma}C_{\mathbf{\mathbf{p+q},\sigma}})</script><p>综上可以得到</p>
+<script type="math/tex; mode=display">C^\dagger_{\mathbf{p+q},\sigma}C_{\mathbf{p}\sigma}=\frac{V(\mathbf{q},t)}{v}(\frac{C^\dagger_{\mathbf{p}\sigma}C_{\mathbf{p}\sigma}-C^\dagger_{\mathbf{p+q},\sigma}C_{\mathbf{p+q},\sigma}}{\epsilon_\mathbf{p}-\epsilon_\mathbf{p+q}-\omega})</script><p>之后再对$(\mathbf{p},\sigma)$求和即可得到</p>
+<script type="math/tex; mode=display">\rho(\mathbf{p},t)=\sum_{\mathbf{p}\sigma}C^\dagger_{\mathbf{p+q},\sigma}C_{\mathbf{p}\sigma}=\frac{V(\mathbf{p},t)}{v}\sum_{\mathbf{p}\sigma}\frac{C^\dagger_{\mathbf{p}\sigma}C_{\mathbf{p}\sigma}-C^\dagger_{\mathbf{p+q},\sigma}C_{\mathbf{p+q},\sigma}}{\epsilon_\mathbf{p}-\epsilon_\mathbf{p+q}-\omega}</script><p>下面对这个方程求平均(量子期望值):$C^\dagger_{\mathbf{p}\sigma}C_{\mathbf{p}\sigma}\rightarrow n_F(\xi_{\mathbf{p}}),C^\dagger_{\mathbf{p+q},\sigma}C_{\mathbf{p+q},\sigma}\rightarrow n_F(\xi_{\mathbf{p+q}})$</p>
+<p>对上面的方程取平均,$\langle \rho\rangle\rightarrow\rho(\mathbf{q},\omega)e^{-i\omega t},\quad \langle V\rangle\rightarrow V(\mathbf{q},\omega)e^{-i\omega t}$</p>
+<script type="math/tex; mode=display">\rho(\mathbf{q},\omega)=\frac{V(\mathbf{q},\omega)}{v}\sum_{\mathbf{p}\sigma}\frac{n_F(\xi_{\mathbf{p}})-n_F(\xi_{\mathbf{p+q}})}{\epsilon_{\mathbf{p}}-\epsilon_{\mathbf{p+q}}-\omega}=V(\mathbf{q},\omega)P^{(1)}(\mathbf{q},\omega)</script><p>将这个结果再回代到前面屏蔽势的表达式中可以得到</p>
+<script type="math/tex; mode=display">V_s(\mathbf{q},\omega)=\frac{4\pi e^2}{q^2}\rho(\mathbf{q},\omega)=V(\mathbf{q},\omega)v_qP^{(1)}(\mathbf{q},\omega)</script><p>到这里之后,又相互作用引起的屏蔽势已经可通过全库伦势能完全表示出来,剩下的问题就是将这些公式整合到一起,通过自洽的方式来的杂质势和全库伦势之间的联系</p>
+<script type="math/tex; mode=display">V(\mathbf{q},\omega)=V_i(\mathbf{q},\omega) + V_s(\mathbf{q},\omega)=V_i(\mathbf{q},\omega)+v_pV(\mathbf{q},\omega)=\frac{V_i(\mathbf{q},\omega)}{1-v_qP^{(1)}(\mathbf{q},\omega)}</script><p>则最终可以得到RPA计算电极化函数的结果</p>
+<script type="math/tex; mode=display">\epsilon_{RPA}=1 - v_qP^{(1)}(\mathbf{q},\omega)</script><script type="math/tex; mode=display">P^{(1)}(\mathbf{q},\omega) = \frac{1}{v}\sum_{\mathbf{q}\sigma}\frac{n_F(\xi_\mathbf{q}-n_F(\xi_\mathbf{p+q})}{\epsilon_\mathbf{p}-\epsilon_\mathbf{p+q}+\omega+i\delta}</script><h1 id="格林函数方法推导"><a href="#格林函数方法推导" class="headerlink" title="格林函数方法推导"></a>格林函数方法推导</h1><p>在这里不推到电极化函数到底是如何表示成格林函数形式的,具体的推到可以去看参考中的第一本书,这里直接将公式套用过来</p>
+<script type="math/tex; mode=display">\frac{1}{\epsilon(\mathbf{q})}=1-\frac{v_q}{V\beta}\int^\beta_0d\tau_1\int^\beta_0d\tau_2\langle T_\tau\rho(\mathbf{q},\tau_1)\rho(-\mathbf{q},\tau_2)\rangle</script><p>利用虚时间下的周期性条件,上式可以进行化简</p>
+<script type="math/tex; mode=display">\int^\beta_0d\tau_1\int^\beta_0d\tau_2\langle T_\tau\rho(\mathbf{q},\tau_1)\rho(-\mathbf{q},\tau_2)\rangle=\beta\int^\beta_0d\tau\langle T_\tau\rho(\mathbf{q},\tau)\rho(\mathbf{-q},0)\rangle</script><p>化简之后得到</p>
+<script type="math/tex; mode=display">\frac{1}{\epsilon(\mathbf{q})}=1-\frac{v_q}{V}\int^\beta_0d\tau\langle T_\tau\rho(\mathbf{q},\tau)\rho(\mathbf{-q},0)\rangle</script><p>上面的结果都是再零频率下的,接下来将这个结果推广到非零频率下</p>
+<script type="math/tex; mode=display">\frac{1}{\epsilon(\mathbf{q},i\omega_n)}=1-\frac{v_q}{V}\int^\beta_0d\tau e^{i\omega_n\tau}\langle T_\tau \rho(\mathbf{q},\tau)\rho(\mathbf{-q},0)\rangle</script><p>上面的推导都是在虚时的海森堡绘景中进行的,当把上面的结果转换到相互作用绘景中后,上式结果为</p>
+<script type="math/tex; mode=display">\frac{1}{\epsilon(\mathbf{q},i\omega)}=1-\frac{v_q}{V}\int^\beta_0d\tau e^{i\omega_n\tau}\frac{\langle T_\tau \hat{S}(\beta)\hat{\rho}(\mathbf{q},\tau)\hat{\rho}(-\mathbf{q},0)\rangle}{\langle\hat{S}(\beta)\rangle}</script><blockquote>
+<p>至于如何从海森堡绘景转换到相互作用绘景,在这里就不解释了,之后会整理一份三个不同绘景之间的联系</p>
+</blockquote>
+<p>转换到相互作用绘景之后,可以发现这里存在一个$\hat{S}(\beta)$,其具体表达式为$S(\tau_1,\tau_2)=T_\tau exp[-\int_{\tau_1}^{\tau_2} d\tau_1\hat{V}(\tau_1)]$,这里$\hat{V}就是相互作用项在相互作用绘景中的形式$,下面对$\S(\beta)$的使用做一个示范</p>
+<script type="math/tex; mode=display">_0\langle T_{\tau}S(\beta)\hat{C}_{p\sigma}(\tau)\hat{C}^\dagger_{p\sigma}(0)\rangle=\sum^\infty_{n=0}\frac{(-1)^n}{n!}\int^\beta_0d\tau_1\dots\int^\beta_0d\tau_n(_0\langle T_\tau \hat{C}_{p\sigma}(\tau)\hat{V}(\tau_1)\dots\hat{V}(\tau_n)\hat{C}^\dagger_{p\sigma}(0)\rangle)</script><p>在现在这个问题中相互作用项为$V=\frac{1}{v}\sum_{pkq}\sum_{\sigma\sigma’}v_qC^\dagger_{p+q,\sigma}C^\dagger_{k-q,\sigma’}C_{k\sigma’}C_{p\sigma}$</p>
+<p>在极化函数表达式中,将$S$展开到一阶可以得到$P^{(1)}(\mathbf{q},\omega)$</p>
+<script type="math/tex; mode=display">P^{(1)}=-\frac{1}{v}\int^\beta_0d\tau e^{i\omega_n\tau}\langle T_\tau \hat{\rho}(\mathbf{q},\tau)\hat{\rho}(-\mathbf{q},0)\rangle=-\frac{1}{v}\sum_\mathbf{kp}\sum_{\sigma\sigma'}\int^\beta_0d\tau e^{i\omega_n\tau}\langle T_\tau\hat{C}_{\mathbf{p}\sigma}(\tau)\hat{C}_{\mathbf{k-q},\sigma'}(0) \rangle\hat{C}_{\mathbf{k}\sigma'}(0)\hat{C}_{\mathbf{k}\sigma'}\\
+=\frac{1}{v}\sum_{\mathbf{p}}\int^\beta_0d\tau e^{i\omega_n\tau}\mathcal{G}^{(0)}(\mathbf{p},\tau)\mathcal{G}^{(0)}(\mathbf{p+q},-\tau)=\frac{1}{v}\sum_{\mathbf{p}\sigma}\frac{n_F(\xi_\mathbf{p})-n_F(\xi_\mathbf{p+q})}{\epsilon_\mathbf{p}-\epsilon_\mathbf{p+q}+i\omega}</script><p>在最后一步的计算中使用了松原频率求和,可以参考<a target="_blank" rel="noopener" href="https://yxli8023.github.io/2020/09/12/Matsubara-sum.html">这里</a>.到这里之后,可以发现结果和运动方程求解得到的$P^{(1)}$是相同的(虚时格林函数进行解析延拓之后即可以得到实时间下的格林函数).计算到这里结束,虽然对于RPA还有很多可以讨论的内容,但是我再这里仅仅只是整理了一下它的计算方式和使用到的一些技巧.</p>
+<h1 id="场论方法推导"><a href="#场论方法推导" class="headerlink" title="场论方法推导"></a>场论方法推导</h1><p>当从场论的角度出发来推导RPA的时候,最主要的是两个量,一个是action,另外一个是自由能.场论在推导到时候主要利用了微扰展开的方法,这部分内容可以参考<strong>Condensed Matter Field Theory</strong>的第五章,而RPA的推导也是在这一章,我仅仅是将主要的内容整理到一起,并加上一些自己的理解.</p>
+<p>首先对于相互作用电子气,action为</p>
+<script type="math/tex; mode=display">S[\psi,\bar{\psi}]=\sum_p\bar{\psi}_{p\sigma}(-i\omega+\frac{\mathbf{p}^2}{2m}-\mu)\psi_{p\sigma}+\frac{T}{2L^3}\sum_{pp'q}\bar{\psi}_{p+q,\sigma}\bar{\psi}_{p'-q,\sigma'}V(\mathbf{q})\psi_{p'\sigma'}\psi_{p\sigma}</script><p>这里采用了简写$p\equiv(\mathbf{p},\omega_n)$,这里就不对一阶以及二阶围绕展开做讨论了,这不是现在这篇博客的关注点,我在这里直接计算n阶微扰展开</p>
+<script type="math/tex; mode=display">F^{(n)}_{RPA}=-\frac{T}{2n}\sum_q(\frac{2T}{L^3}V(\mathbf{q})\sum_pG_pG_{p+q})^n</script><p><strong>如果从费曼图的角度来分析,在进行n阶微扰计算的时候,首先忽略那些贡献比较小的图,也可以简单的认为忽略那些在计算上不发散的图,保留这些计算上发散的图,然后对这些发散的图进行求和,最后可能得到一个不发散的结果,这个操作在格林函数的计算中是经常使用的</strong>,简单的图例如下</p>
+<p><img src="/assets/images/research/rpa1.png" alt="png"></p>
+<p>由上面的这个图可以看到,它都是由最小的bubble构成的,也正符合上面提到的求和的要求,经过计算就会发现对这种发散结构的求和最终居然可以得到一个收敛的结果,我一直觉得这是个比较怪异的事请,但是在计算上又确实没有问题.</p>
+<p>下一步就是对所有阶数进行求和</p>
+<script type="math/tex; mode=display">F_{RPA}\equiv\sum_nF_{RPA}^(n)=\frac{T}{2}\sum_q\ln(1-V(\mathbf{q})\Pi_q)\qquad \Pi_q\equiv\frac{2T}{L^3}\sum_pG_pG_{p+q}</script><p>$G_p$是自由粒子的格林函数,可以很容易求解得到,则最终的结果为</p>
+<script type="math/tex; mode=display">\Pi_q=\frac{2T}{L^3}\sum_p\frac{1}{-i\omega_n+\xi_\mathbf{p}}\frac{1}{-i\omega_{n+m}+\xi_\mathbf{p+q}}=\frac{2}{L^3}\sum_\mathbf{p}\frac{n_F(\xi_\mathbf{p+q})-n_F(\xi_\mathbf{p})}{i\omega_m + \xi_\mathbf{p+q}-\xi_\mathbf{p}}</script><p>最后这个推导仍然是利用了松原求和技巧,<strong>Condensed Matter Field Theory</strong>$P_{170}$对这个技巧也有详细的推导和介绍,感兴趣可以进行参考.</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>1.Many Particle Physics(Mahan,Third edition)</p>
+<p>2.固体理论(李正中)</p>
+<p>3.Condensed Matter Field Theory(Alexander Altland and Ben Simons,Second edition)</p>
+<h1 id="公众号"><a href="#公众号" class="headerlink" title="公众号"></a>公众号</h1><div class="note blue no-icon flat"><p>相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。</p>
+</div>
+<table>
+  <tr>
+    <!-- 图片单元格 -->
+    <td style="width: 300px; height: 300px; text-align: center; vertical-align: middle; border: 1px solid #ccc; border-radius: 8px;">
+      <img src="/assets/images/qrcode.jpg" alt="QR Code" width="300px" height="300px" style="border-radius: 8px;">
+    </td>
+    <!-- 文字单元格 -->
+    <td style="width: 300px; height: 300px; text-align: center; vertical-align: middle; padding-left: 20px; border: 1px solid #ccc; border-radius: 8px;">
+      <div>
+        <h4 style="margin: 0;">Email</h4>
+        <p style="margin: 5px 0;">yxliphy@gmail.com</p>
+      </div>
+    </td>
+  </tr>
+</table></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Yu-Xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2020/09/14/2020-09-14-RPA/">http://example.com/2020/09/14/2020-09-14-RPA/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Yu-Xuan' Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Many-Body/">Many-Body</a></div><div class="post-share"><div class="social-share" data-image="/assets/images/research/rpa1.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg"/></a><div class="post-qr-code-desc"></div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg"/></a><div class="post-qr-code-desc"></div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2020/09/14/2020-09-14-Loop-speed/" title="Julia,Python,Fortran,Mathematica循环计算速度比较"><img class="cover" src="/img/defult-cover2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Julia,Python,Fortran,Mathematica循环计算速度比较</div></div><div class="info-2"><div class="info-item-1">在平时进行数值计算时，我经常会遇到的两种比较消耗时间计算，其一是对大型矩阵的对角化问题，这是在对哈密顿量厄密矩阵求解本征问题时经常遇到的；另外一个就是循环计算了，这个结构在动量空间计算体系格林函数等其它量时，也会经常遇到。在这里首先对比一下各编程语言对循环的计算速度，然后根据我的经验提供一些加速的方法。   速度对比在这里只是简单的展示一下计算速度，所以我只是采用了三层循环嵌套，每层的循环数为1000 python1234567891011121314import timedef f1():    c = 0    cont = 1000 #控制循环的次数    for i in range(cont):        for j in range(cont):            for k in range(cont):                c = c + i + j + k    return ct1 = time.time()print(f1())   # 计算循环求和t2 = time.time()print(&#x27;Timing cost is(s):...</div></div></div></a><a class="pagination-related" href="/2020/09/12/2020-09-12-SSH-Winding/" title="SSH model的Winding Number计算"><img class="cover" src="/img/defult-cover.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">SSH model的Winding Number计算</div></div><div class="info-2"><div class="info-item-1">在这篇博客中通过简单的SSH模型，来计算一下Winding Number这一拓扑不变量。虽然这个模型很简单，但是最近在学习Non-Hermitian的文章中，很多都是以这个模型为基础，研究非厄米体系的一些基本性质，其中也有通过计算非厄米系统的Winding Number来联系体系的拓扑性质。这里我就暂时不涉及非厄米的内容，因为我也只是对这个课题了解一点点内容，这里主要计算厄密SSH模型的Winding Number。    Winding Number直观描述Winding number是指平面一条闭合的曲线以逆时针方向绕一点所转的圈数,正方向是逆时针,则这时候的Winding number是正数,如果是顺时针方向绕动的,那么Winding number就是负数.  数学表达平面上的曲线可以通过参数方程来表示  x=x(t) \text { and } y=y(t) \quad \text { for } 0 \leq t \leq 1如果在$t=0$和$t=1$的时候位置是相同的,那么在参数$t$变化的过程中就形成了一个闭合的曲线.这个问题同样可以放在极坐标空间中来处理 r=r...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2020/07/20/2020-07-20-GF-solve/" title="利用Green&#39;s function求态密度的两种方法"><img class="cover" src="/img/defult-cover.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-20</div><div class="info-item-2">利用Green&#39;s function求态密度的两种方法</div></div><div class="info-2"><div class="info-item-1">在这里先整理一个最简答的问题，再知道了体系的哈密顿量后，怎么求解系统的格林函数并求得态密度。   数值角度考虑在这里以一个陈绝缘体的哈密顿量为例来演示具体每一步是如何进行的。 H(k_x,k_y)=t(\sin(k_x)s_x+\sin(k_y)s_y)+(1-\cos(k_x)-\cos(k_y))s_z这里的$s_i$代表Pauli矩阵，这是一个2*2的Hamiltonian，通常格林函数为$G(k_x,k_y,\omega)=\frac{1}{i\omega-\hat{H}}$,虽然这里在写法上是个分数的形式，但注意这里分母上的\hat{H}其实是个算符，这里请理解这一点，先不要将它就当作是这里的哈密顿量。接下来我们要计算格林函数，这里是要求倒数，那么对应到矩阵形式就是要求解$i\omega-H$这个矩阵的逆，这个时候就已经把算符$\hat{H}$写成具体的矩阵形式了，这个关系要捋清楚。 那么矩阵求逆就没什么好讲的了，对于这个2*2的矩阵解析和数值都是可以很轻松的求解出来。态密度的话就是把$k_x$和$k_y$对应下的格林函数积分即可 A(\omega)=\int_0^{2...</div></div></div></a><a class="pagination-related" href="/2020/09/12/2020-09-12-Matsubara-sum/" title="松原频率求和"><img class="cover" src="/img/defult-cover2.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-12</div><div class="info-item-2">松原频率求和</div></div><div class="info-2"><div class="info-item-1">在学习格林函数的过程中，松原格林函数用来计算是很方便的，虽然它是用来处理有限温的问题，但是通过解析延拓之后，和零温下的格林函数的结果是相同的，而且相对于零温格林函数的计算，松原格林函数涉及到松原频率求和，在计算上面我觉得还是具有一定的简便性的，只需要扎实的掌握粒子分布函数和复变函数的留数定理之后，就可以快速的进行计算。   留数定理设区域G的边界C为以分段光滑的简单闭合曲线，若除有限个孤立奇点$b_k,(k=1,2,3,…,n)$外，函数$f(z)$在G内单值解析，在G上连续，并且在C上$f(z)$没有奇点，则$\int_Cf(z)dz=2\pi i\sum_{k=1}^nRes[f(b_k)]$，$Res[f(b_k)]$即为函数$f(z)$在$b_k$处的留数，它等于$f(z)$在$b_k$的邻域内洛朗展开 f(z)=\sum_{l=-\infty}^{\infty}a^{(k)}_l(z-b_k)^l中$(z-b_k)^{-1}$的系数$a_{-1}^{(k)}$。 留数计算理解假设$z=b$是函数的一阶极点，则有$f(z)=a_1(z-b)^{-1}+a_0+a_1(z-...</div></div></div></a><a class="pagination-related" href="/2020/09/15/2020-09-15-picture-compare/" title="Schrodinger,Heisenberg,Interaction绘景的区别与联系"><img class="cover" src="/img/defult-cover.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-15</div><div class="info-item-2">Schrodinger,Heisenberg,Interaction绘景的区别与联系</div></div><div class="info-2"><div class="info-item-1">在量子力学进一步的学习中,通常会遇到Schrodinger,Heisenberg,Interaction这三种绘景,在处理不同的问题时,如果选取的绘景合适,那么问题的处理会较为方便,这里合适的绘景只是可以让问题变得容易处理,本质上三种不同的绘景所得到的结果都是相同的,在这里就把三种不同绘景之间的联系与区别进行整理,并整理自己的一些经验和理解.   Schrodinger绘景最初学习量子力学的时候,接触的其实就是Schrodinger绘景,在自然单位制下的薛定谔方程为 i\frac{\partial}{\partial t}\psi(t)=H\psi(t)$H$是体系的哈密顿量,$\psi$则是体系的波函数,上述方程的解为$\psi(t)=e^{-iHt}\psi(0)$.在Schrodinger绘景中可以看到,波函数是跟时间相关的,而算符H则是与时间无关的,且波函数的时间依赖仅仅是在$e^{-iEt}$中. Heisenberg绘景Heisenberg绘景和Schrodinger绘景的区别就是现在波函数是与时间无关的,而算符则是和时间相关的 O(t)=e^{iHt}O(0)e^{...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">232</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yxli8023"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome to Yu-Xuan's Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%90%E5%8A%A8%E6%96%B9%E7%A8%8B%E6%96%B9%E6%B3%95%E6%8E%A8%E5%AF%BC"><span class="toc-number">1.</span> <span class="toc-text">运动方程方法推导</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A0%BC%E6%9E%97%E5%87%BD%E6%95%B0%E6%96%B9%E6%B3%95%E6%8E%A8%E5%AF%BC"><span class="toc-number">2.</span> <span class="toc-text">格林函数方法推导</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9C%BA%E8%AE%BA%E6%96%B9%E6%B3%95%E6%8E%A8%E5%AF%BC"><span class="toc-number">3.</span> <span class="toc-text">场论方法推导</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">4.</span> <span class="toc-text">参考</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AC%E4%BC%97%E5%8F%B7"><span class="toc-number">5.</span> <span class="toc-text">公众号</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-number">5.0.0.1.</span> <span class="toc-text">Email</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/08/02/2025-08-02-Real-Space-Chern/" title="实空间Chern数计算(Half-BHZ模型)"><img src="/assets/images/Julia/Chern-m0.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实空间Chern数计算(Half-BHZ模型)"/></a><div class="content"><a class="title" href="/2025/08/02/2025-08-02-Real-Space-Chern/" title="实空间Chern数计算(Half-BHZ模型)">实空间Chern数计算(Half-BHZ模型)</a><time datetime="2025-08-01T16:00:00.000Z" title="发表于 2025-08-02 00:00:00">2025-08-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/22/2025-02-22-Free-SC/" title="超导序参量自洽(自由能极小值方法)"><img src="/assets/images/Julia/Bx_kbt-phase.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导序参量自洽(自由能极小值方法)"/></a><div class="content"><a class="title" href="/2025/02/22/2025-02-22-Free-SC/" title="超导序参量自洽(自由能极小值方法)">超导序参量自洽(自由能极小值方法)</a><time datetime="2025-02-21T16:00:00.000Z" title="发表于 2025-02-22 00:00:00">2025-02-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/18/2025-02-18-Julia-MPI-Set/" title="Mac上配置MPI并行Julia"><img src="/assets/images/Julia/a4.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Mac上配置MPI并行Julia"/></a><div class="content"><a class="title" href="/2025/02/18/2025-02-18-Julia-MPI-Set/" title="Mac上配置MPI并行Julia">Mac上配置MPI并行Julia</a><time datetime="2025-02-17T16:00:00.000Z" title="发表于 2025-02-18 00:00:00">2025-02-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/15/2024-12-15-Fourier-Spectrum/" title="超导序参量中的傅里叶分析"><img src="/assets/images/Mma/fft-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导序参量中的傅里叶分析"/></a><div class="content"><a class="title" href="/2024/12/15/2024-12-15-Fourier-Spectrum/" title="超导序参量中的傅里叶分析">超导序参量中的傅里叶分析</a><time datetime="2024-12-14T16:00:00.000Z" title="发表于 2024-12-15 00:00:00">2024-12-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/11/2024-12-11-Screeing/" title="库仑势以及屏蔽库伦势的一些计算"><img src="/assets/images/Mma/Vscr-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="库仑势以及屏蔽库伦势的一些计算"/></a><div class="content"><a class="title" href="/2024/12/11/2024-12-11-Screeing/" title="库仑势以及屏蔽库伦势的一些计算">库仑势以及屏蔽库伦势的一些计算</a><time datetime="2024-12-10T16:00:00.000Z" title="发表于 2024-12-11 00:00:00">2024-12-11</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  const initGitalk = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGitalk = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const gitalk = new Gitalk({
+      clientID: 'Ov23li0WvZEaIAZ7RFtH',
+      clientSecret: '03fcb77b7c28dafcdde00756e27f9b5bc76639e8',
+      repo: 'yxli8023.github.io',
+      owner: 'yxli8023',
+      admin: ['Yu-Xuan'],
+      updateCountCallback: commentCount,
+      ...option,
+      id: isShuoshuo ? path : (option && option.id) || '03d683e087007377b4106d6fa4e512cd'
+    })
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async(el, path) => {
+    if (typeof Gitalk === 'function') initGitalk(el, path)
+    else {
+      await btf.getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await btf.getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Gitalk' === 'Gitalk'
+      ? window.shuoshuoComment = { loadComment: loadGitalk }
+      : window.loadOtherComment = loadGitalk
+    return
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

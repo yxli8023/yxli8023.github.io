@@ -1,0 +1,476 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>拓扑10重分类表笔记 | Yu-Xuan' Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="这里整理一下最近看拓扑分类文章时候的一些笔记.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="拓扑10重分类表笔记">
+<meta property="og:url" content="http://example.com/2021/06/03/2021-06-03-Ten-Classification/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39; Blog">
+<meta property="og:description" content="这里整理一下最近看拓扑分类文章时候的一些笔记.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/assets/images/topology/AT-ten.png">
+<meta property="article:published_time" content="2021-06-02T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-08-03T08:19:20.148Z">
+<meta property="article:author" content="Yu-Xuan">
+<meta property="article:tag" content="Topology">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/images/topology/AT-ten.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "拓扑10重分类表笔记",
+  "url": "http://example.com/2021/06/03/2021-06-03-Ten-Classification/",
+  "image": "http://example.com/assets/images/topology/AT-ten.png",
+  "datePublished": "2021-06-02T16:00:00.000Z",
+  "dateModified": "2025-08-03T08:19:20.148Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yu-Xuan",
+      "url": "http://example.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/06/03/2021-06-03-Ten-Classification/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'medium_zoom',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#f54966","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '拓扑10重分类表笔记',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #dbeffd;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">232</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/assets/images/topology/AT-ten.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Yu-Xuan' Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">拓扑10重分类表笔记</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">拓扑10重分类表笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-06-02T16:00:00.000Z" title="发表于 2021-06-03 00:00:00">2021-06-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-08-03T08:19:20.148Z" title="更新于 2025-08-03 16:19:20">2025-08-03</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">8.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>33分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/2021/06/03/2021-06-03-Ten-Classification/#post-comment"><span class="gitalk-comment-count"><i class="fa-solid fa-spinner fa-spin"></i></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;It has been&quot;,&quot;messageNext&quot;:&quot;days since the last update, the content of the article may be outdated.&quot;,&quot;postUpdate&quot;:&quot;2025-08-03 16:19:20&quot;}" hidden></div><div class="note blue no-icon flat"><p>这里整理一下最近看拓扑分类文章时候的一些笔记.</p>
+</div>
+<span id="more"></span>
+<p>最近在做一些工作,在阅读文献的时候有一些比较重要的工作需要仔细的阅读和理解,这里我就想把自己看拓扑分类这方面的文章时的一些理解和笔记整理一下,也可以加深自己对文章的理解.</p>
+<h1 id="10重分类"><a href="#10重分类" class="headerlink" title="10重分类"></a>10重分类</h1><p><img src="/assets/images/topology/AT-ten.png" alt="png"></p>
+<p>这是根据手性对称(sublattice symmetry or chiral symmetry),时间反演对称(Time reversal symmetry),粒子空穴对称(Particle hole symmetry)对哈密顿量进行分类,首先来理解一下为什么会有10个分类.</p>
+<p>首先TRS与PHS都是反幺正操作算符,对应的矩阵就是一个反幺正矩阵,可以写作$\hat{U}\hat{\mathcal{K}}$,其中$\hat{U}$是个幺正操作矩阵,$\hat{\mathcal{K}}$是复数共轭操作.TRS与PHS的”本征值”都可以是$-1,+1,0$这三种选择,$0$则代表没有这种对称性,$\pm 1$则代表将这个算符对单粒子算符作用两次之后是$+1$还是$-1$,所以它们两个的组合共有$9$种不同的结果.手性对称(SLS)可以由这两种对称性组合出来,</p>
+<script type="math/tex; mode=display">SLS=TRS\times PHS</script><p>所以由TRS与PHS确定的9个组合种,其中的8个可以通过SLS的有无来确定,而唯一无法确定的就是第9个$(TRS,PHS)=(0,0)$这种情况,此时两种对称性都不存在,<strong>但是却可以存在SLS或者不存在SLS</strong>,这又会有两种情况,所以加上前面的8种情况,就一共有10种分类.</p>
+<blockquote>
+<p>上面表种后面三列代表着10重分类下,不同空间维度标志其拓扑性质不变量的形式.$Z$表示整数,$Z_2$则表示$\{-1,+1\}$</p>
+</blockquote>
+<h1 id="对称操作算符"><a href="#对称操作算符" class="headerlink" title="对称操作算符"></a>对称操作算符</h1><p>这里存在两种类型的对称操作算符</p>
+<script type="math/tex; mode=display">\begin{equation}
+\begin{aligned}
+&P:\mathcal{H}=-P\mathcal{H}P^{-1},\quad PP^\dagger=1,\quad P^2=+1\\
+&C:\mathcal{H}=\epsilon_cC\mathcal{H}^{T}C^{-1},\quad CC^\dagger=1,\quad C^T=\eta_c C
+\end{aligned}
+\end{equation}</script><p>对于$C$类型的算符$\epsilon_c=1$代表TRS算符,$\epsilon_c=-1$代表PHS算符.</p>
+<p>$\eta_c=\pm 1$:$(\epsilon_c,\eta_c)=(1,1)$则代表spinless(整数自旋)的TRS算符,$(\epsilon_c,\eta_c)=(1,-1)$代表spinfull(自旋$\frac{1}{2}$)的TRS算符.同样的$(\epsilon_c,\eta_c)=(-1,1)$表示PHS自旋三重态的BdG哈密顿量,$(\epsilon_c,\eta_c)=(-1,-1)$表示PHS自旋单重态BdG哈密顿量.</p>
+<p>如果存在PHS,则系统的能量一定是关于零对称分布的, 如果存在TRS那么一定会有Kramers简并存在.即使对这些对称算符进行幺正变换,但是其对应的$\epsilon_c,\eta_c$是不会改变的.<br>{:.warning}</p>
+<p>这里$P$型对称也会使得哈密顿量的能谱是对称的(手性对称),当这种对称性存在的时候,可以将哈密顿量变成off-diagonal的形式,可以通过对单个分块矩阵的winding number研究来区分哈密顿量的拓扑分类.</p>
+<p>当哈密顿量同时具有$P,C$型的对称性之后, 将会自动存在一个不同于$C$的对称操作$C^{‘}$</p>
+<script type="math/tex; mode=display">\mathcal{H}=\epsilon^{}_cC^{'}\mathcal{H}^TC^{'-1},\quad C^{'}=PC,\quad \epsilon^{'}_c=-\epsilon_c</script><p>在动量空间中,哈密顿量$H(\mathbf{k})$在这些算符的操作下变换为</p>
+<script type="math/tex; mode=display">\begin{equation}\begin{aligned}
+&\mathcal{T}H(\mathbf{k})\mathcal{T}=H(-\mathbf{k})\qquad TRS\\
+&\mathcal{C}H(\mathbf{k})\mathcal{C}=-H(-\mathbf{k})\qquad PHS\\
+&\mathcal{S}H(\mathbf{k})\mathcal{S}=-H(\mathbf{k})\qquad \textrm{Chiral Symmetry}\\
+\end{aligned}\end{equation}</script><p>可以将10中不同的分类划分为3大类</p>
+<ul>
+<li>standard classes:{A,AI,AII}</li>
+<li>chiral class:{AIII,BDI,CII}</li>
+<li>BdG class:{D,C,DIII,CI}</li>
+</ul>
+<p>半整数自旋存在TRS(AII)</p>
+<script type="math/tex; mode=display">is_y\mathcal{H}^T(-is_y)=\mathcal{H}\qquad\text{TRS odd}</script><p>SU(2)自旋旋转对称,spinless TRS对称操作(AI)</p>
+<script type="math/tex; mode=display">\mathcal{H}^T=\mathcal{H}\qquad\text{TRS even}</script><p>手性对称(AIII)</p>
+<script type="math/tex; mode=display">c_z\mathcal{H}c_z=-\mathcal{H}</script><p>这个对称性的存在会使得能量本征值总是成对出现(正负成对), 一个本征能量为$E$的$\psi$, 一定存在能量为$-E$的$c_z\psi$.</p>
+<p>当再存在TRS之后,哈密顿量属于CII类.如果同时具有SU(2),TRS,Chiral symmetry则属于BDI类(此时是spinless粒子).</p>
+<p>AIII类的哈密顿量可以被解释为类似BdG哈密顿量,具有TRS并且在SU(2)的子群U(1)操作下是不变的.<br>{:.warning}</p>
+<p>体边对应关系(holographically):物理系统的边界态准确的反映体态的量子拓扑物态.</p>
+<h1 id="BdG-Class"><a href="#BdG-Class" class="headerlink" title="BdG Class"></a>BdG Class</h1><p>一般超导BdG哈密顿量可以表示为</p>
+<script type="math/tex; mode=display">H=\frac{1}{2}({\bf c^\dagger,c})\mathcal{H}_4\left(\begin{array}{c} {\bf c}\\{\bf c^\dagger}\end{array}\right),\quad \mathcal{H}_4=\left(\begin{array}{cc}\Theta &\Delta\\-\Delta^{*} &-\Theta^T\end{array}\right)\label{bdg}</script><p>这里$\mathcal{H}_4$是$4N\times 4N$的矩阵, 表示系统中共有$N$个轨道(格点位置), ${\bf c}=({\bf c_\downarrow,c_\uparrow})$, 矩阵的元素满足$\Theta=\Theta^\dagger$(Hermiticity)和$\Delta=-\Delta^T$(Fermi statistic). BdG哈密顿量(\ref{bdg})满足</p>
+<script type="math/tex; mode=display">(a):\quad\mathcal{H}_4=-t_x\mathcal{H}_4^Tt_x</script><p>这是一个C类型的对称性$(\epsilon_c,\eta_c)=(-1,+1)$, 被称为粒子空穴对称(PHS)(三重态).</p>
+<p>根据是否存在时间反演对称(TRS)表示为</p>
+<script type="math/tex; mode=display">(b):\quad is_y\mathcal{H}_4^T(-is_y)\qquad [\text{TRS(odd)}]</script><p>是否存在SU(2)的自旋转动对称表示为</p>
+<script type="math/tex; mode=display">(c):\quad [\mathcal{H}_4,J_a]=0,\quad J_a:=\left(\begin{array}{c}s_a&0\\ 0&-s_a^T\end{array}\right),\quad a=x,y,z\quad[\text{SU(2) symmetry}]</script><p>Class $C$和$CI$与singlet 超导体相对应, $D$和$DIII$则与triplet超导体相对应, 一个体系中也可以同时存在单重态和三重态的序参量.</p>
+<h2 id="Class-D"><a href="#Class-D" class="headerlink" title="Class D"></a>Class D</h2><p>此时哈密顿量只有PHS,并不存在TRS和SU(2)不变性.此时的BdG哈密顿量满足李代数SO(4m), 任何一个元素$\mathcal{H}_4\in SO(4m)$可以被一个SO(4m)的矩阵$g$对角化,$g\mathcal{H}_4g^{-1}=\text{diag}(\epsilon,-\epsilon)$,这里$\epsilon=\text{diag}(\epsilon_1,\epsilon_2,\cdots)$, 能谱是满足粒子空穴对称的.</p>
+<p>一个 class D 的BdG 2维的spinless手性p波超导体为</p>
+<script type="math/tex; mode=display">H=\frac{1}{2}\sum_k(c^\dagger_kc_{-k})h(k)\left(\begin{array}{c}c_k\\c^\dagger_{-k}\end{array}\right),\\ h(k)=\bar{\Delta}(k_xt_x+k_yt_y)+\epsilon_kt_z\label{h1}</script><p>这里$\bar{\Delta}\in\mathbb{R}$是超导序参量的幅值,$\epsilon_k$代表单粒子能量色散, 哈密顿量具有粒子空穴对称$h(k)=-t_xh^T(-k)t_x$.</p>
+<h2 id="Class-DIII"><a href="#Class-DIII" class="headerlink" title="Class DIII"></a>Class DIII</h2><p>class DIII 同时满足条件(a)和(b), A set of matrices which simultaneously satisfy (a) and (b) does not form a subalgebra of so(4m) but consists of all those elements of the Lie algebra so(4m) which are not elements of the sub-Lie algebra u(2m)<br>{:.warning}<br>将(a)和(b)结合起来, 可以发现class DIII中的成员与幺正矩阵$t_x\otimes s_y$满足反对易关系</p>
+<script type="math/tex; mode=display">\mathcal{H}_4=-t_x\otimes s_y\mathcal{H}_4(t_x\otimes s_y)</script><p>在这个情况下class DIII哈密顿量由手性结构, 可以对基矢进行一个手性变换, 此时哈密顿量形式为</p>
+<script type="math/tex; mode=display">\mathcal{H}_4=\left(\begin{array}0&D\\ D^\dagger&0\end{array}\right),\quad D=-D^T</script><p>一个class DIII的实例为$p_x(or p_x)$波超导体, d矢量并不指向$z$方向, 两个手性相反的$p$波超导体的叠加$(p_x+ip_y and p_x-ip_y)$同样落在这个分类中, 这种情况下哈密顿量可以被表示为</p>
+<script type="math/tex; mode=display">H=\frac{1}{2}\sum_k({\bf c^\dagger_k,c_{-k}})\left(\begin{array}{cc}\Theta_k&\Delta_k\\\Delta^\dagger_k&-\Theta^T_{-k}\end{array}\right)\left(\begin{array}{c}{\bf c_k}\\{\bf c^\dagger_{-k}}\end{array}\right)\label{h2}</script><p>行矢量$({\bf c^\dagger_k,c_{-k}})=(c^\dagger_{k\uparrow},c^\dagger_{k\downarrow},c_{-k\uparrow},c_{-k\downarrow})$, 矩阵元素分别为</p>
+<script type="math/tex; mode=display">\Theta_k=\epsilon_ks_0\quad \Delta_k=\bar{\Delta}\left(\begin{array}{cc}k_x+ik_y&0\\0&-k_x+ik_y
+\end{array}\right)</script><p>可以写成矢量${\bf d}_k=\bar{\Delta}(-k_x,k_y,0)$, 超导序参量形式为</p>
+<script type="math/tex; mode=display">\Delta_k=({\bf d_k\cdot s})(is_y)</script><p>这里可以发现哈密顿量(\ref{h2})其实是哈密顿量(\ref{h1})的$h(k_x,k_y),h(-k_x,-k_y)$的直积形式，其实也就是把本来spinless的基矢变成spinfull$({\bf c_k^\dagger,c_k})\rightarrow({\bf c_{k\uparrow}^\dagger,c_{k\downarrow}^\dagger,c_{-k\uparrow}^\dagger,c_{-k\downarrow}^\dagger})$.</p>
+<h1 id="BdG-class-with-S-z-conservation"><a href="#BdG-class-with-S-z-conservation" class="headerlink" title="BdG class with $S_z$ conservation"></a>BdG class with $S_z$ conservation</h1><p>如果BdG哈密顿量具有在自旋空间沿z方向的旋转不变性，则满足条件为$[\mathcal{H}_4,J_a]=0$，哈密顿量可以表示为</p>
+<script type="math/tex; mode=display">\mathcal{H}_4=\left(\begin{array}{cccc}a&0&0&b\\ 0&a^{'}&-b^T&0\\ 0&-b^*&-a^T&0\\ b^\dagger&0&0&-a^{'T}\end{array}\right)\qquad a^\dagger=a,\quad a^{'\dagger}=a^{'}</script><p>由于$\mathcal{H}_4$的这种稀疏结构，可以把$4N\times 4N$的矩阵重排为$2N\times 2N$.</p>
+<script type="math/tex; mode=display">H=({\bf c^\dagger_\uparrow,c_\downarrow})\left(\begin{array}{cc}a&b\\b^\dagger&-a^{'T}\end{array}\right)\left(\begin{array}{c}{\bf c_\uparrow}\\{\bf c^\dagger_\downarrow}\end{array}\right)+\frac{1}{2}\text{Tr}[a^{'}-a]</script><p>这个哈密顿量是traceless的.当一个哈密顿量在自旋空间中关于z方向是旋转不变的时候，可以有下面的形式</p>
+<script type="math/tex; mode=display">H=({\bf c^\dagger_\uparrow,c_\downarrow})\mathcal{H}_2\left(\begin{array}{c}c_\uparrow\\c^\dagger_\downarrow\end{array}\right),\quad \mathcal{H}_2=\left(\begin{array}{c}\xi_\uparrow&\delta\\\delta^\dagger&-\xi_\downarrow^T\end{array}\right)</script><p>这里的$\xi_\sigma=\xi_\sigma^\dagger$，当没有额外的对称性限制时，这个哈密顿量属于calss A.实现这个类的物理系统可以是一个2D的spinfull的手性$p$波超导体$(p\pm ip)$，此时的矢量${\bf d}$是平行于$z$方向的</p>
+<script type="math/tex; mode=display">{\bf d}_k=\hat{z}\bar{\Delta}(k_x+ik_y)=\bar{\Delta}(0,0,k_x+ik_y)</script><p>一个spinfull的手性$(p\pm ip)$波超导体可以表示为</p>
+<script type="math/tex; mode=display">H=\sum_k(c^\dagger_{k\uparrow},c_{-k\downarrow})\left(\begin{array}{cc}\xi_{\uparrow k}&\delta_k\\\delta_k^\dagger&-\xi_{\downarrow -k}\end{array}\right)\left(\begin{array}{c}c_{k\uparrow}\\c_{-k\downarrow}\end{array}\right)\label{h3}</script><p>这里$\delta_k=\bar{\Delta}(k_x+ik_y),\xi^T_{\uparrow/\downarrow,k}=\xi_{\uparrow/\downarrow,-k},\delta_k^T=\delta_{-k}$.</p>
+<h2 id="calss-C-full-SU-2-symmetry"><a href="#calss-C-full-SU-2-symmetry" class="headerlink" title="calss C [full SU(2) symmetry]"></a>calss C [full SU(2) symmetry]</h2><p>前面已经讨论了在存在$z$方向自旋转动不变时哈密顿量满足的一些条件,这里进一步考虑体系具有全部的SU(2)旋转对称,此时$\xi_\sigma,\delta$会有限制</p>
+<script type="math/tex; mode=display">\xi_\downarrow=\xi_\uparrow=:\xi,\quad\delta=\delta^T</script><p>这两个条件可以总结为</p>
+<script type="math/tex; mode=display">r_y\mathcal{H}_2^Tr_y=-\mathcal{H}_2\quad [\text{PHS(singlet)}]</script><p>$r_\mu$被用来表示在超导中$S_z$分量$z$是守恒的,这是一个C类型的对称性满足$(\epsilon_c,\eta_c)=(-1,-1)$,被称为PHS(signlet).</p>
+<p>class C的BdG实例是2D的$(d+id)$波超导体,哈密顿量表示为(\ref{h3})的形式,矩阵元素满足$\xi_{\uparrow k}=\xi_{\downarrow k}=\epsilon_k$</p>
+<script type="math/tex; mode=display">\delta_k=\Delta_{x^2-y^2}(k_x^2-k_y^2)+i\Delta_{xy}k_xk_y\label{h4}</script><p>这里$\Delta_{x^2-y^2}$和$\Delta_{xy}$分别是$d_{x^2-y^2}$和$id_{xy}$超导体的序参量.</p>
+<h2 id="class-CI-full-SU-2-symmetry-TRS"><a href="#class-CI-full-SU-2-symmetry-TRS" class="headerlink" title="class CI [full SU(2) symmetry + TRS]"></a>class CI [full SU(2) symmetry + TRS]</h2><p>当同时存在时间反演对称和全部的SU(2)对称后, 限制条件变为</p>
+<script type="math/tex; mode=display">\xi^*=\xi,\quad\delta^*=\delta</script><p>哈密顿量满足</p>
+<script type="math/tex; mode=display">r_y\mathcal{H}_2^Tr_y=-\mathcal{H}_2,\quad \mathcal{H}_2^*=\mathcal{H}_2</script><p>当把这两个条件结合起来之后, 可以得到一个P类型的对称性, $r_y\mathcal{H}_2r_y=-\mathcal{H}_2$, 当对$r_\mu$做一个轮换操作之后$(r_x,r_y,r_z)\rightarrow (r_x,-r_z,r_y)$,在这个基矢下, 可以把class CI的哈密顿量表示为off-diagonal形式</p>
+<script type="math/tex; mode=display">\mathcal{H}_2=\left(\begin{array}{cc}0&D\\ D^\dagger&0\end{array}\right),\quad D=\delta-i\xi=D^T</script><p>class CI的一个BdG哈密顿量的实例是2D的$d$-波超导体,此时序参量也可以被(\ref{h4})描述,此时$\Delta_{xy}=0,\Delta_{x^2-y^2}\neq 0$.</p>
+<h2 id="class-AIII-S-z-conservation-TRS"><a href="#class-AIII-S-z-conservation-TRS" class="headerlink" title="class AIII($S_z$ conservation + TRS)"></a>class AIII($S_z$ conservation + TRS)</h2><p>如果同时存在自旋$z$分量守恒, 且满足TRS, 可以得到</p>
+<script type="math/tex; mode=display">\xi^T_\uparrow,\quad\delta=\delta^\dagger</script><p>可以将哈密顿量表示为</p>
+<script type="math/tex; mode=display">r_y\mathcal{H}_2r_y=-\mathcal{H}_2</script><p>此时如果把$r_\mu$视为$c_\mu$,那么这就是子晶格对称性(手性对称),<strong>因此当一个BdG哈密顿量同时满足TRS和SU(2)自旋某一个分量守恒时,可以认为是没有TRS的calss AIII中的一员.</strong></p>
+<p>满足这个分类的BdG哈密顿量是2D的$p$波超导体($p_x\quad\text{or}\quad p_y$),此时矢量${\bf d}$是平行于$z$方向的</p>
+<script type="math/tex; mode=display">{\bf d}_k=\bar{\Delta}\hat{z}k_{x,y}</script><h1 id="Dirac-理论"><a href="#Dirac-理论" class="headerlink" title="Dirac 理论"></a>Dirac 理论</h1><h2 id="拓扑等价-不等价"><a href="#拓扑等价-不等价" class="headerlink" title="拓扑等价/不等价"></a>拓扑等价/不等价</h2><p>一个满足对称性的最小哈密顿量</p>
+<script type="math/tex; mode=display">H({\bf k})=m\gamma_0+\sum_{i=1}^Nk_i\gamma_i\label{eq1}</script><p>这里的$N$表示空间维度,$\gamma_i$是满足反对易关系的厄米矩阵,${\gamma_i,\gamma_j}=2\delta_{ij}$,而满足对称性即意味着,在一个g对称操作下</p>
+<script type="math/tex; mode=display">gH({\bf k})g^{-1}=H(g{\bf k})</script><p>最小哈密顿量的意思是取能够同时满足对称性和反对易关系的最小维度的矩阵.<br>{:.info}</p>
+<p>哈密顿量(\ref{eq1})的能谱为</p>
+<script type="math/tex; mode=display">\pm\sqrt{m^2+{\bf k}^2}</script><p>显然$m&gt;0$的所有态都是拓扑等价的,$m<0$的态也都是拓扑等价的,**如何判断$m>0$与$m&lt;0$是否为拓扑等价?**</p>
+<p>方法:在不扩大维度的情况下,来寻找一个额外的质量项,如果存在一个同纬度的矩阵$\tilde{\gamma}_0$,它与所有的$\gamma_i$都反对易,而且满足所有的对称性,那么就可以在原来的哈密顿量中增加一项$\tilde{m}_0\tilde{\gamma}_0$,从而能谱变为$\pm\sqrt{m^2+\tilde{m}_0^2+{\bf k}^2}$,此时当$m\rightarrow -m$进行演化的时候,只要保证$\tilde{m}_0\neq 0$,这个演化不会有能隙关闭的过程,是个绝热演化.相反的,如果不存在这样的质量项,当进行同样的演化过程的时候,由$m&gt;0$到$m<0$必然会经历一次能隙的闭合,此时$m>0$与$m&lt;0$是拓扑不等价的两个相.<br>{:.success}</p>
+<h1 id="mathcal-Z-quad-text-or-quad-mathcal-Z-2"><a href="#mathcal-Z-quad-text-or-quad-mathcal-Z-2" class="headerlink" title="$\mathcal{Z}\quad\text{or}\quad \mathcal{Z}_2$"></a>$\mathcal{Z}\quad\text{or}\quad \mathcal{Z}_2$</h1><p>要判断拓扑相的拓扑分类是$\mathcal{Z}$还是$\mathcal{Z}_2$,<strong>需要考察当把几个最小哈密顿量直和起来就可以加入额外的质量项</strong>.比如,当把两个最小哈密顿量直和起来,就可以加入额外的质量项,则说明两个拓扑态的直和是个平庸态,那么它对应的拓扑分类就是$\mathcal{Z}_2$.</p>
+<h2 id="Chern-绝缘体"><a href="#Chern-绝缘体" class="headerlink" title="Chern 绝缘体"></a>Chern 绝缘体</h2><p>以二维系统为例演示狄拉克理论的用法,二维情况下最小的Dirac模型为</p>
+<script type="math/tex; mode=display">H({\bf })=m\sigma_z+k_x\sigma_x+k_y\sigma_y\label{eq2}</script><p>三个Pauli矩阵外加一个单位矩阵,可以构成二维矩阵的完备基矢,所以此时无法找到另外的$2\times 2$的厄米矩阵同时与三个Pauli矩阵都反对易.当把两个(\ref{eq2})直和起来之后,$\tau_0\otimes H({\bf k})$,此时仍然无法加入满足要求的质量项.如果把质量符号相反的最小模型直和起来,$\tau_z\otimes H({\bf k})$,此时就可以加入形如$\tau_x\sigma_0$的额外质量项.实际上,我们将任意多个质量同号的Chern剧院提直和起来,都不能加入额外的质量项;而每一对质量相反的Chern绝缘体之间总是可以加入额外的质量项,这索命无对称性的二维系统具有$\mathcal{Z}$的拓扑分量,其中拓扑不平庸的态统称为Chern绝缘体.</p>
+<h2 id="时间反演不变系统"><a href="#时间反演不变系统" class="headerlink" title="时间反演不变系统"></a>时间反演不变系统</h2><p>这里分析时间反演不变的二维系统,$\mathcal{T}^2=-1$,假设时间反演操作为$\mathcal{T}=-i\sigma_y\mathcal{K}$,那么一个满足对称性的最小哈密顿量为</p>
+<script type="math/tex; mode=display">H({\bf k})=m\tau_y\sigma_z+k_x\tau_0\sigma_x+k_y\tau_0\sigma_y\label{eq3}</script><p>此时可以加入的反对易质量项为$\tau_x\sigma_z,\tau_z\sigma_z$,但是这两项都破坏了时间反演对称,所以此时并不存在额外的质量项,可以在满足对称性的条件下仍然和(\ref{eq3})中的每一项都反对易.接下来考虑两个最小模型的直和形式,$\mu_0\otimes H({\bf k })$,可以发现此时可以加入形如$\mu_y\otimes\tau_x\sigma_z$的项,既满足对称性要求同时和所有的$\gamma$矩阵满足反对易关系.而对于质量相反的直和形式$\mu_z\otimes H({\bf k})$可以加入$\mu_x\tau_0\sigma_0$这样的额外质量项.由此可以得到时间反演不变的二维系统的拓扑分类是$\mathcal{Z}_2$.虽然此时无法加入满足时间反演不变的质量项,但是却可以加入破坏时间反演的质量项,这说明$\mathcal{Z}_2$分类中不平庸的态在破缺时间反演之后会变成平庸态,因此这个态被称为时间反演保护的拓扑绝缘体.</p>
+<h1 id="体态拓扑性质表征"><a href="#体态拓扑性质表征" class="headerlink" title="体态拓扑性质表征"></a>体态拓扑性质表征</h1><p>当讨论体态性质的时候最常用到的就是谱投影子.当哈密顿量具有$P$型对称性的时候,投影子总可以变换成off-diagonal分块形式,此时可以对分块定义一个winding number来表征不同的拓扑相.当系统存在平移不变性时,总可以将基态看成是一个在BZ中满填充的$d$维费米球.<strong>能带结构则可以看成是BZ空间到Bloch哈密顿量的一个映射,对于谱投影算子,可以看做是倒空间元胞到确定的李群或者陪集流形的映射,这个通常被称为是算子空间或者目标空间.</strong></p>
+<p>对于一个本征方程</p>
+<script type="math/tex; mode=display">\mathcal{H}\rvert u_{\hat{a}}(k)\rangle=E_{\hat{a}}(k)\rvert u_{\hat{a}}(k)\rangle</script><p>在确定$k$时满填充的Bloch态的投影子为</p>
+<script type="math/tex; mode=display">P(k)=\sum_{\hat{a}}^\text{filled}\rvert u_{\hat{a}}(k)\rangle\langle u_{\hat{a}}(k)\rvert</script><p>这里定义一个$Q(k)$</p>
+<script type="math/tex; mode=display">Q(k)=2P(k)-1</script><p>这个$Q$矩阵满足</p>
+<script type="math/tex; mode=display">Q^\dagger=Q,\quad Q^2=1,\quad\text{Tr}[Q]=m-n</script><p>此时考虑的情况中又$m$个占据态,$n$个空态.<strong>当有不同的对称性存在时,会对Q有一些其他的对称限制.</strong></p>
+<p>先不考虑额外的对称性限制,此时投影子的取值是所谓的Grassmannian数$G_{m,m+n}(\mathbb{C})$:它是由一系列幺正矩阵的本征值组成,而且是$U(m+n)$中的一员.当考虑占据态的投影子时,将会有一个占据态的规范对称$U(m)$,同样的也会存在相似的空态规范对称$U(n)$.投影子可以被陪集$U(m+n)/U(m)\times U(n)\simeq G_{m,m+n}(\mathbb{C})\simeq G_{n,m+n}(\mathbb{C})$.对于陪集$G_{m,m+n}(\mathbb{C})$的元素可以表示为</p>
+<script type="math/tex; mode=display">Q=U\Lambda U^\dagger,\quad\Lambda=\text{diag}(\mathbb{I}_m,-\mathbb{I}_n),\quad U\in U(m+n)</script><p>当存在TRS或者PHS时($C$型),它们是反幺正算符,会禁止耨写映射关系.而对于$P$型对称操作,投影子将会从$G_{n,m+n}(\mathbb{C})$变成$U(m)$</p>
+<p><img src="/assets/images/topology/ten1.png" alt="png"></p>
+<p>当考虑一些特定对称类下的投影子,是否可以通过连续变形相互转换的时候,这个连续变形过程中不会有能隙的关闭.在数学上这与投影子的拓扑空间的同伦群是相关联的.与两维空间项联系的同伦群$\pi_2[G_{m,m+n}(\mathbb{C})]=\mathbb{Z}$,表明此时投影子可以通过一些整数(Chern number)来区分,不同Chern number的投影子是不可以通过绝热演化相互转换的.<br>{:.success}</p>
+<p><img src="/assets/images/topology/ten2.png" alt="png"></p>
+<p>对于不存在任何离散对称性的情况(Class A),三维空间同伦群为</p>
+<script type="math/tex; mode=display">\pi_3[G_{m,m+n}(\mathbb{C})]\simeq{e}</script><p>这里$\{e\}$表示群只有一个单位元素,故此时再3D空间不存在winding的表示.(当$m=1$时存在一个偶然的winding,$\pi_3[G_{1,2}(\mathbb{C})]=\mathbb{Z}$,这是Hopf映射).虽然在Class A中三维时并不存在拓扑不同的相,但是当存在额外的离散对称性之后,是可以在3D存在不同的拓扑相的,因为这些离散的对称性会对$Q$有一定的限制,从而会影响群结构.<br>{:.warning}</p>
+<p>比如Class AII, 此时投影子满足$(i\sigma_y)Q^T(k)(-i\sigma_y)=Q(-k)$,是因为存在TRS的原因.当存在这个限制条件之后,两个不同的$Q$构型就有可能不会通过绝热演化相互变换,此时3D就有对应的拓扑分类.</p>
+<h2 id="分块-off-diagonal-投影子"><a href="#分块-off-diagonal-投影子" class="headerlink" title="分块 off-diagonal 投影子"></a>分块 off-diagonal 投影子</h2><p>当存在反幺正操作时(TRS or PHS),将会使得投影子在波矢$k$和$-k$处相互关联,因此TRS或者PHS会禁止动量空间中$Q$-field的某些构型,或者在BZ中将$k=-k$进行轨道折叠,从而改变拓扑结构.相反手型对称(SLS)是个幺正操作,会作用到Z中的每个波矢$k$上,因此这个对称性的作用就仅仅是<strong>改变投影子的目标流形</strong>.当存在手性对称的时候,可以把$Q$矩阵表示成off-diagonal的分块形式</p>
+<script type="math/tex; mode=display">Q=\left(\begin{array}{cc}0&q\\q^\dagger&0\end{array}\right)</script><p>由于$Q^2=1$,则$q^\dagger q=qq^\dagger=1$,因此$q$肯定是$U(m)$中的一员.同样的,当存在其他对称性的时候,$q$也会受到一定的对称性限制.而且因为手性对称是$P$型的,所以此时投影子空间是$U(m)$,其对应的同伦群为</p>
+<script type="math/tex; mode=display">\pi_d[U(m)]\simeq\{\begin{array}{c}\{e\}\quad\text{for $d$ even}\\\mathbb{Z}\quad\text{for $d$ odd}\end{array}.</script><p>当$m\geq(d+1)/2$,此时同伦群为</p>
+<script type="math/tex; mode=display">\pi_d[G_{m,m+n}(\mathbb{C})]</script><div class="note orange no-icon flat"><p>当感兴趣的对称类允许不同拓扑构型的非平庸态出现,那么一个有用的工具就是利用量子化的拓扑不变量来区分这些不同的量子态.比如整数量子霍尔效应,其Hall电导$\sigma_{xy}$就是量子化的,它本质上是由$\pi_s[G_{m,m+n}(\mathbb{C})]=\mathbb{Z}$表征的winding number.在$\mathbb{Z}_2$拓扑绝缘体中,它就是$\mathbb{Z}_2$不变量,由于时间反演对称(TRS)的存在,可以通过$SU(2)$的Wilson loop的量子化值来表征.</p>
+</div>
+<h2 id="Winding-number-in-three-diemsions"><a href="#Winding-number-in-three-diemsions" class="headerlink" title="Winding number in three diemsions"></a>Winding number in three diemsions</h2><p>由于$\pi_3[U(m)]\simeq\mathbb{Z}$(for $m\geq 2$),在三维空间中,那些$Q$矩阵可以变换成off-diagonal形式的分类中,存在拓扑不等价的构型,它们之间不能通过绝热演化而相互转换.这些拓扑不等价的相可以通过winding number来biaozheng</p>
+<script type="math/tex; mode=display">\nu[q]=\int\frac{d^3k}{24\pi^2}\epsilon^{\mu\nu\rho}\text{Tr}[(q^{-1}\partial_\mu q)(q^{-1}\partial_\nu q)(q^{-1}\partial_\rho q)]\label{v}</script><p>这里$q(k)\in U(m),\mu,\nu,\rho=x,y,z$,积分是对整个格点系统的布里渊区进行,它是一个三维的环($T^3$),对于一个连续模型,(\ref{v})的积分区域拓扑等价于一个三维的球($S^3$).<strong>其实winding表示的就是由$T^3$到$S^3$进行映射的时候, 这个映射可以将$S^3$覆盖的次数.</strong><br>即使有些对称类$(DIII,CI,BDI,CII)$$的投影子同样可以表示为off-diagonal的形式,但是因为由额外对称性的限制,所以并不代表着它们的拓扑不等价类是可以取任何整数的.它们相对应的整数取值需要根据其表面上对称性允许的massless的Dirac费米子的数目来确定.</p>
+<h1 id="3D-Dirac-Hamintonian"><a href="#3D-Dirac-Hamintonian" class="headerlink" title="3D Dirac Hamintonian"></a>3D Dirac Hamintonian</h1><p>通过对3D哈密顿量的研究,计算(\ref{v})中所表示的winding number来确定系统的拓扑性质,并且可以通过哈密顿量计算其对应的边界态.</p>
+<h2 id="3D-four-component-Dirac-hamiltonian"><a href="#3D-four-component-Dirac-hamiltonian" class="headerlink" title="3D four-component Dirac hamiltonian"></a>3D four-component Dirac hamiltonian</h2><p>一个(3+1)D的有质量Dirac哈密顿量表示为</p>
+<script type="math/tex; mode=display">\mathcal{H}=-\partial_\mu\alpha_\mu+m\beta,\quad\mu=x,y,z\label{dirac}</script><p>这里$m\in\mathbb{R}$,标准的$\Gamma$矩阵为</p>
+<script type="math/tex; mode=display">\alpha_\mu=\tau_x\sigma_\mu=\left(\begin{array}{cc}0&\sigma_\mu\\\sigma_\mu&0\end{array}\right),\quad\beta=\tau_z=\left(\begin{array}{cc}1&0\\0&-1\end{array}\right),\quad\gamma^5=\tau_x=\left(\begin{array}{cc}0&1\\1&0\end{array}\right),\quad\mu=x,y,z</script><p>在动量空间中哈密顿量表示为</p>
+<script type="math/tex; mode=display">\mathcal{H}=\alpha_\mu k_\mu+m\beta=\left(\begin{array}{cc}m&k\cdot\sigma\\ k\cdot\sigma&-m\end{array}\right)\label{dirac2}</script><p>其能谱为$E(k)=\pm\sqrt{k^2+m^2}:=\pm\lambda(k)$</p>
+<p>此时并没有明确哈密顿量的对称性,(\ref{dirac})可以实现class AII, AIII,DIII拓扑绝缘体.</p>
+<h3 id="Class-AII"><a href="#Class-AII" class="headerlink" title="Class AII"></a>Class AII</h3><p>class AII中的3D Dirac哈密顿量(\ref{dirac2})满足$i\sigma_y\mathcal{H}^*(k)(-i\sigma_y)=\mathcal{H}(-k)$,是满足TRS的半整数自旋的拓扑绝缘体.</p>
+<h3 id="Class-DIII-1"><a href="#Class-DIII-1" class="headerlink" title="Class DIII"></a>Class DIII</h3><p>除了TRS, 当哈密顿量同样满足PHS$\tau_y\otimes\sigma_y\mathcal{H}^*\tau_y\otimes\sigma_y=-\mathcal{H}(-k)$,则3D Dirac哈密顿量(\ref{dirac})是class DIII中的一员,将(\ref{dirac2})进行幺正变换$\mathcal{H}\rightarrow\text{diag}(\sigma_0,-i\sigma_y)H\text{diag}(\sigma_0,+i\sigma_y)$变为</p>
+<script type="math/tex; mode=display">\mathcal{H}(k)=\left(\begin{array}{cc}m&k\cdot\sigma(i\sigma_y)\\(-i\sigma_y)k\cdot\sigma&-m\end{array}\right)\label{d3}</script><p>可以发现哈密顿量满足</p>
+<script type="math/tex; mode=display">i\sigma_y\mathcal{H}^*(-i\sigma_y)=\mathcal{H}(-k),\qquad\tau_x\mathcal{H}\tau_x=-\mathcal{H}^*(-k)</script><p>这个拓扑绝缘体哈密顿量(\ref{d3})描述超流$^3He $ B相的BW态BdG的费米子准粒子, 此时矢量${\bf d}$平行于动量${\bf d}_k\sim k$.</p>
+<h3 id="Class-AIII"><a href="#Class-AIII" class="headerlink" title="Class AIII"></a>Class AIII</h3><p>3D Dirac 哈密顿量由于存在手性对称$\tau_y\mathcal{H}\tau_y=-\mathcal{H}$可以视为class AIII中的拓扑绝缘体,通过基矢旋转$\tau_y\rightarrow\tau_z$将(\ref{dirac})变为off-diagonal分块对角形式</p>
+<script type="math/tex; mode=display">\mathcal{H}=-i\alpha_\mu\partial_\mu-i\beta\gamma^5m,\quad \mu=x,y,z</script><p>在动量空间中</p>
+<script type="math/tex; mode=display">\mathcal{H}(k)=\left(\begin{array}{cc}0&k\cdot\sigma-im\\k\cdot\sigma+im&0\end{array}\right)\label{d5}</script><p>手性对称会存在$\beta\mathcal{H}(k)\beta=-\mathcal{H}(k)$</p>
+<h2 id="投影子与winding-number"><a href="#投影子与winding-number" class="headerlink" title="投影子与winding number"></a>投影子与winding number</h2><p>2D两分量的有质量Dirac哈密顿量为$\mathcal{H}^\text{2D}_\text{Dirac}(k_x,k_y)=k_x\sigma_x+k_y\sigma_y+m\sigma_z$是最简单的一个二维拓扑绝缘体的例子,其对应的Hall电导$\sigma_{xy}=\text{sgn}(m)/2(e^2/h)$,如果将$(k_x,k_y,m)$看做是一系列可以绝热变化的参数之后,2D Dirac对应的$2\times 2$的哈密顿量正可以描述Abelian几何位相.$4\times 4$的Dirac哈密顿量(\ref{dirac2})可以看做是$2\times 2$实例$\mathcal{H}^\text{2D}_\text{Dirac}(k_x,k_y)$的一个一般推广,这个体系会存在非平庸的Non-Abelia贝利位相.这里来考虑哈密顿量</p>
+<script type="math/tex; mode=display">\mathcal{H}=\alpha_\mu k_\mu+m\beta=\left(\begin{array}{cc}m&k\cdot\sigma\\ k\cdot\sigma&-m\end{array}\right)</script><p>的本征态,当$E(k)=-\lambda(k)$时</p>
+<script type="math/tex; mode=display">\rvert u_1(k)\rangle=\frac{1}{\sqrt{2\lambda(\lambda+m)}}\left(\begin{array}{c}-k_{-}\\ k_z\\ 0\\\lambda+m\end{array}\right)</script><script type="math/tex; mode=display">\rvert u_2(k)\rangle=\frac{1}{\sqrt{2\lambda(\lambda+m)}}\left(\begin{array}{c}-k_{z}\\ -k_{+}\\ \lambda+m\\0\end{array}\right)</script><p>当$E(k)=+\lambda(k)$时</p>
+<script type="math/tex; mode=display">\rvert u_3(k)\rangle=\frac{1}{\sqrt{2\lambda(\lambda-m)}}\left(\begin{array}{c}k_{-}\\ -k_z\\ 0\\\lambda-m\end{array}\right)</script><script type="math/tex; mode=display">\rvert u_4(k)\rangle=\frac{1}{\sqrt{2\lambda(\lambda-m)}}\left(\begin{array}{c}k_z\\ k_+\\ \lambda-m\\0\end{array}\right)</script><p>这里$k_\pm=k_x\pm ik_y$.如果$m&gt;0$此时$\rvert u_{3,4}(k)\rangle$在$\lambda=m$时不是一个较好的定义.</p>
+<p>接下来对占据态求解$Q$矩阵(也就是投影子)</p>
+<p>$Q(k)=2P(k)-1=-\frac{1}{\lambda}(k_\mu\alpha_\mu+m\beta)$</p>
+<p>通过对手性操作进行轮换$\tau_y\rightarrow\tau_z$,可以求解class AIII(\ref{d5})哈密顿量对应的$q$矩阵</p>
+<script type="math/tex; mode=display">q(k)=-\frac{1}{\lambda}(k_\mu\sigma_\mu-im)\label{q1}</script><p>同样的,对于哈密顿量(\ref{d3}),其对应的投影子为</p>
+<script type="math/tex; mode=display">q(k)=i\sigma_y(k_\mu\sigma_mu-im)/\lambda,\qquad q^T(-k)=a(k)</script><p>通过winding number的计算公式(\ref{v})表示$q(k)$从$S^3$到$U(2)$的一个映射,可以计算(\ref{q1})的winding为</p>
+<script type="math/tex; mode=display">\nu[q]=\frac{1}{2}\frac{m}{\rvert m\rvert}</script><p>这里出现半整数$\frac{1}{2}$是利用连续模型描述时的普遍情况,因为用连续模型描述的时候,无穷远点是个奇点,此时的空间不是有界的,所以需要包括高能部分就会补充这种不足.</p>
+<h2 id="边界Dirac费米子"><a href="#边界Dirac费米子" class="headerlink" title="边界Dirac费米子"></a>边界Dirac费米子</h2><p>通常体态波函数的非平庸拓扑性质总是会存在无能隙的边界态,当$z$方向存在一个质量变化项</p>
+<p>$m(z)\rightarrow\left\{ \begin{array}{c}+m,\qquad z\rightarrow+\infty\\ -m,\qquad z\rightarrow-\infty\end{array}\right.$</p>
+<p>来研究局域在边界$z=0$上2D Dirac费米子解.对class AIII 的3D Dirac哈密顿量$\mathcal{H}=-i\alpha_\mu\partial_\mu-i\beta\gamma^5m(z)$</p>
+<p>能量为$E(k_\perp)$的解为</p>
+<p>$\Psi(z)=\left(\begin{array}{c}0\\ a(k_\perp)\\ b(k_\perp)\\ 0\end{array}\right)\exp[-\int^zdz^{‘}m(z^{‘})]$</p>
+<p>这里$k_\perp=(k_x,k_y),x_\perp=(x,y)$分别表示动量和位置坐标,系数$a(k_\perp),b(k_\perp)$满足方程</p>
+<script type="math/tex; mode=display">\left(\begin{array}{c}a(k_\perp)\\b(k_\perp)\end{array}\right)=\frac{e^{ik_\perp\cdot x_\perp}}{\sqrt{2}}\left(\begin{array}{c}e^{i\cdot\text{arg}(k_\perp)}\\\pm 1\end{array}\right)</script><p>能量$E(k_\perp)=\pm\sqrt{k_x^2+k_y^2}$,下面再来讨论一下这些边界态对杂质的稳定性</p>
+<ul>
+<li>class AII and DIII</li>
+</ul>
+<p>单个表面Dirac费米子的无能隙性质是受到TRS保护的,打开能隙将会违反Kramer定理,对于class AII只有空间均匀的微扰与TRS相兼容的是个常熟势$V$</p>
+<script type="math/tex; mode=display">\mathcal{H}=-i\partial_\mu\sigma_\mu+V,\quad\mu=x,y</script><p>此时并不能打开能隙,而对于class DIII,基矢常熟势也将会被TRS所禁止.</p>
+<ul>
+<li>Class AIII</li>
+</ul>
+<p>一个单个组分的2D Dirac费米子在class AIII中可以被静态均匀的矢量势微扰</p>
+<script type="math/tex; mode=display">\mathcal{H}=-i\partial_\mu\sigma_\mu+A_\mu\sigma_\mu,\quad\mu=x,y</script><p>矢量势仅仅会改变node的位置,并不会打开能隙.</p>
+<h2 id="3D-eight-component-Dirac-Hamiltonian"><a href="#3D-eight-component-Dirac-Hamiltonian" class="headerlink" title="3D eight-component Dirac Hamiltonian"></a>3D eight-component Dirac Hamiltonian</h2><p>对于Class CI,CII 并不能由四分量的(3+1)D Dirac哈密顿量组成且存在无能隙的边界态,这里考虑八分量的(3+1)D Dirac哈密顿量.</p>
+<h3 id="Class-CI"><a href="#Class-CI" class="headerlink" title="Class CI"></a>Class CI</h3><p>八分量3D Dirac 哈密顿量为</p>
+<p>$\mathcal{H}=\left(\begin{array}{cc}0&amp;D\\ D^\dagger&amp;0\end{array}\right),\quad D=i\sigma_y\beta(k_\mu\alpha_\mu-im\gamma^5)$</p>
+<p>是Class CI的一员,因为满足$D^T(k)=D(-k)$,能谱为$E(k)=\pm\sqrt{k^2+m^2}=\pm\lambda$,每个本征值都是4重简并的.</p>
+<p>off-diagonal形式对应的投影子为</p>
+<script type="math/tex; mode=display">Q(k)=2P(k)-1=-\frac{1}{\lambda}\mathcal{H}(k),\qquad q(k)=-\frac{1}{\lambda}i\sigma_y\beta(k_\mu\alpha_\mu-im\gamma^5)</script><p>其对应的winding number可以被计算</p>
+<script type="math/tex; mode=display">\nu[q]=\frac{1}{2}\frac{m}{\rvert m\rvert}\times 2</script><p>当把3D Dirac绝缘体在研$z$方向2D表面上截止是,可以得到两分量的表面Dirac费米子</p>
+<script type="math/tex; mode=display">\mathcal{H}=\left(\begin{array}{cc}0&d\\D^\dagger&0\end{array}\right),\qquad D=i\sigma_y(k_++A_x\sigma_x+A_y\sigma_y+A_z\sigma_z)</script><p>这里已经包含了class CI允许的微扰$A_{x,y,z}\in\mathbb{C}$,可以检验$D^T(k)=D(-k)$.四分量无能隙Dirac 费米子可以面议任意三个复数值(六个实数)$A_{x,y,z}$.正如class AIII中的矢量势一样,$A_{x,y,z}$也仅仅是将Dirac节点的位置从(0,0)移动到$(k_x^0,k_y^0)$,这里的$(k_x^0,k_y^0)$满足方程</p>
+<script type="math/tex; mode=display">(k_x^0)^2-(k_y^0)^2-\text{Re}A^2+\text{Im}A^2=0\qquad k_x^0k_y^0+(\text{Re}A\cdot\text{Im}A)=0</script><h3 id="Class-CII"><a href="#Class-CII" class="headerlink" title="Class CII"></a>Class CII</h3><p>八分量3D Dirac哈密顿量</p>
+<script type="math/tex; mode=display">\mathcal{H}=\left(\begin{array}{cc}0&D\\D^\dagger&0\end{array}\right),\quad D=k_\mu\alpha_\mu+m\beta=D^\dagger</script><p>是class CII的一员,满足$i\sigma_y D^*(k)(-i\sigma_y)=D(-k)$,对应的能谱为$E(k)=\pm\sqrt{k^2+m^2}$,$Q,q$矩阵分别为</p>
+<script type="math/tex; mode=display">Q(k)=2P(k)-1=-\frac{1}{\lambda}\mathcal{H}(\lambda),\quad q(k)=-\frac{1}{\lambda}(k_\mu\alpha_\mu+m\beta)</script><p>与classCI的3D Dirac绝缘体相比,在class CII 的Dirac质量项为$m\beta$而不是手性的$im\gamma^5$,由于这个不同,class CII对应的3D Dirac哈密顿量的winding number为</p>
+<script type="math/tex; mode=display">\nu[q]=0</script><p>由于此时winding number等于0,沿$z$方向存在质量畴壁时,我们不能在class CII 的3D Dirac绝缘体中寻找到两组分的两维Dirac费米子.</p>
+<p>考虑2D表面上最一般的一个Dirac哈密顿量的形式</p>
+<script type="math/tex; mode=display">\mathcal{H}=\left(\begin{array}{cc}0&D\\D^\dagger&0\end{array}\right),\quad D=\left(\begin{array}{cc}v_+&k_{-}+a\\k_+-\bar{a}&v^*_+\end{array}\right)=(k_x+ia)\sigma_x+(k_y+ia_y)\sigma_y+i\text{Im}v_+\sigma_z</script><p>这里的微扰$a_{x,y}$和$v_+$是被class CII对称性允许的.这里可以发现这些表面Dirac费米子的无能隙性质在存在微扰时仍然是稳定的.考虑哈密顿量的行列式</p>
+<script type="math/tex; mode=display">\text{det}(DD^\dagger)=(\rvert v_+\rvert^2-\rvert k_+\rvert^2+\rvert a\rvert^2)^2-(\bar{a}k_{-}-ak_{+})^2</script><p>当</p>
+<script type="math/tex; mode=display">\rvert k_+\rvert^2=\rvert v_+\rvert^2+\rvert a\rvert^2\qquad\text{and}\qquad(k_x,k_y)\perp(a_x,a_y)</script><p>时行列式是消失的.这表明对于行列式总是可以找到一个波矢$(k_x,k_y)$其对应的能量本征值消失,从而不存在能隙.</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li>1.拓扑半金属的磁响应与拓扑绝缘体中的$d-2$为边界态(宋志达)</li>
+<li>2.<a target="_blank" rel="noopener" href="https://journals.aps.org/prb/abstract/10.1103/PhysRevB.78.195125">Classification of topological insulators and superconductors in three spatial dimensions</a></li>
+</ul>
+<h1 id="公众号"><a href="#公众号" class="headerlink" title="公众号"></a>公众号</h1><div class="note blue no-icon flat"><p>相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。</p>
+</div>
+<table>
+  <tr>
+    <!-- 图片单元格 -->
+    <td style="width: 300px; height: 300px; text-align: center; vertical-align: middle; border: 1px solid #ccc; border-radius: 8px;">
+      <img src="/assets/images/qrcode.jpg" alt="QR Code" width="300px" height="300px" style="border-radius: 8px;">
+    </td>
+    <!-- 文字单元格 -->
+    <td style="width: 300px; height: 300px; text-align: center; vertical-align: middle; padding-left: 20px; border: 1px solid #ccc; border-radius: 8px;">
+      <div>
+        <h4 style="margin: 0;">Email</h4>
+        <p style="margin: 5px 0;">yxliphy@gmail.com</p>
+      </div>
+    </td>
+  </tr>
+</table>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Yu-Xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2021/06/03/2021-06-03-Ten-Classification/">http://example.com/2021/06/03/2021-06-03-Ten-Classification/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Yu-Xuan' Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Topology/">Topology</a></div><div class="post-share"><div class="social-share" data-image="/assets/images/topology/AT-ten.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg"/></a><div class="post-qr-code-desc"></div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg"/></a><div class="post-qr-code-desc"></div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2021/06/03/2021-06-03-Fortran-Parallel/" title="Fortran 并行运算"><img class="cover" src="/img/defult-cover2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Fortran 并行运算</div></div><div class="info-2"><div class="info-item-1">这篇博客中主要整理一下如何利用Fortran来进行并行运算,这样可以在平时的计算中充分发挥计算机的优势.   虽然前面也有几个博客整理了python以及Julia的并行计算,但是Fortran的并行计算自己也一直在摸索中,因为这里会涉及到进程之间通讯的问题,正好最近得到了别人写的一段并行代码,通过研究还是很快的搞清楚了如何利用Fortran来进行并行运算,这里就把代码和自己的一些笔记整理出来. 并行思想先来认真的描述一下我在整理代码过程中的,怎么把一个程序分拆成并行.假设我有一个很多层循环的程序,通常程序执行时间长,也都是遇到重复执行结构,但是整体执行时,总会有一个变量,需要在某一个范围内去执行,假设$x\in[a,b]$,那么我们把这个区间分叉成很多段,$[a,x_1],[x_1,x_2],\cdots,[x_n,b]$,这个时候我们把每一段分别放到一个进程上去执行,最后再把所有进程上执行得到的结果整理到一起,那么我们最终得到的就是在区间$[a,b]$计算的结果了. 这里在进行区间分拆的时候,需要将分拆区间的数目和程序执行时可调用的进程数对应起来,这样才可以保证每个进程上都实行...</div></div></div></a><a class="pagination-related" href="/2021/06/01/2021-06-01-TSC-TI/" title="基于拓扑不变量的拓扑超导研究"><img class="cover" src="/assets/images/topology/2021-06-01_Page1.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">基于拓扑不变量的拓扑超导研究</div></div><div class="info-2"><div class="info-item-1">通过简单的费米面以及费米面上的电子配对正负来判断超导体的拓扑性质.   这个博客整理一下自己在组会上讲的一个内容.                                          PPT下载完整的PPT可以点击这里下载 公众号相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。                                                     Email         yxliphy@gmail.com                </div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2020/03/16/2020-03-16-Graphene/" title="石墨烯哈密顿量构造及边界态计算"><img class="cover" src="/img/defult-cover2.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-03-16</div><div class="info-item-2">石墨烯哈密顿量构造及边界态计算</div></div><div class="info-2"><div class="info-item-1">想通过石墨烯重新学习一下拓扑，以此来记录学习成果。   石墨烯的结构石墨烯的元胞是六角蜂窝状的，它的基元包含两个原子，将红黑表示的位置放在一起，则表示它的一个基元。以水平和垂直方向建立直角坐标系，并将它的晶格常数(红黑位置的距离)设置为a，基矢为绿色箭头表示$\vec{v_1}=(\sqrt{3}a,0),\vec{v_2}=(-\sqrt{3}/2a,3/2a)$。若只考虑最紧邻位置间的hopping，那么实空间中的Hamiltonian为  H=-t\sum_{}a_i^\dagger b_j - t\sum_{}b_i^\dagger a_j$$表示的是格点上最近邻的位置。先忘记上面说过的基元的概念，同时忽略图中黑红位置的区别，将所有的格点位置视为相同，那么可以发现每个格点都是有三个最近邻的，这就是石墨烯六角结构和平时经常使用正方点阵的一个区别，正方点阵每个格点都是有四个最近邻的(上下左右，而且它们是相互垂直的)，石墨烯结构中则不然，三个最近邻位置的夹角是$120^o$，这三个最近邻的矢量表示为  \vec{e_1}=(0,a)\quad \vec{e_2}=(-\frac...</div></div></div></a><a class="pagination-related" href="/2020/07/01/2020-07-01-Chern-Number/" title="两种方法计算Chern Number"><img class="cover" src="/img/defult-cover2.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-01</div><div class="info-item-2">两种方法计算Chern Number</div></div><div class="info-2"><div class="info-item-1">计算Chern数是最初学习拓扑物理都会遇到的问题，正好在假期空闲的时候自己学习了一下Chern数的数值计算方法，在博客上记录一下希望可以帮助到别人。   具体的计算方法和细节就不在这里说明了，只要是想学习计算Chern数的肯定了解它在凝聚态物理中的角色，而计算的细节也会在后面的参考文献中给出，只是展示一下结果。 Julia语言计算Chern numberVersion1这个方法是直接用定义直接计算的结果，但是可能会遇到波函数规范选择的问题，会导致结果有误，而具体的规范问题，我并不懂，所以一般我会选择第二种方法来计算，也就是后面参考文献中介绍的方法。1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374import PkgPkg.add(&quot;LinearAlgebra&quot;)Pkg.add(&quot;PyPlot&quot;)using Line...</div></div></div></a><a class="pagination-related" href="/2020/06/30/2020-06-30-Kane-Mele/" title="Kane Mele model zigzag 边界态的计算"><img class="cover" src="/img/defult-cover.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-30</div><div class="info-item-2">Kane Mele model zigzag 边界态的计算</div></div><div class="info-2"><div class="info-item-1">接触量子自旋霍尔效应很久了，但是一直也都是在square lattice上做计算，从来没有认真的在六角点阵上计算过拓扑的内容，正好最近在看文献的过程中需要在石墨烯机构上进行，就从最基本的Kane-Mele 模型出发学习怎么在六角点阵上写出最近邻以及次近邻的哈密顿量。  关于最近邻之间的hopping在前面石墨烯的边界态文章中已经仔细考虑过，包括cell的选取还有原子的编号，在这里。现在唯一的不同就是要考虑次近邻之间的hopping。在这里暂时并未考虑Rashbo自旋轨道耦合。 基本设定  蓝色虚线框中是选择的一个大cell，在y方向是有限长度，在x方向是无限的，所以$k_x$是个好量子数，这种边界态叫zigzag；当x方向开边界，y方向无限长时的边界态叫armchair，可以参考这里。格点之间的hopping可以在一个大cell之内，可会存在大cell之间的hopping，在下面会逐一展示。关于Kane-Mele模型中的$v_{ij}$的示意如上图_hopping_蓝色箭头所示，当格点连线在hopping的右侧时$v_{ij}=-1$，在左侧时$v_{ij}=1$；将一个大cel...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">232</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yxli8023"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome to Yu-Xuan's Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#10%E9%87%8D%E5%88%86%E7%B1%BB"><span class="toc-number">1.</span> <span class="toc-text">10重分类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%B9%E7%A7%B0%E6%93%8D%E4%BD%9C%E7%AE%97%E7%AC%A6"><span class="toc-number">2.</span> <span class="toc-text">对称操作算符</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#BdG-Class"><span class="toc-number">3.</span> <span class="toc-text">BdG Class</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Class-D"><span class="toc-number">3.1.</span> <span class="toc-text">Class D</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Class-DIII"><span class="toc-number">3.2.</span> <span class="toc-text">Class DIII</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#BdG-class-with-S-z-conservation"><span class="toc-number">4.</span> <span class="toc-text">BdG class with $S_z$ conservation</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#calss-C-full-SU-2-symmetry"><span class="toc-number">4.1.</span> <span class="toc-text">calss C [full SU(2) symmetry]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#class-CI-full-SU-2-symmetry-TRS"><span class="toc-number">4.2.</span> <span class="toc-text">class CI [full SU(2) symmetry + TRS]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#class-AIII-S-z-conservation-TRS"><span class="toc-number">4.3.</span> <span class="toc-text">class AIII($S_z$ conservation + TRS)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Dirac-%E7%90%86%E8%AE%BA"><span class="toc-number">5.</span> <span class="toc-text">Dirac 理论</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%93%E6%89%91%E7%AD%89%E4%BB%B7-%E4%B8%8D%E7%AD%89%E4%BB%B7"><span class="toc-number">5.1.</span> <span class="toc-text">拓扑等价&#x2F;不等价</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mathcal-Z-quad-text-or-quad-mathcal-Z-2"><span class="toc-number">6.</span> <span class="toc-text">$\mathcal{Z}\quad\text{or}\quad \mathcal{Z}_2$</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Chern-%E7%BB%9D%E7%BC%98%E4%BD%93"><span class="toc-number">6.1.</span> <span class="toc-text">Chern 绝缘体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E5%8F%8D%E6%BC%94%E4%B8%8D%E5%8F%98%E7%B3%BB%E7%BB%9F"><span class="toc-number">6.2.</span> <span class="toc-text">时间反演不变系统</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%93%E6%80%81%E6%8B%93%E6%89%91%E6%80%A7%E8%B4%A8%E8%A1%A8%E5%BE%81"><span class="toc-number">7.</span> <span class="toc-text">体态拓扑性质表征</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%9D%97-off-diagonal-%E6%8A%95%E5%BD%B1%E5%AD%90"><span class="toc-number">7.1.</span> <span class="toc-text">分块 off-diagonal 投影子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Winding-number-in-three-diemsions"><span class="toc-number">7.2.</span> <span class="toc-text">Winding number in three diemsions</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3D-Dirac-Hamintonian"><span class="toc-number">8.</span> <span class="toc-text">3D Dirac Hamintonian</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3D-four-component-Dirac-hamiltonian"><span class="toc-number">8.1.</span> <span class="toc-text">3D four-component Dirac hamiltonian</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Class-AII"><span class="toc-number">8.1.1.</span> <span class="toc-text">Class AII</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Class-DIII-1"><span class="toc-number">8.1.2.</span> <span class="toc-text">Class DIII</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Class-AIII"><span class="toc-number">8.1.3.</span> <span class="toc-text">Class AIII</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%95%E5%BD%B1%E5%AD%90%E4%B8%8Ewinding-number"><span class="toc-number">8.2.</span> <span class="toc-text">投影子与winding number</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%B9%E7%95%8CDirac%E8%B4%B9%E7%B1%B3%E5%AD%90"><span class="toc-number">8.3.</span> <span class="toc-text">边界Dirac费米子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3D-eight-component-Dirac-Hamiltonian"><span class="toc-number">8.4.</span> <span class="toc-text">3D eight-component Dirac Hamiltonian</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Class-CI"><span class="toc-number">8.4.1.</span> <span class="toc-text">Class CI</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Class-CII"><span class="toc-number">8.4.2.</span> <span class="toc-text">Class CII</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">9.</span> <span class="toc-text">参考</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AC%E4%BC%97%E5%8F%B7"><span class="toc-number">10.</span> <span class="toc-text">公众号</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-number">10.0.0.1.</span> <span class="toc-text">Email</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/08/02/2025-08-02-Real-Space-Chern/" title="实空间Chern数计算(Half-BHZ模型)"><img src="/assets/images/Julia/Chern-m0.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实空间Chern数计算(Half-BHZ模型)"/></a><div class="content"><a class="title" href="/2025/08/02/2025-08-02-Real-Space-Chern/" title="实空间Chern数计算(Half-BHZ模型)">实空间Chern数计算(Half-BHZ模型)</a><time datetime="2025-08-01T16:00:00.000Z" title="发表于 2025-08-02 00:00:00">2025-08-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/22/2025-02-22-Free-SC/" title="超导序参量自洽(自由能极小值方法)"><img src="/assets/images/Julia/Bx_kbt-phase.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导序参量自洽(自由能极小值方法)"/></a><div class="content"><a class="title" href="/2025/02/22/2025-02-22-Free-SC/" title="超导序参量自洽(自由能极小值方法)">超导序参量自洽(自由能极小值方法)</a><time datetime="2025-02-21T16:00:00.000Z" title="发表于 2025-02-22 00:00:00">2025-02-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/18/2025-02-18-Julia-MPI-Set/" title="Mac上配置MPI并行Julia"><img src="/assets/images/Julia/a4.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Mac上配置MPI并行Julia"/></a><div class="content"><a class="title" href="/2025/02/18/2025-02-18-Julia-MPI-Set/" title="Mac上配置MPI并行Julia">Mac上配置MPI并行Julia</a><time datetime="2025-02-17T16:00:00.000Z" title="发表于 2025-02-18 00:00:00">2025-02-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/15/2024-12-15-Fourier-Spectrum/" title="超导序参量中的傅里叶分析"><img src="/assets/images/Mma/fft-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导序参量中的傅里叶分析"/></a><div class="content"><a class="title" href="/2024/12/15/2024-12-15-Fourier-Spectrum/" title="超导序参量中的傅里叶分析">超导序参量中的傅里叶分析</a><time datetime="2024-12-14T16:00:00.000Z" title="发表于 2024-12-15 00:00:00">2024-12-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/11/2024-12-11-Screeing/" title="库仑势以及屏蔽库伦势的一些计算"><img src="/assets/images/Mma/Vscr-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="库仑势以及屏蔽库伦势的一些计算"/></a><div class="content"><a class="title" href="/2024/12/11/2024-12-11-Screeing/" title="库仑势以及屏蔽库伦势的一些计算">库仑势以及屏蔽库伦势的一些计算</a><time datetime="2024-12-10T16:00:00.000Z" title="发表于 2024-12-11 00:00:00">2024-12-11</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  const initGitalk = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGitalk = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const gitalk = new Gitalk({
+      clientID: 'Ov23li0WvZEaIAZ7RFtH',
+      clientSecret: '03fcb77b7c28dafcdde00756e27f9b5bc76639e8',
+      repo: 'yxli8023.github.io',
+      owner: 'yxli8023',
+      admin: ['Yu-Xuan'],
+      updateCountCallback: commentCount,
+      ...option,
+      id: isShuoshuo ? path : (option && option.id) || '55d9d9760928ceb4db631090ead29ee6'
+    })
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async(el, path) => {
+    if (typeof Gitalk === 'function') initGitalk(el, path)
+    else {
+      await btf.getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await btf.getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Gitalk' === 'Gitalk'
+      ? window.shuoshuoComment = { loadComment: loadGitalk }
+      : window.loadOtherComment = loadGitalk
+    return
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

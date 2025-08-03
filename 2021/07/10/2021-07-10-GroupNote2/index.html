@@ -1,0 +1,368 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>群论学习笔记-Part2 | Yu-Xuan' Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="学习群论有一段时间了, 这里想结合一些工具, 并通过一些书籍阅读来将自己所学到的内容整理一下, 同时加深一下自己对这些知识内容的理解.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="群论学习笔记-Part2">
+<meta property="og:url" content="http://example.com/2021/07/10/2021-07-10-GroupNote2/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39; Blog">
+<meta property="og:description" content="学习群论有一段时间了, 这里想结合一些工具, 并通过一些书籍阅读来将自己所学到的内容整理一下, 同时加深一下自己对这些知识内容的理解.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/assets/images/GroupTheory/cube_symmetry.jpg">
+<meta property="article:published_time" content="2021-07-09T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-08-03T08:09:19.903Z">
+<meta property="article:author" content="Yu-Xuan">
+<meta property="article:tag" content="Group-Theory">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/images/GroupTheory/cube_symmetry.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "群论学习笔记-Part2",
+  "url": "http://example.com/2021/07/10/2021-07-10-GroupNote2/",
+  "image": "http://example.com/assets/images/GroupTheory/cube_symmetry.jpg",
+  "datePublished": "2021-07-09T16:00:00.000Z",
+  "dateModified": "2025-08-03T08:09:19.903Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yu-Xuan",
+      "url": "http://example.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/07/10/2021-07-10-GroupNote2/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'medium_zoom',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#f54966","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '群论学习笔记-Part2',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #dbeffd;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">232</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/assets/images/GroupTheory/cube_symmetry.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Yu-Xuan' Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">群论学习笔记-Part2</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">群论学习笔记-Part2</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-07-09T16:00:00.000Z" title="发表于 2021-07-10 00:00:00">2021-07-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-08-03T08:09:19.903Z" title="更新于 2025-08-03 16:09:19">2025-08-03</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">2.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/2021/07/10/2021-07-10-GroupNote2/#post-comment"><span class="gitalk-comment-count"><i class="fa-solid fa-spinner fa-spin"></i></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;It has been&quot;,&quot;messageNext&quot;:&quot;days since the last update, the content of the article may be outdated.&quot;,&quot;postUpdate&quot;:&quot;2025-08-03 16:09:19&quot;}" hidden></div><div class="note blue no-icon flat"><p>学习群论有一段时间了, 这里想结合一些工具, 并通过一些书籍阅读来将自己所学到的内容整理一下, 同时加深一下自己对这些知识内容的理解.</p>
+</div>
+<span id="more"></span>
+<h1 id="点群操作基函数"><a href="#点群操作基函数" class="headerlink" title="点群操作基函数"></a>点群操作基函数</h1><h2 id="球谐函数"><a href="#球谐函数" class="headerlink" title="球谐函数"></a>球谐函数</h2><p>对于点群操作,可以找到对应的一些基函数来满足变换性质,从而在基函数的基础上可以得到操作的矩阵表示,这里就以球谐函数为出发点,来寻找点群操作的基函数.首先球谐函数的定义为</p>
+<script type="math/tex; mode=display">Y_l^m(\theta,\phi)=\sqrt{\frac{(2l+1)(l-\rvert m\rvert)!}{4\pi(l+\rvert m\rvert)!}}P_l^m(\cos\theta)\exp(im\phi)</script><p>这里$P_l^m(\cos\theta)$是勒让德函数</p>
+<script type="math/tex; mode=display">P_l^m(\cos\theta)=\frac{1}{2^ll!}\sin^{\rvert m\rvert}\theta\frac{d^{l+\rvert m\rvert}}{(d\cos\theta)^{l+\rvert m\rvert}}\{(\cos^2\theta-1)^l\}</script><p>一个转动操作$R$可以通过欧拉角($\alpha,\beta,\gamma$)来表示:首先进行绕z轴的主动转动角为$\alpha,(0\le\alpha\le2\pi)$,接下来绕着y轴进行主动转动$\beta,(0\le\beta\le\pi)$,最后绕着z轴主动转动$\gamma,(0\le\gamma\le 2\pi)$.在三维的求坐标系中,第一次转动$\alpha$对应着$(r,\theta,\phi)\rightarrow(r,\theta,\phi+\alpha)$,第二次转动$\beta$对应$(r,\theta,0)\rightarrow (r,\theta+\beta,0)$,第三次转动$\gamma$对应着$(r,\theta,\phi)\rightarrow (r,\theta,\phi+\gamma)$.</p>
+<p><img src="/assets/images/GroupTheory/1-13.png" alt="png"></p>
+<p>一个转动操作$R(\alpha,\beta,\gamma)$就对应着连续进行这三个操作,这里采用主动坐标系(active),此时的转动方向都是逆时针方向进行的.当将一个转动操作作用到球谐函数上之后</p>
+<script type="math/tex; mode=display">R(\alpha,\beta,\gamma)Y^m_l(\theta,\phi)=\sum_{n=-l}^{l}Y^n_l(\theta,\phi)\mathcal{D}^l\{R(\alpha,\beta,\gamma)\}_{mn}</script><p>这里的矩阵$\mathcal{D}^l$为</p>
+<script type="math/tex; mode=display">\mathcal{D}^l\{R(\alpha,\beta,\gamma)\}_{nm}=C_{nm}\exp(-in\gamma)d^l(\beta)_{nm}\exp(-im\alpha),\quad C_{nm}=(i^{\rvert n\rvert+n})(i^{-\rvert m\rvert -m})</script><script type="math/tex; mode=display">d^l(\beta)_{nm}=\sum_k\frac{(-1)^{k-m+n}\sqrt{(l+n)!(l+m)!(l-n)!(l-m)!}}{(l-n-k)!(l+m-k)!k!(k-m+n)!}\cos^{2l+m-n-2k}(\frac{1}{2}\beta)\sin^{2k+n-m}(\frac{1}{2}\beta)</script><p>$k=\text{max}\{0,(m-n)\}\rightarrow\text{min}\{(l-n),(l+m)\}$,对于三维空间中的转动操作$R(\alpha,\beta,\gamma)$,当整数$l$确定之后,只有唯一的一个$\mathcal{D}^l\{R(\alpha,\beta,\gamma)\}$与之相对应.对于一个给定的$l$值的矩阵$\mathcal{D}^l\{R(\alpha,\beta,\gamma)\}$形成了一个$(2l+1)$维的旋转群$R(\alpha,\beta,\gamma)$的表示,而球谐函数$Y_l^m(\theta,\phi)(-l\le m\le l)$则是这个表示的基矢.矩阵元素$d^l(\beta)_{nm}$会有下面的对称关系</p>
+<script type="math/tex; mode=display">d^l(\beta)_{nm}=d^l(\beta)_{-m,-n}=(-1)^{m+n}d^l(\beta)_{mn}</script><p>因此在计算$d^l(\beta)$的时候,只需要计算$-l\le m\le l,\rvert m\rvert\le n\le l$范围内的值即可.这里来主要关注$\beta=0,\frac{1}{2}\pi,\pi$处的性质,原因有两个:任意$\beta$角度下的值都可以被转换到$\beta=\frac{1}{2}\pi$计算,对于晶体点群操作,总可以选择一个合适的轴,将$\beta$角变为$0,\frac{1}{2}\pi,\pi$中的一个值.</p>
+<ul>
+<li>当$\beta=0$的时候:</li>
+</ul>
+<script type="math/tex; mode=display">\mathcal{D}^l\{R(\alpha,0,\gamma)\}_{nm}=\exp(-im\alpha)\exp(-im\gamma)\delta_{nm}</script><ul>
+<li>当$\beta=\pi$的时候:</li>
+</ul>
+<script type="math/tex; mode=display">\mathcal{D}^l\{R(\alpha,\pi,\gamma)\}_{nm}=(-1)^l\exp(-im\alpha)\exp(im\gamma)\delta_{n,-m}</script><p>为了研究球谐函数在晶体点群操作下的性质,还需要考虑反演操作$I$</p>
+<script type="math/tex; mode=display">IY^l_m(\theta,\phi)=(-1)^lY^l_m(\theta,\phi)</script><p>下面给出一个点群操作对应的欧拉角</p>
+<p><img src="/assets/images/GroupTheory/1-14.png" alt="png"></p>
+<h2 id="基函数寻找"><a href="#基函数寻找" class="headerlink" title="基函数寻找"></a>基函数寻找</h2><p>对一个群$\mathbf{G}$其对应的阶数为$\rvert\mathbf{G}\rvert$,其对应的不可约表示$\Gamma^i\{R\rightarrow\mathbf{D}^i(R)\}$已知,这里的$\mathbf{D}^i$是是群元$R$的矩阵表示,对应的维度是$d_i$,而现在就要找到一组合适的基矢$\langle\phi_1^i,\phi_2^i,\cdots,\phi_{d_i}^i\rvert$满足</p>
+<script type="math/tex; mode=display">R\phi_s^i=\sum_{t=1}^{d_i}\phi_t^i\mathbf{D}^i(R)_{ts},\quad R\in\mathbf{G}</script><p>这里的$\phi_s^i$是属于不可约表示$\Gamma^i$的第$s$行的symmetry-adapted function,这些所有的$\phi_s^i$构成了一个完整的线性空间$V$.</p>
+<p>首先来定义一个元素$W^i_{ts}$:</p>
+<script type="math/tex; mode=display">W^i_{ts}=\frac{d_i}{\rvert\mathbf{G}\rvert}\sum_{R\in\mathbf{G}}\mathbf{D}^i(R)_{ts}^*R</script><p>这里的求和是对所有$R\in\mathbf{G}$进行的,从它的定义中可以看出它是由一些数和群$\mathbf{G}$中的操作群元组成的.</p>
+<ul>
+<li>定理:如果$\phi$是$V$中的任意一个函数满足$W^i_{ss}\phi\neq 0$($s$是固定的,可以遍历1到$d_i$),那么函数$W^i_{ts}\phi=\phi^i_t,t=1\rightarrow d_i$就构成了不可约表示$\Gamma^i$的一个基矢.</li>
+</ul>
+<p>这里可以将$\phi$看做是symmetry-adapted function的生成函数,$W_{ss}^i$是投影算符.</p>
+<h2 id="点群基函数寻找"><a href="#点群基函数寻找" class="headerlink" title="点群基函数寻找"></a>点群基函数寻找</h2><p>对于一个点群$\mathbf{G}$其中的元素为$R,S,\cdots$,其对应的矩阵表示为$\mathbf{D}^i(R),\mathbf{D}^i(S),\cdots$,此时选择球谐函数$Y_l^m(\theta,\phi)$作为生成函数,来计算投影算符对球谐函数的作用</p>
+<script type="math/tex; mode=display">W^i_{ts}Y_l^m(\theta,\phi)=\frac{d_i}{\rvert \mathbf{G}\rvert}\sum_{R\in\mathbf{G}}\mathbf{D}^i(R)_{ts}^*RY_l^m(\theta,\phi)</script><p>此时需要计算$RY_l^m(\theta,\phi)$,这里的$R$表示正规转动操作或者反演操作,它们对球谐函数的作用在前面已经给出,如果$R$是一个非正规转动(improper)可以将其表示为$R=IQ$,此时需要同时计算$QY_l^m(\theta,\phi),IY_l^m(\theta,\phi)$,反演操作不过是简单的加上一个$(-1)^l$的因子,最终可以将上式变为</p>
+<script type="math/tex; mode=display">W^i_{ts}Y_l^m(\theta,\phi)=\frac{d_i}{\rvert\mathbf{G}\rvert}\sum_{R\in\mathbf{G}}P_R\mathbf{D}^i(R)_{ts}^*\exp(-im\alpha)\sum_nC_{nm}\exp(-in\gamma)d^l(\beta)Y^n_l(\theta,\phi)</script><p>这里的求和$R$需要对所有的点群元素进行.</p>
+<h2 id="晶体点群symmetry-adapted-function"><a href="#晶体点群symmetry-adapted-function" class="headerlink" title="晶体点群symmetry-adapted function"></a>晶体点群symmetry-adapted function</h2><p>首先给出32个点群对应的特征标表</p>
+<p><img src="/assets/images/GroupTheory/1-15.png" alt="png"></p>
+<p><img src="/assets/images/GroupTheory/1-16.png" alt="png"></p>
+<p><img src="/assets/images/GroupTheory/1-17.png" alt="png"></p>
+<p><img src="/assets/images/GroupTheory/1-18.png" alt="png"></p>
+<p>这个表中,几列表示的是点群的标记和其对应不可约表示的记法,这里同时给出了两种不同的标记方式,最后一列给出的就是点群的乘法表,这里需要说明的是,可能有的点群其乘法表示相同的,这也就是表中最后一列中会同时有两行不同的群元,他们分别代表的是不同点群的操作元,但是又具有相同的乘法表.在上表中,$i=1,2,3;j=1,2,3,4$是一些约定的符号记法.</p>
+<h2 id="晶体场劈裂"><a href="#晶体场劈裂" class="headerlink" title="晶体场劈裂"></a>晶体场劈裂</h2><p>在孤立的环境中,电子周围的势场是个球对称的,在不考虑自旋的时候,其满足O(3)群对称性$\mathcal{D}^l\{R(\alpha,\beta,\gamma)\}$,这里的$l$是个整数,其实也就是实际中的角动量(暂时这么理解),$\mathcal{D}^l\{R(\alpha,\beta,\gamma)\}$的简并度是$(2l+1)$,它的基函数可以构成一个矢量,这$(2l+1)$个基函数对应的就是球谐函数$Y_l^m(\theta,\phi)(-l\le m\le l)$,因此这些波函数对应的能量此时都是相同的.当电子的环境发生改变的时候,也就是把它放到空间群中,那么其对称性就会从$O(3)$变成点群$\mathbf{G}$,原本的$(2l+1)$个简并能级就会发生劈裂,这些劈裂的能级就会用群$\mathbf{G}$的不可约表示来标记,下面给出$O(3)$群和点群的相容性关系</p>
+<p><img src="/assets/images/GroupTheory/1-19.png" alt="png"></p>
+<p><img src="/assets/images/GroupTheory/1-20.png" alt="png"></p>
+<p><img src="/assets/images/GroupTheory/1-21.png" alt="png"></p>
+<p><img src="/assets/images/GroupTheory/1-22.png" alt="png"></p>
+<p><img src="/assets/images/GroupTheory/1-23.png" alt="png"></p>
+<p><img src="/assets/images/GroupTheory/1-24.png" alt="png"></p>
+<p><img src="/assets/images/GroupTheory/1-25.png" alt="png"></p>
+<p>考虑将一个$l=2$的放置到$mm2(C_{2v})$点群中,根据下表</p>
+<p><img src="/assets/images/GroupTheory/1-26.png" alt="png"></p>
+<script type="math/tex; mode=display">\mathcal{D}^2=\mathcal{D}^{2*1+0}=1*\text{reg}+\mathcal{D}^0=(A_1+B_1+B_2)+A_1=2A_1+A_2+B_1+B_2</script><p>$l=2$的基函数为$\{Y_2^{-2}(\theta,\phi),Y_2^{-1}(\theta,\phi),Y_2^{0}(\theta,\phi),Y_2^{1}(\theta,\phi),Y_2^{2}(\theta,\phi)\}$,根据下表</p>
+<p><img src="/assets/images/GroupTheory/1-27.png" alt="png"></p>
+<p>可以得到</p>
+<script type="math/tex; mode=display">A_1:Y_2^{0}(\theta,\phi),Y_2^{2,c}(\theta,\phi)\quad A_2:Y_2^{2,s}(\theta,\phi)\quad B_1:Y_2^{1,c}(\theta,\phi)\quad B_2:Y_2^{1,s}(\theta,\phi)</script><p><img src="/assets/images/GroupTheory/1-28.png" alt="png"></p>
+<h1 id="公众号"><a href="#公众号" class="headerlink" title="公众号"></a>公众号</h1><div class="note blue no-icon flat"><p>相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。</p>
+</div>
+<table>
+  <tr>
+    <!-- 图片单元格 -->
+    <td style="width: 300px; height: 300px; text-align: center; vertical-align: middle; border: 1px solid #ccc; border-radius: 8px;">
+      <img src="/assets/images/qrcode.jpg" alt="QR Code" width="300px" height="300px" style="border-radius: 8px;">
+    </td>
+    <!-- 文字单元格 -->
+    <td style="width: 300px; height: 300px; text-align: center; vertical-align: middle; padding-left: 20px; border: 1px solid #ccc; border-radius: 8px;">
+      <div>
+        <h4 style="margin: 0;">Email</h4>
+        <p style="margin: 5px 0;">yxliphy@gmail.com</p>
+      </div>
+    </td>
+  </tr>
+</table>
+
+
+
+
+
+
+
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Yu-Xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2021/07/10/2021-07-10-GroupNote2/">http://example.com/2021/07/10/2021-07-10-GroupNote2/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Yu-Xuan' Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Group-Theory/">Group-Theory</a></div><div class="post-share"><div class="social-share" data-image="/assets/images/GroupTheory/cube_symmetry.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg"/></a><div class="post-qr-code-desc"></div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg"/></a><div class="post-qr-code-desc"></div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2021/07/31/2021-07-31-Majorana/" title="Majorana费米子"><img class="cover" src="/assets/images/Majorana/m-1.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Majorana费米子</div></div><div class="info-2"><div class="info-item-1">这里整理一下如何从Dirac方程出发,来衍生出Majorana费米子.   Dirac方程对于一个自旋半整数的费米子,其满足Dirac方程 (i\gamma^\mu\partial_\mu-m)\psi=0这里的$\gamma$是$4\times 4$的Dirac矩阵,满足Clifford代数关系$\{\gamma^\mu,\gamma^\nu\}=2g^{\mu\nu}$,而$g^{\mu\nu}$则是Minkowski空间中的量满足$\{-1,+1,+1,+1\},m$是真空中电子的质量,光速$c=1$选择为自然单位.这里Dirac矩阵为 \gamma^0=\sigma\otimes\tau^3,\qquad\gamma^{\mu=1,2,3}=i\sigma^\mu\otimes\tau^2这里Pauli矩阵$\sigma,\tau$分别表示自旋和电荷自由度.在量子场论的语言中,如果一个场产生了一个粒子并且消灭了它的反粒子,那么这个场的复数共轭就对应着产生一个反粒子并且消灭一个粒子.也就说$\psi\neq\psi^*$,粒子和反粒子是不相同的对应. 即从Dirac方程出发...</div></div></div></a><a class="pagination-related" href="/2021/07/07/2021-07-07-GroupNote1/" title="群论学习笔记-Part1"><img class="cover" src="/assets/images/GroupTheory/cube_symmetry.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">群论学习笔记-Part1</div></div><div class="info-2"><div class="info-item-1">学习群论有一段时间了, 这里想结合一些工具, 并通过一些书籍阅读来将自己所学到的内容整理一下, 同时加深一下自己对这些知识内容的理解.   基本概念共轭一个元素$a,b,c$是群$\mathcal{G}$的群元$(a,b,c)\in\mathcal{G}$,加入下列关系成立 a=c\circ b\circ c^{-1}\label{eq1}那么就说群元$a$与$b$之间是共轭的.上式中的$\quad\circ\quad$代表的是群元的操作. 类利用(\ref{eq1})的关系,将所有与群元$b$共轭的群元划分成一组,那么这一组叫做一个类. \mathcal{C}_{a}=\left\{a_{i} \mid a, b \in \mathcal{G} \wedge a_{i}=b \circ a \circ b^{-1} \wedge a \text { fixed }\right\}陪集假设$\mathcal{U}$是群$\mathcal{G}$的子群,$a$是$\mathcal{G}$中的元素,那么$a\mathcal{U}$代表元素$a$和群$\mathcal{U}$中的每一个...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2021/04/19/2021-04-19-SpacGroup/" title="空间群学习工具SpaceGroupIrep"><img class="cover" src="/img/defult-cover2.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-19</div><div class="info-item-2">空间群学习工具SpaceGroupIrep</div></div><div class="info-2"><div class="info-item-1">这里整理一下学习空间群时候的一个Mathematica软件包SpaceGroupIrep,在学习THE MATHEMATICAL THEORY OF SYMMETRY IN SOLIDS这本书中的内容的时候, 结合这个工具可以对书中的内容有一个更深入的理解. 这个软件包也是基于这本书中的内容编写的, 而且可以对书中的一些表进行快速查询, 结合起来对学习空间群相关的知识大有帮助.   前言自己最近一段时间在学习THE MATHEMATICAL THEORY OF SYMMETRY IN SOLIDS(Representation theory for point groups and space groups)这本书, 虽然认真的学习了一遍, 但是对第四章中的抽象表示还是有一些不明白的地方, 正好可以结合SpaceGroupIrep来对书中的内容再进行一遍学习, 相信结合这个软件包, 可以对书中的内容有进一步的理解. 首先将软件包下载, 然后复制到1$UserBaseDirectory/Applications这个目录中就可以, 记得将下载下来的软件包的名称修改为SpaceGrou...</div></div></div></a><a class="pagination-related" href="/2021/06/10/2021-06-10-TI-Hamlitonian/" title="拓扑绝缘体哈密顿量推导"><img class="cover" src="/img/defult-cover.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-10</div><div class="info-item-2">拓扑绝缘体哈密顿量推导</div></div><div class="info-2"><div class="info-item-1">这篇博客整理一下在拓扑材料Bi$_2$Se$_3$计算中,通过能带成分和对称性分析,再结合微扰论来推导低能有效模型,主要是对文章进行翻译,过程中会加一点自己的笔记.   虽然对拓扑绝缘体的材料和对应的模型都很熟了,但是始终没有掌握如何从具体的材料出发,来得到其对应的低能哈密顿量,从而可以在材料的基础上,对模型进行研究.这里就想通过精读Model Hamiltonian for topological insulators这篇文章,来掌握一下这个方法. 晶体结构首先来明确材料Bi$_2$Se$_3$的晶体结构等信息.首先在Material Project这个网站中找到这个材料,其晶体结构时菱形的,对应的空间群是$D_{3d}^5(R\bar{3}m)$,其晶体结构如下图所示,沿着$z$方向是个层状结构,每个元胞中有5个原子,  两个蓝色标记的等价Bi原子(Bi1,Bi$1^\prime $),两个绿色标记的等价Se原子(Se1,Se$1^\prime $),还有一个黄色的Se原子,它与Se1原子是不等价的,5个原子层构成一个元胞,通常被称为quintuple layer. 沿着$z...</div></div></div></a><a class="pagination-related" href="/2021/07/07/2021-07-07-GroupNote1/" title="群论学习笔记-Part1"><img class="cover" src="/assets/images/GroupTheory/cube_symmetry.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-07-07</div><div class="info-item-2">群论学习笔记-Part1</div></div><div class="info-2"><div class="info-item-1">学习群论有一段时间了, 这里想结合一些工具, 并通过一些书籍阅读来将自己所学到的内容整理一下, 同时加深一下自己对这些知识内容的理解.   基本概念共轭一个元素$a,b,c$是群$\mathcal{G}$的群元$(a,b,c)\in\mathcal{G}$,加入下列关系成立 a=c\circ b\circ c^{-1}\label{eq1}那么就说群元$a$与$b$之间是共轭的.上式中的$\quad\circ\quad$代表的是群元的操作. 类利用(\ref{eq1})的关系,将所有与群元$b$共轭的群元划分成一组,那么这一组叫做一个类. \mathcal{C}_{a}=\left\{a_{i} \mid a, b \in \mathcal{G} \wedge a_{i}=b \circ a \circ b^{-1} \wedge a \text { fixed }\right\}陪集假设$\mathcal{U}$是群$\mathcal{G}$的子群,$a$是$\mathcal{G}$中的元素,那么$a\mathcal{U}$代表元素$a$和群$\mathcal{U}$中的每一个...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">232</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yxli8023"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome to Yu-Xuan's Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%82%B9%E7%BE%A4%E6%93%8D%E4%BD%9C%E5%9F%BA%E5%87%BD%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">点群操作基函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%90%83%E8%B0%90%E5%87%BD%E6%95%B0"><span class="toc-number">1.1.</span> <span class="toc-text">球谐函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E5%87%BD%E6%95%B0%E5%AF%BB%E6%89%BE"><span class="toc-number">1.2.</span> <span class="toc-text">基函数寻找</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%82%B9%E7%BE%A4%E5%9F%BA%E5%87%BD%E6%95%B0%E5%AF%BB%E6%89%BE"><span class="toc-number">1.3.</span> <span class="toc-text">点群基函数寻找</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%99%B6%E4%BD%93%E7%82%B9%E7%BE%A4symmetry-adapted-function"><span class="toc-number">1.4.</span> <span class="toc-text">晶体点群symmetry-adapted function</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%99%B6%E4%BD%93%E5%9C%BA%E5%8A%88%E8%A3%82"><span class="toc-number">1.5.</span> <span class="toc-text">晶体场劈裂</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AC%E4%BC%97%E5%8F%B7"><span class="toc-number">2.</span> <span class="toc-text">公众号</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-number">2.0.0.1.</span> <span class="toc-text">Email</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/08/02/2025-08-02-Real-Space-Chern/" title="实空间Chern数计算(Half-BHZ模型)"><img src="/assets/images/Julia/Chern-m0.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实空间Chern数计算(Half-BHZ模型)"/></a><div class="content"><a class="title" href="/2025/08/02/2025-08-02-Real-Space-Chern/" title="实空间Chern数计算(Half-BHZ模型)">实空间Chern数计算(Half-BHZ模型)</a><time datetime="2025-08-01T16:00:00.000Z" title="发表于 2025-08-02 00:00:00">2025-08-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/22/2025-02-22-Free-SC/" title="超导序参量自洽(自由能极小值方法)"><img src="/assets/images/Julia/Bx_kbt-phase.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导序参量自洽(自由能极小值方法)"/></a><div class="content"><a class="title" href="/2025/02/22/2025-02-22-Free-SC/" title="超导序参量自洽(自由能极小值方法)">超导序参量自洽(自由能极小值方法)</a><time datetime="2025-02-21T16:00:00.000Z" title="发表于 2025-02-22 00:00:00">2025-02-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/18/2025-02-18-Julia-MPI-Set/" title="Mac上配置MPI并行Julia"><img src="/assets/images/Julia/a4.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Mac上配置MPI并行Julia"/></a><div class="content"><a class="title" href="/2025/02/18/2025-02-18-Julia-MPI-Set/" title="Mac上配置MPI并行Julia">Mac上配置MPI并行Julia</a><time datetime="2025-02-17T16:00:00.000Z" title="发表于 2025-02-18 00:00:00">2025-02-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/15/2024-12-15-Fourier-Spectrum/" title="超导序参量中的傅里叶分析"><img src="/assets/images/Mma/fft-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导序参量中的傅里叶分析"/></a><div class="content"><a class="title" href="/2024/12/15/2024-12-15-Fourier-Spectrum/" title="超导序参量中的傅里叶分析">超导序参量中的傅里叶分析</a><time datetime="2024-12-14T16:00:00.000Z" title="发表于 2024-12-15 00:00:00">2024-12-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/11/2024-12-11-Screeing/" title="库仑势以及屏蔽库伦势的一些计算"><img src="/assets/images/Mma/Vscr-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="库仑势以及屏蔽库伦势的一些计算"/></a><div class="content"><a class="title" href="/2024/12/11/2024-12-11-Screeing/" title="库仑势以及屏蔽库伦势的一些计算">库仑势以及屏蔽库伦势的一些计算</a><time datetime="2024-12-10T16:00:00.000Z" title="发表于 2024-12-11 00:00:00">2024-12-11</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  const initGitalk = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGitalk = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const gitalk = new Gitalk({
+      clientID: 'Ov23li0WvZEaIAZ7RFtH',
+      clientSecret: '03fcb77b7c28dafcdde00756e27f9b5bc76639e8',
+      repo: 'yxli8023.github.io',
+      owner: 'yxli8023',
+      admin: ['Yu-Xuan'],
+      updateCountCallback: commentCount,
+      ...option,
+      id: isShuoshuo ? path : (option && option.id) || '214ee5684f5db02ac1d97e80c0e97048'
+    })
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async(el, path) => {
+    if (typeof Gitalk === 'function') initGitalk(el, path)
+    else {
+      await btf.getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await btf.getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Gitalk' === 'Gitalk'
+      ? window.shuoshuoComment = { loadComment: loadGitalk }
+      : window.loadOtherComment = loadGitalk
+    return
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

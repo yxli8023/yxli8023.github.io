@@ -1,0 +1,423 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Yu-Xuan' Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="Yu-Xuan&#39; Blog">
+<meta property="og:url" content="http://example.com/page/11/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39; Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/logo.png">
+<meta property="article:author" content="Yu-Xuan">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/logo.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/page/11/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'medium_zoom',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#f54966","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Yu-Xuan\' Blog',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #dbeffd;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">232</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page fixed" id="page-header" style="background-image: url(/img/background.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Yu-Xuan' Blog</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">Yu-Xuan' Blog</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="post_cover left"><a href="/2021/11/21/2021-11-21-Project-edge-theory/" title="利用投影子方法求解Square lattice边界态"><img class="post-bg" src="/img/defult-cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="利用投影子方法求解Square lattice边界态"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/11/21/2021-11-21-Project-edge-theory/" title="利用投影子方法求解Square lattice边界态">利用投影子方法求解Square lattice边界态</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-11-20T16:00:00.000Z" title="发表于 2021-11-21 00:00:00">2021-11-21</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Topology/">Topology</a></span></div><div class="content">在Square lattice上求解沿着$x$或者$y$方向求解边界态的时候，还可以使用另外一种投影子的方法，这里就介绍一下这个方法。   同样考虑BHZ模型加入Zeeman场这样的一个模型      H(\mathbf{k})=(m_0-t_x\cos k_x-t_y\cos k_y)\sigma_z+\lambda_x\sin k_x\sigma_xs_z+\lambda_y\sin k_y\sigma_y+h_0s_x这里$\Gamma_1=\sigma_zs_0,\Gamma_2=\sigma_xs_z,\Gamma_3=\sigma_ys_0,\Gamma_4=\sigma_0s_x$。将$h_0s_{x}$视为微扰，求解BHZ模型对应的边界态。先沿着$y$方向取开放边界条件，进行Fourier变换到实空间  H(k_{x})=(m_0-t_x\cos k_x-t_y/2(S_{y}+S_{y}^{\dagger}))\sigma_z+\lambda_x\sin k_x\sigma_xs_z+\lambda_y/(2i)(S_{y}-S_{y}^{\dagger})\s...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2021/11/21/2021-11-21-edge-2d-ring/" title="2D 环面上的边界态理论计算"><img class="post-bg" src="/assets/images/GroupTheory/ring.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2D 环面上的边界态理论计算"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/11/21/2021-11-21-edge-2d-ring/" title="2D 环面上的边界态理论计算">2D 环面上的边界态理论计算</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-11-20T16:00:00.000Z" title="发表于 2021-11-21 00:00:00">2021-11-21</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Topology/">Topology</a></span></div><div class="content">最近在学习各种方式的边界态理论求解，这个博客就整理一下如何在一个2D的环面上求解边界态理论。   这里就采用最熟悉的BHZ模型，再考虑一项Zeeman场$h_0s_x$。      H(\mathbf{k})=(m_0-t_x\cos k_x-t_y\cos k_y)\sigma_z+\lambda_x\sin k_x\sigma_xs_z+\lambda_y\sin k_y\sigma_y+h_0s_x首先分析哈密顿量发生能带反转的位置，将哈密顿量在能带反转点$\Gamma=(0,0)$处展开  H(\mathbf{k})=(m_t-\frac{1}{2}tk_x^2-\frac{1}{2}tk_y^2)\sigma_z+\lambda k_x\sigma_xs_z+\lambda k_y\sigma_y+h_0s_x首先将问题转换到实空间$k_{x,y}\rightarrow -i\partial_{x,y}$，在实空间中，将问题转换到极坐标中进行处理  r=\sqrt{x^{2}+y^{2}},\quad\theta=\arctan\frac{y}{x},\quad x=r...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2021/08/06/2021-08-08-vasp-EIGENVAL/" title="VASP输出文件内容结构解析(未完成)"><img class="post-bg" src="/img/defult-cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="VASP输出文件内容结构解析(未完成)"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/08/06/2021-08-08-vasp-EIGENVAL/" title="VASP输出文件内容结构解析(未完成)">VASP输出文件内容结构解析(未完成)</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-08-05T16:00:00.000Z" title="发表于 2021-08-06 00:00:00">2021-08-06</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Vasp/">Vasp</a></span></div><div class="content">这里整理一下最近学习vasp的时候,对一些输出文件中的内容进行一下整理,这样可以让自己再可视化结果的时候,明白需要从哪个文件中寻找什么结果.   EIGENVAL这个文件中会输出对应$k$点的本征值,如果在KPOINTS中设置了高对称路径,那么就可以从这个数据文件中得到能带图,其数据内容如下  第一行，前三个整数无意义,第四个整数,如果是2,表示是自旋极化的计算,如果是1,表示非自旋极化的计算. 第2至5行的数据含义不大明确,可以不关心. 第6行的数据表示:第一个数表示体系总的价电子数目,第二个数表示的计算能带时总的$k$点数目,第三个数表示的是计算能带时计算了多少条能带.电子数可以通过在设置POSCAR中的原子自己算出来,而$k$点的数目也与在KPOINTS中的设置是有关系的,最后的能带数同样可以从OUTCAR中的到1cat OUTCAR | grep NBANDS 第8行的前三个数是$k$点的坐标,第四个数是相应$k$点的权重. 第9行给出的是该$k$点对应的本征值的序号(即第几条能带),及相应的本征值. 在知道了这个文件中内容结构之后,就可以通过脚本来提取数据绘制能带图.利...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2021/08/06/2021-08-06-GroupNote6/" title="群论学习笔记-Part6"><img class="post-bg" src="/assets/images/GroupTheory/cube_symmetry.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="群论学习笔记-Part6"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/08/06/2021-08-06-GroupNote6/" title="群论学习笔记-Part6">群论学习笔记-Part6</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-08-05T16:00:00.000Z" title="发表于 2021-08-06 00:00:00">2021-08-06</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Group-Theory/">Group-Theory</a></span></div><div class="content">根据不变子群的表示来得到群的表示.   诱导表示假设\mathbf{K}_1是\mathbf{G}的子群,不一定是不变子群,比如\mathbf{G}是空间群,\mathbf{K}_1是某个波矢\mathbf{k}_1的小群;将\mathbf{K}_1中的元素标记为k_\alpha(\alpha=1,\rvert\mathbf{K}_1\rvert),将群进行陪集分解 \mathbf{G}=\sum_\alpha p_\alpha\mathbf{K}_1这里的p_\alpha就是左陪集表示,\alpha=1,\cdots,\rvert\mathbf{G}\rvert/\rvert\mathbf{K}_1\rvert,这个方程表明群\mathbf{G}中的每一个元素g都可以表示为p_\lambda k_s的形式.这里的p_\lambda是分解中的一个陪集表示,而且p_\lambda.k_s\in\mathbf{K}_1都是由g唯一确定的. 群\mathbf{G}中的每个元素g都可以表示为g=k_bp_\lambda^{-1},这里的b,\lambda都是由g唯一确定的.{:.succ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2021/08/03/2021-08-03-Wannier90-Study/" title="Wannier90学习过程"><img class="post-bg" src="/img/defult-cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Wannier90学习过程"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/08/03/2021-08-03-Wannier90-Study/" title="Wannier90学习过程">Wannier90学习过程</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-08-02T16:00:00.000Z" title="发表于 2021-08-03 00:00:00">2021-08-03</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Topology/">Topology</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Tools/">Tools</a></span></div><div class="content">最近在慢慢接触第一性计算的相关内容,需要补充一些工具,这里就整理记录一下我在学习Wannier90过程中遇到的疑问和自己对其中内容的一些理解.   我在这里完全就先是重复Wannier90给出的例子,在重复的过程中通过文档边学习边理解. Gallium Arsenide(Example 1)最主要的就是输入控制文件file.win,这个文件来控制要进行什么样的计算.这里需要说明,要计算不同的性质和物理量,除了控制文件之外还需要其他的数据,这第一个实例中的文件如下  123456789101112131415161718192021222324252627282930313233343536373839404142434445! Gallium Arsenide: Tutorial Example 1 num_wann    =  4 num_iter    = 20 wannier_plot = true! SYSTEMbegin unit_cell_cartbohr-5.367  0.000  5.367 0.000  5.367  5.367-5.367  5.367  0....</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2021/08/02/2021-08-02-GroupNote5/" title="群论学习笔记-Part5"><img class="post-bg" src="/assets/images/GroupTheory/cube_symmetry.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="群论学习笔记-Part5"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/08/02/2021-08-02-GroupNote5/" title="群论学习笔记-Part5">群论学习笔记-Part5</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-08-01T16:00:00.000Z" title="发表于 2021-08-02 00:00:00">2021-08-02</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Group-Theory/">Group-Theory</a></span></div><div class="content">空间群操作对Bloch函数的影响以及空间群的表示   空间群操作对Bloch函数的作用对一个空间群操作 \{S\rvert\mathbf{w}\}\psi(\mathbf{r}=\psi(S^{-1}(\mathbf{r-w}))首先可以证明 \exp(i\mathbf{k}\cdot S\mathbf{r})=\exp(iS^{-1}\mathbf{k}\cdot\mathbf{r})这是因为 \mathbf{k}\cdot S\mathbf{r}=\sum_{ij}k_iS_{ij}r_j=\sum_{ij}S^T_{ji}k_ir_j=\sum_{ij}S^{-1}_{ji}k_ir_j因为$S$是点群操作,其表示是个正交矩阵满足$S^T=S^{-1}$,即可以得到 \{S\rvert\mathbf{w}\}\exp(i\mathbf{k}\cdot\mathbf{r})=\exp(i\mathbf{k}\cdot S^{-1}(\mathbf{r-w}))=\exp(iS\mathbf{k}\cdot(\mathbf{r-w}))这也就将本来作用在实空间中的点群操作$S$...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2021/08/01/2021-08-01-GroupNote3/" title="群论学习笔记-Part3"><img class="post-bg" src="/assets/images/GroupTheory/cube_symmetry.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="群论学习笔记-Part3"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/08/01/2021-08-01-GroupNote3/" title="群论学习笔记-Part3">群论学习笔记-Part3</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-07-31T16:00:00.000Z" title="发表于 2021-08-01 00:00:00">2021-08-01</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Group-Theory/">Group-Theory</a></span></div><div class="content">学习群论有一段时间了, 这里想结合一些工具, 并通过一些书籍阅读来将自己所学到的内容整理一下, 同时加深一下自己对这些知识内容的理解.   空间群空间群$\mathbf{G}$包含了纯平移操作$\{E\rvert\mathbf{t}\}$,这些平移操作构成了空间群$\mathbf{G}$的一个不变子群$\mathbf{T}$. \mathbf{t}=n_1\mathbf{t}_1+n_2\mathbf{t}_2+n_3\mathbf{t}_3对于实际的晶体,通常考虑周期性边界条件 \{E\rvert l_1N_1\mathbf{t}_1+l_2N_2\mathbf{t}_2+l_3N_3\mathbf{t}_3\}=\{E\rvert\mathbf{O}\}对于一个晶体,如果存在两个布拉菲点阵,那么它们之间一定是等价的,通过连续形变,一定可以将两者进行相互变换,而且在变换过程中要始终保证点阵的对称性是相同的,不能改变其对称性.下面给出14中布拉菲点阵的基矢及相关信息    每个晶系满足的对称操作如下  下面给出每个对称操作对布拉菲点阵基矢的变换关系     同样可以利用Space...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2021/08/01/2021-08-01-GroupNote4/" title="群论学习笔记-Part4"><img class="post-bg" src="/assets/images/GroupTheory/cube_symmetry.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="群论学习笔记-Part4"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/08/01/2021-08-01-GroupNote4/" title="群论学习笔记-Part4">群论学习笔记-Part4</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-07-31T16:00:00.000Z" title="发表于 2021-08-01 00:00:00">2021-08-01</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Group-Theory/">Group-Theory</a></span></div><div class="content">学习群论有一段时间了, 这里想结合一些工具, 并通过一些书籍阅读来将自己所学到的内容整理一下, 同时加深一下自己对这些知识内容的理解.   平移群不可约表示每个空间群都有一个不变子群$\mathbf{T}$,它包含了基于这个空间群的布拉菲点阵上的所有平移操作${E\rvert n_1\mathbf{t}_1+n_2\mathbf{t}_2+n_3\mathbf{t}_3}$,在采用周期性边界条件之后$0\le n_i&lt;N_i,i=1,2,3$.平移操作满足${E\rvert\mathbf{t}}{E\rvert\mathbf{s}}={E\rvert\mathbf{t+s}}$,因为采用了周期性边界条件,空间群对应的平移操作可以表示为三个阶数为$N_i$的循环群的外直积$\mathbf{T}=\mathbf{T}_1\otimes\mathbf{T}_2\otimes\mathbf{T}_3$,而对于一个循环群而言,它的表示是比较容易求解得到的.  这里平移群表示为三个方向上的平移群的外直积,可以理解为这三个方向上的平移是互不影响的,也就是说无论平移的顺序如何,单独方向上的...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2021/08/01/2021-08-01-Latex-symbol/" title="Latex中特殊符号收集"><img class="post-bg" src="/img/defult-cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Latex中特殊符号收集"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/08/01/2021-08-01-Latex-symbol/" title="Latex中特殊符号收集">Latex中特殊符号收集</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-07-31T16:00:00.000Z" title="发表于 2021-08-01 00:00:00">2021-08-01</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Latex/">Latex</a></span></div><div class="content">这里收集了一些在平时写Latex的时候可能用到的一些符号。                     公众号相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。                                                     Email         yxliphy@gmail.com                </div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2021/07/31/2021-07-31-Majorana/" title="Majorana费米子"><img class="post-bg" src="/assets/images/Majorana/m-1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Majorana费米子"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/07/31/2021-07-31-Majorana/" title="Majorana费米子">Majorana费米子</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-07-30T16:00:00.000Z" title="发表于 2021-07-31 00:00:00">2021-07-31</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Topology/">Topology</a></span></div><div class="content">这里整理一下如何从Dirac方程出发,来衍生出Majorana费米子.   Dirac方程对于一个自旋半整数的费米子,其满足Dirac方程 (i\gamma^\mu\partial_\mu-m)\psi=0这里的$\gamma$是$4\times 4$的Dirac矩阵,满足Clifford代数关系$\{\gamma^\mu,\gamma^\nu\}=2g^{\mu\nu}$,而$g^{\mu\nu}$则是Minkowski空间中的量满足$\{-1,+1,+1,+1\},m$是真空中电子的质量,光速$c=1$选择为自然单位.这里Dirac矩阵为 \gamma^0=\sigma\otimes\tau^3,\qquad\gamma^{\mu=1,2,3}=i\sigma^\mu\otimes\tau^2这里Pauli矩阵$\sigma,\tau$分别表示自旋和电荷自由度.在量子场论的语言中,如果一个场产生了一个粒子并且消灭了它的反粒子,那么这个场的复数共轭就对应着产生一个反粒子并且消灭一个粒子.也就说$\psi\neq\psi^*$,粒子和反粒子是不相同的对应. 即从Dirac方程出发...</div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/10/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/#content-inner">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/#content-inner">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/#content-inner">24</a><a class="extend next" rel="next" href="/page/12/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">232</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yxli8023"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome to Yu-Xuan's Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/08/02/2025-08-02-Real-Space-Chern/" title="实空间Chern数计算(Half-BHZ模型)"><img src="/assets/images/Julia/Chern-m0.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实空间Chern数计算(Half-BHZ模型)"/></a><div class="content"><a class="title" href="/2025/08/02/2025-08-02-Real-Space-Chern/" title="实空间Chern数计算(Half-BHZ模型)">实空间Chern数计算(Half-BHZ模型)</a><time datetime="2025-08-01T16:00:00.000Z" title="发表于 2025-08-02 00:00:00">2025-08-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/22/2025-02-22-Free-SC/" title="超导序参量自洽(自由能极小值方法)"><img src="/assets/images/Julia/Bx_kbt-phase.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导序参量自洽(自由能极小值方法)"/></a><div class="content"><a class="title" href="/2025/02/22/2025-02-22-Free-SC/" title="超导序参量自洽(自由能极小值方法)">超导序参量自洽(自由能极小值方法)</a><time datetime="2025-02-21T16:00:00.000Z" title="发表于 2025-02-22 00:00:00">2025-02-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/18/2025-02-18-Julia-MPI-Set/" title="Mac上配置MPI并行Julia"><img src="/assets/images/Julia/a4.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Mac上配置MPI并行Julia"/></a><div class="content"><a class="title" href="/2025/02/18/2025-02-18-Julia-MPI-Set/" title="Mac上配置MPI并行Julia">Mac上配置MPI并行Julia</a><time datetime="2025-02-17T16:00:00.000Z" title="发表于 2025-02-18 00:00:00">2025-02-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/15/2024-12-15-Fourier-Spectrum/" title="超导序参量中的傅里叶分析"><img src="/assets/images/Mma/fft-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导序参量中的傅里叶分析"/></a><div class="content"><a class="title" href="/2024/12/15/2024-12-15-Fourier-Spectrum/" title="超导序参量中的傅里叶分析">超导序参量中的傅里叶分析</a><time datetime="2024-12-14T16:00:00.000Z" title="发表于 2024-12-15 00:00:00">2024-12-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/11/2024-12-11-Screeing/" title="库仑势以及屏蔽库伦势的一些计算"><img src="/assets/images/Mma/Vscr-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="库仑势以及屏蔽库伦势的一些计算"/></a><div class="content"><a class="title" href="/2024/12/11/2024-12-11-Screeing/" title="库仑势以及屏蔽库伦势的一些计算">库仑势以及屏蔽库伦势的一些计算</a><time datetime="2024-12-10T16:00:00.000Z" title="发表于 2024-12-11 00:00:00">2024-12-11</time></div></div></div></div><div class="card-widget" id="card-newest-comments"><div class="item-headline"><i class="fas fa-comment-dots"></i><span>最新评论</span></div><div class="aside-list"><span>加载中...</span></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Live/"><span class="card-category-list-name">Live</span><span class="card-category-list-count">10</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Superconductor/"><span class="card-category-list-name">Superconductor</span><span class="card-category-list-count">13</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Topology/"><span class="card-category-list-name">Topology</span><span class="card-category-list-count">26</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Transport/"><span class="card-category-list-name">Transport</span><span class="card-category-list-count">2</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Code/" style="font-size: 1.43em; color: rgb(97, 85, 54);">Code</a><a href="/tags/Fortran/" style="font-size: 1.39em; color: rgb(50, 161, 117);">Fortran</a><a href="/tags/Topology/" style="font-size: 1.45em; color: rgb(140, 50, 113);">Topology</a><a href="/tags/Julia/" style="font-size: 1.41em; color: rgb(55, 128, 50);">Julia</a><a href="/tags/Python/" style="font-size: 1.39em; color: rgb(88, 119, 100);">Python</a><a href="/tags/Superconductor/" style="font-size: 1.34em; color: rgb(54, 187, 70);">Superconductor</a><a href="/tags/Others/" style="font-size: 1.24em; color: rgb(50, 90, 121);">Others</a><a href="/tags/Mathematica/" style="font-size: 1.36em; color: rgb(121, 103, 145);">Mathematica</a><a href="/tags/Many-Body/" style="font-size: 1.21em; color: rgb(111, 129, 189);">Many-Body</a><a href="/tags/Latex/" style="font-size: 1.3em; color: rgb(50, 87, 121);">Latex</a><a href="/tags/Vasp/" style="font-size: 1.38em; color: rgb(88, 82, 146);">Vasp</a><a href="/tags/Linux/" style="font-size: 1.22em; color: rgb(50, 160, 50);">Linux</a><a href="/tags/Plot/" style="font-size: 1.26em; color: rgb(118, 153, 190);">Plot</a><a href="/tags/Transport/" style="font-size: 1.15em; color: rgb(111, 50, 50);">Transport</a><a href="/tags/Floquet/" style="font-size: 1.15em; color: rgb(145, 115, 50);">Floquet</a><a href="/tags/Tools/" style="font-size: 1.28em; color: rgb(173, 165, 193);">Tools</a><a href="/tags/Experiment/" style="font-size: 1.19em; color: rgb(62, 142, 50);">Experiment</a><a href="/tags/Non-Hermitian/" style="font-size: 1.19em; color: rgb(50, 112, 95);">Non-Hermitian</a><a href="/tags/Method/" style="font-size: 1.17em; color: rgb(104, 55, 86);">Method</a><a href="/tags/Group-Theory/" style="font-size: 1.32em; color: rgb(123, 50, 174);">Group-Theory</a><a href="/tags/Field-Theory/" style="font-size: 1.17em; color: rgb(50, 50, 162);">Field-Theory</a><a href="/tags/MPI/" style="font-size: 1.24em; color: rgb(127, 65, 50);">MPI</a><a href="/tags/QuantumGeometry/" style="font-size: 1.15em; color: rgb(123, 173, 50);">QuantumGeometry</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      <a class="card-more-btn" href="/archives/"
+            title="查看更多">
+            <i class="fas fa-angle-right"></i>
+          </a>
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/08/">
+            <span class="card-archive-list-date">
+              八月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/02/">
+            <span class="card-archive-list-date">
+              二月 2025
+            </span>
+            <span class="card-archive-list-count">2</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/12/">
+            <span class="card-archive-list-date">
+              十二月 2024
+            </span>
+            <span class="card-archive-list-count">3</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/11/">
+            <span class="card-archive-list-date">
+              十一月 2024
+            </span>
+            <span class="card-archive-list-count">3</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/10/">
+            <span class="card-archive-list-date">
+              十月 2024
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/06/">
+            <span class="card-archive-list-date">
+              六月 2024
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/04/">
+            <span class="card-archive-list-date">
+              四月 2024
+            </span>
+            <span class="card-archive-list-count">3</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/03/">
+            <span class="card-archive-list-date">
+              三月 2024
+            </span>
+            <span class="card-archive-list-count">6</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">232</div></div><div class="webinfo-item"><div class="item-name">运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2018-06-24T16:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">498.7k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-08-03T12:53:44.320Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>window.typedJSFn = {
+  init: str => {
+    window.typed = new Typed('#subtitle', Object.assign({
+      strings: str,
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50,
+    }, null))
+  },
+  run: subtitleType => {
+    if (true) {
+      if (typeof Typed === 'function') {
+        subtitleType()
+      } else {
+        btf.getScript('https://cdn.jsdelivr.net/npm/typed.js/dist/typed.umd.min.js').then(subtitleType)
+      }
+    } else {
+      subtitleType()
+    }
+  },
+  processSubtitle: (content, extraContents = []) => {
+    if (true) {
+      const sub = ["生活是一场充满美景的旅程，而不是一场只有优胜者才能抵达终点的竞赛"].slice()
+
+      if (extraContents.length > 0) {
+        sub.unshift(...extraContents)
+      }
+
+      if (typeof content === 'string') {
+        sub.unshift(content)
+      } else if (Array.isArray(content)) {
+        sub.unshift(...content)
+      }
+
+      sub.length > 0 && typedJSFn.init(sub)
+    } else {
+      document.getElementById('subtitle').textContent = typeof content === 'string' ? content :
+        (Array.isArray(content) && content.length > 0 ? content[0] : '')
+    }
+  }
+}
+btf.addGlobalFn('pjaxSendOnce', () => { typed.destroy() }, 'typedDestroy')
+</script><script>function subtitleType () {
+  typedJSFn.processSubtitle(["生活是一场充满美景的旅程，而不是一场只有优胜者才能抵达终点的竞赛"])
+}
+typedJSFn.run(subtitleType)</script></div><script>window.newestComments = {
+  changeContent: content => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<code>.*?<\/code>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g, "") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0, 150) + '...'
+    }
+    return content
+  },
+
+  generateHtml: (array, ele) => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class="aside-list-item">'
+
+        if (true && array[i].avatar) {
+          const imgAttr = 'src'
+          const lazyloadNative = ''
+          result += `<a href="${array[i].url}" class="thumbnail"><img ${imgAttr}="${array[i].avatar}" alt="${array[i].nick}" ${lazyloadNative}></a>`
+        }
+
+        result += `<div class="content">
+        <a class="comment" href="${array[i].url}" title="${array[i].content}">${array[i].content}</a>
+        <div class="name"><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '暂无评论'
+    }
+
+    ele.innerHTML = result
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh(ele)
+  },
+
+  newestCommentInit: (name, getComment) => {
+    const $dom = document.querySelector('#card-newest-comments .aside-list')
+    if ($dom) {
+      const data = btf.saveToLocal.get(name)
+      if (data) {
+        newestComments.generateHtml(JSON.parse(data), $dom)
+      } else {
+        getComment($dom)
+      }
+    }
+  },
+
+  run: (name, getComment) => {
+    newestComments.newestCommentInit(name, getComment)
+    btf.addGlobalFn('pjaxComplete', () => newestComments.newestCommentInit(name, getComment), name)
+  }
+}</script><script>window.addEventListener('load', () => {
+  const keyName = 'github-newest-comments'
+  const { changeContent, generateHtml, run } = window.newestComments
+
+  const findTrueUrl = (array, ele) => {
+    Promise.all(array.map(item =>
+      fetch(item.url).then(resp => resp.json()).then(data => {
+        let urlArray = data.body ? data.body.match(/(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?/ig) : []
+        if (!Array.isArray(urlArray) || urlArray.length === 0) {
+          urlArray = [`${data.html_url}`]
+        }
+        if (data.user.login === 'utterances-bot') {
+          return urlArray.pop()
+        } else {
+          return urlArray.shift()
+        }
+      })
+    )).then(res => {
+        array = array.map((i,index)=> {
+          return {
+            ...i,
+            url: res[index]
+          }
+        })
+
+        btf.saveToLocal.set(keyName, JSON.stringify(array), 10/(60*24))
+        generateHtml(array, ele)
+    });
+  }
+
+  const getComment = ele => {
+    fetch('https://api.github.com/repos/yxli8023/yxli8023.github.io/issues/comments?sort=updated&direction=desc&per_page=6&page=1',{
+      "headers": {
+        Accept: 'application/vnd.github.v3.html+json'
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        const githubArray = data.map(item => {
+          return {
+            'avatar': item.user.avatar_url,
+            'content': changeContent(item.body_html || item.body),
+            'nick': item.user.login,
+            'url': item.issue_url,
+            'date': item.updated_at
+          }
+        })
+        findTrueUrl(githubArray, ele)
+      }).catch(e => {
+        console.error(e)
+        ele.textContent= "无法获取评论，请确认相关配置是否正确"
+      })
+  }
+  run(keyName, getComment)
+})</script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

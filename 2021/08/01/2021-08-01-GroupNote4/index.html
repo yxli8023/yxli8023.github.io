@@ -1,0 +1,377 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>群论学习笔记-Part4 | Yu-Xuan' Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="学习群论有一段时间了, 这里想结合一些工具, 并通过一些书籍阅读来将自己所学到的内容整理一下, 同时加深一下自己对这些知识内容的理解.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="群论学习笔记-Part4">
+<meta property="og:url" content="http://example.com/2021/08/01/2021-08-01-GroupNote4/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39; Blog">
+<meta property="og:description" content="学习群论有一段时间了, 这里想结合一些工具, 并通过一些书籍阅读来将自己所学到的内容整理一下, 同时加深一下自己对这些知识内容的理解.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/assets/images/GroupTheory/cube_symmetry.jpg">
+<meta property="article:published_time" content="2021-07-31T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-08-03T08:06:49.570Z">
+<meta property="article:author" content="Yu-Xuan">
+<meta property="article:tag" content="Group-Theory">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/images/GroupTheory/cube_symmetry.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "群论学习笔记-Part4",
+  "url": "http://example.com/2021/08/01/2021-08-01-GroupNote4/",
+  "image": "http://example.com/assets/images/GroupTheory/cube_symmetry.jpg",
+  "datePublished": "2021-07-31T16:00:00.000Z",
+  "dateModified": "2025-08-03T08:06:49.570Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yu-Xuan",
+      "url": "http://example.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/08/01/2021-08-01-GroupNote4/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'medium_zoom',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#f54966","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '群论学习笔记-Part4',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #dbeffd;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">232</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/assets/images/GroupTheory/cube_symmetry.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Yu-Xuan' Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">群论学习笔记-Part4</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">群论学习笔记-Part4</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-07-31T16:00:00.000Z" title="发表于 2021-08-01 00:00:00">2021-08-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-08-03T08:06:49.570Z" title="更新于 2025-08-03 16:06:49">2025-08-03</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">3.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>14分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/2021/08/01/2021-08-01-GroupNote4/#post-comment"><span class="gitalk-comment-count"><i class="fa-solid fa-spinner fa-spin"></i></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;It has been&quot;,&quot;messageNext&quot;:&quot;days since the last update, the content of the article may be outdated.&quot;,&quot;postUpdate&quot;:&quot;2025-08-03 16:06:49&quot;}" hidden></div><div class="note blue no-icon flat"><p>学习群论有一段时间了, 这里想结合一些工具, 并通过一些书籍阅读来将自己所学到的内容整理一下, 同时加深一下自己对这些知识内容的理解.</p>
+</div>
+<span id="more"></span>
+<h1 id="平移群不可约表示"><a href="#平移群不可约表示" class="headerlink" title="平移群不可约表示"></a>平移群不可约表示</h1><p>每个空间群都有一个不变子群$\mathbf{T}$,它包含了基于这个空间群的布拉菲点阵上的所有平移操作${E\rvert n_1\mathbf{t}_1+n_2\mathbf{t}_2+n_3\mathbf{t}_3}$,在采用周期性边界条件之后$0\le n_i&lt;N_i,i=1,2,3$.平移操作满足${E\rvert\mathbf{t}}{E\rvert\mathbf{s}}={E\rvert\mathbf{t+s}}$,因为采用了周期性边界条件,空间群对应的平移操作可以表示为三个阶数为$N_i$的循环群的外直积$\mathbf{T}=\mathbf{T}_1\otimes\mathbf{T}_2\otimes\mathbf{T}_3$,而对于一个循环群而言,它的表示是比较容易求解得到的.</p>
+<blockquote>
+<p>这里平移群表示为三个方向上的平移群的外直积,可以理解为这三个方向上的平移是互不影响的,也就是说无论平移的顺序如何,单独方向上的平移操作总是不会受到其他两个方向上操作的影响.</p>
+</blockquote>
+<p>对于平移群$\mathbf{T}_1$的不可约表示$\Delta$是$N_1$个数,可以通过$p_1(0\leq p_1\leq N_1)$来标记</p>
+<script type="math/tex; mode=display">\Delta^{p_1}(\{E\rvert n_1\mathbf{t}_1\})=\exp(-2\pi in_1p_1/N_1)</script><p>通过直积表示,就可以轻易的得到平移群$\mathbf{T}$的不可约表示,它们都是1维的,而且是$N_1N_2N_3$个数,标记$k_i=p_i/N_i$并选择$\mathbf{k}=(k_1,k_2,k_3)$作为倒空间中的矢量</p>
+<script type="math/tex; mode=display">\mathbf{k}=k_1\mathbf{g}_1+k_2\mathbf{g}_2+k_3\mathbf{g}_3\label{eq1}</script><p>则对应的$\mathbf{T}$的不可约表示为</p>
+<script type="math/tex; mode=display">\Delta^\mathbf{k}[\{E\rvert n_1\mathbf{t}_1+n_2\mathbf{t}_2+n_3\mathbf{t}_3\}]=\exp[-i\mathbf{k}\cdot(n_1\mathbf{t}_1+n_2\mathbf{t}_2+n_3\mathbf{t}_3)]</script><p>如果两个矢量之间是等价的或者相差一个倒格矢$\mathbf{k}^{‘}=\mathbf{k}+\mathbf{g}$,由于$\exp(i\mathbf{g}\cdot\mathbf{t})=1$,可以得到</p>
+<script type="math/tex; mode=display">\Delta^{\mathbf{k}^{'}}(\mathbf{t})=\exp[-i(\mathbf{k+g}\cdot\mathbf{t})]=\Delta^\mathbf{k}(\mathbf{t})</script><p>所以可以取值的$\mathbf{k}$值共有$N_1N_2N_3$个,它们总是分布在布里渊区内,因此平移群$\mathbf{T}$的所有不可约表示就是定义在布里渊区上的一系列$\mathbf{k}$点.在倒空间体积为$8\pi^3/V$的时候,共有$N_1N_2N_3$个$\mathbf{k}$点分布在其中,那么密度$n(\mathbf{k})$就是$N_1N_2N_3V/8\pi^3=W/8\pi^3$,这里的$W$是实空间中晶体的体积,$V$是晶体元胞的体积.</p>
+<script type="math/tex; mode=display">n(\mathbf{k})=\frac{W}{8\pi^3}</script><p>对于表示$\Delta^\mathbf{k}$的基函数可以选择平面波$\exp(i\mathbf{k}\cdot\mathbf{r})$</p>
+<script type="math/tex; mode=display">\begin{equation}\{E\rvert\mathbf{t}\}\exp(i\mathbf{k}\cdot\mathbf{r})=\exp(i\mathbf{k}\cdot\mathbf{r-t})=\exp(-i\mathbf{k}\cdot\mathbf{t})\exp(i\mathbf{k}\cdot\mathbf{r})=\Delta^\mathbf{k}\{E\rvert\mathbf{t}\}\exp(i\mathbf{k}\cdot\mathbf{r})\end{equation}</script><p>除了利用平面波之外,可以选择具有下列形式的函数</p>
+<script type="math/tex; mode=display">\Psi_\mathbf{k}(\mathbf{r})=\exp(i\mathbf{k}\cdot\mathbf{r})u_\mathbf{k}(\mathbf{r}),\quad u_\mathbf{k}(\mathbf{r})=u_\mathbf{k}(\mathbf{r+t})\text{ for all }\mathbf{t}</script><p><strong>Bloch定理:</strong>在周期势场$V$中运动的粒子或者准粒子,其波函数具有$\mathbf{T}$定义的周期性,可以被写作$\Psi_\mathbf{k}(\mathbf{r})=\exp(i\mathbf{k}\cdot\mathbf{r})u_\mathbf{k}(\mathbf{r})$,这里$u_\mathbf{k}(\mathbf{r})$具有和$V$相同的周期性,此处$\mathbf{k}$的取值为(\ref{eq1}).<br>{:.info}</p>
+<h1 id="三维空间230个空间群分类"><a href="#三维空间230个空间群分类" class="headerlink" title="三维空间230个空间群分类"></a>三维空间230个空间群分类</h1><p>一个空间群有三维的纯平移子群$\mathbf{T}$,它定义了布拉菲点阵,其满足$\mathbf{T}$的所有操作,但是布拉菲点阵同样在点群$\mathbf{P}$的操作下也满足对称性.如果$\mathbf{\Gamma}$是布拉菲点阵的完整对称群,那么$\mathbf{\Gamma}=\mathbf{T}\wedge\mathbf{P}$,是平移群和点群的半直积.$\mathbf{P}$决定了$\mathbf{G}$的晶体系统.$\mathbf{\Gamma}$自己是个空间群.如果$\mathbf{G}$是个点式空间群它要么与$\mathbf{\Gamma}$一致要么是$\mathbf{\Gamma}$的子群,对于73个点式空间群,此时有$\mathbf{G}=\mathbf{T}\wedge\mathbf{Q}$,这里$\mathbf{Q}$是$\mathbf{P}$的晶系中的一个点群,它决定了空间群$\mathbf{G}$的晶体的点群.</p>
+<p>对于剩下的153个非点式空间群,将$\mathbf{Q}$中的某些元素替换成螺旋轴操作或者滑移反射,此时的$\mathbf{Q}$不再构成一个群,因此空间群也不能写作$\mathbf{\Gamma}=\mathbf{T}\wedge\mathbf{Q}$.</p>
+<p>如果${R\rvert\mathbf{v}}$是$\mathbf{G}$中的元素,那么它的逆${R^{-1}\rvert-R^{-1}\mathbf{v}}$也一定是群中的元素,假如${R\rvert\mathbf{w}}$也是群中的元素,那么</p>
+<script type="math/tex; mode=display">\{R^{-1}\rvert-R^{-1}\mathbf{v}\}\{R\rvert\mathbf{w}\}=\{E\rvert R^{-1}\mathbf{w}-R^{-1}\mathbf{v}\}</script><p>可以看到此时它必定是平移群$\mathbf{T}$的群元,因为其旋转操作部分为单位元$E$,群$\mathbf{G}$对应的布拉菲点阵的群对称点群为$\mathbf{P}$其必然包含点群操作$R$,如果$R^{-1}(\mathbf{w-v})$是$\mathbf{\Gamma}$的平移操作那么$\mathbf{w-v}$也是,这也就意味着任何一个与点群操作相关联的平移操作时平移操作群$\mathbf{T}$中一个分立的元素,因此可以将空间群$G$分解成平移群$\mathbf{T}$的左陪集表示</p>
+<script type="math/tex; mode=display">\mathbf{G}=\{R_1\rvert\mathbf{v}_1\}\mathbf{T}+\{R_2\rvert\mathbf{v}_2\}\mathbf{T}+\cdots+\{R_h\rvert\mathbf{v}_h\}\mathbf{T}</script><p>对于点式空间群,所有的$\mathbf{v}_i=0$,但是对于非点式空间群,存在$\mathbf{v}_i\neq 0$.</p>
+<p>$\mathbf{Q}$包含了陪集表示${R_i\rvert\mathbf{v}_i}$,h个元素$R_1,R_2,\cdots,R_h$构成了一个群$\mathbf{F}$,它与空间群$\mathbf{G}$是同形的,并且它也是$\mathbf{P}$的子群.对于点式空间群$\mathbf{F}$与$\mathbf{Q}$是一致的,h叫做群$\mathbf{G}$的宏观阶数(macroscopic order),它是群$\mathbf{T}$在$\mathbf{G}$中的index.</p>
+<blockquote>
+<p>index$\rightarrow\frac{\rvert\mathbf{G}\rvert}{\rvert\mathbf{T}\rvert}$对应的正是空间群的阶数与不变子群阶数的商.</p>
+</blockquote>
+<p>对于非点式空间群,在进行陪集分解的时候,在空间群操作的限制下非零矢量$\mathbf{v}$并不是任意的,如果点群操作$R$的阶数为$n$,那么${R\rvert\mathbf{v}}^n$也一定属于平移操作$\mathbf{T}$,也就是说</p>
+<script type="math/tex; mode=display">\mathbf{v}+R\mathbf{v}+\cdots+R^{n-1}\mathbf{v}</script><p>必然是个平移操作,这也就限制了非点式空间群的数目是157个.</p>
+<p><strong>$\mathbf{T}$是$\mathbf{G}$的不变子群:</strong>如果${R\rvert\mathbf{v}}$是空间群$\mathbf{G}$的一个元素,${E\rvert\mathbf{t}}$是平移群$\mathbf{T}$的一个元素,那么满足</p>
+<script type="math/tex; mode=display">{R\rvert\mathbf{v}}{E\rvert\mathbf{t}}{R\rvert\mathbf{v}}^{-1}={R\rvert\mathbf{v}+R\mathbf{t}}{R^{-1}\rvert-R^{-1}\mathbf{v}}={E\rvert R\mathbf{t}}</script><p>它是平移群的一个元素,因为$R\mathbf{t}$属于$\mathbf{\Gamma}$.</p>
+<h2 id="examplex"><a href="#examplex" class="headerlink" title="examplex"></a>examplex</h2><p>下面给出一个例子,如何通过一些等价的位置来确定空间群对应的操作算符的形式;\quad 通常会给出一般点和高对称点对应的等价位置.</p>
+<p><img src="/assets/images/GroupTheory/4-1.png" alt="png"></p>
+<p><img src="/assets/images/GroupTheory/4-2.png" alt="png"></p>
+<p><img src="/assets/images/GroupTheory/4-3.png" alt="png"></p>
+<p>在(a)中的第一行,给出了空间群$Pmmm(D_{2h}^{13})$元胞中一般点$(x,y,z)$对应的等价位置,后面同样给出了高对称点(线)对应的等价位置,但这里先不考虑高对称点(线)的情况.对于一个一般的点$(x,y,z)$经过空间群操作${R_1\rvert\mathbf{v}_1}$之后可以有</p>
+<script type="math/tex; mode=display">\mathbf{r}_1^{'}=R_1\mathbf{r}_1+\mathbf{v}_1</script><p>从上面的表中可以看到一般点的等价位置都有</p>
+<script type="math/tex; mode=display">\begin{equation}\begin{aligned}&x,y,z;\quad \bar{x},\bar{y},z;\quad \bar{x},y,z;\quad x,\bar{y},z;\quad \\ &\frac{1}{2}-x,\frac{1}{2}-y,\bar{z};\quad \frac{1}{2}-x,\frac{1}{2}+y,\bar{z};\quad \frac{1}{2}+x,\frac{1}{2}+y,\bar{z};\quad \frac{1}{2}+x,\frac{1}{2}-y,\bar{z};\end{aligned}\end{equation}</script><p>这里的分数坐标时相对于元胞的边长.首先根据$\mathbf{r}^{‘}$来确定点群操作$R_1$,通过查表</p>
+<p><img src="/assets/images/GroupTheory/4-4.png" alt="png"></p>
+<p>可以得到</p>
+<script type="math/tex; mode=display">\begin{equation}\begin{aligned}&E:xyz;\quad C_{2z}:\bar{x}\bar{y}z;\quad\sigma_x:x\bar{y}z;\quad\sigma_y:x\bar{y}z;\\ &I:\bar{x}\bar{y}\bar{z};\quad C_{2y}:\bar{x}y\bar{z};\quad\sigma_z:xy\bar{z};\quad C_{2x}:x\bar{y}\bar{z};\end{aligned}\end{equation}</script><p>首先确定了点群部分的操作,对于primitive orthorhombic的布拉菲点阵,元胞基矢为</p>
+<script type="math/tex; mode=display">\mathbf{t}_1=(0,-b,0),\mathbf{t}_2=(a,0,0)</script><p>上面后四个操作对应的平移矢量为$-\frac{1}{2}\mathbf{t}_1+\frac{1}{2}\mathbf{t}_2$,对基矢加上一个整数倍可以得到$\mathbf{v}_1=+\frac{1}{2}\mathbf{t}_1+\frac{1}{2}\mathbf{t}_2$,从而可以得到空间群$Pmmm(D_{2h}^{13})$的元素为</p>
+<script type="math/tex; mode=display">\begin{equation}\begin{aligned}&\{E\rvert 000\};\quad \{C_{2z}\rvert 000\};\quad\{\sigma_x\rvert 000\};\quad\{\sigma_y\rvert 000\};\\ &\{I\rvert\frac{1}{2}\frac{1}{2}0\};\quad\{C_{2y}\rvert\frac{1}{2}\frac{1}{2}0\};\quad\{\sigma_z\rvert\frac{1}{2}\frac{1}{2}0\};\quad\{C_{2x}\rvert\frac{1}{2}\frac{1}{2}0\}\end{aligned}\end{equation}</script><p>在列举空间群的元素时,并不需要将所有的都罗列出来,只需要将群的生成元列举即可,空间群$Pmmm(D_{2h}^{13})$的生成元为</p>
+<script type="math/tex; mode=display">\{C_{2x}\rvert\frac{1}{2}\frac{1}{2}0\},\quad \{C_{2y}\rvert\frac{1}{2}\frac{1}{2}0\},\quad \{I\rvert\frac{1}{2}\frac{1}{2}0\}</script><h2 id="原点平移"><a href="#原点平移" class="headerlink" title="原点平移"></a>原点平移</h2><p>下面来看一下原点平移对空间群操作算符的影响,假设$\mathbf{r}^{‘},\mathbf{r}$分别是新旧坐标位置,在旧坐标系$Ox_1y_1z_1$中操作算符维${R_1\rvert\mathbf{r}_1}$,在新的坐标系$Ox_2y_2z_2$相对旧坐标系有一个平移操作$+\mathbf{t}_0$,</p>
+<p><img src="/assets/images/GroupTheory/4-5.png" alt="png"></p>
+<p>从图中可以看到</p>
+<script type="math/tex; mode=display">\mathbf{r}_1=\mathbf{t}_0+\mathbf{r}_2,\quad\mathbf{t}_1^{'}=\mathbf{t}_0+\mathbf{r}_2^{'}</script><p>当${R_1\rvert\mathbf{v}_1}$作用在$Ox_1y_1z_1$中的时候</p>
+<script type="math/tex; mode=display">\mathbf{r}_1^{'}=R_1\mathbf{r}_1+\mathbf{v}_1</script><p>在坐标系$Ox_2y_2z_2$中的操作为${R_2\rvert\mathbf{v}_2}$满足</p>
+<script type="math/tex; mode=display">\mathbf{r}_2^{'}=R_2\mathbf{r}_2+\mathbf{v}_2</script><p>利用上面的关系来决定在${R_1\rvert\mathbf{v}_1}$下${R_2\rvert\mathbf{v}_2}$是如何变化的</p>
+<script type="math/tex; mode=display">\begin{equation}\begin{aligned}R_2\mathbf{r}_2+\mathbf{v}_2&=\mathbf{r}_2^{'}\\&=\mathbf{r}_1^{'}-\mathbf{t}_0\\&=R_1\mathbf{r}_1+\mathbf{v}_1-\mathbf{t}_0\\&=R_1(\mathbf{t}_0+\mathbf{r}_2)+\mathbf{v}_1-\mathbf{t}_0\\&=R_1\mathbf{r}_2+\mathbf{v}_1+R_1\mathbf{t}_1-\mathbf{t}_0\end{aligned}\end{equation}</script><script type="math/tex; mode=display">R_2\mathbf{r}_2+\mathbf{v}_2=R_1\mathbf{r}_2+\mathbf{v}_1+R_1\mathbf{t}_0-\mathbf{t}_0</script><p>因此在坐标平移之后,对空间群操作的影响就是</p>
+<script type="math/tex; mode=display">R_2=R_1,\quad\mathbf{v}_2=\mathbf{v}_1+R_1\mathbf{t}_0-\mathbf{t}_0</script><script type="math/tex; mode=display">\{R_2\rvert\mathbf{v}_2\}=\{R_1\rvert\mathbf{v}_1+R_1\mathbf{t}_0-\mathbf{t}_0\}</script><p>在前面的Fig13.7中就给出了空间群$Pmmm(D_{2h}^{13})$在两种不同的坐标下的操作,其对应的平移矢量为</p>
+<script type="math/tex; mode=display">\mathbf{t}_0=\frac{1}{4}\mathbf{t}_1-\frac{1}{4}\mathbf{t}_2</script><p>下面给出230个空间群对应的生成元及其符号标记</p>
+<p><img src="/assets/images/GroupTheory/4-6.png" alt="png"></p>
+<p><img src="/assets/images/GroupTheory/4-7.png" alt="png"></p>
+<p><img src="/assets/images/GroupTheory/4-8.png" alt="png"></p>
+<p><img src="/assets/images/GroupTheory/4-9.png" alt="png"></p>
+<p><img src="/assets/images/GroupTheory/4-10.png" alt="png"></p>
+<p><img src="/assets/images/GroupTheory/4-11.png" alt="png"></p>
+<p><img src="/assets/images/GroupTheory/4-12.png" alt="png"></p>
+<p><img src="/assets/images/GroupTheory/4-13.png" alt="png"></p>
+<p><img src="/assets/images/GroupTheory/4-14.png" alt="png"></p>
+<p><img src="/assets/images/GroupTheory/4-15.png" alt="png"></p>
+<p>下面整理一下利用等价位置来得到对称操作的几何描述,${R_i\rvert\mathbf{r}_i}$对一般点的作用为</p>
+<script type="math/tex; mode=display">x^{'},y^{'},z^{'}=r_1+a_{11}x+a_{12}y+a_{13}z,r_2+a_{21}x+a_{22}y+a_{23}z,r_3+a_{31}x+a_{32}y+a_{33}z</script><p>这里的$r_i$是分数,$a_{ij}=+1,-1,0$.</p>
+<p>对于空间群$Pmmm(D_{2h}^{13})$可以发现在等价位置中$\frac{1}{2}+x,\frac{1}{2}-y,\bar{z}$意味着$a_{11}=+1,a_{22}=a_{33}=-1,r_1=r_2=\frac{1}{2},r_3=0$,剩余的$a_{ij}=0$,可以将其利用矩阵表示为</p>
+<script type="math/tex; mode=display">\begin{equation}\mathbf{M}(\{R_i\rvert\mathbf{r}_i\})=\left(\begin{array}{cccc}a_{11}&a_{12}&a_{13}&r_1\\a_{21}&a_{22}&a_{23}&r_2\\a_{31}&a_{32}&a_{33}&r_3\\0&0&0&1\end{array}\right)=(\mathbf{A},\mathbf{r}_i)\end{equation}</script><p>这里矩阵$\mathbf{M}$作用在矢量$(x,y,z,1)^T$上,从Table1.4中可以得到所有的系数$a_{ij}$,从而也可以得到空间群的点群操作$R$,矩阵$\mathbf{A}$的特征标$\chi(\mathbf{A})$以及行列式$\det(\mathbf{A})$也可以由下表得出,这里的$C_n$表示$2\pi/n$的转动操作</p>
+<p><img src="/assets/images/GroupTheory/4-16.png" alt="png"></p>
+<p>如果$\det(\mathbf{A})=+1$那么这个对称元素要么是纯转动,要么是一个螺旋轴操作,下面就是来确定这个转动轴的方向或者螺旋轴矢量$\mathbf{w}$.如果$\mathbf{q}$是一个穿过原点且与螺旋轴操作轴平行的矢量那么其满足$\mathbf{Aq}=\mathbf{q}$,它确定了螺旋轴的方向,可以进行求解</p>
+<script type="math/tex; mode=display">(\mathbf{A}-E)\mathbf{q}=0</script><p>为了确定螺旋轴矢量$\mathbf{w}$,对于螺旋轴后操作有</p>
+<script type="math/tex; mode=display">\{R_i\rvert\mathbf{r}_i\}\mathbf{q}=\mathbf{Aq}+\mathbf{r}_i=E\mathbf{q}+\mathbf{r}_i=\mathbf{q}+\mathbf{r}_i</script><p>从而得到</p>
+<script type="math/tex; mode=display">\{R_i\rvert\mathbf{r}_i\}^2\mathbf{q}=\mathbf{q}+\mathbf{r}_i+\mathbf{Ar_i}</script><script type="math/tex; mode=display">\{R_i\rvert\mathbf{r}_i\}^n\mathbf{q}=\mathbf{q}+\mathbf{r}_i+\mathbf{Ar_i}+\mathbf{A^2r_i}+\cdots+\mathbf{A^{n-1}r_i}=\mathbf{q}+n\mathbf{w}</script><p>因为在作用$n$次螺旋操作之后其等价于一个平移操作$n\mathbf{w}$.将上式重新组织就可以得到</p>
+<script type="math/tex; mode=display">\mathbf{w}=(1/n)(\mathbf{E}+\mathbf{A}+\mathbf{A^2}+\cdots++\mathbf{A^{n-1}})\mathbf{r}_i</script><p>螺旋轴的方向自然可以通过$\mathbf{w}$来得到.</p>
+<h1 id="公众号"><a href="#公众号" class="headerlink" title="公众号"></a>公众号</h1><div class="note blue no-icon flat"><p>相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。</p>
+</div>
+<table>
+  <tr>
+    <!-- 图片单元格 -->
+    <td style="width: 300px; height: 300px; text-align: center; vertical-align: middle; border: 1px solid #ccc; border-radius: 8px;">
+      <img src="/assets/images/qrcode.jpg" alt="QR Code" width="300px" height="300px" style="border-radius: 8px;">
+    </td>
+    <!-- 文字单元格 -->
+    <td style="width: 300px; height: 300px; text-align: center; vertical-align: middle; padding-left: 20px; border: 1px solid #ccc; border-radius: 8px;">
+      <div>
+        <h4 style="margin: 0;">Email</h4>
+        <p style="margin: 5px 0;">yxliphy@gmail.com</p>
+      </div>
+    </td>
+  </tr>
+</table></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Yu-Xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2021/08/01/2021-08-01-GroupNote4/">http://example.com/2021/08/01/2021-08-01-GroupNote4/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Yu-Xuan' Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Group-Theory/">Group-Theory</a></div><div class="post-share"><div class="social-share" data-image="/assets/images/GroupTheory/cube_symmetry.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg"/></a><div class="post-qr-code-desc"></div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg"/></a><div class="post-qr-code-desc"></div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2021/08/01/2021-08-01-Latex-symbol/" title="Latex中特殊符号收集"><img class="cover" src="/img/defult-cover.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Latex中特殊符号收集</div></div><div class="info-2"><div class="info-item-1">这里收集了一些在平时写Latex的时候可能用到的一些符号。                     公众号相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。                                                     Email         yxliphy@gmail.com                </div></div></div></a><a class="pagination-related" href="/2021/08/01/2021-08-01-GroupNote3/" title="群论学习笔记-Part3"><img class="cover" src="/assets/images/GroupTheory/cube_symmetry.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">群论学习笔记-Part3</div></div><div class="info-2"><div class="info-item-1">学习群论有一段时间了, 这里想结合一些工具, 并通过一些书籍阅读来将自己所学到的内容整理一下, 同时加深一下自己对这些知识内容的理解.   空间群空间群$\mathbf{G}$包含了纯平移操作$\{E\rvert\mathbf{t}\}$,这些平移操作构成了空间群$\mathbf{G}$的一个不变子群$\mathbf{T}$. \mathbf{t}=n_1\mathbf{t}_1+n_2\mathbf{t}_2+n_3\mathbf{t}_3对于实际的晶体,通常考虑周期性边界条件 \{E\rvert l_1N_1\mathbf{t}_1+l_2N_2\mathbf{t}_2+l_3N_3\mathbf{t}_3\}=\{E\rvert\mathbf{O}\}对于一个晶体,如果存在两个布拉菲点阵,那么它们之间一定是等价的,通过连续形变,一定可以将两者进行相互变换,而且在变换过程中要始终保证点阵的对称性是相同的,不能改变其对称性.下面给出14中布拉菲点阵的基矢及相关信息    每个晶系满足的对称操作如下  下面给出每个对称操作对布拉菲点阵基矢的变换关系     同样可以利用Space...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2021/04/19/2021-04-19-SpacGroup/" title="空间群学习工具SpaceGroupIrep"><img class="cover" src="/img/defult-cover2.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-19</div><div class="info-item-2">空间群学习工具SpaceGroupIrep</div></div><div class="info-2"><div class="info-item-1">这里整理一下学习空间群时候的一个Mathematica软件包SpaceGroupIrep,在学习THE MATHEMATICAL THEORY OF SYMMETRY IN SOLIDS这本书中的内容的时候, 结合这个工具可以对书中的内容有一个更深入的理解. 这个软件包也是基于这本书中的内容编写的, 而且可以对书中的一些表进行快速查询, 结合起来对学习空间群相关的知识大有帮助.   前言自己最近一段时间在学习THE MATHEMATICAL THEORY OF SYMMETRY IN SOLIDS(Representation theory for point groups and space groups)这本书, 虽然认真的学习了一遍, 但是对第四章中的抽象表示还是有一些不明白的地方, 正好可以结合SpaceGroupIrep来对书中的内容再进行一遍学习, 相信结合这个软件包, 可以对书中的内容有进一步的理解. 首先将软件包下载, 然后复制到1$UserBaseDirectory/Applications这个目录中就可以, 记得将下载下来的软件包的名称修改为SpaceGrou...</div></div></div></a><a class="pagination-related" href="/2021/06/10/2021-06-10-TI-Hamlitonian/" title="拓扑绝缘体哈密顿量推导"><img class="cover" src="/img/defult-cover.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-10</div><div class="info-item-2">拓扑绝缘体哈密顿量推导</div></div><div class="info-2"><div class="info-item-1">这篇博客整理一下在拓扑材料Bi$_2$Se$_3$计算中,通过能带成分和对称性分析,再结合微扰论来推导低能有效模型,主要是对文章进行翻译,过程中会加一点自己的笔记.   虽然对拓扑绝缘体的材料和对应的模型都很熟了,但是始终没有掌握如何从具体的材料出发,来得到其对应的低能哈密顿量,从而可以在材料的基础上,对模型进行研究.这里就想通过精读Model Hamiltonian for topological insulators这篇文章,来掌握一下这个方法. 晶体结构首先来明确材料Bi$_2$Se$_3$的晶体结构等信息.首先在Material Project这个网站中找到这个材料,其晶体结构时菱形的,对应的空间群是$D_{3d}^5(R\bar{3}m)$,其晶体结构如下图所示,沿着$z$方向是个层状结构,每个元胞中有5个原子,  两个蓝色标记的等价Bi原子(Bi1,Bi$1^\prime $),两个绿色标记的等价Se原子(Se1,Se$1^\prime $),还有一个黄色的Se原子,它与Se1原子是不等价的,5个原子层构成一个元胞,通常被称为quintuple layer. 沿着$z...</div></div></div></a><a class="pagination-related" href="/2021/07/07/2021-07-07-GroupNote1/" title="群论学习笔记-Part1"><img class="cover" src="/assets/images/GroupTheory/cube_symmetry.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-07-07</div><div class="info-item-2">群论学习笔记-Part1</div></div><div class="info-2"><div class="info-item-1">学习群论有一段时间了, 这里想结合一些工具, 并通过一些书籍阅读来将自己所学到的内容整理一下, 同时加深一下自己对这些知识内容的理解.   基本概念共轭一个元素$a,b,c$是群$\mathcal{G}$的群元$(a,b,c)\in\mathcal{G}$,加入下列关系成立 a=c\circ b\circ c^{-1}\label{eq1}那么就说群元$a$与$b$之间是共轭的.上式中的$\quad\circ\quad$代表的是群元的操作. 类利用(\ref{eq1})的关系,将所有与群元$b$共轭的群元划分成一组,那么这一组叫做一个类. \mathcal{C}_{a}=\left\{a_{i} \mid a, b \in \mathcal{G} \wedge a_{i}=b \circ a \circ b^{-1} \wedge a \text { fixed }\right\}陪集假设$\mathcal{U}$是群$\mathcal{G}$的子群,$a$是$\mathcal{G}$中的元素,那么$a\mathcal{U}$代表元素$a$和群$\mathcal{U}$中的每一个...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">232</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yxli8023"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome to Yu-Xuan's Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B9%B3%E7%A7%BB%E7%BE%A4%E4%B8%8D%E5%8F%AF%E7%BA%A6%E8%A1%A8%E7%A4%BA"><span class="toc-number">1.</span> <span class="toc-text">平移群不可约表示</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E7%BB%B4%E7%A9%BA%E9%97%B4230%E4%B8%AA%E7%A9%BA%E9%97%B4%E7%BE%A4%E5%88%86%E7%B1%BB"><span class="toc-number">2.</span> <span class="toc-text">三维空间230个空间群分类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#examplex"><span class="toc-number">2.1.</span> <span class="toc-text">examplex</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E7%82%B9%E5%B9%B3%E7%A7%BB"><span class="toc-number">2.2.</span> <span class="toc-text">原点平移</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AC%E4%BC%97%E5%8F%B7"><span class="toc-number">3.</span> <span class="toc-text">公众号</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-number">3.0.0.1.</span> <span class="toc-text">Email</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/08/02/2025-08-02-Real-Space-Chern/" title="实空间Chern数计算(Half-BHZ模型)"><img src="/assets/images/Julia/Chern-m0.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实空间Chern数计算(Half-BHZ模型)"/></a><div class="content"><a class="title" href="/2025/08/02/2025-08-02-Real-Space-Chern/" title="实空间Chern数计算(Half-BHZ模型)">实空间Chern数计算(Half-BHZ模型)</a><time datetime="2025-08-01T16:00:00.000Z" title="发表于 2025-08-02 00:00:00">2025-08-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/22/2025-02-22-Free-SC/" title="超导序参量自洽(自由能极小值方法)"><img src="/assets/images/Julia/Bx_kbt-phase.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导序参量自洽(自由能极小值方法)"/></a><div class="content"><a class="title" href="/2025/02/22/2025-02-22-Free-SC/" title="超导序参量自洽(自由能极小值方法)">超导序参量自洽(自由能极小值方法)</a><time datetime="2025-02-21T16:00:00.000Z" title="发表于 2025-02-22 00:00:00">2025-02-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/18/2025-02-18-Julia-MPI-Set/" title="Mac上配置MPI并行Julia"><img src="/assets/images/Julia/a4.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Mac上配置MPI并行Julia"/></a><div class="content"><a class="title" href="/2025/02/18/2025-02-18-Julia-MPI-Set/" title="Mac上配置MPI并行Julia">Mac上配置MPI并行Julia</a><time datetime="2025-02-17T16:00:00.000Z" title="发表于 2025-02-18 00:00:00">2025-02-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/15/2024-12-15-Fourier-Spectrum/" title="超导序参量中的傅里叶分析"><img src="/assets/images/Mma/fft-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导序参量中的傅里叶分析"/></a><div class="content"><a class="title" href="/2024/12/15/2024-12-15-Fourier-Spectrum/" title="超导序参量中的傅里叶分析">超导序参量中的傅里叶分析</a><time datetime="2024-12-14T16:00:00.000Z" title="发表于 2024-12-15 00:00:00">2024-12-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/11/2024-12-11-Screeing/" title="库仑势以及屏蔽库伦势的一些计算"><img src="/assets/images/Mma/Vscr-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="库仑势以及屏蔽库伦势的一些计算"/></a><div class="content"><a class="title" href="/2024/12/11/2024-12-11-Screeing/" title="库仑势以及屏蔽库伦势的一些计算">库仑势以及屏蔽库伦势的一些计算</a><time datetime="2024-12-10T16:00:00.000Z" title="发表于 2024-12-11 00:00:00">2024-12-11</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  const initGitalk = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGitalk = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const gitalk = new Gitalk({
+      clientID: 'Ov23li0WvZEaIAZ7RFtH',
+      clientSecret: '03fcb77b7c28dafcdde00756e27f9b5bc76639e8',
+      repo: 'yxli8023.github.io',
+      owner: 'yxli8023',
+      admin: ['Yu-Xuan'],
+      updateCountCallback: commentCount,
+      ...option,
+      id: isShuoshuo ? path : (option && option.id) || '3aecca07ed05f94adfe217ca72a781ea'
+    })
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async(el, path) => {
+    if (typeof Gitalk === 'function') initGitalk(el, path)
+    else {
+      await btf.getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await btf.getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Gitalk' === 'Gitalk'
+      ? window.shuoshuoComment = { loadComment: loadGitalk }
+      : window.loadOtherComment = loadGitalk
+    return
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

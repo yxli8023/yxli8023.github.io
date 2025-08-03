@@ -1,0 +1,432 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Surface States of topological insulator | Yu-Xuan' Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="这里来重复Surface States of topological insulator这片文章中的一个推到，因为在学习边界态理论的过程中始终会提及到这篇文章，而且其中的内容对理解表面态还是很有启发意义的，所以这里整理一下其中的一些推导。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Surface States of topological insulator">
+<meta property="og:url" content="http://example.com/2022/11/22/2021-11-22-Arbitary-surface/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39; Blog">
+<meta property="og:description" content="这里来重复Surface States of topological insulator这片文章中的一个推到，因为在学习边界态理论的过程中始终会提及到这篇文章，而且其中的内容对理解表面态还是很有启发意义的，所以这里整理一下其中的一些推导。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/assets/images/topology/fig2.png">
+<meta property="article:published_time" content="2022-11-21T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-08-03T07:57:36.766Z">
+<meta property="article:author" content="Yu-Xuan">
+<meta property="article:tag" content="Topology">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/images/topology/fig2.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Surface States of topological insulator",
+  "url": "http://example.com/2022/11/22/2021-11-22-Arbitary-surface/",
+  "image": "http://example.com/assets/images/topology/fig2.png",
+  "datePublished": "2022-11-21T16:00:00.000Z",
+  "dateModified": "2025-08-03T07:57:36.766Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yu-Xuan",
+      "url": "http://example.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/11/22/2021-11-22-Arbitary-surface/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'medium_zoom',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#f54966","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Surface States of topological insulator',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #dbeffd;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">232</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/assets/images/topology/fig2.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Yu-Xuan' Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">Surface States of topological insulator</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Surface States of topological insulator</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-21T16:00:00.000Z" title="发表于 2022-11-22 00:00:00">2022-11-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-08-03T07:57:36.766Z" title="更新于 2025-08-03 15:57:36">2025-08-03</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">2.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>11分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/2022/11/22/2021-11-22-Arbitary-surface/#post-comment"><span class="gitalk-comment-count"><i class="fa-solid fa-spinner fa-spin"></i></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;It has been&quot;,&quot;messageNext&quot;:&quot;days since the last update, the content of the article may be outdated.&quot;,&quot;postUpdate&quot;:&quot;2025-08-03 15:57:36&quot;}" hidden></div><div class="note blue no-icon flat"><p>这里来重复Surface States of topological insulator这片文章中的一个推到，因为在学习边界态理论的过程中始终会提及到这篇文章，而且其中的内容对理解表面态还是很有启发意义的，所以这里整理一下<br>其中的一些推导。</p>
+</div>
+<span id="more"></span>
+<script type="math/tex; mode=display">
+H=(c_{0}+c_{z}k_{z}^{2}+c_{\parallel}k_{\parallel}^{2})+(-m_{0}+m_{z}k_{z}^{2}+m_{\parallel}k_{\parallel}^{2})\tau_{z}+v_{z}k_{z}\tau_{y}+v_{\parallel}(k_{y}\sigma_{x}-k_{x}\sigma_{y})\tau_{x}</script><p>在考虑具体问题的时候，通常线性项是最重要的（因为拓扑的边界态，主要是domain wall的物理，而这部分通常只需要线性阶的近似就可以抓住本质，而且在形式上也就是要对应Dirac方程），这里先忽略二次项和一些常数项</p>
+<script type="math/tex; mode=display">
+H=-m_{0}\tau_{z}+v_{z}k_{z}\tau_{y}+v_{\parallel}(k_{y}\sigma_{x}-k_{x}\sigma_{y})\tau_{x}\label{eq1}</script><p>这里对坐标系进行转动，通过观察哈密顿量可以发现每个$k_{i}$都会于一个矩阵相联系在一起</p>
+<script type="math/tex; mode=display">
+k_{z}\tau_{y},\quad k_{y}\sigma_{x}\tau_{x},\quad k_{x}\sigma_{y}\tau_{x}</script><p>当对坐标系进行转动之后，假设新的空间坐标为$(k_{1},k_{2},k_{3})$，那么它们也同样会与一组新的矩阵组合在一起，这里假设在这个转动下，$\tau_{i}\rightarrow S^{i}_{1},\sigma_{i}\rightarrow S^{i}_{2}$，在变换之后$S_{i}^{j}$同样需要满足下面的代数关系</p>
+<script type="math/tex; mode=display">
+[S_{a}^{i},S_{b}^{j}]=2i\delta_{ab}\epsilon^{ijk}S_{a}^{k}\label{eq2}</script><p>这里旋转转动轴为$y$轴，那么转动前后有$k_{y}=k_{2}$，唯一变化的就是$(k_{x},k_{z})\rightarrow(k_{1},k_{3})$。</p>
+<p><img src="/assets/images/topology/fig2.png" alt="png"></p>
+<p>首先来观察哈密顿量(\ref{eq1})中可以看到，$\tau_{z}$只与一个常数项组合，及无论原来的$k_{x,y,z}$坐标轴怎样转动，可以选定在转动前后$S_{1}^{z}=\tau_{z}$。而且这里在转动的时候，选取的转动轴是$k_{y}$，那么可以再选定$\sigma$与$S_{2}^{y}$之间的对应关系$S_{2}^{y}=\sigma_{y}$，此时的这个选择是具有任意性的，同样你也可以选择$\sigma_{x}$或者$\sigma_{z}$，最终只需要这些$S_{2}^{i}$之间满足(\ref{eq2})这个关系即可。到现在为止，确定的关系为</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\mathbf{S}_{1}&=\{S_{1}^{x},S_{1}^{y},\tau_{z}\}\\
+\mathbf{S}_{2}&=\{S_{2}^{x},\sigma_{y},S_{2}^{z}\}\\
+\end{aligned}</script><p>下面来确定剩下几个算符的形式，以$S_{1}^{x,y}$为例说明其选择的形式，最重要的就是满足(\ref{eq2})这个关系，所以可以将其形式选择为</p>
+<script type="math/tex; mode=display">
+S_{1}^{x}=\alpha\tau_{x}+\beta\sigma_{y}\tau_{y},\quad S_{1}^{y}=\alpha\tau_{y}-\beta\sigma_{y}\tau_{x}</script><p>这里再说明一下这个形式为什么这么选择，因为要满足(\ref{eq2})这个关系，首先$S_{1}^{x,y}$只能是$\tau_{x,y}$的线性组合的形式，而其次因为$\sigma_{y}$前面也说明了，它已经是选定的，所以这里同样可以将其认为是一个参数，这就是为什么要把$S_{2}^{x,y}$改写成这样的形式，这里强调的知识说形式，并不是说$S_{1}^{x}$就一定要写成$\alpha\tau_{x}+\beta\sigma_{y}\tau_{y}$，可以选择其它的组合形式，比如$S_{1}^{x}=\alpha\sigma_{y}\tau_{y}+\beta\tau_{x}$，只要满足(\ref{eq2})这个关系才是重点，而且这个条件就会进一步对$\alpha,\beta$作出限制要求，因为$(S_{i}^{j})^{2}=1$，所以可以得到</p>
+<script type="math/tex; mode=display">
+\alpha^2+\beta^{2}=1</script><p>与上面相同的逻辑，此时就可以将$S_{2}^{x,z}$的形式也给出一种选择</p>
+<script type="math/tex; mode=display">
+S_{2}^{x}=\alpha\sigma_{x}-\beta\sigma_{z}\tau_{z},\quad S_{2}^{z}=\alpha\sigma_{z}+\beta\sigma_{x}\tau_{z}</script><p>整理到一起即为</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\mathbf{S}_{1}&=\{\alpha\tau_{x}+\beta\sigma_{y}\tau_{y},\alpha\tau_{y}-\beta\sigma_{y}\tau_{x},\tau_{z}\}\\
+\mathbf{S}_{2}&=\{\alpha\sigma_{x}-\beta\sigma_{z}\tau_{z},\sigma_{y},\alpha\sigma_{z}+\beta\sigma_{x}\tau_{z}\}\\
+\end{aligned}\label{eq3}</script><p>{\color{blue}这里的形式的选取，首先是要确定不变的$\tau_{z}$和$\sigma_{y}$，之后就是为了满足(\ref{eq2})进行的形式选取，这里存在极大的冗余自由度，因为最基本的要求是满足(\ref{eq2})，但是很显然，满足这个条件的并不只有现在这一种选择。}</p>
+<p>通过(\ref{eq3})已经建立起来了$\vec{\tau}\rightarrow \mathbf{S}_{1}$以及$\vec{\sigma}\rightarrow \mathbf{S}_{2}$之间的关系，那么反过来同样可以将$\sigma_{i},\tau_{j}$表示为$S_{2}^{i},S_{1}^{j}$的形式，首先将(\ref{eq3})展开为方程形式</p>
+<script type="math/tex; mode=display">
+\left\{
+\begin{array}{c}
+\alpha\tau_{x}+\beta\sigma_{y}\tau_{y}=S_{1}^{x}\\
+\alpha\tau_{y}-\beta\sigma_{y}\tau_{x}=S_{1}^{y}\\
+\tau_{z}=S_{1}^{z}\\
+\end{array}
+\right.\quad \left\{ \begin{array}{c}
+\alpha\sigma_{x}-\beta\sigma_{z}\tau_{z}=S_{2}^{x}\\
+\sigma_{y}=S_{2}^{y}\\
+\alpha\sigma_{z}+\beta\sigma_{x}\tau_{z}=S_{2}^{z}
+\end{array}
+\right.\label{eq4}</script><p>通过求解(\ref{eq4})即可以得到</p>
+<script type="math/tex; mode=display">
+\left\{
+\begin{array}{c}
+\tau_{x}=\beta\sigma_{y} S_{1}^{y}-\alpha S_{1}^{x}\\
+\tau_{y}=\beta\sigma_{y} S_{1}^{x}+\alpha S_{1}^{y}\\
+\tau_{z}=S_{1}^{z}\\
+\end{array}
+\right.\quad \left\{ \begin{array}{c}
+\sigma_{x}=\alpha S_{2}^{x}+\beta\tau_{z}S_{2}^{z}\\
+\sigma_{y}=S_{2}^{y}\\
+\sigma_{z}=\alpha S_{2}^{z}-\beta S_{2}^{x}\tau_{z}
+\end{array}
+\right.</script><script type="math/tex; mode=display">
+\left\{
+\begin{array}{c}
+\tau_{x}=\beta S_{2}^{y}S_{1}^{y}-\alpha S_{1}^{x}\\
+\tau_{y}=\beta S_{2}^{y} S_{1}^{x}+\alpha S_{1}^{y}\\
+\tau_{z}=S_{1}^{z}\\
+\end{array}
+\right.\quad \left\{ \begin{array}{c}
+\sigma_{x}=\alpha S_{2}^{x}+\beta S_{1}^{z}S_{2}^{z}\\
+\sigma_{y}=S_{2}^{y}\\
+\sigma_{z}=\alpha S_{2}^{z}-\beta S_{2}^{x}S_{1}^{z}
+\end{array}
+\right.\label{eq5}</script><p>这里利用欧拉转动，来描述坐标系基矢之间的变换关系，这里是以$y$轴为中心进行的转动，那么对应的欧拉转动矩阵为</p>
+<script type="math/tex; mode=display">
+\left[
+\begin{array}{ccc}
+\cos\theta&0&\sin\theta\\
+0&1&0\\
+-\sin\theta&0&\cos\theta
+\end{array}
+\right]</script><p>那么就可以得到转动前后两个坐标系之间的关系为</p>
+<script type="math/tex; mode=display">
+\left\{
+\begin{array}{c}
+k_{1}=k_{x}\cos\theta+k_{z}\sin\theta\\
+k_{2}=k_{y}\\
+k_{3}=k_{z}\cos\theta-k_{x}\sin\theta
+\end{array}
+\right.\quad\left\{
+\begin{array}{c}
+k_{x}=k_{1}\cos\theta-k_{3}\sin\theta\\
+k_{y}=k_{2}\\
+k_{z}=k_{3}\cos\theta+k_{1}\sin\theta
+\end{array}
+\right.</script><p>将$k_{x,y,z}\rightarrow k_{1,2,3}$并且利用(\ref{eq5})将下面的哈密顿量进行改写</p>
+<script type="math/tex; mode=display">
+H=-m_{0}\tau_{z}+v_{z}k_{z}\tau_{y}+v_{\parallel}(k_{y}\sigma_{x}-k_{x}\sigma_{y})\tau_{x}</script><p>分别将表达式进行替换</p>
+<script type="math/tex; mode=display">
+-m_{0}\tau_{z}=-m_{0}S_{1}^{z}\label{eq6}</script><script type="math/tex; mode=display">
+\begin{aligned}
+v_{z}k_{z}\tau_{y}&=v_{z}(k_{3}\cos\theta+k_{1}\sin\theta)(\beta S_{2}^{y} S_{1}^{x}+\alpha S_{1}^{y})\\
+&=v_{z}(k_{3}\beta\cos\theta S_{2}^{y}S_{1}^{x}+k_{3}\alpha \cos\theta S_{1}^{y}+k_{1}\beta\sin\theta S_{2}^{y}S_{1}^{x}+k_{1}\alpha\sin\theta S_{1}^{y})\label{eq7}
+\end{aligned}</script><script type="math/tex; mode=display">
+\begin{aligned}
+v_{\parallel}k_{y}\sigma_{x}\tau_{x}&=v_{\parallel}k_{2}(\alpha S_{2}^{x}+\beta S_{1}^{z}S_{2}^{z})(\beta S_{2}^{y}S_{1}^{y}-\alpha S_{1}^{x})\\
+&=v_{\parallel}k_{2}(\alpha\beta S_{2}^{x}S_{2}^{y}S_{1}^{y}-\alpha^{2}S_{2}^{x}S_{1}^{x}+\beta^{2}S_{1}^{z}S_{2}^{z}S_{2}^{y}S_{1}^{y}-\alpha\beta S_{1}^{z}S_{2}^{z}S_{1}^{x})\\
+&=v_{\parallel}k_{2}[\alpha\beta(S_{2}^{x}S_{2}^{y}S_{1}^{y}-S_{1}^{z}S_{2}^{z}S_{1}^{x})-(\alpha^{2}+\beta^{2})S_{2}^{x}S_{1}^{x}]\label{eq8}
+\end{aligned}</script><p>在这一步的推导中使用了</p>
+<script type="math/tex; mode=display">
+S_{1}^{z}S_{2}^{y}=-iS_{x}\quad S_{2}^{z}S_{2}^{y}=-S_{2}^{x}\quad S_{1}^{z}S_{2}^{y}S_{2}^{z}S_{2}^{y}=-S_{1}^{x}S_{2}^{x}</script><p>第三项可以化简为</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+-v_{\parallel}k_{x}\sigma_{y}\tau_{x}&=-v_{\parallel}(k_{1}\cos\theta-k_{3}\sin\theta)S_{2}^{y}(\beta S_{2}^{y}S_{1}^{y}-\alpha S_{1}^{x})\\&=-v_{\parallel}k_{1}\cos\theta(\beta S_{2}^{y}S_{2}^{y}S_{1}^{y}-\alpha S_{2}^{y}S_{1}^{x})+v_{\parallel}k_{3}\sin\theta(\beta S_{2}^{y}S_{2}^{y}S_{1}^{y}-\alpha S_{2}^{y}S_{1}^{x})\\&=-v_{\parallel}k_{1}\cos\theta(\beta S_{1}^{y}-\alpha S_{2}^{y}S_{1}^{x})+v_{\parallel}k_{3}\sin\theta(\beta S_{1}^{y}-\alpha S_{2}^{y}S_{1}^{x})\label{eq9}
+\end{aligned}</script><p>整理(\ref{eq6})-(\ref{eq9})可以得到</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+H&=-m_{0}S_{1}^{z}+(v_{z}\alpha\sin\theta-v_{\parallel}\beta\cos\theta)k_{1}S_{1}^{y}+(v_{\parallel}\beta\sin\theta+v_{z}\alpha\cos\theta)k_{3}S_{1}^{y}\\
+&+(v_{\parallel}\alpha\cos\theta+v_{z}\beta\sin\theta)k_{1}S_{2}^{y}S_{1}^{x}+(v_{z}\beta\cos\theta-v_{\parallel}\alpha\sin\theta)k_{3}S_{2}^{y}S_{1}^{x}-v_{\parallel}k_{1}S_{2}^{x}S_1^x \label{eq10}
+\end{aligned}</script><p>到这里之后，变量代换完成，在前面提到过，为了满足(\ref{eq2})的关系，需要令</p>
+<script type="math/tex; mode=display">
+\alpha^{2}+\beta^{2}=1</script><p>这是两个未知量，只有一个方程，为了确定这两个未知量，这里令</p>
+<script type="math/tex; mode=display">
+(v_{z}\beta\cos\theta-v_{\parallel}\alpha\sin\theta)=0</script><p>则可以得到</p>
+<script type="math/tex; mode=display">
+\alpha=\frac{v_{z}\cos\theta}{v_{3}}\quad\beta=\frac{v_{\parallel}\sin\theta}{v_{3}}\quad v_{3}=\sqrt{(v_{z}\cos\theta)^{2}+(v_{\parallel}\sin\theta)^{2}}\label{eq11}</script><p>将(\ref{eq11})代入(\ref{eq10})之后即可以将其化简为</p>
+<script type="math/tex; mode=display">
+H=-m_{0}S_{1}^{z}+(v_{3}k_{3}+v_{0}k_{1})S_{1}^{y}+v_{1}k_{1}S_{2}^{y}S_{1}^{x}-v_{\parallel}k_{1}S_{2}^{x}S_1^x</script><p>这里有</p>
+<script type="math/tex; mode=display">
+v_{0}=\frac{(v_{z}^{2}-v_{\parallel}^{2})\cos\theta\sin\theta}{v_{3}}\quad v_{1}=\frac{v_{z}v_{\parallel}}{v_{3}}</script><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>1.<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1203.6382">Surface States of topological insulator</a></p>
+<h1 id="公众号"><a href="#公众号" class="headerlink" title="公众号"></a>公众号</h1><div class="note blue no-icon flat"><p>相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。</p>
+</div>
+<table>
+  <tr>
+    <!-- 图片单元格 -->
+    <td style="width: 300px; height: 300px; text-align: center; vertical-align: middle; border: 1px solid #ccc; border-radius: 8px;">
+      <img src="/assets/images/qrcode.jpg" alt="QR Code" width="300px" height="300px" style="border-radius: 8px;">
+    </td>
+    <!-- 文字单元格 -->
+    <td style="width: 300px; height: 300px; text-align: center; vertical-align: middle; padding-left: 20px; border: 1px solid #ccc; border-radius: 8px;">
+      <div>
+        <h4 style="margin: 0;">Email</h4>
+        <p style="margin: 5px 0;">yxliphy@gmail.com</p>
+      </div>
+    </td>
+  </tr>
+</table></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Yu-Xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/11/22/2021-11-22-Arbitary-surface/">http://example.com/2022/11/22/2021-11-22-Arbitary-surface/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Yu-Xuan' Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Topology/">Topology</a></div><div class="post-share"><div class="social-share" data-image="/assets/images/topology/fig2.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg"/></a><div class="post-qr-code-desc"></div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg"/></a><div class="post-qr-code-desc"></div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2022/12/11/2022-12-11-Fraction-Josephson/" title="分数约瑟夫森效应(Fraction Josephson Effect)"><img class="cover" src="/img/defult-cover2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">分数约瑟夫森效应(Fraction Josephson Effect)</div></div><div class="info-2"><div class="info-item-1">拓扑超导中存在Majorana费米子时，因为其满足非阿贝尔统计，会出现$4\pi$-Josephson效应。这里就研究Kitaev模型中的Josephson效应。   前言这里是想实现一个有Kitaev模型构成的Josephson结，在结的两侧分别具有Majorana费米子，在中间加入一个绝缘体，从而系统中会存在零能Andreev束缚态，Josephson电流也会出现$4\pi$的周期。具体的物理内涵在这里先不解释了，我自己暂时对其中的内容理解不是很透彻，等之后完全理解了再重新整理一份笔记详细讨论关于拓扑超导体中的Josephson效应。 直接上代码计算Josephson效应12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210310410...</div></div></div></a><a class="pagination-related" href="/2022/11/22/2021-11-22-SU(2)-SO(3)/" title="SU(2)群与SO(3)群之间的关系"><img class="cover" src="/img/defult-cover.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">SU(2)群与SO(3)群之间的关系</div></div><div class="info-2"><div class="info-item-1">在考虑空间坐标转动的时候，不可避免的遇到了欧拉转动的问题，借着这个机会整理一下SO(3)群和SU(2)之间的关系。   对于三维空间中的转动操作，可以利用欧拉转动操作来实现，这里转动按照右手系为参照，首先选定一个直角坐标$O-xyz$固定不动，另外有一个直角坐标系初始时与$O-xyz$重合，首先绕$z$周转动$\alpha$角，可转动的坐标系为$O-x^{‘}y^{‘}z^{‘}$，再绕着$y^{‘}$轴转动$\beta$角，坐标系为$O-x^{‘’}y^{‘’}z^{‘’}$，最后再绕着$z^{‘’}$轴转动$\gamma$角，最终转动的坐标系可以表示为$O-x^{‘’’}y^{‘’’}z^{‘’’}$，在这样的操作下，可以利用欧拉角来表示任意转动  R(\alpha,\beta,\gamma)=R(z^{''},\gamma)R(y^{'},\beta)R(z,\alpha)但这中表示并不是很方便，可以就采用相对固定坐标系$O-xyz$的转动，表示为  R(\alpha,\beta,\gamma)=R(z,\alpha)R(y,\beta)R(z,\gamma)这里的转动操作...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2020/03/16/2020-03-16-Graphene/" title="石墨烯哈密顿量构造及边界态计算"><img class="cover" src="/img/defult-cover2.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-03-16</div><div class="info-item-2">石墨烯哈密顿量构造及边界态计算</div></div><div class="info-2"><div class="info-item-1">想通过石墨烯重新学习一下拓扑，以此来记录学习成果。   石墨烯的结构石墨烯的元胞是六角蜂窝状的，它的基元包含两个原子，将红黑表示的位置放在一起，则表示它的一个基元。以水平和垂直方向建立直角坐标系，并将它的晶格常数(红黑位置的距离)设置为a，基矢为绿色箭头表示$\vec{v_1}=(\sqrt{3}a,0),\vec{v_2}=(-\sqrt{3}/2a,3/2a)$。若只考虑最紧邻位置间的hopping，那么实空间中的Hamiltonian为  H=-t\sum_{}a_i^\dagger b_j - t\sum_{}b_i^\dagger a_j$$表示的是格点上最近邻的位置。先忘记上面说过的基元的概念，同时忽略图中黑红位置的区别，将所有的格点位置视为相同，那么可以发现每个格点都是有三个最近邻的，这就是石墨烯六角结构和平时经常使用正方点阵的一个区别，正方点阵每个格点都是有四个最近邻的(上下左右，而且它们是相互垂直的)，石墨烯结构中则不然，三个最近邻位置的夹角是$120^o$，这三个最近邻的矢量表示为  \vec{e_1}=(0,a)\quad \vec{e_2}=(-\frac...</div></div></div></a><a class="pagination-related" href="/2020/07/01/2020-07-01-Chern-Number/" title="两种方法计算Chern Number"><img class="cover" src="/img/defult-cover2.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-01</div><div class="info-item-2">两种方法计算Chern Number</div></div><div class="info-2"><div class="info-item-1">计算Chern数是最初学习拓扑物理都会遇到的问题，正好在假期空闲的时候自己学习了一下Chern数的数值计算方法，在博客上记录一下希望可以帮助到别人。   具体的计算方法和细节就不在这里说明了，只要是想学习计算Chern数的肯定了解它在凝聚态物理中的角色，而计算的细节也会在后面的参考文献中给出，只是展示一下结果。 Julia语言计算Chern numberVersion1这个方法是直接用定义直接计算的结果，但是可能会遇到波函数规范选择的问题，会导致结果有误，而具体的规范问题，我并不懂，所以一般我会选择第二种方法来计算，也就是后面参考文献中介绍的方法。1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374import PkgPkg.add(&quot;LinearAlgebra&quot;)Pkg.add(&quot;PyPlot&quot;)using Line...</div></div></div></a><a class="pagination-related" href="/2020/06/30/2020-06-30-Kane-Mele/" title="Kane Mele model zigzag 边界态的计算"><img class="cover" src="/img/defult-cover.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-30</div><div class="info-item-2">Kane Mele model zigzag 边界态的计算</div></div><div class="info-2"><div class="info-item-1">接触量子自旋霍尔效应很久了，但是一直也都是在square lattice上做计算，从来没有认真的在六角点阵上计算过拓扑的内容，正好最近在看文献的过程中需要在石墨烯机构上进行，就从最基本的Kane-Mele 模型出发学习怎么在六角点阵上写出最近邻以及次近邻的哈密顿量。  关于最近邻之间的hopping在前面石墨烯的边界态文章中已经仔细考虑过，包括cell的选取还有原子的编号，在这里。现在唯一的不同就是要考虑次近邻之间的hopping。在这里暂时并未考虑Rashbo自旋轨道耦合。 基本设定  蓝色虚线框中是选择的一个大cell，在y方向是有限长度，在x方向是无限的，所以$k_x$是个好量子数，这种边界态叫zigzag；当x方向开边界，y方向无限长时的边界态叫armchair，可以参考这里。格点之间的hopping可以在一个大cell之内，可会存在大cell之间的hopping，在下面会逐一展示。关于Kane-Mele模型中的$v_{ij}$的示意如上图_hopping_蓝色箭头所示，当格点连线在hopping的右侧时$v_{ij}=-1$，在左侧时$v_{ij}=1$；将一个大cel...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">232</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yxli8023"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome to Yu-Xuan's Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">1.</span> <span class="toc-text">参考</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AC%E4%BC%97%E5%8F%B7"><span class="toc-number">2.</span> <span class="toc-text">公众号</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-number">2.0.0.1.</span> <span class="toc-text">Email</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/08/02/2025-08-02-Real-Space-Chern/" title="实空间Chern数计算(Half-BHZ模型)"><img src="/assets/images/Julia/Chern-m0.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实空间Chern数计算(Half-BHZ模型)"/></a><div class="content"><a class="title" href="/2025/08/02/2025-08-02-Real-Space-Chern/" title="实空间Chern数计算(Half-BHZ模型)">实空间Chern数计算(Half-BHZ模型)</a><time datetime="2025-08-01T16:00:00.000Z" title="发表于 2025-08-02 00:00:00">2025-08-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/22/2025-02-22-Free-SC/" title="超导序参量自洽(自由能极小值方法)"><img src="/assets/images/Julia/Bx_kbt-phase.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导序参量自洽(自由能极小值方法)"/></a><div class="content"><a class="title" href="/2025/02/22/2025-02-22-Free-SC/" title="超导序参量自洽(自由能极小值方法)">超导序参量自洽(自由能极小值方法)</a><time datetime="2025-02-21T16:00:00.000Z" title="发表于 2025-02-22 00:00:00">2025-02-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/18/2025-02-18-Julia-MPI-Set/" title="Mac上配置MPI并行Julia"><img src="/assets/images/Julia/a4.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Mac上配置MPI并行Julia"/></a><div class="content"><a class="title" href="/2025/02/18/2025-02-18-Julia-MPI-Set/" title="Mac上配置MPI并行Julia">Mac上配置MPI并行Julia</a><time datetime="2025-02-17T16:00:00.000Z" title="发表于 2025-02-18 00:00:00">2025-02-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/15/2024-12-15-Fourier-Spectrum/" title="超导序参量中的傅里叶分析"><img src="/assets/images/Mma/fft-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导序参量中的傅里叶分析"/></a><div class="content"><a class="title" href="/2024/12/15/2024-12-15-Fourier-Spectrum/" title="超导序参量中的傅里叶分析">超导序参量中的傅里叶分析</a><time datetime="2024-12-14T16:00:00.000Z" title="发表于 2024-12-15 00:00:00">2024-12-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/11/2024-12-11-Screeing/" title="库仑势以及屏蔽库伦势的一些计算"><img src="/assets/images/Mma/Vscr-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="库仑势以及屏蔽库伦势的一些计算"/></a><div class="content"><a class="title" href="/2024/12/11/2024-12-11-Screeing/" title="库仑势以及屏蔽库伦势的一些计算">库仑势以及屏蔽库伦势的一些计算</a><time datetime="2024-12-10T16:00:00.000Z" title="发表于 2024-12-11 00:00:00">2024-12-11</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  const initGitalk = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGitalk = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const gitalk = new Gitalk({
+      clientID: 'Ov23li0WvZEaIAZ7RFtH',
+      clientSecret: '03fcb77b7c28dafcdde00756e27f9b5bc76639e8',
+      repo: 'yxli8023.github.io',
+      owner: 'yxli8023',
+      admin: ['Yu-Xuan'],
+      updateCountCallback: commentCount,
+      ...option,
+      id: isShuoshuo ? path : (option && option.id) || 'd2f82b5934fc8b9bcb0c90d4ffa742e8'
+    })
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async(el, path) => {
+    if (typeof Gitalk === 'function') initGitalk(el, path)
+    else {
+      await btf.getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await btf.getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Gitalk' === 'Gitalk'
+      ? window.shuoshuoComment = { loadComment: loadGitalk }
+      : window.loadOtherComment = loadGitalk
+    return
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

@@ -1,0 +1,423 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Yu-Xuan' Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="Yu-Xuan&#39; Blog">
+<meta property="og:url" content="http://example.com/page/10/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39; Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/logo.png">
+<meta property="article:author" content="Yu-Xuan">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/logo.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/page/10/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'medium_zoom',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#f54966","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Yu-Xuan\' Blog',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #dbeffd;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">232</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page fixed" id="page-header" style="background-image: url(/img/background.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Yu-Xuan' Blog</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">Yu-Xuan' Blog</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="post_cover left"><a href="/2021/12/21/2020-12-21-Chern-Insulator/" title="Chern Insulator边界态及Chern数计算"><img class="post-bg" src="/img/defult-cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Chern Insulator边界态及Chern数计算"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/12/21/2020-12-21-Chern-Insulator/" title="Chern Insulator边界态及Chern数计算">Chern Insulator边界态及Chern数计算</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-12-20T16:00:00.000Z" title="发表于 2021-12-21 00:00:00">2021-12-21</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Topology/">Topology</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Julia/">Julia</a></span></div><div class="content">虽然之前也整理了如何计算Chern数和$Z_2$拓扑不变量,但是对于最简单的Chern Insulator却没有认真的研究过,最近在做一些和反常量子霍尔相关的一些内容,就正好把这个最简单的Chern绝缘体模型的边界态以及Chern数计算的结果整理到一起.   边界态计算Chern Insulator的哈密顿量非常简单 \begin{equation} H(\mathbf{k})=(m_0-t_x\cos(k_x)+t_y\cos(k_y))\sigma_z+\lambda_x\sin(k_x)+\lambda_y\sin(k_y) \end{equation}在这里写成$(m_0-t_x\cos(k_x)+t_y\cos(k_y))$的形式是为了破坏旋转对称性,这样的画采用cylinder geometry(一个方向开边界,一个方向周期)画能带图的时候,就会发现$x$方向和$y$方向的边界态一个出现的$k_{x/y}=0$,另外一个方向的边界态出现在$k_{y/x}=\pi$的位置上,如下图所示 计算代码如下,之前算这东西吸怪用Fortran了,所以就一直沿用原来的习惯了,不好改...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2021/12/19/2021-12-19-VASP-Warning/" title="VASP报错及修复"><img class="post-bg" src="/img/defult-cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="VASP报错及修复"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/12/19/2021-12-19-VASP-Warning/" title="VASP报错及修复">VASP报错及修复</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-12-18T16:00:00.000Z" title="发表于 2021-12-19 00:00:00">2021-12-19</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Vasp/">Vasp</a></span></div><div class="content">这篇博客主要整理一下自己在VASP使用和学习过程中遇到的错误以及如何修复这些报错.    VERY BAD NEWS! internal error in subroutine IBZKPT:Reciprocal lattice and k-lattice belong to different class of lattices. Often results are still useful..  这个报错主要是对称性设置,在INCAR中加入12ISYM = 0SYMPREC = 1E-8问题得到解决. 公众号相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。                                                     Email         yxliphy@gmail.com                   </div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2021/12/17/2021-12-17-HRToHK-edge-state/" title="利用Wannier90的hr数据计算边界态"><img class="post-bg" src="/img/defult-cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="利用Wannier90的hr数据计算边界态"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/12/17/2021-12-17-HRToHK-edge-state/" title="利用Wannier90的hr数据计算边界态">利用Wannier90的hr数据计算边界态</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-12-16T16:00:00.000Z" title="发表于 2021-12-17 00:00:00">2021-12-17</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Code/">Code</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Python/">Python</a></span></div><div class="content">这里整理一下通过读取紧束缚模型的hr数据，从而进一步通过之前学习到的迭代格林函数方法来计算边界态，同时也构建一个有限大小的格点来计算边界态，也算是达到对一个模型完整研究的目的。   前言之前已经学习了如何将一个现有的动量空间中的模型,变换成Wannier90所输出的tight binding的数据,可以参考从紧束缚模型出发构建WannierTools需要的数据这个Blog中的内容,因为现有一些程序是可以直接利用这些数据进行计算的,但是同样有时候需要利用实空间的tight binding数据来进行动量空间中的一些计算,这里就想整理一个比较通用的脚本,可以方便的将一个Wannier90输出的TB模型的数据,通过Fourier变换从而来得到动量空间中的哈密顿量,这样可以方便自己进行后面的一些计算，同时也可以只对某一个方向进行部分Fourier变换，从而构建一个半无限或者有效大小的体系来计算边界态，而半无限大系统计算边界态则是利用迭代格林函数的方法进行计算，有效大小体系的边界态我也会在后面的Blog中整理。 数据结构分析这里就以最熟悉的BHZ模型为例,借用从紧束缚模型出发构建Wannie...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2021/12/15/2021-12-15-Lattice-Edge-Theory/" title="cylinder结构上的边界态理论"><img class="post-bg" src="/img/defult-cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="cylinder结构上的边界态理论"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/12/15/2021-12-15-Lattice-Edge-Theory/" title="cylinder结构上的边界态理论">cylinder结构上的边界态理论</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-12-14T16:00:00.000Z" title="发表于 2021-12-15 00:00:00">2021-12-15</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Topology/">Topology</a></span></div><div class="content">这里整理一下如何在一个方向上开边界的时候，如何求解边界态理论。   前言之前已经整理过在动量空间中求解边界态理论，这里整理一下利用另外的一种方法来求解边界态理论，主要就是将哈密顿量变换到cylinder结构上，在一个有效大小的方向上计算边界态理论，主要的参考有效边界理论(space部分)这篇Blog中的哈密顿量来进行研究。文章中的主要内容都是参考Majorana Corner Modes in a High-Temperature Platform这篇文章中的内容。 模型这里采用文章中模型来进行求解 H(\mathbf{k})=(m_0-t_x\cos k_x-t_y\cos k_y)\sigma_z\tau_z+A_x\sin k_x\sigma_xs_z+A_y\sin k_y\sigma_y\tau_z+[\Delta_0-\Delta_1(\cos k_x+\cos k_y)]s_y\tau_y首先沿着一个方向进行傅立叶变换，使得一个方向在动量空间另外一个方向在实空间，将哈密顿量表示为  \begin{equation} \begin{aligned} H=&\sum_{...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2021/12/15/2021-12-15-Irvsp/" title="Irvsp学习笔记"><img class="post-bg" src="/img/defult-cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Irvsp学习笔记"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/12/15/2021-12-15-Irvsp/" title="Irvsp学习笔记">Irvsp学习笔记</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-12-14T16:00:00.000Z" title="发表于 2021-12-15 00:00:00">2021-12-15</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Topology/">Topology</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Vasp/">Vasp</a></span></div><div class="content">这里整理一下自己学习使用Irvsp的过程,在捋清楚它的计算流程的同时,也希望先学会使用这个对称性分析的工具,希望之后也能做一些相关方面的工作.   对于拓扑材料的计算,在判断是否是拓扑的,通常可以利用高对称点的信息来判断,比如对于存在时间反演和空间反演的的系统,可以通过时间反演不变动量点的宇称来直接判断拓扑性质,所以通常都需要计算高对称点的对称操作的本征值,这个就需要借助一些外部的工具来进行计算,比如Irvsp,这里就想学习一下这个工具是如何使用的. 下载安装 首先在Irvsp的网站上下载下来,然后解压上图所示的这个压缩文件,得到src_irvsp_v2_release这个文件夹,其中的内容如下  红色选中的则是下载下来的文件中包含的可执行文件,就可用来计算高对称点上的信息,不过先要计算vasp计算才可以.这里有一个example文件夹,其中就包含了一些给出的例子,这里就学习一下其中Bi这个文件中的内容. 自洽计算自洽计算的输入文件如下图所示    能带计算在做完了自洽计算之后,利用计算得到的波函数和电荷文件来计算能带,输入文件如下   能带计算完整之后就可以在这些能带K点上利用...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2021/12/10/2021-12-10-BBH-Wilson/" title="BBH模型的Wilson loop及Nested Wilson loop计算"><img class="post-bg" src="/img/defult-cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="BBH模型的Wilson loop及Nested Wilson loop计算"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/12/10/2021-12-10-BBH-Wilson/" title="BBH模型的Wilson loop及Nested Wilson loop计算">BBH模型的Wilson loop及Nested Wilson loop计算</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-12-09T16:00:00.000Z" title="发表于 2021-12-10 00:00:00">2021-12-10</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Code/">Code</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Topology/">Topology</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Python/">Python</a></span></div><div class="content">这里整理一下高阶拓扑的BBH模型的一些拓扑性质的计算,包括边界态,Wilson loop以及Nested Wilson loop计算.   Wilson loop这个计算没有什么好说的,在其他模型里面也已经做过很多次了,比如BHZ模型Wilson loop计算这篇博客,废话不多说直接上代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104import numpy as npimport matplotlib.pyplot as pltdef Pauli():    s0 = np.array([[1,0],[0,1]])    sx = np.array([[0,1],[1,0]])    sy = np.array([[0,-...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2021/12/09/2021-12-09-POSCAR-lattice/" title="读取POSCAR构建实空间点阵"><img class="post-bg" src="/img/defult-cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="读取POSCAR构建实空间点阵"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/12/09/2021-12-09-POSCAR-lattice/" title="读取POSCAR构建实空间点阵">读取POSCAR构建实空间点阵</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-12-08T16:00:00.000Z" title="发表于 2021-12-09 00:00:00">2021-12-09</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Code/">Code</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Python/">Python</a></span></div><div class="content">这里想整理利用VASP的POSCAR来构建一个实空间的点阵,在构建出实空间的点阵上再进行一些其他的操作.   前言在学习固体物理的过程中,其实实空间中的点阵就是利用晶格矢量来构建实空间中的周期晶格的,公式如下  \mathbf{R}=i\cdot\mathbf{a}_1+j\cdot\mathbf{a}_2+k\cdot\mathbf{a}_3\quad i,j,k\in\mathbb{Z}这里的$\mathbf{a}_1,\mathbf{a}_2,\mathbf{a}_3$就是实空间中的元胞基矢,自己在之前的学习过程中,经常使用到的都是在正方点阵上的模型研究,也就是说  \mathbf{a}_1=(1,0,0)\quad\mathbf{a}_2=(0,1,0)\quad\mathbf{a}_3=(0,0,1)在这种情况下其实也不太需要使用晶格基矢来构建点阵,但是如果涉及到的是其它形状的点阵,比如graphene的点阵,如果还是用正方点阵的思路来构造格点,那么在选择最近邻和次近邻的时候,格点索引并不是很方便,所以如何是利用晶格基矢来构建实空间的点阵,那么最近邻和次近邻只需要关注距...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2021/12/07/2021-12-07-HRToHK/" title="利用Wannier90的hr数据构建动量空间能带并计算高对称点宇称"><img class="post-bg" src="/img/defult-cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="利用Wannier90的hr数据构建动量空间能带并计算高对称点宇称"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/12/07/2021-12-07-HRToHK/" title="利用Wannier90的hr数据构建动量空间能带并计算高对称点宇称">利用Wannier90的hr数据构建动量空间能带并计算高对称点宇称</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-12-06T16:00:00.000Z" title="发表于 2021-12-07 00:00:00">2021-12-07</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Code/">Code</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Topology/">Topology</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Python/">Python</a></span></div><div class="content">这里想整理一下如何利用已有的实空间的tight binding的数据,通过Fourier变换来得到动量空间中的模型,从而可以利用同时利用这两种不同表象下的数据进行计算研究。这里使用了BHZ模型作为例子来进行研究，并利用Fu-Kane判据计算了高对称点的宇称，从而达到计算拓扑不变量的目的。   前言之前已经学习了如何将一个现有的动量空间中的模型,变换成Wannier90所输出的tight binding的数据,可以参考从紧束缚模型出发构建WannierTools需要的数据这个Blog中的内容,因为现有一些程序是可以直接利用这些数据进行计算的,但是同样有时候需要利用实空间的tight binding数据来进行动量空间中的一些计算,这里就想整理一个比较通用的脚本,可以方便的将一个Wannier90输出的TB模型的数据,通过Fourier变换从而来得到动量空间中的哈密顿量,这样可以方便自己进行后面的一些计算. 数据结构分析这里就以最熟悉的BHZ模型为例,借用从紧束缚模型出发构建WannierTools需要的数据这篇Blog中的方法,来构建  H(\mathbf{k})=(m_0-t_x\...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2021/12/04/2021-12-04-NNN-iteration-GF/" title="考虑次近邻之后快速迭代格林函数求解边界态"><img class="post-bg" src="/img/defult-cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="考虑次近邻之后快速迭代格林函数求解边界态"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/12/04/2021-12-04-NNN-iteration-GF/" title="考虑次近邻之后快速迭代格林函数求解边界态">考虑次近邻之后快速迭代格林函数求解边界态</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-12-03T16:00:00.000Z" title="发表于 2021-12-04 00:00:00">2021-12-04</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Code/">Code</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Fortran/">Fortran</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Topology/">Topology</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Julia/">Julia</a></span></div><div class="content">这里来整理一下在考虑了次次近邻hopping之后，如何利用迭代格林函数的方法来求解得到系统对应的边界态，这里所有的例子都是以动量空间的哈密顿量为基础，将其离散化到格点上之后进行计算的。   模型这里仍然以最简单的Chern绝缘体模型为例子来进行学习  H(\mathbf{k})=(m_0-t_x\cos k_x-\cos k_y)\sigma_z+A_x\sin 2k_x\sigma_x+\sin 2k_y\sigma_y\label{s1}这里唯一不同的就是此时该模型的Chern数可以是$\pm 1,\pm 3$，而且这里包含着次次近邻之间的hopping。在之前的Blog快速格林函数方法计算Chern绝缘体边界态中计算的知识包含最近邻的，其实当包含次次近邻hopping的时候，计算思路是完全一致的。 这里只需要将本来的周期性结构扩大，使得在这个更大的原胞中，本来的次近邻hopping变成原胞内的hopping，而在这个更大的原胞的表示下，次次近邻的hopping反而就变成了最近邻hopping，当将这个问题搞明白之后，那么就只需要构建这个更大的原胞即可。{:.success}...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2021/11/22/2021-11-22-Surface-edge-state/" title="Helical Higne Majorana Modes in Iron-Based Superconductor"><img class="post-bg" src="/assets/images/topology/fig1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Helical Higne Majorana Modes in Iron-Based Superconductor"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/11/22/2021-11-22-Surface-edge-state/" title="Helical Higne Majorana Modes in Iron-Based Superconductor">Helical Higne Majorana Modes in Iron-Based Superconductor</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-11-21T16:00:00.000Z" title="发表于 2021-11-22 00:00:00">2021-11-22</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Topology/">Topology</a></span></div><div class="content">这里利用空间转动操作联系哈密顿量来推导一下如何对哈密顿量进行幺正变换从而实现对坐标系的转动，主要是Helical Higne Majorana Modes in Iron-Based Superconductor这片文章中结果的一些推导。   这里考虑一个3D拓扑绝缘体  \begin{aligned} H_{0}(\mathbf{k})&=m(\mathbf{k})\Gamma_{5}+v(\sin k_{x}\Gamma_{1}+\sin k_{y}\Gamma_{2}+\sin k_{z}\Gamma_{3})\\ m(\mathbf{k})&=m_{0}-m_{1}(\cos k_{x}+\cos k_{y})-m_{2}\cos k_{z} \end{aligned}这里的$\Gamma$矩阵满足下面的关系  \begin{aligned} &\Gamma_{1}=\sigma_{x}\otimes s_{x}\quad\Gamma_{2}=\sigma_{x}\otimes s_{y}\quad\Gamma_{3}=\sigma_{x}\otimes s_{z}\\ ...</div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/9/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/#content-inner">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/#content-inner">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/#content-inner">24</a><a class="extend next" rel="next" href="/page/11/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">232</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yxli8023"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome to Yu-Xuan's Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/08/02/2025-08-02-Real-Space-Chern/" title="实空间Chern数计算(Half-BHZ模型)"><img src="/assets/images/Julia/Chern-m0.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实空间Chern数计算(Half-BHZ模型)"/></a><div class="content"><a class="title" href="/2025/08/02/2025-08-02-Real-Space-Chern/" title="实空间Chern数计算(Half-BHZ模型)">实空间Chern数计算(Half-BHZ模型)</a><time datetime="2025-08-01T16:00:00.000Z" title="发表于 2025-08-02 00:00:00">2025-08-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/22/2025-02-22-Free-SC/" title="超导序参量自洽(自由能极小值方法)"><img src="/assets/images/Julia/Bx_kbt-phase.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导序参量自洽(自由能极小值方法)"/></a><div class="content"><a class="title" href="/2025/02/22/2025-02-22-Free-SC/" title="超导序参量自洽(自由能极小值方法)">超导序参量自洽(自由能极小值方法)</a><time datetime="2025-02-21T16:00:00.000Z" title="发表于 2025-02-22 00:00:00">2025-02-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/18/2025-02-18-Julia-MPI-Set/" title="Mac上配置MPI并行Julia"><img src="/assets/images/Julia/a4.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Mac上配置MPI并行Julia"/></a><div class="content"><a class="title" href="/2025/02/18/2025-02-18-Julia-MPI-Set/" title="Mac上配置MPI并行Julia">Mac上配置MPI并行Julia</a><time datetime="2025-02-17T16:00:00.000Z" title="发表于 2025-02-18 00:00:00">2025-02-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/15/2024-12-15-Fourier-Spectrum/" title="超导序参量中的傅里叶分析"><img src="/assets/images/Mma/fft-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导序参量中的傅里叶分析"/></a><div class="content"><a class="title" href="/2024/12/15/2024-12-15-Fourier-Spectrum/" title="超导序参量中的傅里叶分析">超导序参量中的傅里叶分析</a><time datetime="2024-12-14T16:00:00.000Z" title="发表于 2024-12-15 00:00:00">2024-12-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/11/2024-12-11-Screeing/" title="库仑势以及屏蔽库伦势的一些计算"><img src="/assets/images/Mma/Vscr-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="库仑势以及屏蔽库伦势的一些计算"/></a><div class="content"><a class="title" href="/2024/12/11/2024-12-11-Screeing/" title="库仑势以及屏蔽库伦势的一些计算">库仑势以及屏蔽库伦势的一些计算</a><time datetime="2024-12-10T16:00:00.000Z" title="发表于 2024-12-11 00:00:00">2024-12-11</time></div></div></div></div><div class="card-widget" id="card-newest-comments"><div class="item-headline"><i class="fas fa-comment-dots"></i><span>最新评论</span></div><div class="aside-list"><span>加载中...</span></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Live/"><span class="card-category-list-name">Live</span><span class="card-category-list-count">10</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Superconductor/"><span class="card-category-list-name">Superconductor</span><span class="card-category-list-count">13</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Topology/"><span class="card-category-list-name">Topology</span><span class="card-category-list-count">26</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Transport/"><span class="card-category-list-name">Transport</span><span class="card-category-list-count">2</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Code/" style="font-size: 1.43em; color: rgb(97, 85, 54);">Code</a><a href="/tags/Fortran/" style="font-size: 1.39em; color: rgb(50, 161, 117);">Fortran</a><a href="/tags/Topology/" style="font-size: 1.45em; color: rgb(140, 50, 113);">Topology</a><a href="/tags/Julia/" style="font-size: 1.41em; color: rgb(55, 128, 50);">Julia</a><a href="/tags/Python/" style="font-size: 1.39em; color: rgb(88, 119, 100);">Python</a><a href="/tags/Superconductor/" style="font-size: 1.34em; color: rgb(54, 187, 70);">Superconductor</a><a href="/tags/Others/" style="font-size: 1.24em; color: rgb(50, 90, 121);">Others</a><a href="/tags/Mathematica/" style="font-size: 1.36em; color: rgb(121, 103, 145);">Mathematica</a><a href="/tags/Many-Body/" style="font-size: 1.21em; color: rgb(111, 129, 189);">Many-Body</a><a href="/tags/Latex/" style="font-size: 1.3em; color: rgb(50, 87, 121);">Latex</a><a href="/tags/Vasp/" style="font-size: 1.38em; color: rgb(88, 82, 146);">Vasp</a><a href="/tags/Linux/" style="font-size: 1.22em; color: rgb(50, 160, 50);">Linux</a><a href="/tags/Plot/" style="font-size: 1.26em; color: rgb(118, 153, 190);">Plot</a><a href="/tags/Transport/" style="font-size: 1.15em; color: rgb(111, 50, 50);">Transport</a><a href="/tags/Floquet/" style="font-size: 1.15em; color: rgb(145, 115, 50);">Floquet</a><a href="/tags/Tools/" style="font-size: 1.28em; color: rgb(173, 165, 193);">Tools</a><a href="/tags/Experiment/" style="font-size: 1.19em; color: rgb(62, 142, 50);">Experiment</a><a href="/tags/Non-Hermitian/" style="font-size: 1.19em; color: rgb(50, 112, 95);">Non-Hermitian</a><a href="/tags/Method/" style="font-size: 1.17em; color: rgb(104, 55, 86);">Method</a><a href="/tags/Group-Theory/" style="font-size: 1.32em; color: rgb(123, 50, 174);">Group-Theory</a><a href="/tags/Field-Theory/" style="font-size: 1.17em; color: rgb(50, 50, 162);">Field-Theory</a><a href="/tags/MPI/" style="font-size: 1.24em; color: rgb(127, 65, 50);">MPI</a><a href="/tags/QuantumGeometry/" style="font-size: 1.15em; color: rgb(123, 173, 50);">QuantumGeometry</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      <a class="card-more-btn" href="/archives/"
+            title="查看更多">
+            <i class="fas fa-angle-right"></i>
+          </a>
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/08/">
+            <span class="card-archive-list-date">
+              八月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/02/">
+            <span class="card-archive-list-date">
+              二月 2025
+            </span>
+            <span class="card-archive-list-count">2</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/12/">
+            <span class="card-archive-list-date">
+              十二月 2024
+            </span>
+            <span class="card-archive-list-count">3</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/11/">
+            <span class="card-archive-list-date">
+              十一月 2024
+            </span>
+            <span class="card-archive-list-count">3</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/10/">
+            <span class="card-archive-list-date">
+              十月 2024
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/06/">
+            <span class="card-archive-list-date">
+              六月 2024
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/04/">
+            <span class="card-archive-list-date">
+              四月 2024
+            </span>
+            <span class="card-archive-list-count">3</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/03/">
+            <span class="card-archive-list-date">
+              三月 2024
+            </span>
+            <span class="card-archive-list-count">6</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">232</div></div><div class="webinfo-item"><div class="item-name">运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2018-06-24T16:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">498.7k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-08-03T12:53:44.320Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>window.typedJSFn = {
+  init: str => {
+    window.typed = new Typed('#subtitle', Object.assign({
+      strings: str,
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50,
+    }, null))
+  },
+  run: subtitleType => {
+    if (true) {
+      if (typeof Typed === 'function') {
+        subtitleType()
+      } else {
+        btf.getScript('https://cdn.jsdelivr.net/npm/typed.js/dist/typed.umd.min.js').then(subtitleType)
+      }
+    } else {
+      subtitleType()
+    }
+  },
+  processSubtitle: (content, extraContents = []) => {
+    if (true) {
+      const sub = ["生活是一场充满美景的旅程，而不是一场只有优胜者才能抵达终点的竞赛"].slice()
+
+      if (extraContents.length > 0) {
+        sub.unshift(...extraContents)
+      }
+
+      if (typeof content === 'string') {
+        sub.unshift(content)
+      } else if (Array.isArray(content)) {
+        sub.unshift(...content)
+      }
+
+      sub.length > 0 && typedJSFn.init(sub)
+    } else {
+      document.getElementById('subtitle').textContent = typeof content === 'string' ? content :
+        (Array.isArray(content) && content.length > 0 ? content[0] : '')
+    }
+  }
+}
+btf.addGlobalFn('pjaxSendOnce', () => { typed.destroy() }, 'typedDestroy')
+</script><script>function subtitleType () {
+  typedJSFn.processSubtitle(["生活是一场充满美景的旅程，而不是一场只有优胜者才能抵达终点的竞赛"])
+}
+typedJSFn.run(subtitleType)</script></div><script>window.newestComments = {
+  changeContent: content => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<code>.*?<\/code>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g, "") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0, 150) + '...'
+    }
+    return content
+  },
+
+  generateHtml: (array, ele) => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class="aside-list-item">'
+
+        if (true && array[i].avatar) {
+          const imgAttr = 'src'
+          const lazyloadNative = ''
+          result += `<a href="${array[i].url}" class="thumbnail"><img ${imgAttr}="${array[i].avatar}" alt="${array[i].nick}" ${lazyloadNative}></a>`
+        }
+
+        result += `<div class="content">
+        <a class="comment" href="${array[i].url}" title="${array[i].content}">${array[i].content}</a>
+        <div class="name"><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '暂无评论'
+    }
+
+    ele.innerHTML = result
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh(ele)
+  },
+
+  newestCommentInit: (name, getComment) => {
+    const $dom = document.querySelector('#card-newest-comments .aside-list')
+    if ($dom) {
+      const data = btf.saveToLocal.get(name)
+      if (data) {
+        newestComments.generateHtml(JSON.parse(data), $dom)
+      } else {
+        getComment($dom)
+      }
+    }
+  },
+
+  run: (name, getComment) => {
+    newestComments.newestCommentInit(name, getComment)
+    btf.addGlobalFn('pjaxComplete', () => newestComments.newestCommentInit(name, getComment), name)
+  }
+}</script><script>window.addEventListener('load', () => {
+  const keyName = 'github-newest-comments'
+  const { changeContent, generateHtml, run } = window.newestComments
+
+  const findTrueUrl = (array, ele) => {
+    Promise.all(array.map(item =>
+      fetch(item.url).then(resp => resp.json()).then(data => {
+        let urlArray = data.body ? data.body.match(/(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?/ig) : []
+        if (!Array.isArray(urlArray) || urlArray.length === 0) {
+          urlArray = [`${data.html_url}`]
+        }
+        if (data.user.login === 'utterances-bot') {
+          return urlArray.pop()
+        } else {
+          return urlArray.shift()
+        }
+      })
+    )).then(res => {
+        array = array.map((i,index)=> {
+          return {
+            ...i,
+            url: res[index]
+          }
+        })
+
+        btf.saveToLocal.set(keyName, JSON.stringify(array), 10/(60*24))
+        generateHtml(array, ele)
+    });
+  }
+
+  const getComment = ele => {
+    fetch('https://api.github.com/repos/yxli8023/yxli8023.github.io/issues/comments?sort=updated&direction=desc&per_page=6&page=1',{
+      "headers": {
+        Accept: 'application/vnd.github.v3.html+json'
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        const githubArray = data.map(item => {
+          return {
+            'avatar': item.user.avatar_url,
+            'content': changeContent(item.body_html || item.body),
+            'nick': item.user.login,
+            'url': item.issue_url,
+            'date': item.updated_at
+          }
+        })
+        findTrueUrl(githubArray, ele)
+      }).catch(e => {
+        console.error(e)
+        ele.textContent= "无法获取评论，请确认相关配置是否正确"
+      })
+  }
+  run(keyName, getComment)
+})</script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

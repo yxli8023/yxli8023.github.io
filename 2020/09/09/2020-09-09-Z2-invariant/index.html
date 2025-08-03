@@ -1,0 +1,330 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>$Z_2$拓扑不变量计算 | Yu-Xuan' Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前面学习了chern数的计算，其中其实遇到了波函数规范选择的问题，这个在计算时间反演不变系统的$Z_2$拓扑不变量的时候也会遇到，暂时我对这个规范问题也没有很好的理解，正好也通过计算$Z_2$拓扑不变量来对规范问题进行更进一步的了解，这里只是单纯的学习如何计算$Z_2$。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="$Z_2$拓扑不变量计算">
+<meta property="og:url" content="http://example.com/2020/09/09/2020-09-09-Z2-invariant/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39; Blog">
+<meta property="og:description" content="前面学习了chern数的计算，其中其实遇到了波函数规范选择的问题，这个在计算时间反演不变系统的$Z_2$拓扑不变量的时候也会遇到，暂时我对这个规范问题也没有很好的理解，正好也通过计算$Z_2$拓扑不变量来对规范问题进行更进一步的了解，这里只是单纯的学习如何计算$Z_2$。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/defult-cover2.jpg">
+<meta property="article:published_time" content="2020-09-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-08-03T09:52:37.361Z">
+<meta property="article:author" content="Yu-Xuan">
+<meta property="article:tag" content="Code">
+<meta property="article:tag" content="Topology">
+<meta property="article:tag" content="Julia">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/defult-cover2.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "$Z_2$拓扑不变量计算",
+  "url": "http://example.com/2020/09/09/2020-09-09-Z2-invariant/",
+  "image": "http://example.com/img/defult-cover2.jpg",
+  "datePublished": "2020-09-08T16:00:00.000Z",
+  "dateModified": "2025-08-03T09:52:37.361Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yu-Xuan",
+      "url": "http://example.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2020/09/09/2020-09-09-Z2-invariant/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'medium_zoom',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#f54966","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '$Z_2$拓扑不变量计算',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #dbeffd;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">232</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/img/defult-cover2.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Yu-Xuan' Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">$Z_2$拓扑不变量计算</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">$Z_2$拓扑不变量计算</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-09-08T16:00:00.000Z" title="发表于 2020-09-09 00:00:00">2020-09-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-08-03T09:52:37.361Z" title="更新于 2025-08-03 17:52:37">2025-08-03</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>7分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/2020/09/09/2020-09-09-Z2-invariant/#post-comment"><span class="gitalk-comment-count"><i class="fa-solid fa-spinner fa-spin"></i></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;It has been&quot;,&quot;messageNext&quot;:&quot;days since the last update, the content of the article may be outdated.&quot;,&quot;postUpdate&quot;:&quot;2025-08-03 17:52:37&quot;}" hidden></div><div class="note blue no-icon flat"><p>前面学习了chern数的计算，其中其实遇到了波函数规范选择的问题，这个在计算时间反演不变系统的$Z_2$拓扑不变量的时候也会遇到，暂时我对这个规范问题也没有很好的理解，正好也通过计算$Z_2$拓扑不变量来对规范问题进行更进一步的了解，这里只是单纯的学习如何计算$Z_2$。</p>
+</div>
+<span id="more"></span>
+<h1 id="计算方法"><a href="#计算方法" class="headerlink" title="计算方法"></a>计算方法</h1><p>首先介绍一下我学习的计算$Z_2$ 拓扑不变量的方法，主要参考了这个<a target="_blank" rel="noopener" href="https://t-ozaki.issp.u-tokyo.ac.jp/meeting16/OMX-Sawahata-2016Nov.pdf">PPT</a>中的计算方法。如果网址打不开，可以在<a href="/assets/pdf/z2-ppt.pdf">这里</a>下载。我在这里只是简单的展示一下如何用代码计算拓扑不变量，而对于ppt中的计算方法还在进一步理解中，也非常欢迎对这方面比较熟悉的人，可以和我交流交流，让我对这部分内容有一个更加深入的了解。</p>
+<h1 id="BHZ-模型-Z-2-拓扑不变量计算"><a href="#BHZ-模型-Z-2-拓扑不变量计算" class="headerlink" title="BHZ 模型$Z_2$拓扑不变量计算"></a>BHZ 模型$Z_2$拓扑不变量计算</h1><p>在这里，我就一比较熟悉的<a target="_blank" rel="noopener" href="https://topocondmat.org/w6_3dti/bhz.html">BHZ</a>模型为例，来计算一下其$Z_2$拓扑不变量。在这里首先对ppt中的公式运用做一些说明。</p>
+<p>首先，熟悉chern number计算的话，肯定知道我们是要对占据态能带进行拓扑不变量的计算，在第10张ppt中</p>
+<script type="math/tex; mode=display">U_{\mu}=\det(\langle u_m(\mathbf{k})|u_n(\mathbf{k} + \Delta\mu)\rangle)</script><p>这里的$|u\rangle$代表的都是占据态的本征矢量，所以如果求解得到哈密顿量对应的本征值和本征矢量后，假设此时化学势为0，那么应该选取的就是能量小于零对应的本征矢量来进行计算。这里因为是存在时间反演对称，所以如果本征值一定会成对出现，即存在简并态(两个本征矢量具有相同的本征值)，关于相同的本征值有两个，这一点可以在计算的时候明确得到。</p>
+<p>假设计算得到一个本征值为$E_1$，那么对应的一定存在另外一个本征值$E_2$，满足$E_1 = E_2$，但是这两个本征值对应的本征矢量是不同的。所以上面的表<br>达式中计算的矩阵行列式，这个矩阵就是由这两个简并的本征态构成的。而$\Delta \mu$则是代表在$k_x$或者$k_y$方向上有一个增量。我在看ppt中的这个行<br>列式计算的公式的时候，是觉得它有一些让人疑惑的地方。还是以第十张ppt中的计算公式$U_{\mu}=\det(\langle u_m(\mathbf{k})|u_n(\mathbf{k} +<br>\Delta\mu)\rangle)$，在这个公式中应该写出$U_\mu=U_\mu(\mathbf{k})$，这样就可以很自然的可以和下面计算贝利联络以及贝利曲率的公式相互联系起<br>来。如果作为初学者，可能会对这个地方有一个小的疑惑。在这里再进一步把这些角标说的更加清楚一些，计算公式中的$m,n$其实就是两个相同本征值对应的两<br>个不同的本征矢量。所以如果系统存在时间反演对称性，那么本征值成对出现，所以在对角化哈密顿量之后，两个占据态的本征值对应两个两个不同的本征矢量(价带波函数)，这<br>也就是这里$m,n$索引的对象(分别对应的是两个本征值的本征矢量)，所以这是一个2*2的矩阵，可以通过简单的方法求得其行列式，关于行列式的求解，可以在程序中去查找。</p>
+<p>在最后利用Berry联络求解拓扑数的时候的公式为</p>
+<script type="math/tex; mode=display">n(k_l)=\frac{1}{2}(\left[\Delta_\nu A_\mu-\Delta_\mu A_\nu\right]-F(k_l))</script><p>将这个公式翻译成差分形式之后也就是</p>
+<script type="math/tex; mode=display">\Delta_\nu A_\mu=A_{\mu+\nu}-A_\mu\qquad\Delta_\mu A_\nu=A_{\nu+\mu}-A_\nu</script><p>这里$A_\mu(k_l)=\textrm{Im}\log\left[ U_\mu(k_l)\right]$,那么相应上面的公式其实也就是对$U_\mu(k_l)$的差分.这个形式在代码里面也可以很清楚的看明白。</p>
+<p>在计算$Z_2$的过程中，需要用到多个方向上增量的本征矢量，包括:$(k_x,k_y),(k_x + \Delta k_x,k_y),(k_x+\Delta k_x,k_y + \Delta k_y),(k_x,<br>k_y+\Delta k_y)$，这其实也就对应着第11张ppt中的示意图中的$u_1,u_2,u_3,u_4$。<strong>这里的$u_i$对应的都是简并的本征态</strong>，所以也就有了相应的对矩<br>阵求行列式的操作。具体是如何构成这个矩阵的，即就是上面所说的利用两个简并本征矢量来构成。</p>
+<h2 id="Julia"><a href="#Julia" class="headerlink" title="Julia"></a>Julia</h2><p><img src="/assets/images/Julia/p1.png" alt="png">{:width=”400px”,:height=”495px”}</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> LinearAlgebra</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> ham(kx::<span class="built_in">Float64</span>,ky::<span class="built_in">Float64</span>)::<span class="built_in">Matrix</span>&#123;<span class="built_in">ComplexF64</span>&#125;</span><br><span class="line">    <span class="comment"># BHZ模型</span></span><br><span class="line">    A::<span class="built_in">Float64</span> = <span class="number">0.3645</span>/<span class="number">5</span></span><br><span class="line">    B::<span class="built_in">Float64</span> = -<span class="number">0.686</span>/<span class="number">25</span></span><br><span class="line">    C::<span class="built_in">Float64</span> = <span class="number">0</span></span><br><span class="line">    D::<span class="built_in">Float64</span> = -<span class="number">0.512</span>/<span class="number">25</span></span><br><span class="line">    M::<span class="built_in">Float64</span> = -<span class="number">0.01</span></span><br><span class="line">    matrix = zeros(<span class="built_in">ComplexF64</span>,<span class="number">4</span>,<span class="number">4</span>)</span><br><span class="line">    </span><br><span class="line">    varepsilon = C - <span class="number">2</span>*D*(<span class="number">2</span> - cos(kx) - cos(ky))</span><br><span class="line">    d3 = - <span class="number">2</span>*B*(<span class="number">2</span> - (M/<span class="number">2</span>/B) - cos(kx) - cos(ky))</span><br><span class="line">    d1d2 = A*(sin(kx) + <span class="number">1</span><span class="literal">im</span>*sin(ky))</span><br><span class="line">    matrix[<span class="number">1</span>, <span class="number">1</span>] = varepsilon + d3</span><br><span class="line">    matrix[<span class="number">2</span>, <span class="number">2</span>] = varepsilon - d3</span><br><span class="line">    matrix[<span class="number">1</span>, <span class="number">2</span>] = conj(d1d2)</span><br><span class="line">    matrix[<span class="number">2</span>, <span class="number">1</span>] = d1d2</span><br><span class="line">    </span><br><span class="line">    varepsilon = C - <span class="number">2</span>*D*(<span class="number">2</span> - cos(-kx) - cos(-ky))</span><br><span class="line">    d3 = - <span class="number">2</span>*B*(<span class="number">2</span> - (M/<span class="number">2</span>/B) - cos(-kx) - cos(-ky))</span><br><span class="line">    d1d2 = A*(sin(-kx) + <span class="number">1</span><span class="literal">im</span>*sin(-ky))</span><br><span class="line">    matrix[<span class="number">3</span>, <span class="number">3</span>] = varepsilon + d3</span><br><span class="line">    matrix[<span class="number">4</span>, <span class="number">4</span>] = varepsilon - d3</span><br><span class="line">    matrix[<span class="number">3</span>, <span class="number">4</span>] = d1d2 </span><br><span class="line">    matrix[<span class="number">4</span>, <span class="number">3</span>] = conj(d1d2)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> matrix</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment"># ==============================================================================</span></span><br><span class="line"><span class="keyword">function</span> detcal(a1,b1,a2,b2)</span><br><span class="line"><span class="comment"># 计算行列式</span></span><br><span class="line">    x1 = dot(a1&#x27;,b1)</span><br><span class="line">    x2 = dot(a2&#x27;,b2)</span><br><span class="line">    x3 = dot(a1&#x27;,b2)</span><br><span class="line">    x4 = dot(a2&#x27;,b1)</span><br><span class="line">    <span class="keyword">return</span> x1*x2 - x3*x4 </span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment"># ===============================================================</span></span><br><span class="line"><span class="keyword">function</span> main() </span><br><span class="line">    dk::<span class="built_in">Float64</span> = <span class="number">0.05</span></span><br><span class="line">    Z2::<span class="built_in">Float64</span> = <span class="number">0.0</span></span><br><span class="line">    Ux::<span class="built_in">ComplexF64</span> = <span class="number">0.0</span> + <span class="number">0</span><span class="literal">im</span></span><br><span class="line">    Uy::<span class="built_in">ComplexF64</span> = <span class="number">0.0</span> + <span class="number">0</span><span class="literal">im</span></span><br><span class="line">    Uxy::<span class="built_in">ComplexF64</span> = <span class="number">0.0</span> + <span class="number">0</span><span class="literal">im</span></span><br><span class="line">    Uyx::<span class="built_in">ComplexF64</span> = <span class="number">0.0</span> + <span class="number">0</span><span class="literal">im</span></span><br><span class="line">    F::<span class="built_in">Float64</span> = <span class="number">0.0</span></span><br><span class="line">    A::<span class="built_in">Float64</span> = <span class="number">0.0</span></span><br><span class="line">    <span class="keyword">for</span> kx <span class="keyword">in</span> -<span class="literal">pi</span>:dk:<span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> ky <span class="keyword">in</span> -<span class="literal">pi</span>:dk:<span class="literal">pi</span></span><br><span class="line">            h = ham(kx,ky)</span><br><span class="line">            val,vec = eigen(h)</span><br><span class="line">            vc1 = vec[:,<span class="number">1</span>]</span><br><span class="line">            vc2 = vec[:,<span class="number">2</span>]</span><br><span class="line">            <span class="comment"># ----------------------------</span></span><br><span class="line">            hkx = ham(kx + dk,ky)</span><br><span class="line">            val,vec = eigen(hkx)</span><br><span class="line">            vkx1 = vec[:,<span class="number">1</span>]</span><br><span class="line">            vkx2 = vec[:,<span class="number">2</span>]</span><br><span class="line">            <span class="comment"># ----------------------------</span></span><br><span class="line">            hky = ham(kx,ky + dk)</span><br><span class="line">            val,vec = eigen(hky)</span><br><span class="line">            vky1 = vec[:,<span class="number">1</span>]</span><br><span class="line">            vky2 = vec[:,<span class="number">2</span>]</span><br><span class="line">            <span class="comment"># -------------------------------------------</span></span><br><span class="line">            hkxky = ham(kx + dk,ky + dk)</span><br><span class="line">            val,vec = eigen(hkxky)</span><br><span class="line">            vkxky1 = vec[:,<span class="number">1</span>]</span><br><span class="line">            vkxky2 = vec[:,<span class="number">2</span>]</span><br><span class="line">            <span class="comment"># -------------------------------------------</span></span><br><span class="line">            Ux = detcal(vc1, vkx1, vc2, vkx2)  </span><br><span class="line">            Uy = detcal(vc1, vky1, vc2, vky2)</span><br><span class="line">            Uxy = detcal(vky1, vkxky1, vky2, vkxky2)</span><br><span class="line">            Uyx = detcal(vkx1, vkxky1, vkx2, vkxky2)</span><br><span class="line">            <span class="comment"># --------------------------------------------</span></span><br><span class="line">            F = imag(log(Ux*Uyx*conj(Uxy)*conj(Uy)))</span><br><span class="line">            A = -imag(log(Ux)) + imag(log(Uyx)) + imag(log(conj(Uxy))) -imag(log(conj(Uy)))</span><br><span class="line">            Z2 = Z2 + (A - F)/(<span class="number">2.0</span>*<span class="literal">pi</span>)</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span> </span><br><span class="line">    <span class="keyword">return</span> mod(Z2,<span class="number">2</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment"># ====================================================================</span></span><br><span class="line"><span class="meta">@time</span> main()</span><br></pre></td></tr></table></figure>
+<h2 id="Mathematica"><a href="#Mathematica" class="headerlink" title="Mathematica"></a>Mathematica</h2><p>最近正好又回想起来要利用这个方法来计算$Z_2$拓扑不变量，也就用Mathematica也写了一个版本，不过对于这种循环的程序，直接改写成Mathematica的代码，样子又丑，运行速度还不怎么滴，所以我也只是拿来练练手，熟悉了一下方法，并没有带代码进行函数式编程的改写，毕竟函数式编程才是Mathematica的最大优势，因为博客不能直接放Mathematica的代码，那么就只好截图如下了</p>
+<p><img src="/assets/images/Julia/mma-z2.png" alt="png"></p>
+<p>至于Mathematica的代码，可以点击<a href="assets/data/mma-z2.nb">这里下载</a>.</p>
+<div class="note red no-icon flat"><p>在利用mma计算的时候,发现一些奇怪的事情,我如果用11.2的版本,那么计算得到的结果是稳定的,也是正确的,而当我使用12.0的时候,计算得到的结果在间隔或者k点数目取不同值的时候,有时候会得到错误的结果,我只能将这个问题归结的软件自身的问题上,毕竟我在利用其它语言计算的时候,并没有遇到太多这方面的问题.</p>
+</div>
+<h1 id="小疑问"><a href="#小疑问" class="headerlink" title="小疑问"></a>小疑问</h1><p>在计算的时候，我曾把$dk=0.1$，这时候的结果是错误的，如果将这个间隔调小之后，就可以得到正确的结果。而我利用<a target="_blank" rel="noopener" href="http://www.guanjihuan.com/archives/5778">这里</a>的python代码进行计算的时候，相同的间隔下面仍然得到正确的结果。我对比了python和julia计算得到的本征值和本征矢量，发现本征值的计算两个不同语言的结果是相同的，但是本征矢量则是不同的。但这个应该只是小问题，应该是可以忽略这个问题的。而且利用julia来计算的话，在速度上还是很有优势的。</p>
+<h1 id="公众号"><a href="#公众号" class="headerlink" title="公众号"></a>公众号</h1><div class="note blue no-icon flat"><p>相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。</p>
+</div>
+<table>
+  <tr>
+    <!-- 图片单元格 -->
+    <td style="width: 300px; height: 300px; text-align: center; vertical-align: middle; border: 1px solid #ccc; border-radius: 8px;">
+      <img src="/assets/images/qrcode.jpg" alt="QR Code" width="300px" height="300px" style="border-radius: 8px;">
+    </td>
+    <!-- 文字单元格 -->
+    <td style="width: 300px; height: 300px; text-align: center; vertical-align: middle; padding-left: 20px; border: 1px solid #ccc; border-radius: 8px;">
+      <div>
+        <h4 style="margin: 0;">Email</h4>
+        <p style="margin: 5px 0;">yxli406@gmail.com</p>
+      </div>
+    </td>
+  </tr>
+</table></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Yu-Xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2020/09/09/2020-09-09-Z2-invariant/">http://example.com/2020/09/09/2020-09-09-Z2-invariant/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Yu-Xuan' Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Code/">Code</a><a class="post-meta__tags" href="/tags/Topology/">Topology</a><a class="post-meta__tags" href="/tags/Julia/">Julia</a></div><div class="post-share"><div class="social-share" data-image="/img/defult-cover2.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg"/></a><div class="post-qr-code-desc"></div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg"/></a><div class="post-qr-code-desc"></div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2020/09/11/2020-09-11-Wannier-Center-Z2/" title="通过Wannier Center计算体系$Z_2$拓扑不变量"><img class="cover" src="/img/defult-cover.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">通过Wannier Center计算体系$Z_2$拓扑不变量</div></div><div class="info-2"><div class="info-item-1">在$Z_2$拓扑不变量计算中，是通过一个比较直接的数值计算方法来对系统的$Z_2$拓扑不变量进行计算，而在学习能带拓扑的时候，最基本的理解都是通过电荷极化以及Wannier函数进行的，所以这里再利用Wannier Center的方法来计算体系的$Z_2$拓扑不变量，通过这个方法计算的时候，可以建立一个很清晰的物理图像，从而可以进一步加深对凝聚态物理中的拓扑有更深的理解。   Wannier Center在学习在利用Wannier Center计算拓扑不变量的过程中，我想先对参考文章中的一些概念再做一些自己的理解。 Bloch Function在周期势场中运动的电子，其波函数满足Bloch定理$\psi(\mathbf{r})=e^{i\mathbf{k}\mathbf{r}}u(\mathbf{r})$，其中$e^{i\mathbf{k}\mathbf{r}}$是调幅因子，而$u(\mathbf{r})$是函数的周期部分，即这一项就是满足和势场相同的周期性，也可以说这一项就是一个元胞内的波函数(cell function)。$u(\mathbf{r}+\mathbf{R})=u(...</div></div></div></a><a class="pagination-related" href="/2020/09/03/2020-09-03-Hubbard-doping/" title="电子掺杂，空穴掺杂与化学势的关系"><img class="cover" src="/img/defult-cover.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">电子掺杂，空穴掺杂与化学势的关系</div></div><div class="info-2"><div class="info-item-1">在研究超导问题的时候，不可避免的总会遇到体系时电子掺杂还是空穴掺杂，因为这两种不同的掺杂所对应的性质是不同的，最近重新温习一下超导的相关知识，正好也利用一个具体的紧束缚近似模型来说明一下电子和空穴掺杂到底是怎么回事，以及如何的通过自洽方法，通过调整化学势来决定体系到底是电子掺杂还是空穴掺杂   半满实空间分析在这里先采用李正中&lt;&lt;固体理论&gt;&gt;第十一章第九节的Hubbard模型来说明一下填充到底如何确定  H=-t\sum_{,\sigma}(C_{i\sigma}^\dagger C_{j\sigma}+h.c)+U\sum_in_{i\uparrow}n_{i\downarrow}最后一项就是相同格点之内的不同自旋电子之间的相互作用，熟悉强关联的一定对这个模型非常熟悉了，而正好也就是这一项，使得本来可以利用紧束缚近似完整描述的模型，变成了强关联体系，从而引起了一系列有趣的现象。 在这里简单的令$U=0$，这样剩余的部分就是一个简单的紧束缚近似模型，学过固体物理就很清楚，如果你有N个格点的话，利用Pauli不相容原理，每个格点最多放两个电子，那么整个体系的...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2020/07/01/2020-07-01-Chern-Number/" title="两种方法计算Chern Number"><img class="cover" src="/img/defult-cover2.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-01</div><div class="info-item-2">两种方法计算Chern Number</div></div><div class="info-2"><div class="info-item-1">计算Chern数是最初学习拓扑物理都会遇到的问题，正好在假期空闲的时候自己学习了一下Chern数的数值计算方法，在博客上记录一下希望可以帮助到别人。   具体的计算方法和细节就不在这里说明了，只要是想学习计算Chern数的肯定了解它在凝聚态物理中的角色，而计算的细节也会在后面的参考文献中给出，只是展示一下结果。 Julia语言计算Chern numberVersion1这个方法是直接用定义直接计算的结果，但是可能会遇到波函数规范选择的问题，会导致结果有误，而具体的规范问题，我并不懂，所以一般我会选择第二种方法来计算，也就是后面参考文献中介绍的方法。1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374import PkgPkg.add(&quot;LinearAlgebra&quot;)Pkg.add(&quot;PyPlot&quot;)using Line...</div></div></div></a><a class="pagination-related" href="/2020/06/30/2020-06-30-Kane-Mele/" title="Kane Mele model zigzag 边界态的计算"><img class="cover" src="/img/defult-cover.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-30</div><div class="info-item-2">Kane Mele model zigzag 边界态的计算</div></div><div class="info-2"><div class="info-item-1">接触量子自旋霍尔效应很久了，但是一直也都是在square lattice上做计算，从来没有认真的在六角点阵上计算过拓扑的内容，正好最近在看文献的过程中需要在石墨烯机构上进行，就从最基本的Kane-Mele 模型出发学习怎么在六角点阵上写出最近邻以及次近邻的哈密顿量。  关于最近邻之间的hopping在前面石墨烯的边界态文章中已经仔细考虑过，包括cell的选取还有原子的编号，在这里。现在唯一的不同就是要考虑次近邻之间的hopping。在这里暂时并未考虑Rashbo自旋轨道耦合。 基本设定  蓝色虚线框中是选择的一个大cell，在y方向是有限长度，在x方向是无限的，所以$k_x$是个好量子数，这种边界态叫zigzag；当x方向开边界，y方向无限长时的边界态叫armchair，可以参考这里。格点之间的hopping可以在一个大cell之内，可会存在大cell之间的hopping，在下面会逐一展示。关于Kane-Mele模型中的$v_{ij}$的示意如上图_hopping_蓝色箭头所示，当格点连线在hopping的右侧时$v_{ij}=-1$，在左侧时$v_{ij}=1$；将一个大cel...</div></div></div></a><a class="pagination-related" href="/2019/04/17/2019-04-17-julia/" title="Majorana Corner State in High Temperature Superconductor"><img class="cover" src="/assets/images/research/juliaresult.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2019-04-17</div><div class="info-item-2">Majorana Corner State in High Temperature Superconductor</div></div><div class="info-2"><div class="info-item-1">最近刚刚学习了julia, 手头上也正好在重复一篇文章，就正好拿新学习的内容一边温习一边做研究。   导入函数库1234567# Import external package that used in program import Pkg# Pkg.add(&quot;PyPlot&quot;)# Pkg.add(&quot;LinearAlgebra&quot;)# Pkg.add(&quot;CPUTime&quot;) #Pkg.add(&quot;SparseArrays&quot;)#Pkg.add(&quot;DelimitedFiles&quot;) 函数定义12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210310410...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">232</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yxli8023"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome to Yu-Xuan's Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">计算方法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#BHZ-%E6%A8%A1%E5%9E%8B-Z-2-%E6%8B%93%E6%89%91%E4%B8%8D%E5%8F%98%E9%87%8F%E8%AE%A1%E7%AE%97"><span class="toc-number">2.</span> <span class="toc-text">BHZ 模型$Z_2$拓扑不变量计算</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Julia"><span class="toc-number">2.1.</span> <span class="toc-text">Julia</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mathematica"><span class="toc-number">2.2.</span> <span class="toc-text">Mathematica</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%8F%E7%96%91%E9%97%AE"><span class="toc-number">3.</span> <span class="toc-text">小疑问</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AC%E4%BC%97%E5%8F%B7"><span class="toc-number">4.</span> <span class="toc-text">公众号</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-number">4.0.0.1.</span> <span class="toc-text">Email</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/08/02/2025-08-02-Real-Space-Chern/" title="实空间Chern数计算(Half-BHZ模型)"><img src="/assets/images/Julia/Chern-m0.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实空间Chern数计算(Half-BHZ模型)"/></a><div class="content"><a class="title" href="/2025/08/02/2025-08-02-Real-Space-Chern/" title="实空间Chern数计算(Half-BHZ模型)">实空间Chern数计算(Half-BHZ模型)</a><time datetime="2025-08-01T16:00:00.000Z" title="发表于 2025-08-02 00:00:00">2025-08-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/22/2025-02-22-Free-SC/" title="超导序参量自洽(自由能极小值方法)"><img src="/assets/images/Julia/Bx_kbt-phase.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导序参量自洽(自由能极小值方法)"/></a><div class="content"><a class="title" href="/2025/02/22/2025-02-22-Free-SC/" title="超导序参量自洽(自由能极小值方法)">超导序参量自洽(自由能极小值方法)</a><time datetime="2025-02-21T16:00:00.000Z" title="发表于 2025-02-22 00:00:00">2025-02-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/18/2025-02-18-Julia-MPI-Set/" title="Mac上配置MPI并行Julia"><img src="/assets/images/Julia/a4.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Mac上配置MPI并行Julia"/></a><div class="content"><a class="title" href="/2025/02/18/2025-02-18-Julia-MPI-Set/" title="Mac上配置MPI并行Julia">Mac上配置MPI并行Julia</a><time datetime="2025-02-17T16:00:00.000Z" title="发表于 2025-02-18 00:00:00">2025-02-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/15/2024-12-15-Fourier-Spectrum/" title="超导序参量中的傅里叶分析"><img src="/assets/images/Mma/fft-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导序参量中的傅里叶分析"/></a><div class="content"><a class="title" href="/2024/12/15/2024-12-15-Fourier-Spectrum/" title="超导序参量中的傅里叶分析">超导序参量中的傅里叶分析</a><time datetime="2024-12-14T16:00:00.000Z" title="发表于 2024-12-15 00:00:00">2024-12-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/11/2024-12-11-Screeing/" title="库仑势以及屏蔽库伦势的一些计算"><img src="/assets/images/Mma/Vscr-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="库仑势以及屏蔽库伦势的一些计算"/></a><div class="content"><a class="title" href="/2024/12/11/2024-12-11-Screeing/" title="库仑势以及屏蔽库伦势的一些计算">库仑势以及屏蔽库伦势的一些计算</a><time datetime="2024-12-10T16:00:00.000Z" title="发表于 2024-12-11 00:00:00">2024-12-11</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  const initGitalk = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGitalk = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const gitalk = new Gitalk({
+      clientID: 'Ov23li0WvZEaIAZ7RFtH',
+      clientSecret: '03fcb77b7c28dafcdde00756e27f9b5bc76639e8',
+      repo: 'yxli8023.github.io',
+      owner: 'yxli8023',
+      admin: ['Yu-Xuan'],
+      updateCountCallback: commentCount,
+      ...option,
+      id: isShuoshuo ? path : (option && option.id) || '17c7c34b038adc5baacac66b954cfe69'
+    })
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async(el, path) => {
+    if (typeof Gitalk === 'function') initGitalk(el, path)
+    else {
+      await btf.getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await btf.getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Gitalk' === 'Gitalk'
+      ? window.shuoshuoComment = { loadComment: loadGitalk }
+      : window.loadOtherComment = loadGitalk
+    return
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

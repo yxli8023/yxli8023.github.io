@@ -1,0 +1,364 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>超导序参量自洽(自由能极小值方法) | Yu-Xuan' Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="在正方晶格超导序参量自洽的文章中是利用了自洽方程得到超导序参量，并研究了其温度依赖关系。这里给出利用最小化自由能的方式来得到序参量，并给出金兹堡-朗道(Ginzburg–Landau )理论所给出的自由能随温度的演化。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="超导序参量自洽(自由能极小值方法)">
+<meta property="og:url" content="http://example.com/2025/02/22/2025-02-22-Free-SC/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39; Blog">
+<meta property="og:description" content="在正方晶格超导序参量自洽的文章中是利用了自洽方程得到超导序参量，并研究了其温度依赖关系。这里给出利用最小化自由能的方式来得到序参量，并给出金兹堡-朗道(Ginzburg–Landau )理论所给出的自由能随温度的演化。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/assets/images/Julia/Bx_kbt-phase.png">
+<meta property="article:published_time" content="2025-02-21T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-08-03T03:47:29.442Z">
+<meta property="article:author" content="Yu-Xuan">
+<meta property="article:tag" content="Code">
+<meta property="article:tag" content="Julia">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/images/Julia/Bx_kbt-phase.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "超导序参量自洽(自由能极小值方法)",
+  "url": "http://example.com/2025/02/22/2025-02-22-Free-SC/",
+  "image": "http://example.com/assets/images/Julia/Bx_kbt-phase.png",
+  "datePublished": "2025-02-21T16:00:00.000Z",
+  "dateModified": "2025-08-03T03:47:29.442Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yu-Xuan",
+      "url": "http://example.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2025/02/22/2025-02-22-Free-SC/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'medium_zoom',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#f54966","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '超导序参量自洽(自由能极小值方法)',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #dbeffd;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">232</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/assets/images/Julia/Bx_kbt-phase.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Yu-Xuan' Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">超导序参量自洽(自由能极小值方法)</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">超导序参量自洽(自由能极小值方法)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-02-21T16:00:00.000Z" title="发表于 2025-02-22 00:00:00">2025-02-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-08-03T03:47:29.442Z" title="更新于 2025-08-03 11:47:29">2025-08-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Superconductor/">Superconductor</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">1.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/2025/02/22/2025-02-22-Free-SC/#post-comment"><span class="gitalk-comment-count"><i class="fa-solid fa-spinner fa-spin"></i></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;It has been&quot;,&quot;messageNext&quot;:&quot;days since the last update, the content of the article may be outdated.&quot;,&quot;postUpdate&quot;:&quot;2025-08-03 11:47:29&quot;}" hidden></div><div class="note blue no-icon flat"><p>在<a target="_blank" rel="noopener" href="https://yxli8023.github.io/2024/10/31/Square-SC.html">正方晶格超导序参量自洽</a>的文章中是利用了自洽方程得到超导序参量，并研究了其温度依赖关系。这里给出利用最小化自由能的方式来得到序参量，并给出金兹堡-朗道(Ginzburg–Landau )理论所给出的自由能随温度的演化。</p>
+</div>
+<span id="more"></span>
+<h1 id="公式推导"><a href="#公式推导" class="headerlink" title="公式推导"></a>公式推导</h1><p>起手先是一个有吸引相互作用的哈密顿量</p>
+<script type="math/tex; mode=display">
+H=\sum_{\mathbf{k},\mathbf{k}^\prime}c^\dagger_{\mathbf{k},s}h(\mathbf{k})_{ss^\prime}c_{\mathbf{k},s^\prime}-U\sum_{\mathbf{k},\mathbf{k}^\prime}c^\dagger_{\mathbf{k}\uparrow}c^\dagger_{-\mathbf{k}\downarrow}c_{-\mathbf{k}^\prime\downarrow}c_{\mathbf{k}^\prime\uparrow}</script><p>平均场处理之后分解到超导通道，则可以得到BdG哈密顿量，不熟悉可以参考<a target="_blank" rel="noopener" href="https://yxli8023.github.io/2021/01/20/BdG-formation.html">正常态到BdG哈密顿量的构建</a>这篇笔记，或者参考李正中固体理论。超导序参量则需要自洽</p>
+<script type="math/tex; mode=display">
+\Delta=-U\sum_{\mathbf{k}}\langle c_{\mathbf{k}\downarrow}c_{-\mathbf{k}\uparrow}\rangle</script><p>体系的自由能为</p>
+<script type="math/tex; mode=display">
+F_s=\frac{|\Delta|^2}{U}-\sum_{\mathbf{k},n}\frac{1}{2\beta}\ln(1+e^{-\beta E_n(\mathbf{k})})</script><p>这里的$E_n(\mathbf{k})$就是BdG哈密顿量的本征值，BdG哈密顿量为</p>
+<script type="math/tex; mode=display">
+H_{\rm BdG}(\mathbf{k})=\left(
+\begin{array}{cc}
+h(\mathbf{k})&-i\Delta\sigma_y\\
+i\Delta\sigma_y&-h^*(-\mathbf{k})
+\end{array}
+\right)</script><p>通过给定不同的$\Delta$来对角化$H_{\rm BdG}(\mathbf{k})$得到本征值，从而可以计算自由能，而最小的自由能对应的$\Delta$就是自洽得到的超导序参量，所以这里实际上是通过一种遍历的方式来得到超导序参量的。</p>
+<h1 id="结果展示"><a href="#结果展示" class="headerlink" title="结果展示"></a>结果展示</h1><ul>
+<li><p>改变温度，自由能随序参量变化<br><img src="/assets/images/Julia/fs-1.png" alt="png"></p>
+</li>
+<li><p>最大序参量随温度的变化<br><img src="/assets/images/Julia/fs-2.png" alt="png"></p>
+</li>
+<li><p>序参量随磁场的变化</p>
+</li>
+</ul>
+<p><img src="/assets/images/Julia/fs-3.png" alt="png"></p>
+<div class="note orange no-icon flat"><p>可以发现随着增加磁场，序参量会发生突变，因为这里考虑的模型是自由电子气，Type-I类型的超导体，其超导正常态转变是个二级相变。</p>
+</div>
+<p>根据$\Delta(T = 0)=\Delta_0$时的序参量大小可以近似估计$^{[1]}$破坏超导态的最大临界磁场，在普通的超导体中成为Pauli极限，即外加的磁场使得两种不同的自旋感受到能量差，<a target="_blank" rel="noopener" href="https://physics.stackexchange.com/questions/455825/what-is-bcs-weak-coupling-pauli-limit">临界磁场近似为</a></p>
+<script type="math/tex; mode=display">
+B_c=\frac{\Delta_0}{\sqrt{2}}</script><ul>
+<li>改变磁场，自由能随序参量的变化</li>
+</ul>
+<p><img src="/assets/images/Julia/fs-4.png" alt="png"></p>
+<ul>
+<li>临界磁场与温度之间的依赖关系</li>
+</ul>
+<p><img src="/assets/images/Julia/fs-5.png" alt="png"></p>
+<ul>
+<li>临界磁场($B_c$)与临界温度$Tc$之间的依赖关系,颜色深浅表示该参数下最小自由能对应的超导序参量$\Delta$<br><img src="/assets/images/Julia/fs-6.png" alt="png"></li>
+</ul>
+<p>通过公式</p>
+<script type="math/tex; mode=display">
+\Delta(T)=\Delta_0\tanh(k \sqrt{\frac{T_c-T}{T}})</script><div class="note orange no-icon flat"><p>不仅可以拟合序参量，也可以拟合磁场随温度的改变</p>
+</div>
+<p>数据都打包放在了一起，可以<a href="/assets/data/2d-gas.zip">点击这里下载</a></p>
+<p>发现用Mathematica绘制的最后一个图效果不是很好，选择用Python重新绘制一下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> rcParams</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> matplotlib.ticker <span class="keyword">as</span> mticker</span><br><span class="line"><span class="keyword">import</span> matplotlib.colors <span class="keyword">as</span> colors</span><br><span class="line">plt.rc(<span class="string">&#x27;font&#x27;</span>, family=<span class="string">&#x27;Times New Roman&#x27;</span>)</span><br><span class="line">config = &#123;</span><br><span class="line"><span class="string">&quot;font.size&quot;</span>: <span class="number">30</span>,</span><br><span class="line"><span class="string">&quot;mathtext.fontset&quot;</span>:<span class="string">&#x27;stix&#x27;</span>,</span><br><span class="line"><span class="string">&quot;font.serif&quot;</span>: [<span class="string">&#x27;SimSun&#x27;</span>],</span><br><span class="line">&#125;</span><br><span class="line">rcParams.update(config) <span class="comment"># Latex 字体设置</span></span><br><span class="line"><span class="comment">#------------------------------------------------------------</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">Plot_phase_diagram</span>(<span class="params">numk</span>):</span><br><span class="line">    dataname = <span class="string">&quot;chi-val-kn-&quot;</span> + <span class="built_in">str</span>(<span class="built_in">format</span>(numk,<span class="string">&quot;0&gt;3d&quot;</span>)) + <span class="string">&quot;.dat&quot;</span></span><br><span class="line">    dataname = <span class="string">&quot;Bx_kbt-phase.dat&quot;</span></span><br><span class="line">    picname = os.path.splitext(dataname)[<span class="number">0</span>] + <span class="string">&quot;.png&quot;</span></span><br><span class="line">    da = np.loadtxt(dataname) </span><br><span class="line">    <span class="comment"># 提取数据</span></span><br><span class="line">    x0 = np.array(da[<span class="number">0</span>, :])  <span class="comment"># x 坐标</span></span><br><span class="line">    y0 = np.array(da[<span class="number">1</span>, :])  <span class="comment"># y 坐标</span></span><br><span class="line">    z0 = np.array(da[<span class="number">2</span>, :])  <span class="comment"># z 值（密度值）</span></span><br><span class="line">    xn = <span class="built_in">int</span>(np.sqrt(<span class="built_in">len</span>(x0)))</span><br><span class="line">    x0 = x0.reshape(xn, xn)</span><br><span class="line">    y0 = y0.reshape(xn, xn)</span><br><span class="line">    z0 = z0.reshape(xn,xn)</span><br><span class="line">    <span class="comment"># 确定 x 和 y 的范围</span></span><br><span class="line">    x_min, x_max = np.<span class="built_in">min</span>(x0), np.<span class="built_in">max</span>(x0)</span><br><span class="line">    y_min, y_max = np.<span class="built_in">min</span>(y0), np.<span class="built_in">max</span>(y0)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 设置图形大小</span></span><br><span class="line">    plt.figure(figsize=(<span class="number">10</span>, <span class="number">10</span>))</span><br><span class="line">    <span class="comment"># sc = plt.imshow(z0, extent=[x_min, x_max, y_min, y_max],  interpolation = &#x27;spline16&#x27;, cmap = &quot;jet&quot;,  origin = &#x27;lower&#x27;,aspect=&#x27;auto&#x27;)  </span></span><br><span class="line">    sc = plt.imshow(z0,   interpolation = <span class="string">&#x27;spline16&#x27;</span>, cmap = <span class="string">&quot;jet&quot;</span>,  origin = <span class="string">&#x27;lower&#x27;</span>)  </span><br><span class="line">    <span class="comment"># 标记密度为 0 的边界</span></span><br><span class="line">    <span class="comment"># zero_contour = plt.contour(x0, y0, z0, levels = [0.00078431], colors=&#x27;black&#x27;, linewidths=2)  </span></span><br><span class="line">    <span class="comment"># plt.clabel(zero_contour, inline=True, fontsize=10, fmt=&#x27;0&#x27;)</span></span><br><span class="line">    cb = plt.colorbar(sc,fraction = <span class="number">0.045</span>,extend=<span class="string">&#x27;both&#x27;</span>)  <span class="comment"># 调整colorbar的大小和图之间的间距</span></span><br><span class="line">    <span class="comment"># cb.ax.tick_params(labelsize = 20)</span></span><br><span class="line">    cb.ax.tick_params(size = <span class="number">0.8</span>)</span><br><span class="line">    cb.ax.set_title(<span class="string">r&quot;$\Delta_0$&quot;</span>, fontsize = <span class="number">30</span>)</span><br><span class="line">    font2 = &#123;<span class="string">&#x27;family&#x27;</span>: <span class="string">&#x27;Times New Roman&#x27;</span>,<span class="string">&#x27;weight&#x27;</span>: <span class="string">&#x27;normal&#x27;</span>,<span class="string">&#x27;size&#x27;</span>: <span class="number">40</span>&#125;</span><br><span class="line">    <span class="comment"># # cb.set_label(&#x27;ldos&#x27;,fontdict=font2) #设置colorbar的标签字体及其大小</span></span><br><span class="line">    <span class="comment"># # plt.scatter(x0, y0, s = 5, color=&#x27;blue&#x27;,edgecolor=&quot;blue&quot;)</span></span><br><span class="line">    plt.axis(<span class="string">&#x27;scaled&#x27;</span>)</span><br><span class="line">    <span class="comment"># plt.gca().set_aspect(&#x27;equal&#x27;)</span></span><br><span class="line">    plt.xlabel(<span class="string">r&quot;$k_BT$&quot;</span>,font2)</span><br><span class="line">    plt.ylabel(<span class="string">r&quot;$B_c$&quot;</span>,font2)</span><br><span class="line">    <span class="comment"># tit = &quot;$J_x= &quot; + str(cont) + &quot;$&quot;</span></span><br><span class="line">    <span class="comment"># plt.title(tit,font2)</span></span><br><span class="line">    <span class="comment"># 设置刻度标签</span></span><br><span class="line">    <span class="comment"># 设置横纵坐标刻度</span></span><br><span class="line">    xticks = np.linspace(<span class="number">0</span>, z0.shape[<span class="number">1</span>] - <span class="number">1</span>, num = <span class="number">5</span>)  <span class="comment"># 将横坐标分为 5 个刻度</span></span><br><span class="line">    yticks = np.linspace(<span class="number">0</span>, z0.shape[<span class="number">0</span>] - <span class="number">1</span>, num = <span class="number">5</span>)  <span class="comment"># 将纵坐标分为 5 个刻度</span></span><br><span class="line">    xtick_labels = np.linspace(x_min, x_max, num = <span class="number">5</span>)  <span class="comment"># 横坐标标签</span></span><br><span class="line">    ytick_labels = np.linspace(y_min, y_max, num = <span class="number">5</span>)  <span class="comment"># 纵坐标标签</span></span><br><span class="line">    plt.xticks(xticks, labels=[<span class="string">f&quot;<span class="subst">&#123;x:<span class="number">.1</span>f&#125;</span>&quot;</span> <span class="keyword">for</span> x <span class="keyword">in</span> xtick_labels])  <span class="comment"># 设置横坐标刻度和标签</span></span><br><span class="line">    plt.yticks(yticks, labels=[<span class="string">f&quot;<span class="subst">&#123;y:<span class="number">.1</span>f&#125;</span>&quot;</span> <span class="keyword">for</span> y <span class="keyword">in</span> ytick_labels])  <span class="comment"># 设置纵坐标刻度和标签</span></span><br><span class="line">    plt.tight_layout()</span><br><span class="line">    <span class="comment"># plt.yticks([],fontproperties=&#x27;Times New Roman&#x27;, size = 40)</span></span><br><span class="line">    <span class="comment"># plt.xticks([],fontproperties=&#x27;Times New Roman&#x27;, size = 40)</span></span><br><span class="line">    plt.tick_params(axis=<span class="string">&#x27;x&#x27;</span>,width = <span class="number">0.</span>,length = <span class="number">10</span>)</span><br><span class="line">    plt.tick_params(axis=<span class="string">&#x27;y&#x27;</span>,width = <span class="number">0</span>,length = <span class="number">10</span>)</span><br><span class="line">    ax = plt.gca()</span><br><span class="line">    ax.locator_params(axis=<span class="string">&#x27;x&#x27;</span>, nbins = <span class="number">5</span>)  <span class="comment"># x 轴最多显示 3 个刻度</span></span><br><span class="line">    ax.locator_params(axis=<span class="string">&#x27;y&#x27;</span>, nbins = <span class="number">5</span>)  <span class="comment"># y 轴最多显示 3 个刻度</span></span><br><span class="line">    ax.spines[<span class="string">&quot;bottom&quot;</span>].set_linewidth(<span class="number">1.5</span>)</span><br><span class="line">    ax.spines[<span class="string">&quot;left&quot;</span>].set_linewidth(<span class="number">1.5</span>) </span><br><span class="line">    ax.spines[<span class="string">&quot;right&quot;</span>].set_linewidth(<span class="number">1.5</span>)</span><br><span class="line">    ax.spines[<span class="string">&quot;top&quot;</span>].set_linewidth(<span class="number">1.5</span>)</span><br><span class="line">    <span class="comment"># plt.show()</span></span><br><span class="line">    plt.savefig(picname, dpi = <span class="number">300</span>,bbox_inches = <span class="string">&#x27;tight&#x27;</span>)</span><br><span class="line">    plt.close()</span><br><span class="line"><span class="comment">#------------------------------------------------------------</span></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="comment"># plotband()</span></span><br><span class="line">    kn = <span class="number">128</span></span><br><span class="line">    Plot_phase_diagram(kn)</span><br></pre></td></tr></table></figure>
+<p><img src="/assets/images/Julia/Bx_kbt-phase.png" alt="png"></p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ul>
+<li><a target="_blank" rel="noopener" href="http://arxiv.org/abs/2501.10960">Pseudo-Ising superconductivity induced by $p$-wave magnetism</a></li>
+<li><a target="_blank" rel="noopener" href="https://link.aps.org/doi/10.1103/PhysRevLett.125.107001">Spin-Orbit-Parity-Coupled Superconductivity in Topological Monolayer WTe$_2$</a></li>
+</ul>
+<h1 id="公众号"><a href="#公众号" class="headerlink" title="公众号"></a>公众号</h1><div class="note black no-icon flat"><p>相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。</p>
+</div>
+<table>
+  <tr>
+    <!-- 图片单元格 -->
+    <td style="width: 300px; height: 300px; text-align: center; vertical-align: middle; border: 1px solid #ccc; border-radius: 8px;">
+      <img src="/assets/images/qrcode.jpg" alt="QR Code" width="300px" height="300px" style="border-radius: 8px;">
+    </td>
+    <!-- 文字单元格 -->
+    <td style="width: 300px; height: 300px; text-align: center; vertical-align: middle; padding-left: 20px; border: 1px solid #ccc; border-radius: 8px;">
+      <div>
+        <h4 style="margin: 0;">Email</h4>
+        <p style="margin: 5px 0;">yxliphy@gmail.com</p>
+      </div>
+    </td>
+  </tr>
+</table>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Yu-Xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2025/02/22/2025-02-22-Free-SC/">http://example.com/2025/02/22/2025-02-22-Free-SC/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Yu-Xuan' Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Code/">Code</a><a class="post-meta__tags" href="/tags/Julia/">Julia</a></div><div class="post-share"><div class="social-share" data-image="/assets/images/Julia/Bx_kbt-phase.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg"/></a><div class="post-qr-code-desc"></div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg"/></a><div class="post-qr-code-desc"></div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/08/02/2025-08-02-Real-Space-Chern/" title="实空间Chern数计算(Half-BHZ模型)"><img class="cover" src="/assets/images/Julia/Chern-m0.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">实空间Chern数计算(Half-BHZ模型)</div></div><div class="info-2"><div class="info-item-1">以QWZ模型为例计算实空间Chern数。   前言考虑无序的时候，体系不再具有平移对称性，此时就需要在实空间来计算Chern数。这里以最经典的模型  H(\boldsymbol{k})=(m_0-t_x\cos k_x-t_y\cos k_y)\sigma_z+\lambda_x\sin k_x\sigma_x+\lambda_y\sin k_y\sigma_y展示一下怎么在实空间计算Chern数。 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109@everywhere using LinearAlgebra, DelimitedFiles, Printf, Dates, SharedArrays...</div></div></div></a><a class="pagination-related" href="/2025/02/18/2025-02-18-Julia-MPI-Set/" title="Mac上配置MPI并行Julia"><img class="cover" src="/assets/images/Julia/a4.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Mac上配置MPI并行Julia</div></div><div class="info-2"><div class="info-item-1">这里记录一下怎么在本地电脑上配对Julia的MPI库实现并行   安装Julia下载安装即可，MPI只需要在包安装环境下执行安装 123julia&gt; import Pkgjulia&gt; Pkg.add(&quot;MPI&quot;) 安装完成之后，在用户的主目录下(主目录直接执行cd进入即可)会存在一个隐藏的.julia文件夹，这里前面有个英文句号，进入这个文件夹显示如下  所有安装的包都会整合在packages中，进入其中就可以找到安装好的MPI   进入到MPI文件夹(中间会存在一个奇怪的文件夹，直接进入即可)的bin目录中就可以找到mpiexejl这个执行julia进行MPI并行的执行命令了，接下来就是将这个路径在.zshrc中追加到PATH里面就能够使用了 1export PATH=&quot;/Users/Yourname/.julia/packages/MPI/TKXAj/bin:$PATH&quot;   # Julia MPIEX 添加之后执行source .zshrc或者重启终端就能让命令生效了。 执行假如现在有一个使用了MPI并行的程序 12345...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2020/07/01/2020-07-01-Chern-Number/" title="两种方法计算Chern Number"><img class="cover" src="/img/defult-cover2.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-01</div><div class="info-item-2">两种方法计算Chern Number</div></div><div class="info-2"><div class="info-item-1">计算Chern数是最初学习拓扑物理都会遇到的问题，正好在假期空闲的时候自己学习了一下Chern数的数值计算方法，在博客上记录一下希望可以帮助到别人。   具体的计算方法和细节就不在这里说明了，只要是想学习计算Chern数的肯定了解它在凝聚态物理中的角色，而计算的细节也会在后面的参考文献中给出，只是展示一下结果。 Julia语言计算Chern numberVersion1这个方法是直接用定义直接计算的结果，但是可能会遇到波函数规范选择的问题，会导致结果有误，而具体的规范问题，我并不懂，所以一般我会选择第二种方法来计算，也就是后面参考文献中介绍的方法。1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374import PkgPkg.add(&quot;LinearAlgebra&quot;)Pkg.add(&quot;PyPlot&quot;)using Line...</div></div></div></a><a class="pagination-related" href="/2020/06/30/2020-06-30-Kane-Mele/" title="Kane Mele model zigzag 边界态的计算"><img class="cover" src="/img/defult-cover.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-30</div><div class="info-item-2">Kane Mele model zigzag 边界态的计算</div></div><div class="info-2"><div class="info-item-1">接触量子自旋霍尔效应很久了，但是一直也都是在square lattice上做计算，从来没有认真的在六角点阵上计算过拓扑的内容，正好最近在看文献的过程中需要在石墨烯机构上进行，就从最基本的Kane-Mele 模型出发学习怎么在六角点阵上写出最近邻以及次近邻的哈密顿量。  关于最近邻之间的hopping在前面石墨烯的边界态文章中已经仔细考虑过，包括cell的选取还有原子的编号，在这里。现在唯一的不同就是要考虑次近邻之间的hopping。在这里暂时并未考虑Rashbo自旋轨道耦合。 基本设定  蓝色虚线框中是选择的一个大cell，在y方向是有限长度，在x方向是无限的，所以$k_x$是个好量子数，这种边界态叫zigzag；当x方向开边界，y方向无限长时的边界态叫armchair，可以参考这里。格点之间的hopping可以在一个大cell之内，可会存在大cell之间的hopping，在下面会逐一展示。关于Kane-Mele模型中的$v_{ij}$的示意如上图_hopping_蓝色箭头所示，当格点连线在hopping的右侧时$v_{ij}=-1$，在左侧时$v_{ij}=1$；将一个大cel...</div></div></div></a><a class="pagination-related" href="/2019/04/17/2019-04-17-julia/" title="Majorana Corner State in High Temperature Superconductor"><img class="cover" src="/assets/images/research/juliaresult.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2019-04-17</div><div class="info-item-2">Majorana Corner State in High Temperature Superconductor</div></div><div class="info-2"><div class="info-item-1">最近刚刚学习了julia, 手头上也正好在重复一篇文章，就正好拿新学习的内容一边温习一边做研究。   导入函数库1234567# Import external package that used in program import Pkg# Pkg.add(&quot;PyPlot&quot;)# Pkg.add(&quot;LinearAlgebra&quot;)# Pkg.add(&quot;CPUTime&quot;) #Pkg.add(&quot;SparseArrays&quot;)#Pkg.add(&quot;DelimitedFiles&quot;) 函数定义12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210310410...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">232</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yxli8023"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome to Yu-Xuan's Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC"><span class="toc-number">1.</span> <span class="toc-text">公式推导</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E6%9E%9C%E5%B1%95%E7%A4%BA"><span class="toc-number">2.</span> <span class="toc-text">结果展示</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">3.</span> <span class="toc-text">参考文献</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AC%E4%BC%97%E5%8F%B7"><span class="toc-number">4.</span> <span class="toc-text">公众号</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-number">4.0.0.1.</span> <span class="toc-text">Email</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/08/02/2025-08-02-Real-Space-Chern/" title="实空间Chern数计算(Half-BHZ模型)"><img src="/assets/images/Julia/Chern-m0.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实空间Chern数计算(Half-BHZ模型)"/></a><div class="content"><a class="title" href="/2025/08/02/2025-08-02-Real-Space-Chern/" title="实空间Chern数计算(Half-BHZ模型)">实空间Chern数计算(Half-BHZ模型)</a><time datetime="2025-08-01T16:00:00.000Z" title="发表于 2025-08-02 00:00:00">2025-08-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/22/2025-02-22-Free-SC/" title="超导序参量自洽(自由能极小值方法)"><img src="/assets/images/Julia/Bx_kbt-phase.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导序参量自洽(自由能极小值方法)"/></a><div class="content"><a class="title" href="/2025/02/22/2025-02-22-Free-SC/" title="超导序参量自洽(自由能极小值方法)">超导序参量自洽(自由能极小值方法)</a><time datetime="2025-02-21T16:00:00.000Z" title="发表于 2025-02-22 00:00:00">2025-02-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/18/2025-02-18-Julia-MPI-Set/" title="Mac上配置MPI并行Julia"><img src="/assets/images/Julia/a4.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Mac上配置MPI并行Julia"/></a><div class="content"><a class="title" href="/2025/02/18/2025-02-18-Julia-MPI-Set/" title="Mac上配置MPI并行Julia">Mac上配置MPI并行Julia</a><time datetime="2025-02-17T16:00:00.000Z" title="发表于 2025-02-18 00:00:00">2025-02-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/15/2024-12-15-Fourier-Spectrum/" title="超导序参量中的傅里叶分析"><img src="/assets/images/Mma/fft-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导序参量中的傅里叶分析"/></a><div class="content"><a class="title" href="/2024/12/15/2024-12-15-Fourier-Spectrum/" title="超导序参量中的傅里叶分析">超导序参量中的傅里叶分析</a><time datetime="2024-12-14T16:00:00.000Z" title="发表于 2024-12-15 00:00:00">2024-12-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/11/2024-12-11-Screeing/" title="库仑势以及屏蔽库伦势的一些计算"><img src="/assets/images/Mma/Vscr-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="库仑势以及屏蔽库伦势的一些计算"/></a><div class="content"><a class="title" href="/2024/12/11/2024-12-11-Screeing/" title="库仑势以及屏蔽库伦势的一些计算">库仑势以及屏蔽库伦势的一些计算</a><time datetime="2024-12-10T16:00:00.000Z" title="发表于 2024-12-11 00:00:00">2024-12-11</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  const initGitalk = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGitalk = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const gitalk = new Gitalk({
+      clientID: 'Ov23li0WvZEaIAZ7RFtH',
+      clientSecret: '03fcb77b7c28dafcdde00756e27f9b5bc76639e8',
+      repo: 'yxli8023.github.io',
+      owner: 'yxli8023',
+      admin: ['Yu-Xuan'],
+      updateCountCallback: commentCount,
+      ...option,
+      id: isShuoshuo ? path : (option && option.id) || 'e0f340a9eba906d5323c805c79226602'
+    })
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async(el, path) => {
+    if (typeof Gitalk === 'function') initGitalk(el, path)
+    else {
+      await btf.getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await btf.getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Gitalk' === 'Gitalk'
+      ? window.shuoshuoComment = { loadComment: loadGitalk }
+      : window.loadOtherComment = loadGitalk
+    return
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

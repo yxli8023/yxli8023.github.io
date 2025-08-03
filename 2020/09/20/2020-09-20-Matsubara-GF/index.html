@@ -1,0 +1,390 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>松原(Matsubara)格林函数与推迟(Retaeded)格林函数联系 | Yu-Xuan' Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="格林函数的计算是在零温下进行的,但是实验却是再非零温下进行,那么就意味着实验观测中一定包含了热力学涨落,而这时候热力学统计物理这个工具就可以发挥作用了,自然的就需要利用松原格林函数来对有限温系统的格林函数进行计算,而零温时候的结果仅仅就是松原格林函数进行解析延拓即可,这里就主要展示一下松原格林函数的一些推导以及它与零温格林函数的联系是如何建立起来的.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="松原(Matsubara)格林函数与推迟(Retaeded)格林函数联系">
+<meta property="og:url" content="http://example.com/2020/09/20/2020-09-20-Matsubara-GF/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39; Blog">
+<meta property="og:description" content="格林函数的计算是在零温下进行的,但是实验却是再非零温下进行,那么就意味着实验观测中一定包含了热力学涨落,而这时候热力学统计物理这个工具就可以发挥作用了,自然的就需要利用松原格林函数来对有限温系统的格林函数进行计算,而零温时候的结果仅仅就是松原格林函数进行解析延拓即可,这里就主要展示一下松原格林函数的一些推导以及它与零温格林函数的联系是如何建立起来的.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/defult-cover2.jpg">
+<meta property="article:published_time" content="2020-09-19T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-08-03T09:41:28.334Z">
+<meta property="article:author" content="Yu-Xuan">
+<meta property="article:tag" content="Many-Body">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/defult-cover2.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "松原(Matsubara)格林函数与推迟(Retaeded)格林函数联系",
+  "url": "http://example.com/2020/09/20/2020-09-20-Matsubara-GF/",
+  "image": "http://example.com/img/defult-cover2.jpg",
+  "datePublished": "2020-09-19T16:00:00.000Z",
+  "dateModified": "2025-08-03T09:41:28.334Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yu-Xuan",
+      "url": "http://example.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2020/09/20/2020-09-20-Matsubara-GF/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'medium_zoom',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#f54966","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '松原(Matsubara)格林函数与推迟(Retaeded)格林函数联系',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #dbeffd;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">232</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/img/defult-cover2.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Yu-Xuan' Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">松原(Matsubara)格林函数与推迟(Retaeded)格林函数联系</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">松原(Matsubara)格林函数与推迟(Retaeded)格林函数联系</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-09-19T16:00:00.000Z" title="发表于 2020-09-20 00:00:00">2020-09-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-08-03T09:41:28.334Z" title="更新于 2025-08-03 17:41:28">2025-08-03</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>13分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/2020/09/20/2020-09-20-Matsubara-GF/#post-comment"><span class="gitalk-comment-count"><i class="fa-solid fa-spinner fa-spin"></i></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;It has been&quot;,&quot;messageNext&quot;:&quot;days since the last update, the content of the article may be outdated.&quot;,&quot;postUpdate&quot;:&quot;2025-08-03 17:41:28&quot;}" hidden></div><div class="note blue no-icon flat"><p>格林函数的计算是在零温下进行的,但是实验却是再非零温下进行,那么就意味着实验观测中一定包含了热力学涨落,而这时候热力学统计物理这个工具就可以发挥作用了,自然的就需要利用松原格林函数来对有限温系统的格林函数进行计算,而零温时候的结果仅仅就是松原格林函数进行解析延拓即可,这里就主要展示一下松原格林函数的一些推导以及它与零温格林函数的联系是如何建立起来的.</p>
+</div>
+<span id="more"></span>
+<h1 id="热力学平均"><a href="#热力学平均" class="headerlink" title="热力学平均"></a>热力学平均</h1><p>首先定义关联函数</p>
+<script type="math/tex; mode=display">C_{AB}(t,t')=-\langle A(t)B(t')\rangle</script><p>在这里$\langle\dots\rangle$是求期望值,如果是在非零温的情况下,那么求其统计平均为</p>
+<script type="math/tex; mode=display">C_{A B}\left(t, t^{\prime}\right)=-\frac{1}{Z} \operatorname{Tr}\left(e^{-\beta H} A(t) B\left(t^{\prime}\right)\right)\label{eq1}</script><p>$Tr\equiv\sum_n\langle n\rvert\dots\rvert n\rangle$是一组完备基矢上的求和,接下来将(\ref{eq1})改写到相互作用绘景下,相互作用绘景的内容可以参考<a target="_blank" rel="noopener" href="https://yxli8023.github.io/2020/09/15/picture-compare.html">Schrodinger,Heisenberg,Interaction绘景的区别与联系</a>这篇博客</p>
+<script type="math/tex; mode=display">C_{A B}\left(t, t^{\prime}\right)=-\frac{1}{Z} \operatorname{Tr}\left[e^{-\beta H} \hat{U}(0, t) \hat{A}(t) \hat{U}\left(t, t^{\prime}\right) \hat{B}\left(t^{\prime}\right) \hat{U}\left(t^{\prime}, 0\right)\right]</script><p>在<a target="_blank" rel="noopener" href="https://yxli8023.github.io/2020/09/15/picture-compare.html">Schrodinger,Heisenberg,Interaction绘景的区别与联系</a>中也提及到,利用相互作用绘景可以把有相互作用系统的基态与它无相互作用时的基态通过演化算符联系起来,从而达到在无相互作用基态上对物理量的求解,而这里进行这样的操作也是为了同样的目的.</p>
+<h1 id="虚时Heisenberg-Interaction-绘景"><a href="#虚时Heisenberg-Interaction-绘景" class="headerlink" title="虚时Heisenberg/Interaction 绘景"></a>虚时Heisenberg/Interaction 绘景</h1><p>在这里再介绍一些虚时情况下的两种绘景.首先引进虚时完全就是一个数学的操作,是为了将统计物理中的$e^{\beta H}$与量子力学中的时间演化算符$e^{iHt}$在形式上可以进行统一,因为此时看上取好像一个是实数,另外一个则是复数,在进行$t\rightarrow i\tau$的变换后,此时$\tau$就是虚时间,那么从形式上来看$e^{\tau H}$和$e^{\beta H}$就都是实数的样子,而且这个时候也将温度$\beta=\frac{1}{k_B T}$和虚时间$it=\tau$联系了起来,这一点在松原格林函数中还是很重要的,具体它们之间是如何限制将在后面松原格林函数的性质讨论时展示.</p>
+<p>在实时间Heisenberg绘景中</p>
+<script type="math/tex; mode=display">A(t)=e^{i t H} A e^{-i t H}</script><p>进行虚时变换之后</p>
+<script type="math/tex; mode=display">A(\tau)=e^{\tau H} A e^{-\tau H}</script><p>对应的相互作用绘景中的算符在虚时间下表示为</p>
+<script type="math/tex; mode=display">\hat{A}(\tau)=e^{\tau H_{0}} A e^{-\tau H_{0}}</script><p><strong>这里再次强调一下,这里的$H_0$是无相互作用时系统的哈密顿量</strong>.</p>
+<p>有了上面的这些关系之后,那么同样可以将虚时Heisenberg算符改写成虚时Interaction绘景中的形式</p>
+<script type="math/tex; mode=display">A(\tau) B\left(\tau^{\prime}\right)=\hat{U}(0, \tau) \hat{A}(\tau) \hat{U}\left(\tau, \tau^{\prime}\right) \hat{B}\left(\tau^{\prime}\right) \hat{U}\left(\tau^{\prime}, 0\right)\label{eq4}</script><p>虚时Interaction绘景下,演化算符为</p>
+<script type="math/tex; mode=display">\hat{U}\left(\tau, \tau^{\prime}\right)=e^{\tau H_{0}} e^{-\left(\tau-\tau^{\prime}\right) H} e^{-\tau^{\prime} H_{0}}\label{eq2}</script><script type="math/tex; mode=display">\begin{aligned}
+\hat{U}\left(\tau, \tau^{\prime}\right) &=\sum_{n=0}^{\infty} \frac{1}{n !}(-1)^{n} \int_{\tau^{\prime}}^{\tau} d \tau_{1} \cdots \int_{\tau^{\prime}}^{\tau} d \tau_{n} T_{\tau}\left(\hat{V}\left(\tau_{1}\right) \cdots \hat{V}\left(\tau_{n}\right)\right) \\
+&=T_{\tau} \exp \left(-\int_{\tau^{\prime}}^{\tau} d \tau_{1} \hat{V}\left(\tau_{1}\right)\right)
+\end{aligned}\label{eq3}</script><p>这里只是简单的将$it\rightarrow\tau$,其余的推导过程与<a target="_blank" rel="noopener" href="https://yxli8023.github.io/2020/09/15/picture-compare.html">Schrodinger,Heisenberg,Interaction绘景的区别与联系</a>中完全一致,就不做重复了.结合(\ref{eq2})和(\ref{eq3})之后,可以将热力学统计的因子$e^{\beta H}$进行改写</p>
+<script type="math/tex; mode=display">e^{-\beta H}=e^{-\beta H_{0}} \hat{U}(\beta, 0)=e^{-\beta H_{0}} T_{\tau} \exp \left(-\int_{0}^{\beta} d \tau_{1} \hat{V}\left(\tau_{1}\right)\right)</script><p>在虚时下同样可以有算符的热力学平均</p>
+<script type="math/tex; mode=display">\left\langle T_{\tau} A(\tau) B\left(\tau^{\prime}\right)\right\rangle=\frac{1}{Z} \operatorname{Tr}\left[e^{-\beta H} T_{\tau} A(\tau) B\left(\tau^{\prime}\right)\right]</script><p>利用(\ref{eq4})其在相互作用绘景下的形式可得</p>
+<script type="math/tex; mode=display">\left\langle T_{\tau} A(\tau) B\left(\tau^{\prime}\right)\right\rangle=\frac{1}{Z} \operatorname{Tr}\left[e^{-\beta H_{0}} \hat{U}(\beta, 0) T_{\tau}\left(\hat{U}(0, \tau) \hat{A}(\tau) \hat{U}\left(\tau, \tau^{\prime}\right) \hat{B}\left(\tau^{\prime}\right) \hat{U}\left(\tau^{\prime}, 0\right)\right)\right]</script><p>这里利用$Tr$的轮换不变性$Tr[ABC\dots YZ]=Tr[BC\dots YZA]$以及$\hat{U}\left(\tau, \tau^{\prime \prime}\right) \hat{U}\left(\tau^{\prime \prime}, \tau^{\prime}\right)=\hat{U}\left(\tau, \tau^{\prime}\right)$,以及$Z=\operatorname{Tr}\left[e^{-\beta H}\right]=\operatorname{Tr}\left[e^{-\beta H_{0} \hat{U}(\beta, 0)}\right]$可以得到</p>
+<script type="math/tex; mode=display">\left\langle T_{\tau} A(\tau) B\left(\tau^{\prime}\right)\right\rangle=\frac{1}{Z} \operatorname{Tr}\left[e^{-\beta H_{0}} T_{\tau} \hat{U}(\beta, 0) \hat{A}(\tau) \hat{B}\left(\tau^{\prime}\right)\right]=\frac{\left\langle T_{\tau} \hat{U}(\beta, 0) \hat{A}(\tau) \hat{B}\left(\tau^{\prime}\right)\right\rangle_{0}}{\langle\hat{U}(\beta, 0)\rangle_{0}}</script><p>从上面的结果可以看到,在虚时绘景下,由成功的把问题转换到了在无相互作用哈密顿量本征态上的计算.</p>
+<h1 id="松原格林函数的定义"><a href="#松原格林函数的定义" class="headerlink" title="松原格林函数的定义"></a>松原格林函数的定义</h1><p>虚时格林函数的定义是利用虚时Heisenberg算符进行的</p>
+<script type="math/tex; mode=display">\mathcal{C}_{A B}\left(\tau, \tau^{\prime}\right) \equiv-\left\langle T_{\tau}\left(A(\tau) B\left(\tau^{\prime}\right)\right)\right\rangle</script><p>编时算符展开对于Fermion与Boson是不同的</p>
+<script type="math/tex; mode=display">T_{\tau}\left(A(\tau) B\left(\tau^{\prime}\right)\right)=\theta\left(\tau-\tau^{\prime}\right) A(\tau) B\left(\tau^{\prime}\right) \pm \theta\left(\tau^{\prime}-\tau\right) B\left(\tau^{\prime}\right) A(\tau), \quad\left\{\begin{array}{c}
++\text { for bosons } \\
+-\text { for fermions. }
+\end{array}\right.</script><p>在前面提到过,在虚时下$\tau$与$\beta$之间建立了联系,那么$\tau$的取值也就有了一定的限制,首先证明松原格林函数只不过是虚时差的函数,即$C_{AB}(\tau,\tau’)=C_{AB}(\tau-\tau’)$</p>
+<script type="math/tex; mode=display">\begin{aligned}
+\mathcal{C}_{A B}\left(\tau, \tau^{\prime}\right) &=\frac{-1}{Z} \operatorname{Tr}\left[e^{-\beta H} e^{\tau H} A e^{-\tau H} e^{\tau^{\prime} H} B e^{-\tau^{\prime} H}\right] \\
+&=\frac{-1}{Z} \operatorname{Tr}\left[e^{-\beta H} e^{-\tau^{\prime} H} e^{\tau H} A e^{-\tau H} e^{\tau^{\prime} H} B\right] \\
+&=\frac{-1}{Z} \operatorname{Tr}\left[e^{-\beta H} e^{\left(\tau-\tau^{\prime}\right) H} A e^{-\left(\tau-\tau^{\prime}\right) H} B\right] \\
+&=\mathcal{C}_{A B}\left(\tau-\tau^{\prime}\right)
+\end{aligned}</script><p><strong>这里仅仅使用了Tr的轮换性</strong></p>
+<p>松原格林函数重要的限制是$-\beta&lt;\tau-\tau^{\prime}&lt;\beta$时,才能保证$C_{AB}(\tau,\tau’)$是收敛的,因为仅从形式上看,如果虚时不在这个区间内,那么$Tr$内会出现$e^x(x&gt;0)$这种形式,很可能会导致发散.<br>{:.warning}</p>
+<p>松原格林函数还具有周期性$C_{AB}(\tau)=\pm C_{AB}(\tau+\beta)\qquad for\quad \tau&lt;0$</p>
+<script type="math/tex; mode=display">\begin{aligned}
+\mathcal{C}_{A B}(\tau+\beta) &=\frac{-1}{Z} \operatorname{Tr}\left[e^{-\beta H} e^{(\tau+\beta) H} A e^{-(\tau+\beta) H} B\right] \\
+&=\frac{-1}{Z} \operatorname{Tr}\left[e^{\tau H} A e^{-\tau H} e^{-\beta H} B\right] \\
+&=\frac{-1}{Z} \operatorname{Tr}\left[e^{-\beta H} B e^{\tau H} A e^{-\tau H}\right] \\
+&=\frac{-1}{Z} \operatorname{Tr}\left[e^{-\beta H} B A(\tau)\right] \\
+&=\pm \frac{-1}{Z} \operatorname{Tr}\left[e^{-\beta H} T_{\tau}(A(\tau) B)\right] \\
+&=\pm \mathcal{C}_{A B}(\tau)
+\end{aligned}\label{per}</script><p><strong>同样这里只利用了$Tr$的轮换性</strong></p>
+<p>既然函数具有周期性,那么就一定可以和傅里叶变换联系起来,虚时$\tau$限制在$[-\beta,\beta]$区间内,则其傅里叶变换有</p>
+<script type="math/tex; mode=display">\begin{array}{l}
+\mathcal{C}_{A B}(n) \equiv \frac{1}{2} \int_{-\beta}^{\beta} d \tau e^{i \pi n \tau / \beta} \mathcal{C}_{A B}(\tau) \\
+\mathcal{C}_{A B}(\tau)=\frac{1}{\beta} \sum_{n=-\infty}^{\infty} e^{-i \pi n \tau / \beta} \mathcal{C}_{A B}(n)
+\end{array}</script><p>再利用(\ref{per})的周期性可得</p>
+<script type="math/tex; mode=display">\begin{aligned}
+\mathcal{C}_{A B}(n) &=\frac{1}{2} \int_{0}^{\beta} d \tau e^{i \pi n \tau / \beta} \mathcal{C}_{A B}(\tau)+\frac{1}{2} \int_{-\beta}^{0} d \tau e^{i \pi n \tau / \beta} \mathcal{C}_{A B}(\tau) \\
+&=\frac{1}{2} \int_{0}^{\beta} d \tau e^{i \pi n \tau / \beta} \mathcal{C}_{A B}(\tau)+e^{-i \pi n} \frac{1}{2} \int_{0}^{\beta} d \tau e^{i \pi n \tau / \beta} \mathcal{C}_{A B}(\tau-\beta) \\
+&=\frac{1}{2}\left(1 \pm e^{-i \pi n}\right) \int_{0}^{\beta} d \tau e^{i \pi n \tau / \beta} \mathcal{C}_{A B}(\tau)
+\end{aligned}</script><p>前面的因子$(1\pm e^{-i\pi n}$的值是由$n$来决定的,于是可以得到</p>
+<script type="math/tex; mode=display">\mathcal{C}_{A B}(n)=\int_{0}^{\beta} d \tau e^{i \pi n \tau / \beta} \mathcal{C}_{A B}(\tau), \quad\left\{\begin{array}{l}
+n \text { is even for bosons } \\
+n \text { is odd for fermions }
+\end{array}\right.</script><p>在这里进行一下符号的修改</p>
+<script type="math/tex; mode=display">\mathcal{C}_{A B}\left(i \omega_{n}\right)=\int_{0}^{\beta} d \tau e^{i \omega_{n} \tau} \mathcal{C}_{A B}(\tau), \quad\left\{\begin{array}{ll}
+\omega_{n}=\frac{2 n \pi}{\beta}, & \text { for bosons } \\
+\omega_{n}=\frac{(2 n+1) \pi}{\beta}, & \text { for fermions. }
+\end{array}\right.</script><p>$\omega_n$就是松原频率,对于费米子和玻色子,其取值是不同的.</p>
+<h1 id="松原格林函数与推迟格林函数"><a href="#松原格林函数与推迟格林函数" class="headerlink" title="松原格林函数与推迟格林函数"></a>松原格林函数与推迟格林函数</h1><div class="note orange no-icon flat"><p>在频率域中,这松原格林函数与推迟格林函数是拥有相同的解析函数的,也就是说存在一个函数$C_{AB}(z)$,$z$是上面平面的复频率,如果$z$恰好在虚轴上那就是$C_{AB}(i\omega)$,如果是在实轴上就是$C^R_{AB}(\omega)$.这个关系告诉我们,只要知道了这两个其中的一个,那么另外一个可以通过解析延拓的方式得到.这也就是推迟格林函数与松原格林函数之间最重要的关系.$C^R_{AB}(\omega)=C_{AB}(i\omega_n\rightarrow \omega+i\eta)$,$\eta$是个无穷小量保证函数不会发散.</p>
+</div>
+<p>下面来利用Lehmann表示展示一下这两者之间的联系,首先对于$\tau&gt;0$有</p>
+<script type="math/tex; mode=display">\begin{aligned}
+\mathcal{C}_{A B}(\tau) &=\frac{-1}{Z} \operatorname{Tr}\left[e^{-\beta H} e^{\tau H} A e^{-\tau H} B\right] \\
+&=\frac{-1}{Z} \sum_{n n^{\prime}} e^{-\beta E_{n}}\left\langle n|A| n^{\prime}\right\rangle\left\langle n^{\prime}|B| n\right\rangle e^{\tau\left(E_{n}-E_{n^{\prime}}\right)}
+\end{aligned}</script><p>$Tr\equiv\sum_n\langle n \rvert \dots \rvert n\rangle$,$\rvert n\rangle$是$H$的本征态,则可以得到上面的关系,接下来进行虚时到虚频的傅里叶变换</p>
+<script type="math/tex; mode=display">\begin{aligned}
+\mathcal{C}_{A B}\left(i \omega_{n}\right) &=\int_{0}^{\beta} d \tau e^{i \omega_{n} \tau} \frac{-1}{Z} \sum_{n n^{\prime}} e^{-\beta E_{n}}\left\langle n|A| n^{\prime}\right\rangle\left\langle n^{\prime}|B| n\right\rangle e^{\tau\left(E_{n}-E_{n^{\prime}}\right)} \\
+&=\frac{-1}{Z} \sum_{n n^{\prime}} e^{-\beta E_{n}} \frac{\left\langle n|A| n^{\prime}\right\rangle\left\langle n^{\prime}|B| n\right\rangle}{i \omega_{n}+E_{n}-E_{n^{\prime}}}\left(e^{i \omega_{n} \beta} e^{\beta\left(E_{n}-E_{n^{\prime}}\right)}-1\right) \\
+&=\frac{-1}{Z} \sum_{n n^{\prime}} e^{-\beta E_{n}} \frac{\left\langle n|A| n^{\prime}\right\rangle\left\langle n^{\prime}|B| n\right\rangle}{i \omega_{n}+E_{n}-E_{n^{\prime}}}\left(\pm e^{\beta\left(E_{n}-E_{n^{\prime}}\right)}-1\right) \\
+&=\frac{1}{Z} \sum_{n n^{\prime}} \frac{\left\langle n|A| n^{\prime}\right\rangle\left\langle n^{\prime}|B| n\right\rangle}{i \omega_{n}+E_{n}-E_{n^{\prime}}}\left(e^{-\beta E_{n}}-(\pm) e^{-\beta E_{n^{\prime}}}\right)
+\end{aligned}</script><p>从这里就可以得到一个在复平面上定义的函数</p>
+<script type="math/tex; mode=display">C_{A B}(z)=\frac{1}{Z} \sum_{n n^{\prime}} \frac{\left\langle n|A| n^{\prime}\right\rangle\left\langle n^{\prime}|B| n\right\rangle}{z+E_{n}-E_{n^{\prime}}}\left(e^{-\beta E_{n}}-(\pm) e^{-\beta E_{n^{\prime}}}\right)</script><p>对松原格林函数进行解析延拓之后也就可以得到推迟格林函数,它们的联系也可以通过图像展示</p>
+<p><img src="/assets/images/research/mat1.png" alt="png"></p>
+<p><strong>这里顺便再多说一句,$i\omega_n\rightarrow \omega+i\eta$是推迟格林函数,这个函数是再上半复平面的,当$i\omega_n\rightarrow \omega-i\eta$时得到就是超前格林函数,它是在下半复平面的,也就如上图所示</strong></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li>1.Many body quantum theory in condensed matter physics</li>
+<li>2.Many particle physics</li>
+</ul>
+<h1 id="公众号"><a href="#公众号" class="headerlink" title="公众号"></a>公众号</h1><div class="note blue no-icon flat"><p>相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。</p>
+</div>
+<table>
+  <tr>
+    <!-- 图片单元格 -->
+    <td style="width: 300px; height: 300px; text-align: center; vertical-align: middle; border: 1px solid #ccc; border-radius: 8px;">
+      <img src="/assets/images/qrcode.jpg" alt="QR Code" width="300px" height="300px" style="border-radius: 8px;">
+    </td>
+    <!-- 文字单元格 -->
+    <td style="width: 300px; height: 300px; text-align: center; vertical-align: middle; padding-left: 20px; border: 1px solid #ccc; border-radius: 8px;">
+      <div>
+        <h4 style="margin: 0;">Email</h4>
+        <p style="margin: 5px 0;">yxliphy@gmail.com</p>
+      </div>
+    </td>
+  </tr>
+</table></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Yu-Xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2020/09/20/2020-09-20-Matsubara-GF/">http://example.com/2020/09/20/2020-09-20-Matsubara-GF/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Yu-Xuan' Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Many-Body/">Many-Body</a></div><div class="post-share"><div class="social-share" data-image="/img/defult-cover2.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg"/></a><div class="post-qr-code-desc"></div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg"/></a><div class="post-qr-code-desc"></div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2020/09/22/2020-09-22-Ham-light/" title="Tunable Weyl Points in Periodically Driven Nodal Line Semimetals 内容推导"><img class="cover" src="/img/defult-cover.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Tunable Weyl Points in Periodically Driven Nodal Line Semimetals 内容推导</div></div><div class="info-2"><div class="info-item-1">疫情期间在家看了很多方向的文章,由于主要是在做数值,就主动的去找了一篇解析相关的文章阅读了一下,并对其中的一些东西自己动手做了一些推导,我看的是一篇和输运有关系的文章,其实内容也不是很难,文章的想法很不错,而且很容易让人读懂,这里就把一些结果整理一下,虽然有些东西自己还是没有搞懂,但是我还是准备先把自己解决了的内容先整理出来,毕竟我本来的方向也不是这个,只是凭兴趣而已.   哈密顿量加光场文章主要就是在Nodal line半金属中加入一个光场,可以通过其调节系统变成Weyl 半金属,想了解具体内容可以去参考文章中看这篇文章,我这里主要就是整理推导过程. 起点哈密顿量$\hat{H}=\sum_{k} \hat{\Psi}_{\mathbf{k}}^{\dagger} \mathcal{H}(\mathbf{k}) \hat{\Psi}_{\mathbf{k}} \text { with } \hat{\Psi}_{\mathbf{k}}=\left(\hat{c}_{\mathbf{k}, a}, \hat{c}_{\mathbf{k}, b}\right)^{T}$,在自然单位...</div></div></div></a><a class="pagination-related" href="/2020/09/19/2020-09-19-Python-parallel/" title="Python简单并行计算(进程并行)"><img class="cover" src="/img/defult-cover.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Python简单并行计算(进程并行)</div></div><div class="info-2"><div class="info-item-1">最近在慢慢复习之前学过的python的内容,毕竟这个语言现成的轮子还是比较多,各种功能实现起来不必自己亲自上手,这里首先学习了一下简单的进程并行计算,但也只是一个很简单的程序.   主程序123456789101112131415161718192021# 导入相应的库import os   import timeimport multiprocessing as pafrom numba import jit # 导入jit用来对循环进行加速# -------------------------------------------# 定义一个函数，后面并行运算时需要这个函数@jitdef sum1(cont):    c = 0    for m in range(cont):        for n in range(cont):            c = c + m + n    return c# --------------------------------------------# 开启一些进程for i in range(pa.cpu_count()):  ...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2020/07/20/2020-07-20-GF-solve/" title="利用Green&#39;s function求态密度的两种方法"><img class="cover" src="/img/defult-cover.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-20</div><div class="info-item-2">利用Green&#39;s function求态密度的两种方法</div></div><div class="info-2"><div class="info-item-1">在这里先整理一个最简答的问题，再知道了体系的哈密顿量后，怎么求解系统的格林函数并求得态密度。   数值角度考虑在这里以一个陈绝缘体的哈密顿量为例来演示具体每一步是如何进行的。 H(k_x,k_y)=t(\sin(k_x)s_x+\sin(k_y)s_y)+(1-\cos(k_x)-\cos(k_y))s_z这里的$s_i$代表Pauli矩阵，这是一个2*2的Hamiltonian，通常格林函数为$G(k_x,k_y,\omega)=\frac{1}{i\omega-\hat{H}}$,虽然这里在写法上是个分数的形式，但注意这里分母上的\hat{H}其实是个算符，这里请理解这一点，先不要将它就当作是这里的哈密顿量。接下来我们要计算格林函数，这里是要求倒数，那么对应到矩阵形式就是要求解$i\omega-H$这个矩阵的逆，这个时候就已经把算符$\hat{H}$写成具体的矩阵形式了，这个关系要捋清楚。 那么矩阵求逆就没什么好讲的了，对于这个2*2的矩阵解析和数值都是可以很轻松的求解出来。态密度的话就是把$k_x$和$k_y$对应下的格林函数积分即可 A(\omega)=\int_0^{2...</div></div></div></a><a class="pagination-related" href="/2020/09/12/2020-09-12-Matsubara-sum/" title="松原频率求和"><img class="cover" src="/img/defult-cover2.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-12</div><div class="info-item-2">松原频率求和</div></div><div class="info-2"><div class="info-item-1">在学习格林函数的过程中，松原格林函数用来计算是很方便的，虽然它是用来处理有限温的问题，但是通过解析延拓之后，和零温下的格林函数的结果是相同的，而且相对于零温格林函数的计算，松原格林函数涉及到松原频率求和，在计算上面我觉得还是具有一定的简便性的，只需要扎实的掌握粒子分布函数和复变函数的留数定理之后，就可以快速的进行计算。   留数定理设区域G的边界C为以分段光滑的简单闭合曲线，若除有限个孤立奇点$b_k,(k=1,2,3,…,n)$外，函数$f(z)$在G内单值解析，在G上连续，并且在C上$f(z)$没有奇点，则$\int_Cf(z)dz=2\pi i\sum_{k=1}^nRes[f(b_k)]$，$Res[f(b_k)]$即为函数$f(z)$在$b_k$处的留数，它等于$f(z)$在$b_k$的邻域内洛朗展开 f(z)=\sum_{l=-\infty}^{\infty}a^{(k)}_l(z-b_k)^l中$(z-b_k)^{-1}$的系数$a_{-1}^{(k)}$。 留数计算理解假设$z=b$是函数的一阶极点，则有$f(z)=a_1(z-b)^{-1}+a_0+a_1(z-...</div></div></div></a><a class="pagination-related" href="/2020/09/14/2020-09-14-RPA/" title="RPA(Random Phase Approximiation)推导"><img class="cover" src="/assets/images/research/rpa1.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-14</div><div class="info-item-2">RPA(Random Phase Approximiation)推导</div></div><div class="info-2"><div class="info-item-1">在固体理论和量子场论的学习过程中都遇到了电极化函数的计算，在这里就详细的整理一下如何计算电子气中的电极化函数，这个计算有时候也成为RPA，当然这个方法并不仅限于计算电极化，还可以用来计算其它的一些量。   运动方程方法推导假设在系统中放入一个杂质点电荷$\rho_i(\mathbf{r},t)$或这其傅里叶变换形式为$\rho_i(\mathbf{q},\omega)$,那么有这个电荷产生的等效势为$V_i(\mathbf{q},\omega)=-e\phi_i(\mathbf{q},\omega)$.一旦存在了杂质电荷之后,那么在其周围就会形成屏蔽电荷,从而也会产生一个额外的屏蔽势$V_s(\mathbf{q},\omega)$,则可以由一下方程 V(\mathbf{q},\omega)=V_i(\mathbf{q},\omega)+V_s(\mathbf{q},\omega)\nabla^2V_s(\mathbf{r},t)=4\pi e\rho_s(\mathbf{r},t)\qquad  or\qquad V_s(\mathbf{q},\omega)=-\frac{4\p...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">232</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yxli8023"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome to Yu-Xuan's Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%83%AD%E5%8A%9B%E5%AD%A6%E5%B9%B3%E5%9D%87"><span class="toc-number">1.</span> <span class="toc-text">热力学平均</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%99%9A%E6%97%B6Heisenberg-Interaction-%E7%BB%98%E6%99%AF"><span class="toc-number">2.</span> <span class="toc-text">虚时Heisenberg&#x2F;Interaction 绘景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9D%BE%E5%8E%9F%E6%A0%BC%E6%9E%97%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">3.</span> <span class="toc-text">松原格林函数的定义</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9D%BE%E5%8E%9F%E6%A0%BC%E6%9E%97%E5%87%BD%E6%95%B0%E4%B8%8E%E6%8E%A8%E8%BF%9F%E6%A0%BC%E6%9E%97%E5%87%BD%E6%95%B0"><span class="toc-number">4.</span> <span class="toc-text">松原格林函数与推迟格林函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AC%E4%BC%97%E5%8F%B7"><span class="toc-number">6.</span> <span class="toc-text">公众号</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-number">6.0.0.1.</span> <span class="toc-text">Email</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/08/02/2025-08-02-Real-Space-Chern/" title="实空间Chern数计算(Half-BHZ模型)"><img src="/assets/images/Julia/Chern-m0.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实空间Chern数计算(Half-BHZ模型)"/></a><div class="content"><a class="title" href="/2025/08/02/2025-08-02-Real-Space-Chern/" title="实空间Chern数计算(Half-BHZ模型)">实空间Chern数计算(Half-BHZ模型)</a><time datetime="2025-08-01T16:00:00.000Z" title="发表于 2025-08-02 00:00:00">2025-08-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/22/2025-02-22-Free-SC/" title="超导序参量自洽(自由能极小值方法)"><img src="/assets/images/Julia/Bx_kbt-phase.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导序参量自洽(自由能极小值方法)"/></a><div class="content"><a class="title" href="/2025/02/22/2025-02-22-Free-SC/" title="超导序参量自洽(自由能极小值方法)">超导序参量自洽(自由能极小值方法)</a><time datetime="2025-02-21T16:00:00.000Z" title="发表于 2025-02-22 00:00:00">2025-02-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/18/2025-02-18-Julia-MPI-Set/" title="Mac上配置MPI并行Julia"><img src="/assets/images/Julia/a4.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Mac上配置MPI并行Julia"/></a><div class="content"><a class="title" href="/2025/02/18/2025-02-18-Julia-MPI-Set/" title="Mac上配置MPI并行Julia">Mac上配置MPI并行Julia</a><time datetime="2025-02-17T16:00:00.000Z" title="发表于 2025-02-18 00:00:00">2025-02-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/15/2024-12-15-Fourier-Spectrum/" title="超导序参量中的傅里叶分析"><img src="/assets/images/Mma/fft-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导序参量中的傅里叶分析"/></a><div class="content"><a class="title" href="/2024/12/15/2024-12-15-Fourier-Spectrum/" title="超导序参量中的傅里叶分析">超导序参量中的傅里叶分析</a><time datetime="2024-12-14T16:00:00.000Z" title="发表于 2024-12-15 00:00:00">2024-12-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/11/2024-12-11-Screeing/" title="库仑势以及屏蔽库伦势的一些计算"><img src="/assets/images/Mma/Vscr-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="库仑势以及屏蔽库伦势的一些计算"/></a><div class="content"><a class="title" href="/2024/12/11/2024-12-11-Screeing/" title="库仑势以及屏蔽库伦势的一些计算">库仑势以及屏蔽库伦势的一些计算</a><time datetime="2024-12-10T16:00:00.000Z" title="发表于 2024-12-11 00:00:00">2024-12-11</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  const initGitalk = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGitalk = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const gitalk = new Gitalk({
+      clientID: 'Ov23li0WvZEaIAZ7RFtH',
+      clientSecret: '03fcb77b7c28dafcdde00756e27f9b5bc76639e8',
+      repo: 'yxli8023.github.io',
+      owner: 'yxli8023',
+      admin: ['Yu-Xuan'],
+      updateCountCallback: commentCount,
+      ...option,
+      id: isShuoshuo ? path : (option && option.id) || 'fc0b3a8350d23cba4910a5336c5cfb0c'
+    })
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async(el, path) => {
+    if (typeof Gitalk === 'function') initGitalk(el, path)
+    else {
+      await btf.getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await btf.getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Gitalk' === 'Gitalk'
+      ? window.shuoshuoComment = { loadComment: loadGitalk }
+      : window.loadOtherComment = loadGitalk
+    return
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

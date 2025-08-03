@@ -1,0 +1,383 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>群论学习笔记-Part6 | Yu-Xuan' Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="根据不变子群的表示来得到群的表示.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="群论学习笔记-Part6">
+<meta property="og:url" content="http://example.com/2021/08/06/2021-08-06-GroupNote6/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39; Blog">
+<meta property="og:description" content="根据不变子群的表示来得到群的表示.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/assets/images/GroupTheory/cube_symmetry.jpg">
+<meta property="article:published_time" content="2021-08-05T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-08-03T08:03:17.004Z">
+<meta property="article:author" content="Yu-Xuan">
+<meta property="article:tag" content="Group-Theory">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/images/GroupTheory/cube_symmetry.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "群论学习笔记-Part6",
+  "url": "http://example.com/2021/08/06/2021-08-06-GroupNote6/",
+  "image": "http://example.com/assets/images/GroupTheory/cube_symmetry.jpg",
+  "datePublished": "2021-08-05T16:00:00.000Z",
+  "dateModified": "2025-08-03T08:03:17.004Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yu-Xuan",
+      "url": "http://example.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/08/06/2021-08-06-GroupNote6/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'medium_zoom',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#f54966","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '群论学习笔记-Part6',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #dbeffd;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">232</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/assets/images/GroupTheory/cube_symmetry.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Yu-Xuan' Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">群论学习笔记-Part6</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">群论学习笔记-Part6</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-08-05T16:00:00.000Z" title="发表于 2021-08-06 00:00:00">2021-08-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-08-03T08:03:17.004Z" title="更新于 2025-08-03 16:03:17">2025-08-03</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">3.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>12分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/2021/08/06/2021-08-06-GroupNote6/#post-comment"><span class="gitalk-comment-count"><i class="fa-solid fa-spinner fa-spin"></i></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;It has been&quot;,&quot;messageNext&quot;:&quot;days since the last update, the content of the article may be outdated.&quot;,&quot;postUpdate&quot;:&quot;2025-08-03 16:03:17&quot;}" hidden></div><div class="note blue no-icon flat"><p>根据不变子群的表示来得到群的表示.</p>
+</div>
+<span id="more"></span>
+<h1 id="诱导表示"><a href="#诱导表示" class="headerlink" title="诱导表示"></a>诱导表示</h1><p>假设<script type="math/tex">\mathbf{K}_1</script>是<script type="math/tex">\mathbf{G}</script>的子群,不一定是不变子群,比如<script type="math/tex">\mathbf{G}</script>是空间群,<script type="math/tex">\mathbf{K}_1</script>是某个波矢<script type="math/tex">\mathbf{k}_1</script>的小群;将<script type="math/tex">\mathbf{K}_1</script>中的元素标记为<script type="math/tex">k_\alpha(\alpha=1,\rvert\mathbf{K}_1\rvert)</script>,将群进行陪集分解</p>
+<script type="math/tex; mode=display">\mathbf{G}=\sum_\alpha p_\alpha\mathbf{K}_1</script><p>这里的<script type="math/tex">p_\alpha</script>就是左陪集表示,<script type="math/tex">\alpha=1,\cdots,\rvert\mathbf{G}\rvert/\rvert\mathbf{K}_1\rvert</script>,这个方程表明群<script type="math/tex">\mathbf{G}</script>中的每一个元素<script type="math/tex">g</script>都可以表示为<script type="math/tex">p_\lambda k_s</script>的形式.<br>这里的<script type="math/tex">p_\lambda</script>是分解中的一个陪集表示,而且<script type="math/tex">p_\lambda.k_s\in\mathbf{K}_1</script>都是由<script type="math/tex">g</script>唯一确定的.</p>
+<p>群<script type="math/tex">\mathbf{G}</script>中的每个元素<script type="math/tex">g</script>都可以表示为<script type="math/tex">g=k_bp_\lambda^{-1}</script>,这里的<script type="math/tex">b,\lambda</script>都是由<script type="math/tex">g</script>唯一确定的.<br>{:.success}</p>
+<p>从上面的陪集分解中可以知道<script type="math/tex">g^{-1}=p_\lambda k_s</script>,这里<script type="math/tex">\lambda,s</script>都是由<script type="math/tex">g^{-1}</script>唯一确定.因此可以有</p>
+<script type="math/tex; mode=display">g=k_s^{-1}p_\lambda^{-1}=k_bp_\lambda^{-1}</script><p>这里因为<script type="math/tex">\mathbf{K}_1</script>是个群,所以<script type="math/tex">k_b=k_s^{-1}\in\mathbf{K}_1</script>,而且<script type="math/tex">b</script>是被唯一确定的.但是这里需要注意的是<script type="math/tex">p_\lambda^{-1}</script>并不是上面陪集分解中的一员,因为上面的陪集并不一定是个群,只有当<script type="math/tex">\mathbf{K}_1</script>是<script type="math/tex">\mathbf{G}</script>的不变子群的时候,陪集才构成一个群,就是所谓的商群.</p>
+<p>让<script type="math/tex">\Omega_1</script>是子群<script type="math/tex">\mathbf{K}_1</script>的不可约矢量空间,维度为<script type="math/tex">d_i</script>,选择基矢为<script type="math/tex">\langle\phi_r\rvert,r=1,\cdots,d_i</script>,对于每个<script type="math/tex">k_\alpha\in\mathbf{K}_1</script>都有</p>
+<script type="math/tex; mode=display">k_\alpha\phi_r=\sum_{p=1}^{d_j}\phi_p\Gamma^j(k_\alpha)_{pr}</script><script type="math/tex; mode=display">k_\alpha$$对应的特征标为$$\chi^j(k_\alpha)$$,令$$\Omega$$是由$$d_j\rvert\mathbf{G}\rvert/\rvert\mathbf{K}_1\rvert$$个函数$$\phi_{\alpha r}$$张开的矢量空间
+
+$$\phi_{\alpha r}=p_\alpha\phi_r</script><p>这里的<script type="math/tex">p_\alpha</script>是群<script type="math/tex">\mathbf{G}</script>分解的左陪集表示,数目为<script type="math/tex">\rvert\mathbf{G}\rvert/\mathbf{K}_1</script>,而这里的<script type="math/tex">d_i</script>则是子群</p>
+<script type="math/tex; mode=display">\mathbf{K}_1$$的一个不可约矢量空间的维度,从而相当于将每个陪集表示分别作用在子群$$\mathbf{K}_1$$的基矢上,从而得到了
+$$d_j\rvert\mathbf{G}\rvert/\rvert\mathbf{K}_1\rvert$$个函数构成的一个矢量空间$$\Omega$$,它的维数就是基函数的个数.
+
+$$\Omega$$在$$\mathbf{G}$$操作下是不变的.
+{:.success}
+
+已知$$g=p_\lambda k_s$$,那么$$g\phi_{\tau r}=p_\lambda k_sp_\tau\phi_r=p_\gamma k_t\phi_r$$(还是没有太想清楚这里为什么可以相等,先接受这个事实),从这里就可以发现$$\gamma,t$$可以通过$$g,\tau$$唯一的确定,再结合上面的方程可以得到
+
+$$g\phi_{\tau r}=p_\lambda\sum_p\phi_p\Gamma^j(k_t)_{pr}=\sum_p\phi_{\gamma p}\Gamma^j(k_t)_{pr}\label{eq1}</script><p><strong>从这里就可以看到,从子群<script type="math/tex">\Gamma</script>的表示,可以得到<script type="math/tex">\Omega</script>矢量空间中的表示,而且从<script type="math/tex">\phi_{\alpha r}=p_\alpha\phi_r</script>可以看到,这些函数正是群<script type="math/tex">\mathbf{G}</script>的基矢,也就是说从子群的不可约表示可以得到群<script type="math/tex">\mathbf{G}</script>的不可约表示,上面的这种表示方法称为<script type="math/tex">\Gamma^j</script>在<script type="math/tex">\mathbf{G}</script>中的诱导表示,记作<script type="math/tex">\Gamma^j\uparrow\mathbf{G}</script>,它的特征标记为<script type="math/tex">\chi(g)</script>.</strong><br>{:.warning}</p>
+<p>方程(\ref{eq1})的含义就是如果<script type="math/tex">gp_\tau=p_\lambda k_t(k_t=p^{-1}_\lambda gp_\tau)</script>,那么对于元素<script type="math/tex">g</script>在诱导表示<script type="math/tex">\Gamma\uparrow\mathbf{G}</script>中就有<script type="math/tex">(\gamma,\tau)</script>的块矩阵,维度为<script type="math/tex">d_i</script>,表示为<script type="math/tex">\Gamma^j(p_\lambda^{-1}gp_\tau)</script>,而且因为<script type="math/tex">\gamma</script>是由<script type="math/tex">g,\tau</script>共同决定的且唯一,因此这里在列指标中,唯一非零的块矩阵就可以由<script type="math/tex">\tau</script>来标记.</p>
+<p>将上面的描述利用公式(\ref{eq})来重新解读一下,可以发现它是一个操作元作用在一个基函数上,等于一个矩阵乘以一些函数,这很明显就是通常在群论中求表示的方法.接下来再看每个元素的下标,在方程左边的下表是<script type="math/tex">(\tau r)</script>方程右边的指标是<script type="math/tex">\sum_p(\gamma p)(pr)</script>,这里可以看到矩阵<script type="math/tex">\Gamma^j</script>完全是由子群<script type="math/tex">\mathbf{K}_1</script>中的元素决定的,即只要<script type="math/tex">k_t</script>确定了,那么这个矩阵就确定了,无论左右两边的<script type="math/tex">(\tau,\gamma)</script>如何变化,对应的表示都是相同的,也就是说在<script type="math/tex">\Omega</script>矢量空间中,其由<script type="math/tex">\Omega_1</script>的表示来得到的诱导表示中,一定会有<script type="math/tex">(\gamma,\tau)</script>个块矩阵是完全相同的<script type="math/tex">\Gamma^j(k_t)</script>,但是这里的<script type="math/tex">\gamma,\tau</script>之间是通过<script type="math/tex">g</script>联系起来的,从而在上面的<script type="math/tex">(\gamma,\tau)</script>块的矩阵中,有一些块是等于零的,在满足联系关系的情况下,这些块矩阵对应的才是<script type="math/tex">\Omega_i</script>的表示矩阵<script type="math/tex">\Gamma^j(k_t)_{pr}</script>.</p>
+<p>如果表示<script type="math/tex">\Gamma^j</script>是幺正的,那么对应的诱导表示也是幺正的;但如果表示<script type="math/tex">\Gamma^j</script>是不可约的,则诱导表示<script type="math/tex">\Gamma\uparrow\mathbf{G}</script>并不一定也是不可约的.</p>
+<p><strong>空间群的表示其实就是小群的诱导表示.</strong><br>{:.info}</p>
+<p>接下来就是如何得到每个小群的表示,从而就可以得到对应空间群的表示,也就是在学习过程中,将上面的群<script type="math/tex">\mathbf{G}</script>视作空间群,而<script type="math/tex">\mathbf{K}_1</script>视作小群<script type="math/tex">\mathbf{G}^{\mathbf{k}_1},\Gamma^j</script>是小群的小表示<script type="math/tex">\Gamma_p^{\mathbf{k}_1}</script>.</p>
+<p>如果空间群<script type="math/tex">\rvert\mathbf{G}\rvert=N_1N_2N_3h</script>,小群<script type="math/tex">\rvert\mathbf{K}_1\rvert=N_1N_2N_3b</script>,那么对于一个给定的维度为<script type="math/tex">t</script>的小表示,对应空间群表示的维数<script type="math/tex">d=th/b=qt</script>=(star上的波矢数量)<script type="math/tex">\times</script>(小表示的维数).</p>
+<p>定义<script type="math/tex">\Omega_\alpha</script>是由<script type="math/tex">d_j</script>个函数<script type="math/tex">\phi_{\alpha r},(r=1,d_j)</script>构成的矢量空间,对于固定的<script type="math/tex">\alpha,\Omega_\alpha</script>在子群<script type="math/tex">\mathbf{K}_\alpha</script>下是不变的,<script type="math/tex">\mathbf{K}_\alpha=p_\alpha k_\alpha p_\alpha,k_\alpha\in\mathbf{K}_1</script>.<br>{:.success}</p>
+<p>利用前面的变换,可以得到</p>
+<script type="math/tex; mode=display">p_\alpha k_\alpha p_\alpha\phi_{\alpha r}=p_\alpha k_\alpha\phi_r=\sum_s\phi_{\alpha s}\Gamma^j(k_\alpha)_{sr}</script><p>这里利用了<script type="math/tex">\phi_{\alpha r}=p_\alpha\phi_r</script>,着也就表明在基函数<script type="math/tex">\langle\phi_{\alpha r}\rvert</script>下,<script type="math/tex">p_\alpha k_\alpha p_\alpha</script>的表示为<script type="math/tex">\Gamma^j(k_\alpha)</script>,这里的表示是个不可约的,从而也就证明了上面的定理.</p>
+<p>可以将一个子群<script type="math/tex">\mathbf{K}_\alpha</script>可以表示为<script type="math/tex">p_\alpha\mathbf{K}_1p_\alpha</script>,这里的<script type="math/tex">p_\alpha</script>是陪集分解中的陪集表示,因此对于每个子群<script type="math/tex">\mathbf{K}_\alpha</script>都有如下性质</p>
+<ul>
+<li>1.它与<script type="math/tex">\mathbf{K}_1</script>具有相同的阶数.</li>
+<li>2.在<script type="math/tex">\mathbf{G}</script>下与<script type="math/tex">\mathbf{K}_1</script>是共轭的,同时对于其他的<script type="math/tex">\mathbf{K}_\alpha</script>也是共轭的,共轭也就代表着等价关系.</li>
+<li>3.这里的每个子群都与陪集分解中的<script type="math/tex">p_\alpha\mathbf{K}_1</script>是一一对应的.</li>
+</ul>
+<p>如果将上面的<script type="math/tex">\mathbf{G}</script>识别为空年间群的同形点群(isogonal point group)<script type="math/tex">\mathbf{F},\mathbf{K}_1</script>为小共群<script type="math/tex">\mathbf{k}_1</script>,那么<script type="math/tex">\mathbf{K}_\alpha</script>就是小共群<script type="math/tex">\mathbf{k}_\alpha</script>,这里的<script type="math/tex">\mathbf{k}_\alpha</script>是由小群<script type="math/tex">\mathbf{k}_1</script>定义的star中的元素,满足<script type="math/tex">\mathbf{k}_\alpha=p_\alpha\mathbf{k}_1</script>.</p>
+<p>元素<script type="math/tex">g</script>在<script type="math/tex">\Omega_\alpha</script>中的特征标为<script type="math/tex">\chi(g)</script>,那么它在诱导表示<script type="math/tex">\Gamma^j\uparrow\mathbf{G}</script>中的特征标为<script type="math/tex">\sum_\alpha\chi_\alpha(g)</script>,那么<script type="math/tex">\Omega</script>是群<script type="math/tex">\mathbf{G}</script>的不可约表示满足</p>
+<script type="math/tex; mode=display">\sum_t\chi_\alpha(t)\chi_\beta(t)=0,\quad\alpha\neq\beta</script><p>这里的<script type="math/tex">t\in\mathbf{K}_\alpha\cap\mathbf{K}_\beta</script>.</p>
+<p>如果<script type="math/tex">\mathbf{K}_1</script>在<script type="math/tex">\mathbf{G}</script>是不变的,那么对所有的<script type="math/tex">\alpha</script>都有<script type="math/tex">\mathbf{K}_\alpha=\mathbf{K}_1</script>,可以有下面的关系</p>
+<script type="math/tex; mode=display">\sum_a\chi_\alpha^*(k_a)\chi_\beta(k_a)=0,\quad\alpha\neq\beta</script><p>当由基函数<script type="math/tex">\langle\phi_{\alpha r}\rvert,\alpha=1,\rvert\mathbf{G}\rvert/\rvert\mathbf{K}_1\rvert</script>张开的<script type="math/tex">\mathbf{K}_1</script>的不可约表示是相互等价的.(这里的<script type="math/tex">\alpha</script>就可以认为是陪集分解中的陪集表示的index)</p>
+<p>对<script type="math/tex">\mathbf{K}_\alpha\cap\mathbf{K}_\beta</script>的任何一个子群<script type="math/tex">\mathbf{H}_{\alpha\beta}</script>一定满足</p>
+<script type="math/tex; mode=display">\sum_h\chi^*_\alpha(h)\chi_\beta(h),\quad h\in\mathbf{H}_{\alpha\beta}\label{eq2}</script><p>上面这个等式的意思也就是,<script type="math/tex">\mathbf{H}_{\alpha\beta}</script>两个表示之间是正交关系,二者之间没有不可约的公共元素,而且上面的求和之中只会包含零和正数,非零项的出现表明这里存在一个<script type="math/tex">\Omega_\alpha</script>和<script type="math/tex">\Omega_\beta</script>的不可约子空间,它同时也可以生成<script type="math/tex">\mathbf{H}_{\alpha\beta}</script>的表示.</p>
+<p>方程(\ref{eq2})等于<script type="math/tex">n\rvert\mathbf{H}_{\alpha\beta}\rvert</script>,这里的<script type="math/tex">n</script>表示上面描述的满足<script type="math/tex">\Omega_\alpha,\Omega_\beta</script>的不可约子空间的数目,有时候也被称为<script type="math/tex">\Omega_\alpha,\Omega_\beta</script>在<script type="math/tex">\rvert\mathbf{H}_{\alpha\beta}</script>下的缠绕数(intertwinding number),而对于前面的介绍,可以看到<script type="math/tex">n=0</script>.</p>
+<p>当<script type="math/tex">\mathbf{K}_\alpha,\alpha=1,\rvert\mathbf{G}\rvert/\rvert\mathbf{K}_1\rvert</script>是一个star的小群时,且<script type="math/tex">\mathbf{H}_{\alpha\beta}</script>对所有的<script type="math/tex">\alpha,\beta</script>对取为空间群的平移群<script type="math/tex">\mathbf{T}</script>,作为所有的<script type="math/tex">\mathbf{K}_\alpha</script>的子群,那么</p>
+<script type="math/tex; mode=display">\mathbf{H]_{\alpha\beta}$$是所有$$\mathbf{K}_\alpha\cap\mathbf{K}_\beta$$的子群.
+
+不同的star产生的$$\mathbf{T}$$的表示是不等价的,从而可以看到(\ref{eq2})等于零的结果,这也就确保了从小群的小表示诱导得到的空间群的诱导表示$$\Gamma^j\uparrow\mathbf{G}$$是不可约的.
+
+假设$\Gamma$是群$\mathbf{G}$的一个表示,特征标为$\chi^\Gamma(g)$,将诱导表示$\Gamma^j\uparrow\mathbf{G}$分解到群$\mathbf{G}$的不可约表示上时,$\Gamma$出现的次数就等于表示$\Gamma^j$出现在$$\Gamma\downarrow\mathbf{K}_1$$.这里的$$\Gamma\downarrow\mathbf{K}_1$$表示的是将$\Gamma$限制到子群$$\mathbf{K}_1$$的元素上(我理解为就是用这个来作为子群的表示),这个通常称为$\Gamma$子诱导的$$\mathbf{K}_1$$的表示;因为$$\mathbf{K}_1$$是$\mathbf{G}$的子群,那么很明显$$\Gamma\downarrow\mathbf{K}_1$$是群$$\mathbf{K}_1$$的一个维度与$\Gamma$相同的表示.
+{:.success}
+
+# 群的不变子群
+将群$\mathbf{G}$根据不变子群$\mathbf{T}$进行陪集分解,如果这些陪集表示$r_\alpha$可以构成一个子群$\mathbf{F}$,那么群$\mathbf{G}$就是平移群和子群$\mathbf{F}$的半直积$\mathbf{G}=\mathbf{T}\land\mathbf{F}$.
+
+将$\mathbf{G}$中的元素表示为$$(r_\alpha t_a)$$,它们的乘法规则为
+
+$$(r_\alpha t_a)(r_\beta t_b)=(r_{\alpha\beta}t_{\alpha\beta}[t_\alpha]_\beta t_b)\label{eq5}</script><p>这里的<script type="math/tex">r_\alpha</script>是陪集表示,<script type="math/tex">[t_\alpha]_\beta=r^{-1}_\beta t_\alpha r_\beta\in\mathbf{T}</script>,因为$\mathbf{T}$是个不变子群有</p>
+<script type="math/tex; mode=display">r_\alpha r_\beta=r_{\alpha\beta}t_{\alpha\beta}\label{eq4}</script><p>(\ref{eq4})中右端的分解时唯一的,群元<script type="math/tex">r_\alpha r_\beta\in\mathbf{G}</script>可以被分解为左陪集表示$r_{\alpha\beta}$和<script type="math/tex">t_{\alpha\beta}\in\mathbf{T}</script>的乘积.<strong>对于一个半直积群,对所有的$\alpha,\beta$,存在$t_{\alpha\beta}=1$</strong>.</p>
+<p>利用群$\mathbf{G}$中的单位元<script type="math/tex">(r_1t_1)</script>并结合(\ref{eq4}-\ref{eq5})可以得到</p>
+<script type="math/tex; mode=display">\begin{equation}\begin{aligned}&[t_\alpha]_1=t_\alpha,\quad [t_1]_\alpha=t_1,\quad r_{\alpha 1}=r_{1\alpha}=r_\alpha,\quad t_{\alpha 1}=t_{1\alpha}=t_1\\ &[t_a]_\alpha[t_b]_\alpha=[t_at_b]_\alpha,\quad [t_a^{-1}]_\alpha=([t_a]_\alpha)^{-1}\end{aligned}\end{equation}</script><p>对所有的$\alpha,\beta,a,\gamma$存在</p>
+<script type="math/tex; mode=display">r_{\alpha\beta,\gamma}=r_{\alpha,\beta\gamma},\quad t_{\alpha\beta,\gamma}[t_{\alpha\beta}]_\gamma[[t_a]_\beta]_\gamma=t_{\alpha,\beta\gamma}[t_a]_{\beta\gamma}t_{\beta\gamma}\label{eq6}</script><p>利用上面的关系可以得到</p>
+<script type="math/tex; mode=display">r_{\alpha,\beta 1}=r_{\alpha\beta,1}=r_{\alpha\beta}=r_{1,\alpha\beta}=r_{\alpha,1\beta}=r_{\alpha 1,\beta}</script><script type="math/tex; mode=display">t_{\alpha,\beta 1}=t_{1\alpha,\beta}=t_{\alpha,1\beta}=t_{\alpha 1,\beta}=t_{\alpha\beta},\quad t_{\alpha\beta,1}=t_{1,\alpha\beta}=t_1</script><p>将方程(\ref{eq6})中令$a=1$可以得到对所有的$\alpha,\beta,\gamma$存在</p>
+<script type="math/tex; mode=display">t_{\alpha\beta,\gamma}[t_{\alpha\beta}]_\gamma=t_{\alpha,\beta\gamma}t_{\beta\gamma}</script><script type="math/tex; mode=display">(r_1t_\alpha)$$的逆为$$(r_1t_\alpha^{-1})$$.给定一个$r_\alpha$一定存在一个唯一的陪集表示$$r_{\alpha\bar{\alpha}}=r_{\bar{\alpha}\alpha}=r_1$$,$$(r_\alpha t_1)$$的逆是$$(r_\alpha t_{\alpha\alpha}^{-1})$$,还有下面的一些关系
+
+$$t_{\bar{\alpha}\alpha}=[t_{\alpha\bar{\alpha}}]_\alpha</script><script type="math/tex; mode=display">[[t_a]_\alpha]_\bar{\alpha}=t_{\alpha\bar{\alpha}}^{-1}t_at_{\alpha\bar{\alpha}}</script><div class="note red no-icon flat"><p>上面的这些恒等式和方程我自己也并没有证明,而且看得是云里雾里,不是很明白它的具体含义是什么,就暂时从书上抄了下来.</p>
+</div>
+<h1 id="公众号"><a href="#公众号" class="headerlink" title="公众号"></a>公众号</h1><div class="note blue no-icon flat"><p>相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。</p>
+</div>
+<table>
+  <tr>
+    <!-- 图片单元格 -->
+    <td style="width: 300px; height: 300px; text-align: center; vertical-align: middle; border: 1px solid #ccc; border-radius: 8px;">
+      <img src="/assets/images/qrcode.jpg" alt="QR Code" width="300px" height="300px" style="border-radius: 8px;">
+    </td>
+    <!-- 文字单元格 -->
+    <td style="width: 300px; height: 300px; text-align: center; vertical-align: middle; padding-left: 20px; border: 1px solid #ccc; border-radius: 8px;">
+      <div>
+        <h4 style="margin: 0;">Email</h4>
+        <p style="margin: 5px 0;">yxliphy@gmail.com</p>
+      </div>
+    </td>
+  </tr>
+</table>
+
+
+
+
+
+
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Yu-Xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2021/08/06/2021-08-06-GroupNote6/">http://example.com/2021/08/06/2021-08-06-GroupNote6/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Yu-Xuan' Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Group-Theory/">Group-Theory</a></div><div class="post-share"><div class="social-share" data-image="/assets/images/GroupTheory/cube_symmetry.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg"/></a><div class="post-qr-code-desc"></div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg"/></a><div class="post-qr-code-desc"></div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2021/11/21/2021-11-21-Project-edge-theory/" title="利用投影子方法求解Square lattice边界态"><img class="cover" src="/img/defult-cover2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">利用投影子方法求解Square lattice边界态</div></div><div class="info-2"><div class="info-item-1">在Square lattice上求解沿着$x$或者$y$方向求解边界态的时候，还可以使用另外一种投影子的方法，这里就介绍一下这个方法。   同样考虑BHZ模型加入Zeeman场这样的一个模型      H(\mathbf{k})=(m_0-t_x\cos k_x-t_y\cos k_y)\sigma_z+\lambda_x\sin k_x\sigma_xs_z+\lambda_y\sin k_y\sigma_y+h_0s_x这里$\Gamma_1=\sigma_zs_0,\Gamma_2=\sigma_xs_z,\Gamma_3=\sigma_ys_0,\Gamma_4=\sigma_0s_x$。将$h_0s_{x}$视为微扰，求解BHZ模型对应的边界态。先沿着$y$方向取开放边界条件，进行Fourier变换到实空间  H(k_{x})=(m_0-t_x\cos k_x-t_y/2(S_{y}+S_{y}^{\dagger}))\sigma_z+\lambda_x\sin k_x\sigma_xs_z+\lambda_y/(2i)(S_{y}-S_{y}^{\dagger})\s...</div></div></div></a><a class="pagination-related" href="/2021/08/06/2021-08-08-vasp-EIGENVAL/" title="VASP输出文件内容结构解析(未完成)"><img class="cover" src="/img/defult-cover.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">VASP输出文件内容结构解析(未完成)</div></div><div class="info-2"><div class="info-item-1">这里整理一下最近学习vasp的时候,对一些输出文件中的内容进行一下整理,这样可以让自己再可视化结果的时候,明白需要从哪个文件中寻找什么结果.   EIGENVAL这个文件中会输出对应$k$点的本征值,如果在KPOINTS中设置了高对称路径,那么就可以从这个数据文件中得到能带图,其数据内容如下  第一行，前三个整数无意义,第四个整数,如果是2,表示是自旋极化的计算,如果是1,表示非自旋极化的计算. 第2至5行的数据含义不大明确,可以不关心. 第6行的数据表示:第一个数表示体系总的价电子数目,第二个数表示的计算能带时总的$k$点数目,第三个数表示的是计算能带时计算了多少条能带.电子数可以通过在设置POSCAR中的原子自己算出来,而$k$点的数目也与在KPOINTS中的设置是有关系的,最后的能带数同样可以从OUTCAR中的到1cat OUTCAR | grep NBANDS 第8行的前三个数是$k$点的坐标,第四个数是相应$k$点的权重. 第9行给出的是该$k$点对应的本征值的序号(即第几条能带),及相应的本征值. 在知道了这个文件中内容结构之后,就可以通过脚本来提取数据绘制能带图.利...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2021/04/19/2021-04-19-SpacGroup/" title="空间群学习工具SpaceGroupIrep"><img class="cover" src="/img/defult-cover2.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-19</div><div class="info-item-2">空间群学习工具SpaceGroupIrep</div></div><div class="info-2"><div class="info-item-1">这里整理一下学习空间群时候的一个Mathematica软件包SpaceGroupIrep,在学习THE MATHEMATICAL THEORY OF SYMMETRY IN SOLIDS这本书中的内容的时候, 结合这个工具可以对书中的内容有一个更深入的理解. 这个软件包也是基于这本书中的内容编写的, 而且可以对书中的一些表进行快速查询, 结合起来对学习空间群相关的知识大有帮助.   前言自己最近一段时间在学习THE MATHEMATICAL THEORY OF SYMMETRY IN SOLIDS(Representation theory for point groups and space groups)这本书, 虽然认真的学习了一遍, 但是对第四章中的抽象表示还是有一些不明白的地方, 正好可以结合SpaceGroupIrep来对书中的内容再进行一遍学习, 相信结合这个软件包, 可以对书中的内容有进一步的理解. 首先将软件包下载, 然后复制到1$UserBaseDirectory/Applications这个目录中就可以, 记得将下载下来的软件包的名称修改为SpaceGrou...</div></div></div></a><a class="pagination-related" href="/2021/06/10/2021-06-10-TI-Hamlitonian/" title="拓扑绝缘体哈密顿量推导"><img class="cover" src="/img/defult-cover.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-10</div><div class="info-item-2">拓扑绝缘体哈密顿量推导</div></div><div class="info-2"><div class="info-item-1">这篇博客整理一下在拓扑材料Bi$_2$Se$_3$计算中,通过能带成分和对称性分析,再结合微扰论来推导低能有效模型,主要是对文章进行翻译,过程中会加一点自己的笔记.   虽然对拓扑绝缘体的材料和对应的模型都很熟了,但是始终没有掌握如何从具体的材料出发,来得到其对应的低能哈密顿量,从而可以在材料的基础上,对模型进行研究.这里就想通过精读Model Hamiltonian for topological insulators这篇文章,来掌握一下这个方法. 晶体结构首先来明确材料Bi$_2$Se$_3$的晶体结构等信息.首先在Material Project这个网站中找到这个材料,其晶体结构时菱形的,对应的空间群是$D_{3d}^5(R\bar{3}m)$,其晶体结构如下图所示,沿着$z$方向是个层状结构,每个元胞中有5个原子,  两个蓝色标记的等价Bi原子(Bi1,Bi$1^\prime $),两个绿色标记的等价Se原子(Se1,Se$1^\prime $),还有一个黄色的Se原子,它与Se1原子是不等价的,5个原子层构成一个元胞,通常被称为quintuple layer. 沿着$z...</div></div></div></a><a class="pagination-related" href="/2021/07/07/2021-07-07-GroupNote1/" title="群论学习笔记-Part1"><img class="cover" src="/assets/images/GroupTheory/cube_symmetry.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-07-07</div><div class="info-item-2">群论学习笔记-Part1</div></div><div class="info-2"><div class="info-item-1">学习群论有一段时间了, 这里想结合一些工具, 并通过一些书籍阅读来将自己所学到的内容整理一下, 同时加深一下自己对这些知识内容的理解.   基本概念共轭一个元素$a,b,c$是群$\mathcal{G}$的群元$(a,b,c)\in\mathcal{G}$,加入下列关系成立 a=c\circ b\circ c^{-1}\label{eq1}那么就说群元$a$与$b$之间是共轭的.上式中的$\quad\circ\quad$代表的是群元的操作. 类利用(\ref{eq1})的关系,将所有与群元$b$共轭的群元划分成一组,那么这一组叫做一个类. \mathcal{C}_{a}=\left\{a_{i} \mid a, b \in \mathcal{G} \wedge a_{i}=b \circ a \circ b^{-1} \wedge a \text { fixed }\right\}陪集假设$\mathcal{U}$是群$\mathcal{G}$的子群,$a$是$\mathcal{G}$中的元素,那么$a\mathcal{U}$代表元素$a$和群$\mathcal{U}$中的每一个...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">232</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yxli8023"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome to Yu-Xuan's Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AF%B1%E5%AF%BC%E8%A1%A8%E7%A4%BA"><span class="toc-number">1.</span> <span class="toc-text">诱导表示</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AC%E4%BC%97%E5%8F%B7"><span class="toc-number">2.</span> <span class="toc-text">公众号</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-number">2.0.0.1.</span> <span class="toc-text">Email</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/08/02/2025-08-02-Real-Space-Chern/" title="实空间Chern数计算(Half-BHZ模型)"><img src="/assets/images/Julia/Chern-m0.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实空间Chern数计算(Half-BHZ模型)"/></a><div class="content"><a class="title" href="/2025/08/02/2025-08-02-Real-Space-Chern/" title="实空间Chern数计算(Half-BHZ模型)">实空间Chern数计算(Half-BHZ模型)</a><time datetime="2025-08-01T16:00:00.000Z" title="发表于 2025-08-02 00:00:00">2025-08-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/22/2025-02-22-Free-SC/" title="超导序参量自洽(自由能极小值方法)"><img src="/assets/images/Julia/Bx_kbt-phase.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导序参量自洽(自由能极小值方法)"/></a><div class="content"><a class="title" href="/2025/02/22/2025-02-22-Free-SC/" title="超导序参量自洽(自由能极小值方法)">超导序参量自洽(自由能极小值方法)</a><time datetime="2025-02-21T16:00:00.000Z" title="发表于 2025-02-22 00:00:00">2025-02-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/18/2025-02-18-Julia-MPI-Set/" title="Mac上配置MPI并行Julia"><img src="/assets/images/Julia/a4.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Mac上配置MPI并行Julia"/></a><div class="content"><a class="title" href="/2025/02/18/2025-02-18-Julia-MPI-Set/" title="Mac上配置MPI并行Julia">Mac上配置MPI并行Julia</a><time datetime="2025-02-17T16:00:00.000Z" title="发表于 2025-02-18 00:00:00">2025-02-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/15/2024-12-15-Fourier-Spectrum/" title="超导序参量中的傅里叶分析"><img src="/assets/images/Mma/fft-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导序参量中的傅里叶分析"/></a><div class="content"><a class="title" href="/2024/12/15/2024-12-15-Fourier-Spectrum/" title="超导序参量中的傅里叶分析">超导序参量中的傅里叶分析</a><time datetime="2024-12-14T16:00:00.000Z" title="发表于 2024-12-15 00:00:00">2024-12-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/11/2024-12-11-Screeing/" title="库仑势以及屏蔽库伦势的一些计算"><img src="/assets/images/Mma/Vscr-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="库仑势以及屏蔽库伦势的一些计算"/></a><div class="content"><a class="title" href="/2024/12/11/2024-12-11-Screeing/" title="库仑势以及屏蔽库伦势的一些计算">库仑势以及屏蔽库伦势的一些计算</a><time datetime="2024-12-10T16:00:00.000Z" title="发表于 2024-12-11 00:00:00">2024-12-11</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  const initGitalk = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGitalk = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const gitalk = new Gitalk({
+      clientID: 'Ov23li0WvZEaIAZ7RFtH',
+      clientSecret: '03fcb77b7c28dafcdde00756e27f9b5bc76639e8',
+      repo: 'yxli8023.github.io',
+      owner: 'yxli8023',
+      admin: ['Yu-Xuan'],
+      updateCountCallback: commentCount,
+      ...option,
+      id: isShuoshuo ? path : (option && option.id) || 'ab84082db3869a4d10e476954e4a754d'
+    })
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async(el, path) => {
+    if (typeof Gitalk === 'function') initGitalk(el, path)
+    else {
+      await btf.getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await btf.getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Gitalk' === 'Gitalk'
+      ? window.shuoshuoComment = { loadComment: loadGitalk }
+      : window.loadOtherComment = loadGitalk
+    return
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

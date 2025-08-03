@@ -1,0 +1,374 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>重学凝聚态拓扑(Class 6) | Yu-Xuan' Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="最近正好有些空闲的时间，发现自己对拓扑中的一些理解并不深刻，正好借这个机会重新学习一下，加深自己对其中内容的理解，也能让自己之后的研究走的更远。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="重学凝聚态拓扑(Class 6)">
+<meta property="og:url" content="http://example.com/2022/12/22/2022-12-22-Restudy-TP-6/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39; Blog">
+<meta property="og:description" content="最近正好有些空闲的时间，发现自己对拓扑中的一些理解并不深刻，正好借这个机会重新学习一下，加深自己对其中内容的理解，也能让自己之后的研究走的更远。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/defult-cover2.jpg">
+<meta property="article:published_time" content="2022-12-21T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-08-03T06:05:57.709Z">
+<meta property="article:author" content="Yu-Xuan">
+<meta property="article:tag" content="Topology">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/defult-cover2.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "重学凝聚态拓扑(Class 6)",
+  "url": "http://example.com/2022/12/22/2022-12-22-Restudy-TP-6/",
+  "image": "http://example.com/img/defult-cover2.jpg",
+  "datePublished": "2022-12-21T16:00:00.000Z",
+  "dateModified": "2025-08-03T06:05:57.709Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yu-Xuan",
+      "url": "http://example.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/12/22/2022-12-22-Restudy-TP-6/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'medium_zoom',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#f54966","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '重学凝聚态拓扑(Class 6)',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #dbeffd;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">232</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/img/defult-cover2.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Yu-Xuan' Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">重学凝聚态拓扑(Class 6)</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">重学凝聚态拓扑(Class 6)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-12-21T16:00:00.000Z" title="发表于 2022-12-22 00:00:00">2022-12-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-08-03T06:05:57.709Z" title="更新于 2025-08-03 14:05:57">2025-08-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Topology/">Topology</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">3.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>11分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/2022/12/22/2022-12-22-Restudy-TP-6/#post-comment"><span class="gitalk-comment-count"><i class="fa-solid fa-spinner fa-spin"></i></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;It has been&quot;,&quot;messageNext&quot;:&quot;days since the last update, the content of the article may be outdated.&quot;,&quot;postUpdate&quot;:&quot;2025-08-03 14:05:57&quot;}" hidden></div><div class="note blue no-icon flat"><p>最近正好有些空闲的时间，发现自己对拓扑中的一些理解并不深刻，正好借这个机会重新学习一下，加深自己对其中内容的理解，也能让自己之后的研究走的更远。</p>
+</div>
+<span id="more"></span>
+<h1 id="Majorana-zero-modes-in-nanowire-networks"><a href="#Majorana-zero-modes-in-nanowire-networks" class="headerlink" title="Majorana zero modes in nanowire networks"></a>Majorana zero modes in nanowire networks</h1><p>实现拓扑超导最主要的目的就是利用其中的Majorana模式进行拓扑量子计算，如果可以实现一个由Majorana零能模构成的网络，如下图所示</p>
+<p><img src="/assets/images/RestudyTP/nanowire_network.svg" alt="png"></p>
+<p>那么就可以对Majorana模式进行操作。在图中，可以看到一个纳米线，在几个马约拉纳零模式之间有许多$t$形结(这就是为什么我们称它为网络)。这里先不去关心纳米线网络的微观描述，因为它与Majorana的替代平台上的类似结构在一些无关的方面有所不同。为了固定想法，你可以想象系统可以Kitaev链toy model有效地描述，Majorana模式位于畴壁的位置，在那里能隙改变符号，正如前面所讨论的。</p>
+<p>唯一能区分Majorana零模的是它们在网络中的位置。它们没有其他的“味道”可以让我们描述它们。它们彼此是相同的，就像所有的电子都是相同的。如果我们在空间中交换两个Majorana，交换后的系统看起来会和交换前完全一样。</p>
+<p>一个由相同粒子组成的系统，在两个粒子交换的情况下，量子态$\rvert \Psi\rangle$ 的行为是非常有趣的。我们已经知道，对于玻色子和费米子$\rvert \Psi\rangle\to\pm\rvert \Psi\rangle$。要了解马约拉纳子的情况，我们首先必须学习如何写出量子态$\rvert \Psi\rangle$对应于一组Majorana费米子，如上图所示。</p>
+<h2 id="The-Hilbert-space-of-a-set-of-Majoranas"><a href="#The-Hilbert-space-of-a-set-of-Majoranas" class="headerlink" title="The Hilbert space of a set of Majoranas"></a>The Hilbert space of a set of Majoranas</h2><p>从现在起，重要的是要记住，如果只考虑与Majorana零模相对应的态，同时就忽略了体态(只关注边界态)。此时可以假设能谱为：</p>
+<p><img src="/assets/images/RestudyTP/gs_manifold.svg" alt="png"></p>
+<p>基于对Kitaev链的了解，这个假设对目前来说应该是合理的。因为有几个Majorana模式，就会有几个能量都为零的状态，形成一个“ground state mainfold”。现在让就更详细地探讨由这个简并态集定义的ground state mainfold。</p>
+<p>在上面的图中看到六个Majorana模式，也就是三对，但让我们考虑一下更普遍的情况$N$对。因为$\gamma_n$没有出现在哈密顿量中，所以$2N$中的每一个$n$对应的都是一个简并的量子态。然而，就像Majorana模成对出现一样，它们只能成对地被赋予量子态。为了给Majorana模式分配量子态，我们可以对马约拉纳子形成费米子模式</p>
+<script type="math/tex; mode=display">
+c^\dagger_n = \tfrac{1}{2}(\gamma_{2n-1}+i\gamma_{2n}),\qquad c_n =\tfrac{1}{2}(\gamma_{2n-1}-i\gamma_{2n})\,,</script><p>对于$n=1,\dots, N$，利用这种表示方法，我们选择将相邻的Majorana模式配对成费米子模式，可以得到现在有一组$N$费米子模式和相应的产生和湮灭算符。每个模可以是空的，也可以被一个费米子占据，对于每一对Majorana模式，我们得到了两种可能的简并量子态$\rvert 0\rangle$和$\rvert 1\rangle$，因为基态是简并的，所以如果有$N$对这样的算符，那么对应的基态简并度就是$2^N$。</p>
+<p>回到之前的草图，可以将情况表示为：</p>
+<p><img src="/assets/images/RestudyTP/majoranas_pairing.svg" alt="png"></p>
+<p>Majorana模式的颜色现在明确了我们如何将它们配对成费米子模式的选择。总的来说，上述系统有8种可能的状态，对应于3种费米子模式的占据数的所有可能组合。概括起来，我们将有$N$对马约拉纳的$2^N$可能的量子态。我们可以用ket来表示每一个这样的状态：</p>
+<script type="math/tex; mode=display">
+\rvert  s_1, s_2, \dots, s_N\rangle</script><p>其中$s_n$表示如果第$n$费米子模式未被占据，则等于$0$，如果第$n$费米子模式被占用，则等于$1$。这些态是Majorana模式集合的希尔伯特空间的一个“完整基”。注意，这些基态都是算子$P_n \equiv 1-2c^\dagger_n c_n \equiv i\gamma_{2n-1}\gamma_{2n}$的本征态。例如，这里有</p>
+<script type="math/tex; mode=display">
+P_1 \rvert  0, \dots \rangle\ = (1-2c^\dagger_1 c_1)\rvert 0, \dots \rangle= + \rvert 0, \dots \rangle\,,</script><script type="math/tex; mode=display">
+P_1 \rvert  1, \dots \rangle\ = (1-2c^\dagger_1 c_1)\rvert 1, \dots \rangle= - \rvert 1, \dots \rangle\,,</script><p>以此类推。算符$P_n$是对马约拉纳$\gamma_{2n-1}$和$\gamma_{2n}$的<em>费米子奇偶算符</em>。在这一点上，有必要提醒一下，不同的Majorana算符彼此之间都是满足反对易关系的。这意味着一对Majorana算子的乘积可以与另一对算子的乘积交换，例如：</p>
+<script type="math/tex; mode=display">
+(\gamma_1\gamma_2)(\gamma_3\gamma_4) = (\gamma_3\gamma_4)(\gamma_1\gamma_2)\,.</script><p>然而，如果两对共用一个Majorana模式，那么他们就不再满足对易关系了，例如：</p>
+<script type="math/tex; mode=display">
+(\gamma_1\gamma_2)(\gamma_2\gamma_3) = - (\gamma_2\gamma_3)(\gamma_1\gamma_2)\,.</script><p>当然，上面的乘积也可以简化:因为$\gamma_2^2=1$，所以有$(\gamma_1\gamma_2)(\gamma_2\gamma_3)=\gamma_1\gamma_3$。所有$P_n$之间的都是相互对易的，因为它们都涉及到不同的一对Majorana模式。</p>
+<p>因此，一组$N$个Majorana模式对的希尔伯特空间$\rvert \Psi\rangle$由交换费米子奇偶算符$P_n$的共同本征态$\rvert s_1,s_2，\dots,s_N\rangle$所张开，并表示为</p>
+<script type="math/tex; mode=display">
+\rvert \Psi\rangle= \sum_{s_n=0,1} \alpha_{s_1s_2\dots s_N}\,\rvert  s_1, s_2, \dots, s_N\rangle\,</script><p>这里的系数$\alpha_{s_1s_2\dots s_N}$是个复数。</p>
+<p>上面的考虑只适用于封闭系统。如果考虑的是一个与电子库接触的系统，如金属铅，在这种情况下，电子可能通过隧穿进入铅电极，从而改变系统的总宇称(parity)。这个时候如果只考虑整个系统的一部分，上面的讨论也不适用。例如，在上面的示意图中，在没有明确绘制的网络部分(由纳米线“延续”的点表示)有更多的马约拉纳零模式。在这种情况下，完全有可能是整个网络处于偶宇称态，但所考虑的子系统处于奇偶宇称的叠加状态。</p>
+<h1 id="Non-Abelian-statistics-of-Majoranas"><a href="#Non-Abelian-statistics-of-Majoranas" class="headerlink" title="Non-Abelian statistics of Majoranas"></a>Non-Abelian statistics of Majoranas</h1><p>现在让想象一下，实验家不仅能够建立上图所示的一个网络，还能够移动domain wall的位置，并交换两个Majorana的位置，例如，通过执行以下轨迹：</p>
+<p><img src="/assets/images/RestudyTP/nanowire_network_exchange.svg" alt="png"></p>
+<p>假设移动上图所示的轨迹需要的时间是T。在移动过程中，系统被描述为一个时间相关的哈密顿量$H(t)$， $0\leq t \leq T$。这个哈密顿量包含了系统的所有细节，比如Majorana所在的domain wall的位置。因为系统的最终构型与初始构型相同，例如，所有的域壁都位于与开始时相同的位置，所以此时有$H(0)=H(T)$(初末态总是相同)。换句话说，此时考虑的是一个将哈密顿量带回自身的闭合的移动。为了确保系统的波函数不离开基态流形$\rvert \Psi\rangle$，我们需要缓慢的改变哈密顿量$H(t)$，使得演化过程服从<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Adiabatic_theorem">绝热定理</a>。</p>
+<p>假设在绝热极限下交换两个Majorana模式$\gamma_n$和$\gamma_m$。在量子力学中，初始和末态的量子态通过一个幺正算符$U$ ($U^{-1}=U^\dagger$)联系起来</p>
+<script type="math/tex; mode=display">
+\rvert \Psi\rangle_{\rm final} \,\to\, U \rvert \Psi\rangle_{\rm start}</script><p>因为量子态$\rvert \Psi\rangle$从不离开具有$2^N$状态的基态流形，这里的幺正算符$U$可以写成$2^N\times 2^N$的幺正矩阵。</p>
+<p>这里可以推导出幺正矩阵$U$的明确形式，而不需要直接计算，这需要知道$H(t)$，但只需要基于以下一般性考虑。首先，两个Majorana模式在绝热交换过程中不会改变系统中电子数的奇偶性，因此幺正算符$U$与总费米子奇偶性$[U, P_\textrm{tot}]=0$满足对易关系(类似于守恒量)。其次，可以<strong>合理地假设幺正算符$U$只依赖于参与交换的Majorana</strong>模式，或者换句话说，它是$\gamma_n$和$\gamma_m$的函数，而不依赖于任何其它运算符。因为它必须保持费米子的宇称，它只能依赖于它们的乘积，也就是宇称算符$-i\gamma_n\gamma_m$，这是厄密算符。最后，$i$乘以厄米算符的指数是一个幺正算符。所以，一般来说$U$必须采取这种形式</p>
+<script type="math/tex; mode=display">
+U\equiv\exp(\beta \gamma_n \gamma_m) = \cos(\beta) + \gamma_n\gamma_m \sin(\beta)\,,</script><p>这里，$\beta$是一个要确定的实系数，在上一个等式中，使用了$(\gamma_n\gamma_m)^2=-1$这个等式。要确定$\beta$，可以方便利用<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Heisenberg_picture">Heisenberg绘景</a>，并查看Majorana算符的随时间的演化。可以得到</p>
+<script type="math/tex; mode=display">
+\gamma_n\,\to\, U\,\gamma_n\,U^\dagger\,,\\
+\gamma_m\,\to\, U\,\gamma_m\,U^\dagger\,.</script><p>利用前面幺正算符$U$可以得到</p>
+<script type="math/tex; mode=display">
+\gamma_n\,\to\, \cos (2\beta)\,\gamma_n - \sin(2\beta)\,\gamma_m\,,\\
+\gamma_m\,\to\, \cos (2\beta)\,\gamma_m + \sin(2\beta)\,\gamma_n\,.</script><p>现在我们必须记住，在$T$时刻，我们已经完成了一个闭合演化，因此，Majorana模式$\gamma_n$现在位于$\gamma_m$最初占据的位置，反之亦然。这个条件导致选择$\beta = \pm \pi/4$。可以发现这两个取值都是可能的，这也并不奇怪——这就区分了Majorana模式之间是顺时针还是逆时针交换。因此，我们可以将交换Majorana模式$\gamma_n$和$\gamma_m$的幺正算符写成显式的(看起来有些不平庸)形式：</p>
+<script type="math/tex; mode=display">
+U = \exp \left(\pm\frac{\pi}{4}\gamma_n \gamma_m\right) = \tfrac{1}{\sqrt{2}}\left(1\pm\gamma_n\gamma_m\right)</script><p>为了修正我们的想法并更深入地研究$U$的结果，我们可以只关注四个Majorana模式 $\gamma_1，\gamma_2，\gamma_3,\gamma_4$。对于本文的讨论，我们将假设逆时针交换，并选择$U$中的$+$符号。这个基态流形有四种状态，利用之间介绍的符号，可以将这四个基态表示为</p>
+<script type="math/tex; mode=display">
+\rvert 00\rangle, \rvert 11\rangle, \rvert 01\rangle, \rvert 10\rangle\,,</script><p>其中第一个数字是费米子模式$c^\dagger_1=\tfrac{1}{2}(\gamma_1+i\gamma_2)$的占位号，第二个数字是$c^\dagger_2=\tfrac{1}{2}(\gamma_3+i\gamma_4)$的占据数。最一般的波函数是这四个基态的叠加函数</p>
+<script type="math/tex; mode=display">
+\rvert \Psi\rangle = s_{00}\rvert 00\rangle + s_{11} \rvert 11\rangle + s_{01} \rvert 01\rangle + s_{10} \rvert 10\rangle\,,</script><p>我们也可以表示为一个有四个分量的向量，$\rvert \Psi\rangle = (s_{00}， s_{11}， s_{01}， s_{10})^T$。此时运算符$U$可以写成$4\ * 4$矩阵。为了做到这一点，你只需要计算一个Majorana乘积在基态上的作用。这是一个简单但繁琐的操作，在这里先跳过。运算符$U_{12}， U_{23}$和$U_{34}$交换相邻的Majorana模式得到以下矩阵：</p>
+<script type="math/tex; mode=display">
+U_{12} = \exp\left(\frac{\pi}{4}\gamma_1 \gamma_2\right) \equiv\begin{pmatrix}
+e^{-i\pi/4} & 0 & 0 & 0 \\0 & e^{i\pi/4} & 0 &0 \\0 & 0& e^{-i\pi/4} &0 \\ 0&0& 0& e^{i\pi/4}
+\end{pmatrix}</script><script type="math/tex; mode=display">
+U_{23} = \exp\left(\frac{\pi}{4}\gamma_2 \gamma_3\right) \equiv\frac{1}{\sqrt{2}}\begin{pmatrix}
+1 & -i & 0 & 0\\ -i & 1 & 0& 0\\ 0& 0& 1 & -i\\ 0& 0& -i & 1
+\end{pmatrix}</script><script type="math/tex; mode=display">
+U_{34} = \exp\left(\frac{\pi}{4}\gamma_3 \gamma_4\right) \equiv\begin{pmatrix}
+e^{-i\pi/4} & 0 & 0 & 0\\ 0& e^{i\pi/4} & 0& 0\\ 0& 0& e^{i\pi/4} & 0\\ 0& 0& 0& e^{-i\pi/4}
+\end{pmatrix}</script><p>这些矩阵确实以一种非平庸的方式作用于波函数。例如，如果我们从状态$\rvert 00\rangle$开始，我们交换$\gamma_2$和$\gamma_3$，我们得到</p>
+<script type="math/tex; mode=display">
+\rvert 00\rangle\,\to\,U_{23}\rvert 00\rangle=\tfrac{1}{\sqrt{2}}\left(\rvert 00\rangle-i\rvert 11\rangle\right)\,,</script><p>这是状态的叠加！因此，我们已经清楚地看到，两个Majorana模式交换对波函数的影响不仅仅是一个整体相位，这与发生在玻色子和费米子中的情况是不相同的。现在尝试两个交换序列。在这种情况下，我们必须乘以相应的幺正操作$U$，根据交换的顺序从右到左排列。考虑到上面的矩阵不是对角矩阵，乘积的顺序当然很重要。这里可以检查一下：</p>
+<script type="math/tex; mode=display">
+U_{23}U_{12}\neq U_{12}U_{23}\,</script><p>通过上面的分析证明了交换两个马约拉纳模会导致基态流形中的非平庸转动，并且改变交换的顺序会影响最终的结果。这些性质表明Majorana模式是<strong>非阿贝尔任意子</strong>。两个非阿贝尔任意子的交换通常被称为<strong>编织</strong>，这个名字暗示了这样一个事实：当考虑不同粒子的轨迹时，交换序列看起来就像由不同的线组成的编织。</p>
+<p>最后，可能会有疑问，即图中绘制的纳米线网络只允许交换相邻的马约拉纳，虽然推导的$U=\exp(\pi\gamma_n\gamma_m/4)$似乎适用于任何一对马约拉纳。这种几何限制并不是大问题：通过仔细组合相邻模式之间的多次交换，我们可以交换任意一对马约拉纳。例如，你有$U_{13}\equiv\exp\left(\pi\gamma_1 \gamma_3/4\right) = U_{12}^\dagger U^\dagger_{23}U_{12}$。</p>
+<h1 id="公众号"><a href="#公众号" class="headerlink" title="公众号"></a>公众号</h1><div class="note blue no-icon flat"><p>相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。</p>
+</div>
+<table>
+  <tr>
+    <!-- 图片单元格 -->
+    <td style="width: 300px; height: 300px; text-align: center; vertical-align: middle; border: 1px solid #ccc; border-radius: 8px;">
+      <img src="/assets/images/qrcode.jpg" alt="QR Code" width="300px" height="300px" style="border-radius: 8px;">
+    </td>
+    <!-- 文字单元格 -->
+    <td style="width: 300px; height: 300px; text-align: center; vertical-align: middle; padding-left: 20px; border: 1px solid #ccc; border-radius: 8px;">
+      <div>
+        <h4 style="margin: 0;">Email</h4>
+        <p style="margin: 5px 0;">yxliphy@gmail.com</p>
+      </div>
+    </td>
+  </tr>
+</table></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Yu-Xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/12/22/2022-12-22-Restudy-TP-6/">http://example.com/2022/12/22/2022-12-22-Restudy-TP-6/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Yu-Xuan' Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Topology/">Topology</a></div><div class="post-share"><div class="social-share" data-image="/img/defult-cover2.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg"/></a><div class="post-qr-code-desc"></div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg"/></a><div class="post-qr-code-desc"></div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2022/12/22/2020-02-25-FortranNote/" title="Fortran使用中笔记"><img class="cover" src="/img/defult-cover.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Fortran使用中笔记</div></div><div class="info-2"><div class="info-item-1">将看到的Fortran中常用的一些语法记录起来，方便查阅。   Fortran中常用的库函数总结1. Cheevd 厄密矩阵本征值与本征矢的求解  2. getrf,getri getrf 对一个矩阵进行LU分解 getri 计算由LU分解后矩阵的逆   Fortran中一些混乱概念的收集1.Fortran中格式化输出总结 write(,’(I3)’)num 表示以3个字符宽度来在屏幕上显示num，若num是一个长度小于等于3的内容，均可以正确显示，当它的长度大于3时，则无法正确显示其结果，屏幕上会输出*号，表示无法正确的显示  整数输出(I)整数的输出用字母I来控制。通用格式为 rIw，其中r代表重复的次数，I代表整数(Integer)，w控制表示的长度。  例如 3I10:3个整数，每个整数的显示长度是10个宽度单位，他们会在同一行中显示(若是在写入文件的时候)。  浮点数输出(F) 浮点数的控制方法和整数相同，唯一多的控制内容是小数点后面的显示位数  rFw.d 在这里d表示小数点后面用多少位来显示，它的长度是包含在w中的  例如:write(*,’(1F6.3)’)3.5...</div></div></div></a><a class="pagination-related" href="/2022/12/21/2022-12-21-Restudy-TP-5/" title="重学凝聚态拓扑(Class 5)"><img class="cover" src="/img/defult-cover.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">重学凝聚态拓扑(Class 5)</div></div><div class="info-2"><div class="info-item-1">最近正好有些空闲的时间，发现自己对拓扑中的一些理解并不深刻，正好借这个机会重新学习一下，加深自己对其中内容的理解，也能让自己之后的研究走的更远。   From Kitaev model to an experiment在前面的章节中，学习了1D Kitaev链的边界处可以实现Majorana模式，这也只是一个toy model，下面就来讨论一下如何在真实的系统中来实现这个模型。处理这个问题的方法是把Kitaev链看作一个“骨架”，用真实的物理现象“装扮”它，直到它变成真实的。首先来看我们研究的“骨架”，Kitaev模型在动量空间中为  H_{Kitaev} = (-2 t \cos k -\mu) \tau_z + 2 \Delta \tau_y \sin k.这个模型似乎可以作为一个开始，因为它存在超导电子配对$\Delta$和由$\mu$和$t$成比例的项给出的正常色散。在我们进一步讨论之前，先了解一下这些参数之间的关系。首先，我们要做一个可控的系统，这样我们就可以调节它的参数。这意味着我们需要一种半导体。在半导体中，电子密度很低，因此化学势接近能带的底部。这使得定义$\mu...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2020/03/16/2020-03-16-Graphene/" title="石墨烯哈密顿量构造及边界态计算"><img class="cover" src="/img/defult-cover2.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-03-16</div><div class="info-item-2">石墨烯哈密顿量构造及边界态计算</div></div><div class="info-2"><div class="info-item-1">想通过石墨烯重新学习一下拓扑，以此来记录学习成果。   石墨烯的结构石墨烯的元胞是六角蜂窝状的，它的基元包含两个原子，将红黑表示的位置放在一起，则表示它的一个基元。以水平和垂直方向建立直角坐标系，并将它的晶格常数(红黑位置的距离)设置为a，基矢为绿色箭头表示$\vec{v_1}=(\sqrt{3}a,0),\vec{v_2}=(-\sqrt{3}/2a,3/2a)$。若只考虑最紧邻位置间的hopping，那么实空间中的Hamiltonian为  H=-t\sum_{}a_i^\dagger b_j - t\sum_{}b_i^\dagger a_j$$表示的是格点上最近邻的位置。先忘记上面说过的基元的概念，同时忽略图中黑红位置的区别，将所有的格点位置视为相同，那么可以发现每个格点都是有三个最近邻的，这就是石墨烯六角结构和平时经常使用正方点阵的一个区别，正方点阵每个格点都是有四个最近邻的(上下左右，而且它们是相互垂直的)，石墨烯结构中则不然，三个最近邻位置的夹角是$120^o$，这三个最近邻的矢量表示为  \vec{e_1}=(0,a)\quad \vec{e_2}=(-\frac...</div></div></div></a><a class="pagination-related" href="/2020/07/01/2020-07-01-Chern-Number/" title="两种方法计算Chern Number"><img class="cover" src="/img/defult-cover2.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-01</div><div class="info-item-2">两种方法计算Chern Number</div></div><div class="info-2"><div class="info-item-1">计算Chern数是最初学习拓扑物理都会遇到的问题，正好在假期空闲的时候自己学习了一下Chern数的数值计算方法，在博客上记录一下希望可以帮助到别人。   具体的计算方法和细节就不在这里说明了，只要是想学习计算Chern数的肯定了解它在凝聚态物理中的角色，而计算的细节也会在后面的参考文献中给出，只是展示一下结果。 Julia语言计算Chern numberVersion1这个方法是直接用定义直接计算的结果，但是可能会遇到波函数规范选择的问题，会导致结果有误，而具体的规范问题，我并不懂，所以一般我会选择第二种方法来计算，也就是后面参考文献中介绍的方法。1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374import PkgPkg.add(&quot;LinearAlgebra&quot;)Pkg.add(&quot;PyPlot&quot;)using Line...</div></div></div></a><a class="pagination-related" href="/2020/06/30/2020-06-30-Kane-Mele/" title="Kane Mele model zigzag 边界态的计算"><img class="cover" src="/img/defult-cover.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-30</div><div class="info-item-2">Kane Mele model zigzag 边界态的计算</div></div><div class="info-2"><div class="info-item-1">接触量子自旋霍尔效应很久了，但是一直也都是在square lattice上做计算，从来没有认真的在六角点阵上计算过拓扑的内容，正好最近在看文献的过程中需要在石墨烯机构上进行，就从最基本的Kane-Mele 模型出发学习怎么在六角点阵上写出最近邻以及次近邻的哈密顿量。  关于最近邻之间的hopping在前面石墨烯的边界态文章中已经仔细考虑过，包括cell的选取还有原子的编号，在这里。现在唯一的不同就是要考虑次近邻之间的hopping。在这里暂时并未考虑Rashbo自旋轨道耦合。 基本设定  蓝色虚线框中是选择的一个大cell，在y方向是有限长度，在x方向是无限的，所以$k_x$是个好量子数，这种边界态叫zigzag；当x方向开边界，y方向无限长时的边界态叫armchair，可以参考这里。格点之间的hopping可以在一个大cell之内，可会存在大cell之间的hopping，在下面会逐一展示。关于Kane-Mele模型中的$v_{ij}$的示意如上图_hopping_蓝色箭头所示，当格点连线在hopping的右侧时$v_{ij}=-1$，在左侧时$v_{ij}=1$；将一个大cel...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">232</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yxli8023"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome to Yu-Xuan's Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Majorana-zero-modes-in-nanowire-networks"><span class="toc-number">1.</span> <span class="toc-text">Majorana zero modes in nanowire networks</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#The-Hilbert-space-of-a-set-of-Majoranas"><span class="toc-number">1.1.</span> <span class="toc-text">The Hilbert space of a set of Majoranas</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Non-Abelian-statistics-of-Majoranas"><span class="toc-number">2.</span> <span class="toc-text">Non-Abelian statistics of Majoranas</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AC%E4%BC%97%E5%8F%B7"><span class="toc-number">3.</span> <span class="toc-text">公众号</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-number">3.0.0.1.</span> <span class="toc-text">Email</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/08/02/2025-08-02-Real-Space-Chern/" title="实空间Chern数计算(Half-BHZ模型)"><img src="/assets/images/Julia/Chern-m0.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实空间Chern数计算(Half-BHZ模型)"/></a><div class="content"><a class="title" href="/2025/08/02/2025-08-02-Real-Space-Chern/" title="实空间Chern数计算(Half-BHZ模型)">实空间Chern数计算(Half-BHZ模型)</a><time datetime="2025-08-01T16:00:00.000Z" title="发表于 2025-08-02 00:00:00">2025-08-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/22/2025-02-22-Free-SC/" title="超导序参量自洽(自由能极小值方法)"><img src="/assets/images/Julia/Bx_kbt-phase.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导序参量自洽(自由能极小值方法)"/></a><div class="content"><a class="title" href="/2025/02/22/2025-02-22-Free-SC/" title="超导序参量自洽(自由能极小值方法)">超导序参量自洽(自由能极小值方法)</a><time datetime="2025-02-21T16:00:00.000Z" title="发表于 2025-02-22 00:00:00">2025-02-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/18/2025-02-18-Julia-MPI-Set/" title="Mac上配置MPI并行Julia"><img src="/assets/images/Julia/a4.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Mac上配置MPI并行Julia"/></a><div class="content"><a class="title" href="/2025/02/18/2025-02-18-Julia-MPI-Set/" title="Mac上配置MPI并行Julia">Mac上配置MPI并行Julia</a><time datetime="2025-02-17T16:00:00.000Z" title="发表于 2025-02-18 00:00:00">2025-02-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/15/2024-12-15-Fourier-Spectrum/" title="超导序参量中的傅里叶分析"><img src="/assets/images/Mma/fft-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导序参量中的傅里叶分析"/></a><div class="content"><a class="title" href="/2024/12/15/2024-12-15-Fourier-Spectrum/" title="超导序参量中的傅里叶分析">超导序参量中的傅里叶分析</a><time datetime="2024-12-14T16:00:00.000Z" title="发表于 2024-12-15 00:00:00">2024-12-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/11/2024-12-11-Screeing/" title="库仑势以及屏蔽库伦势的一些计算"><img src="/assets/images/Mma/Vscr-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="库仑势以及屏蔽库伦势的一些计算"/></a><div class="content"><a class="title" href="/2024/12/11/2024-12-11-Screeing/" title="库仑势以及屏蔽库伦势的一些计算">库仑势以及屏蔽库伦势的一些计算</a><time datetime="2024-12-10T16:00:00.000Z" title="发表于 2024-12-11 00:00:00">2024-12-11</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  const initGitalk = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGitalk = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const gitalk = new Gitalk({
+      clientID: 'Ov23li0WvZEaIAZ7RFtH',
+      clientSecret: '03fcb77b7c28dafcdde00756e27f9b5bc76639e8',
+      repo: 'yxli8023.github.io',
+      owner: 'yxli8023',
+      admin: ['Yu-Xuan'],
+      updateCountCallback: commentCount,
+      ...option,
+      id: isShuoshuo ? path : (option && option.id) || '32f0223c47061f990991cbb3861817ed'
+    })
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async(el, path) => {
+    if (typeof Gitalk === 'function') initGitalk(el, path)
+    else {
+      await btf.getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await btf.getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Gitalk' === 'Gitalk'
+      ? window.shuoshuoComment = { loadComment: loadGitalk }
+      : window.loadOtherComment = loadGitalk
+    return
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

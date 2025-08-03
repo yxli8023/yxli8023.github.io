@@ -1,0 +1,427 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>对称性约束Tight binding模型 | Yu-Xuan' Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="这篇Blog想要整理一下自己在学习对称性约束Tight binding模型时候的一些笔记.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="对称性约束Tight binding模型">
+<meta property="og:url" content="http://example.com/2022/05/01/2022-05-01-TB-Theory/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39; Blog">
+<meta property="og:description" content="这篇Blog想要整理一下自己在学习对称性约束Tight binding模型时候的一些笔记.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/defult-cover2.jpg">
+<meta property="article:published_time" content="2022-04-30T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-08-03T06:36:16.967Z">
+<meta property="article:author" content="Yu-Xuan">
+<meta property="article:tag" content="Group-Theory">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/defult-cover2.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "对称性约束Tight binding模型",
+  "url": "http://example.com/2022/05/01/2022-05-01-TB-Theory/",
+  "image": "http://example.com/img/defult-cover2.jpg",
+  "datePublished": "2022-04-30T16:00:00.000Z",
+  "dateModified": "2025-08-03T06:36:16.967Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yu-Xuan",
+      "url": "http://example.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/05/01/2022-05-01-TB-Theory/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'medium_zoom',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#f54966","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '对称性约束Tight binding模型',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #dbeffd;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">232</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/img/defult-cover2.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Yu-Xuan' Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">对称性约束Tight binding模型</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">对称性约束Tight binding模型</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-04-30T16:00:00.000Z" title="发表于 2022-05-01 00:00:00">2022-05-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-08-03T06:36:16.967Z" title="更新于 2025-08-03 14:36:16">2025-08-03</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">3.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>16分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/2022/05/01/2022-05-01-TB-Theory/#post-comment"><span class="gitalk-comment-count"><i class="fa-solid fa-spinner fa-spin"></i></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;It has been&quot;,&quot;messageNext&quot;:&quot;days since the last update, the content of the article may be outdated.&quot;,&quot;postUpdate&quot;:&quot;2025-08-03 14:36:16&quot;}" hidden></div><div class="note blue no-icon flat"><p>这篇Blog想要整理一下自己在学习对称性约束Tight binding模型时候的一些笔记.</p>
+</div>
+<span id="more"></span>
+<h1 id="紧束缚近似"><a href="#紧束缚近似" class="headerlink" title="紧束缚近似"></a>紧束缚近似</h1><p>其实紧束缚方法的的核心思想就是使用原子的波函数来构造构造一个基函数，有了这个基函数就可以将哈密顿量表示为矩阵形式，那么剩下的问题就是如何求解这个矩阵的本征值和本征态。但是这些基函数不一定就是完备的，所以这个地方就是紧束缚近似的近似性所在。通常情况下这个基函数的数量当然是越多越好，毕竟这样可以尽量让基函数hi完备的，所以选择合适数量的基函数在固体系统中来描述低能附近的物理就是tight binding(TB)好坏程度的衡量。因此要想使用TB成功的描述我们要研究的问题，那么久必须让这个基函数尽量接近于完备，如果你恰好找到了一组完备的基函数，那么此时我们通过基函数构建处的哈密顿量的矩阵得到的解就是精确解，而不是近似解。但是在固体系统中我们通常只是关心费米面附近的物理，毕竟也只有低能附近的电子会对很多物理性质产生影响，所以通常都是使用价电子的轨道波函数来构建我们想要的基函数。</p>
+<p>假设原胞内有$M$个原子，每个原子贡献处$l_N$个轨道来构建基函数。这里将第$m(m=1,2,\cdots,M)$个原子的第$l(l=1,2,\cdots, l_M)$原子轨道是$\phi_{ml}(\mathbf{r})$，那么利用这些原子轨道构造的基函数为</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\varphi_{\mathbf{r}ml}(\mathbf{r})=\frac{1}{\sqrt{N}}\sum_{\mathbf{R}_n}\exp(i\mathbf{k}\cdot\mathbf{R}_n)\phi_{ml}(\mathbf{r}-\mathbf{R}_n)\label{e1}
+\end{equation}</script><p>这里其实就是理论方法，所以就令原胞中的每一个原子都贡献轨道，而且每个原子都可以贡献多个轨道，这样的考虑就可以令问题变得完整。<br>{:.success}</p>
+<p>这里的$N$是晶体中原胞的数量(通常我们考虑问题的时候就直接使用周期边界条件)，这里的求和$\mathbf{R}_n$就是晶格矢量，共有$N$个不同的取值。从Bloch和(\ref{e1})可以看到它满足</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\varphi_{\mathbf{k}ml}(\mathbf{r}+\mathbf{R}_n)=e^{i\mathbf{k}\cdot\mathbf{R}_s}\varphi_{\mathbf{k}ml}(\mathbf{r})
+\end{equation}</script><p>所以这里利用原子轨道来构建的这个基函数已经具有平移对称性了,而且在每一个$\mathbf{k}$下面,这个基函数的数量是$N_d=M\times l_M$个,其实也就是看元胞中有多少个原子,每个原子有贡献多少个轨道. 在有了基函数之后就可以将哈密顿量在基函数下面表示为矩阵形式了,此时矩阵的维度就与基函数的数量是相同的. 那么将哈密顿量转换为矩阵形式为</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+H_{ml,m^\prime l^\prime}(\mathbf{k})=\langle\varphi_{\mathbf{k}ml}\rvert\hat{H}\rvert\varphi_{\mathbf{k}m^\prime l^\prime}\rangle=\frac{1}{N}\sum_{\mathbf{R}_n}\sum_{\mathbf{R}_s}\exp[i\mathbf{k}\cdot(\mathbf{R}_s-\mathbf{R}_n)]\langle\phi_{ml}(\mathbf{r}-\mathbf{R}_n)\rvert\hat{H}\rvert\phi_{m^\prime l^\prime}(\mathbf{r}-\mathbf{R}_s)\rangle\label{e2}
+\end{equation}</script><p>这里有</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\begin{aligned}
+    \left\langle\phi_{m l}\left(\boldsymbol{r}-\boldsymbol{R}_{n}\right)|\hat{H}| \phi_{m^{\prime} l^{\prime}}\left(\boldsymbol{r}-\boldsymbol{R}_{s}\right)\right\rangle &=\int \phi_{m l}^{*}\left(\boldsymbol{r}-\boldsymbol{R}_{n}\right) \hat{H} \phi_{m^{\prime} l^{\prime}}\left(\boldsymbol{r}-\boldsymbol{R}_{s}\right) \mathrm{d} \boldsymbol{r} \\
+    &=\int \phi_{m l}^{*}(\boldsymbol{r}) \hat{H} \phi_{m^{\prime} l^{\prime}}\left(\boldsymbol{r}-\left(\boldsymbol{R}_{s}-\boldsymbol{R}_{n}\right)\right) \mathrm{d} \boldsymbol{r} \quad\left(\text { 做变量替换 } \boldsymbol{r} \rightarrow \boldsymbol{r}-\boldsymbol{R}_{n}\right) \\
+    &=\left\langle\phi_{m l}(\boldsymbol{r})|\hat{H}| \phi_{m^{\prime} l^{\prime}}\left(\boldsymbol{r}-\left(\boldsymbol{R}_{s}-\boldsymbol{R}_{n}\right)\right)\right\rangle\label{e3}
+\end{aligned}
+\end{equation}</script><p>在上面的推导过程中主要就是利用了哈密顿量$\hat{H}$具有平移不变性. 将等式(\ref{e3})回代入等式(\ref{e2})中,并进行一个变量替换$\mathbf{R}_s-\mathbf{R}_n=\mathbf{R}_j$,那么就可以将哈密顿量的矩阵形式表示为</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+H_{m l, m^{\prime} l^{\prime}}^{\boldsymbol{k}}=\frac{1}{N} \sum_{\boldsymbol{R}_{n}} \sum_{\boldsymbol{R}_{j}} \exp \left(i \boldsymbol{k} \cdot \boldsymbol{R}_{j}\right)\left\langle\phi_{m l}(\boldsymbol{r})|\hat{H}| \phi_{m^{\prime} l^{\prime}}\left(\boldsymbol{r}-\boldsymbol{R}_{j}\right)\right\rangle=\sum_{\boldsymbol{R}_{j}} e^{i \boldsymbol{k} \cdot \boldsymbol{R}_{j}} E_{m l, m^{\prime} l^{\prime}}\left(\boldsymbol{R}_{j}\right)
+\end{equation}</script><p>这里有</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+E_{m l, m^{\prime} l^{\prime}}\left(\boldsymbol{R}_{j}\right)=\left\langle\phi_{m l}(\boldsymbol{r})|\hat{H}| \phi_{m^{\prime} l^{\prime}}\left(\boldsymbol{r}-\boldsymbol{R}_{j}\right)\right\rangle=\int \phi_{m l}^{*}(\boldsymbol{r}) \hat{H} \phi_{m^{\prime} l^{\prime}}\left(\boldsymbol{r}-\boldsymbol{R}_{j}\right) \mathrm{d} \boldsymbol{r}
+\end{equation}</script><p>到这里我们来看一下到底是紧束缚近似做了什么,其实认真一看什么也没做,首先就是利用原子的轨道通过Bloch和的形式构建了一个基函数,而且这个基函数大概率上还不是完备的,但是只要我们构造的这个基函数能够较好的给出我们所要研究的问题的性质就可以,这也就是第一个近似的地方. 接下来就是将哈密顿量$\hat{H}$在构造的这个基函数下表示为矩阵形式.这一步乍一看可能有些跳,其实就是说我们用原子轨道构造的这个基函数可以用来构造哈密顿量的本征态,所以自然就可以将这个哈密顿量表示为矩阵的形式,但是表示为矩阵形式之后,这里又冒出来一个量$E_{m l, m^{\prime} l^{\prime}}$,从表达式上来看可以发现这个量表示的就是将哈密顿量夹在两个原子轨道波函数之间求解交叠积分,但是很遗憾,这个交叠积分求解几乎不可能,后面我们将会看到,将这个量简化为一个参数,然后与实验或者第一性计算比较来拟合这个参数.<br>{:.success}</p>
+<p>在前面我们也提到了,通过原子轨道构建的这个基函数不一定是完备的,也不一定是正交归一的,所以如果想要完整求解哈密顿量$\hat{H}$的本征值和本征态,那么我们就需要知道通过原子轨道构建的这些基函数$\varphi_{\mathbf{k}ml}$之间的交叠矩阵</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\begin{array}{l}
+    S_{m l, m^{\prime} l^{\prime}}^{k}=\left\langle\varphi_{k m l} \mid \varphi_{k m^{\prime} l^{\prime}}\right\rangle=\sum_{\boldsymbol{R}_{j}} e^{i k \cdot \boldsymbol{R}_{j}} S_{m l, m^{\prime} l^{\prime}}\left(\boldsymbol{R}_{j}\right)\\
+    S_{m l, m^{\prime} l^{\prime}}\left(\boldsymbol{R}_{j}\right)=\left\langle\phi_{m l}(\boldsymbol{r}) \mid \phi_{m^{\prime} l^{\prime}}\left(\boldsymbol{r}-\boldsymbol{R}_{j}\right)\right\rangle=\int \phi_{m l}^{*}(\boldsymbol{r}) \phi_{m^{\prime} l^{\prime}}\left(\boldsymbol{r}-\boldsymbol{R}_{j}\right) \mathrm{d} \boldsymbol{r}
+\end{array}
+\end{equation}</script><p>这里因为符号有点多,所以为了记号简单点,做一些符号上的简化,防止看花了眼$ml\rightarrow \alpha,m^\prime l^\prime\rightarrow\beta(\alpha\,\beta=1,2,\cdots,N_d)$,我们借助这个重新定义的符号可以将哈密顿量的矩阵形式表示为</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\begin{array}{lll}
+    H_{\alpha \beta}^\mathbf{k} \equiv\left\langle\varphi_{\boldsymbol{k} \alpha}|\hat{H}| \varphi_{\boldsymbol{k} \beta}\right\rangle=\sum_{\boldsymbol{R}_{j}} e^{i \boldsymbol{k} \cdot \boldsymbol{R}_{j} E_{\alpha \beta}\left(\boldsymbol{R}_{j}\right),} & \text { 其中 } & E_{\alpha \beta}\left(\boldsymbol{R}_{j}\right)=\left\langle\phi_{\alpha}(\boldsymbol{r})|\hat{H}| \phi_{\beta}\left(\boldsymbol{r}-\boldsymbol{R}_{j}\right)\right\rangle \\
+    S_{\alpha \beta}^\mathbf{k} \equiv\left\langle\varphi_{\boldsymbol{k} \alpha} \mid \varphi_{\boldsymbol{k} \beta}\right\rangle=\sum_{\boldsymbol{R}_{\boldsymbol{j}}} e^{i \boldsymbol{k} \cdot \boldsymbol{R}_{j}} S_{\alpha \beta}\left(\boldsymbol{R}_{j}\right), & \text { 其中 } & S_{\alpha \beta}\left(\boldsymbol{R}_{j}\right)=\left\langle\phi_{\alpha}(\boldsymbol{r}) \mid \phi_{\beta}\left(\boldsymbol{r}-\boldsymbol{R}_{j}\right)\right\rangle\label{e4}
+\end{array}
+\end{equation}</script><p>这个时候我们需要求解的久期方程为</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\det[H^\mathbf{k}-\epsilon S^\mathbf{k}]=0
+\end{equation}</script><p>将这个久期方程之后就可以得到哈密顿量$\hat{H}$的本征值和本征态. 因为哈密顿量是厄米的,那么此时还可以有下面的关系</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\begin{aligned}
+    E_{\beta \alpha}\left(\boldsymbol{R}_{j}\right) &=\left\langle\phi_{\beta}(\boldsymbol{r})|\hat{H}| \phi_{\alpha}\left(\boldsymbol{r}-\boldsymbol{R}_{j}\right)\right\rangle=\left\langle\phi_{\alpha}\left(\boldsymbol{r}-\boldsymbol{R}_{j}\right)|\hat{H}| \phi_{\beta}(\boldsymbol{r})\right\rangle^{*} \\
+    &=\left\langle\phi_{\alpha}(\boldsymbol{r})|\hat{H}| \phi_{\beta}\left(\boldsymbol{r}+\boldsymbol{R}_{j}\right)\right\rangle^{*} \quad\left(\text { 做变量替换 } \boldsymbol{r} \rightarrow \boldsymbol{r}+\boldsymbol{R}_{j}, \hat{H}\right. \text { 不变) }\\
+    &=\left\langle\phi_{\alpha}(\boldsymbol{r})|\hat{H}| \phi_{\beta}\left(\boldsymbol{r}-\left(-\boldsymbol{R}_{j}\right)\right)\right\rangle^{*}=E_{\alpha \beta}\left(-\boldsymbol{R}_{j}\right)^{*}
+\end{aligned}
+\end{equation}</script><p>同样对于基矢的交叠矩阵有</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+E_{\beta\alpha}(\mathbf{R}_j)=E^*_{\alpha\beta}(-\mathbf{R}_j)\quad S_{\alpha\beta}(\mathbf{R}_j)=S_{\alpha\beta}(-R_j)^*\label{e5}
+\end{equation}</script><p>到这里基本的理论理论框架就建立起来了,剩下的问题就是怎么求解</p>
+<script type="math/tex; mode=display">H^\mathbf{k}_{\alpha\beta}\quad S^\mathbf{k}_{\alpha\beta}</script><div class="note orange no-icon flat"><p>在TB模型中,我们总是用原子轨道的波函数构建了一个局域的基函数,所以直观上可以知道在考虑交叠积分的时候,就只有距离比较近的一些位置之间的波函数之间的交叠积分比较大,所以在通常的考虑中只对$\mathbf{R}_j$的若干近邻进行交叠积分的计算.<strong>请注意,不要忘了onsite的波函数交叠积分.</strong></p>
+</div>
+<p>当只考虑若干个近邻</p>
+<script type="math/tex; mode=display">\mathbf{R}_j</script><p>之后,此时就可以对公式(\ref{e4})中的求和</p>
+<script type="math/tex; mode=display">\sum_{\mathbf{R}_j}</script><p>就得到了很大的简化.除了这个简化之外,还有对称性是可以利用的.我们构建TB模型就是为了研究一个确定的系统的性质,那么这个系统必然就是由对称性的,借助于对称性可以将</p>
+<script type="math/tex; mode=display">\mathbf{R}_j</script><p>与其它位置</p>
+<script type="math/tex; mode=display">\mathbf{R}_i</script><p>联系起来,那么这些通过对称性联系起来的位置处的交叠积分</p>
+<script type="math/tex; mode=display">E_{\alpha\beta}(\mathbf{R}_j)</script><p>进一步简化,那么此时哈密顿量矩阵中的独立参量的数量就减少了.</p>
+<p>通常在选取原子轨道波函数的时候可以选择实波函数,那么此时$E_{\alpha\beta}(\mathbf{R}_j)$就会是个实数,此时公式(\ref{e5})就可以化简为</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+E_{\beta\alpha}(\mathbf{R}_j)=E_{\alpha\beta}(-\mathbf{R}_j)
+\end{equation}</script><p>此时独立参数的数量就又变少了.此时就可以看到要想计算交叠积分的难度是比较大的,所以通常我们不会去直接计算这个参数,而是通过半经验的方式来确定,或者与实验或者第一性计算的结果来进行拟合,从而来确定这些参数.</p>
+<p>接下来通过对称性来研究上面这些交叠积分之间的联系. 建设体系具有旋转对称操作时$R\in G_0(\mathbf{k})$,那么此时通过原子轨道构建出来的波函数与原子轨道具有相同的变换方式</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+P_R\varphi_{\mathbf{k}i}(\mathbf{r})=\frac{1}{N}\sum_{\mathbf{R}_n}e^{i\mathbf{k}\cdot\mathbf{k}}P_R\phi_i(\mathbf{r}_n)
+\end{equation}</script><p>这里$\phi_i$中的参量$\mathbf{r}_n$在被$P_R$作用之后需要用$\mathbf{r}-\mathbf{R}_n$来替代.</p>
+<p>在实际计算和分析</p>
+<script type="math/tex; mode=display">E_{\alpha\beta}(\mathbf{R}_n)</script><p>的时候,其实不会去求对称化的基函数. 这里用于构建基函数的原子轨道波函数最好是晶体所属点群的对称化波函数,此时我们就可以将对称操作操作用到这些波函数上面来化简</p>
+<script type="math/tex; mode=display">E_{\alpha\beta}(\mathbf{R}_j)</script><p>了.</p>
+<p>假设原子轨道$\phi_\alpha^i$是点群$G_0$的第$i$个表示的第$\alpha$列基函数,$\phi_\beta^j$是第$j$个表示的第$\beta$列基函数,那么在对称操作下面有</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\begin{array}{l}
+    P_{R} \phi_{\alpha}^{i}(r)=\phi_{\alpha}^{i}\left(R^{-1} r\right)=\sum_{\mu} \phi_{\mu}^{i}(r) D_{\mu \alpha}^{i}(R) \\
+    P_{R} \phi_{\beta}^{j}(r)=\phi_{\beta}^{j}\left(R^{-1} r\right)=\sum_{\nu} \phi_{\nu}^{j}(r) D_{\nu \beta}^{j}(R)
+\end{array}
+\end{equation}</script><p>将对称操作$P_R$作用在原子轨道波函数上面则可以得到</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+P_{R} \phi_{\beta}^{j}\left(\boldsymbol{r}-\boldsymbol{R}_{n}\right)=\phi_{\beta}^{j}\left(R^{-1} \boldsymbol{r}-\boldsymbol{R}_{n}\right)=\phi_{\beta}^{j}\left(R^{-1}\left(\boldsymbol{r}-R \boldsymbol{R}_{n}\right)\right)=\sum_{\nu} \phi_{\nu}^{j}\left(\boldsymbol{r}-R \boldsymbol{R}_{n}\right) D_{\nu \beta}^{j}(R)
+\end{equation}</script><p>这个时候能量积分之间有</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\begin{aligned}
+    E_{\alpha \beta}^{i j}\left(\boldsymbol{R}_{n}\right) &=\left\langle\phi_{\alpha}^{i}(r)|\hat{H}| \phi_{\beta}^{j}\left(\boldsymbol{r}-\boldsymbol{R}_{n}\right)\right\rangle \stackrel{P_{R} \text { 的么正性 }}{\underline{ }}\left\langle P_{R} \phi_{\alpha}^{i}(\boldsymbol{r})\left|P_{R} \hat{H}\right| \phi_{\beta}^{j}\left(\boldsymbol{r}-\boldsymbol{R}_{n}\right)\right\rangle \\
+    &=\left\langle P_{R} \phi_{\alpha}^{i}(\boldsymbol{r})|\hat{H}| P_{R} \phi_{\beta}^{j}\left(\boldsymbol{r}-\boldsymbol{R}_{n}\right)\right\rangle \\
+    &=\left\langle\sum_{\mu} \phi_{\mu}^{i}(\boldsymbol{r}) D_{\mu \alpha}^{i}(R)|\hat{H}| \sum_{\nu} \phi_{\nu}^{j}\left(\boldsymbol{r}-R \boldsymbol{R}_{n}\right) D_{\nu \beta}^{j}(R)\right\rangle \\
+    &=\sum_{\mu} \sum_{\nu} D_{\mu \alpha}^{i}(R)^{*} D_{\nu \beta}^{j}(R)\left\langle\phi_{\mu}^{i}(\boldsymbol{r})|\hat{H}| \phi_{\nu}^{j}\left(r-R \boldsymbol{R}_{n}\right)\right\rangle \\
+    &=\sum_{\mu} \sum_{\nu} D_{\mu \alpha}^{i}(R)^{*} D_{\nu \beta}^{j}(R) E_{\mu \nu}^{i j}\left(R \boldsymbol{R}_{n}\right)
+\end{aligned}
+\end{equation}</script><p>将上面的这个公式表示为矩阵形式则有</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+E^{ij}(\mathbf{R}_n)=[D^i(R)]^\dagger E^{ij}(\mathbf{R}_n)D^j(R)
+\end{equation}</script><p>这里可以看到并不要求表示$D^i,D^j$是幺正的,也不要求它是不可约表示.但是如果我们要求这个表示是幺正表示的话,那么就有</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+E^{ij}(R\mathbf{R}_n)=D^i(R)E^{ij}(\mathbf{R}_n)[D^j(R)]^\dagger\label{eq8}
+\end{equation}\</script><p>这里还有一点要说明一下,我们这里涉及到了不同的表示$D^i$和$D^j$,它们的维度可能是不同的,那么此时$E^{ij}(R\mathbf{R}_n)$就不是个方阵,假设$D^j$和$D^i$表示的维度分别是$l_j,l_i$,那么此时$E^{ij}(R\mathbf{R}_n)$就是一个$l_i\times l_j$的矩阵,<br>借助对称性和表示矩阵,此时就可以获得不同能量积分之间的关系,从而降TB模型中的参数减少到最小.</p>
+<p>在实际计算的时候也经常使用到(\ref{eq8})来对参数进行约化，其实这里是可以尝试写个程序来对这个参数约化过程自动进行的，但是已经知道有<a target="_blank" rel="noopener" href="https://github.com/zhangzeyingvv/MagneticTB">MagneticTB</a>这个软件包可以通过更简单的方式来构建TB了，所以我自己暂时也就没有尝试取写程序约束这个参数了。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><div class="note red no-icon flat"><p>这篇Blog的主要内容都是学习刘贵斌老师的note整理的,里面有很多内容也都是它note中的内容.</p>
+</div>
+<h1 id="公众号"><a href="#公众号" class="headerlink" title="公众号"></a>公众号</h1><div class="note blue no-icon flat"><p>相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。</p>
+</div>
+<table>
+  <tr>
+    <!-- 图片单元格 -->
+    <td style="width: 300px; height: 300px; text-align: center; vertical-align: middle; border: 1px solid #ccc; border-radius: 8px;">
+      <img src="/assets/images/qrcode.jpg" alt="QR Code" width="300px" height="300px" style="border-radius: 8px;">
+    </td>
+    <!-- 文字单元格 -->
+    <td style="width: 300px; height: 300px; text-align: center; vertical-align: middle; padding-left: 20px; border: 1px solid #ccc; border-radius: 8px;">
+      <div>
+        <h4 style="margin: 0;">Email</h4>
+        <p style="margin: 5px 0;">yxliphy@gmail.com</p>
+      </div>
+    </td>
+  </tr>
+</table></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Yu-Xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/05/01/2022-05-01-TB-Theory/">http://example.com/2022/05/01/2022-05-01-TB-Theory/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Yu-Xuan' Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Group-Theory/">Group-Theory</a></div><div class="post-share"><div class="social-share" data-image="/img/defult-cover2.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg"/></a><div class="post-qr-code-desc"></div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg"/></a><div class="post-qr-code-desc"></div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2022/05/03/2022-05-03-kp-Group-code/" title="对称性约束$\mathbf{k}\cdot \mathbf{p}$哈密顿量(算法解析)"><img class="cover" src="/img/defult-cover.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">对称性约束$\mathbf{k}\cdot \mathbf{p}$哈密顿量(算法解析)</div></div><div class="info-2"><div class="info-item-1">我在前面先预告了一版对称性约束$\mathbf{k}\cdot \mathbf{p}$哈密顿量(预告版),这里就详细的整理一下这个代码的思路和每一行代码的想法.   理论背景其实对称性约束$\mathbf{k}\cdot\mathbf{p}$哈密顿量的核心公式就是  C_mH(\mathbf{k})C_m^{-1}=H(R_m\mathbf{k})\label{q1}而接下来我们需要知道的是两件事情,第一就是  R_m\mathbf{k}\rightarrow ?第二就是$C_m$操作的矩阵表示,这两个就是计算所需要的输入参数. 通过公式(\ref{q1})我们可以明白,当确定了操作的表示之后,那么表示的维度就与哈密顿量的维度是相同的了,因为公式(\ref{q1})其实看起来不单单是个抽象的表达式,你也可以将它看做是矩阵运算,这当然是没问题的. 当知道了上面两个输入参数之后,接下来就是如何表示哈密顿量了.其实也很简单,既然我是要求具体的形式,那么我就先将它展开成一个一般的形式,然后在通过对称性进行约束,也就是公式(\ref{q1})的作用了.那么接下来就将哈密顿量展开  H(k_...</div></div></div></a><a class="pagination-related" href="/2022/04/30/2022-04-30-kp-Group/" title="对称性约束$\mathbf{k}\cdot \mathbf{p}$哈密顿量(预告版)"><img class="cover" src="/img/defult-cover.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">对称性约束$\mathbf{k}\cdot \mathbf{p}$哈密顿量(预告版)</div></div><div class="info-2"><div class="info-item-1">之前的学习都是直接使用别人文章中的哈密顿量,因为自己的研究模式就是这样,但是仍然项自己可以学会在高对称点上通过对称性约束的方式来构建$\mathbf{k}\cdot\mathbf{p}$哈密顿量,这里就整理一下自己通过代码实现对称性约束$\mathbf{k}\cdot\mathbf{p}$的方法.暂时先预告一下,贴一下结果,等我忙完手中的工作在将思路和每一行代码实现思路详细的整理出来.   代码实现由于Blog不能很好的支持Mathematica的代码,所以我这里就只好截屏图片显示了.     最终的结果为  \left( \begin{array}{cccc}  c_1 & 0 & \frac{1}{3} \left(-2 \sqrt{3} c_3+\left(\sqrt{3}-3 i\right) c_2\right) \left(k_y+i k_x\right) & \left(c_4+i c_5\right) k_z \\  0 & c_1 & \left(c_4+i c_5\right) k_z & \frac{1}{3} \left(-2 \sqrt{3} c_2+\...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2021/04/19/2021-04-19-SpacGroup/" title="空间群学习工具SpaceGroupIrep"><img class="cover" src="/img/defult-cover2.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-19</div><div class="info-item-2">空间群学习工具SpaceGroupIrep</div></div><div class="info-2"><div class="info-item-1">这里整理一下学习空间群时候的一个Mathematica软件包SpaceGroupIrep,在学习THE MATHEMATICAL THEORY OF SYMMETRY IN SOLIDS这本书中的内容的时候, 结合这个工具可以对书中的内容有一个更深入的理解. 这个软件包也是基于这本书中的内容编写的, 而且可以对书中的一些表进行快速查询, 结合起来对学习空间群相关的知识大有帮助.   前言自己最近一段时间在学习THE MATHEMATICAL THEORY OF SYMMETRY IN SOLIDS(Representation theory for point groups and space groups)这本书, 虽然认真的学习了一遍, 但是对第四章中的抽象表示还是有一些不明白的地方, 正好可以结合SpaceGroupIrep来对书中的内容再进行一遍学习, 相信结合这个软件包, 可以对书中的内容有进一步的理解. 首先将软件包下载, 然后复制到1$UserBaseDirectory/Applications这个目录中就可以, 记得将下载下来的软件包的名称修改为SpaceGrou...</div></div></div></a><a class="pagination-related" href="/2021/06/10/2021-06-10-TI-Hamlitonian/" title="拓扑绝缘体哈密顿量推导"><img class="cover" src="/img/defult-cover.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-10</div><div class="info-item-2">拓扑绝缘体哈密顿量推导</div></div><div class="info-2"><div class="info-item-1">这篇博客整理一下在拓扑材料Bi$_2$Se$_3$计算中,通过能带成分和对称性分析,再结合微扰论来推导低能有效模型,主要是对文章进行翻译,过程中会加一点自己的笔记.   虽然对拓扑绝缘体的材料和对应的模型都很熟了,但是始终没有掌握如何从具体的材料出发,来得到其对应的低能哈密顿量,从而可以在材料的基础上,对模型进行研究.这里就想通过精读Model Hamiltonian for topological insulators这篇文章,来掌握一下这个方法. 晶体结构首先来明确材料Bi$_2$Se$_3$的晶体结构等信息.首先在Material Project这个网站中找到这个材料,其晶体结构时菱形的,对应的空间群是$D_{3d}^5(R\bar{3}m)$,其晶体结构如下图所示,沿着$z$方向是个层状结构,每个元胞中有5个原子,  两个蓝色标记的等价Bi原子(Bi1,Bi$1^\prime $),两个绿色标记的等价Se原子(Se1,Se$1^\prime $),还有一个黄色的Se原子,它与Se1原子是不等价的,5个原子层构成一个元胞,通常被称为quintuple layer. 沿着$z...</div></div></div></a><a class="pagination-related" href="/2021/07/07/2021-07-07-GroupNote1/" title="群论学习笔记-Part1"><img class="cover" src="/assets/images/GroupTheory/cube_symmetry.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-07-07</div><div class="info-item-2">群论学习笔记-Part1</div></div><div class="info-2"><div class="info-item-1">学习群论有一段时间了, 这里想结合一些工具, 并通过一些书籍阅读来将自己所学到的内容整理一下, 同时加深一下自己对这些知识内容的理解.   基本概念共轭一个元素$a,b,c$是群$\mathcal{G}$的群元$(a,b,c)\in\mathcal{G}$,加入下列关系成立 a=c\circ b\circ c^{-1}\label{eq1}那么就说群元$a$与$b$之间是共轭的.上式中的$\quad\circ\quad$代表的是群元的操作. 类利用(\ref{eq1})的关系,将所有与群元$b$共轭的群元划分成一组,那么这一组叫做一个类. \mathcal{C}_{a}=\left\{a_{i} \mid a, b \in \mathcal{G} \wedge a_{i}=b \circ a \circ b^{-1} \wedge a \text { fixed }\right\}陪集假设$\mathcal{U}$是群$\mathcal{G}$的子群,$a$是$\mathcal{G}$中的元素,那么$a\mathcal{U}$代表元素$a$和群$\mathcal{U}$中的每一个...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">232</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yxli8023"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome to Yu-Xuan's Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B4%A7%E6%9D%9F%E7%BC%9A%E8%BF%91%E4%BC%BC"><span class="toc-number">1.</span> <span class="toc-text">紧束缚近似</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">2.</span> <span class="toc-text">参考</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AC%E4%BC%97%E5%8F%B7"><span class="toc-number">3.</span> <span class="toc-text">公众号</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-number">3.0.0.1.</span> <span class="toc-text">Email</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/08/02/2025-08-02-Real-Space-Chern/" title="实空间Chern数计算(Half-BHZ模型)"><img src="/assets/images/Julia/Chern-m0.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实空间Chern数计算(Half-BHZ模型)"/></a><div class="content"><a class="title" href="/2025/08/02/2025-08-02-Real-Space-Chern/" title="实空间Chern数计算(Half-BHZ模型)">实空间Chern数计算(Half-BHZ模型)</a><time datetime="2025-08-01T16:00:00.000Z" title="发表于 2025-08-02 00:00:00">2025-08-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/22/2025-02-22-Free-SC/" title="超导序参量自洽(自由能极小值方法)"><img src="/assets/images/Julia/Bx_kbt-phase.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导序参量自洽(自由能极小值方法)"/></a><div class="content"><a class="title" href="/2025/02/22/2025-02-22-Free-SC/" title="超导序参量自洽(自由能极小值方法)">超导序参量自洽(自由能极小值方法)</a><time datetime="2025-02-21T16:00:00.000Z" title="发表于 2025-02-22 00:00:00">2025-02-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/18/2025-02-18-Julia-MPI-Set/" title="Mac上配置MPI并行Julia"><img src="/assets/images/Julia/a4.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Mac上配置MPI并行Julia"/></a><div class="content"><a class="title" href="/2025/02/18/2025-02-18-Julia-MPI-Set/" title="Mac上配置MPI并行Julia">Mac上配置MPI并行Julia</a><time datetime="2025-02-17T16:00:00.000Z" title="发表于 2025-02-18 00:00:00">2025-02-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/15/2024-12-15-Fourier-Spectrum/" title="超导序参量中的傅里叶分析"><img src="/assets/images/Mma/fft-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导序参量中的傅里叶分析"/></a><div class="content"><a class="title" href="/2024/12/15/2024-12-15-Fourier-Spectrum/" title="超导序参量中的傅里叶分析">超导序参量中的傅里叶分析</a><time datetime="2024-12-14T16:00:00.000Z" title="发表于 2024-12-15 00:00:00">2024-12-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/11/2024-12-11-Screeing/" title="库仑势以及屏蔽库伦势的一些计算"><img src="/assets/images/Mma/Vscr-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="库仑势以及屏蔽库伦势的一些计算"/></a><div class="content"><a class="title" href="/2024/12/11/2024-12-11-Screeing/" title="库仑势以及屏蔽库伦势的一些计算">库仑势以及屏蔽库伦势的一些计算</a><time datetime="2024-12-10T16:00:00.000Z" title="发表于 2024-12-11 00:00:00">2024-12-11</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  const initGitalk = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGitalk = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const gitalk = new Gitalk({
+      clientID: 'Ov23li0WvZEaIAZ7RFtH',
+      clientSecret: '03fcb77b7c28dafcdde00756e27f9b5bc76639e8',
+      repo: 'yxli8023.github.io',
+      owner: 'yxli8023',
+      admin: ['Yu-Xuan'],
+      updateCountCallback: commentCount,
+      ...option,
+      id: isShuoshuo ? path : (option && option.id) || 'fc675658285253dff02b81b5ded58963'
+    })
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async(el, path) => {
+    if (typeof Gitalk === 'function') initGitalk(el, path)
+    else {
+      await btf.getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await btf.getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Gitalk' === 'Gitalk'
+      ? window.shuoshuoComment = { loadComment: loadGitalk }
+      : window.loadOtherComment = loadGitalk
+    return
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

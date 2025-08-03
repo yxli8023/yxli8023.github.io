@@ -1,0 +1,488 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>群论学习笔记-Part5 | Yu-Xuan' Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="空间群操作对Bloch函数的影响以及空间群的表示">
+<meta property="og:type" content="article">
+<meta property="og:title" content="群论学习笔记-Part5">
+<meta property="og:url" content="http://example.com/2021/08/02/2021-08-02-GroupNote5/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39; Blog">
+<meta property="og:description" content="空间群操作对Bloch函数的影响以及空间群的表示">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/assets/images/GroupTheory/cube_symmetry.jpg">
+<meta property="article:published_time" content="2021-08-01T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-08-03T08:05:32.558Z">
+<meta property="article:author" content="Yu-Xuan">
+<meta property="article:tag" content="Group-Theory">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/images/GroupTheory/cube_symmetry.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "群论学习笔记-Part5",
+  "url": "http://example.com/2021/08/02/2021-08-02-GroupNote5/",
+  "image": "http://example.com/assets/images/GroupTheory/cube_symmetry.jpg",
+  "datePublished": "2021-08-01T16:00:00.000Z",
+  "dateModified": "2025-08-03T08:05:32.558Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yu-Xuan",
+      "url": "http://example.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/08/02/2021-08-02-GroupNote5/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'medium_zoom',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#f54966","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '群论学习笔记-Part5',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #dbeffd;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">232</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/assets/images/GroupTheory/cube_symmetry.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Yu-Xuan' Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">群论学习笔记-Part5</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">群论学习笔记-Part5</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-08-01T16:00:00.000Z" title="发表于 2021-08-02 00:00:00">2021-08-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-08-03T08:05:32.558Z" title="更新于 2025-08-03 16:05:32">2025-08-03</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">8.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>37分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/2021/08/02/2021-08-02-GroupNote5/#post-comment"><span class="gitalk-comment-count"><i class="fa-solid fa-spinner fa-spin"></i></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;It has been&quot;,&quot;messageNext&quot;:&quot;days since the last update, the content of the article may be outdated.&quot;,&quot;postUpdate&quot;:&quot;2025-08-03 16:05:32&quot;}" hidden></div><div class="note blue no-icon flat"><p>空间群操作对Bloch函数的影响以及空间群的表示</p>
+</div>
+<span id="more"></span>
+<h1 id="空间群操作对Bloch函数的作用"><a href="#空间群操作对Bloch函数的作用" class="headerlink" title="空间群操作对Bloch函数的作用"></a>空间群操作对Bloch函数的作用</h1><p>对一个空间群操作</p>
+<script type="math/tex; mode=display">\{S\rvert\mathbf{w}\}\psi(\mathbf{r}=\psi(S^{-1}(\mathbf{r-w}))</script><p>首先可以证明</p>
+<script type="math/tex; mode=display">\exp(i\mathbf{k}\cdot S\mathbf{r})=\exp(iS^{-1}\mathbf{k}\cdot\mathbf{r})</script><p>这是因为</p>
+<script type="math/tex; mode=display">\mathbf{k}\cdot S\mathbf{r}=\sum_{ij}k_iS_{ij}r_j=\sum_{ij}S^T_{ji}k_ir_j=\sum_{ij}S^{-1}_{ji}k_ir_j</script><p>因为$S$是点群操作,其表示是个正交矩阵满足$S^T=S^{-1}$,即可以得到</p>
+<script type="math/tex; mode=display">\{S\rvert\mathbf{w}\}\exp(i\mathbf{k}\cdot\mathbf{r})=\exp(i\mathbf{k}\cdot S^{-1}(\mathbf{r-w}))=\exp(iS\mathbf{k}\cdot(\mathbf{r-w}))</script><p>这也就将本来作用在实空间中的点群操作$S$变换到了作用在倒空间$\mathbf{k}$上,此时相当于是一个中心在$\mathbf{r=w}$处,波矢为$S\mathbf{k}$的一个函数.</p>
+<p>同样的可以定义</p>
+<script type="math/tex; mode=display">u_{S\mathbf{k}}(\mathbf{r-w})=u_\mathbf{k}\{S^{-1}(\mathbf{r-w})\}=\{S\rvert\mathbf{w}\}u_\mathbf{k}(\mathbf{r})</script><p>这里的$u_\mathbf{k}(\mathbf{r})$是元胞的波函数,满足和其相同的对称性$u_\mathbf{k}(\mathbf{r})=u_\mathbf{k}(\mathbf{r+t})$,结合上面的性质就可以定义出Bloch函数</p>
+<script type="math/tex; mode=display">\Psi_\mathbf{k}(\mathbf{r})=\exp(i\mathbf{k}\cdot\mathbf{r})u_\mathbf{k}(\mathbf{r})</script><p>从而可以得到</p>
+<script type="math/tex; mode=display">\{S\rvert\mathbf{w}\}\psi_\mathbf{k}(\mathbf{r})=\exp(iS\mathbf{k}\cdot(\mathbf{r-w}))u_{S\mathbf{k}}(\mathbf{r-w})=\psi_{S\mathbf{k}}(\mathbf{r-w})</script><p><strong>将空间群操作作用在Bloch波函数上,不仅实空间位置$\mathbf{r}$要发生改变,对应的$\mathbf{k}$也会受到点群操作$S$的影响.</strong>同样也可以得到</p>
+<script type="math/tex; mode=display">\{S\rvert\mathbf{w}\}\{R\rvert\mathbf{v}\}\psi_\mathbf{k}(\mathbf{r})=\psi_{SR\mathbf{k}}(\mathbf{r-w}-S\mathbf{v})</script><p>因为$u_{S\mathbf{k}}$还满足$u_\mathbf{k}(\mathbf{r})=u_\mathbf{k}(\mathbf{r+t})$,如果$\mathbf{t}$是平移那么$\mathbf{t}^{‘}=S^{-1}\mathbf{t}$,因此</p>
+<script type="math/tex; mode=display">u_{S\mathbf{k}}(\mathbf{r-w+t})=u_\mathbf{k}(S^{-1}(\mathbf{r-w+t}))=u_\mathbf{k}(S^{-1}(\mathbf{r-w})+\mathbf{t}^{'})=u_\mathbf{k}(S^{-1}(\mathbf{r-w}))=u_{S\mathbf{k}}(\mathbf{r-w})</script><p>空间群操作${S\rvert\mathbf{w}}$作用在中心为$\mathbf{r}=0$波矢为$\mathbf{k}$的Bloch函数上会将其变换为波矢为$S\mathbf{k}$中心在$\mathbf{r=w}$处的一个Bloch波函数.<br>{:.success}</p>
+<p>从前面可以看到,空间群操作作用在平面波和Bloch函数上具有一定的相似性,但是这里有一个很重要的不同点,当$S\mathbf{k}=\mathbf{k}$的时候(相等关系),也就是说点群操作将一个波矢$\mathbf{k}$变换到其本身,</p>
+<script type="math/tex; mode=display">\{S\rvert\mathbf{w}\}\psi_\mathbf{k}(\mathbf{r})=\exp(i\mathbf{k}\cdot(\mathbf{r-w}))</script><p>此时平面波的中心在$\mathbf{r=w}$处.如果$S\mathbf{k}\equiv\mathbf{k}$(等价关系)却并不要求${S\rvert\mathbf{w}}\psi_\mathbf{k}(\mathbf{r})=\psi_\mathbf{k}(\mathbf{r-w})$,这是因为波函数$\psi_\mathbf{k}$上的标记$\mathbf{k}$此时代表的仅仅是等价关系.</p>
+<p>在$\mathbf{k}=0$处$S\mathbf{k}=\mathbf{k}$是平庸的结果,零$\psi_0(\mathbf{r})=1+\exp(i\mathbf{g}\cdot\mathbf{r})$那么存在</p>
+<script type="math/tex; mode=display">\{S\rvert\mathbf{w}\}\psi_0(\mathbf{r})=\psi_0(S^{-1}\mathbf{r}-S^{-1}\mathbf{w})=1+\exp(i\mathbf{g}\cdot S^{-1}(\mathbf{r-w}))=1+\exp(iS\mathbf{g}\cdot(\mathbf{r-w}))</script><p>如果要令上式右端等于$\psi_0$那么就会要求$S\mathbf{g}=\mathbf{g}$,只有当$S\mathbf{g}$和$\mathbf{g}$等价的时候才是成立的,此时相对应的波矢$\mathbf{k}=0$.</p>
+<p><strong>定理:</strong>如果$\psi_\mathbf{k}(\mathbf{r})$是波矢为$\mathbf{k}$的Bloch波函数,那么${E\rvert\mathbf{t}}\psi_\mathbf{k}(\mathbf{r})=\exp(i\mathbf{k}\cdot\mathbf{t})\psi_\mathbf{k}(\mathbf{r})$,那么${S\rvert\mathbf{w}}\psi_\mathbf{k}(\mathbf{r})$是波矢为$S\mathbf{k}$的Bloch函数.<br>{:.info}</p>
+<p>下面来证明上面的定理,将平移操作作用到上面的Bloch函数上</p>
+<script type="math/tex; mode=display">\begin{equation}\begin{aligned}\{E\rvert\mathbf{t}\}\{S\rvert\mathbf{w}\}\psi_\mathbf{k}(\mathbf{r})&=\{S\rvert\mathbf{w}\}\psi_\mathbf{k}(\mathbf{r-t})\\&=\psi_\mathbf{k}(S^{-1}(\mathbf{r-t-w}))=\psi_{S\mathbf{k}}(\mathbf{r-t-w})\\&=\{E\rvert\mathbf{t}\}\psi_{S\mathbf{k}}(\mathbf{r-w})=\exp(-iS\mathbf{k}\cdot\mathbf{t})\psi_{S\mathbf{k}}(\mathbf{r-w})\\&=\exp(-iS\mathbf{k}\cdot\mathbf{t})\{S\rvert\mathbf{w}\}\psi_\mathbf{k}(\mathbf{r})\end{aligned}\end{equation}</script><p>这里同样可以有一个推论,如果$S\mathbf{k}\equiv\mathbf{k}$,那么${S\rvert\mathbf{w}}\psi_\mathbf{k}(\mathbf{r})$是波矢为$\mathbf{k}$的Bolch函数.</p>
+<h1 id="空间群表示理论"><a href="#空间群表示理论" class="headerlink" title="空间群表示理论"></a>空间群表示理论</h1><p>对一个空间群$\mathbf{G}$,它的平移操作部分$\mathbf{T}$是其子群,其对应的表示$\Delta^\mathbf{k}$为</p>
+<script type="math/tex; mode=display">\Delta^\mathbf{k}(\{E\rvert\mathbf{t}\})=\exp(-i\mathbf{k}\cdot\mathbf{t})</script><p>将空间群根据子群$\mathbf{T}$进行陪集分解</p>
+<script type="math/tex; mode=display">\mathbf{G}=\{R_1\rvert\mathbf{v}_1\}\mathbf{T}+\{R_2\rvert\mathbf{v}_2\}\mathbf{T}+\cdots+\{R_h\rvert\mathbf{v}_h\}\mathbf{T}</script><p>这里可以选择$R_1=E,\mathbf{v}_1=0$,其余的$\mathbf{v}_i$都是与$R_i$相互关联.这些陪集表示可以构成一个集合$\mathbf{Q}$,但是并不一定就可以构成一个群.商群$\mathbf{G}/\mathbf{T}$是一个群,它与操作$R_1,R_2,\cdots,R_h$构成的点群$\mathbf{F}$是同构的,且$\mathbf{F}$与空间群$\mathbf{G}$是同形的(isogonal).</p>
+<p><strong>表示域(Representation domain):</strong>对于任意一个空间群$\mathbf{G}$都存在一个表示域$\Phi$,这个空间群对应的布里渊区而言,$\sum_RR\Phi$就是整个布里渊区的体积,这里的$R$是对群$\mathbf{F}$中所有的元素进行求和.<br>{.:info}</p>
+<p>在前面曾介绍过<a target="_blank" rel="noopener" href="https://yxli8023.github.io/2021/08/01/GroupNote3.html">基本区域</a>的概念,这里来比较一下这二者的区别.对一个空间群而言,如果他的同形群$\mathbf{F}$是与这个空间群相关联的晶格系统的全对称群,即$\mathbf{F}=\mathbf{P}$,那么基本区域和表示域是相同的$\Phi=\Omega$.然而通常情况下,$\mathbf{F}$都是$\mathbf{P}$的子群,如果$\rvert\mathbf{P}\rvert/\rvert\mathbf{f}\rvert=i$,那么表示域(Representation domain)的体积$\Phi$就是基本区域(basic domain)$\Omega$的$i$倍.</p>
+<blockquote>
+<p>尽管布里渊区的$\Omega$是确定的,但是表示域的体积$\Phi$将会随着考虑的空间群而发生变化.</p>
+</blockquote>
+<p><strong>Neumann principle</strong>:如果一个系统包含确定的对称操作$\mathbf{G}$,那么这个系统的任何物理可观测量也一定具有这些对称操作.<br>{:.success}</p>
+<p><strong>Wigner’s Theorem:</strong>如果$R$是哈密顿量$\mathbf{H}$的一个对称操作,$\mathbf{H}$描述一个量子力学系统且$\psi$是它的本征函数,那么$R\psi$同样是$\mathbf{H}$的本征函数,对应着和$\psi$相同的本征值.<br>{:.success}</p>
+<p>将上面的定理进行翻译也就是说,一个粒子的波函数$\psi$就是$\mathbf{G}$的不可约表示的一个基函数.</p>
+<p>假设$\Gamma$是群$\mathbf{G}$作用在$d$为空间$V$上的一个表示,加入只考虑$\Gamma$中那些表示平移的元素,那么它们形成的$\mathbf{T}$的表示通常是可约的.</p>
+<p>假设可以将其约化到$\mathbf{T}$的不可约表示上,标记为</p>
+<script type="math/tex; mode=display">\mathbf{k}_1,\mathbf{k}_1,\cdots,\mathbf{k}_d</script><p>这些表示都是一维的,它们所对应的Bloch波函数为</p>
+<script type="math/tex; mode=display">\psi_{\mathbf{k}_1}(\mathbf{r}),\psi_{\mathbf{k}_2}(\mathbf{r}),\cdots,\psi_{\mathbf{k}_d}(\mathbf{r})</script><p>以这些函数为基,平移群$\mathbf{T}$的表示都是对角矩阵,而且这些对角元素$\Gamma({E\rvert\mathbf{t}})$为$\exp(-i\mathbf{k}_p\cdot\mathbf{t})$.</p>
+<p>此时矢量</p>
+<script type="math/tex; mode=display">\mathbf{k}_1,\mathbf{k}_1,\cdots,\mathbf{k}_d</script><p>并不都是不同的,也就是说在其中存在着等价的矢量满足$S\mathbf{k}\equiv\mathbf{k}$,这里需要的只是所有的不等价的矢量$\mathbf{k}$;事实上,$\mathbf{\Gamma}$是个表示也就意味着如果从$\psi_\mathbf{k}(\mathbf{r})$开始,当空间群$\mathbf{G}$中的任意一个操作元${S\rvert\mathbf{w}}$作用到函数上${S\rvert\mathbf{w}}$那么就可以得到基函数中$d$个Bloch函数的线性组合,也就是说$S\mathbf{k}$是</p>
+<script type="math/tex; mode=display">\mathbf{k}_1,\mathbf{k}_1,\cdots,\mathbf{k}_d</script><p>中的一员;线性空间$V$在空间群$\mathbf{G}$的不可约性也就是说,当遍历空间群中的所有元素作用在函数$\psi_\mathbf{k}(\mathbf{r})$上之后,就可以得到整个线性空间.</p>
+<p>在群$\mathbf{F}$的某些元素作用下,$\mathbf{k}_1$将会被变换成一系列$\mathbf{k}_1,\mathbf{k}_1,\cdots,\mathbf{k}_d$.<br>{:.warring}</p>
+<p><strong>Star:</strong>在$\mathbf{k}_i$的集合中,一系列不同的$\mathbf{k}$矢量构成了$\Gamma$的Star,这里两个波矢等价并不是相同的,即$S\mathbf{k}_i=\mathbf{k}_j$,但$\mathbf{k}_i$和$\mathbf{k}_j$仍然是不同的波矢.<br>{:.success}</p>
+<p>在上面的定义中,无论选取的初始矢量是哪一个,在遍历$\mathbf{F}$中的操作之后,都可以得到相同的$\mathbf{k}_i$序列.</p>
+<p><strong>小共群(Little co-group):</strong>群$\mathbf{F}$中的元素,使得波矢$\mathbf{k}_1$不变,$R\in\mathbf{F},R\mathbf{k}_1\equiv\mathbf{k}_1$,这些操作可以构成群$\mathbf{F}$的一个子群,这个子群叫做$\mathbf{k}_1$的小共群,标记为$\bar{G}^{\mathbf{k}_1}$.(这里的操作变换用到的是等价$\equiv$)<br>{:.success}</p>
+<p>因为$\bar{G}^{\mathbf{k}_1}$是$\mathbf{F}$的子群,那么它的阶数一定是$\mathbf{F}$的阶数的因子(拉格朗日定理).小共群$\bar{G}^{\mathbf{k}_1}$中的操作操作$R$满足$R\mathbf{k}_1\equiv\mathbf{k}_1,S$是个固定操作满足$S\mathbf{k}_1=\mathbf{k}_2$,则可以得到$SRS^{-1}\mathbf{k}_2\equiv SR\mathbf{k}_1\equiv S\mathbf{k}_1\equiv\mathbf{k}_2$,也就是说可以得到</p>
+<script type="math/tex; mode=display">SRS^{-1}\mathbf{k}_2\equiv\mathbf{k}_2</script><p>这也就意味着$S\bar{G}^{\mathbf{k}_1}S^{-1}$中的元素都包含在$\bar{G}^{\mathbf{k}_2}$中,说明小共群$\bar{G}^{\mathbf{k}_2}$的阶数必然是大于等于$\bar{G}^{\mathbf{k}_1}$的阶数.但是因为存在$\mathbf{k}_1\equiv S^{-1}\mathbf{k}_2$,所以$S\bar{G}^{\mathbf{k}_2}S^{-1}$中的每个元素又都包括在$\bar{G}^{\mathbf{k}_1}$中,因此一个Star的小共群的阶数都是相同的,而且因为$S\bar{G}^{\mathbf{k}_1}S^{-1}=\bar{G}^{\mathbf{k}_1}$的存在,对其它所有的小共群也都是满足的,从而可以发现一个Star中的元素的小共群之间形成了一系列共轭子群.</p>
+<p>下面来确定满足$\mathbf{P}\mathbf{k}_1=\mathbf{k}_2,\mathbf{P}\in\mathbf{F}$的数目.取$T\in\mathbf{F}$是个固定的操作满足$T\mathbf{k}_2\equiv\mathbf{k}_1$,那么$T\mathbf{P}\mathbf{k}_1\equiv T\mathbf{k}_2\equiv\mathbf{k}_1$,因此可以得到$T\mathbf{P}\in\bar{\mathbf{G}}^{\mathbf{k}_1}$,从而可以确定操作$\mathbf{P}$授予左陪集$T^{-1}\bar{\mathbf{G}}^{\mathbf{k}_1}$,从而可以看出满足条件的$\mathbf{P}$的数目和小共群的阶数是相同的.<strong>如果将群$\mathbf{F}$根据star的任意一个小共群写成左陪集的直和,那么这些陪集将和star中的元素一一对应,反过来可以得到,这些小共群的阶数的乘积正好就是群$\mathbf{F}$的阶数.</strong></p>
+<p>不失一般性的,对于一个波矢$\mathbf{k}_1$,不包括那些由star产生的,它总会处在布里渊区表示域内部或者表面上.</p>
+<blockquote>
+<p>一个表示域在定义的时候总是会包含每个star中至少一个$\mathbf{k}$矢量.</p>
+</blockquote>
+<p>当$\mathbf{k}_1$在基本区域(Basic domain)中,$\bar{\mathbf{G}}^{\mathbf{k}_1}$中的对称点和对称线上的元素可以从<a target="_blank" rel="noopener" href="https://yxli8023.github.io/2021/08/01/GroupNote3.html">Table-3.6</a>中直接获取到,此时每个$\bar{\mathbf{G}}^{\mathbf{k}_1}$中的元素都是$\mathbf{P}(\mathbf{k})$中的元素,同样也是$\mathbf{F}$中的元素,$\mathbf{F}$与空间群$\mathbf{G}$是同形的.</p>
+<p>当$\mathbf{k}_1$是表示域(Representation domain)中的一部分而不是在基本区域(Basic domain)中,那么$\bar{\mathbf{G}}^{\mathbf{k}_1}$中的元素与$\bar{\mathbf{G}}^{\mathbf{k}}$中的元素可以简单的联系起来,这里$\mathbf{k}$是在基本区域内,通过全对称点群$\mathbf{P}$中的一个操作$R$可以得到$R\mathbf{k}_1\equiv\mathbf{k}$,那么立即就可以得到</p>
+<script type="math/tex; mode=display">\mathbf{P}(\mathbf{k}_1)=R^{-1}\mathbf{P}(\mathbf{k})R</script><p>这里的$\mathbf{P}(\mathbf{k})$可以从<a target="_blank" rel="noopener" href="https://yxli8023.github.io/2021/08/01/GroupNote3.html">Table-3.6</a>中得到,那么$\mathbf{P}(\mathbf{k}_1)$就是其对应的共轭.此时$\bar{G}(\mathbf{k}_1)$是$\mathbf{P}(\mathbf{k}_1)$和$\mathbf{F}$的交集部分.</p>
+<p><strong>little group:</strong>假设小共群$\bar{\mathbf{G}}^{\mathbf{k}_1}$中包含$b$个元素$S_1,S_2,\cdots,S_b$,寻找空间群$\mathbf{G}$对于平移群$\mathbf{T}$的左陪集,并将这些陪集中旋转部分为$S_1,S_2,\cdots,S_b$的进行理论求和构成一个集合,它是空间群$\mathbf{G}$的子群,被称为$\mathbf{k}_1$的小群,标记为$\mathbf{G}^{\mathbf{k}_1}$.就像$\bar{G}^{\mathbf{k}_1}$不必要是$\mathbf{F}$的不变子群,此时$\mathbf{G}^{\mathbf{k}_1}$也不必要是$\mathbf{G}$的子群.<br>{:.success}</p>
+<p>将$\mathbf{F}$分解成关于$\bar{G}^{\mathbf{k}_1}$的左陪集表示</p>
+<script type="math/tex; mode=display">\mathbf{F}=T_1\bar{G}^{\mathbf{k}_1}+T_2\bar{G}^{\mathbf{k}_1}+\cdots+T_q\bar{G}^{\mathbf{k}_1}</script><p>这里$q=h/b$是在$\Gamma$中star的元素的数目,如果$T_i\mathbf{k}_i\equiv\mathbf{k}_i$,那么所有的左陪集元素$T_i\bar{G}^{\mathbf{k}_1}$就会将$\mathbf{k}_1$变换到$\mathbf{k}_i$,因此这里的左陪集和star的矢量$\mathbf{k}_1,\mathbf{k}_2,\cdots,\mathbf{k}_q$是一一对应的.</p>
+<p>下面也可以根据$\mathbf{G}^{\mathbf{k}_1}$将空间群$\mathbf{G}$进行左陪集分解</p>
+<script type="math/tex; mode=display">\mathbf{G}=\{T_1\rvert\mathbf{x}_1\}\mathbf{G}^{\mathbf{k}_1}+\{T_2\rvert\mathbf{x}_2\}\mathbf{G}^{\mathbf{k}_1}+\cdots+\{T_q\rvert\mathbf{x}_q\}\mathbf{G}^{\mathbf{k}_1}</script><p>并保持一一对应的关系,陪集$\{T_i\rvert\mathbf{x}_i\}\mathbf{G}^{\mathbf{k}_1}$中的任何一个元素都可以将波矢为$\mathbf{k}_1$<br>的Bloch函数变换到波矢为$\mathbf{k}_i$的Bloch函数.陪集$\{T_i\rvert\mathbf{x}_i\}\mathbf{G}^{\mathbf{k}_1}$中的元素可以表示为$\{T_i\rvert\mathbf{x}_i\}\{S\rvert\mathbf{w}\}$,这里$\{S\rvert\mathbf{w}\}\in\mathbf{G}^{\mathbf{k}_1}$且满足</p>
+<script type="math/tex; mode=display">\{T_i\rvert\mathbf{x}_i\}\{S\rvert\mathbf{w}\}\psi_{\mathbf{k}_1}=\psi_{T_iS\mathbf{k}_1}(\mathbf{r-x}_i-T_i\mathbf{w})</script><p>利用关系式$T_iS\mathbf{k}_1\equiv T_i\mathbf{k}_i\equiv\mathbf{k}_i$.小群$\mathbf{G}^{\mathbf{k}_1}$的性质是其中的操作元可以将波矢为$\mathbf{k}_1$的Bloch函数变成另外一个波矢为$\mathbf{k}_1$的Bloch函数.</p>
+<p>在前面通过空间的表示$\Gamma$来去表示平移群$\mathbf{T}$从而得到了一系列的矢量$\mathbf{k}_1,\mathbf{k}_2,\cdots,\mathbf{k}_d$,而且利用空间群操作${S\rvert\mathbf{w}}$总可以由一个矢量$\mathbf{k}_i$标记的Bloch函数得到这个序列中其它的矢量$\mathbf{k}_j$标记的Bloch函数,这里可以提出一个问题,<strong>是否由$\Gamma$表示得到的这$d$个矢量都是不相同的,或者说$d=q$?</strong><br><div class="note red no-icon flat"><p>这里的$d$一定是$q$的整数倍$d=tq$,在$\mathbf{k}_1,\mathbf{k}_2,\cdots,\mathbf{k}_d$着个序列中,star $\mathbf{k}_1,\mathbf{k}_2,\cdots,\mathbf{k}_q$会重复出现$t$次.</p>
+</div></p>
+<p><strong>下面来证明上面的结论</strong></p>
+<p>在空间群$\mathbf{G}$的元素中,要得到一个与$\psi_{\mathbf{k}_1}(\mathbf{r})$具有相同波矢$\mathbf{k}_1$的新Bloch函数,那么这个元素必定属于小群$\mathbf{G}^{\mathbf{k}_1}$,因为</p>
+<script type="math/tex; mode=display">\{S_i\rvert\mathbf{w}_i\}\in\mathbf{G}^{\mathbf{k}_1}</script><p>所以</p>
+<script type="math/tex; mode=display">\{E\rvert\mathbf{t}\}\{S_i\rvert\mathbf{w}_i\}</script><p>作用在</p>
+<script type="math/tex; mode=display">\psi_{\mathbf{k}_1}(\mathbf{r})</script><p>上产生的都是波矢相同的Bloch函数,在基矢</p>
+<script type="math/tex; mode=display">\psi_{\mathbf{k}_1}(\mathbf{r}),\psi_{\mathbf{k}_1}(\mathbf{r}),\cdots,\psi_{\mathbf{k}_d}(\mathbf{r})</script><p>中,波矢为$\mathbf{k}_1$的Bloch函数的可以组成线性无关的函数,假设它的数量为$b$,那么它们可以表示为</p>
+<script type="math/tex; mode=display">\{S_1\rvert\mathbf{w}_1\}\psi_{\mathbf{k}_1}(\mathbf{r}),\{S_2\rvert\mathbf{w}_2\}\psi_{\mathbf{k}_1}(\mathbf{r}),\cdots,\{S_b\rvert\mathbf{w}_b\}\psi_{\mathbf{k}_1}(\mathbf{r})</script><p>假设找到了$t$个最大线性无关的函数</p>
+<script type="math/tex; mode=display">\psi_{\mathbf{k}_{1,1}},\psi_{\mathbf{k}_{1,2}},\cdots,\psi_{\mathbf{k}_{1,t}}</script><p>从而可以得到</p>
+<script type="math/tex; mode=display">\sum_{i=1}^t\lambda_i\psi_{\mathbf{k}_{1,i}}=0</script><p>因为这些函数是线性无关的,所以$\lambda_i=0(i=1,t)$;假设现在有</p>
+<script type="math/tex; mode=display">\sum_{i=1}^t\lambda_i\{T_j\rvert\mathbf{x}_j\}\psi_{\mathbf{k}_{1,i}}(\mathbf{r})=0</script><p>在上式两端乘以</p>
+<script type="math/tex; mode=display">\{T_j\rvert\mathbf{x}_j\}^{-1}</script><p>可以得到$\lambda_i=0,(i=1,t)$,因此函数</p>
+<script type="math/tex; mode=display">{T_j\rvert\mathbf{x}_j}\psi_{\mathbf{k}_{1,i}}(\mathbf{r})(i=1,t)</script><p>是波矢为$\mathbf{k}_j$的线性无关的Bloch函数.</p>
+<p>这里的$t$个波函数</p>
+<script type="math/tex; mode=display">\psi_{\mathbf{k}_{1,1}}(\mathbf{r}),\psi_{\mathbf{k}_{1,2}}(\mathbf{r}),\cdots,\psi_{\mathbf{k}_{1,t}}(\mathbf{r})</script><p>构成了$\mathbf{k}_1$的小群$\mathbf{G}^{\mathbf{k}_1}$的不可约表示的基,它张开了一个不可约的子空间$V^{\mathbf{k}_1}$,通过这个基可以得到小群$\mathbf{G}^{\mathbf{k}_1}$的不可约表示,同样的也就可以得到空间群$\mathbf{G}$的不可约表示以及整个的线性空间$V$</p>
+<script type="math/tex; mode=display">V=\sum_j\{T_j\rvert\mathbf{x}_j\}V^{\mathbf{K}_1}</script><p>如果$V^{\mathbf{K}_1}$是可约的</p>
+<script type="math/tex; mode=display">V^{\mathbf{K}_1}=U^{\mathbf{K}_1}\oplus W^{\mathbf{K}_1}</script><p>那么$V$同样可以约化为</p>
+<script type="math/tex; mode=display">V=U\oplus W,\quad U=\sum_j\{T_j\rvert\mathbf{x}_j\}U^{\mathbf{K}_1},\quad W=\sum_j\{T_j\rvert\mathbf{x}_j\}W^{\mathbf{K}_1}</script><h2 id="空间群表示构建步骤"><a href="#空间群表示构建步骤" class="headerlink" title="空间群表示构建步骤"></a>空间群表示构建步骤</h2><ul>
+<li>(1):从布里渊区的表示域中选择一个波矢$\mathbf{k}_1$.</li>
+<li>(2):确定波矢$\mathbf{k}_1$的小共群$\bar{G}^{\mathbf{k}_1}$,其中的元素满足$S_j\mathbf{k}_1\equiv\mathbf{k}_1$,然后在空间群$\mathbf{G}$中构建$\mathbf{k}_1$的小群$\mathbf{G}^{\mathbf{k}_1}$.</li>
+<li>(3):确定包含波矢$\mathbf{k}_1$的star,或者是将空间群$\mathbf{G}$根据小群$\mathbf{G}^{\mathbf{k}_1}$进行左陪集分解,这些得到的左陪集和star中的矢量是一一对应的.</li>
+<li>(4):确定小群$\mathbf{G}^{\mathbf{k}_1}$的不可约表示$\Gamma_p^{\mathbf{k}_1}$,它的基矢具有额外的性质:它的元素是波矢为$\mathbf{k}_1$的Bloch函数,让这些组成函数序列<script type="math/tex; mode=display">\psi_{\mathbf{k}_1,1}(\mathbf{r}),\psi_{\mathbf{k}_1,2}(\mathbf{r}),\cdots,\psi_{\mathbf{k}_1,t}(\mathbf{r})</script>这里的$\Gamma_p^{\mathbf{k}_1}$称为小群$\mathbf{k}_1$的小表示.</li>
+<li>(5):构建矢量空间$V$中的所有函数</li>
+</ul>
+<script type="math/tex; mode=display">{T_j\rvert\mathbf{x}_j}\psi_{\mathbf{k}_1,i},i=1,q;i=1,t</script><p>这里的<script type="math/tex">{T_j\rvert\mathbf{x}_j}</script>是空间群根据小群</p>
+<script type="math/tex; mode=display">\mathbf{G}^{\mathbf{k}_1}</script><p>的左陪集表示,此时矢量空间$V$对于空间群$G$而言是不可约的,并且表示$\Gamma$的基函数有$d$个</p>
+<script type="math/tex; mode=display">{T_j\rvert\mathbf{x}_j}\psi_{\mathbf{k}_1,i}(\mathbf{r})</script><p>函数,这里$dqt=ht/b$.</p>
+<ul>
+<li>(6):对所有的小表示$\Gamma_p^{\mathbf{k}_1}$重复上面的步骤,从而得到所有$\mathbf{k}_1$标记的star的空间群$\mathbf{G}$的表示.</li>
+<li>(7):对所有在表示区域(Representation domain)中的波矢$\mathbf{k}_1$进行上面的全部操作,最后就可以得到空间群$\mathbf{G}$的所有表示.</li>
+</ul>
+<h2 id="实际应用"><a href="#实际应用" class="headerlink" title="实际应用"></a>实际应用</h2><p>在求解空间群不可约表示的时候,最重要的就是得到小群的不可约表示,但是此时又会发现小群本身又是一个空间群;在空间群$\mathbf{G}$的表示中,操作${E\rvert\mathbf{t}}$表示为对角矩阵,小群的元素${E\rvert\mathbf{t}}$对应的表示为一个标量矩阵$\exp(-i\mathbf{k}_1\cdot\mathbf{t})$的时候,情况就会变的不同,此时矩阵$\Gamma_p^{\mathbf{k}_1}$满足非常简单的规则.</p>
+<p>先将小群$\mathbf{G}^{\mathbf{k}_1}$根据平移群$\mathbf{T}$进行陪集分解</p>
+<script type="math/tex; mode=display">\mathbf{G}^{\mathbf{k}_1}=\{S_1\rvert\mathbf{w}_1\}\mathbf{T}+\{S_2\rvert\mathbf{w}_2\}\mathbf{T}+\cdots+\{S_b\rvert\mathbf{w}_b\}\mathbf{T}\label{eq2}</script><p>假设</p>
+<script type="math/tex; mode=display">\{S_i\rvert\mathbf{w}_i\}\{S_j\rvert\mathbf{w}_j\}=\{S_iS_j\rvert\mathbf{w}_i+S_I\mathbf{w}_j\}=\{E\rvert\mathbf{t}_{ij}\}\{S_k\rvert\mathbf{w}_k\}</script><p>这里${E\rvert\mathbf{t}_{ij}}\in\mathbf{T}$,上式中有</p>
+<script type="math/tex; mode=display">\mathbf{t}_{ij}=\mathbf{w}_i+S_i\mathbf{w}_j-\mathbf{w}_k</script><p>因为$\mathbf{t}_{ij}$是个平移则可以得到</p>
+<script type="math/tex; mode=display">\Gamma_p^{\mathbf{k}_1}(\{S_i\rvert\mathbf{w}_i\})\Gamma_p^{\mathbf{k}_1}(\{S_j\rvert\mathbf{w}_j\})=\exp(-i\mathbf{k}_1\cdot(\mathbf{w}_i+S_i\mathbf{w}_j-\mathbf{w}_k))\Gamma_p^{\mathbf{k}_1}(\{S_k\rvert\mathbf{w}_k\})</script><p>从而对于小群中的元素${R\rvert\mathbf{v}}\in\mathbf{G}^{\mathbf{k}_1}$有</p>
+<script type="math/tex; mode=display">\Gamma_p^{\mathbf{k}_1}(\{R\rvert\mathbf{v}\})=\exp(-i\mathbf{k}\cdot\mathbf{v})\mathbf{D}_p^{\mathbf{k}_1}(\{R\rvert\mathbf{v}\})\label{eq1}</script><p>从而可以得到</p>
+<script type="math/tex; mode=display">\mathbf{D}_p^{\mathbf{k}_1}(\{S_i\rvert\mathbf{w}_i\})\mathbf{D}_p^{\mathbf{k}_1}(\{S_j\rvert\mathbf{w}_j\})=\exp(-\mathbf{g}_i\cdot\mathbf{w}_j)\mathbf{D}_p^{\mathbf{k}_1}(\{S_k\rvert\mathbf{w}_k\})\label{eq3}</script><p>这里$\mathbf{g}_i$是倒空间中的格矢,且$S^{-1}\mathbf{k}_1\equiv\mathbf{k}_1$,和$\mathbf{g}_i$相关联的方程为</p>
+<script type="math/tex; mode=display">S_i^{-1}\mathbf{k}_1\equiv\mathbf{k}_1+\mathbf{g}_i</script><p>同样的,如果${E\rvert\mathbf{t}}\in\mathbf{T}$,那么从(\ref{eq1})中可以得到</p>
+<script type="math/tex; mode=display">\begin{equation}\begin{aligned}&\mathbf{D}_p^{\mathbf{k}_1}(\{E\rvert\mathbf{t}\})=\mathbf{1}\\ &\exp(-i\mathbf{g}_i\cdot(\mathbf{w}_j+\mathbf{t}))=\exp(-i\mathbf{g}_i\cdot\mathbf{w}_j)\end{aligned}\end{equation}</script><p>从前面可以看到,对平移群的元素,$\mathbf{D}_p^{\mathbf{k}_1}$都是$\mathbf{1}$,因此对于陪集分解(\ref{eq2})来说,$\mathbf{D}_p^{\mathbf{k}_1}$对一个特定的陪集表示中的所有元素的矩阵表示都是相同的,也就是说$\mathbf{D}_p^{\mathbf{k}_1}$是关于陪集<br>$\mathbf{G}^{\mathbf{k}_1}/\mathbf{T}$的一个函数表示.</p>
+<p>但是这个商群和$\bar{G}^{\mathbf{k}_1}$是同构的,从而可以说$\mathbf{D}_p^{\mathbf{k}_1}$是关于小共群元素的函数.<strong>因此将一个本来计算小群的表示问题转换成了研究对应的小共群的表示问题</strong></p>
+<p>将(\ref{eq3})改写为</p>
+<script type="math/tex; mode=display">\mathbf{D}_p^{\mathbf{k}_1}(S_i)\mathbf{D}_p^{\mathbf{k}_1}(S_j)=\exp(-i\mathbf{g}_i\cdot\mathbf{w}_j)\mathbf{D}_p^{\mathbf{k}_1}(S_k)</script><p>这里$S_iS_j=S_k,S_i^{-1}\mathbf{k}_1=\mathbf{k}_1+\mathbf{g}_i$.</p>
+<p>可以看到$\mathbf{D}_p^{\mathbf{k}_1}$是小共群$\bar{G}^{\mathbf{k}_1}$到一系列矩阵的同态,这里存在两个重要的情况:</p>
+<ul>
+<li><p>(1):对所有的$j=1,b$都有$\mathbf{w}_j=0$,这对应着空间群$\mathbf{G}$是点式空间群的情况.</p>
+</li>
+<li><p>(2):对所有的$i=1,b$满足$S_i^{-1}\mathbf{k}_1=\mathbf{k}_1$,在这种情况下$\mathbf{k}_1$是布里渊区内部的一个点,因为此时和它等价的就只有它自身.</p>
+</li>
+</ul>
+<p>当$\mathbf{D}_p^{\mathbf{k}_1}$是同态时,它也是小共群的一个表示,而且$\Gamma_p^{\mathbf{k}_1}$的不可约性也意味着$\mathbf{D}_p^{\mathbf{k}_1}$是不可约的.因此对于上面的量中情况,所需要的做的就是找出小共群的不可表示,一旦它确定了之后,就可以通过(\ref{eq1})来得到$\Gamma_p^{\mathbf{k}_1}$的矩阵形式.</p>
+<p>这里剩下的就是讨论当$\mathbf{k}_1$在布里渊区表面上与非点式空间群的情况.</p>
+<p>如果$\mathbf{k}_1$是个一般的点,那么其小共群中的元素就只有恒等操作,这就回到了前面的情况(2),所以剩下要处理的就是非点式空间群中$\mathbf{k}_1$是个对称点或者它在对称线(面)上的情况.为了处理这类问题,需要先引入投影表示(projective representation).</p>
+<p><strong>投影表示:</strong>包含群元$H_i,i=1,\rvert\mathbf{H}\rvert$的群$\mathbf{H}$对应的一个非奇异的矩阵函数$\Delta$是$\mathbf{H}$的投影表示需要满足下面的规则:<br>对每个群元乘积$H_iH_j=H_k$这里总存在一个标量函数$\mu(H_i,H_j)$在这一对有序的$H_i,H_j$上满足</p>
+<script type="math/tex; mode=display">\Delta(H_i)\Delta(H_j)=\mu(H_i,H_j)\Delta(H_k)\label{eq4}</script><p>对所有的$i,j,l$都有</p>
+<script type="math/tex; mode=display">\mu(H_i,H_jH_l)\mu(H_j,H_l)=\mu(H_iH_j,H_l)\mu(H_i,H_j)</script><p>函数$\mu(H_i,H_j)$形成了投影表示$\Delta$所谓的因子系统(factor system).当$\mu(H_i,H_j)=1$对所有的$i,j$都满足时,投影表示就变成了原来的表示(就是前面的不可约表示),如果$\rvert\mu(H_i,H_j)\rvert=1$那么总是可能通过对$\Delta$进行一个等价变换使它是幺正的.到这里就得到了不可约投影表示的概念,当不可约幺正投影表示具有相同的因子系统时,可以得到</p>
+<script type="math/tex; mode=display">\sum_{j=1}^{\rvert\mathbf{H}\rvert}\Delta^i(H_j)_{pv}^{*}\Delta^k(H_j)_{qw}=\frac{\rvert\mathbf{H}\rvert}{d_i}\delta^{ik}\delta_{pq}\delta_{vw}</script><p>对特征标则有</p>
+<script type="math/tex; mode=display">\sum_{j=1}^{\rvert\mathbf{H}\rvert}\xi^{i*}(H_j)\xi^k(H_j)=\rvert\mathbf{H}\rvert\delta^{ik}</script><p>给定一个因子系统为$\mu$的投影表示,如果取</p>
+<script type="math/tex; mode=display">\Delta^{'}(H_i)=C_i\Delta(H_i)\quad\text{for all }i,\quad C_i\in\mathcal{C}</script><p>对于方程(\ref{eq4})有</p>
+<script type="math/tex; mode=display">\Delta^{'}(H_i)\Delta^{'}(H_j)=\frac{C_iC_j}{C_k}\mu(H_i,H_j)\Delta^{'}(H_k)</script><p>改写</p>
+<script type="math/tex; mode=display">\nu(H_i,H_j)=\frac{C_iC_j}{C_k}\mu(H_i,H_j)\label{eq5}</script><p>就可以发现此时$\nu(H_i,H_j)$是投影表示$\Delta^{‘}$的因子系统.两个投影表示的因子系统如果满足(\ref{eq5})那么就说它们属于相同的类.因为他们之间的联系关系非常简单,所以在研究的时候只需要研究单独的一个因子系统就可以.</p>
+<p>对一个给定的因子系统为$\mu$投影表示$\Delta$满足$\Delta(E)\Delta(E)=\mu(E,E)\Delta(E)$,从而有</p>
+<script type="math/tex; mode=display">\Delta(E)=\mu(E,E)\mathbf{1}</script><p>如果对所有的$i$取$\Delta^{‘}(H_i)=\Delta(H_i)/\mu(E,E)$,则</p>
+<script type="math/tex; mode=display">\Delta^{'}(E)=\mathbf{1}</script><p>根据(\ref{eq5})的$1/C_i=\mu(E,E)$对所有的$i$定义一个新的因子系统$\nu$,因为</p>
+<script type="math/tex; mode=display">\Delta^{'}(H_i)\Delta^{'}(E)=\nu(H_i,E)\Delta^{'}(H_i)</script><p>因此一定有</p>
+<script type="math/tex; mode=display">\nu(H_i,E)=q\quad\text{for all }H_i</script><p>同样的</p>
+<script type="math/tex; mode=display">\nu(E,H_i)=q\quad\text{for all }H_i</script><p>一个有限群$\mathbf{H}$的因子系统的类的数目$m$是有限的,这些类可以和一个阶数为$m$的阿贝尔群的元素意义对应,称为$\mathbf{H}$的乘子(multiplier).<br>{:.success}</p>
+<p>这个一一对应的关系表述为,将$\mathbf{M}$中的元素标记为$M_1,M_2,\cdot,M_m$,如果$\mu_p,\mu_q$是与$M_p,M_q$对应的类中的任任意一个因子系统,那么因子系统$\mu_r$对所有的$i,j$满足</p>
+<script type="math/tex; mode=display">\mu_r(H_i,H_j)=\mu_p(H_i,H_j)\mu_q(H_i,H_j)\label{eq6}</script><p>它总是数目对应$M_r$的类中,这里$M_r=M_pM_q$.而且$\mathbf{M}$中每个元素的阶对应着$\mathbf{H}$中因子的阶.如果$M_p$的阶数为$\alpha_p$那么表示因子系统可以选择为对应$M_p$的类,它的值是所有1的$\alpha_p$的根的解.因此每个投影表示都等价于同一个类中的因子系统中的幺正矩阵1.$\mathbf{M}$中的单位元素$M_1$对应着一个类,它所有值都是1的因子系统.</p>
+<p>对一个阶数为$\rvert\mathbf{H}\rvert$的有限群$\mathbf{H}$,它的乘子$\mathbf{M}$的阶数为$m$,可以构建一个阶数为$\rvert\mathbf{H}\rvert m$的群,此时$\mathbf{M}$与$\mathbf{H}_\mathbf{M}$中心的子群是同构的.<br><div class="note blue no-icon flat"><p>一个群的中心是由那些和群中所有元素都对应的元素构成的一个子群,这些元祖可以自成一类.</p>
+</div></p>
+<p>通过识别$\mathbf{M}$与它在<script type="math/tex">\mathbf{H}_\mathbf{M}</script>中的镜像,可以得到<script type="math/tex">\mathbf{H}_\mathbf{M}/\mathbf{M}</script>与$\mathbf{H}$是同构的.<script type="math/tex">\mathbf{H}_\mathbf{M}</script>被称为是$\mathbf{H}$的核(Kernel)为$\mathbf{M}$的中心拓展(Central extension).</p>
+<p>假设现在有一个群$\mathbf{H}$,来构建它授予因子系统$\mu$的幺正不可约投影表示,先选择一个$\mu$对所有的$j,k$满足</p>
+<script type="math/tex; mode=display">\mu(H_j,H_k)=\exp(2\pi ia(H_j,H_k)/g)</script><p>这里通过对$\mu(H_j,H_K)$可以知道$a(H_j,H_k),g$都是整数,而且满足$0\le a(H_j,H_k)&lt;g-1$,并且有</p>
+<script type="math/tex; mode=display">a(H_j,E)=a(E,H_j)=0\label{eq7}</script><p>由于$\mu(H_j,H_j^{-1})=\mu(H_j^{-1},H_j)$从而有</p>
+<script type="math/tex; mode=display">a(H_j,H_j^{-1})=a(H_j^{-1},H_j)</script><p>结合(\ref{eq6})可以得到</p>
+<script type="math/tex; mode=display">a(H_i,H_jH_l)+a(H_j,H_l)=a(H_iH_j,H_l)+a(H_i,H_j),\text{ mod } g</script><p>令$\mathbf{Z}_g$是个整数循环群包含$0,1,2,\cdots,(g-1)$.令$\mathbf{H}^{*}$包含$g\rvert\mathbf{H}\rvert$个元素$(H_j,\alpha)$一个来自于$\mathbf{H}$一个来源于$\mathbf{Z}_g$,通过下面的方程来定义乘法法则</p>
+<script type="math/tex; mode=display">(H_i,\alpha)(H_k,\beta)=(H_jH_k,\alpha+\beta+a(H_j,H_k))\label{eq7}</script><p>此时的<script type="math/tex">\mathbf{H}^{*}</script>构成了一个群.这里的$g$个$(E,\alpha)$元素可以构成<script type="math/tex">\mathbf{H}^{*}</script>的一个子群,它与<script type="math/tex">\mathbf{Z}_g</script>是同构的,但是尽管<script type="math/tex">(H_i,0)</script>与$\mathbf{H}$中的元素是一一对应的,它却并不构成一个群,因此<script type="math/tex">\mathbf{H}^{*}</script>并不是$\mathbf{H}$的子群.</p>
+<p>从(\ref{eq6})和(\ref{eq7})可以得到对所有的$\alpha,\beta,k$都有</p>
+<script type="math/tex; mode=display">(E,\alpha)(H_k,\beta)=(H_k,\beta)(E,\alpha)=(H_k,\alpha+\beta)</script><p>通过上式可以得到有$g$个元素$(E,\alpha)$的子群此时位于<script type="math/tex">\mathbf{H}^{*}</script>的中心,因为$(E,\alpha)$与它的所有元素都是对易的.根据<br>Schur’s引理如果$\Gamma$是<script type="math/tex">\mathbf{H}^{*}</script>的一个表示,那么$\mathbf{\Gamma}(E,\alpha)$就是一个标量乘以单位矩阵.</p>
+<p>假设这里对$\mathbf{H}^{*}$存在一个表示,对所有的$\alpha\in\mathbf{Z}_g$都有</p>
+<script type="math/tex; mode=display">\mathbf{\Gamma}(E,\alpha)=\exp(2\pi i\alpha/g)\mathbf{1}</script><p>那么</p>
+<script type="math/tex; mode=display">\mathbf{\Gamma}(H_k,\beta)=\mathbf{\Gamma}(H_k,0)\mathbf{\Gamma}(E,\beta)=\mathbf{\Gamma}(H_k,0)\exp(2\pi i\beta/g)</script><p>改写$\mathbf{\Gamma}(H_k,0)=\Delta(H_k)$可以得到</p>
+<script type="math/tex; mode=display">\begin{equation}\begin{aligned}\Delta(H_j)\Delta(H_k)&=\mathbf{\Gamma}(H_k,\alpha)\mathbf{\Gamma}(H_k,\beta)\exp(-2\pi i(\alpha+\beta)/g)\\ &=\mathbf{\Gamma}(H_jH_k,\alpha+\beta+a(H_j,H_k))\exp(-2\pi i(\alpha+\beta)/g)\\ &=\Delta(H_jH_k)\exp(2\pi ia(H_j,H_k)/g)\end{aligned}\end{equation}</script><p>从这里就可以看到$\Delta$是群$\mathbf{H}$的投影表示,因为$\Gamma$是幺正的,所以这个投影表示也是幺正的,它同时也是不可约的.</p>
+<p>总之,如果$\Delta$是$\mathbf{H}$的一个幺正不可约投影表示,如果令</p>
+<script type="math/tex; mode=display">\mathbf{\Gamma}(H_k,\beta)=\Delta(H_k)\exp(2\pi i\beta/g),\text{for all }k,\beta</script><p>那么$\Gamma$是$\mathbf{H}^{*}$的表示.</p>
+<p>接下来回到小共群来看一下前面提及到的因子系统,将$\bar{G}^{\mathbf{k}_1}$替换$\mathbf{H}$,$D_p^{\mathbf{k}_1}$替换$\Delta$则有</p>
+<script type="math/tex; mode=display">\mu(S_i,S_j)=\exp(-i\mathbf{g}_i\cdot\mathbf{w}_j),\quad S_i^{-1}\mathbf{k}_1=\mathbf{k}_1+\mathbf{g}_i</script><p>这里的$\mathbf{w}_i$是小群$\mathbf{G}^{\mathbf{k}_1}$在进行陪集分解时与$S_j$相关联的平移部分的矢量.从上式可以看出当$S_i=E$势$\mathbf{g}_i=0$,从而</p>
+<script type="math/tex; mode=display">\mu(E,S_j)=1,\quad\text{for all }j</script><h1 id="实例-cubic-close-packed-and-diamond-structures"><a href="#实例-cubic-close-packed-and-diamond-structures" class="headerlink" title="实例:cubic close-packed and diamond structures"></a>实例:cubic close-packed and diamond structures</h1><p>下面通过两个例子来展示一下上面的理论知识,一个点式空间群$Fm3m(O^5_h)$是一个cubic close-packed和一个非点式空间群$Fd3m(O_h^7)$是一个diamond structures.</p>
+<p>这两个空间群都是基于面心立方,F,布拉菲点阵信息可以从<a target="_blank" rel="noopener" href="https://yxli8023.github.io/2021/08/01/GroupNote3.html">Table3.1</a>中得到</p>
+<p><img src="/assets/images/GroupTheory/5-1.png" alt="png"></p>
+<p>对应的点整平移基矢为</p>
+<script type="math/tex; mode=display">\left\{\begin{array}{c}\mathbf{t}_1=\frac{1}{2}(0,a,a)\\\mathbf{t}_2=\frac{1}{2}(a,0,a)\\\mathbf{t}_3=\frac{1}{2}(a,a,0) \end{array}\right.</script><p>对于两种不同的晶体结构,它们的空间群的isogonal点群都是$m3m(O_h)$.</p>
+<p>从<a target="_blank" rel="noopener" href="https://yxli8023.github.io/2021/08/01/GroupNote3.html">Table3.3</a>中可以得到倒空间中元胞的基矢为</p>
+<script type="math/tex; mode=display">\left\{\begin{array}{c}\mathbf{g}_1=\frac{2\pi}{a}(-1,1,1)\\ \mathbf{g}_2=\frac{2\pi}{a}(1,-1,1)\\ \mathbf{g}_3=\frac{2\pi}{a}(1,1,-1)\end{array}\right.</script><p><img src="/assets/images/GroupTheory/5-2.png" alt="png"></p>
+<p>从<a target="_blank" rel="noopener" href="https://yxli8023.github.io/2021/08/01/GroupNote4.html">Table3.7</a>可以看到空间群$Fm3m(O_h^5)$的每个$m3m(O_h)$旋转操作都仅仅和一个纯的平移操作相联系,因此可以将空间群$Fm3m(O_h^5)$根据平移群$\mathbf{T}$进行陪集分解</p>
+<script type="math/tex; mode=display">Fm3m(O_h^5)=\sum_R\{R\rvert 000\}\mathbf{T}</script><p><img src="/assets/images/GroupTheory/5-3.png" alt="png"></p>
+<p>这里的$R$是群$m3m(o_h)$中的所有元素.但是对于空间群$Fd3m(O_h^7)$只有属于子群$\bar{4}3m(T_d)$的操作才与纯平移操作相关联,它对应的配及分解为</p>
+<script type="math/tex; mode=display">Fd3m(O_h^7)=\sum_R\{R\rvert 000\}\mathbf{T}+\sum_R\{RI\rvert\frac{1}{4}\frac{1}{4}\frac{1}{4}\}\mathbf{T}</script><p>这里$R$是属于$\bar{4}3m(T_d)$的元素,通常$I$表示反演操作.下面给出$\Gamma_c^f$的布里渊区中高对称点,线,面的信息</p>
+<p><img src="/assets/images/GroupTheory/5-4.png" alt="png"></p>
+<p>现在考虑将小群$\mathbf{G}^{\mathbf{k}_1}$根据平移群$\mathbf{T}$进行左陪集分解,对$Fm3m$有</p>
+<script type="math/tex; mode=display">\mathbf{G}^{\mathbf{k}_1}=\sum_S\{S\rvert 000\}\mathbf{T},\quad S\in\bar{G}^{\mathbf{k}_1}\label{eq8}</script><p>对于$Fd3m$有</p>
+<script type="math/tex; mode=display">\mathbf{G}^{\mathbf{k}_1}=\sum_P\{P\rvert 000\}\mathbf{T}+\sum_Q\{Q\rvert\frac{1}{4}\frac{1}{4}\frac{1}{4}\}\mathbf{T}</script><p>这里$P\in(\bar{\mathbf{G}}^{\mathbf{k}_1}\cap\bar{4}3m),Q$则是遍历$\bar{\mathbf{G}}^{\mathbf{k}_1}$中剩余的元素.</p>
+<h2 id="Fm3m"><a href="#Fm3m" class="headerlink" title="Fm3m"></a>Fm3m</h2><p>对于一个给定的$\mathbf{k}_1$需要决定$\bar{\mathbf{G}}^{\mathbf{k}_1}$的投影表示,它对应的因子系统为$\exp(-i\mathbf{g}\cdot\mathbf{w}_j)$,这里的$\mathbf{g}_i$是通过</p>
+<script type="math/tex; mode=display">S_i^{-1}\mathbf{k}_1=\mathbf{k}_1+\mathbf{g}_i</script><p>来确定的,而$\mathbf{w}_j$则是由(\ref{eq8})的分解中与$S_j$相关联的平移部分来决定,很明显这里的$\mathbf{w}_j=0\quad\text{for all}\quad j$.因此因子系统就是一个单位矩阵,他属于小共群$\bar{\mathbf{G}}^{\mathbf{k}_1}$的乘子中与恒等元素相对应的类.从而<br>$\bar{\mathbf{G}}^{\mathbf{k}_1}$的合适的表示$D_p^{\mathbf{k}_1}$就正是原来的矢量表示,又因为$\bar{\mathbf{G}}^{\mathbf{k}_1}$是个点群,它的表示可以从<a target="_blank" rel="noopener" href="https://yxli8023.github.io/2021/07/10/GroupNote2.html">Table2.2</a>中得到.</p>
+<p>小群</p>
+<script type="math/tex; mode=display">\mathbf{G}^{\mathbf{k}_1}</script><p>的小表示</p>
+<script type="math/tex; mode=display">\Gamma_p^{\mathbf{k}_1}</script><p>现在可以通过</p>
+<script type="math/tex; mode=display">\Gamma_p^{\mathbf{k}_1}(\{R\rvert\mathbf{v}\})=\exp(-i\mathbf{k}_1\cdot\mathbf{v})\mathbf{D}_p^{\mathbf{k}_1}(\{R\rvert\mathbf{v}\})</script><p>立即得到,矩阵$\Gamma_p^{\mathbf{k}_1}$对应的可以得到</p>
+<script type="math/tex; mode=display">\mathbf{\Gamma}_p^{\mathbf{k}_1}(\{S\rvert\mathbf{t}\})=\exp(-i\mathbf{k}_1\cdot\mathbf{t})\mathbf{D}_p^{\mathbf{k}_1}(S)</script><p>最终将空间群的表示求解回归到了矢量$\mathbf{k}_1$的小共群$\mathbf{G}^{\mathbf{k}_1}$表示的求解上.</p>
+<h2 id="Fd3m"><a href="#Fd3m" class="headerlink" title="Fd3m"></a>Fd3m</h2><p>这是一个非点式空间群,处理起来先要区分在陪集分解的时候</p>
+<script type="math/tex; mode=display">P\in{E,C_{3j}^\pm,C_{2m},\sigma_{dp},S_{4m}^\pm}</script><p>的时候,平移部分$\mathbf{w}_i=0$,当</p>
+<script type="math/tex; mode=display">Q\in{I,S_{6j}^\mp,\sigma_m,C_{2p},C_{4m}^\pm}</script><p>的时候平移部分</p>
+<script type="math/tex; mode=display">\mathbf{w}_j=\mathbf{v}=\frac{1}{4}(a,a,a)</script><p>如果小群$\bar{G}^{\mathbf{k}_1}$只包含那些由$P$形成的元素,此时如果对所有的$i$都满足$\mathbf{g}_i=0$那么因子系统$\exp(-\mathbf{g}_i\cdot\mathbf{w}_i)$就是单位1,此时的$\mathbf{k}_1$来自于布里渊区中的内点${\Gamma,\Delta,\Lambda,\Sigma,C,O,J,A(I)}$.对于$Q$的情况,此时$\bar{G}^{\mathbf{k}_1}$则是由$\bar{4}3m(T_d){\Lambda,C,J,A(S)}$组成的.</p>
+<p>当$\mathbf{k}_1={\Gamma,\Delta,\Lambda,\Sigma,C,O,J,A}$的时候,这里需要做的就是从<a target="_blank" rel="noopener" href="https://yxli8023.github.io/2021/07/10/GroupNote2.html">Table2.2</a>中查到$\bar{G}^{\mathbf{k}_1}$的表示$D_p^{\mathbf{k}_1}$.</p>
+<p>在上面空间群Fm3m的求解中已经涉及到这些了,但是此时有一些区别的就是,对于Fd3m的陪集分解中包含$P$和$Q$的部分有</p>
+<script type="math/tex; mode=display">\mathbf{\Gamma}_p^{\mathbf{k}_1}(\{P\rvert\mathbf{t}\})=\exp(-i\mathbf{k}_1\cdot\mathbf{t})\mathbf{D}_p^{\mathbf{k}_1}(P)</script><script type="math/tex; mode=display">\mathbf{\Gamma}_p^{\mathbf{k}_1}(\{Q\rvert\mathbf{t+v}\})=\exp(-i\mathbf{k}_1\cdot\mathbf{t+v})\mathbf{D}_p^{\mathbf{k}_1}(Q)</script><p>到这里,在明确的$P$或者$Q$的表示之后,就可以得到对应的小群的表示$\mathbf{\Gamma}_p^{\mathbf{k}_1}$.</p>
+<h1 id="公众号"><a href="#公众号" class="headerlink" title="公众号"></a>公众号</h1><div class="note blue no-icon flat"><p>相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。</p>
+</div>
+<table>
+  <tr>
+    <!-- 图片单元格 -->
+    <td style="width: 300px; height: 300px; text-align: center; vertical-align: middle; border: 1px solid #ccc; border-radius: 8px;">
+      <img src="/assets/images/qrcode.jpg" alt="QR Code" width="300px" height="300px" style="border-radius: 8px;">
+    </td>
+    <!-- 文字单元格 -->
+    <td style="width: 300px; height: 300px; text-align: center; vertical-align: middle; padding-left: 20px; border: 1px solid #ccc; border-radius: 8px;">
+      <div>
+        <h4 style="margin: 0;">Email</h4>
+        <p style="margin: 5px 0;">yxliphy@gmail.com</p>
+      </div>
+    </td>
+  </tr>
+</table>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Yu-Xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2021/08/02/2021-08-02-GroupNote5/">http://example.com/2021/08/02/2021-08-02-GroupNote5/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Yu-Xuan' Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Group-Theory/">Group-Theory</a></div><div class="post-share"><div class="social-share" data-image="/assets/images/GroupTheory/cube_symmetry.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg"/></a><div class="post-qr-code-desc"></div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg"/></a><div class="post-qr-code-desc"></div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2021/08/03/2021-08-03-Wannier90-Study/" title="Wannier90学习过程"><img class="cover" src="/img/defult-cover2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Wannier90学习过程</div></div><div class="info-2"><div class="info-item-1">最近在慢慢接触第一性计算的相关内容,需要补充一些工具,这里就整理记录一下我在学习Wannier90过程中遇到的疑问和自己对其中内容的一些理解.   我在这里完全就先是重复Wannier90给出的例子,在重复的过程中通过文档边学习边理解. Gallium Arsenide(Example 1)最主要的就是输入控制文件file.win,这个文件来控制要进行什么样的计算.这里需要说明,要计算不同的性质和物理量,除了控制文件之外还需要其他的数据,这第一个实例中的文件如下  123456789101112131415161718192021222324252627282930313233343536373839404142434445! Gallium Arsenide: Tutorial Example 1 num_wann    =  4 num_iter    = 20 wannier_plot = true! SYSTEMbegin unit_cell_cartbohr-5.367  0.000  5.367 0.000  5.367  5.367-5.367  5.367  0....</div></div></div></a><a class="pagination-related" href="/2021/08/01/2021-08-01-Latex-symbol/" title="Latex中特殊符号收集"><img class="cover" src="/img/defult-cover.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Latex中特殊符号收集</div></div><div class="info-2"><div class="info-item-1">这里收集了一些在平时写Latex的时候可能用到的一些符号。                     公众号相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。                                                     Email         yxliphy@gmail.com                </div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2021/04/19/2021-04-19-SpacGroup/" title="空间群学习工具SpaceGroupIrep"><img class="cover" src="/img/defult-cover2.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-19</div><div class="info-item-2">空间群学习工具SpaceGroupIrep</div></div><div class="info-2"><div class="info-item-1">这里整理一下学习空间群时候的一个Mathematica软件包SpaceGroupIrep,在学习THE MATHEMATICAL THEORY OF SYMMETRY IN SOLIDS这本书中的内容的时候, 结合这个工具可以对书中的内容有一个更深入的理解. 这个软件包也是基于这本书中的内容编写的, 而且可以对书中的一些表进行快速查询, 结合起来对学习空间群相关的知识大有帮助.   前言自己最近一段时间在学习THE MATHEMATICAL THEORY OF SYMMETRY IN SOLIDS(Representation theory for point groups and space groups)这本书, 虽然认真的学习了一遍, 但是对第四章中的抽象表示还是有一些不明白的地方, 正好可以结合SpaceGroupIrep来对书中的内容再进行一遍学习, 相信结合这个软件包, 可以对书中的内容有进一步的理解. 首先将软件包下载, 然后复制到1$UserBaseDirectory/Applications这个目录中就可以, 记得将下载下来的软件包的名称修改为SpaceGrou...</div></div></div></a><a class="pagination-related" href="/2021/06/10/2021-06-10-TI-Hamlitonian/" title="拓扑绝缘体哈密顿量推导"><img class="cover" src="/img/defult-cover.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-10</div><div class="info-item-2">拓扑绝缘体哈密顿量推导</div></div><div class="info-2"><div class="info-item-1">这篇博客整理一下在拓扑材料Bi$_2$Se$_3$计算中,通过能带成分和对称性分析,再结合微扰论来推导低能有效模型,主要是对文章进行翻译,过程中会加一点自己的笔记.   虽然对拓扑绝缘体的材料和对应的模型都很熟了,但是始终没有掌握如何从具体的材料出发,来得到其对应的低能哈密顿量,从而可以在材料的基础上,对模型进行研究.这里就想通过精读Model Hamiltonian for topological insulators这篇文章,来掌握一下这个方法. 晶体结构首先来明确材料Bi$_2$Se$_3$的晶体结构等信息.首先在Material Project这个网站中找到这个材料,其晶体结构时菱形的,对应的空间群是$D_{3d}^5(R\bar{3}m)$,其晶体结构如下图所示,沿着$z$方向是个层状结构,每个元胞中有5个原子,  两个蓝色标记的等价Bi原子(Bi1,Bi$1^\prime $),两个绿色标记的等价Se原子(Se1,Se$1^\prime $),还有一个黄色的Se原子,它与Se1原子是不等价的,5个原子层构成一个元胞,通常被称为quintuple layer. 沿着$z...</div></div></div></a><a class="pagination-related" href="/2021/07/07/2021-07-07-GroupNote1/" title="群论学习笔记-Part1"><img class="cover" src="/assets/images/GroupTheory/cube_symmetry.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-07-07</div><div class="info-item-2">群论学习笔记-Part1</div></div><div class="info-2"><div class="info-item-1">学习群论有一段时间了, 这里想结合一些工具, 并通过一些书籍阅读来将自己所学到的内容整理一下, 同时加深一下自己对这些知识内容的理解.   基本概念共轭一个元素$a,b,c$是群$\mathcal{G}$的群元$(a,b,c)\in\mathcal{G}$,加入下列关系成立 a=c\circ b\circ c^{-1}\label{eq1}那么就说群元$a$与$b$之间是共轭的.上式中的$\quad\circ\quad$代表的是群元的操作. 类利用(\ref{eq1})的关系,将所有与群元$b$共轭的群元划分成一组,那么这一组叫做一个类. \mathcal{C}_{a}=\left\{a_{i} \mid a, b \in \mathcal{G} \wedge a_{i}=b \circ a \circ b^{-1} \wedge a \text { fixed }\right\}陪集假设$\mathcal{U}$是群$\mathcal{G}$的子群,$a$是$\mathcal{G}$中的元素,那么$a\mathcal{U}$代表元素$a$和群$\mathcal{U}$中的每一个...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">232</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yxli8023"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome to Yu-Xuan's Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A9%BA%E9%97%B4%E7%BE%A4%E6%93%8D%E4%BD%9C%E5%AF%B9Bloch%E5%87%BD%E6%95%B0%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text">空间群操作对Bloch函数的作用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A9%BA%E9%97%B4%E7%BE%A4%E8%A1%A8%E7%A4%BA%E7%90%86%E8%AE%BA"><span class="toc-number">2.</span> <span class="toc-text">空间群表示理论</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A9%BA%E9%97%B4%E7%BE%A4%E8%A1%A8%E7%A4%BA%E6%9E%84%E5%BB%BA%E6%AD%A5%E9%AA%A4"><span class="toc-number">2.1.</span> <span class="toc-text">空间群表示构建步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8"><span class="toc-number">2.2.</span> <span class="toc-text">实际应用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B-cubic-close-packed-and-diamond-structures"><span class="toc-number">3.</span> <span class="toc-text">实例:cubic close-packed and diamond structures</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Fm3m"><span class="toc-number">3.1.</span> <span class="toc-text">Fm3m</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fd3m"><span class="toc-number">3.2.</span> <span class="toc-text">Fd3m</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AC%E4%BC%97%E5%8F%B7"><span class="toc-number">4.</span> <span class="toc-text">公众号</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-number">4.0.0.1.</span> <span class="toc-text">Email</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/08/02/2025-08-02-Real-Space-Chern/" title="实空间Chern数计算(Half-BHZ模型)"><img src="/assets/images/Julia/Chern-m0.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实空间Chern数计算(Half-BHZ模型)"/></a><div class="content"><a class="title" href="/2025/08/02/2025-08-02-Real-Space-Chern/" title="实空间Chern数计算(Half-BHZ模型)">实空间Chern数计算(Half-BHZ模型)</a><time datetime="2025-08-01T16:00:00.000Z" title="发表于 2025-08-02 00:00:00">2025-08-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/22/2025-02-22-Free-SC/" title="超导序参量自洽(自由能极小值方法)"><img src="/assets/images/Julia/Bx_kbt-phase.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导序参量自洽(自由能极小值方法)"/></a><div class="content"><a class="title" href="/2025/02/22/2025-02-22-Free-SC/" title="超导序参量自洽(自由能极小值方法)">超导序参量自洽(自由能极小值方法)</a><time datetime="2025-02-21T16:00:00.000Z" title="发表于 2025-02-22 00:00:00">2025-02-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/18/2025-02-18-Julia-MPI-Set/" title="Mac上配置MPI并行Julia"><img src="/assets/images/Julia/a4.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Mac上配置MPI并行Julia"/></a><div class="content"><a class="title" href="/2025/02/18/2025-02-18-Julia-MPI-Set/" title="Mac上配置MPI并行Julia">Mac上配置MPI并行Julia</a><time datetime="2025-02-17T16:00:00.000Z" title="发表于 2025-02-18 00:00:00">2025-02-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/15/2024-12-15-Fourier-Spectrum/" title="超导序参量中的傅里叶分析"><img src="/assets/images/Mma/fft-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导序参量中的傅里叶分析"/></a><div class="content"><a class="title" href="/2024/12/15/2024-12-15-Fourier-Spectrum/" title="超导序参量中的傅里叶分析">超导序参量中的傅里叶分析</a><time datetime="2024-12-14T16:00:00.000Z" title="发表于 2024-12-15 00:00:00">2024-12-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/11/2024-12-11-Screeing/" title="库仑势以及屏蔽库伦势的一些计算"><img src="/assets/images/Mma/Vscr-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="库仑势以及屏蔽库伦势的一些计算"/></a><div class="content"><a class="title" href="/2024/12/11/2024-12-11-Screeing/" title="库仑势以及屏蔽库伦势的一些计算">库仑势以及屏蔽库伦势的一些计算</a><time datetime="2024-12-10T16:00:00.000Z" title="发表于 2024-12-11 00:00:00">2024-12-11</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  const initGitalk = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGitalk = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const gitalk = new Gitalk({
+      clientID: 'Ov23li0WvZEaIAZ7RFtH',
+      clientSecret: '03fcb77b7c28dafcdde00756e27f9b5bc76639e8',
+      repo: 'yxli8023.github.io',
+      owner: 'yxli8023',
+      admin: ['Yu-Xuan'],
+      updateCountCallback: commentCount,
+      ...option,
+      id: isShuoshuo ? path : (option && option.id) || 'afd39c111dee39fb82fb0f787258e9fd'
+    })
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async(el, path) => {
+    if (typeof Gitalk === 'function') initGitalk(el, path)
+    else {
+      await btf.getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await btf.getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Gitalk' === 'Gitalk'
+      ? window.shuoshuoComment = { loadComment: loadGitalk }
+      : window.loadOtherComment = loadGitalk
+    return
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
