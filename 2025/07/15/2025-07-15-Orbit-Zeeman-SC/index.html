@@ -1,0 +1,325 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Orbit effect and Zeeman effect in superconductor | Yu-Xuan' Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="当外加磁场破坏超导电性时，轨道效应（orbital effect）是指磁场对电子的轨道运动产生的影响，这种效应导致超导态被破坏。具体来说，磁场通过影响电子的轨道运动，从而破坏超导电流的无阻流动能力。相比于Zeeman 效应，轨道效应通常在破坏超导电性中占据主导地位，特别是在大多数常规超导体中。  轨道效应的物理图像 涡旋态与阿布里科索夫涡旋： 在外加磁场下，超导体内部的电流会受到磁场的影响，特别是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Orbit effect and Zeeman effect in superconductor">
+<meta property="og:url" content="http://example.com/2025/07/15/2025-07-15-Orbit-Zeeman-SC/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39; Blog">
+<meta property="og:description" content="当外加磁场破坏超导电性时，轨道效应（orbital effect）是指磁场对电子的轨道运动产生的影响，这种效应导致超导态被破坏。具体来说，磁场通过影响电子的轨道运动，从而破坏超导电流的无阻流动能力。相比于Zeeman 效应，轨道效应通常在破坏超导电性中占据主导地位，特别是在大多数常规超导体中。  轨道效应的物理图像 涡旋态与阿布里科索夫涡旋： 在外加磁场下，超导体内部的电流会受到磁场的影响，特别是">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/assets/images/Experiment/SC.jpg">
+<meta property="article:published_time" content="2025-07-14T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-08-03T15:06:35.397Z">
+<meta property="article:author" content="Yu-Xuan">
+<meta property="article:tag" content="Superconductor">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/images/Experiment/SC.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Orbit effect and Zeeman effect in superconductor",
+  "url": "http://example.com/2025/07/15/2025-07-15-Orbit-Zeeman-SC/",
+  "image": "http://example.com/assets/images/Experiment/SC.jpg",
+  "datePublished": "2025-07-14T16:00:00.000Z",
+  "dateModified": "2025-08-03T15:06:35.397Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yu-Xuan",
+      "url": "http://example.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2025/07/15/2025-07-15-Orbit-Zeeman-SC/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'medium_zoom',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#f54966","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Orbit effect and Zeeman effect in superconductor',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #dbeffd;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">239</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/assets/images/Experiment/SC.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Yu-Xuan' Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">Orbit effect and Zeeman effect in superconductor</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Orbit effect and Zeeman effect in superconductor</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-07-14T16:00:00.000Z" title="发表于 2025-07-15 00:00:00">2025-07-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-08-03T15:06:35.397Z" title="更新于 2025-08-03 23:06:35">2025-08-03</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">1.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/2025/07/15/2025-07-15-Orbit-Zeeman-SC/#post-comment"><span class="gitalk-comment-count"><i class="fa-solid fa-spinner fa-spin"></i></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;It has been&quot;,&quot;messageNext&quot;:&quot;days since the last update, the content of the article may be outdated.&quot;,&quot;postUpdate&quot;:&quot;2025-08-03 23:06:35&quot;}" hidden></div><div class="note blue no-icon flat"><p>当外加磁场破坏超导电性时，<strong>轨道效应</strong>（orbital effect）是指磁场对电子的轨道运动产生的影响，这种效应导致超导态被破坏。具体来说，磁场通过影响电子的轨道运动，从而破坏超导电流的无阻流动能力。相比于<strong>Zeeman 效应</strong>，轨道效应通常在破坏超导电性中占据主导地位，特别是在大多数常规超导体中。</p>
+</div>
+<h1 id="轨道效应的物理图像"><a href="#轨道效应的物理图像" class="headerlink" title="轨道效应的物理图像"></a>轨道效应的物理图像</h1><ol>
+<li><p><strong>涡旋态与阿布里科索夫涡旋</strong>：<br> 在外加磁场下，超导体内部的电流会受到磁场的影响，特别是磁场会引起电子的轨道发生变化，导致超导电流产生局域化的旋转。这些旋转电流形成了<strong>涡旋</strong>（vortices），也被称为<strong>阿布里科索夫涡旋</strong>（Abrikosov vortices）。</p>
+<ul>
+<li><p><strong>涡旋结构</strong>：在这些涡旋核心区域，超导能隙消失，材料局部处于正常导电状态。涡旋的周围，电子配对的 Cooper 对依然存在，因此保持超导性质。随着磁场的增强，涡旋的密度增加，最终涡旋之间相互干扰，导致整个系统的超导态被破坏。</p>
+</li>
+<li><p><strong>临界磁场</strong>：当外加磁场超过一个临界值$( H_{c2}$，第二类超导体的上临界磁场），涡旋充满整个样品，超导态完全消失，材料变成正常导体。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>轨道量子化效应</strong>：<br> 电子在超导体中以 Cooper 对的形式存在。每一对 Cooper 对的动量彼此相等且方向相反（即 $\mathbf{k}$ 和 $-\mathbf{k}$ 形成配对），这使得它们作为整体呈现零动量。但当施加外部磁场时，磁场与电荷载流子的运动相互作用，通过<strong>洛伦兹力</strong>使电子的轨道发生偏转，这会影响 Cooper 对的轨道运动。</p>
+<p> 由于磁场对电子产生的<strong>洛伦兹力</strong>，电子在磁场中会沿着一定半径做<strong>圆周运动</strong>，这就是轨道效应的来源。电子在轨道中的运动被量子化为朗道能级（Landau levels），这种轨道运动会破坏 Cooper 对的相干性，导致超导态被削弱或完全消失。</p>
+</li>
+<li><p><strong>磁通量量子化</strong>：<br> 在超导体中，外加磁场无法自由穿透超导体内部，而是通过产生<strong>超导屏蔽电流</strong>来抵消磁场的影响，形成<strong>迈斯纳效应</strong>。然而，在第二类超导体中，外加磁场可以以离散的量子通量穿透超导体，这些通量子是磁场以涡旋的形式进入超导体的方式。</p>
+<p> 每个阿布里科索夫涡旋中携带一个磁通量子 $\Phi_0$，其大小为：</p>
+<script type="math/tex; mode=display">
+ \Phi_0 = \frac{h}{2e} \approx 2.07 \times 10^{-15} \, \text{Wb}</script><p> 随着外加磁场的增大，磁通量涡旋越来越密集，最终涡旋之间相互干扰，破坏 Cooper 对的相干性，使超导态转变为正常态。</p>
+</li>
+</ol>
+<h3 id="轨道效应的破坏机制"><a href="#轨道效应的破坏机制" class="headerlink" title="轨道效应的破坏机制"></a>轨道效应的破坏机制</h3><p>轨道效应是通过改变电子的轨道运动来影响 Cooper 对，最终破坏超导电性。其主要破坏机制如下：</p>
+<ol>
+<li><p><strong>破坏 Cooper 对相干性</strong>：<br> 电子在外加磁场作用下的轨道运动偏离原先的轨迹，导致 Cooper 对之间的相互作用变弱。由于 Cooper 对的波函数对磁场极其敏感，强磁场会使 Cooper 对失去相干性，破坏超导态。</p>
+</li>
+<li><p><strong>涡旋态的扩展与相互作用</strong>：<br> 在外加磁场中，涡旋之间的间距随着磁场强度增加而减少。当磁场足够强时，涡旋之间的相互作用变得显著，破坏了 Cooper 对的局域有序性，最终导致超导态的完全崩溃。</p>
+</li>
+</ol>
+<h3 id="轨道效应-vs-Zeeman-效应"><a href="#轨道效应-vs-Zeeman-效应" class="headerlink" title="轨道效应 vs. Zeeman 效应"></a>轨道效应 vs. Zeeman 效应</h3><ul>
+<li><p><strong>轨道效应</strong>：主要通过磁场影响电子的轨道运动来破坏超导电性。这种效应通常占据主导地位，因为它直接影响 Cooper 对的轨道相干性。轨道效应相关的破坏通常发生在较低的磁场强度下，尤其是在常规超导体中。</p>
+</li>
+<li><p><strong>Zeeman 效应</strong>：指磁场对电子自旋的作用，导致自旋劈裂并最终破坏 Cooper 对（由于 Cooper 对通常由自旋反平行的电子组成）。Zeeman 效应的破坏作用更常见于<strong>自旋相关的超导态</strong>，例如自旋三重态超导体中。在常规的自旋单态超导体中，Zeeman 效应通常只有在较强的磁场下才会显著影响超导态。</p>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Yu-Xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2025/07/15/2025-07-15-Orbit-Zeeman-SC/">http://example.com/2025/07/15/2025-07-15-Orbit-Zeeman-SC/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Yu-Xuan' Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Superconductor/">Superconductor</a></div><div class="post-share"><div class="social-share" data-image="/assets/images/Experiment/SC.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg"/></a><div class="post-qr-code-desc"></div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg"/></a><div class="post-qr-code-desc"></div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related  no-desc" href="/2025/08/02/2025-08-02-Real-Space-Chern/" title="实空间Chern数计算(Half-BHZ模型)"><img class="cover" src="/assets/images/Julia/Chern-m0.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">实空间Chern数计算(Half-BHZ模型)</div></div></div></a><a class="pagination-related" href="/2025/07/14/2025-07-14-Exp-SC/" title="实验可测量与超导特征参数之间的关系(持续更新.......)"><img class="cover" src="/assets/images/Experiment/SC-BT.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">实验可测量与超导特征参数之间的关系(持续更新.......)</div></div><div class="info-2"><div class="info-item-1">整理一下实验中如何测量超导一些特征参数。   超导相干长度与磁场关系 2\pi\xi^2=\frac{\phi_0}{B_{c\perp}}，\quad \text{或者}\quad \xi=\left(\frac{\phi_0}{2\pi B_{c,\perp}}\right)^{\frac{1}{2}}其中$\phi_0$是超导量子磁通，$B_{c\perp}$是垂直方向的临界磁场。 正常态体系中电子的平均自由程$\ell$可以通过Drude电阻获得 R\approx\frac{h}{e^2}\frac{1}{4k_F\ell}其中$h$是普朗克常熟，$k_F$是费米波矢。通过对比超导相干长度与电子平均自由程 d=\frac{\xi}{\ell}这里的$d$是一个参数，如果$d&lt;1$则被称为clean limit，表明体系是一个非常规超导体(unconventional superconductor)。从量子振荡中也可提取电子平均自由程 \ell\approx2\pi k_F\ell^2_B其中$\ell_B$是磁长度 \ell_B=\sqrt{\frac{\hbar}...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2019/04/17/2019-04-17-julia/" title="Majorana Corner State in High Temperature Superconductor"><img class="cover" src="/assets/images/research/juliaresult.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2019-04-17</div><div class="info-item-2">Majorana Corner State in High Temperature Superconductor</div></div><div class="info-2"><div class="info-item-1">最近刚刚学习了julia, 手头上也正好在重复一篇文章，就正好拿新学习的内容一边温习一边做研究。   导入函数库1234567# Import external package that used in program import Pkg# Pkg.add(&quot;PyPlot&quot;)# Pkg.add(&quot;LinearAlgebra&quot;)# Pkg.add(&quot;CPUTime&quot;) #Pkg.add(&quot;SparseArrays&quot;)#Pkg.add(&quot;DelimitedFiles&quot;) 函数定义12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210310410...</div></div></div></a><a class="pagination-related" href="/2020/09/03/2020-09-03-Hubbard-doping/" title="电子掺杂，空穴掺杂与化学势的关系"><img class="cover" src="/img/defult-cover.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-03</div><div class="info-item-2">电子掺杂，空穴掺杂与化学势的关系</div></div><div class="info-2"><div class="info-item-1">在研究超导问题的时候，不可避免的总会遇到体系时电子掺杂还是空穴掺杂，因为这两种不同的掺杂所对应的性质是不同的，最近重新温习一下超导的相关知识，正好也利用一个具体的紧束缚近似模型来说明一下电子和空穴掺杂到底是怎么回事，以及如何的通过自洽方法，通过调整化学势来决定体系到底是电子掺杂还是空穴掺杂   半满实空间分析在这里先采用李正中&lt;&lt;固体理论&gt;&gt;第十一章第九节的Hubbard模型来说明一下填充到底如何确定  H=-t\sum_{,\sigma}(C_{i\sigma}^\dagger C_{j\sigma}+h.c)+U\sum_in_{i\uparrow}n_{i\downarrow}最后一项就是相同格点之内的不同自旋电子之间的相互作用，熟悉强关联的一定对这个模型非常熟悉了，而正好也就是这一项，使得本来可以利用紧束缚近似完整描述的模型，变成了强关联体系，从而引起了一系列有趣的现象。 在这里简单的令$U=0$，这样剩余的部分就是一个简单的紧束缚近似模型，学过固体物理就很清楚，如果你有N个格点的话，利用Pauli不相容原理，每个格点最多放两个电子，那么整个体系的...</div></div></div></a><a class="pagination-related" href="/2020/09/25/2020-09-25-MF-BdG/" title="BCS平均场近似及Bogoliubov对角化"><img class="cover" src="/img/defult-cover2.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-25</div><div class="info-item-2">BCS平均场近似及Bogoliubov对角化</div></div><div class="info-2"><div class="info-item-1">BCS理论对解释常规超导的解释很成功,这里我就整理一下如何对BCS哈密顿量做平均场处理,使其变成两粒子算符形式,然后利用Bogoliubov变换来对这种两粒子算符进行对角化处理.   平均场近似BCS哈密顿量为 \hat{H}=\sum_{k} E_{k}\left(C_{k}^{+} C_{k}+C_{-k}^{+} C_{-k}\right)-V \sum_{k, k} C_{k^{\prime}}^{+} C_{-k}^{+} \cdot C_{-k} C_{k}通常选取费米面为能量零点,可以将哈密顿量进行约化得到 \bar{H}=\hat{H}-E_{\mathrm{F}} \hat{N}=\sum_{k} \varepsilon_{k}\left(C_{k}^{+} C_{k}+C_{-k}^{+} C_{-k}\right)-V \sum_{k, k} C_{k}^{+} C_{-k}^{+} \cdot C_{-k} C_{k}\qquad \epsilon_k=E_k-E_F\label{bcs}为了求解(\ref{bcs})的本征函数和本征值,我们能处理的只能是...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">239</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yxli8023"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:yxliphy@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome to Yu-Xuan's Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BD%A8%E9%81%93%E6%95%88%E5%BA%94%E7%9A%84%E7%89%A9%E7%90%86%E5%9B%BE%E5%83%8F"><span class="toc-number">1.</span> <span class="toc-text">轨道效应的物理图像</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%A8%E9%81%93%E6%95%88%E5%BA%94%E7%9A%84%E7%A0%B4%E5%9D%8F%E6%9C%BA%E5%88%B6"><span class="toc-number">1.0.1.</span> <span class="toc-text">轨道效应的破坏机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%A8%E9%81%93%E6%95%88%E5%BA%94-vs-Zeeman-%E6%95%88%E5%BA%94"><span class="toc-number">1.0.2.</span> <span class="toc-text">轨道效应 vs. Zeeman 效应</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/08/02/2025-08-02-Real-Space-Chern/" title="实空间Chern数计算(Half-BHZ模型)"><img src="/assets/images/Julia/Chern-m0.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实空间Chern数计算(Half-BHZ模型)"/></a><div class="content"><a class="title" href="/2025/08/02/2025-08-02-Real-Space-Chern/" title="实空间Chern数计算(Half-BHZ模型)">实空间Chern数计算(Half-BHZ模型)</a><time datetime="2025-08-01T16:00:00.000Z" title="发表于 2025-08-02 00:00:00">2025-08-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/07/15/2025-07-15-Orbit-Zeeman-SC/" title="Orbit effect and Zeeman effect in superconductor"><img src="/assets/images/Experiment/SC.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Orbit effect and Zeeman effect in superconductor"/></a><div class="content"><a class="title" href="/2025/07/15/2025-07-15-Orbit-Zeeman-SC/" title="Orbit effect and Zeeman effect in superconductor">Orbit effect and Zeeman effect in superconductor</a><time datetime="2025-07-14T16:00:00.000Z" title="发表于 2025-07-15 00:00:00">2025-07-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/07/14/2025-07-14-Exp-SC/" title="实验可测量与超导特征参数之间的关系(持续更新.......)"><img src="/assets/images/Experiment/SC-BT.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实验可测量与超导特征参数之间的关系(持续更新.......)"/></a><div class="content"><a class="title" href="/2025/07/14/2025-07-14-Exp-SC/" title="实验可测量与超导特征参数之间的关系(持续更新.......)">实验可测量与超导特征参数之间的关系(持续更新.......)</a><time datetime="2025-07-13T16:00:00.000Z" title="发表于 2025-07-14 00:00:00">2025-07-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/07/13/2025-07-13-lianggang/" title="常用量纲转换(持续更新.......)"><img src="/img/defult-cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="常用量纲转换(持续更新.......)"/></a><div class="content"><a class="title" href="/2025/07/13/2025-07-13-lianggang/" title="常用量纲转换(持续更新.......)">常用量纲转换(持续更新.......)</a><time datetime="2025-07-12T16:00:00.000Z" title="发表于 2025-07-13 00:00:00">2025-07-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/07/12/2025-07-12-symmetry-response/" title="对称性约束响应系数"><img src="/assets/images/Transport/current-symmetry.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="对称性约束响应系数"/></a><div class="content"><a class="title" href="/2025/07/12/2025-07-12-symmetry-response/" title="对称性约束响应系数">对称性约束响应系数</a><time datetime="2025-07-11T16:00:00.000Z" title="发表于 2025-07-12 00:00:00">2025-07-12</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  const initGitalk = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGitalk = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const gitalk = new Gitalk({
+      clientID: 'Ov23li0WvZEaIAZ7RFtH',
+      clientSecret: '03fcb77b7c28dafcdde00756e27f9b5bc76639e8',
+      repo: 'yxli8023.github.io',
+      owner: 'yxli8023',
+      admin: ['yxli8023'],
+      updateCountCallback: commentCount,
+      ...option,
+      id: isShuoshuo ? path : (option && option.id) || 'af8cbde2b79fc230e4b0fdcb5585ba50'
+    })
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async(el, path) => {
+    if (typeof Gitalk === 'function') initGitalk(el, path)
+    else {
+      await btf.getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await btf.getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Gitalk' === 'Gitalk'
+      ? window.shuoshuoComment = { loadComment: loadGitalk }
+      : window.loadOtherComment = loadGitalk
+    return
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
