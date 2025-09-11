@@ -1,0 +1,303 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Downfolding 方法推导有效哈密顿量 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Here&#39;s something encrypted, password is required to continue reading.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Downfolding 方法推导有效哈密顿量">
+<meta property="og:url" content="http://example.com/2025/09/11/2025-09-11-downfolding/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39;s Blog">
+<meta property="og:description" content="Here&#39;s something encrypted, password is required to continue reading.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/defult-cover8.png">
+<meta property="article:published_time" content="2025-09-10T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-09-11T13:54:35.024Z">
+<meta property="article:author" content="Yu-Xuan">
+<meta property="article:tag" content="Method">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/defult-cover8.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Downfolding 方法推导有效哈密顿量",
+  "url": "http://example.com/2025/09/11/2025-09-11-downfolding/",
+  "image": "http://example.com/img/defult-cover8.png",
+  "datePublished": "2025-09-10T16:00:00.000Z",
+  "dateModified": "2025-09-11T13:54:35.024Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yu-Xuan",
+      "url": "http://example.com/about"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/logo.png"><link rel="canonical" href="http://example.com/2025/09/11/2025-09-11-downfolding/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"作者: Yu-Xuan","link":"链接: ","source":"来源: Yu-Xuan's Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'medium_zoom',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#f54966","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Downfolding 方法推导有效哈密顿量',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #dbeffd;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">243</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/img/defult-cover8.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo.png" alt="Logo"><span class="site-name">Yu-Xuan's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">Downfolding 方法推导有效哈密顿量</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Downfolding 方法推导有效哈密顿量</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-09-10T16:00:00.000Z" title="发表于 2025-09-11 00:00:00">2025-09-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-09-11T13:54:35.024Z" title="更新于 2025-09-11 21:54:35">2025-09-11</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">14</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>1分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;自上次更新已经过了&quot;,&quot;messageNext&quot;:&quot;天，文章内容可能已过时。&quot;,&quot;postUpdate&quot;:&quot;2025-09-11 21:54:35&quot;}" hidden></div><div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="67d2232e63c4a6f35c281e62b5c4d0eae7519ae911d418cfe7da01a3cd24d939">31b86f4658a1544a28b7adc265148c741a5996faf207f6685499a2aa07e737b29a6c6529f07d5e89bd108f567386224f0c406c867e72bd1c1aa61fc76d35b90719b3ede3467895497648ae3a3bc7f6f621fa33c0bafa88de3f5d873f0f7101db7bddbdab16b2f9bc9d5d037236ed85c24472fdf2eb5e6d75d1a43c704dbbcefb6a3e2ebfce080d2b8bc06b00c4a9a4e55cb14b7e4664e1896edbd9f535cc3c222851896e1a3190a4b78f86a4a9efa0ee89086a8e57f060a23e576b25d4f65a19ebd260a1440bc063c4006887abd5a7834ee2e54226bf2d3ad873d660984d4145baaf77bbd1730e83f8a18359f1f94d231bdc0fdb06615986fca3e7003cca2f0b4af7c1f4e65cb2a8dc9160c0e4b8edf08ab27e7c1d619f5d2b44ad273c6730d90a49ed10ac31e5a3e84bcab1e4974faecfd6f30ac1371e79373e8062e40895beeb1f98bccecfc28690e6f89df0bcdcb892e8544a09778d36142060bd2443c7cb7104e01e2547cc95083824864af854ab318686e6c3a3b77227f694f2b63768cd1b1ee24e561740e986d331eb8a5876dc8edefed7b9bf1de3725383e091c247a4388867b02bc129ab412d4cfbfa2a2d4b5d206865e5a1c507a82a66230f6e095e50ff5fb4c5d88f353dc96d0753c42257fdf086e6543edebc9be4eba61964cc7a73a4934387b9d2e659425b6ae9fdb1d734773548aa6ec3917f456e21e2f8755b44a625df18aa0441394270f18b81beced3e635c88a21e0ff33e39f9459b6f16b3b93f82af771a8eef18d3f657ed78ce9f07b6af5779a8c521851fcb060dc75c25975653f038cb576be207def1ca9688fa30767ed1fed7663bbdce943486cce11cede7ef036788fd1e6fa1b45c4af163053b2b343c906c5d6d8201cd04da06613cecbe57d29be8c3d897b293752d070aa292fdadfde4d96d4f3f573af5c7f4c6889a938f5a0084ee3547d2e281a944948cecd0ebb419ccd7499afd6c06ddc27266953d866f53111d2be8114c0acb2ffb5948168437b18d0db6a7fdea6bb77caa96dfa85ca8b4e6baf1a047c09b27b45d052c0e30a733278c63364684522415e6d007e77695f3548993f5e8bad2604920b14224e2649c4bc500ba03b325a7523f4916ce8db58ee38d8b71204b15bf4e6fb9103001f321e60d41bab0ee6efe08317638e3d310e79554942ed78e5c41d9c24d4dc3c3b6fa9b4e21d8b4d782af5ae0933494bef13e7d906a4a0dc3013b31608df5d1d49c74fe29abab2556a467faed8af8d7aaec6234fcc24c6183718e5e7a88903ef9a80e58a162d9387120632c797706a333fa4a639974346d9128a3cf697e38d4edbf46bcaf6894de8771f5c05b746c2e24d803d2d757fac359f279f6846dbd6ad9424b1227180ea4baab6c6e9cc2ef79d5cda6dafb02ae93ec596d01bd42496c580a65b842f76ec0b52926dfb77d8d882ed4185a1a77bfdd851580269d5c3bb91dfa25204922c6d450ced9b03e3a01853ca3367be11f2cfd80214d2048df17649cd6fc7b8aeeb05f6533e5b193314a7f4414b1b5445e913f7b6f748b0d25e3ecbe71301d3ac18fea061f67d48c1fdd2fa3f2a19871040df4b2044600b82e1cf645cfee44faad5f4be8655533a64047a1037edf810cd8b96560dab1cd135d01c21928562171c207609deed477fa7417a6490f3658f2ec9f18cda507d92ff4984daec570e20419c788e3a7d5f134a79773ba0ba6be4858baabc259779e9b7e95b724700222f919a74b880cc055ea862a46092c7d5102fed7b459cb9bd1547d278fa9034efa979c04e3e120222a88cb110dd847ea88a546ee3a189e01fd51623f6f1ed85d91d9dacc2bf9470dbcf3b6d31f7a4c4fc2e73539558af7dab5773559bce7e95993bbab2f4d35043a9738a59a7996e0be9037a1f00a4e03ea059667592fa7d5c096ad446a42693aea1aae4c7ed51dbf1c9a74cad972c9d6a3ad712cfc6e706019fbf6869df426537d13054533f7aa8f55023f9c7145f93192a83c96588f75d5fb303d61cf55175048296800a221a50090459547ca65ff338a588343036d5cad97dd758c25df7aca9e11cc3a76c1274ac6655adedc4740c4e143eb468500d701d6ce83a8be61e30592244326af955ad23ac9adf808d99e5b6101453504400abd3d20d60ed718267f25c8a196872dd078e4e82fdb6c5c0a4e13479851dd6d82ab24cb9dcbadd09ff4a6929fd2dd6cba2cd581eb92974c50ac6e1f6bf52bc32ba97433b395bb83c1f34336ee9a90eeb862bf68b3a089a87eff948c5ba6799157b43889cad71c1e75f0a9363abd9ce071f23def1ad5e72a485f53cc2680f3803517976d357a2a5b7622dd1e5027738d2a9414559f6e137c785ca202558d46395516a3f3a0eb3151ce3c46eed4e50b2135507ca62b8bc23c9cdd13fd18aa25bad93f98ecaea3b4096a82b461f822fef68d95ff2a46a319887b3ea119f69860eb7613bb8e0db05f485dbc6d74ff20d6f6f03520f8d993ed22d017c1e64564f2d81cf87d425468bcda70f2f2bc44e1ef8be37173e5526615b9a0a9740ec4553e16e25766652cead60e936cf103f4de63860ecea42e4f5913af437a7c12fc427db128b2193f3ce6936692c948e80cec25db7c86ab0f3ed487450b37eff47df1a40aa0eb899fdf47e3453f4f7707d842f58e854a16445e15ac6e92ec625bedc8596c9592365d457badc0bcad8c6df560cf34eeb4c85d92bacc0254e8dc1690e01cd2e9188848ccf1f2e7ad6416bd825e9b9fa72b315838aa0a6b39eef23c94ca9df267aa04e86ac4614a3c1ba4bc2ea96a1199950d9a8d5cd5f0d1def859818ff2f8f9ac3ee4808e4382e74701cff02fa76aaf956e209076c49a530abeb0cc89183099743c647f06986753d540458a75ddd78edfd29d698bea064996cc587dd12c78087bf02fae803443fa7eb41d40851eaf62fe83e1817a88c01e62d63c3b348489b0d06a1e6a6e2423b9a0a826bb0818e9528f15d8e1a865c4cdf8329869562f1a66736f4c438c8b95f522463fed201dbecf921bceb7c9514c87b3dd6b09dad3c4589e14998d79cebeb29af0721c13da27075ad8bbad6b4759d3b4f50f8ddc8bcfbd58a384dd872e9b420a0cc67c9993e6ff4900f298cd779c6ca5fb47c8ba92266a1735b92dc5bf2a630271419a7149a8b9cee2109f5c1f128595122bbc43ad3d5458a6ebc03c1203aaf2b51dcc1a796009ef84da923bc1e80270370471b60c782015540430e4eff3a5d96142ed5b449732ee676debfa72c05d0dd61e65b23ef65b16874f20f335f9f19b7e91029c3145c065d59a9e9dc60ee155627e319152bfa8fbab6e89cfaadd831d98f46af0115bb5963c1177208b15ee8e4b9181636be2e61a18de343cdd23aa28f970f64de8da89f222319ec10f26016e9674760647d00d2c4b8193fdd5a1879783f9d8b04665b081220b5e4dd0174ae0458b7296d708e4f575b7c3c1602bc8b1ffe4ea17e3d083bf290412f4bf20c33fca246ec94547c5a731dc6d4736c6836086e721218996bf7ebee9f796f0a8875c823f42a982eba6a46bdafbfb2f0e27ea49d8b0a4fe3dac09aeace70ad9525efd06861181c31e54f7ec6171f4e4c53802b0f251e3b667da3f435a9b1dde3961cba3c0db4514cd6a44b650e4c3e8efee12d6dc21ea0f4c0dc5e0101f39c6745387b735ac52cd30f7c4f0e7a1d826bd7b48dfe24160c9607ece1e1356329c8533f5aa3f60d0da81aeb6daa009309cc4914ca97adc123e531bdf32a498b3c07fe8ea44c884f678c9b3583eb6df7bba5f9fa688dce72e1ac3da899c13462b895b1140aff7f63ea218c653261b4e0f049a9895f5254d66b330151b85a5b74d8c4929cdebb5a86856fdfbb0fb1f1abc40988fe361cfa4240ec49a1819f3f597dc14c668125ced9835cdd0114c2405bc90c17ea887b76a367aa3723f665b466cce802d23eae4103c7e5c9ea85facdf939bdf796dec8bc16bf6a72756bc98aaf052628070d87de6082f3fcd40232bb410158f5072ee6c10e8350091ba4ea3975ab9d1eaa95f0b673b9896716a129bc974dd759d11c3f82d657762d04fafc91ea29709540ac6bc0c6d46d0d5606503eb7502cf8fe39e75cd9f7b2563dbe7e38c7a4807506b792b89557684bfdc5b28d7e87c5bda695ccaf67df277e6a98b903369453ed1dc8ff051b6b455c7b534d9cac1158f37a7d703392fb7083cb9bee5c1ca5f715334d79b499caf53112443854301d099d74951137c8ab9d865a901ab830813d289d6ea6a586cc8c0840a70e5024ee1909edafefd11e2c2975da7f746c98ec7eff64746906f1b1182a8fb9e9267109f872c5faf6dadf40e3ea499bfb3449b103f0623026d1af2a921ab3108c4786b2c0e7c0424bb966ea2b58b3ca04aa2b265621ec8f45696be820e9babab916cf8fdd7b437028e3e4c33ce103523172e9af48ab984d3c2312943f920c819c9ecc041303ce7e6c003bf2ce06fbe4178f58107361957f4ff66ba82f1b764f56b5f9d2ae2f3f42b8e2790f5de6fe527a17aef2c5c1eac5de900735f2460bb7b3bbf9dd7188f693ad9c981b1ae988823ce631f92236510315020423b349eba2dd175b9bf031ef5bd129fb950f9d906f518e0d41c84bb818709d6b77f12989b95ca5f918ecfc7394e54935ffc5f698199358fcd0ba033a722b4ec3da19ffec80fe9911cb67a9fb4c49bf5cbafc828664ffe00b8634559fd0ec781698dd08d674b67ca238184b45007236244ca8ef7df163808b6872b6dc7dfec413ff0a34df8fff9a2b33c48d3f84b14de9c2533125e20cdadf5dfa702a335d20b518a0abeb984e4115a6f625c6e59791c037a9612f66706a16fc2aa1d7851e27de9fc022409e44ef065db2f390e9d56e0c4bdc8b9fbe08f10a9d76dea8484369a38afc542ff458c0bf75665e58a6d4d3682c2d1cbbd9b33f56146b378f4c7cb0f6781c69bca2648275833d4a50022f2bc88093282d53390e50dd9ab5f8cf71226a1a70c09560727c14928b01ab07b00bfe1c6c70a24c5360f8ba3faab63abeef8b96ba77da2d514123d1f343da1c344490a9fcf2366b84ec22a08f8dd25f68e8ffae5105a96de9d2210dc15049991504cc5aea00e247e258a5314b6f2468e26d247b15ac298baa88742d9f17c571dd9d521ca7f73dd08b083c423af1ef132dbe15ed572d59d6cdfab95d120133af91b5af25e5fa6b5cb50cf4222e25faebd468a43348b0c407e879ec703d5ecb4f5d49680a149911bb5876ee9d664ea85feafd2131b0a558fa09b72ca171791071d7b753de0d6fbeaf3b474d26bba1bed3aeb2a066284f78a87aa83723a4a4fc4eea04f359a9f76bea77c3135856f81795fe333aaa4ba1dda0918de6956d1d7af28171d2c189f839323c82fd75b3a47d8b66128681135dc11fcf9843591c025c057c4f51f4171f783eabd129643e5f0cb266595f4850af83bb8892eededab7ecc66bd7a106ed8fdd2cd1d5b342236b9a4e107fa72b957e5b269bbf37061391071d41d181f7600b6f309db4b412524f1bf5e1e23098d65b13052b6c39dfd3feb6be499469641be842384cb2e9d6dfc020de244ce625f0fc1cf561c80155a5e9061a8dddf97d73b5a8e1532a548ab5157551ecc6cbb6fbfb5022e2ab7bfa4242bc3ca6a247e1f59b2ac35a4c5128384e03340a6534cb7ea316ed03317f821fdc47ff1b93790e8fb8f69836d025e6b2bff9d4667e4f49ca13df1f06db316e158b50ec03d0ed8af542d7e747e0dbe9362d15d952ddbe6b568b71266bcdca0a409ab9941848062fdec78cb35bed78f7aab1c7aa2f74080f772ac34eb744a250654ad88866e93436de1c55e473375163da29a308cebbd57e333187fffbb537e5f8eb41ea88a305216c334145fe34995c63ab5abaa267c7103e093e76e0dffb18960a03346b56751be9f385151a301470162573f7fd54f72e891547f842d3738b991f7b614d9c7b3d7b7c82559ad5a9d11d91307815d2b57eeba72df99b09be2ac868ce66a2d6894af64def30cf665c535bd51a9779ff20327e0bb9a00f8ca37f0f08f4c1264efbde3c8eb9b32a02e850d6a179b52ee9c9b69f2e527f06e085c6a9635a86015df2822882dfef315d828f9cfa20ee6d883c94160314b4fe884cdeb7380e1ce2aa321c781ea8e69a5ee0eacd0edd3c43f26d29a4f8125eb31a99ba2f5c36eef350c1d5e1b81240e284ee8c72a69a9f8a94f7f2696396af122821a741b3cbe49f07c7a8389bb5f4b88d409e69ecb5136a419455c9e85f65071c3af4f35f57c270b65c977d837550fcff12a294a875fabe7ef60eac2fe1d7bddbfbaf39392f6525faf9365681167a787872ac73c55fd90d00ae16706aa90445da9593583b88e060ae3c2e01eb89b33db2e3c21b08c9bdde9502794a2a9ec3ae386512c73737b8d7f96547e911eb95e10abe94ea9ebfd9ba145355e7bdadb7bf69664aa2415989fc57831ed2b66d9877b3999461178e49157cb65b22b33e5c66f8bb37458b570b6a026368a689b71fb9834ee60880fd28e676cc6f8f8458d0a50b4ad017767a377ce4f0361f6badcc061457e7f89280a3ead7ea676aa685d0aebeab7da9f452d41b55e8b0e4947439640dcfae06d8f45ba60dc68aeb731a8a3ed035c6a2a626727e7d83468accc4fc6945510797ece7a9940b6833d3b3ba379356c8374dbcbf297e3218ae678744edfc282e158a6064dec15cdf10f32e1eb0a041bef57b3011a58d5f7c2037d14ad56752ec42f0bf2238f0008f7f6a20043159764f6446cc21ed271dee9455f7cbdb34b9b983e80417f16d332737a7673c8bdd9e2d1a435bdca5fa3b82b2eabd2bc9337b52cc1e533eeb04b8faa5404d1d25e2ca0ae929e355820e31d58e67cfb365db16600cb73432fde1db41904421f9aeed7b0ab011459c694bd4a8d2a292a6334269afdf9adecb42069c34f297f3dc4f9bf7702db11cf7e75a444beda8199d9e06abdbf7e4cabf95a457b00ac05b2c94e6b2f94cbe1c1b711e5c33b5bbca111d8c7bf4298411a6f176e5840bba7bc886f24b1a11385a8004944edbf10af4321369ee2d1755c73dccf4500d01c61d89bd9602da597c29b4a2373ab6d962b3055d08371a779424f475f1ef298e7c7af598608dabfd437abdc51d56e18153870af5ef92d72bd7a9e1278c81ed5896a8d21ec3fae69bdb7d275669c12e8da44a509f1a64931c4c9b34869fca75c406fb751987b835fb041d2731b5b52614ae91adba1d9f4aa3565c61fb94402c78873fd640a8a5f81e3223374fae7b60c79f3659f475ff79fa42eeda22a7a79a2b7dc073726ba43627c7855662b9d6aa186eff2f6053ac192a44b345115d1940118d272e1b1c9ceaedb2985b21e45422aeb166bc6a3955c8f31035f975c5c32ddb75da7002717976fd87ff641a66483d7fbbfb5a93c93f80724f53f74e5e2af7f13753a7861ffc32760827cd40b54b7c0919e361c5219f485e9afd0ce0d5dcd8ae817cf19e0f26bb091a7b5f52b375d6b806856688bd7daf1927280c9228908beef901747f7ccd754125b28934b59706fa01e763bdcefa3595a91fa50c3175fe0d4001e7febb65f83a9444e50d6ed5cb99d86d9d197cf4694fedadd3cb27a7c1ee613e294d0bebc390bcd67581b959d9dd6f58a9bc17e5a6eacde1d1b4860f66c8a68b532682435beafc1b2a8f2397b8830ae49ed89348db14fe41f2fa100f7034cf36457be62f36014e6baa0efb3c307b87fa0dc43d9ad971de32c66e3ed41ae4e65d004e928b1f392941a754c3a064244bf18583dd7d6c2302e6ed321876a0212fba8b2259f3a0e0d147b705082c68cbd993ce9448e2fe45f08d048d4596cde655deadde474076c9969ba123292828a731bb7ddd612050b4c42803c3394675c5f84930da1a7b814c3215c52b55edb80b7c19e7b3ff563ffd6fbe7d6c461f11c884ea1b544f34e2ef3d48e11246b0bb102545385528adf116b71048ce57ba7862e0403170ed947a936c0e637e50d4d9f5b050e3c884d894f4d54a86324bfe1c6e72feadfdbcfb6aec126f8607ca03735c0432b24ef79a472631694b10bae6fd3496e5c96e2519a4c87c41a5f24718b80d2f857eb8ab3f556815c151f7fc27ff4312f771d5b80bc0204a5dc4240f961435ad01e8109a4fbfcbbdda96d9bdc1c005adc28b166f5493f967fefb4f22b656342b3e4c42d9b7d13b7b656bb77d888de5cabe3466d2e2e1383b87eb5c9744c66d8793c0865b51ab180c584f06f3040c8d706aef6a37712942b676b149174cd1c1c7c73656991eae4e6ba3d3197bd075ceace637521eb3825b49cecadb530ee6d4bb5e6236a88f1f8332677b4b8a544f20dfc3b5a07ef341bfac864253cde3376b903b9c32c2448b2750eaa9b55ca35c5bbb2a55b7f2a8770f4feb903dfc74fe70ece8e0517043c3f6cd94d005c515f137508f6b42afb500bdbcf8ea20a178e81e4bb25d1a2b048e2c183e1e3ce05ce66734824c4ba0b2f1ccd1c01414a1705c4c613fe14942ff25e98a7b046e8c4f88e408e665576b619110025d01aa42e45c6e14344dc2c166c7c0716b58f410d205e6593bb21e521a4d5c3d86c42b9adde0a0843efd2640a0875d05bf05825a63783111c29d407fbe08a2b7fb64d36518a8f89343ef985f67ec4ee732273db79765022b91972d7ddc8523e0adba61020b8d8e517c83d33dcde4d026b002893670e8ee2ba337533878684defee70ad28d4bf8991964f1e1610304862d56ea1bb352e6d7dfd7ee8acd1d144708978c8c6acb497e91c1512b8ceccef18815e54a6f3b611b9d19cb624f73fa22bbc93d235b1f0ef5e1b7e5f0300319ecbc41956bb9f0be18215487e4c5c9898398fbb00d16d13e1db42d5b46f14456b410401a9681d34e43d904005a37ac851738e51437e89d92dace49c5a3af06772b0cc0b5438dee87798daab6ab9091239171f618859877ee53884d7881e958fbf128888b56ef09a08640949a9d141ea22d8cf616868ad66895fbb50495beba6dbee1a7c17568455d7d7f8b9f8d2bdf01319abc03a0883954100f313efc0d515a9522f916c3f05d93e6cf0cf72d4b31890f619216a8a823ffbe9f8afbc7615cb99f6558f9aacbc736ccefe4de2c1a97b36fa78e9dc82ab553e84e15fc09a1036ec746e4dac604f7a71983a1e3c3352550179f145ffccd33ff2c8779494504ae610a7989e30fb109487219af30e6f076b793c28ce15cc62b007722666be8340f1102d69b402b5074aef574d18579250daa449c7c762cb9e65d00916d0e8b2d0ff76fbc2d8759203cc790ac66ef2d94632e4510b38484f2b23c828780f35babae4ed3644dd8f8278f8d4e5f5504831a02b0400865eee2de03d05f86e4e29aa08677f10ee45941ac78d1789197783e8975102a3976cc9f943b5e31ef7018948eb6024c5a12344f3f9a7820431146317bc96fde19cd7a636ff668a6b78fb6cb346b51f4975d59ed28a956a07437c7e42f6de4c93fec40ee52a9d7d106a3502f01547c9011a43efb6e9a8e54bb84d2ecfb3910931474ad69e82b41df5cc4765872e1a8fed680b9d3f7b23c5770450423d7419f4a4ed5afa26d50a1f668c0aa8297db3ac67a2c40c79e8b440e7e9b74f36ed4e231542b9b39ddb77d671c1fabed3d3de7bc3d8e620ad764de4d34c1f9d6fc5a0501826f5d28068bff06ed1a52aab4484700878f74784e995d808e4ce75374fbf2300367705f39a2bc5322cf6814b5954ed6a26d2d4f68f14784c649599b650cb5011707c9e777b0abd739b1986185e98ddb14fe7d697bc530d6c28491f6cc04d4f743156167e623c2be713c5c8d179d98f8b9cbe0e0ae1e51730250f9b8bb23e6c8b98d48d7665d618088cc45821a1182bf2c48a231020698bc8a91821736c36b779f09c8a34a47c70e986458c606c1d26e00970c306c32970e88c0172af6c80d9503cc405402b3108d5bc70ebdcb8692e099b20f4198429faab3dae42939091346961ad81d7dbae11f5bf3afd5775a25869dd046d95e0b8b20b0ad260660ab5b943f11186e6639a5f769b5b6f045b2c5b92b14e1d4bdd12b6af8b909811127d4a36678e44806651b05057cd8fd519c4a2b805ab1bb8d9f237ae8406769fd650f398ef90c8337d7fba34dfdac463e855824e00ab2dc10f353da601528a67a05769c05f8c7dc062db23ad291dc7257f1636ccaecac4489a553ec4fb34bc96d7fd12592baee21ea28ee9aae001cd0455772eeba47c7e6be4b8242a540d84dbbe2b5af94b6fef9d0f079baa51f7b52cc90e2fb4e93616c5b86cbbf08381735aa0f7bdef9e480726805f9e12908248e591e478871321241226abf65ce7142c58c9ca3523690058e857485935fc24c661ed94ae603c4af25a028aaa18815d48d3091c87d80f71043418dbc398a74dae86d03c49a6799c498596b0c8711b12921eb53e2d9a29f659003def086c73fad5f7d0e7cb2d3d4b976da64c60c09ab3cc3e466a0389b7ea7a99e982681e5efe12b192c4664b19b86892b78e4d118b55a805780bb38fd09c28dd0d7967261ae873d5d1a99428a894f2521a7ed4f7d5dda58ab9010df56255c2f3d49cef3d5043be768a966ff79ae49ff0e1627ea4ace47bcc8f51be16b02424366380885e48ced1c8b5cb6c0298ac26fd756c27c0d9937250f0b70f98000d79be6ca9d65e84979fec79260c99250fd3c137cf8c7c69077991368e514fe58551acd02deeb7b35f89d88b766adec15f40d3c48d3519bedc5b8dc5e92103860b24c89af33194d18ee8c91c2a8958dfee7820274d64433c58dd1c0e3f3c18aea2b56e542c47cfc5bae67815bb0fc75031d5b5dd6250d213eba28e316df97bef77b674ad877373d1bae741de17436895c36bb00d66a11f3b4ed9351f0033b73e627f58c88993685af0c1cd01293393973fa80bce2d9fc3ad8761519e0effc45cd83bebd8faebc7ba6a1dcb36e7bd40ecd4e3ad3817bed83b101f1b09f4597db21d4513d210b7341054c7d9a03ee9d1c69b13a476afad46d6d8f0cdfb998c6ff9a62c88501a7eb66ae4f7e73b48d2c107d687a048a34d5330eb5f6535022084e01dd42900f65ea609d185a2e3f69719bdec0426ee603cedb1b61a34118327418ac12724039beb63a6636b9b0221e0c139680c2863d7</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">加密文章，请在输入密码后访问!</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css"></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="/about">Yu-Xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2025/09/11/2025-09-11-downfolding/">http://example.com/2025/09/11/2025-09-11-downfolding/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Yu-Xuan's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Method/">Method</a></div><div class="post-share"><div class="social-share" data-image="/img/defult-cover8.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg"/></a><div class="post-qr-code-desc"></div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg"/></a><div class="post-qr-code-desc"></div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width no-desc" href="/2025/08/09/2025-08-09-Non-Hermitian-SSH/" title="Non-Hermitian SSH模型拓扑不变量(实空间)"><img class="cover" src="/assets/images/Non-Hermitian/SSH-winding-NH.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Non-Hermitian SSH模型拓扑不变量(实空间)</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2021/02/08/2021-02-08-EdgeState-GF-2/" title="利用格林函数求解边界态-快速算法"><img class="cover" src="/assets/images/Julia/edge-gf-2.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-08</div><div class="info-item-2">利用格林函数求解边界态-快速算法</div></div><div class="info-2"><div class="info-item-1">前面的一篇博客利用表面格林函数计算了边界态,虽然相比于通常对角化哈密顿量矩阵的方法要节省之间,但是迭代的收敛速度会比较慢,这里就提供一种收敛速度更快的方法来计算边界态.   在之前的利用格林函数...</div></div></div></a><a class="pagination-related" href="/2021/06/25/2021-06-25-Edge-GF/" title="利用格林函数求解边界态-V2"><img class="cover" src="/assets/images/Fortran/density2.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-25</div><div class="info-item-2">利用格林函数求解边界态-V2</div></div><div class="info-2"><div class="info-item-1">这篇博客中利用另外一种格林函数的方法来计算拓扑绝缘体的边界态.   在前面利用格林函数求解边界态这篇博客中利用迭代格林函数的方法计算了拓扑绝缘体的边界态,但是结果中边界态的确很明显,但是体态的性...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description">知行合一</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">243</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yxli8023"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:yxliphy@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><div style="text-align:center;"> <img src="/assets/images/qrcode.jpg" alt="公告图" style="max-width:100%; border-radius:10px; margin-bottom:10px;"> <br> 欢迎关注公众号，有趣的内容也会在上面同步。 </div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content toc-div-class is-expand" style="display:none"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Downfolding-%E6%96%B9%E6%B3%95%E6%8E%A8%E5%AF%BC%E6%9C%89%E6%95%88%E5%93%88%E5%AF%86%E9%A1%BF%E9%87%8F"><span class="toc-number">1.</span> <span class="toc-text">Downfolding 方法推导有效哈密顿量</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="toc-number">1.1.</span> <span class="toc-text">1. 问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%90%86%E8%AE%BA%E6%8E%A8%E5%AF%BC"><span class="toc-number">1.2.</span> <span class="toc-text">2. 理论推导</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-%E7%89%A9%E7%90%86%E6%84%8F%E4%B9%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.4 物理意义</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E8%BF%91%E4%BC%BC%E5%A4%84%E7%90%86%EF%BC%88%E5%BC%B1%E8%80%A6%E5%90%88%E6%83%85%E5%BD%A2%EF%BC%89"><span class="toc-number">1.3.</span> <span class="toc-text">3. 近似处理（弱耦合情形）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E9%9B%B6%E7%BA%A7%E8%BF%91%E4%BC%BC"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.1 零级近似</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E4%B8%80%E7%BA%A7%E8%BF%91%E4%BC%BC"><span class="toc-number">1.3.2.</span> <span class="toc-text">3.2 一级近似</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E5%BE%AE%E6%89%B0%E5%B1%95%E5%BC%80"><span class="toc-number">1.3.3.</span> <span class="toc-text">3.3 微扰展开</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E7%89%B9%E6%AE%8A%E6%83%85%E5%86%B5%E5%A4%84%E7%90%86"><span class="toc-number">1.4.</span> <span class="toc-text">4. 特殊情况处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-H-o-%E4%B8%BA%E5%AF%B9%E8%A7%92%E7%9F%A9%E9%98%B5"><span class="toc-number">1.4.1.</span> <span class="toc-text">4.1 $H_o$ 为对角矩阵</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E9%9D%99%E6%80%81%E8%BF%91%E4%BC%BC%EF%BC%88%E4%B8%8D%E4%BE%9D%E8%B5%96%E8%83%BD%E9%87%8F%EF%BC%89"><span class="toc-number">1.4.2.</span> <span class="toc-text">4.2 静态近似（不依赖能量）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E6%95%B0%E5%80%BC%E5%AE%9E%E7%8E%B0%E5%BB%BA%E8%AE%AE"><span class="toc-number">1.5.</span> <span class="toc-text">5. 数值实现建议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E7%89%A9%E7%90%86%E5%BA%94%E7%94%A8"><span class="toc-number">1.6.</span> <span class="toc-text">6. 物理应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">1.7.</span> <span class="toc-text">7. 注意事项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E6%80%BB%E7%BB%93"><span class="toc-number">1.8.</span> <span class="toc-text">8. 总结</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/09/11/2025-09-11-downfolding/" title="Downfolding 方法推导有效哈密顿量"><img src="/img/defult-cover8.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Downfolding 方法推导有效哈密顿量"/></a><div class="content"><a class="title" href="/2025/09/11/2025-09-11-downfolding/" title="Downfolding 方法推导有效哈密顿量">Downfolding 方法推导有效哈密顿量</a><time datetime="2025-09-10T16:00:00.000Z" title="发表于 2025-09-11 00:00:00">2025-09-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/08/09/2025-08-09-Non-Hermitian-SSH/" title="Non-Hermitian SSH模型拓扑不变量(实空间)"><img src="/assets/images/Non-Hermitian/SSH-winding-NH.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Non-Hermitian SSH模型拓扑不变量(实空间)"/></a><div class="content"><a class="title" href="/2025/08/09/2025-08-09-Non-Hermitian-SSH/" title="Non-Hermitian SSH模型拓扑不变量(实空间)">Non-Hermitian SSH模型拓扑不变量(实空间)</a><time datetime="2025-08-08T16:00:00.000Z" title="发表于 2025-08-09 00:00:00">2025-08-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/08/08/2025-08-08-BBH-Real-Qxy/" title="高阶拓扑绝缘体Benalcazar-Bernevig-Hughes模型电四极矩计算(实空间)"><img src="/assets/images/topology/BBH-quadrupole.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="高阶拓扑绝缘体Benalcazar-Bernevig-Hughes模型电四极矩计算(实空间)"/></a><div class="content"><a class="title" href="/2025/08/08/2025-08-08-BBH-Real-Qxy/" title="高阶拓扑绝缘体Benalcazar-Bernevig-Hughes模型电四极矩计算(实空间)">高阶拓扑绝缘体Benalcazar-Bernevig-Hughes模型电四极矩计算(实空间)</a><time datetime="2025-08-07T16:00:00.000Z" title="发表于 2025-08-08 00:00:00">2025-08-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/08/05/2025-08-05-Real-SSH-Winding/" title="实空间中计算SSH模型winding number"><img src="/assets/images/topology/SSH-winding-t1-t2-rspace.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实空间中计算SSH模型winding number"/></a><div class="content"><a class="title" href="/2025/08/05/2025-08-05-Real-SSH-Winding/" title="实空间中计算SSH模型winding number">实空间中计算SSH模型winding number</a><time datetime="2025-08-04T16:00:00.000Z" title="发表于 2025-08-05 00:00:00">2025-08-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/08/02/2025-08-02-Real-Space-Chern/" title="实空间Chern数计算(Half-BHZ模型)"><img src="/assets/images/Julia/Chern-m0.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实空间Chern数计算(Half-BHZ模型)"/></a><div class="content"><a class="title" href="/2025/08/02/2025-08-02-Real-Space-Chern/" title="实空间Chern数计算(Half-BHZ模型)">实空间Chern数计算(Half-BHZ模型)</a><time datetime="2025-08-01T16:00:00.000Z" title="发表于 2025-08-02 00:00:00">2025-08-02</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/img/defult-cover8.png);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div><div class="footer_custom_text">Welcome to  Yu-Xuan's Blog</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  const initGitalk = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGitalk = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const gitalk = new Gitalk({
+      clientID: 'Ov23li0WvZEaIAZ7RFtH',
+      clientSecret: '03fcb77b7c28dafcdde00756e27f9b5bc76639e8',
+      repo: 'yxli8023.github.io',
+      owner: 'yxli8023',
+      admin: ['yxli8023'],
+      updateCountCallback: commentCount,
+      ...option,
+      id: isShuoshuo ? path : (option && option.id) || '6e3d6f1806c8a214e9c1589e0a066e4b'
+    })
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async(el, path) => {
+    if (typeof Gitalk === 'function') initGitalk(el, path)
+    else {
+      await btf.getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await btf.getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Gitalk' === 'Gitalk'
+      ? window.shuoshuoComment = { loadComment: loadGitalk }
+      : window.loadOtherComment = loadGitalk
+    return
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
