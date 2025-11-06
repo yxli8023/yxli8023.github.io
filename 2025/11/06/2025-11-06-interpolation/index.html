@@ -1,0 +1,327 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>资源不够，插值来揍 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="当你计算某个量，发现需要在整个布里渊区撒很密的点，但计算量又受不了的时候，请抛弃老实人的做法，我们直接就是插值，获取定性结果即可。  起因最近在重复文章，计算 RPA 修正库伦势  V_{\boldsymbol{q}} &#x3D; \frac{V_{0,\boldsymbol{q}}}{1 + \Pi_{0,\boldsymbol{q}} V_{0,\boldsymbol{q}}},其中    \Pi_{">
+<meta property="og:type" content="article">
+<meta property="og:title" content="资源不够，插值来揍">
+<meta property="og:url" content="http://example.com/2025/11/06/2025-11-06-interpolation/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39;s Blog">
+<meta property="og:description" content="当你计算某个量，发现需要在整个布里渊区撒很密的点，但计算量又受不了的时候，请抛弃老实人的做法，我们直接就是插值，获取定性结果即可。  起因最近在重复文章，计算 RPA 修正库伦势  V_{\boldsymbol{q}} &#x3D; \frac{V_{0,\boldsymbol{q}}}{1 + \Pi_{0,\boldsymbol{q}} V_{0,\boldsymbol{q}}},其中    \Pi_{">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/assets/images/Julia/pairing-julia-0.png">
+<meta property="article:published_time" content="2025-11-05T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-11-06T13:39:22.836Z">
+<meta property="article:author" content="Yu-Xuan">
+<meta property="article:tag" content="Code">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/images/Julia/pairing-julia-0.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "资源不够，插值来揍",
+  "url": "http://example.com/2025/11/06/2025-11-06-interpolation/",
+  "image": "http://example.com/assets/images/Julia/pairing-julia-0.png",
+  "datePublished": "2025-11-05T16:00:00.000Z",
+  "dateModified": "2025-11-06T13:39:22.836Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yu-Xuan",
+      "url": "http://example.com/about"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/logo.png"><link rel="canonical" href="http://example.com/2025/11/06/2025-11-06-interpolation/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"作者: Yu-Xuan","link":"链接: ","source":"来源: Yu-Xuan's Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'medium_zoom',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#f54966","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '资源不够，插值来揍',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #dbeffd;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">251</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/assets/images/Julia/pairing-julia-0.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo.png" alt="Logo"><span class="site-name">Yu-Xuan's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">资源不够，插值来揍</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">资源不够，插值来揍</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-11-05T16:00:00.000Z" title="发表于 2025-11-06 00:00:00">2025-11-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-11-06T13:39:22.836Z" title="更新于 2025-11-06 21:39:22">2025-11-06</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">834</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;自上次更新已经过了&quot;,&quot;messageNext&quot;:&quot;天，文章内容可能已过时。&quot;,&quot;postUpdate&quot;:&quot;2025-11-06 21:39:22&quot;}" hidden></div><div class="note blue no-icon flat"><p>当你计算某个量，发现需要在整个布里渊区撒很密的点，但计算量又受不了的时候，请抛弃老实人的做法，我们直接就是插值，获取定性结果即可。</p>
+</div>
+<h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><p>最近在重复文章，计算 RPA 修正库伦势</p>
+<script type="math/tex; mode=display">
+V_{\boldsymbol{q}} = \frac{V_{0,\boldsymbol{q}}}{1 + \Pi_{0,\boldsymbol{q}} V_{0,\boldsymbol{q}}},</script><p>其中  </p>
+<script type="math/tex; mode=display">
+\Pi_{0,\boldsymbol{q}} = N \sum_k |\Lambda_{\boldsymbol{k},\boldsymbol{q},\tau}|^2 \left\{ \frac{f(e_{\boldsymbol{k},\tau}) - f(e_{\boldsymbol{k}+\boldsymbol{q},\tau})}{e_{\boldsymbol{k}+\boldsymbol{q},\tau} - e_{\boldsymbol{k},\tau}} \right\}</script><p>是静态极化函数$f(e)$ 是费米函数。  如果要在整个布里渊区撒点，那么为了比较好的捕捉到势能的变化，此时网格密度就会比较高，计算量一下子就上来了。</p>
+<p>那么有一个折中的方案:</p>
+<blockquote>
+<ol>
+<li><p>现在一个稀疏的网格上计算出 $V(\boldsymbol{q})$</p>
+</li>
+<li><p>利用稀疏$V(\boldsymbol{q})$，通过数值的方式插值，来得到任意$(\boldsymbol{q})$处的屏蔽相互作用，然后再用插值得到的屏蔽势能来计算后续的结果</p>
+</li>
+</ol>
+</blockquote>
+<p>展示一下结果</p>
+<div style="display: flex; justify-content: space-between;">
+  <img src="/assets/images/Julia/Vscr_q.png" alt="Image 1" width="45%" />
+  <img src="/assets/images/Julia/Vscr_resampled.png" alt="Image 2" width="45%" />
+</div>
+
+<p>其中左图是在稀疏网格上直接计算的结果，右图就是进行插值，可以看到效果还是不错的。示例代码如下<br><figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">function</span> Charge_Susceptibility(qx::<span class="built_in">Float64</span>, qy::<span class="built_in">Float64</span>,</span><br><span class="line">                               valmesh::<span class="built_in">Array</span>&#123;<span class="built_in">Float64</span>, <span class="number">3</span>&#125;,</span><br><span class="line">                               vecmesh::<span class="built_in">Array</span>&#123;<span class="built_in">ComplexF64</span>, <span class="number">4</span>&#125;,</span><br><span class="line">                               klist::<span class="built_in">Array</span>&#123;<span class="built_in">Float64</span>, <span class="number">3</span>&#125;,</span><br><span class="line">                               dk::<span class="built_in">Float64</span>)</span><br><span class="line">    hn = size(valmesh, <span class="number">3</span>)</span><br><span class="line">    Nf = <span class="number">4.0</span></span><br><span class="line">    charge_Pi = <span class="number">0.0</span> + <span class="number">0.0</span><span class="literal">im</span></span><br><span class="line">    knx, kny = size(klist)[<span class="number">2</span>], size(klist)[<span class="number">3</span>]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> ikx <span class="keyword">in</span> <span class="number">1</span>:knx, iky <span class="keyword">in</span> <span class="number">1</span>:kny</span><br><span class="line">        kx, ky = klist[<span class="number">1</span>, ikx, iky], klist[<span class="number">2</span>, ikx, iky]</span><br><span class="line">        <span class="keyword">for</span> n <span class="keyword">in</span> <span class="number">1</span>:hn</span><br><span class="line">            Ek = valmesh[ikx, iky, n]</span><br><span class="line">            psik = vecmesh[ikx, iky, :, n]</span><br><span class="line">            Eq_all, psiq_all = eigen(matset(kx + qx, ky + qy))</span><br><span class="line">            Eq = real(Eq_all[n])</span><br><span class="line">            psiq = psiq_all[:, n]</span><br><span class="line">            overlap = abs(psik&#x27; * psiq)^<span class="number">2</span></span><br><span class="line">            denom = Eq - Ek</span><br><span class="line">            re1 = abs(denom) &gt; <span class="number">1e-8</span> ? (fermi(Ek) - fermi(Eq)) / denom : -fermi_derivative(Ek)</span><br><span class="line">            charge_Pi += overlap * re1</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">return</span> Nf * charge_Pi * dk^<span class="number">2</span> / (<span class="number">2</span><span class="literal">pi</span>)^<span class="number">2</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> Vscr_interpolate_complex(</span><br><span class="line">    Vscr_q::<span class="built_in">AbstractMatrix</span>&#123;<span class="built_in">ComplexF64</span>&#125;,</span><br><span class="line">    kn_old::<span class="built_in">Int</span>,</span><br><span class="line">    dk_old::<span class="built_in">Float64</span></span><br><span class="line">)</span><br><span class="line">    QN_old = <span class="number">4</span> * kn_old</span><br><span class="line">    q_old = ((<span class="number">1</span>:QN_old) .- (<span class="number">2</span>*kn_old + <span class="number">1</span>)) .* dk_old</span><br><span class="line">    spl_re = Spline2D(q_old, q_old, real.(Vscr_q))</span><br><span class="line">    spl_im = Spline2D(q_old, q_old, imag.(Vscr_q))</span><br><span class="line">    qmin, qmax = first(q_old), last(q_old)</span><br><span class="line">    <span class="keyword">return</span> spl_re, spl_im, qmin, qmax  </span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure><br>第二个函数就会返回屏蔽相互作用样条插值的实部和虚部，后面使用就可以直接调用来得到任意位置上的屏蔽势能了。给个计算超导序参量的结果图对比</p>
+<p><div style="display: flex; justify-content: space-between;">
+  <img src="/assets/images/Julia/pairing-julia-1.png" alt="Image 1" width="35%" />
+  <img src="/assets/images/Julia/pairing-julia-3.png" alt="Image 2" width="35%" />
+</div><br>左图是直接计算得到的结果，右图则是在一个很稀疏的网格上先计算屏蔽势，然后在很密的网格上插值，同时计算稠密网格上的费米点并计算出配对序参量。从结果来看，如果只是关心定性结果的话，插值方法是可以接受的。而且利用插值方法对于计算时间的节省是很显著的，直接计算需要$N_x\times N_y=256*256$，上述计算在插值的时候$N_x\times N_y=20\times 20$。把这个数量再代入到 RPA 修正部分，速度提升是非常可观的。所以在测试一些课题的时候，可以先插值定性，等问题分析清楚，再直接计算来得到精确的结果。</p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ol>
+<li><a target="_blank" rel="noopener" href="https://link.aps.org/doi/10.1103/PhysRevLett.127.247001">Unconventional Superconductivity in Systems with Annular Fermi Surfaces: Application to Rhombohedral Trilayer Graphene</a></li>
+</ol>
+<div class="note red flat"><p>鉴于该网站分享的大都是学习笔记，作者水平有限，若发现有问题可以发邮件给我</p>
+<ul>
+<li><strong>yxliphy@gmail.com</strong></li>
+</ul>
+<p>也非常欢迎喜欢分享的小伙伴投稿</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="/about">Yu-Xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2025/11/06/2025-11-06-interpolation/">http://example.com/2025/11/06/2025-11-06-interpolation/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Yu-Xuan's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Code/">Code</a></div><div class="post-share"><div class="social-share" data-image="/assets/images/Julia/pairing-julia-0.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg"/></a><div class="post-qr-code-desc"></div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg"/></a><div class="post-qr-code-desc"></div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related  no-desc" href="/2025/11/06/2025-11-06-chi0/" title="多轨道极化率加速计算"><img class="cover" src="/img/defult-cover7.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">多轨道极化率加速计算</div></div></div></a><a class="pagination-related" href="/2025/10/07/2025-10-07-Kwant-Topology/" title="Kwant如何搞拓扑"><img class="cover" src="/assets/images/Kwant/hotsc-wave-circle.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Kwant如何搞拓扑</div></div><div class="info-2"><div class="info-item-1">自己写程序算输运的时候会拿Kwant对比验证，顺便就把Kwant给学了。中间还能玩一下用Kwant搞拓扑，比如算个边界态或者角态之类的，这里就把代码整理一下。  边界态先导入一波预设123456...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2022/12/22/2020-02-25-FortranNote/" title="Fortran使用中笔记"><img class="cover" src="/img/defult-cover4.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-22</div><div class="info-item-2">Fortran使用中笔记</div></div><div class="info-2"><div class="info-item-1">将看到的Fortran中常用的一些语法记录起来，方便查阅。   Fortran中常用的库函数总结1. Cheevd 厄密矩阵本征值与本征矢的求解  2. getrf,getri getrf 对一...</div></div></div></a><a class="pagination-related" href="/2019/04/17/2019-04-17-julia/" title="Majorana Corner State in High Temperature Superconductor"><img class="cover" src="/assets/images/research/juliaresult.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2019-04-17</div><div class="info-item-2">Majorana Corner State in High Temperature Superconductor</div></div><div class="info-2"><div class="info-item-1">最近刚刚学习了julia, 手头上也正好在重复一篇文章，就正好拿新学习的内容一边温习一边做研究。   导入函数库1234567# Import external package that use...</div></div></div></a><a class="pagination-related" href="/2020/03/16/2020-03-16-Graphene/" title="石墨烯哈密顿量构造及边界态计算"><img class="cover" src="/img/defult-cover7.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-03-16</div><div class="info-item-2">石墨烯哈密顿量构造及边界态计算</div></div><div class="info-2"><div class="info-item-1">想通过石墨烯重新学习一下拓扑，以此来记录学习成果。   石墨烯的结构石墨烯的元胞是六角蜂窝状的，它的基元包含两个原子，将红黑表示的位置放在一起，则表示它的一个基元。以水平和垂直方向建立直角坐标系...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description">知行合一</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">251</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yxli8023"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:yxliphy@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><div style="text-align:center;"> <img src="/assets/images/qrcode.jpg" alt="公告图" style="max-width:100%; border-radius:10px; margin-bottom:10px;"> <br> 欢迎关注公众号，有趣的内容也会在上面同步。 </div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B5%B7%E5%9B%A0"><span class="toc-number">1.</span> <span class="toc-text">起因</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">2.</span> <span class="toc-text">参考文献</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/11/06/2025-11-06-interpolation/" title="资源不够，插值来揍"><img src="/assets/images/Julia/pairing-julia-0.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="资源不够，插值来揍"/></a><div class="content"><a class="title" href="/2025/11/06/2025-11-06-interpolation/" title="资源不够，插值来揍">资源不够，插值来揍</a><time datetime="2025-11-05T16:00:00.000Z" title="发表于 2025-11-06 00:00:00">2025-11-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/11/06/2025-11-06-chi0/" title="多轨道极化率加速计算"><img src="/img/defult-cover7.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="多轨道极化率加速计算"/></a><div class="content"><a class="title" href="/2025/11/06/2025-11-06-chi0/" title="多轨道极化率加速计算">多轨道极化率加速计算</a><time datetime="2025-11-05T16:00:00.000Z" title="发表于 2025-11-06 00:00:00">2025-11-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/10/07/2025-10-07-Kwant-Topology/" title="Kwant如何搞拓扑"><img src="/assets/images/Kwant/hotsc-wave-circle.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Kwant如何搞拓扑"/></a><div class="content"><a class="title" href="/2025/10/07/2025-10-07-Kwant-Topology/" title="Kwant如何搞拓扑">Kwant如何搞拓扑</a><time datetime="2025-10-06T16:00:00.000Z" title="发表于 2025-10-07 00:00:00">2025-10-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/10/06/2025-10-06-NEGF-Josephson/" title="非平衡格林函数计算Josephson效应"><img src="/assets/images/NEGF/cpr.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="非平衡格林函数计算Josephson效应"/></a><div class="content"><a class="title" href="/2025/10/06/2025-10-06-NEGF-Josephson/" title="非平衡格林函数计算Josephson效应">非平衡格林函数计算Josephson效应</a><time datetime="2025-10-05T16:00:00.000Z" title="发表于 2025-10-06 00:00:00">2025-10-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/10/05/2025-10-05-NEGF-Andreev/" title="非平衡格林函数计算Andreev反射"><img src="/assets/images/NEGF/Andreev_Reflection.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="非平衡格林函数计算Andreev反射"/></a><div class="content"><a class="title" href="/2025/10/05/2025-10-05-NEGF-Andreev/" title="非平衡格林函数计算Andreev反射">非平衡格林函数计算Andreev反射</a><time datetime="2025-10-04T16:00:00.000Z" title="发表于 2025-10-05 00:00:00">2025-10-05</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/assets/images/Julia/pairing-julia-0.png);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div><div class="footer_custom_text">Welcome to  Yu-Xuan's Blog</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  const initGitalk = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGitalk = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const gitalk = new Gitalk({
+      clientID: 'Ov23li0WvZEaIAZ7RFtH',
+      clientSecret: '03fcb77b7c28dafcdde00756e27f9b5bc76639e8',
+      repo: 'yxli8023.github.io',
+      owner: 'yxli8023',
+      admin: ['yxli8023'],
+      updateCountCallback: commentCount,
+      ...option,
+      id: isShuoshuo ? path : (option && option.id) || '587ab0bfc8479176118fb5f94c56e4a0'
+    })
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async(el, path) => {
+    if (typeof Gitalk === 'function') initGitalk(el, path)
+    else {
+      await btf.getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await btf.getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Gitalk' === 'Gitalk'
+      ? window.shuoshuoComment = { loadComment: loadGitalk }
+      : window.loadOtherComment = loadGitalk
+    return
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
