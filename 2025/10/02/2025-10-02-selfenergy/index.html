@@ -1,0 +1,445 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>迭代方法自能计算 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="最近在学习输运方面的内容，这篇Blog主要就是整理如何通过迭代格林函数的方式来计算电极与导体耦合之后的自能。不得不说知乎是个学习的好地方，我这里的主要内容也都是在知乎上学习的，自己整理一下再加上一些自己对问题的理解。  自能计算这里考虑左右两个电极，中间是导体区域 体系的电导$G&#x3D;\frac{2e^2}{h}T_{LR}$，这里的$T_{LR}$是透射率  T_{LR}&#x3D;\text{Tr}[\Ga">
+<meta property="og:type" content="article">
+<meta property="og:title" content="迭代方法自能计算">
+<meta property="og:url" content="http://example.com/2025/10/02/2025-10-02-selfenergy/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39;s Blog">
+<meta property="og:description" content="最近在学习输运方面的内容，这篇Blog主要就是整理如何通过迭代格林函数的方式来计算电极与导体耦合之后的自能。不得不说知乎是个学习的好地方，我这里的主要内容也都是在知乎上学习的，自己整理一下再加上一些自己对问题的理解。  自能计算这里考虑左右两个电极，中间是导体区域 体系的电导$G&#x3D;\frac{2e^2}{h}T_{LR}$，这里的$T_{LR}$是透射率  T_{LR}&#x3D;\text{Tr}[\Ga">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/defult-cover2.png">
+<meta property="article:published_time" content="2025-10-01T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-11-13T13:37:10.672Z">
+<meta property="article:author" content="Yu-Xuan">
+<meta property="article:tag" content="Code">
+<meta property="article:tag" content="Julia">
+<meta property="article:tag" content="Transport">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/defult-cover2.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "迭代方法自能计算",
+  "url": "http://example.com/2025/10/02/2025-10-02-selfenergy/",
+  "image": "http://example.com/img/defult-cover2.png",
+  "datePublished": "2025-10-01T16:00:00.000Z",
+  "dateModified": "2025-11-13T13:37:10.672Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yu-Xuan",
+      "url": "http://example.com/about"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/logo.png"><link rel="canonical" href="http://example.com/2025/10/02/2025-10-02-selfenergy/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"作者: Yu-Xuan","link":"链接: ","source":"来源: Yu-Xuan's Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'medium_zoom',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#f54966","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '迭代方法自能计算',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #dbeffd;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">258</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/img/defult-cover2.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo.png" alt="Logo"><span class="site-name">Yu-Xuan's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">迭代方法自能计算</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">迭代方法自能计算</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-10-01T16:00:00.000Z" title="发表于 2025-10-02 00:00:00">2025-10-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-11-13T13:37:10.672Z" title="更新于 2025-11-13 21:37:10">2025-11-13</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">2.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>11分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;自上次更新已经过了&quot;,&quot;messageNext&quot;:&quot;天，文章内容可能已过时。&quot;,&quot;postUpdate&quot;:&quot;2025-11-13 21:37:10&quot;}" hidden></div><div class="note blue no-icon flat"><p>最近在学习输运方面的内容，这篇Blog主要就是整理如何通过迭代格林函数的方式来计算电极与导体耦合之后的自能。不得不说知乎是个学习的好地方，我这里的主要内容也都是在知乎上学习的，自己整理一下再加上一些自己对问题的理解。</p>
+</div>
+<h1 id="自能计算"><a href="#自能计算" class="headerlink" title="自能计算"></a>自能计算</h1><p>这里考虑左右两个电极，中间是导体区域</p>
+<p>体系的电导$G=\frac{2e^2}{h}T_{LR}$，这里的$T_{LR}$是透射率</p>
+<script type="math/tex; mode=display">
+T_{LR}=\text{Tr}[\Gamma_LG_{1M}\Gamma_RG_{1M}^\dagger]</script><p>公式的来源可以参考Data的介观输运那本书。这里的$\Gamma_L,\Gamma_R$分别是左右电极的线宽，可以通过左右电极的自能<br>来的到。首先考虑一个由左右两个电极重甲是导体的体系，对应的哈密顿量可以表示为</p>
+<script type="math/tex; mode=display">
+\left(\begin{array}{ccc}
+H_{L} & H_{L C} & 0 \\
+H_{C L} & H_{C} & H_{C R} \\
+0 & H_{R C} & H_{R}
+\end{array}\right)</script><p>这里的$H_{LC},H_{RC}$表示的就是导体和电极之间的耦合。那么有了哈密顿量之后，我们就可以来定义格林函数</p>
+<script type="math/tex; mode=display">
+\left(\begin{array}{ccc}
+E I-H_{L} & -H_{L C} & 0 \\
+-H_{C L} & E I-H_{C} & -H_{C R} \\
+0 & -H_{R C} & E I-H_{R}
+\end{array}\right)\left(\begin{array}{ccc}
+G_{L L} & G_{L C} & G_{L R} \\
+G_{C L} & G_{C C} & G_{C R} \\
+G_{R L} & G_{R C} & G_{R R}
+\end{array}\right)=\left(\begin{array}{ccc}
+I & 0 & 0 \\
+0 & I & 0 \\
+0 & 0 & I
+\end{array}\right)</script><p>通常我们需要求解的只是导体的电导$G_{CC}$，所以将格林函数矩阵中包含$G_{CC}$的这一列单独表示出来</p>
+<script type="math/tex; mode=display">
+\left(\begin{array}{ccc}
+E I-H_{L} & -H_{L C} & 0 \\
+-H_{C L} & E I-H_{C} & -H_{C R} \\
+0 & -H_{R C} & E I-H_{R}
+\end{array}\right)\left(\begin{array}{l}
+G_{L C} \\
+G_{C C} \\
+G_{R C}
+\end{array}\right)=\left(\begin{array}{l}
+0 \\
+I \\
+0
+\end{array}\right)</script><p>那么就可以得到$G_{CC}$的表达式</p>
+<script type="math/tex; mode=display">
+G_{CC}=(EI-H_C-\Sigma_L-\Sigma_R)^{-1}</script><p>这里</p>
+<script type="math/tex; mode=display">
+\Sigma_L=H_{CL}(EI - H_L)^{-1}H_{LC}</script><p>表示左电极对应的自能，同样右电极对应的自能为</p>
+<script type="math/tex; mode=display">
+\Sigma_R=H_{CR}(EI - H_R)^{-1}H_{RC}</script><p>之前在学习的时候一直有个疑问，我们要求解的很多物理量最后都与自能有关，但是我们又不知道自能到底是多少，这里就来详细看一下到底要如何计算自能。<br>{:.warning}</p>
+<p>当我们考虑周期系统的时候，原胞内和原胞间的hopping矩阵分别为$H_{00},H_{11}$，此时电极对应的哈密顿量为</p>
+<script type="math/tex; mode=display">
+H_{R}=\left(\begin{array}{cccc}
+H_{00} & H_{01} & 0 & \cdots \\
+H_{10} & H_{00} & H_{01} & \cdots \\
+0 & H_{10} & H_{00} & \\
+\vdots & \vdots & \vdots & \ddots
+\end{array}\right)</script><p>同样可以对电极定义出格林函数</p>
+<script type="math/tex; mode=display">
+\left(\begin{array}{cccc}
+E I-H_{00} & -H_{01} & 0 & \cdots \\
+-H_{10} & E I-H_{00} & -H_{01} & \cdots \\
+0 & -H_{10} & E I-H_{00} & \cdots \\
+\vdots & \vdots & \vdots & \ddots
+\end{array}\right)\left(\begin{array}{cccc}
+G_{00} & G_{01} & G_{02} & \cdots \\
+G_{10} & G_{11} & G_{12} & \cdots \\
+G_{20} & G_{21} & G_{22} & \cdots \\
+\vdots & \vdots & \vdots & \ddots
+\end{array}\right)=I</script><p>因为我们这里考虑的是个无限大的系统，所以这个矩阵的维度就是无限大，看起来好像我们没有办法去求它对应的本征值和本征态了。但是如果熟悉紧束缚近似，并且通过观察这个矩阵的形式也可以发现<br>它是具有规律性的，因为这里我们关心的只是最近邻格点之间的hopping，所以这个哈密顿量的形式看起来就是三对角的形式，这也就是它的规律了。因为我们想要求解自能<br>$\Sigma_R=H_{CR}(EI - H_R)^{-1}H_{RC}$，这里$H_{CR}$表示的是电极和导体之间的耦合，我们在实际考虑的时候也只有在电极与导体接触的那个位置，这个耦合才不为零，所以它的形式为</p>
+<script type="math/tex; mode=display">
+H_{C R}=\left(\begin{array}{cccc}
+H_{01} & 0 & 0 & \ldots \\
+0 & 0 & 0 & \ldots \\
+0 & 0 & 0 & \ldots \\
+\vdots & \vdots & \vdots & \ddots
+\end{array}\right)</script><p>所以上面的这个耦合矩阵中，只有一个小块才是非零的，而前面给出的格林函数的计算公式中，我们就只需要计算它的第一个块矩阵就可以了(这一个块中包含了导体与电极之间的耦合，其它块中不包含耦合，所以格林函数是可以直接得到的)。这里我们要求姐的格林函数为$G_{00}$，所以将导线格林函数的第一列单独提取出来</p>
+<script type="math/tex; mode=display">
+\left(\begin{array}{cccc}
+E I-H_{00} & -H_{01} & 0 & \cdots \\
+-H_{10} & E I-H_{00} & -H_{01} & \cdots \\
+0 & -H_{10} & E I-H_{00} & \cdots \\
+\vdots & \vdots & \vdots & \ddots
+\end{array}\right)\left(\begin{array}{c}
+G_{00} \\
+G_{10} \\
+G_{20} \\
+\vdots
+\end{array}\right)=\left(\begin{array}{c}
+I \\
+0 \\
+0 \\
+\vdots
+\end{array}\right)\label{p1}</script><p>这又是一个三对角的形式，看到这种形式其实就很愉快，因为它表示的其实就是一个递归关系，但是要从$n\geq2$开始，将这个矩阵表示展开可以得到</p>
+<script type="math/tex; mode=display">
+-H_{10}G_{n,0}+(EI-H_{00})G_{n + 1,0}-H_{01}G_{n + 2,0}=0</script><p>将它表示为矩阵形式</p>
+<script type="math/tex; mode=display">
+\left(\begin{array}{c}
+G_{n+2,0} \\
+G_{n+1,0}
+\end{array}\right)=\left(\begin{array}{cc}
+H_{01}^{-1}\left(E I-H_{00}\right) & H_{01}^{-1} H_{10} \\
+I & 0
+\end{array}\right)\left(\begin{array}{c}
+G_{n+1,0} \\
+G_{n, 0}
+\end{array}\right)</script><p>这不就是量子力学中层间碰到过的转移矩阵的问题了吗，这里将$T$表示为</p>
+<script type="math/tex; mode=display">
+T=\left(\begin{array}{cc}
+H_{01}^{-1}\left(E I-H_{00}\right) & H_{01}^{-1} H_{10} \\
+I & 0
+\end{array}\right)</script><p>可以发现$T$的作用就是实现</p>
+<script type="math/tex; mode=display">
+\left(\begin{array}{c}
+G_{n+1,0} \\
+G_{n, 0}
+\end{array}\right)\rightarrow\left(\begin{array}{c}
+G_{n+2,0} \\
+G_{n+1,0}
+\end{array}\right)</script><p>这样的一个过程，加入将左端从$n=0$开始，右端是$n=N$，那么就是将转移矩阵$T$作用在$n=0$的位置上$N$次。但是乍一看好像还会没有解决问题，因为转移矩阵$T$乘$N$次之后是多少。这个时候物理的思维就显得很重要，我们想要将一个初态通过转移矩阵的方式连续的转移$N$次，要知道每一次转移都是有一定的概率的，而且这个概率肯定是$\leq 1$的，所以当作用$N$次之后，假设$N\rightarrow\infty$，那么转移的几率一定会$p\rightarrow0$。这样就是说转移矩阵满足</p>
+<script type="math/tex; mode=display">
+T^{N\rightarrow\infty}=0</script><p>将方程(\ref{p1})中的第一行乘过去可以得到</p>
+<script type="math/tex; mode=display">
+(EI - H_{00}-H_{01}G_{10})=I\label{p2}</script><p>我们在这里可以假设</p>
+<script type="math/tex; mode=display">
+G_{10}=\gamma_1G_{00}</script><p>将它回代到方程(\ref{p2})中就可以得到$G_{00}$了</p>
+<script type="math/tex; mode=display">
+G_{00}=(EI-H_{00}-H_{01}\gamma_1)</script><p>所以这个时候需要解决的问题就是怎么求解$\gamma_1$。</p>
+<p>将方程(\ref{p1})中的第二行乘进去，并且此时假设$G_{20}=\gamma_2G_{00}$，通过代数运算可以得到</p>
+<script type="math/tex; mode=display">
+\gamma_1=g_1H_{10}+g_1H_{01}\gamma_2\quad g_1=(EI - H_{00})^{-1}</script><p>好了，$\gamma_1$求解出来了，但是它又包含了$\gamma_2$，那么我们就需要再求解$\gamma_2$。同样的过程可以对公式(\ref{p1})中后面的每一行都进行，可以得到</p>
+<script type="math/tex; mode=display">
+\begin{array}{c}
+\gamma_{2}=g_{2} H_{10} g_{1} H_{10}+g_{2} H_{01} \gamma_{3} \\
+\gamma_{3}=g_{3} H_{10} g_{2} H_{10} g_{1} H_{10}+g_{3} H_{01} \gamma_{4} \\
+\gamma_{4}=g_{4} H_{01} g_{3} H_{10} g_{2} H_{10} g_{1} H_{10}+g_{4} H_{01} \gamma_{5} \\
+\ldots
+\end{array}\label{p3}</script><p>这里的$g_i$的形式会比较复杂，可以自己推导试试，我也是在看过知乎上的推导实际操作了一番，发现形式上还是有点繁琐，但是没关系，我们需要的只是一个规律而已，通过推导就可以整理出上面的表达式。但是又发现问题了，这个表达式没有尽头求解$\gamma_i$会耦合出来$\gamma_{i+1}$，那么此时格林函数就显的很智慧了。因为格林函数的本质就是点与点之间的关联，我们自然可以认为<br>更远位置处的关联是零，那么就可以公式(\ref{p3})在某一阶直接截断，即零$\gamma_i=0$，那么自然问题就解耦了。这里就抄一下知乎上的结果，将$\gamma_5=0$可以得到</p>
+<script type="math/tex; mode=display">
+\begin{array}{l}
+\gamma_{4}=g_{4} H_{01} g_{3} H_{10} g_{2} H_{10} g_{1} H_{10} \\
+\gamma_{3}=g_{3} H_{10} g_{2} H_{10} g_{1} H_{10}+g_{3} H_{01} g_{4} H_{01} g_{3} H_{10} g_{2} H_{10} g_{1} H_{10} \\
+\gamma_{2}=g_{2} H_{10} g_{1} H_{10}+g_{2} H_{01} g_{3} H_{10} g_{2} H_{10} g_{1} H_{10}+g_{2} H_{01} g_{3} H_{01} g_{4} H_{01} g_{3} H_{10} g_{2} H_{10} g_{1} H_{10} \\
+\gamma_{1}=g_{1} H_{10}+g_{1} H_{01} g_{2} H_{10} g_{1} H_{10}+g_{1} H_{01} g_{2} H_{01} g_{3} H_{10} g_{2} H_{10} g_{1} H_{10}+g_{1} H_{01} g_{2} H_{01} g_{3} H_{01} g_{4} H_{01} g_{3} H_{10} g_{2} H_{10} g_{1} H_{10}
+\end{array}</script><p>好长的式子，但是没关系，它是有规律可循的，我们可以通过迭代的方式来计算，代码如下</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 通过迭代的方式求解输运中的表面格林函数</span></span><br><span class="line"><span class="comment">#------------------------------------------</span></span><br><span class="line"><span class="keyword">using</span> LinearAlgebra,DelimitedFiles,PyPlot</span><br><span class="line"><span class="comment">#-----------------------------------------</span></span><br><span class="line"><span class="keyword">function</span> matset()</span><br><span class="line">    e0::<span class="built_in">Float64</span> = <span class="number">4</span></span><br><span class="line">    t0::<span class="built_in">Float64</span> = <span class="number">1.0</span></span><br><span class="line">    hn::<span class="built_in">Int64</span> = <span class="number">4</span></span><br><span class="line">    h00 = zeros(<span class="built_in">ComplexF64</span>,hn,hn)</span><br><span class="line">    h01 = zeros(<span class="built_in">ComplexF64</span>,hn,hn)</span><br><span class="line">    h00[<span class="number">1</span>,<span class="number">1</span>] = e0</span><br><span class="line">    h00[<span class="number">1</span>,<span class="number">2</span>] = t0</span><br><span class="line">    h00[<span class="number">2</span>,<span class="number">2</span>] = e0</span><br><span class="line">    h00[<span class="number">2</span>,<span class="number">1</span>] = t0</span><br><span class="line">    h00[<span class="number">3</span>,<span class="number">3</span>] = e0</span><br><span class="line">    h00[<span class="number">3</span>,<span class="number">4</span>] = t0</span><br><span class="line">    h00[<span class="number">4</span>,<span class="number">4</span>] = e0</span><br><span class="line">    h00[<span class="number">4</span>,<span class="number">3</span>] = t0</span><br><span class="line">    <span class="comment">#---------------</span></span><br><span class="line">    h01[<span class="number">1</span>,<span class="number">1</span>] = t0</span><br><span class="line">    h01[<span class="number">2</span>,<span class="number">2</span>] = t0</span><br><span class="line">    h01[<span class="number">3</span>,<span class="number">3</span>] = t0</span><br><span class="line">    h01[<span class="number">4</span>,<span class="number">4</span>] = t0</span><br><span class="line">    <span class="comment">#---------------</span></span><br><span class="line">    <span class="keyword">return</span> h00,h01</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">#-----------------------------------------------</span></span><br><span class="line"><span class="keyword">function</span> SurfGF()</span><br><span class="line">    err::<span class="built_in">Float64</span> = <span class="number">1.0</span> <span class="comment"># 控制误差</span></span><br><span class="line">    ha,a0 = matset()</span><br><span class="line">    H00,H01 = ha,a0</span><br><span class="line">    hb,b0 = ha,a0</span><br><span class="line">    hn = size(ha)[<span class="number">1</span>] <span class="comment"># 获取矩阵维度</span></span><br><span class="line">    eye = zeros(<span class="built_in">ComplexF64</span>,hn,hn)</span><br><span class="line">    g0 = zeros(<span class="built_in">ComplexF64</span>,hn,hn)</span><br><span class="line">    eng = <span class="number">1.0</span> + <span class="number">0.01</span><span class="literal">im</span> <span class="comment"># 给定能量计算格林函数,这里需要加入小虚部,否则函数会出现发散的情况</span></span><br><span class="line">    <span class="keyword">for</span> i0 <span class="keyword">in</span> <span class="number">1</span>:hn</span><br><span class="line">        eye[i0,i0] = <span class="number">1</span> <span class="comment">#构造单位矩阵</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="comment">#-----------</span></span><br><span class="line">    cont = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> err &gt; <span class="number">10</span>^(-<span class="number">9</span>)</span><br><span class="line">    <span class="comment"># while cont &lt; 20</span></span><br><span class="line">        h0 = g0</span><br><span class="line">        g0 = inv(eng * eye - hb)</span><br><span class="line">        ha += (a0 * g0 * b0)</span><br><span class="line">        hb += (a0 * g0 * b0 + b0 * g0 * a0)</span><br><span class="line">        a0 = a0 * g0 * a0</span><br><span class="line">        b0 = b0 * g0 * b0</span><br><span class="line">        cont += <span class="number">1</span></span><br><span class="line">        err = abs(sum(g0 - h0))</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    g1 = inv(eng * eye - ha) <span class="comment">#计算得到的就是表面格林函数</span></span><br><span class="line">    g2 = H01 * g1 * H01&#x27; <span class="comment"># 自能</span></span><br><span class="line">    g3 = <span class="literal">im</span> * (g2 - conj(g2)) <span class="comment"># 展宽函数</span></span><br><span class="line">    println(g2)</span><br><span class="line">    <span class="keyword">return</span> g1,g2,g3</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">#-------------------------------------------------</span></span><br><span class="line"><span class="meta">@time</span> g1,g2,g3 = SurfGF()</span><br></pre></td></tr></table></figure>
+<p>通过计算发现这个计算还是非常快的，这也体现了格林函数方法的高效性。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li>1.<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/269595149">输运问题总结与练习(一):二端体系</a></li>
+</ul>
+<div class="note red flat"><p>鉴于该网站分享的大都是学习笔记，作者水平有限，若发现有问题可以发邮件给我</p>
+<ul>
+<li><strong>yxliphy@gmail.com</strong></li>
+</ul>
+<p>也非常欢迎喜欢分享的小伙伴投稿</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="/about">Yu-Xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2025/10/02/2025-10-02-selfenergy/">http://example.com/2025/10/02/2025-10-02-selfenergy/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Yu-Xuan's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Code/">Code</a><a class="post-meta__tags" href="/tags/Julia/">Julia</a><a class="post-meta__tags" href="/tags/Transport/">Transport</a></div><div class="post-share"><div class="social-share" data-image="/img/defult-cover2.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg"/></a><div class="post-qr-code-desc"></div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg"/></a><div class="post-qr-code-desc"></div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related  no-desc" href="/2025/10/03/2025-10-03-NEGF-Method/" title="非平衡格林函数计算电导率(方法)"><img class="cover" src="/assets/images/NEGF/lead.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">非平衡格林函数计算电导率(方法)</div></div></div></a><a class="pagination-related  no-desc" href="/2025/09/27/2025-09-26-tTMD/" title="转角TMD的摩尔势"><img class="cover" src="/assets/images/Twisted/AA-Twisted.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">转角TMD的摩尔势</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2019/04/17/2019-04-17-julia/" title="Majorana Corner State in High Temperature Superconductor"><img class="cover" src="/assets/images/research/juliaresult.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2019-04-17</div><div class="info-item-2">Majorana Corner State in High Temperature Superconductor</div></div><div class="info-2"><div class="info-item-1">最近刚刚学习了julia, 手头上也正好在重复一篇文章，就正好拿新学习的内容一边温习一边做研究。   导入函数库1234567# Import external package that use...</div></div></div></a><a class="pagination-related" href="/2020/06/30/2020-06-30-Kane-Mele/" title="Kane Mele model zigzag 边界态的计算"><img class="cover" src="/img/defult-cover4.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-30</div><div class="info-item-2">Kane Mele model zigzag 边界态的计算</div></div><div class="info-2"><div class="info-item-1">接触量子自旋霍尔效应很久了，但是一直也都是在square lattice上做计算，从来没有认真的在六角点阵上计算过拓扑的内容，正好最近在看文献的过程中需要在石墨烯机构上进行，就从最基本的Kane...</div></div></div></a><a class="pagination-related" href="/2020/07/01/2020-07-01-Chern-Number/" title="两种方法计算Chern Number"><img class="cover" src="/img/defult-cover8.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-01</div><div class="info-item-2">两种方法计算Chern Number</div></div><div class="info-2"><div class="info-item-1">计算Chern数是最初学习拓扑物理都会遇到的问题，正好在假期空闲的时候自己学习了一下Chern数的数值计算方法，在博客上记录一下希望可以帮助到别人。   具体的计算方法和细节就不在这里说明了，只...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description">知行合一</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">258</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yxli8023"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:yxliphy@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><div style="text-align:center;"> <img src="/assets/images/qrcode.jpg" alt="公告图" style="max-width:100%; border-radius:10px; margin-bottom:10px;"> <br> 欢迎关注公众号，有趣的内容也会在上面同步。 </div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%87%AA%E8%83%BD%E8%AE%A1%E7%AE%97"><span class="toc-number">1.</span> <span class="toc-text">自能计算</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">2.</span> <span class="toc-text">参考</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/11/13/2025-11-13-mmaskill/" title="Mathematica一些小技巧收集"><img src="/assets/images/Mma/mma-logo.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Mathematica一些小技巧收集"/></a><div class="content"><a class="title" href="/2025/11/13/2025-11-13-mmaskill/" title="Mathematica一些小技巧收集">Mathematica一些小技巧收集</a><time datetime="2025-11-12T16:00:00.000Z" title="发表于 2025-11-13 00:00:00">2025-11-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/11/12/2025-11-12-TBG/" title="转角石墨烯BM模型推导和数值计算(Twisted bilayer graphene BM model)"><img src="/assets/images/BM-model/graphene-13.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="转角石墨烯BM模型推导和数值计算(Twisted bilayer graphene BM model)"/></a><div class="content"><a class="title" href="/2025/11/12/2025-11-12-TBG/" title="转角石墨烯BM模型推导和数值计算(Twisted bilayer graphene BM model)">转角石墨烯BM模型推导和数值计算(Twisted bilayer graphene BM model)</a><time datetime="2025-11-11T16:00:00.000Z" title="发表于 2025-11-12 00:00:00">2025-11-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/11/11/2025-11-11-Kwant-Andreev/" title="利用 Kwant 计算 Andreev 反射"><img src="/assets/images/Kwant/SC-Adnreev-barrier-0.00.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="利用 Kwant 计算 Andreev 反射"/></a><div class="content"><a class="title" href="/2025/11/11/2025-11-11-Kwant-Andreev/" title="利用 Kwant 计算 Andreev 反射">利用 Kwant 计算 Andreev 反射</a><time datetime="2025-11-10T16:00:00.000Z" title="发表于 2025-11-11 00:00:00">2025-11-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/11/10/2025-11-10-ThemralHall/" title="二维拓扑超导的热 Hall 效应"><img src="/assets/images/TSC/Phase-Compare-Dual-Axis.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="二维拓扑超导的热 Hall 效应"/></a><div class="content"><a class="title" href="/2025/11/10/2025-11-10-ThemralHall/" title="二维拓扑超导的热 Hall 效应">二维拓扑超导的热 Hall 效应</a><time datetime="2025-11-09T16:00:00.000Z" title="发表于 2025-11-10 00:00:00">2025-11-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/11/06/2025-11-06-interpolation/" title="资源不够，插值来揍"><img src="/assets/images/Julia/pairing-julia-0.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="资源不够，插值来揍"/></a><div class="content"><a class="title" href="/2025/11/06/2025-11-06-interpolation/" title="资源不够，插值来揍">资源不够，插值来揍</a><time datetime="2025-11-05T16:00:00.000Z" title="发表于 2025-11-06 00:00:00">2025-11-06</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/img/defult-cover2.png);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div><div class="footer_custom_text">Welcome to  Yu-Xuan's Blog</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  const initGitalk = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGitalk = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const gitalk = new Gitalk({
+      clientID: 'Ov23li0WvZEaIAZ7RFtH',
+      clientSecret: '03fcb77b7c28dafcdde00756e27f9b5bc76639e8',
+      repo: 'yxli8023.github.io',
+      owner: 'yxli8023',
+      admin: ['yxli8023'],
+      updateCountCallback: commentCount,
+      ...option,
+      id: isShuoshuo ? path : (option && option.id) || '682999176cda90fcf430c0e6382d7a71'
+    })
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async(el, path) => {
+    if (typeof Gitalk === 'function') initGitalk(el, path)
+    else {
+      await btf.getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await btf.getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Gitalk' === 'Gitalk'
+      ? window.shuoshuoComment = { loadComment: loadGitalk }
+      : window.loadOtherComment = loadGitalk
+    return
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
