@@ -1,0 +1,377 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>奈特位移(Knight shift) | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="奈特位移（Knight shift）在研究超导态时是一个极其关键的探针，它能直接告诉我们配对电子的自旋态，从而判断超导是自旋单态（singlet）还是自旋三重态（triplet）。  奈特位移奈特位移（Knight shift）在研究超导态时是一个极其关键的探针，它能直接告诉我们配对电子的自旋态，从而判断超导是自旋单态（singlet）还是自旋三重态（triplet）。首先来解释一下到底 Knig">
+<meta property="og:type" content="article">
+<meta property="og:title" content="奈特位移(Knight shift)">
+<meta property="og:url" content="http://example.com/2025/12/05/2025-12-05-Knight-shift/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39;s Blog">
+<meta property="og:description" content="奈特位移（Knight shift）在研究超导态时是一个极其关键的探针，它能直接告诉我们配对电子的自旋态，从而判断超导是自旋单态（singlet）还是自旋三重态（triplet）。  奈特位移奈特位移（Knight shift）在研究超导态时是一个极其关键的探针，它能直接告诉我们配对电子的自旋态，从而判断超导是自旋单态（singlet）还是自旋三重态（triplet）。首先来解释一下到底 Knig">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/assets/images/SC/knight.png">
+<meta property="article:published_time" content="2025-12-04T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-12-05T09:36:05.719Z">
+<meta property="article:author" content="Yu-Xuan">
+<meta property="article:tag" content="Superconductor">
+<meta property="article:tag" content="Experiment">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/images/SC/knight.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "奈特位移(Knight shift)",
+  "url": "http://example.com/2025/12/05/2025-12-05-Knight-shift/",
+  "image": "http://example.com/assets/images/SC/knight.png",
+  "datePublished": "2025-12-04T16:00:00.000Z",
+  "dateModified": "2025-12-05T09:36:05.719Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yu-Xuan",
+      "url": "http://example.com/about"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/logo.png"><link rel="canonical" href="http://example.com/2025/12/05/2025-12-05-Knight-shift/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"作者: Yu-Xuan","link":"链接: ","source":"来源: Yu-Xuan's Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'medium_zoom',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#f54966","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '奈特位移(Knight shift)',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #dbeffd;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">272</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/assets/images/SC/knight.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo.png" alt="Logo"><span class="site-name">Yu-Xuan's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">奈特位移(Knight shift)</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">奈特位移(Knight shift)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-12-04T16:00:00.000Z" title="发表于 2025-12-05 00:00:00">2025-12-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-12-05T09:36:05.719Z" title="更新于 2025-12-05 17:36:05">2025-12-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Superconductor-Experiment/">Superconductor,Experiment</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">1.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;自上次更新已经过了&quot;,&quot;messageNext&quot;:&quot;天，文章内容可能已过时。&quot;,&quot;postUpdate&quot;:&quot;2025-12-05 17:36:05&quot;}" hidden></div><div class="note blue no-icon flat"><p>奈特位移（Knight shift）在研究<strong>超导态</strong>时是一个极其关键的探针，它能直接告诉我们<strong>配对电子的自旋态</strong>，从而判断超导是<strong>自旋单态（singlet）</strong>还是<strong>自旋三重态（triplet）</strong>。</p>
+</div>
+<h1 id="奈特位移"><a href="#奈特位移" class="headerlink" title="奈特位移"></a>奈特位移</h1><p>奈特位移（Knight shift）在研究<strong>超导态</strong>时是一个极其关键的探针，它能直接告诉我们<strong>配对电子的自旋态</strong>，从而判断超导是<strong>自旋单态（singlet）</strong>还是<strong>自旋三重态（triplet）</strong>。首先来解释一下到底 Knight 位移是如何跟体系的磁性响应关联起来的。</p>
+<p>对一个体系外加磁场$H_0$，导电电子的自旋被极化，产生自旋磁化强度</p>
+<script type="math/tex; mode=display">
+M_s = \chi_s H_0</script><p>这里的$\chi_s$就是自旋磁化率。电子自旋和核自旋之间存在<strong>超精细相互作用</strong>，可以等效表示为</p>
+<script type="math/tex; mode=display">
+H_{\rm hf} = A_{\rm hf}\, M_s</script><p>其中$A_{\rm hf}$就是超精细耦合常数（hyperfine coupling constant），与波函数在核处的概率密度、轨道类型等有关。因此外加磁场之后，原子核感受到的局域磁场是</p>
+<script type="math/tex; mode=display">
+H_{\rm loc} = H_0 + H_{\rm hf}
+           = H_0 + A_{\rm hf} M_s
+           = H_0 + A_{\rm hf} \chi_s H_0
+           = H_0\,(1 + A_{\rm hf}\chi_s)</script><p>核磁共振的共振频率为</p>
+<script type="math/tex; mode=display">
+\nu = \gamma_n H_{\rm loc} = \gamma_n H_0 (1 + A_{\rm hf}\chi_s)</script><p>其中$\gamma_n$是核的回旋比。首先，将不考虑电子自旋极化对核的<strong>附加局域磁场</strong>影响是的频率作为参考频率</p>
+<script type="math/tex; mode=display">
+\nu_0 = \gamma_n H_0</script><p>那么奈特位移定义的频率为相对偏移量</p>
+<script type="math/tex; mode=display">
+K \equiv \frac{\nu - \nu_0}{\nu_0}
+     = \frac{\gamma_n H_0(1 + A_{\rm hf}\chi_s) - \gamma_n H_0}{\gamma_n H_0}
+     = A_{\rm hf}\chi_s</script><p>可以看到它与自旋磁化率直接相关</p>
+<script type="math/tex; mode=display">
+\boxed{K_s \;\propto\; \chi_s}</script><h2 id="正常态探测"><a href="#正常态探测" class="headerlink" title="正常态探测"></a>正常态探测</h2><p>对于自由电子气，自旋磁化率就是 Pauli 磁化率</p>
+<script type="math/tex; mode=display">
+\chi_s = \chi_P = \mu_B^2 N(E_F)</script><p>此时</p>
+<script type="math/tex; mode=display">
+K_s \propto A_{\rm hf} \mu_B^2 N(E_F)</script><p>这说明奈特位移实际上<strong>直接反映费米能级附近的态密度$N(E_F)$</strong>，因此在金属、超导、重费米子等体系里，经常用奈特位移来探测电子态的变化。</p>
+<p>在真实材料中，磁矩处了自旋贡献外还有轨道贡献，所以奈特位移一般写作</p>
+<script type="math/tex; mode=display">
+K(T) = K_s(T) + K_{\rm orb}</script><p>这里$K_{\rm orb}$就是轨道部分，一般与温度无关，或者对温度的依赖非常小。实验上通过变温测量可以得到曲线</p>
+<script type="math/tex; mode=display">
+K(T) = K_{\rm orb} + \frac{A_{\rm hf}}{N_A\mu_B}\, \chi_s(T)</script><p>其截距则对应轨道磁矩的贡献。</p>
+<h2 id="超导态探测"><a href="#超导态探测" class="headerlink" title="超导态探测"></a>超导态探测</h2><p>在体系进入超导态时形成 Cooper 对，它的自旋结构决定体系的自旋磁化率$\chi_s(T)$随温度的变化，从而影响奈特位移。</p>
+<blockquote>
+<ul>
+<li>自旋单重态超导</li>
+</ul>
+</blockquote>
+<p>对于自旋单重态超导，每个库珀对由两个自旋相反的电子组成，总自旋$S=0$，外磁场只影响轨道部分，无法极化成对的电子自旋。因此，当进入超导态后，自旋磁化率 <strong>显著下降</strong>，理想情况下$T\to 0$</p>
+<script type="math/tex; mode=display">
+\chi_s(T\to 0) \approx 0.</script><p>所以奈特位移的自旋部分$K_s$也会随着温度下降到零</p>
+<script type="math/tex; mode=display">
+K(T) = K_{\rm orb} + K_s(T), \quad K_s(T\to 0) \to 0.</script><p>实现上就表现为奈特位移在超导转变温度$T_c$附近快速下降为零，从而判定为自旋单重态超导体。</p>
+<p>对于$s$波超导体，自旋磁化率与温度的依赖关系为</p>
+<script type="math/tex; mode=display">
+\frac{\chi_s(T)}{\chi_n}
+ = \int_{\Delta(T)}^{\infty}
+   \left(-\frac{\partial f(E)}{\partial E}\right)
+   \frac{E}{\sqrt{E^2-\Delta^2(T)}}\, dE</script><blockquote>
+<ul>
+<li>自旋三重态超导</li>
+</ul>
+</blockquote>
+<p>对于自旋单重态超导，Cooper 携带非零自旋$S=1$，两个电子的自旋平行，因此体系的自旋磁化率在进入超导态之后不会消失</p>
+<script type="math/tex; mode=display">
+\chi_s(T\to 0) \approx \chi_n,</script><p>其中$\chi_n$是正常态的磁化率。因此如果奈特位移在$T_c$附近几乎不变，这就是自旋三重态超导的特征。</p>
+<p>三重态超导的配对矩阵为</p>
+<script type="math/tex; mode=display">
+\hat{\Delta}(\boldsymbol{k}) = i[\boldsymbol{d}(\boldsymbol{k}) \cdot \boldsymbol{\sigma}] \sigma_y.</script><p>其中矢量$\boldsymbol{d}(\boldsymbol{k})$决定了配对的自旋方向和结构。如果$\boldsymbol{d}(\boldsymbol{k})\perp \boldsymbol{H}$，对应的自旋分量被成对束缚，此时磁化率会下降。对于 $\boldsymbol{d}(\boldsymbol{k})\parallel \boldsymbol{H}$，该分量的自旋未配对，此时磁化率保持不变。因此$\chi_s$一般是各向异性的。在弱自旋轨道耦合、幺正配对近似下，三重态超导的自旋磁化率为</p>
+<script type="math/tex; mode=display">
+\boxed{
+\chi_{ij}(T)
+= \chi_n \left[
+\delta_{ij} - \langle \hat{d}_i(\boldsymbol{k}) \hat{d}_j^*(\boldsymbol{k}) \, Y(T, \boldsymbol{k}) \rangle_{\rm FS}
+\right]
+}</script><p>其中$\chi_n$是正常态磁化率$\hat{d}_i$是$\boldsymbol{d}$矢量的分量，$Y(T, \boldsymbol{k})$是 Yosida-like 函数</p>
+<script type="math/tex; mode=display">
+Y(T, \boldsymbol{k}) =
+\int_{\Delta_{\boldsymbol{k}}}^{\infty}
+\frac{E}{\sqrt{E^2 - |\Delta_{\boldsymbol{k}}|^2}}
+\left(-\frac{\partial f(E)}{\partial E}\right) dE.</script><p>比如对于$p_z$波配对，假设磁场 沿$z$方向，那么$\boldsymbol{d} \parallel \hat{z}$</p>
+<script type="math/tex; mode=display">
+\chi_s^{\parallel}(T) = \chi_n \left[ 1 - Y(T) \right].</script><p>在$T\to 0$时磁化率降到 0。如果$\boldsymbol{d}\perp\hat{x}$，磁场沿$x$方向，那么</p>
+<script type="math/tex; mode=display">
+\chi_s^{\perp}(T) = \chi_n.</script><p>磁化率不随温度变化，保持常数。</p>
+<blockquote>
+<p>这里给都是定性结果，在具体模型或者材料中，自旋单重态磁化率随温度消失，而自旋三重态则会随温度降低，最终趋近于一个常数，并不会像这里给出的与正常态磁化率相同。</p>
+</blockquote>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p><a target="_blank" rel="noopener" href="https://online.kitp.ucsb.edu/online/chiralsc-m07/triplet/pdf1/Ishida_ChiralSC_KITP.pdf">Knight Shift Measurements on Superconducting Sr$_2$RuO$_4$</a><br><a target="_blank" rel="noopener" href="https://repository.kulib.kyoto-u.ac.jp/server/api/core/bitstreams/4e5fec81-2b5b-441d-b952-040100829bf5/content">The Intriguing Superconductivity of Strontium Ruthenate</a></p>
+<div class="note red flat"><p>鉴于该网站分享的大都是学习笔记，作者水平有限，若发现有问题可以发邮件给我</p>
+<ul>
+<li><strong>yxliphy@gmail.com</strong></li>
+</ul>
+<p>也非常欢迎喜欢分享的小伙伴投稿</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="/about">Yu-Xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2025/12/05/2025-12-05-Knight-shift/">http://example.com/2025/12/05/2025-12-05-Knight-shift/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Yu-Xuan's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Superconductor/">Superconductor</a><a class="post-meta__tags" href="/tags/Experiment/">Experiment</a></div><div class="post-share"><div class="social-share" data-image="/assets/images/SC/knight.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg"/></a><div class="post-qr-code-desc"></div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg"/></a><div class="post-qr-code-desc"></div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related  no-desc" href="/2025/12/05/2025-12-05-SC-sus2/" title="自旋三重态超导的自旋磁化率"><img class="cover" src="/img/defult-cover6.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">自旋三重态超导的自旋磁化率</div></div></div></a><a class="pagination-related  no-desc" href="/2025/12/04/2025-12-04-SC-sus/" title="自旋单重态超导的自旋磁化率"><img class="cover" src="/img/defult-cover8.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">自旋单重态超导的自旋磁化率</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/07/14/2025-07-14-Exp-SC/" title="实验可测量与超导特征参数之间的关系(持续更新.......)"><img class="cover" src="/assets/images/Experiment/SC-BT.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-07-14</div><div class="info-item-2">实验可测量与超导特征参数之间的关系(持续更新.......)</div></div><div class="info-2"><div class="info-item-1">整理一下实验中如何测量超导一些特征参数。   超导相干长度与磁场关系 2\pi\xi^2=\frac{\phi_0}{B_{c\perp}}，\quad \text{或者}\quad \xi=\...</div></div></div></a><a class="pagination-related" href="/2019/04/17/2019-04-17-julia/" title="Majorana Corner State in High Temperature Superconductor"><img class="cover" src="/assets/images/research/juliaresult.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2019-04-17</div><div class="info-item-2">Majorana Corner State in High Temperature Superconductor</div></div><div class="info-2"><div class="info-item-1">最近刚刚学习了julia, 手头上也正好在重复一篇文章，就正好拿新学习的内容一边温习一边做研究。   导入函数库1234567# Import external package that use...</div></div></div></a><a class="pagination-related" href="/2020/09/03/2020-09-03-Hubbard-doping/" title="电子掺杂，空穴掺杂与化学势的关系"><img class="cover" src="/img/defult-cover3.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-03</div><div class="info-item-2">电子掺杂，空穴掺杂与化学势的关系</div></div><div class="info-2"><div class="info-item-1">在研究超导问题的时候，不可避免的总会遇到体系时电子掺杂还是空穴掺杂，因为这两种不同的掺杂所对应的性质是不同的，最近重新温习一下超导的相关知识，正好也利用一个具体的紧束缚近似模型来说明一下电子和空...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description">知行合一</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">272</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yxli8023"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:yxliphy@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><div style="text-align:center;"> <img src="/assets/images/qrcode.jpg" alt="公告图" style="max-width:100%; border-radius:10px; margin-bottom:10px;"> <br> 欢迎关注公众号，有趣的内容也会在上面同步。 </div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A5%88%E7%89%B9%E4%BD%8D%E7%A7%BB"><span class="toc-number">1.</span> <span class="toc-text">奈特位移</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E5%B8%B8%E6%80%81%E6%8E%A2%E6%B5%8B"><span class="toc-number">1.1.</span> <span class="toc-text">正常态探测</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B6%85%E5%AF%BC%E6%80%81%E6%8E%A2%E6%B5%8B"><span class="toc-number">1.2.</span> <span class="toc-text">超导态探测</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">2.</span> <span class="toc-text">参考文献</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/12/05/2025-12-05-Knight-shift/" title="奈特位移(Knight shift)"><img src="/assets/images/SC/knight.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="奈特位移(Knight shift)"/></a><div class="content"><a class="title" href="/2025/12/05/2025-12-05-Knight-shift/" title="奈特位移(Knight shift)">奈特位移(Knight shift)</a><time datetime="2025-12-04T16:00:00.000Z" title="发表于 2025-12-05 00:00:00">2025-12-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/12/05/2025-12-05-SC-sus2/" title="自旋三重态超导的自旋磁化率"><img src="/img/defult-cover6.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="自旋三重态超导的自旋磁化率"/></a><div class="content"><a class="title" href="/2025/12/05/2025-12-05-SC-sus2/" title="自旋三重态超导的自旋磁化率">自旋三重态超导的自旋磁化率</a><time datetime="2025-12-04T16:00:00.000Z" title="发表于 2025-12-05 00:00:00">2025-12-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/12/04/2025-12-04-SC-sus/" title="自旋单重态超导的自旋磁化率"><img src="/img/defult-cover8.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="自旋单重态超导的自旋磁化率"/></a><div class="content"><a class="title" href="/2025/12/04/2025-12-04-SC-sus/" title="自旋单重态超导的自旋磁化率">自旋单重态超导的自旋磁化率</a><time datetime="2025-12-03T16:00:00.000Z" title="发表于 2025-12-04 00:00:00">2025-12-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/12/03/2025-12-03-Spin-sus/" title="自旋极化率与结构因子"><img src="/img/defult-cover4.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="自旋极化率与结构因子"/></a><div class="content"><a class="title" href="/2025/12/03/2025-12-03-Spin-sus/" title="自旋极化率与结构因子">自旋极化率与结构因子</a><time datetime="2025-12-02T16:00:00.000Z" title="发表于 2025-12-03 00:00:00">2025-12-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/12/03/2025-12-03-USC-gap/" title="反铁磁涨落与超导序参量的关系"><img src="/img/defult-cover7.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="反铁磁涨落与超导序参量的关系"/></a><div class="content"><a class="title" href="/2025/12/03/2025-12-03-USC-gap/" title="反铁磁涨落与超导序参量的关系">反铁磁涨落与超导序参量的关系</a><time datetime="2025-12-02T16:00:00.000Z" title="发表于 2025-12-03 00:00:00">2025-12-03</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/assets/images/SC/knight.png);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div><div class="footer_custom_text">Welcome to  Yu-Xuan's Blog</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  const initGitalk = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGitalk = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const gitalk = new Gitalk({
+      clientID: 'Ov23li0WvZEaIAZ7RFtH',
+      clientSecret: '03fcb77b7c28dafcdde00756e27f9b5bc76639e8',
+      repo: 'yxli8023.github.io',
+      owner: 'yxli8023',
+      admin: ['yxli8023'],
+      updateCountCallback: commentCount,
+      ...option,
+      id: isShuoshuo ? path : (option && option.id) || '87ddfc8d0226070e6720ecb6ab6f46c0'
+    })
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async(el, path) => {
+    if (typeof Gitalk === 'function') initGitalk(el, path)
+    else {
+      await btf.getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await btf.getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Gitalk' === 'Gitalk'
+      ? window.shuoshuoComment = { loadComment: loadGitalk }
+      : window.loadOtherComment = loadGitalk
+    return
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
