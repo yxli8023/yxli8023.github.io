@@ -1,0 +1,422 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Title | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="对称性约束光学跃迁在电偶极近似下，光学跃迁振幅由矩阵元决定  M_{if} &#x3D; \langle \psi_f | \hat{H}&#39; | \psi_i \rangle其中，$\hat{H}’$ 是扰动哈密顿量。对于电偶极跃迁，$\hat{H}’ \propto \mathbf{\epsilon} \cdot \mathbf{r}$，其中 $\mathbf{\epsilon}$ 是光场的偏振矢量，$\">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Title">
+<meta property="og:url" content="http://example.com/2025/01/10/2026-01-10-opt-sym/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39;s Blog">
+<meta property="og:description" content="对称性约束光学跃迁在电偶极近似下，光学跃迁振幅由矩阵元决定  M_{if} &#x3D; \langle \psi_f | \hat{H}&#39; | \psi_i \rangle其中，$\hat{H}’$ 是扰动哈密顿量。对于电偶极跃迁，$\hat{H}’ \propto \mathbf{\epsilon} \cdot \mathbf{r}$，其中 $\mathbf{\epsilon}$ 是光场的偏振矢量，$\">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/assets/images/Transport/opt-sym.png">
+<meta property="article:published_time" content="2025-01-09T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-01-10T13:40:52.013Z">
+<meta property="article:author" content="Yu-Xuan">
+<meta property="article:tag" content="Transport">
+<meta property="article:tag" content="Group-Theory">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/images/Transport/opt-sym.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Title",
+  "url": "http://example.com/2025/01/10/2026-01-10-opt-sym/",
+  "image": "http://example.com/assets/images/Transport/opt-sym.png",
+  "datePublished": "2025-01-09T16:00:00.000Z",
+  "dateModified": "2026-01-10T13:40:52.013Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yu-Xuan",
+      "url": "http://example.com/about"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/logo.png"><link rel="canonical" href="http://example.com/2025/01/10/2026-01-10-opt-sym/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"作者: Yu-Xuan","link":"链接: ","source":"来源: Yu-Xuan's Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'medium_zoom',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#f54966","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Title',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #dbeffd;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">294</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/assets/images/Transport/opt-sym.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo.png" alt="Logo"><span class="site-name">Yu-Xuan's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">Title</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Title</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-01-09T16:00:00.000Z" title="发表于 2025-01-10 00:00:00">2025-01-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-01-10T13:40:52.013Z" title="更新于 2026-01-10 21:40:52">2026-01-10</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Transport/">Transport</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>7分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;自上次更新已经过了&quot;,&quot;messageNext&quot;:&quot;天，文章内容可能已过时。&quot;,&quot;postUpdate&quot;:&quot;2026-01-10 21:40:52&quot;}" hidden></div><h1 id="对称性约束光学跃迁"><a href="#对称性约束光学跃迁" class="headerlink" title="对称性约束光学跃迁"></a>对称性约束光学跃迁</h1><p>在电偶极近似下，光学跃迁振幅由矩阵元决定</p>
+<script type="math/tex; mode=display">
+M_{if} = \langle \psi_f | \hat{H}' | \psi_i \rangle</script><p>其中，$\hat{H}’$ 是扰动哈密顿量。对于<strong>电偶极跃迁</strong>，$\hat{H}’ \propto \mathbf{\epsilon} \cdot \mathbf{r}$，其中 $\mathbf{\epsilon}$ 是光场的偏振矢量，$\mathbf{r}$ 是坐标算符 $(x, y, z)$。跃迁强度与$|M_{fi}|^2$成正比。<strong>对称性允许的跃迁</strong>取决于矩阵元是否在群操作下保持不变（即包含群的不变表示$A_{1g}(\Gamma_1)$）。跃迁矩阵元的对称性由波函数和算符所属的不可约表示的直积决定</p>
+<script type="math/tex; mode=display">
+\Gamma= \Gamma_f^* \otimes \Gamma_{op} \otimes \Gamma_i</script><p><strong>跃迁允许的充分必要条件：</strong> 直积表示中必须包含全对称不可约表示 $\Gamma_1$</p>
+<script type="math/tex; mode=display">
+\Gamma_1 \subset \Gamma_f^* \otimes \Gamma_{op} \otimes \Gamma_i</script><p>或者等价的表示为</p>
+<script type="math/tex; mode=display">
+\Gamma_f \subset \Gamma_{op} \otimes \Gamma_i</script><p>也就是说偶极算符与初态的直积表示必然要包含末态的表示才会存在跃迁。对于电偶极跃迁，算符 $\hat{H}’$ 的对称性由坐标矢量 $\mathbf{r} = (x, y, z)$ 的对称性 $\Gamma_{vector}$ 决定。确定跃迁是否存在的步骤如下：</p>
+<ol>
+<li><strong>确定初态对称性：</strong> 找出 $\psi_i$ 所在的不可约表示 $\Gamma_i$。</li>
+<li><strong>确定算符对称性：</strong> 查看点群特征标表，找到 $(x, y, z)$ 对应的不可约表示 $\Gamma_{xyz}$。</li>
+<li><strong>确定末态对称性：</strong> 找出 $\psi_f$ 所在的不可约表示 $\Gamma_f$。</li>
+<li><strong>计算直积：</strong> 检查 $\Gamma_f$ 是否出现在 $\Gamma_{xyz} \otimes \Gamma_i$ 的不可约表示分解中。</li>
+</ol>
+<p>在具有<strong>反演中心（Inversion Center, $i$）</strong>的体系中（如 $O_h, D_{6h}$ 群），不可约表示被标记为 $g$ (gerade, 偶) 或 $u$ (ungerade, 奇)，此时位置算符 $\mathbf{r}$ 始终是奇宇称 ($u$)。而直积运算规则有</p>
+<script type="math/tex; mode=display">
+g \otimes g = g,\quad u \otimes u = g,\quad g \otimes u = u</script><p>所以在具有反演中心的体系中，要使 $\langle \psi_f | \mathbf{r} | \psi_i \rangle$ 不为零，乘积必须为 $g$</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&g \otimes u \otimes g = u \quad (\text{Forbidden})\\
+&u \otimes u \otimes u = u \quad (\text{Forbidden})\\
+&g \otimes u \otimes u = g \quad (\text{Allowed})
+\end{aligned}</script><p>因此，<strong>电偶极跃迁只允许在不同宇称的状态之间发生（$g \leftrightarrow u$）</strong>。这就是著名的 Laporte 规则。公式化的表述出来就是</p>
+<script type="math/tex; mode=display">
+M_{fi}=\langle\psi_f|\mathbf{r}|\psi_i\rangle
+=\langle P\psi_f|P\mathbf{r}P^{-1}|P\psi_i\rangle
+=\eta_f^{*}\,(-1)\,\eta_i\,M_{fi},</script><p>其中$\eta_{i,f}=\pm1$是空间反演算符$P$的本征值，要使得$M_{fi}\neq0$需要满足$\eta_f^{*}(-1)\eta_i=1$，即初末态宇称相反。</p>
+<h1 id="举例-C-4v-对称性下的跃迁"><a href="#举例-C-4v-对称性下的跃迁" class="headerlink" title="举例:$C_{4v}$对称性下的跃迁"></a>举例:$C_{4v}$对称性下的跃迁</h1><p>假设一个系统具有 $C_{4v}$ 对称性，基态是对称的 $A_1$，位置算符分量对应的表示以及光的偏振态如下表</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>算符</strong></th>
+<th style="text-align:center"><strong>不可约表示</strong></th>
+<th><strong>偏振方向</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$z$</td>
+<td style="text-align:center">$A_1$</td>
+<td>沿 $z$ 轴偏振 ($z$-polarized)</td>
+</tr>
+<tr>
+<td style="text-align:center">$(x, y)$</td>
+<td style="text-align:center">$E$</td>
+<td>面内偏振 ($xy$-polarized)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>如果末态是 $A_1$</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&z\quad 偏振：A_1 \otimes A_1 \otimes A_1 = A_1\quad  （允许）\\
+&xy\quad 偏振:A_1 \otimes E \otimes A_1 = E\quad （禁戒）
+\end{aligned}</script><p>如果末态是 $E$</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&z\quad 偏振: E \otimes A_1 \otimes A_1 = E\quad(禁戒)\\
+&xy\quad 偏振:E \otimes E \otimes A_1 = A_1 + A_2 + B_1 + B_2\quad (允许，因为包含 A_1）
+\end{aligned}</script><h1 id="圆偏光"><a href="#圆偏光" class="headerlink" title="圆偏光"></a>圆偏光</h1><p>上面考虑的是线偏振光，对于圆偏振光，电偶极跃迁矩阵元为</p>
+<script type="math/tex; mode=display">
+M_{fi}(\mathbf{e})=\langle \psi_{f\mathbf{k}}|\ \hat{\mathbf{r}}\!\cdot\!\mathbf{e}\ |\psi_{i\mathbf{k}}\rangle
+\quad(\text{垂直跃迁：同一 }\mathbf{k})</script><p>把矢量算符分解为<strong>球（圆偏振）分量</strong>（以$z$为旋转轴）</p>
+<script type="math/tex; mode=display">
+r_{\pm}=\frac{1}{\sqrt2}(x\pm i y),\qquad r_0=z</script><p>相应地，光的偏振矢量也写成</p>
+<script type="math/tex; mode=display">
+\mathbf{e}\cdot \hat{\mathbf{r}} = e_{+}\,r_{-}+e_{-}\,r_{+}+e_0\,r_0</script><p>圆偏振分量携带确定角动量，下面来具体看一下。首先对于绕$z$轴旋转$C_{nz}$(转角$\theta=2\pi/n$)</p>
+<script type="math/tex; mode=display">
+C_{nz}\, r_{\pm}\, C_{nz}^{-1} = e^{\pm i\theta}\, r_{\pm},\qquad
+C_{nz}\, r_{0}\, C_{nz}^{-1} = r_0</script><p>因此</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&r_{+}携带m=+1,\qquad r_{-}携带m=-1,\qquad &r_{0}携带m=0,
+\end{aligned}</script><p>这就是圆偏振选择定则的“角动量来源”。对于晶体系统，在某个高对称$\mathbf{k}$点(比如$\Gamma,K,M$)，真正约束偶极跃迁的是该$\mathbf{k}$的小群$G_{\mathbf{k}}$。设初末态在小群下属于不可约表示</p>
+<script type="math/tex; mode=display">
+|\psi_{i\mathbf{k}}\rangle \in \Gamma_i,\qquad |\psi_{f\mathbf{k}}\rangle \in \Gamma_f</script><p>算符分量$r_q\ (q=+, -, 0)$属于表示$\Gamma_{r_q}$，则允许跃迁的条件为</p>
+<script type="math/tex; mode=display">
+\Gamma_f \otimes \Gamma_{r_q} \otimes \Gamma_i \ \supset\ A_1</script><p>圆偏振态相比于线偏振态的差异就在于$\Gamma_{r_+}$与$\Gamma_{r_-}$，在包含$C_{nz}$的小群里它们对应不同“角动量类”。假设某$\mathbf{k}$点的本征态也同样是$C_{nz}$的本征态</p>
+<script type="math/tex; mode=display">
+C_{nz}|\psi_{i}\rangle=\lambda_i|\psi_i\rangle,\qquad
+C_{nz}|\psi_{f}\rangle=\lambda_f|\psi_f\rangle</script><p>其中$\lambda_{i,f}=e^{i\frac{2\pi}{n} m_{i,f}}$，利用$C_{nz}$对矩阵元的不变性</p>
+<script type="math/tex; mode=display">
+\langle f|r_q|i\rangle
+=\langle f|C_{nz}^{-1}(C_{nz}r_qC_{nz}^{-1})C_{nz}|i\rangle
+=\lambda_f^{*}\,e^{iq\frac{2\pi}{n}}\lambda_i \ \langle f|r_q|i\rangle</script><p>要使得该结果非零，则必须满足</p>
+<script type="math/tex; mode=display">
+\lambda_f^{*}\,e^{iq\frac{2\pi}{n}}\lambda_i = 1</script><p>等价写成角动量模$n$的加法规则</p>
+<script type="math/tex; mode=display">
+m_f \equiv m_i + q \pmod n
+\qquad (q=+1,-1,0)</script><ul>
+<li>对于右旋偏振$\sigma_+(q=+1)$：要求$m_f-m_i\equiv +1 \ (\mathrm{mod}\ n)$</li>
+<li>对于左旋偏振$\sigma_-(q=-1)$：要求$m_f-m_i\equiv -1 \ (\mathrm{mod}\ n)$</li>
+<li>线偏振$x/y$可以视为左旋偏振与右旋偏振的线性组合，所以会同时允许满足$m_f-m_i=\pm1$的通道。</li>
+</ul>
+<h1 id="举例：-C-3z-于谷选择定则-K-K-prime"><a href="#举例：-C-3z-于谷选择定则-K-K-prime" class="headerlink" title="举例：$C_{3z}$于谷选择定则($K/K^\prime$)"></a>举例：$C_{3z}$于谷选择定则($K/K^\prime$)</h1><p>在六角晶格的$K$点，小群通常含三重旋$C_{3z}$，此时跃迁选择定则为</p>
+<script type="math/tex; mode=display">
+m_f \equiv m_i \pm 1 \pmod 3</script><p>因此只要知道 $K$点价带/导带的$C_{3}$本征相位（或等价的“轨道角动量模 3”），就能立刻判断哪种偏振态$\sigma_{\pm}$的光是允许产生跃迁的。 过渡金属硫族化物 TMD 只是一个代表性的例子</p>
+<ul>
+<li>导带常由$d_{z}$主导：$m_c\equiv 0~(\text{mod}~3)$</li>
+<li>价带由$d_{x^2-y^2}\pm i d_{xy}$主导：$m_v \equiv \pm 2\ (\mathrm{mod}\ 3)$</li>
+</ul>
+<p>则$K$点可能出现</p>
+<script type="math/tex; mode=display">
+m_c-m_v \equiv 0-(+2)\equiv +1 \pmod 3</script><p>因此在$K$点右手性的偏振光$\sigma_+$可以产生跃迁；而$K^\prime$点由$K$点通过时间反演操作得到，该点的角动量符号会反转，导致在$K^\prime$点只有左手性的偏振光可以产生跃迁，公式化描述一下就是</p>
+<script type="math/tex; mode=display">
+M^{K}_{\sigma+} \neq 0 \ \Rightarrow\  M^{K'}_{\sigma-}\neq 0,\qquad
+M^{K}_{\sigma-} \approx 0 \ \Rightarrow\  M^{K'}_{\sigma+}\approx 0</script><p>这就是<strong>valley-contrasting circular dichroism</strong>。</p>
+<p>如果体系具有垂直镜面操作$M_x: (x,y,z)\to(x,-y,z)$，在算符分量上</p>
+<script type="math/tex; mode=display">
+M_x\,x\,M_x^{-1}=x,\quad  
+M_x\,y\,M_x^{-1}=-y.</script><p>因此对于圆偏振分量</p>
+<script type="math/tex; mode=display">
+r_{\pm}=\frac{1}{\sqrt2}(x\pm i y)
+\quad\Longrightarrow\quad
+M_x\,r_{+}\,M_x^{-1}=r_{-},\qquad  
+M_x\,r_{-}\,M_x^{-1}=r_{+}.</script><p>可以看到镜面操作将$\sigma_+$与$\sigma_-$互换了。所以如果一个高对称点的小群包含此类镜面对称性，则两个手性分量属于同一个二维表示$E$或承兑的复共轭表示$(E_{+},E_{-})$。根据跃迁选择</p>
+<script type="math/tex; mode=display">
+\Gamma_f\!\otimes\!\Gamma_{r_+}\!\otimes\!\Gamma_i\supset A_1,</script><p>因为$M_{x}$使得$r_+!\leftrightarrow!r_-$，必然有</p>
+<script type="math/tex; mode=display">
+\Gamma_f\!\otimes\!\Gamma_{r_-}\!\otimes\!\Gamma_i\supset A_1</script><p>因此，这种情形下圆偏振$\sigma_+$和$\sigma_-$要么同时允许，要么同时禁戒。也就是此时对两种偏振光的吸收是相同的，没有圆二色性。只有当这些镜面对称性破缺（例如某些手性晶体），此时$\sigma_+/\sigma_-$才会出现不对称吸收。</p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p><a target="_blank" rel="noopener" href="https://link.springer.com/book/10.1007/978-3-540-32899-5">Group theory: application to the physics of condensed matter</a></p>
+<div class="note red flat"><p>鉴于该网站分享的大都是学习笔记，作者水平有限，若发现有问题可以发邮件给我</p>
+<ul>
+<li><strong>yxliphy@gmail.com</strong></li>
+</ul>
+<p>也非常欢迎喜欢分享的小伙伴投稿</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="/about">Yu-Xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2025/01/10/2026-01-10-opt-sym/">http://example.com/2025/01/10/2026-01-10-opt-sym/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Yu-Xuan's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Transport/">Transport</a><a class="post-meta__tags" href="/tags/Group-Theory/">Group-Theory</a></div><div class="post-share"><div class="social-share" data-image="/assets/images/Transport/opt-sym.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg"/></a><div class="post-qr-code-desc"></div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg"/></a><div class="post-qr-code-desc"></div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/02/18/2025-02-18-Julia-MPI-Set/" title="Mac上配置MPI并行Julia"><img class="cover" src="/assets/images/Julia/a4.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Mac上配置MPI并行Julia</div></div><div class="info-2"><div class="info-item-1">这里记录一下怎么在本地电脑上配对Julia的MPI库实现并行   安装Julia下载安装即可，MPI只需要在包安装环境下执行安装 123julia&gt; import Pkgjulia&gt;...</div></div></div></a><a class="pagination-related" href="/2024/12/15/2024-12-15-Fourier-Spectrum/" title="超导序参量中的傅里叶分析"><img class="cover" src="/assets/images/Mma/fft-2.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">超导序参量中的傅里叶分析</div></div><div class="info-2"><div class="info-item-1">整理一下在研究超导序参量的时候，理解傅里叶分析的一些笔记   最近在计算电子配对序参量，其中要分析序参量的配对对称性，这个时候可以采用Fourier变换，分解到不同的$\sin(n\theta)...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2020/09/16/2020-09-16-Kubo/" title="Kubo公式推导(线性响应理论)"><img class="cover" src="/img/defult-cover2.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-16</div><div class="info-item-2">Kubo公式推导(线性响应理论)</div></div><div class="info-2"><div class="info-item-1">物理是个实验学科,在凝聚态物理中,若想知道一个给定物理系统的特性,首先是以某种方式扰动系统(如加外场或者通过粒子辐射),然后观察系统的物理量因外加扰动所引起的改变—-响应.通过扰动于响应的关系即...</div></div></div></a><a class="pagination-related" href="/2022/03/25/2022-03-25-edge-polarization/" title="Title"><img class="cover" src="/img/defult-cover4.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-25</div><div class="info-item-2">Title</div></div><div class="info-2"><div class="info-item-1">本 Blog 提供计算边界极化的完整代码，理论部分参考边界极化这篇 Blog。  代码串行1234567891011121314151617181920212223242526272829303...</div></div></div></a><a class="pagination-related" href="/2025/07/12/2025-07-12-symmetry-response/" title="对称性约束响应系数"><img class="cover" src="/assets/images/Transport/current-symmetry.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-07-12</div><div class="info-item-2">对称性约束响应系数</div></div><div class="info-2"><div class="info-item-1">这里先用一个具体的例子来展示一下对称性是如何约束响应系数分量的。   这里来分析一下，在系统具有 $C_{2x}$ 对称性（即关于 $x$轴的二重旋转对称性）时，一阶电导率张量$\sigma_{...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description">知行合一</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">294</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yxli8023"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:yxliphy@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><div style="text-align:center;"> <img src="/assets/images/qrcode.jpg" alt="公告图" style="max-width:100%; border-radius:10px; margin-bottom:10px;"> <br> 欢迎关注公众号，有趣的内容也会在上面同步。 </div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%B9%E7%A7%B0%E6%80%A7%E7%BA%A6%E6%9D%9F%E5%85%89%E5%AD%A6%E8%B7%83%E8%BF%81"><span class="toc-number">1.</span> <span class="toc-text">对称性约束光学跃迁</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%BE%E4%BE%8B-C-4v-%E5%AF%B9%E7%A7%B0%E6%80%A7%E4%B8%8B%E7%9A%84%E8%B7%83%E8%BF%81"><span class="toc-number">2.</span> <span class="toc-text">举例:$C_{4v}$对称性下的跃迁</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9C%86%E5%81%8F%E5%85%89"><span class="toc-number">3.</span> <span class="toc-text">圆偏光</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%BE%E4%BE%8B%EF%BC%9A-C-3z-%E4%BA%8E%E8%B0%B7%E9%80%89%E6%8B%A9%E5%AE%9A%E5%88%99-K-K-prime"><span class="toc-number">4.</span> <span class="toc-text">举例：$C_{3z}$于谷选择定则($K&#x2F;K^\prime$)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">5.</span> <span class="toc-text">参考文献</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/01/08/2026-01-08-sc-clean-dirty/" title="超导中的 Clean limit 与 Dirty limit"><img src="/assets/images/SC/sc-clean-dirty.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导中的 Clean limit 与 Dirty limit"/></a><div class="content"><a class="title" href="/2026/01/08/2026-01-08-sc-clean-dirty/" title="超导中的 Clean limit 与 Dirty limit">超导中的 Clean limit 与 Dirty limit</a><time datetime="2026-01-07T16:00:00.000Z" title="发表于 2026-01-08 00:00:00">2026-01-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/01/07/2026-01-07-orbit-moment/" title="轨道磁矩推导"><img src="/assets/images/topology/orbit-moment.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="轨道磁矩推导"/></a><div class="content"><a class="title" href="/2026/01/07/2026-01-07-orbit-moment/" title="轨道磁矩推导">轨道磁矩推导</a><time datetime="2026-01-06T16:00:00.000Z" title="发表于 2026-01-07 00:00:00">2026-01-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/01/06/2026-01-06-BdG-condu/" title="BdG 哈密顿量下的电磁响应（光电导）推导"><img src="/assets/images/SC/sc-optical-1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="BdG 哈密顿量下的电磁响应（光电导）推导"/></a><div class="content"><a class="title" href="/2026/01/06/2026-01-06-BdG-condu/" title="BdG 哈密顿量下的电磁响应（光电导）推导">BdG 哈密顿量下的电磁响应（光电导）推导</a><time datetime="2026-01-05T16:00:00.000Z" title="发表于 2026-01-06 00:00:00">2026-01-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/01/05/2026-01-05-TBG-Chiral/" title="转角石墨烯手征极限"><img src="/assets/images/Twisted/tbg-1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="转角石墨烯手征极限"/></a><div class="content"><a class="title" href="/2026/01/05/2026-01-05-TBG-Chiral/" title="转角石墨烯手征极限">转角石墨烯手征极限</a><time datetime="2026-01-04T16:00:00.000Z" title="发表于 2026-01-05 00:00:00">2026-01-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/12/28/2025-12-28-SC-multi/" title="多轨道超导体的配对对称性分析"><img src="/assets/images/SC/image-20251228111933541.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="多轨道超导体的配对对称性分析"/></a><div class="content"><a class="title" href="/2025/12/28/2025-12-28-SC-multi/" title="多轨道超导体的配对对称性分析">多轨道超导体的配对对称性分析</a><time datetime="2025-12-27T16:00:00.000Z" title="发表于 2025-12-28 00:00:00">2025-12-28</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/assets/images/Transport/opt-sym.png);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div><div class="footer_custom_text">Welcome to  Yu-Xuan's Blog</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  const initGitalk = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGitalk = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const gitalk = new Gitalk({
+      clientID: 'Ov23li0WvZEaIAZ7RFtH',
+      clientSecret: '03fcb77b7c28dafcdde00756e27f9b5bc76639e8',
+      repo: 'yxli8023.github.io',
+      owner: 'yxli8023',
+      admin: ['yxli8023'],
+      updateCountCallback: commentCount,
+      ...option,
+      id: isShuoshuo ? path : (option && option.id) || '7048ede980e7ad5cf61fca01b60cd7db'
+    })
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async(el, path) => {
+    if (typeof Gitalk === 'function') initGitalk(el, path)
+    else {
+      await btf.getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await btf.getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Gitalk' === 'Gitalk'
+      ? window.shuoshuoComment = { loadComment: loadGitalk }
+      : window.loadOtherComment = loadGitalk
+    return
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
