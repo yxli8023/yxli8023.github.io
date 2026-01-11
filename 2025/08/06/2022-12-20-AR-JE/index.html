@@ -1,0 +1,372 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Andreev reflection and Fraction Josephson effect | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="最近正好有些空闲的时间，发现自己对拓扑中的一些理解并不深刻，正好借这个机会重新学习一下，加深自己对其中内容的理解，也能让自己之后的研究走的更远。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Andreev reflection and Fraction Josephson effect">
+<meta property="og:url" content="http://example.com/2025/08/06/2022-12-20-AR-JE/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39;s Blog">
+<meta property="og:description" content="最近正好有些空闲的时间，发现自己对拓扑中的一些理解并不深刻，正好借这个机会重新学习一下，加深自己对其中内容的理解，也能让自己之后的研究走的更远。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/defult-cover8.png">
+<meta property="article:published_time" content="2025-08-06T03:49:44.000Z">
+<meta property="article:modified_time" content="2025-08-06T03:49:44.000Z">
+<meta property="article:author" content="Yu-Xuan">
+<meta property="article:tag" content="Topology">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/defult-cover8.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Andreev reflection and Fraction Josephson effect",
+  "url": "http://example.com/2025/08/06/2022-12-20-AR-JE/",
+  "image": "http://example.com/img/defult-cover8.png",
+  "datePublished": "2025-08-06T03:49:44.000Z",
+  "dateModified": "2025-08-06T03:49:44.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yu-Xuan",
+      "url": "http://example.com/about"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/logo.png"><link rel="canonical" href="http://example.com/2025/08/06/2022-12-20-AR-JE/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"作者: Yu-Xuan","link":"链接: ","source":"来源: Yu-Xuan's Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'medium_zoom',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#f54966","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Andreev reflection and Fraction Josephson effect',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #dbeffd;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">294</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/img/defult-cover8.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo.png" alt="Logo"><span class="site-name">Yu-Xuan's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">Andreev reflection and Fraction Josephson effect</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Andreev reflection and Fraction Josephson effect</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-08-06T03:49:44.000Z" title="发表于 2025-08-06 11:49:44">2025-08-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-08-06T03:49:44.000Z" title="更新于 2025-08-06 11:49:44">2025-08-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Transport/">Transport</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">4.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>14分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;自上次更新已经过了&quot;,&quot;messageNext&quot;:&quot;天，文章内容可能已过时。&quot;,&quot;postUpdate&quot;:&quot;2025-08-06 11:49:44&quot;}" hidden></div><div class="note blue no-icon flat"><p>最近正好有些空闲的时间，发现自己对拓扑中的一些理解并不深刻，正好借这个机会重新学习一下，加深自己对其中内容的理解，也能让自己之后的研究走的更远。</p>
+</div>
+<span id="more"></span>
+<h1 id="Andreev-reflection"><a href="#Andreev-reflection" class="headerlink" title="Andreev reflection"></a>Andreev reflection</h1><p>要理解通过Majorana模式时电导是如何工作的，我们首先必须了解电荷是如何从金属铅转移到超导体的。一般来说，这种转移是通过一种叫做Andreev反射的机制进行的。在我们讨论Majorana零模的电导特征之前，了解一下Andreev反射是什么是有用的。让我们考虑以下两个电极的简单电路:</p>
+<p><img src="/assets/images/RestudyTP/ns_interface.svg" alt="png"></p>
+<p>一个电极是普通金属，另一个是超导体，它们的电压差为$V$。在普通金属和超导体之间的界面(简称NS界面)有一个势垒。我们特别感兴趣的是，与超导体中的能隙$eV &lt; \Delta$相比，电压差非常小的情况，其中$e$是电子的电荷。当电子到达超导体的界面时会发生什么？超导体在费米能级附近没有能量不超过$\Delta$的状态，电压也不足以提供这种能量差，此时电流如何变化？为了理解这一点，首先仔细地观察到达超导体界面的电子。有两种可能发生的过程，<em>正常反射</em>和<em>Andreev反射</em>。在正常的反射中，电子只是在与超导体的界面处被反射：</p>
+<p><img src="/assets/images/RestudyTP/normal_reflection.svg" alt="png"></p>
+<p>正常反射时，左电极到右电极没有净电荷转移。因此，这个过程不贡献任何净电流。显然，正常的反射甚至不需要超导体，如果右电极不是超导体，同样会发生反射。</p>
+<p>相反，Andreev反射是NS界面特有的。在Andreev反射中，一个电子被超导体转化为空穴，在超导体中形成一个库珀对</p>
+<p><img src="/assets/images/RestudyTP/andreev_reflection.svg" alt="png"></p>
+<p>你可以看到，一个$2e$的净电荷从左电极转移到右电极，在低电压下，Andreev反射是唯一负责电流的过程。在超导能隙之上，入射电子进入超导体的$eV &gt; \Delta$传输也有助于产生电流。这里可以把Andreev反射看作是一个传输问题。由于超导体的存在，电子和空穴都参与了普通金属铅中的电荷转移。从概念上讲，可以想象把左边的电极分成两条，一条只带电子，另一条只带空穴。这两条引线由超导体连接，超导体将第一条引线中的传入电子转换为第二条引线中的输出空穴，反之亦然：</p>
+<p><img src="/assets/images/RestudyTP/andreev_as_transmission.svg" alt="png"></p>
+<p>有了这张图，就能理解Andreev反射和通过双势垒的传输问题非常相似。</p>
+<p>我们称$r_{eh}$为Andreev反射的振幅。它的绝对值平方，$\rvert r_{eh}\rvert ^2$，是来自普通金属的电子被Andreev反射成空穴的概率。一旦我们知道了$r_{eh}$，我们就可以计算电导$G(V)$，它与小电压$V$的响应电流$I$有关，$G(V) = dI/dV$。电导由下式给出:</p>
+<script type="math/tex; mode=display">
+G(V)=2G_0\rvert r_{eh}\rvert ^2.</script><p>这里不推导这个方程，因为它可以直观地理解。电导与Andreev反射的概率$\rvert r_{eh}\rvert ^2$成正比，因为我们知道在低电压下，这是将电荷从左电极转移到右电极的唯一过程。前面的因子$2$是由于每个Andreev反射转移一个Cooper对的电荷$2e$。最后，$G_0=e^2/h$是<strong>电导量子</strong>，它是将电流与电压联系起来的基本比例常数。</p>
+<h1 id="Andreev-reflection-off-a-Majorana-zero-mode"><a href="#Andreev-reflection-off-a-Majorana-zero-mode" class="headerlink" title="Andreev reflection off a Majorana zero mode"></a>Andreev reflection off a Majorana zero mode</h1><p>现在已经了解了传统的NS界面，接下来看看如果超导体是拓扑的会发生什么：</p>
+<p><img src="/assets/images/RestudyTP/ns_majorana_interface.svg" alt="png"></p>
+<p>可以想象超导电极现在是一个拓扑相的纳米线，正如前面研究的。因为超导体是拓扑的，在NS界面有一个Majorana模式，它的波函数将通过势垒“泄漏”一点到普通金属中。当然，也会有第二个Majorana模式，但是我们把它放在离NS界面足够远的地方，这样它就不会在传输中起作用。那么此时可以问一个问题，界面上的Majorana模式是否改变了Andreev反射特性？答案是肯定的，而且是以一种相当激烈的方式。首先回到Andreev反射作为通过双势垒的传输过程的图像，这里关键的区别是，马约拉纳模现在作为两个势垒之间的束缚态(Andreev bound state)出现：</p>
+<p><img src="/assets/images/RestudyTP/resonant_transmission_through_majorana.svg" alt="png"></p>
+<p>在量子力学的双势垒问题中，你可以在束缚态存在的情况下有<strong>共振</strong>传输。这意味着，如果入射电子的能量与束缚态的能量相匹配，则$\rvert r_{eh}\rvert ^2$通过势垒的概率将显著提高。在我们的例子中，入射电子的能量是$V$，而束缚态Majorana模的能量是零。因此，在$V=0$处Majorana模式的存在导致NS界面的电导中有一个出现<strong>谐振峰</strong>。</p>
+<h1 id="Quantization-of-the-Majorana-resonance"><a href="#Quantization-of-the-Majorana-resonance" class="headerlink" title="Quantization of the Majorana resonance"></a>Quantization of the Majorana resonance</h1><p>观察谐振峰是我们所知道的测量马约拉纳零模存在的最直接方法。然而，与Majorana模式相关的共振的存在并不一定就是拓扑的特证，因为隧穿到任何低能束缚态都会产生共振(这里的束缚态可能不是零能束缚态)。有什么特别的东西把Majorana共振和其他共振区别开来吗？这里来比较NS界面的电导在超导体为平庸和拓扑的情况下会发生什么，看看电导是如何随着我们改变隧道势垒强度而变化的。</p>
+<p><img src="/assets/images/RestudyTP/Pasted image 20221110130148.png" alt="png"><br><img src="/assets/images/RestudyTP/Pasted image 20221110130203.png" alt="png"></p>
+<p>我们看到了一个非常robust且稳定的特征： Majorana共振的峰值高度被量化为$2G_0$，与电压势垒的强度无关。从上面的公式，这意味着如果一个Majorana存在，就会有$\rvert r_{eh}\rvert ^2=1$，也就是说我们有<strong>完美Andreev反射</strong>。要理解为什么它是robust的，我们需要超越上面的卡通描述。</p>
+<h2 id="Reflection-matrix-of-a-normal-metal-superconductor-interface"><a href="#Reflection-matrix-of-a-normal-metal-superconductor-interface" class="headerlink" title="Reflection matrix of a normal metal-superconductor interface"></a>Reflection matrix of a normal metal-superconductor interface</h2><p>在量子力学上，我们可以把通过NS界面的传输描述为散射问题。输入波函数$\Psi_\textrm{in}$在左电极中传播，直到它被反射回与超导体的界面，变成输出波函数$\Psi_\textrm{out}$。由于超导体的存在，入射和出射态都可以是电子$\Psi_e$或空穴$\Psi_h$。在<strong>零能量</strong>时，它们通过粒子空穴对称性相互联系：</p>
+<script type="math/tex; mode=display">
+\Psi_e(E) = \mathcal{P}\,\Psi_h(-E)\,</script><p>反射使得入射波和入射波之间的存在线性关系：</p>
+<script type="math/tex; mode=display">
+\Psi_\textrm{out} = r(V) \,\Psi_\textrm{in}\,</script><script type="math/tex; mode=display">
+r(V)=\left(\begin{array}{cc}r_{ee}&r_{eh}\\r_{he}&r_{hh}\end{array}\right).</script><p>矩阵$r$称为<strong>反射矩阵</strong>。它的复数矩阵元 $r_{ee}$和$r_{eh}$跟别表示入射电子的正常反射和Andreev反射振幅，$r_{hh}$和$r_{he}$则表示入射空穴的正常反射和Andreev反射振幅 。(为了简洁起见，我们没有明确地写出每一个依赖于$V$的值)。如果体系有多个入射的电子态(在我们的例子中由于自旋有两个)，此时<strong>反射矩阵</strong>$r$的所有每个元素就都会包含额外的自由度，成为矩阵形式。这些反射系数描述了入射态和出射状态之间的所有可能的散射。</p>
+<p>由于$eV\ll \Delta$的状态在超导体中不存在传播波(在表面很短的距离处就会衰减)，因此$\Psi_\textrm{out}$和$\Psi_\textrm{in}$之间的反射过程是幺正的，<strong>反射矩阵</strong>满足$r^\dagger r=1$。这意味着</p>
+<script type="math/tex; mode=display">
+\rvert r_{ee}\rvert ^2+\rvert r_{eh}\rvert ^2 = \rvert r_{he}\rvert ^2+\rvert r_{hh}\rvert ^2 = 1\,.</script><p>这是一种数学方法，说明到达界面的电子(或空穴)除了正常反射或Andreev反射外没有其他选择。这里可以发现并没有关注体系的对称性，那么是否可以在$r$中添加其他约束，以帮助区分Majorana模式的任何特征？就像之前所做的，利用了粒子空穴对称性。这里就尝试使用对称性和拓扑来研究<strong>反射矩阵</strong>$r$。因为在现在设计的电路中涉及超导体，所以我们必须在这个问题中考虑粒子-空穴对称性。</p>
+<p>为了显式地推导<strong>反射系数</strong>$r$，可以直接从NS系统的BdG哈密顿量出发，求解出能量$V$。但这个工作会很繁琐，这里并不会这样做，但是实际上还是可以利用粒子空穴对称性来研究它对<strong>反射系数</strong>r的限制。首先，粒子空穴对称操作会交换了波函数的电子和空穴部分的分量，因此它涉及到作用于$\Psi_\textrm{in}$或$\Psi_\textrm{out}$的泡利矩阵$\tau_x$。其次，它是一个反幺正操作，所以它涉及到复共轭操作。第三，它改变了能量的符号，将$V$变成$-V$。因此，我们得到<strong>反射矩阵</strong>的如下对称性：</p>
+<script type="math/tex; mode=display">
+\tau_x r^*(-V) \tau_x = r(V)\,.</script><p>因为存在粒子空穴对称性，此时<strong>反射矩阵</strong>关于能量$V$是对称的，最有趣的是在$V=0$的这一点：</p>
+<script type="math/tex; mode=display">
+\tau_x r^*_0 \tau_x = r_0 \,.</script><p>这里定义了$r_0\equiv r(V=0)$。对称性对$r$的此时就说完了，除此之外还要考虑体系的拓扑性质。</p>
+<h1 id="Topological-invariant-of-the-reflection-matrix"><a href="#Topological-invariant-of-the-reflection-matrix" class="headerlink" title="Topological invariant of the reflection matrix"></a>Topological invariant of the reflection matrix</h1><p>Majorana零模是拓扑超导体处在拓扑相中的结果，它的存在取决于体边对应关系。那么能否在反射系数$r_0$中找到跟体边对应相关的结果吗？研究发现，具有粒子空穴对称性的体系，此时<strong>反射矩阵</strong>$r$也有自己的拓扑方式。它们的拓扑不变量是</p>
+<script type="math/tex; mode=display">
+Q = \det\,r_0\,.</script><p><code>同样，我们不会“推导”这个方程，而是说服自己这个表达式是正确的。</code> </p>
+<p>首先，幺正矩阵，比如$r_0$，它的行列式总是一个具有单位范数的复数，因此$\rvert \det r_0\rvert =1$。其次，由于粒子空穴对称性，行列式为实数：</p>
+<script type="math/tex; mode=display">\det r_0 = \det (\tau_x r^*_0\tau_x) = \det r_0^*=(\det r_0)^*</script><p>因此，$\det r_0 = \pm 1$。可以发现在具有粒子空穴对称性的时候，这个量同样只有两个取值，像Kitaev链中的Pfaffian一样。由于$r_0$的行列式只是由幺正性和粒子空穴对称性所决定的，因此在NS界面的属性发生变化时，它的行列式不能从$+1$变为$-1$。实际上可以通过改变界面上势垒的高度，发现它并不会影响<strong>反射系数</strong>$r_0$的行列式。</p>
+<p>能使得反射系数的行列式改变符号的唯一方法是关闭超导电极中的能隙。如果这超导体的能隙变为零，那么来自普通金属的入射电子就不可能只发生正常反射或安德烈夫反射。它也可以直接以电子的形式进入超导电极。因此反射矩阵不再包含在界面上发生的所有可能的过程，它不再是幺正的，此时行列式的符号就会发生变化。因此$Q=\det r$此时是一个很好的拓扑不变量，此时可以得到</p>
+<script type="math/tex; mode=display">
+Q=\rvert r_{ee}\rvert ^2-\rvert r_{eh}\rvert ^2\equiv\pm 1\,.</script><p>我们已经知道，幺正性要求</p>
+<script type="math/tex; mode=display">\rvert r_{ee}\rvert ²+\rvert r_{eh}\rvert ²=1</script><p>这两个条件都成立的可能性只有两种：$\rvert r_{ee}\rvert =1$(<strong>完美正常反射</strong>)或$\rvert r_{eh}\rvert =1$(<strong>完美Andreev反射</strong>)。</p>
+<p>如果没有发生相变，情况就不会改变。因此，在这种情况下，Majorana零能模的量子化电导在拓扑上是稳健的，并且实际上在隧穿极限之后仍然存在。</p>
+<h1 id="Flux-induced-fermion-parity-switch-in-topological-superconductors"><a href="#Flux-induced-fermion-parity-switch-in-topological-superconductors" class="headerlink" title="Flux-induced fermion parity switch in topological superconductors"></a>Flux-induced fermion parity switch in topological superconductors</h1><p>那么，如何在实验上直接探测拓扑超导体的Pfaffian拓扑不变量？之前在Kitaev模型中介绍过一个思想实验，通过改变键间hopping的符号，可以探索Majorana模的体边对应关系。拓扑不变量的变化就对应着Majorana费米子宇称的切换，这是因为跨越Kitaev结的尾端时，相邻格点之间的hopping大小$t$的符号改变的结果：</p>
+<script type="math/tex; mode=display">
+t\rightarrow -t.</script><p>事实证明，通过超导环引入磁通(类似于<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Aharonov-Bohm_effect">Aharonov-Bohm效应</a>，也可以获得跨越结的时候，hopping符号发生变化。这个特殊键可以在Josephson结中实现，就是利用一个绝缘的势垒将Kitaev环在中间打断，如下图所示:</p>
+<p><img src="/assets/images/RestudyTP/josephson_majorana_ring.svg" alt="png"></p>
+<p>磁通量是如何进入哈密顿量的？通过使用<a href="Peierls">Peierls替换</a>将磁场引入晶格哈密顿量中，磁通量$\Phi$可以通过简单地改变环中跨过Kitaev链端点结处的跳变相位来解释:</p>
+<script type="math/tex; mode=display">
+t\,\to\,t\,\exp (i\phi/2).</script><p>这里，$\phi = 2\pi\Phi/\Phi_0$ 通常称为跨结的<strong>超导相位差</strong>，$\Phi_0=2e/h$ 是<strong>超导磁通量子</strong>。 请注意，当 $\Phi=\Phi_0$ 时，跳跃改变符号：$t\,\to\, \exp (i\pi) t = -t$，与前面在Kitaev 环中在尾端实现hopping反号是完全一致的。因此，磁通量子$\Phi=\Phi_0$的引入，改变了hopping </p>
+<script type="math/tex; mode=display">t\rightarrow te ^{i\phi}=-t</script><p>的符号，正如之前讨论的那样，这改变了拓扑超导体基态的费米子的宇称。这个费米子奇偶开关与在Josephson结处耦合的一对马约拉纳模有关(如上图所示)。</p>
+<p>为了清楚地了解这是如何发生的，让我们看看拓扑超导环的能谱作为磁通量的函数，用之前讨论的纳米线模型得到：</p>
+<p><img src="/assets/images/RestudyTP/Pasted image 20221110150946.png" alt="png"></p>
+<p>从能谱演化中可以看到，费米子宇称变换的位置的确出现了(能谱交叉)，而且出现在$\Phi=\Phi_0/2$附近，那么可以在超导环中测量这个费米子宇称切换吗？</p>
+<h1 id="Detecting-the-fermion-parity-switch-using-the-Josephson-effect"><a href="#Detecting-the-fermion-parity-switch-using-the-Josephson-effect" class="headerlink" title="Detecting the fermion parity switch using the Josephson effect"></a>Detecting the fermion parity switch using the Josephson effect</h1><p>基态费米子宇称的变化可以用所谓的<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Josephson_effect">约瑟夫森效应</a>来检测。约瑟夫森电流可以由能量算符对磁通量的导数的期望值来计算，</p>
+<script type="math/tex; mode=display">
+I(\Phi)=\frac{1}{2}\frac{d E_\textrm{tot}(\Phi)}{d \Phi},</script><p>其中$E_\textrm{tot}(\Phi)=\langle H_{BdG}(\Phi)\rangle$是BdG哈密顿量$H_{BdG}(\Phi)$对应的系统总能量。</p>
+<p>探测基态费米子宇称切换的关键思想是：<strong>绝热改变磁通量$\Phi$且不能改变系统的费米子宇称</strong>。如果从处于基态的系统出发，把磁通从$\Phi$提高到$\Phi+\Phi_0$，你最终会处于激发态，与此同时费米子的宇称也发生了变化。要回到具有相同费米子宇称的初始基态，需要将$\Phi$变化$2\Phi_0$才可以。</p>
+<blockquote>
+<p>Note that this argument relies on the absence of a reservoir of electrons, such as a metallic lead. In this case, when the two levels cross at zero energy and the ground state fermion parity changes, there is no electron that can enter or leave the system.</p>
+</blockquote>
+<p>费米子宇称的切换，以及环上的费米子宇称守恒，导致能量$E_\textrm{tot}(\Phi)$和相应的(可以测量的)电流在磁通$\Phi$变化的过程中显示$2\Phi_0$的周期性，即在$\phi$中显示$4\pi$的周期性：</p>
+<p><img src="/assets/images/RestudyTP/Pasted image 20221110152716.png" alt="png"></p>
+<p>在这一点上，可以问一个问题，约瑟夫森效应的$2\Phi_0$的周期性有什么独特之处？</p>
+<p>要回答这个问题，我们需要回顾一种思考约瑟夫森效应的另一种方式，即仅仅通过一个连接点连接一对超导体，而不必将超导体包裹在一个环中。在这种情况下，在与$t e^{i\phi/2}$成比例的隧穿项中出现的跳变相$\phi$(我们也称为<em>超导位相</em>)可以通过将结一侧的费米子算符移一个相即$c^\dagger\rightarrow c^\dagger e^{-i\phi/2}$来消除。对于超导系统，这种变换有一个有趣的效应，即改变结一侧的超导相</p>
+<script type="math/tex; mode=display">
+\Delta\rightarrow \Delta e^{i\phi}.</script><p>现在你知道为什么$\phi$最初被称为“超导相”了吧。在这个变换(也称为规范变换)之后，$\phi$真正成为与$\Delta$成比例的超导项的复数位相。但这也告诉了我们更多的东西，在规范变换之后哈密顿量$H_{BdG}$只通过电子配对$\Delta e^{i\phi}$依赖于位相$\phi$，所以能量期望值关于$\phi$的周期是$2\pi$。这也就是传统的想法，此时Josephson效应的周期是$2\pi$的。从下面的图中可以看出，这正是在非拓扑相中所发生的情况。在这种情况下，通过能谱的变化发现没有费米子宇称切换出现:</p>
+<p><img src="/assets/images/RestudyTP/Pasted image 20221110153655.png" alt="png"></p>
+<p>当处于拓扑相的时候，Josephson效应的周期是$4\pi$，因为随着磁通$\phi$的变换，体系能谱发生了交叉，此时系统基态费米子的宇称发生了变化，因此就违反了在普通超导体中Josephson效应是$2\pi$的周期，这种$4\pi$周期的Josephson效应通常也称为$4\pi$(分数)Josephson效应。</p>
+<div class="note red flat"><p>鉴于该网站分享的大都是学习笔记，作者水平有限，若发现有问题可以发邮件给我</p>
+<ul>
+<li><strong>yxliphy@gmail.com</strong></li>
+</ul>
+<p>也非常欢迎喜欢分享的小伙伴投稿</p>
+</div>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="/about">Yu-Xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2025/08/06/2022-12-20-AR-JE/">http://example.com/2025/08/06/2022-12-20-AR-JE/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Yu-Xuan's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Topology/">Topology</a></div><div class="post-share"><div class="social-share" data-image="/img/defult-cover8.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg"/></a><div class="post-qr-code-desc"></div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg"/></a><div class="post-qr-code-desc"></div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/08/06/2023-07-04-Hubbard-Mean-Field/" title="Hubbard 模型平均场(简单介绍)"><img class="cover" src="/img/defult-cover4.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Hubbard 模型平均场(简单介绍)</div></div><div class="info-2"><div class="info-item-1">简单先整理一下Hubbard模型平均场处理的方法。   前言Hubbard模型作为凝聚态研究中许多有趣效应的出发点，具有很重要的研究价值。在固体物理最简单的处理中，就是忽略了电子与电子之间的相互...</div></div></div></a><a class="pagination-related" href="/2025/08/06/2022-10-26-Summer/" title="秋"><img class="cover" src="/assets/images/Live/summer-3.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">秋</div></div><div class="info-2"><div class="info-item-1">科研要搞，生活也要搞。        鉴于该网站分享的大都是学习笔记，作者水平有限，若发现有问题可以发邮件给我  yxliphy@gmail.com  也非常欢迎喜欢分享的小伙伴投稿  </div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2019/01/01/2019-01-01-TSC/" title="p-wave 超导体Vortex中的Majorana zero mode"><img class="cover" src="/assets/images/20190101/del.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2019-01-01</div><div class="info-item-2">p-wave 超导体Vortex中的Majorana zero mode</div></div><div class="info-2"><div class="info-item-1">整理研究生接触的第一个科研工作。   研究生开始时，导师给的第一个任务就是重复一篇关于p-wave超导Vortex中Majorana零能模的文章。从刚开始一无所知的小白，到完整复现文章内容还是学...</div></div></div></a><a class="pagination-related" href="/2020/03/16/2020-03-16-Graphene/" title="石墨烯哈密顿量构造及边界态计算"><img class="cover" src="/img/defult-cover7.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-03-16</div><div class="info-item-2">石墨烯哈密顿量构造及边界态计算</div></div><div class="info-2"><div class="info-item-1">想通过石墨烯重新学习一下拓扑，以此来记录学习成果。   石墨烯的结构石墨烯的元胞是六角蜂窝状的，它的基元包含两个原子，将红黑表示的位置放在一起，则表示它的一个基元。以水平和垂直方向建立直角坐标系...</div></div></div></a><a class="pagination-related" href="/2020/06/30/2020-06-30-Kane-Mele/" title="Kane Mele model zigzag 边界态的计算"><img class="cover" src="/img/defult-cover8.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-30</div><div class="info-item-2">Kane Mele model zigzag 边界态的计算</div></div><div class="info-2"><div class="info-item-1">接触量子自旋霍尔效应很久了，但是一直也都是在square lattice上做计算，从来没有认真的在六角点阵上计算过拓扑的内容，正好最近在看文献的过程中需要在石墨烯机构上进行，就从最基本的Kane...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description">知行合一</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">294</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yxli8023"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:yxliphy@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><div style="text-align:center;"> <img src="/assets/images/qrcode.jpg" alt="公告图" style="max-width:100%; border-radius:10px; margin-bottom:10px;"> <br> 欢迎关注公众号，有趣的内容也会在上面同步。 </div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Andreev-reflection"><span class="toc-number">1.</span> <span class="toc-text">Andreev reflection</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Andreev-reflection-off-a-Majorana-zero-mode"><span class="toc-number">2.</span> <span class="toc-text">Andreev reflection off a Majorana zero mode</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Quantization-of-the-Majorana-resonance"><span class="toc-number">3.</span> <span class="toc-text">Quantization of the Majorana resonance</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Reflection-matrix-of-a-normal-metal-superconductor-interface"><span class="toc-number">3.1.</span> <span class="toc-text">Reflection matrix of a normal metal-superconductor interface</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Topological-invariant-of-the-reflection-matrix"><span class="toc-number">4.</span> <span class="toc-text">Topological invariant of the reflection matrix</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Flux-induced-fermion-parity-switch-in-topological-superconductors"><span class="toc-number">5.</span> <span class="toc-text">Flux-induced fermion parity switch in topological superconductors</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Detecting-the-fermion-parity-switch-using-the-Josephson-effect"><span class="toc-number">6.</span> <span class="toc-text">Detecting the fermion parity switch using the Josephson effect</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/01/10/2026-01-10-opt-sym/" title="对称性约束光学跃迁"><img src="/assets/images/Transport/opt-sym.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="对称性约束光学跃迁"/></a><div class="content"><a class="title" href="/2026/01/10/2026-01-10-opt-sym/" title="对称性约束光学跃迁">对称性约束光学跃迁</a><time datetime="2026-01-09T16:00:00.000Z" title="发表于 2026-01-10 00:00:00">2026-01-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/01/08/2026-01-08-sc-clean-dirty/" title="超导中的 Clean limit 与 Dirty limit"><img src="/assets/images/SC/sc-clean-dirty.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导中的 Clean limit 与 Dirty limit"/></a><div class="content"><a class="title" href="/2026/01/08/2026-01-08-sc-clean-dirty/" title="超导中的 Clean limit 与 Dirty limit">超导中的 Clean limit 与 Dirty limit</a><time datetime="2026-01-07T16:00:00.000Z" title="发表于 2026-01-08 00:00:00">2026-01-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/01/07/2026-01-07-orbit-moment/" title="轨道磁矩推导"><img src="/assets/images/topology/orbit-moment.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="轨道磁矩推导"/></a><div class="content"><a class="title" href="/2026/01/07/2026-01-07-orbit-moment/" title="轨道磁矩推导">轨道磁矩推导</a><time datetime="2026-01-06T16:00:00.000Z" title="发表于 2026-01-07 00:00:00">2026-01-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/01/06/2026-01-06-BdG-condu/" title="BdG 哈密顿量下的电磁响应（光电导）推导"><img src="/assets/images/SC/sc-optical-1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="BdG 哈密顿量下的电磁响应（光电导）推导"/></a><div class="content"><a class="title" href="/2026/01/06/2026-01-06-BdG-condu/" title="BdG 哈密顿量下的电磁响应（光电导）推导">BdG 哈密顿量下的电磁响应（光电导）推导</a><time datetime="2026-01-05T16:00:00.000Z" title="发表于 2026-01-06 00:00:00">2026-01-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/01/05/2026-01-05-TBG-Chiral/" title="转角石墨烯手征极限"><img src="/assets/images/Twisted/tbg-1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="转角石墨烯手征极限"/></a><div class="content"><a class="title" href="/2026/01/05/2026-01-05-TBG-Chiral/" title="转角石墨烯手征极限">转角石墨烯手征极限</a><time datetime="2026-01-04T16:00:00.000Z" title="发表于 2026-01-05 00:00:00">2026-01-05</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/img/defult-cover8.png);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div><div class="footer_custom_text">Welcome to  Yu-Xuan's Blog</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  const initGitalk = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGitalk = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const gitalk = new Gitalk({
+      clientID: 'Ov23li0WvZEaIAZ7RFtH',
+      clientSecret: '03fcb77b7c28dafcdde00756e27f9b5bc76639e8',
+      repo: 'yxli8023.github.io',
+      owner: 'yxli8023',
+      admin: ['yxli8023'],
+      updateCountCallback: commentCount,
+      ...option,
+      id: isShuoshuo ? path : (option && option.id) || '37b58d1a3507d184a774c066feed07f5'
+    })
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async(el, path) => {
+    if (typeof Gitalk === 'function') initGitalk(el, path)
+    else {
+      await btf.getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await btf.getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Gitalk' === 'Gitalk'
+      ? window.shuoshuoComment = { loadComment: loadGitalk }
+      : window.loadOtherComment = loadGitalk
+    return
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
