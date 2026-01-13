@@ -1,0 +1,320 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>一维与二维体系的静态极化率(数值计算) | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="极化率计算公式为  \Pi(q) &#x3D; \frac{1}{N} \sum_{k} \frac{f(\epsilon_k) - f(\epsilon_{k+q})}{\epsilon_k - \epsilon_{k+q} + i\eta}这里对一维和二维自由电子模型计算极化率，使用连续模型进行计算， 目的是为了方便与解析上的分析对应。  \begin{aligned} &amp;1D:\qquad \epsi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一维与二维体系的静态极化率(数值计算)">
+<meta property="og:url" content="http://example.com/2026/01/13/2026-01-13-chi0-code/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39;s Blog">
+<meta property="og:description" content="极化率计算公式为  \Pi(q) &#x3D; \frac{1}{N} \sum_{k} \frac{f(\epsilon_k) - f(\epsilon_{k+q})}{\epsilon_k - \epsilon_{k+q} + i\eta}这里对一维和二维自由电子模型计算极化率，使用连续模型进行计算， 目的是为了方便与解析上的分析对应。  \begin{aligned} &amp;1D:\qquad \epsi">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/assets/images/Transport/chi0.png">
+<meta property="article:published_time" content="2026-01-12T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-01-13T05:40:55.104Z">
+<meta property="article:author" content="Yu-Xuan">
+<meta property="article:tag" content="Code">
+<meta property="article:tag" content="Julia">
+<meta property="article:tag" content="Transport">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/images/Transport/chi0.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "一维与二维体系的静态极化率(数值计算)",
+  "url": "http://example.com/2026/01/13/2026-01-13-chi0-code/",
+  "image": "http://example.com/assets/images/Transport/chi0.png",
+  "datePublished": "2026-01-12T16:00:00.000Z",
+  "dateModified": "2026-01-13T05:40:55.104Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yu-Xuan",
+      "url": "http://example.com/about"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/logo.png"><link rel="canonical" href="http://example.com/2026/01/13/2026-01-13-chi0-code/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"作者: Yu-Xuan","link":"链接: ","source":"来源: Yu-Xuan's Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'medium_zoom',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#f54966","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '一维与二维体系的静态极化率(数值计算)',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #dbeffd;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">298</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/assets/images/Transport/chi0.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo.png" alt="Logo"><span class="site-name">Yu-Xuan's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">一维与二维体系的静态极化率(数值计算)</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">一维与二维体系的静态极化率(数值计算)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-01-12T16:00:00.000Z" title="发表于 2026-01-13 00:00:00">2026-01-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-01-13T05:40:55.104Z" title="更新于 2026-01-13 13:40:55">2026-01-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Transport/">Transport</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;自上次更新已经过了&quot;,&quot;messageNext&quot;:&quot;天，文章内容可能已过时。&quot;,&quot;postUpdate&quot;:&quot;2026-01-13 13:40:55&quot;}" hidden></div><p>极化率计算公式为</p>
+<script type="math/tex; mode=display">
+\Pi(q) = \frac{1}{N} \sum_{k} \frac{f(\epsilon_k) - f(\epsilon_{k+q})}{\epsilon_k - \epsilon_{k+q} + i\eta}</script><p>这里对一维和二维自由电子模型计算极化率，使用连续模型进行计算， 目的是为了方便与解析上的分析对应。</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&1D:\qquad \epsilon(k) = -2t \cos(k)\\
+&2D:\qquad \epsilon(k_x, k_y) = -2t (\cos(k_x) + \cos(k_y))
+\end{aligned}</script><ul>
+<li>计算程序</li>
+</ul>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> Distributed</span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化并行环境（根据 CPU 核心数添加进程）</span></span><br><span class="line"><span class="keyword">if</span> nworkers() == <span class="number">1</span></span><br><span class="line">    addprocs() </span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@everywhere</span> <span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">using</span> LinearAlgebra</span><br><span class="line">    <span class="keyword">using</span> Printf</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> m = <span class="number">1.0</span></span><br><span class="line">    <span class="keyword">const</span> hbar = <span class="number">1.0</span></span><br><span class="line">    <span class="keyword">const</span> kF = <span class="number">1.0</span></span><br><span class="line">    <span class="keyword">const</span> EF = (hbar^<span class="number">2</span> * kF^<span class="number">2</span>) / (<span class="number">2</span> * m)</span><br><span class="line">    <span class="keyword">const</span> T = <span class="number">1e-8</span>         </span><br><span class="line">    <span class="keyword">const</span> eta = <span class="number">1e-3</span>       </span><br><span class="line">    <span class="keyword">const</span> g_s = <span class="number">2.0</span>         </span><br><span class="line"></span><br><span class="line">    epsilon(k_vec) = (hbar^<span class="number">2</span> * sum(k_vec.^<span class="number">2</span>)) / (<span class="number">2</span> * m)</span><br><span class="line">    <span class="keyword">function</span> fermi(e)</span><br><span class="line">        x = (e - EF) / T</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0.5</span> * (<span class="number">1.0</span> - tanh(<span class="number">0.5</span> * x))</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 1D 计算函数</span></span><br><span class="line">    <span class="keyword">function</span> compute_pi_1d(q_val; Nk=<span class="number">3000</span>)</span><br><span class="line">        k_max = <span class="number">4.0</span> * kF</span><br><span class="line">        k_grid = range(-k_max, k_max, length=Nk)</span><br><span class="line">        dk = k_grid[<span class="number">2</span>] - k_grid[<span class="number">1</span>]</span><br><span class="line">        res = <span class="number">0.0</span> + <span class="number">0.0</span><span class="literal">im</span></span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> k_grid</span><br><span class="line">            ek = epsilon([k])</span><br><span class="line">            ekq = epsilon([k + q_val])</span><br><span class="line">            res += (fermi(ek) - fermi(ekq)) / (ek - ekq + <span class="number">1</span><span class="literal">im</span> * eta)</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">return</span> real(res * (g_s / (<span class="number">2</span><span class="literal">π</span>)) * dk)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 2D 计算函数</span></span><br><span class="line">    <span class="keyword">function</span> compute_pi_2d(q_val; Nk=<span class="number">2000</span>)</span><br><span class="line">        k_max = <span class="number">4.0</span> * kF</span><br><span class="line">        k_vals = range(-k_max, k_max, length=Nk)</span><br><span class="line">        dk2 = (k_vals[<span class="number">2</span>] - k_vals[<span class="number">1</span>])^<span class="number">2</span></span><br><span class="line">        res = <span class="number">0.0</span> + <span class="number">0.0</span><span class="literal">im</span></span><br><span class="line">        q_vec = [q_val, <span class="number">0.0</span>]</span><br><span class="line">        <span class="keyword">for</span> kx <span class="keyword">in</span> k_vals, ky <span class="keyword">in</span> k_vals</span><br><span class="line">            k_vec = [kx, ky]</span><br><span class="line">            kq_vec = k_vec .+ q_vec</span><br><span class="line">            ek = epsilon(k_vec)</span><br><span class="line">            ekq = epsilon(kq_vec)</span><br><span class="line">            res += (fermi(ek) - fermi(ekq)) / (ek - ekq + <span class="number">1</span><span class="literal">im</span> * eta)</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">return</span> real(res * (g_s / (<span class="number">2</span><span class="literal">π</span>)^<span class="number">2</span>) * dk2)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 为了 pmap 方便，封装一个同时返回 1D 和 2D 的包装函数</span></span><br><span class="line">    <span class="keyword">function</span> compute_all_pi(q)</span><br><span class="line">        <span class="keyword">return</span> (compute_pi_1d(q), compute_pi_2d(q))</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">q_range = range(<span class="number">0.1</span>, <span class="number">4.0</span> * kF, length=<span class="number">500</span>)</span><br><span class="line"></span><br><span class="line">println(<span class="string">&quot;正在使用 <span class="subst">$(nworkers()</span>) 个进程并行计算...&quot;</span>)</span><br><span class="line">results = pmap(compute_all_pi, q_range)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 归一化数据</span></span><br><span class="line">pi_1d_raw = [r[<span class="number">1</span>] <span class="keyword">for</span> r <span class="keyword">in</span> results]</span><br><span class="line">pi_2d_raw = [r[<span class="number">2</span>] <span class="keyword">for</span> r <span class="keyword">in</span> results]</span><br><span class="line"></span><br><span class="line">pi0_1d = pi_1d_raw[<span class="number">1</span>]</span><br><span class="line">pi0_2d = pi_2d_raw[<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">filename = <span class="string">&quot;lindhard_continuous.dat&quot;</span></span><br><span class="line">open(filename, <span class="string">&quot;w&quot;</span>) <span class="keyword">do</span> io</span><br><span class="line">    write(io, <span class="string">&quot;# q \t\t Pi_1D_norm \t Pi_2D_norm \n&quot;</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">1</span>:length(q_range)</span><br><span class="line">        p1_norm = pi_1d_raw[i] / pi0_1d</span><br><span class="line">        p2_norm = pi_2d_raw[i] / pi0_2d</span><br><span class="line">        <span class="meta">@printf</span>(io, <span class="string">&quot;%.6f \t %.10f \t %.10f \n&quot;</span>, q_range[i], p1_norm, p2_norm)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<div style="display: flex; justify-content: space-between;">
+  <img src="/assets/images/Transport/lindhard_continuous.png" alt="Image 1" width="90%" />
+</div>
+
+
+
+<ul>
+<li>绘图程序<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> rcParams</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1. Latex 字体与全局样式设置</span></span><br><span class="line">plt.rc(<span class="string">&#x27;font&#x27;</span>, family=<span class="string">&#x27;Times New Roman&#x27;</span>)</span><br><span class="line">config = &#123;</span><br><span class="line">    <span class="string">&quot;font.size&quot;</span>: <span class="number">22</span>,</span><br><span class="line">    <span class="string">&quot;mathtext.fontset&quot;</span>: <span class="string">&#x27;stix&#x27;</span>,</span><br><span class="line">    <span class="string">&quot;axes.unicode_minus&quot;</span>: <span class="literal">False</span> </span><br><span class="line">&#125;</span><br><span class="line">rcParams.update(config)</span><br><span class="line"><span class="comment">#------------------------------------------------------------------------------------</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">plot_polarization</span>(<span class="params">dat_file</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    整合 plotfs 风格与极化率特有的图例、辅助线标记</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(dat_file):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;Error: File &#x27;<span class="subst">&#123;dat_file&#125;</span>&#x27; not found.&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 1. 加载数据</span></span><br><span class="line">    data = np.loadtxt(dat_file)</span><br><span class="line">    x0 = data[:, <span class="number">0</span>] / <span class="number">2.0</span>  <span class="comment"># 归一化 q/2kF</span></span><br><span class="line">    pi_1d = data[:, <span class="number">1</span>]</span><br><span class="line">    pi_2d = data[:, <span class="number">2</span>]</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 2. 创建画布 (参照 plotfs 10x10 比例)</span></span><br><span class="line">    plt.figure(figsize=(<span class="number">10</span>, <span class="number">10</span>))</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 3. 绘图：保留颜色对比与图例标签</span></span><br><span class="line">    plt.plot(x0, pi_1d, lw=<span class="number">3</span>, c=<span class="string">&quot;b&quot;</span>, label=<span class="string">&quot;1D&quot;</span>)</span><br><span class="line">    plt.plot(x0, pi_2d, lw=<span class="number">3</span>, c=<span class="string">&quot;r&quot;</span>, label=<span class="string">&quot;2D&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 4. 保留物理标记：q=2kF (即 x=1.0) 的辅助虚线</span></span><br><span class="line">    plt.axvline(x=<span class="number">1.0</span>, color=<span class="string">&#x27;gray&#x27;</span>, linestyle=<span class="string">&#x27;--&#x27;</span>, lw=<span class="number">2</span>, alpha=<span class="number">0.6</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 5. 字体与字号设置 (参照 plotfs)</span></span><br><span class="line">    font2 = &#123;<span class="string">&#x27;family&#x27;</span>: <span class="string">&#x27;Times New Roman&#x27;</span>,</span><br><span class="line">             <span class="string">&#x27;weight&#x27;</span>: <span class="string">&#x27;normal&#x27;</span>,</span><br><span class="line">             <span class="string">&#x27;size&#x27;</span>: <span class="number">35</span>,</span><br><span class="line">             &#125;</span><br><span class="line"></span><br><span class="line">    plt.xlabel(<span class="string">r&quot;$q/2k_F$&quot;</span>, font2)</span><br><span class="line">    plt.ylabel(<span class="string">r&quot;$\chi(q)/\chi(0)$&quot;</span>, font2)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 6. 保留图例 (参照 plotfs 注释掉的 legend 逻辑并启用)</span></span><br><span class="line">    <span class="comment"># 使用 markerscale=2 保证图例线段足够明显</span></span><br><span class="line">    plt.legend(loc=<span class="string">&#x27;best&#x27;</span>,  prop=&#123;<span class="string">&#x27;family&#x27;</span>: <span class="string">&#x27;Times New Roman&#x27;</span>, <span class="string">&#x27;size&#x27;</span>: <span class="number">30</span>&#125;)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 7. 刻度参数设置 (完全参照 plotfs)</span></span><br><span class="line">    plt.tick_params(direction=<span class="string">&#x27;in&#x27;</span>, axis=<span class="string">&#x27;x&#x27;</span>, width=<span class="number">0</span>, length=<span class="number">10</span>, labelsize=<span class="number">30</span>)</span><br><span class="line">    plt.tick_params(direction=<span class="string">&#x27;in&#x27;</span>, axis=<span class="string">&#x27;y&#x27;</span>, width=<span class="number">0</span>, length=<span class="number">10</span>, labelsize=<span class="number">30</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 8. 边框加粗 (完全参照 plotfs)</span></span><br><span class="line">    ax = plt.gca()</span><br><span class="line">    ax.spines[<span class="string">&quot;bottom&quot;</span>].set_linewidth(<span class="number">1.5</span>)</span><br><span class="line">    ax.spines[<span class="string">&quot;left&quot;</span>].set_linewidth(<span class="number">1.5</span>) </span><br><span class="line">    ax.spines[<span class="string">&quot;right&quot;</span>].set_linewidth(<span class="number">1.5</span>)</span><br><span class="line">    ax.spines[<span class="string">&quot;top&quot;</span>].set_linewidth(<span class="number">1.5</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 9. 限制坐标刻度数量 (这是你要求的关键修改方式)</span></span><br><span class="line">    ax.locator_params(axis=<span class="string">&#x27;x&#x27;</span>, nbins=<span class="number">3</span>)</span><br><span class="line">    ax.locator_params(axis=<span class="string">&#x27;y&#x27;</span>, nbins=<span class="number">5</span>)</span><br><span class="line">    <span class="comment"># 3. 辅助线</span></span><br><span class="line">    ax.axhline(y=<span class="number">1.0</span>, color=<span class="string">&#x27;gray&#x27;</span>, linestyle=<span class="string">&#x27;--&#x27;</span>, linewidth=<span class="number">2</span>, alpha=<span class="number">0.6</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 10. 保存</span></span><br><span class="line">    picname = os.path.splitext(dat_file)[<span class="number">0</span>] + <span class="string">&quot;.png&quot;</span></span><br><span class="line">    plt.savefig(picname, dpi=<span class="number">300</span>, bbox_inches=<span class="string">&#x27;tight&#x27;</span>)</span><br><span class="line">    plt.close()</span><br><span class="line"><span class="comment">#---------------------------------------------------------------------</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    plot_polarization(<span class="string">&quot;lindhard_continuous.dat&quot;</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<div class="note red flat"><p>鉴于该网站分享的大都是学习笔记，作者水平有限，若发现有问题可以发邮件给我</p>
+<ul>
+<li><strong>yxliphy@gmail.com</strong></li>
+</ul>
+<p>也非常欢迎喜欢分享的小伙伴投稿</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="/about">Yu-Xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2026/01/13/2026-01-13-chi0-code/">http://example.com/2026/01/13/2026-01-13-chi0-code/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Yu-Xuan's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Code/">Code</a><a class="post-meta__tags" href="/tags/Julia/">Julia</a><a class="post-meta__tags" href="/tags/Transport/">Transport</a></div><div class="post-share"><div class="social-share" data-image="/assets/images/Transport/chi0.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg"/></a><div class="post-qr-code-desc"></div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg"/></a><div class="post-qr-code-desc"></div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/01/13/2026-01-13-chi0/" title="一维与二维体系的静态极化率(Lindhard 函数)"><img class="cover" src="/assets/images/Transport/chi0.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">一维与二维体系的静态极化率(Lindhard 函数)</div></div><div class="info-2"><div class="info-item-1">一维与二维体系的静态极化率对于非相互作用的费米子系统，静态极化率 $\Pi(\mathbf{q})$为  \Pi(\mathbf{q}) = g_s \int \frac{d^d k}{(2\p...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/10/02/2025-10-02-selfenergy/" title="迭代方法自能计算"><img class="cover" src="/img/defult-cover8.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-10-02</div><div class="info-item-2">迭代方法自能计算</div></div><div class="info-2"><div class="info-item-1">最近在学习输运方面的内容，这篇Blog主要就是整理如何通过迭代格林函数的方式来计算电极与导体耦合之后的自能。不得不说知乎是个学习的好地方，我这里的主要内容也都是在知乎上学习的，自己整理一下再加上...</div></div></div></a><a class="pagination-related no-desc" href="/2026/01/11/2026-01-11-Fortran-Hall-conductance/" title="Hall电导以及光电导计算(Half-BHZ模型为例)"><img class="cover" src="/assets/images/Transport/img-1.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-01-11</div><div class="info-item-2">Hall电导以及光电导计算(Half-BHZ模型为例)</div></div></div></a><a class="pagination-related" href="/2019/04/17/2019-04-17-julia/" title="Majorana Corner State in High Temperature Superconductor"><img class="cover" src="/assets/images/research/juliaresult.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2019-04-17</div><div class="info-item-2">Majorana Corner State in High Temperature Superconductor</div></div><div class="info-2"><div class="info-item-1">最近刚刚学习了julia, 手头上也正好在重复一篇文章，就正好拿新学习的内容一边温习一边做研究。   导入函数库1234567# Import external package that use...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description">知行合一</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">298</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yxli8023"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:yxliphy@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><div style="text-align:center;"> <img src="/assets/images/qrcode.jpg" alt="公告图" style="max-width:100%; border-radius:10px; margin-bottom:10px;"> <br> 欢迎关注公众号，有趣的内容也会在上面同步。 有密码的文章属于正在建设中或者没有通过验证的内容，若有需要可通过邮件联系。</div></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/01/13/2026-01-13-chi0/" title="一维与二维体系的静态极化率(Lindhard 函数)"><img src="/assets/images/Transport/chi0.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="一维与二维体系的静态极化率(Lindhard 函数)"/></a><div class="content"><a class="title" href="/2026/01/13/2026-01-13-chi0/" title="一维与二维体系的静态极化率(Lindhard 函数)">一维与二维体系的静态极化率(Lindhard 函数)</a><time datetime="2026-01-12T16:00:00.000Z" title="发表于 2026-01-13 00:00:00">2026-01-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/01/13/2026-01-13-chi0-code/" title="一维与二维体系的静态极化率(数值计算)"><img src="/assets/images/Transport/chi0.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="一维与二维体系的静态极化率(数值计算)"/></a><div class="content"><a class="title" href="/2026/01/13/2026-01-13-chi0-code/" title="一维与二维体系的静态极化率(数值计算)">一维与二维体系的静态极化率(数值计算)</a><time datetime="2026-01-12T16:00:00.000Z" title="发表于 2026-01-13 00:00:00">2026-01-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/01/12/2026-01-12-dual-gate/" title="二维体系中的双栅屏蔽库仑势(Dual-gate-screened Coulomb potential)"><img src="/assets/images/Twisted/tbg-gate.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="二维体系中的双栅屏蔽库仑势(Dual-gate-screened Coulomb potential)"/></a><div class="content"><a class="title" href="/2026/01/12/2026-01-12-dual-gate/" title="二维体系中的双栅屏蔽库仑势(Dual-gate-screened Coulomb potential)">二维体系中的双栅屏蔽库仑势(Dual-gate-screened Coulomb potential)</a><time datetime="2026-01-11T16:00:00.000Z" title="发表于 2026-01-12 00:00:00">2026-01-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/01/11/2026-01-11-Fortran-Hall-conductance/" title="Hall电导以及光电导计算(Half-BHZ模型为例)"><img src="/assets/images/Transport/img-1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hall电导以及光电导计算(Half-BHZ模型为例)"/></a><div class="content"><a class="title" href="/2026/01/11/2026-01-11-Fortran-Hall-conductance/" title="Hall电导以及光电导计算(Half-BHZ模型为例)">Hall电导以及光电导计算(Half-BHZ模型为例)</a><time datetime="2026-01-10T16:00:00.000Z" title="发表于 2026-01-11 00:00:00">2026-01-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/01/10/2026-01-10-opt-sym/" title="对称性约束光学跃迁"><img src="/assets/images/Transport/opt-sym.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="对称性约束光学跃迁"/></a><div class="content"><a class="title" href="/2026/01/10/2026-01-10-opt-sym/" title="对称性约束光学跃迁">对称性约束光学跃迁</a><time datetime="2026-01-09T16:00:00.000Z" title="发表于 2026-01-10 00:00:00">2026-01-10</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/assets/images/Transport/chi0.png);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div><div class="footer_custom_text">Welcome to  Yu-Xuan's Blog</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  const initGitalk = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGitalk = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const gitalk = new Gitalk({
+      clientID: 'Ov23li0WvZEaIAZ7RFtH',
+      clientSecret: '03fcb77b7c28dafcdde00756e27f9b5bc76639e8',
+      repo: 'yxli8023.github.io',
+      owner: 'yxli8023',
+      admin: ['yxli8023'],
+      updateCountCallback: commentCount,
+      ...option,
+      id: isShuoshuo ? path : (option && option.id) || '8e14e38a367ed4b411e9bd47140bf68d'
+    })
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async(el, path) => {
+    if (typeof Gitalk === 'function') initGitalk(el, path)
+    else {
+      await btf.getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await btf.getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Gitalk' === 'Gitalk'
+      ? window.shuoshuoComment = { loadComment: loadGitalk }
+      : window.loadOtherComment = loadGitalk
+    return
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
