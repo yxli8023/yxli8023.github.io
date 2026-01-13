@@ -1,0 +1,357 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>二维体系中的双栅屏蔽库仑势(Dual-gate-screened Coulomb potential) | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="双栅屏蔽库仑势假设有一个2D电子平面位于 $z&#x3D;0$。在其上方 $z&#x3D;d_s$ 和下方 $z&#x3D;-d_s$ 处，各有一个接地（或电位恒定）的金属平面。电子层所在的介质介电常数为 $\epsilon &#x3D; \epsilon_0 \epsilon_r$，在电子层之外的点，静电势 $\phi$ 满足 $\nabla^2 \phi &#x3D; 0$。   边界条件   金属门极处势能为零：$\phi(z &#x3D; \pm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二维体系中的双栅屏蔽库仑势(Dual-gate-screened Coulomb potential)">
+<meta property="og:url" content="http://example.com/2026/01/12/2026-01-12-dual-gate/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39;s Blog">
+<meta property="og:description" content="双栅屏蔽库仑势假设有一个2D电子平面位于 $z&#x3D;0$。在其上方 $z&#x3D;d_s$ 和下方 $z&#x3D;-d_s$ 处，各有一个接地（或电位恒定）的金属平面。电子层所在的介质介电常数为 $\epsilon &#x3D; \epsilon_0 \epsilon_r$，在电子层之外的点，静电势 $\phi$ 满足 $\nabla^2 \phi &#x3D; 0$。   边界条件   金属门极处势能为零：$\phi(z &#x3D; \pm">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/assets/images/Twisted/tbg-gate.png">
+<meta property="article:published_time" content="2026-01-11T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-01-13T02:48:14.817Z">
+<meta property="article:author" content="Yu-Xuan">
+<meta property="article:tag" content="Transport">
+<meta property="article:tag" content="Twisted">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/images/Twisted/tbg-gate.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "二维体系中的双栅屏蔽库仑势(Dual-gate-screened Coulomb potential)",
+  "url": "http://example.com/2026/01/12/2026-01-12-dual-gate/",
+  "image": "http://example.com/assets/images/Twisted/tbg-gate.png",
+  "datePublished": "2026-01-11T16:00:00.000Z",
+  "dateModified": "2026-01-13T02:48:14.817Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yu-Xuan",
+      "url": "http://example.com/about"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/logo.png"><link rel="canonical" href="http://example.com/2026/01/12/2026-01-12-dual-gate/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"作者: Yu-Xuan","link":"链接: ","source":"来源: Yu-Xuan's Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'medium_zoom',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#f54966","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '二维体系中的双栅屏蔽库仑势(Dual-gate-screened Coulomb potential)',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #dbeffd;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">296</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/assets/images/Twisted/tbg-gate.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo.png" alt="Logo"><span class="site-name">Yu-Xuan's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">二维体系中的双栅屏蔽库仑势(Dual-gate-screened Coulomb potential)</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">二维体系中的双栅屏蔽库仑势(Dual-gate-screened Coulomb potential)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-01-11T16:00:00.000Z" title="发表于 2026-01-12 00:00:00">2026-01-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-01-13T02:48:14.817Z" title="更新于 2026-01-13 10:48:14">2026-01-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Transport/">Transport</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">1.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;自上次更新已经过了&quot;,&quot;messageNext&quot;:&quot;天，文章内容可能已过时。&quot;,&quot;postUpdate&quot;:&quot;2026-01-13 10:48:14&quot;}" hidden></div><h1 id="双栅屏蔽库仑势"><a href="#双栅屏蔽库仑势" class="headerlink" title="双栅屏蔽库仑势"></a>双栅屏蔽库仑势</h1><p>假设有一个2D电子平面位于 $z=0$。在其上方 $z=d_s$ 和下方 $z=-d_s$ 处，各有一个接地（或电位恒定）的金属平面。电子层所在的介质介电常数为 $\epsilon = \epsilon_0 \epsilon_r$，在电子层之外的点，静电势 $\phi$ 满足 $\nabla^2 \phi = 0$。</p>
+<blockquote>
+<ul>
+<li>边界条件</li>
+</ul>
+<ol>
+<li>金属门极处势能为零：$\phi(z = \pm d_s) = 0$。</li>
+<li>根据高斯定理，在 $z=0$ 处，电场强度的分量满足</li>
+</ol>
+<script type="math/tex; mode=display">
+\left. \frac{\partial \phi}{\partial z} \right|_{z=0^+} - \left. \frac{\partial \phi}{\partial z} \right|_{z=0^-} = -\frac{\sigma}{\epsilon}</script><p>其中 $\sigma$ 为点电荷的电荷密度。</p>
+</blockquote>
+<p>将三维势能写成二维傅里叶形式：$\phi(r, z) = \frac{1}{(2\pi)^2} \int \phi_q(z) e^{i \mathbf{q} \cdot \mathbf{r}} d^2q$。 代入拉普拉斯方程 $\nabla^2 \phi = 0$ 得到</p>
+<script type="math/tex; mode=display">
+(\frac{d^2}{dz^2} - q^2) \phi_q(z) = 0</script><p>该方程的通解为：$\phi_q(z) = A \sinh(q z) + B \cosh(q z)$。利用 $z = d_s$ 时 $\phi_q = 0$</p>
+<script type="math/tex; mode=display">
+\phi_q(z) = C \sinh (q(d_s - |z|))</script><p>这里取绝对值 $|z|$ 是为了保证上下对称性。在 $z=0$ 处放置一个点电荷 $e$，其二维电荷密度傅里叶分量为常数 $e$。 利用导数跳变条件</p>
+<script type="math/tex; mode=display">
+\left. \frac{d\phi_q}{dz} \right|_{0^+} - \left. \frac{d\phi_q}{dz} \right|_{0^-} = - \frac{e}{\epsilon}</script><p>由于对称性，$\left. \frac{d\phi_q}{dz} \right|_{0^+} = - \left. \frac{d\phi_q}{dz} \right|_{0^-}$，所以得到</p>
+<script type="math/tex; mode=display">
+2 \left. \frac{d\phi_q}{dz} \right|_{z=0^+} = -\frac{e}{\epsilon}</script><p>对 $\phi_q(z) = C \sinh[q(d_s - z)]$ 求导</p>
+<script type="math/tex; mode=display">
+2 \cdot C \cdot (-q) \cosh(q d_s) = -\frac{e}{\epsilon} \implies C = \frac{e}{2\epsilon q \cosh(q d_s)}</script><p>相互作用能 $V_0(q)$ 定义为电子层（$z=0$）处的电势与电荷的乘积 $e \cdot \phi_q(0)$</p>
+<script type="math/tex; mode=display">
+V_0(q) = e \cdot \left( \frac{e}{2\epsilon q \cosh(q d_s)} \cdot \sinh(q d_s) \right)</script><p>利用双曲正切的定义 $\tanh(x) = \sinh(x)/\cosh(x)$</p>
+<script type="math/tex; mode=display">
+V_0(q) = \frac{e^2}{2\epsilon_0\epsilon_r q} \tanh(q d_s)\label{eq:vq}</script><p>其二维傅里叶逆变换可得实空间表达式</p>
+<script type="math/tex; mode=display">
+V(r) = \frac{1}{(2\pi)^2}\int d^2q \, e^{i\mathbf{q}\cdot\mathbf{r}} V(q)
+       = \frac{e^2}{4\pi\varepsilon_0\varepsilon_r}
+         \int_0^\infty dq\, J_0(qr)\tanh(q d_s)</script><p>其中$J_0$是$0$阶贝塞尔函数， 这个积分没有简单的解析解，只能数值计算或用特殊函数近似。</p>
+<p>若使用<strong>镜像电荷法</strong>构造实空间势，电子层上下的金属面会在$z = ±2n d_s$处产生镜像电荷列。 实空间势为无穷镜像电荷叠加</p>
+<script type="math/tex; mode=display">
+V(r) = \frac{e^2}{4\pi\varepsilon_0\varepsilon_r}
+\sum_{n=-\infty}^{+\infty} (-1)^n
+\frac{1}{\sqrt{r^2 + (2n d_s)^2}}</script><p>该求和是<strong>严格形式</strong>。 然而，解析求和很难；为了获得简单的物理解读，人们通常只保留前两项（原电荷 + 第一对镜像电荷）</p>
+<script type="math/tex; mode=display">
+V(r) \approx \frac{e^2}{4\pi\varepsilon_0\varepsilon_r}
+\left(
+\frac{1}{r} - \frac{1}{\sqrt{r^2 + 4d_s^2}}
+\right)</script><p>方程$\eqref{eq:vq}$涵盖了两种极端的物理情况:</p>
+<ol>
+<li><strong>单体库仑极限 ($q d_s \gg 1$)</strong>： 当门极离电子层很远，或者动量很大（考察短距离作用）时，$\tanh(q d_s) \to 1$</li>
+</ol>
+<script type="math/tex; mode=display">
+V_0(q) \approx \frac{e^2}{2\epsilon q}</script><p>这正是<strong>标准二维库仑势</strong>的傅里叶变换（在实空间对应 $1/r$）</p>
+<ol>
+<li><strong>偶极屏蔽极限 ($q d_s \ll 1$)</strong>： 当门极离电子层很近，或者动量很小（考察长距离作用）时，利用级数展开 $\tanh(x) \approx x$</li>
+</ol>
+<script type="math/tex; mode=display">
+V_0(q) \approx \frac{e^2}{2\epsilon q} (q d_s) = \frac{e^2 d_s}{2\epsilon}</script><p>此时势能在 $q \to 0$ 时不再发散（由 $\infty$ 变成了常数）。这意味着在实空间，这种势能的衰减比 $1/r$ 快得多（类似于偶极子场）。</p>
+<blockquote>
+<ol>
+<li>在转角电子学，特别是<strong>转角双层石墨烯</strong>的研究中，这种双门极屏蔽库仑势至关重要。在普通的二维电子气中，库仑势以 $1/r$ 缓慢衰减，在动量空间 $q \to 0$ 时发散，如果排斥力太强且作用范围太广，系统可能会直接进入电荷密度波（CDW）或 Wigner 晶体相。门电压提供的 $\tanh(qd_s)$ 因子将长程发散截断为常数。这使得研究者可以人工调节相互作用的“程长”，确保系统处于强关联但仍可控的区域。</li>
+<li>在实验室中，MATBG 样品通常被夹在两层封装用的六方氮化硼（hBN）之间，最外层则是金属栅极（Gate）。实验中测量的电导、电容等输运性质，其边界条件严格符合“金属-电介质-半导体-电介质-金属”的结构。使用 $V_0(q) \propto \tanh(qd_s)/q$ 能让理论计算的势能分布与实验装置中的静电势分布完全吻合，从而使得理论拟合（如提取相互作用参数 $U$）具有高度可靠性。</li>
+</ol>
+</blockquote>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p><a target="_blank" rel="noopener" href="https://physics.stackexchange.com/questions/770977/how-is-gate-screened-coulomb-potential-derived">How is gate-screened Coulomb potential derived?</a></p>
+<h1 id="参考文献-1"><a href="#参考文献-1" class="headerlink" title="参考文献"></a>参考文献</h1><p><a target="_blank" rel="noopener" href="https://physics.stackexchange.com/questions/770977/how-is-gate-screened-coulomb-potential-derived">How is gate-screened Coulomb potential derived?</a></p>
+<div class="note red flat"><p>鉴于该网站分享的大都是学习笔记，作者水平有限，若发现有问题可以发邮件给我</p>
+<ul>
+<li><strong>yxliphy@gmail.com</strong></li>
+</ul>
+<p>也非常欢迎喜欢分享的小伙伴投稿</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="/about">Yu-Xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2026/01/12/2026-01-12-dual-gate/">http://example.com/2026/01/12/2026-01-12-dual-gate/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Yu-Xuan's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Transport/">Transport</a><a class="post-meta__tags" href="/tags/Twisted/">Twisted</a></div><div class="post-share"><div class="social-share" data-image="/assets/images/Twisted/tbg-gate.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg"/></a><div class="post-qr-code-desc"></div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg"/></a><div class="post-qr-code-desc"></div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width no-desc" href="/2026/01/11/2026-01-11-Fortran-Hall-conductance/" title="Hall电导以及光电导计算(Half-BHZ模型为例)"><img class="cover" src="/assets/images/Transport/img-1.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Hall电导以及光电导计算(Half-BHZ模型为例)</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2020/09/16/2020-09-16-Kubo/" title="Kubo公式推导(线性响应理论)"><img class="cover" src="/img/defult-cover5.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-16</div><div class="info-item-2">Kubo公式推导(线性响应理论)</div></div><div class="info-2"><div class="info-item-1">物理是个实验学科,在凝聚态物理中,若想知道一个给定物理系统的特性,首先是以某种方式扰动系统(如加外场或者通过粒子辐射),然后观察系统的物理量因外加扰动所引起的改变—-响应.通过扰动于响应的关系即...</div></div></div></a><a class="pagination-related" href="/2022/03/25/2022-03-25-edge-polarization/" title="Title"><img class="cover" src="/img/defult-cover6.jpeg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-25</div><div class="info-item-2">Title</div></div><div class="info-2"><div class="info-item-1">本 Blog 提供计算边界极化的完整代码，理论部分参考边界极化这篇 Blog。  代码串行1234567891011121314151617181920212223242526272829303...</div></div></div></a><a class="pagination-related" href="/2025/07/12/2025-07-12-symmetry-response/" title="对称性约束响应系数"><img class="cover" src="/assets/images/Transport/current-symmetry.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-07-12</div><div class="info-item-2">对称性约束响应系数</div></div><div class="info-2"><div class="info-item-1">这里先用一个具体的例子来展示一下对称性是如何约束响应系数分量的。   这里来分析一下，在系统具有 $C_{2x}$ 对称性（即关于 $x$轴的二重旋转对称性）时，一阶电导率张量$\sigma_{...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description">知行合一</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">296</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yxli8023"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:yxliphy@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><div style="text-align:center;"> <img src="/assets/images/qrcode.jpg" alt="公告图" style="max-width:100%; border-radius:10px; margin-bottom:10px;"> <br> 欢迎关注公众号，有趣的内容也会在上面同步。 有密码的文章属于正在建设中或者没有通过验证的内容，若有需要可通过邮件联系。</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%8C%E6%A0%85%E5%B1%8F%E8%94%BD%E5%BA%93%E4%BB%91%E5%8A%BF"><span class="toc-number">1.</span> <span class="toc-text">双栅屏蔽库仑势</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">2.</span> <span class="toc-text">参考文献</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE-1"><span class="toc-number">3.</span> <span class="toc-text">参考文献</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/01/12/2026-01-12-dual-gate/" title="二维体系中的双栅屏蔽库仑势(Dual-gate-screened Coulomb potential)"><img src="/assets/images/Twisted/tbg-gate.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="二维体系中的双栅屏蔽库仑势(Dual-gate-screened Coulomb potential)"/></a><div class="content"><a class="title" href="/2026/01/12/2026-01-12-dual-gate/" title="二维体系中的双栅屏蔽库仑势(Dual-gate-screened Coulomb potential)">二维体系中的双栅屏蔽库仑势(Dual-gate-screened Coulomb potential)</a><time datetime="2026-01-11T16:00:00.000Z" title="发表于 2026-01-12 00:00:00">2026-01-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/01/11/2026-01-11-Fortran-Hall-conductance/" title="Hall电导以及光电导计算(Half-BHZ模型为例)"><img src="/assets/images/Transport/img-1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hall电导以及光电导计算(Half-BHZ模型为例)"/></a><div class="content"><a class="title" href="/2026/01/11/2026-01-11-Fortran-Hall-conductance/" title="Hall电导以及光电导计算(Half-BHZ模型为例)">Hall电导以及光电导计算(Half-BHZ模型为例)</a><time datetime="2026-01-10T16:00:00.000Z" title="发表于 2026-01-11 00:00:00">2026-01-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/01/10/2026-01-10-opt-sym/" title="对称性约束光学跃迁"><img src="/assets/images/Transport/opt-sym.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="对称性约束光学跃迁"/></a><div class="content"><a class="title" href="/2026/01/10/2026-01-10-opt-sym/" title="对称性约束光学跃迁">对称性约束光学跃迁</a><time datetime="2026-01-09T16:00:00.000Z" title="发表于 2026-01-10 00:00:00">2026-01-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/01/09/2026-01-09-bhz-spinHall/" title="自旋Hall电导(BHZ模型)"><img src="/assets/images/Transport/img-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="自旋Hall电导(BHZ模型)"/></a><div class="content"><a class="title" href="/2026/01/09/2026-01-09-bhz-spinHall/" title="自旋Hall电导(BHZ模型)">自旋Hall电导(BHZ模型)</a><time datetime="2026-01-08T16:00:00.000Z" title="发表于 2026-01-09 00:00:00">2026-01-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/01/08/2026-01-08-sc-clean-dirty/" title="超导中的 Clean limit 与 Dirty limit"><img src="/assets/images/SC/sc-clean-dirty.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导中的 Clean limit 与 Dirty limit"/></a><div class="content"><a class="title" href="/2026/01/08/2026-01-08-sc-clean-dirty/" title="超导中的 Clean limit 与 Dirty limit">超导中的 Clean limit 与 Dirty limit</a><time datetime="2026-01-07T16:00:00.000Z" title="发表于 2026-01-08 00:00:00">2026-01-08</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/assets/images/Twisted/tbg-gate.png);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div><div class="footer_custom_text">Welcome to  Yu-Xuan's Blog</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  const initGitalk = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGitalk = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const gitalk = new Gitalk({
+      clientID: 'Ov23li0WvZEaIAZ7RFtH',
+      clientSecret: '03fcb77b7c28dafcdde00756e27f9b5bc76639e8',
+      repo: 'yxli8023.github.io',
+      owner: 'yxli8023',
+      admin: ['yxli8023'],
+      updateCountCallback: commentCount,
+      ...option,
+      id: isShuoshuo ? path : (option && option.id) || 'f6d2b4bea89df5c27054ef5c24fb078d'
+    })
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async(el, path) => {
+    if (typeof Gitalk === 'function') initGitalk(el, path)
+    else {
+      await btf.getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await btf.getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Gitalk' === 'Gitalk'
+      ? window.shuoshuoComment = { loadComment: loadGitalk }
+      : window.loadOtherComment = loadGitalk
+    return
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
