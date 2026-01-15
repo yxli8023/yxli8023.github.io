@@ -1,0 +1,307 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Kwant模拟half-BHZ模型计算Hall电导 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="简单整理一下用Kwant模拟half-BHZ模型计算Hall电导的程序。  123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kwant模拟half-BHZ模型计算Hall电导">
+<meta property="og:url" content="http://example.com/2026/01/15/2026-01-15-halfbhz-hall/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39;s Blog">
+<meta property="og:description" content="简单整理一下用Kwant模拟half-BHZ模型计算Hall电导的程序。  123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/assets/images/Transport/half_bhz_hall.png">
+<meta property="article:published_time" content="2026-01-14T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-01-15T14:15:31.750Z">
+<meta property="article:author" content="Yu-Xuan">
+<meta property="article:tag" content="Code">
+<meta property="article:tag" content="Transport">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/images/Transport/half_bhz_hall.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Kwant模拟half-BHZ模型计算Hall电导",
+  "url": "http://example.com/2026/01/15/2026-01-15-halfbhz-hall/",
+  "image": "http://example.com/assets/images/Transport/half_bhz_hall.png",
+  "datePublished": "2026-01-14T16:00:00.000Z",
+  "dateModified": "2026-01-15T14:15:31.750Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yu-Xuan",
+      "url": "http://example.com/about"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/logo.png"><link rel="canonical" href="http://example.com/2026/01/15/2026-01-15-halfbhz-hall/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"作者: Yu-Xuan","link":"链接: ","source":"来源: Yu-Xuan's Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'medium_zoom',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#f54966","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Kwant模拟half-BHZ模型计算Hall电导',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #dbeffd;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">299</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/assets/images/Transport/half_bhz_hall.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo.png" alt="Logo"><span class="site-name">Yu-Xuan's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">Kwant模拟half-BHZ模型计算Hall电导</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Kwant模拟half-BHZ模型计算Hall电导</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-01-14T16:00:00.000Z" title="发表于 2026-01-15 00:00:00">2026-01-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-01-15T14:15:31.750Z" title="更新于 2026-01-15 22:15:31">2026-01-15</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Transport/">Transport</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">724</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;自上次更新已经过了&quot;,&quot;messageNext&quot;:&quot;天，文章内容可能已过时。&quot;,&quot;postUpdate&quot;:&quot;2026-01-15 22:15:31&quot;}" hidden></div><div class="note blue no-icon flat"><p>简单整理一下用Kwant模拟half-BHZ模型计算Hall电导的程序。</p>
+</div>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> kwant</span><br><span class="line"><span class="keyword">import</span> tinyarray</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Pool, cpu_count</span><br><span class="line"></span><br><span class="line"><span class="comment"># --- 1. 全局绘图配置 ---</span></span><br><span class="line">plt.rcParams[<span class="string">&#x27;text.usetex&#x27;</span>] = <span class="literal">True</span></span><br><span class="line">plt.rcParams[<span class="string">&#x27;font.family&#x27;</span>] = <span class="string">&#x27;Times New Roman&#x27;</span></span><br><span class="line">plt.rcParams[<span class="string">&#x27;figure.dpi&#x27;</span>] = <span class="number">150</span></span><br><span class="line">plt.rcParams[<span class="string">&#x27;font.size&#x27;</span>] = <span class="number">22</span></span><br><span class="line">plt.rcParams[<span class="string">&#x27;xtick.direction&#x27;</span>] = <span class="string">&#x27;in&#x27;</span></span><br><span class="line">plt.rcParams[<span class="string">&#x27;ytick.direction&#x27;</span>] = <span class="string">&#x27;in&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 基础矩阵 (Half-BHZ)</span></span><br><span class="line">sz = tinyarray.array([[<span class="number">1</span>, <span class="number">0</span>], [<span class="number">0</span>, -<span class="number">1</span>]])</span><br><span class="line">sx = tinyarray.array([[<span class="number">0</span>, <span class="number">1</span>], [<span class="number">1</span>, <span class="number">0</span>]])</span><br><span class="line">sy = tinyarray.array([[<span class="number">0</span>, -<span class="number">1j</span>], [<span class="number">1j</span>, <span class="number">0</span>]])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># --- 2. 系统构建函数 ---</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">make_syst</span>(<span class="params">L=<span class="number">30</span>, W=<span class="number">30</span></span>):</span><br><span class="line">    m0, t, A = <span class="number">1.0</span>, <span class="number">1.0</span>, <span class="number">1.0</span></span><br><span class="line">    lat = kwant.lattice.square(norbs=<span class="number">2</span>)</span><br><span class="line">    syst = kwant.Builder()</span><br><span class="line"></span><br><span class="line">    onsite = (m0 - <span class="number">2</span> * t) * sz</span><br><span class="line">    hop_x = <span class="number">0.5</span> * t * sz - <span class="number">0.5j</span> * A * sx</span><br><span class="line">    hop_y = <span class="number">0.5</span> * t * sz - <span class="number">0.5j</span> * A * sy</span><br><span class="line"></span><br><span class="line">    syst[(lat(i, j) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(L) <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(W))] = onsite</span><br><span class="line">    syst[kwant.builder.HoppingKind((<span class="number">1</span>, <span class="number">0</span>), lat)] = hop_x</span><br><span class="line">    syst[kwant.builder.HoppingKind((<span class="number">0</span>, <span class="number">1</span>), lat)] = hop_y</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 定义四个端口</span></span><br><span class="line">    lead_x = kwant.Builder(kwant.TranslationalSymmetry([-<span class="number">1</span>, <span class="number">0</span>]))</span><br><span class="line">    lead_x[(lat(<span class="number">0</span>, j) <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(W))] = onsite</span><br><span class="line">    lead_x[kwant.builder.HoppingKind((<span class="number">1</span>, <span class="number">0</span>), lat)] = hop_x</span><br><span class="line">    lead_x[kwant.builder.HoppingKind((<span class="number">0</span>, <span class="number">1</span>), lat)] = hop_y</span><br><span class="line"></span><br><span class="line">    lead_y = kwant.Builder(kwant.TranslationalSymmetry([<span class="number">0</span>, -<span class="number">1</span>]))</span><br><span class="line">    lead_y[(lat(i, <span class="number">0</span>) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(L))] = onsite</span><br><span class="line">    lead_y[kwant.builder.HoppingKind((<span class="number">1</span>, <span class="number">0</span>), lat)] = hop_x</span><br><span class="line">    lead_y[kwant.builder.HoppingKind((<span class="number">0</span>, <span class="number">1</span>), lat)] = hop_y</span><br><span class="line"></span><br><span class="line">    syst.attach_lead(lead_x)  <span class="comment"># Lead 0: 左</span></span><br><span class="line">    syst.attach_lead(lead_x.<span class="built_in">reversed</span>())  <span class="comment"># Lead 1: 右</span></span><br><span class="line">    syst.attach_lead(lead_y)  <span class="comment"># Lead 2: 下</span></span><br><span class="line">    syst.attach_lead(lead_y.<span class="built_in">reversed</span>())  <span class="comment"># Lead 3: 上</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> syst</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># --- 3. 输运计算封装 ---</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">compute_transport</span>(<span class="params">args</span>):</span><br><span class="line">    fsyst, en = args</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        smat = kwant.smatrix(fsyst, en)</span><br><span class="line">        <span class="keyword">return</span> [en, smat.transmission(<span class="number">1</span>, <span class="number">0</span>), smat.transmission(<span class="number">2</span>, <span class="number">0</span>), smat.transmission(<span class="number">3</span>, <span class="number">0</span>)]</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">return</span> [en, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># --- 4. 主程序 ---</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    L, W = <span class="number">30</span>, <span class="number">30</span></span><br><span class="line">    builder = make_syst(L, W)</span><br><span class="line">    fsyst = builder.finalized()</span><br><span class="line"></span><br><span class="line">    energies = np.linspace(-<span class="number">2.0</span>, <span class="number">2.0</span>, <span class="number">101</span>)</span><br><span class="line">    n_cores = cpu_count()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Calculating on <span class="subst">&#123;n_cores&#125;</span> cores...&quot;</span>)</span><br><span class="line">    <span class="keyword">with</span> Pool(n_cores) <span class="keyword">as</span> pool:</span><br><span class="line">        results = pool.<span class="built_in">map</span>(compute_transport, [(fsyst, en) <span class="keyword">for</span> en <span class="keyword">in</span> energies])</span><br><span class="line"></span><br><span class="line">    res = np.array(results)</span><br><span class="line">    res = res[res[:, <span class="number">0</span>].argsort()]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># --- 5. 联合绘图 (去除结构图边框) ---</span></span><br><span class="line">    fig, (ax1, ax2) = plt.subplots(<span class="number">1</span>, <span class="number">2</span>, figsize=(<span class="number">22</span>, <span class="number">10</span>))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># (A) 左侧：系统结构图 (彻底去除边框和刻度)</span></span><br><span class="line">    kwant.plot(builder, ax=ax1)</span><br><span class="line">    ax1.set_axis_off()  <span class="comment"># 核心修改：关闭所有坐标轴及边框</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 手动标注 Lead 位置</span></span><br><span class="line">    port_labels = &#123;</span><br><span class="line">        <span class="string">&quot; 0&quot;</span>: (-<span class="number">3</span>, W / <span class="number">2</span>),</span><br><span class="line">        <span class="string">&quot; 1&quot;</span>: (L + <span class="number">3</span>, W / <span class="number">2</span>),</span><br><span class="line">        <span class="string">&quot; 2&quot;</span>: (L / <span class="number">2</span>, -<span class="number">3</span>),</span><br><span class="line">        <span class="string">&quot; 3&quot;</span>: (L / <span class="number">2</span>, W + <span class="number">3</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> label, pos <span class="keyword">in</span> port_labels.items():</span><br><span class="line">        ax1.text(pos[<span class="number">0</span>], pos[<span class="number">1</span>], label, color=<span class="string">&#x27;blue&#x27;</span>, fontsize=<span class="number">26</span>,</span><br><span class="line">                 fontweight=<span class="string">&#x27;bold&#x27;</span>, ha=<span class="string">&#x27;center&#x27;</span>, va=<span class="string">&#x27;center&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># (B) 右侧：电导曲线图</span></span><br><span class="line">    ax2.plot(res[:, <span class="number">0</span>], res[:, <span class="number">1</span>], label=<span class="string">r&#x27;$T_&#123;10&#125;$&#x27;</span>, lw=<span class="number">4</span>, color=<span class="string">&#x27;tab:blue&#x27;</span>)</span><br><span class="line">    ax2.plot(res[:, <span class="number">0</span>], res[:, <span class="number">2</span>], label=<span class="string">r&#x27;$T_&#123;20&#125;$&#x27;</span>, lw=<span class="number">4</span>, color=<span class="string">&#x27;tab:red&#x27;</span>)</span><br><span class="line">    ax2.plot(res[:, <span class="number">0</span>], res[:, <span class="number">3</span>], label=<span class="string">r&#x27;$T_&#123;30&#125;$&#x27;</span>, lw=<span class="number">4</span>, color=<span class="string">&#x27;tab:green&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    ax2.axhline(<span class="number">1.0</span>, color=<span class="string">&#x27;black&#x27;</span>, linestyle=<span class="string">&#x27;--&#x27;</span>, lw=<span class="number">2</span>, alpha=<span class="number">0.5</span>)</span><br><span class="line">    ax2.set_xlabel(<span class="string">r&#x27;Energy $E$&#x27;</span>)</span><br><span class="line">    ax2.set_ylabel(<span class="string">r&#x27;Transmission $T$&#x27;</span>)</span><br><span class="line">    ax2.legend(fontsize=<span class="number">25</span>, loc=<span class="string">&#x27;best&#x27;</span>, frameon=<span class="literal">True</span>)</span><br><span class="line">    ax2.locator_params(axis=<span class="string">&#x27;x&#x27;</span>, nbins = <span class="number">5</span>)</span><br><span class="line">    ax2.locator_params(axis=<span class="string">&#x27;y&#x27;</span>, nbins = <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">    plt.tight_layout()</span><br><span class="line">    plt.savefig(<span class="string">&quot;half_bhz.png&quot;</span>, bbox_inches=<span class="string">&#x27;tight&#x27;</span>)</span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
+<div style="display: flex; justify-content: space-between;">
+  <img src="/assets/images/Transport/half_bhz_hall.png" alt="Image 1" width="90%" />
+</div>
+
+
+
+<div class="note red flat"><p>鉴于该网站分享的大都是学习笔记，作者水平有限，若发现有问题可以发邮件给我</p>
+<ul>
+<li><strong>yxliphy@gmail.com</strong></li>
+</ul>
+<p>也非常欢迎喜欢分享的小伙伴投稿</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="/about">Yu-Xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2026/01/15/2026-01-15-halfbhz-hall/">http://example.com/2026/01/15/2026-01-15-halfbhz-hall/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Yu-Xuan's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Code/">Code</a><a class="post-meta__tags" href="/tags/Transport/">Transport</a></div><div class="post-share"><div class="social-share" data-image="/assets/images/Transport/half_bhz_hall.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg"/></a><div class="post-qr-code-desc"></div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg"/></a><div class="post-qr-code-desc"></div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/01/13/2026-01-13-chi0-code/" title="一维与二维体系的静态极化率(数值计算)"><img class="cover" src="/assets/images/Transport/chi0.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">一维与二维体系的静态极化率(数值计算)</div></div><div class="info-2"><div class="info-item-1">极化率计算公式为  \Pi(q) = \frac{1}{N} \sum_{k} \frac{f(\epsilon_k) - f(\epsilon_{k+q})}{\epsilon_k - \ep...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2022/03/25/2022-03-25-edge-polarization/" title="Title"><img class="cover" src="/img/defult-cover3.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-25</div><div class="info-item-2">Title</div></div><div class="info-2"><div class="info-item-1">本 Blog 提供计算边界极化的完整代码，理论部分参考边界极化这篇 Blog。  代码串行1234567891011121314151617181920212223242526272829303...</div></div></div></a><a class="pagination-related" href="/2025/10/02/2025-10-02-selfenergy/" title="迭代方法自能计算"><img class="cover" src="/img/defult-cover4.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-10-02</div><div class="info-item-2">迭代方法自能计算</div></div><div class="info-2"><div class="info-item-1">最近在学习输运方面的内容，这篇Blog主要就是整理如何通过迭代格林函数的方式来计算电极与导体耦合之后的自能。不得不说知乎是个学习的好地方，我这里的主要内容也都是在知乎上学习的，自己整理一下再加上...</div></div></div></a><a class="pagination-related" href="/2025/10/07/2025-10-01-kwant-study/" title="Kwant学习"><img class="cover" src="/img/defult-cover5.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-10-07</div><div class="info-item-2">Kwant学习</div></div><div class="info-2"><div class="info-item-1">最近打算转学一下输运,首先项借助Kwant学习一下其中的例子先帮助自己理解一些输运中的概念和基本的计算,后面再自己利用格林函数的方法边学习边实践,这里还是想整理记录一下自己在学习Kwant的实例...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description">知行合一</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">299</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yxli8023"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:yxliphy@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><div style="text-align:center;"> <img src="/assets/images/qrcode.jpg" alt="公告图" style="max-width:100%; border-radius:10px; margin-bottom:10px;"> <br> 欢迎关注公众号，有趣的内容也会在上面同步。 有密码的文章属于正在建设中或者没有通过验证的内容，若有需要可通过邮件联系。</div></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/01/15/2026-01-15-halfbhz-hall/" title="Kwant模拟half-BHZ模型计算Hall电导"><img src="/assets/images/Transport/half_bhz_hall.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Kwant模拟half-BHZ模型计算Hall电导"/></a><div class="content"><a class="title" href="/2026/01/15/2026-01-15-halfbhz-hall/" title="Kwant模拟half-BHZ模型计算Hall电导">Kwant模拟half-BHZ模型计算Hall电导</a><time datetime="2026-01-14T16:00:00.000Z" title="发表于 2026-01-15 00:00:00">2026-01-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/01/13/2026-01-13-chi0/" title="一维与二维体系的静态极化率(Lindhard 函数)"><img src="/assets/images/Transport/chi0.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="一维与二维体系的静态极化率(Lindhard 函数)"/></a><div class="content"><a class="title" href="/2026/01/13/2026-01-13-chi0/" title="一维与二维体系的静态极化率(Lindhard 函数)">一维与二维体系的静态极化率(Lindhard 函数)</a><time datetime="2026-01-12T16:00:00.000Z" title="发表于 2026-01-13 00:00:00">2026-01-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/01/13/2026-01-13-chi0-code/" title="一维与二维体系的静态极化率(数值计算)"><img src="/assets/images/Transport/chi0.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="一维与二维体系的静态极化率(数值计算)"/></a><div class="content"><a class="title" href="/2026/01/13/2026-01-13-chi0-code/" title="一维与二维体系的静态极化率(数值计算)">一维与二维体系的静态极化率(数值计算)</a><time datetime="2026-01-12T16:00:00.000Z" title="发表于 2026-01-13 00:00:00">2026-01-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/01/12/2026-01-12-dual-gate/" title="二维体系中的双栅屏蔽库仑势(Dual-gate-screened Coulomb potential)"><img src="/assets/images/Twisted/tbg-gate.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="二维体系中的双栅屏蔽库仑势(Dual-gate-screened Coulomb potential)"/></a><div class="content"><a class="title" href="/2026/01/12/2026-01-12-dual-gate/" title="二维体系中的双栅屏蔽库仑势(Dual-gate-screened Coulomb potential)">二维体系中的双栅屏蔽库仑势(Dual-gate-screened Coulomb potential)</a><time datetime="2026-01-11T16:00:00.000Z" title="发表于 2026-01-12 00:00:00">2026-01-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/01/11/2026-01-11-Fortran-Hall-conductance/" title="Hall电导以及光电导计算(Half-BHZ模型为例)"><img src="/assets/images/Transport/img-1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hall电导以及光电导计算(Half-BHZ模型为例)"/></a><div class="content"><a class="title" href="/2026/01/11/2026-01-11-Fortran-Hall-conductance/" title="Hall电导以及光电导计算(Half-BHZ模型为例)">Hall电导以及光电导计算(Half-BHZ模型为例)</a><time datetime="2026-01-10T16:00:00.000Z" title="发表于 2026-01-11 00:00:00">2026-01-11</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/assets/images/Transport/half_bhz_hall.png);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div><div class="footer_custom_text">Welcome to  Yu-Xuan's Blog</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  const initGitalk = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGitalk = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const gitalk = new Gitalk({
+      clientID: 'Ov23li0WvZEaIAZ7RFtH',
+      clientSecret: '03fcb77b7c28dafcdde00756e27f9b5bc76639e8',
+      repo: 'yxli8023.github.io',
+      owner: 'yxli8023',
+      admin: ['yxli8023'],
+      updateCountCallback: commentCount,
+      ...option,
+      id: isShuoshuo ? path : (option && option.id) || 'b71720c7a58a7c57354bdb26373bef79'
+    })
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async(el, path) => {
+    if (typeof Gitalk === 'function') initGitalk(el, path)
+    else {
+      await btf.getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await btf.getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Gitalk' === 'Gitalk'
+      ? window.shuoshuoComment = { loadComment: loadGitalk }
+      : window.loadOtherComment = loadGitalk
+    return
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
