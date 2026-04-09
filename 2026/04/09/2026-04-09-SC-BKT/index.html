@@ -1,0 +1,498 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>二维超导电性与BKT相变 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="二维超导电性与BKT相变维象Ginzburg-Landau理论对于超导体，其序参量写作  \Psi(\mathbf r)&#x3D;|\Psi(\mathbf r)|e^{i\theta(\mathbf r)}.其中$|\Psi|$表示局域配对幅值，$\theta$是超导相位。对于接近二维的超导相变研究中，关键的往往不是序参量的幅值，而是相位。因为在某一段温度区间内，振幅已经非零，但是体系并没有建立起全局的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二维超导电性与BKT相变">
+<meta property="og:url" content="http://example.com/2026/04/09/2026-04-09-SC-BKT/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39;s Blog">
+<meta property="og:description" content="二维超导电性与BKT相变维象Ginzburg-Landau理论对于超导体，其序参量写作  \Psi(\mathbf r)&#x3D;|\Psi(\mathbf r)|e^{i\theta(\mathbf r)}.其中$|\Psi|$表示局域配对幅值，$\theta$是超导相位。对于接近二维的超导相变研究中，关键的往往不是序参量的幅值，而是相位。因为在某一段温度区间内，振幅已经非零，但是体系并没有建立起全局的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/assets/images/SC/sc-2d.png">
+<meta property="article:published_time" content="2026-04-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-04-09T12:41:17.156Z">
+<meta property="article:author" content="Yu-Xuan">
+<meta property="article:tag" content="Superconductor">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/images/SC/sc-2d.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "二维超导电性与BKT相变",
+  "url": "http://example.com/2026/04/09/2026-04-09-SC-BKT/",
+  "image": "http://example.com/assets/images/SC/sc-2d.png",
+  "datePublished": "2026-04-08T16:00:00.000Z",
+  "dateModified": "2026-04-09T12:41:17.156Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yu-Xuan",
+      "url": "http://example.com/about"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/logo.png"><link rel="canonical" href="http://example.com/2026/04/09/2026-04-09-SC-BKT/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"作者: Yu-Xuan","link":"链接: ","source":"来源: Yu-Xuan's Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'medium_zoom',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#f54966","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '二维超导电性与BKT相变',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #dbeffd;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">332</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">26</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/assets/images/SC/sc-2d.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo.png" alt="Logo"><span class="site-name">Yu-Xuan's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">二维超导电性与BKT相变</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">二维超导电性与BKT相变</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-04-08T16:00:00.000Z" title="发表于 2026-04-09 00:00:00">2026-04-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-04-09T12:41:17.156Z" title="更新于 2026-04-09 20:41:17">2026-04-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Superconductor/">Superconductor</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">2.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>9分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;自上次更新已经过了&quot;,&quot;messageNext&quot;:&quot;天，文章内容可能已过时。&quot;,&quot;postUpdate&quot;:&quot;2026-04-09 20:41:17&quot;}" hidden></div><h1 id="二维超导电性与BKT相变"><a href="#二维超导电性与BKT相变" class="headerlink" title="二维超导电性与BKT相变"></a>二维超导电性与BKT相变</h1><h2 id="维象Ginzburg-Landau理论"><a href="#维象Ginzburg-Landau理论" class="headerlink" title="维象Ginzburg-Landau理论"></a>维象Ginzburg-Landau理论</h2><p>对于超导体，其序参量写作</p>
+<script type="math/tex; mode=display">
+\Psi(\mathbf r)=|\Psi(\mathbf r)|e^{i\theta(\mathbf r)}.</script><p>其中$|\Psi|$表示局域配对幅值，$\theta$是超导相位。对于接近二维的超导相变研究中，关键的往往不是序参量的幅值，而是相位。因为在某一段温度区间内，振幅已经非零，但是体系并没有建立起全局的相位相干。对于带电的超导体，Ginzburg-Landau自由能写作</p>
+<script type="math/tex; mode=display">
+F[\Psi,\mathbf A]
+=
+\int d^dr
+\left[
+\alpha |\Psi|^2+\frac{\beta}{2}|\Psi|^4
++\frac{1}{2m^*}
+\left|
+\left(-i\hbar \nabla-q\mathbf A\right)\Psi
+\right|^2
+\right],</script><p>其中$m^<em>$是Cooper对有效质量，通常有$m^</em>=2m$；</p>
+<p>$q$是Cooper对携带的电荷量，通常有$q=2e$；$\mathbf{A}$是矢势，这里我们来研究二维体系$d=2$。首先将</p>
+<script type="math/tex; mode=display">
+\Psi(\mathbf r)=\sqrt{n_s(\mathbf r)}\,e^{i\theta(\mathbf r)}</script><p>代入，这里把$|\Psi|^2$记作$n_s$，对于梯度项有</p>
+<script type="math/tex; mode=display">
+\left(-i\hbar \nabla-q\mathbf A\right)\Psi
+=
+\left(-i\hbar \nabla-q\mathbf A\right)
+\left(\sqrt{n_s}e^{i\theta}\right).\label{eq:b1}</script><p>展示可得</p>
+<script type="math/tex; mode=display">
+\nabla\left(\sqrt{n_s}e^{i\theta}\right)
+=
+e^{i\theta}\nabla \sqrt{n_s}
++
+i e^{i\theta}\sqrt{n_s}\nabla\theta.</script><p>代入方程$\eqref{eq:b1}$可得</p>
+<script type="math/tex; mode=display">
+\left|
+\left(-i\hbar \nabla-q\mathbf A\right)\Psi
+\right|^2
+=
+\hbar^2(\nabla \sqrt{n_s})^2
++n_s\left(\hbar \nabla\theta-q\mathbf A\right)^2.</script><p>因此可以将GL自由能写作</p>
+<script type="math/tex; mode=display">
+F
+=
+\int d^dr
+\left[
+{\color{blue}\alpha n_s+\frac{\beta}{2}n_s^2
++\frac{\hbar^2}{2m^*}(\nabla \sqrt{n_s})^2}
++\frac{n_s}{2m^*}\left(\hbar \nabla\theta-q\mathbf A\right)^2
+\right].\label{eq:b2}</script><p>此时就将自由能分拆为了${\color{blue}\rm 振幅部分}$和相位部分。将相位部分单独拿出来</p>
+<script type="math/tex; mode=display">
+F_{\rm phase}
+=
+\int d^dr\,
+\frac{n_s}{2m^*}
+\left(\hbar \nabla\theta-q\mathbf A\right)^2.</script><p>可以看到它与流体动能密度$\frac{1}{2}\rho v^2$很相似，因此可以定义超流速度</p>
+<script type="math/tex; mode=display">
+\mathbf v_s
+=
+\frac{1}{m^*}\left(\hbar \nabla\theta-q\mathbf A\right).</script><p>从而可以将相位相关的自由能部分表示为</p>
+<script type="math/tex; mode=display">
+F_{\rm phase}
+=
+\int d^dr\,
+\frac{1}{2}n_s m^* v_s^2.</script><p>因此，超导中的相位梯度不是一个单纯的数学量，它对应的是超流。而且在不施加磁场时或者矢势$\mathbf{A}$可以忽略</p>
+<script type="math/tex; mode=display">
+\mathbf v_s=\frac{\hbar}{m^*}\nabla\theta.</script><p>也就是说只要超导体的相位存在梯度，就意味着存在超流。自由能对矢势$\mathbf{A}$的变分可以得到电流密度，为自由能$\eqref{eq:b2}$中与矢势相关的只有相位部分</p>
+<script type="math/tex; mode=display">
+F_{\rm phase}
+=
+\int d^dr\,
+\frac{n_s}{2m^*}
+(\hbar \nabla\theta-q\mathbf A)^2.</script><p>计算电流密度</p>
+<script type="math/tex; mode=display">
+\mathbf j = - \frac{\delta F}{\delta \mathbf A}=
+\frac{q n_s}{m^*}
+\left(\hbar \nabla\theta-q\mathbf A\right).</script><p>也可以表示为</p>
+<script type="math/tex; mode=display">
+\mathbf j = q n_s \mathbf v_s.</script><p>其中$q=2e,m^*=2m$，这就是超电流公式。因此，超流密度$n_s$的物理意义是：决定在给定超流速度下能够承载多大的超导电流。这里我们维象的定义了超流密度$n_s$，而在微观的BCS理论中，它可以通过线性响应或者相位twisted能量定义得到。</p>
+<h2 id="低能长波极限"><a href="#低能长波极限" class="headerlink" title="低能长波极限"></a>低能长波极限</h2><p>现在还是回到GL自由能</p>
+<script type="math/tex; mode=display">
+F
+=
+\int d^dr
+\left[
+\alpha n_s+\frac{\beta}{2}n_s^2
++\frac{\hbar^2}{2m^*}(\nabla \sqrt{n_s})^2
++\frac{n_s}{2m^*}\left(\hbar \nabla\theta-q\mathbf A\right)^2
+\right].</script><p>当我们研究低能、长波极限且温度接近超导配对温度的相区时，通常有：（1）序参量幅值$n_s$基本非零；（2）振幅涨落能量消耗更高；（3）主要的低能激发都来自于相位变换。于是可以取近似</p>
+<script type="math/tex; mode=display">
+n_s(\mathbf r)\approx n_s^{(0)}=\text{常数},
+\qquad
+(\nabla \sqrt{n_s})^2 \approx 0.</script><p>在无磁场情形下，相位相关的自由能为</p>
+<script type="math/tex; mode=display">
+F_{\rm phase}
+=
+\int d^2r\,
+\frac{n_s^{(0)}\hbar^2}{2m^*}(\nabla\theta)^2.</script><p>这对应的其实就是二维XY相位模型，为了和XY模型对应，将自由能改写为</p>
+<script type="math/tex; mode=display">
+F_{\rm phase}
+=
+\frac{J}{2}\int d^2r\,(\nabla\theta)^2,\label{eq:b3}</script><p>其中定义</p>
+<script type="math/tex; mode=display">
+J=\frac{\hbar^2 n_s^{(0)}}{m^*}.</script><p>或者有的文献写</p>
+<script type="math/tex; mode=display">
+F=\frac{\rho_s}{2}\int d^2r\,(\nabla\theta)^2,</script><p>这里的$J$就是相位刚度。</p>
+<h2 id="二维XY模型"><a href="#二维XY模型" class="headerlink" title="二维XY模型"></a>二维XY模型</h2><p>在晶格上，相位自由度最常见的模型是</p>
+<script type="math/tex; mode=display">
+H=-J_0\sum_{\langle ij\rangle}\cos(\theta_i-\theta_j).</script><p>这里每一个格点$i$上有一个角变量$\theta_i$，它可以看作是二维单位矢量</p>
+<script type="math/tex; mode=display">
+\mathbf S_i=(\cos\theta_i,\sin\theta_i).</script><p>在低温且相邻格点相位差比较小的时候</p>
+<script type="math/tex; mode=display">
+\cos(\theta_i-\theta_j)
+\approx
+1-\frac{1}{2}(\theta_i-\theta_j)^2.</script><p>可以将哈密顿量改写</p>
+<script type="math/tex; mode=display">
+H
+\approx
+- J_0 N_b
++\frac{J_0}{2}\sum_{\langle ij\rangle}(\theta_i-\theta_j)^2,</script><p>其中$N_b$是最近邻格点数量，将常数项丢掉可得</p>
+<script type="math/tex; mode=display">
+H_{\rm sw}
+=
+\frac{J_0}{2}\sum_{\langle ij\rangle}(\theta_i-\theta_j)^2.</script><p>这就是自旋波近似下的XY模型。假设晶格常数为$a$，对于相邻的$i,j$格点</p>
+<script type="math/tex; mode=display">
+\theta_j-\theta_i \approx a\, \partial_\mu \theta,\qquad (\theta_i-\theta_j)^2 \approx a^2 (\partial_\mu \theta)^2.</script><p>把随相邻格点的求和改写为积分</p>
+<script type="math/tex; mode=display">
+H_{\rm sw}
+\longrightarrow
+\frac{K}{2}\int d^2r\,(\nabla\theta)^2,\label{eq:b4}</script><p>其中$K$与相邻格点之间的耦合$J_0$以及晶格常数有关。对比方程$\eqref{eq:b3}$和$\eqref{eq:b4}$可以看到，二维XY模型的长波吉祥就是二维相位刚度模型，此时就把超导相位模型与二维XY模型建立起了联系。</p>
+<p>现在考虑平滑的相位涨落，没有奇点，将自由能</p>
+<script type="math/tex; mode=display">
+F=\frac{J_s}{2}\int d^2r\,(\nabla\theta)^2.\label{eq:b6}</script><p>的相位部分做Fourier展开</p>
+<script type="math/tex; mode=display">
+\theta(\mathbf r)=\sum_{\mathbf q}\theta_{\mathbf q} e^{i\mathbf q\cdot \mathbf r}.</script><p>可以得到自由能为</p>
+<script type="math/tex; mode=display">
+F=\frac{J_s}{2}\sum_{\mathbf q} q^2 |\theta_{\mathbf q}|^2.</script><p>根据等分配定理</p>
+<script type="math/tex; mode=display">
+\langle |\theta_{\mathbf q}|^2\rangle \sim \frac{k_B T}{J_s q^2}.</script><p>于是相位涨落</p>
+<script type="math/tex; mode=display">
+\langle [\theta(\mathbf r)-\theta(0)]^2\rangle
+\sim
+\int \frac{d^2q}{(2\pi)^2}
+\frac{k_B T}{J_s q^2}\left(1-\cos \mathbf q\cdot \mathbf r\right).</script><p>在二维中，该积分给出对数形式</p>
+<script type="math/tex; mode=display">
+\langle [\theta(\mathbf r)-\theta(0)]^2\rangle
+\sim
+\frac{k_B T}{2\pi J_s}\ln\frac{r}{a}.</script><p>从而得到关联函数为</p>
+<script type="math/tex; mode=display">
+\left\langle e^{i[\theta(\mathbf r)-\theta(0)]}\right\rangle
+=
+\exp\left[
+-\frac{1}{2}
+\langle [\theta(\mathbf r)-\theta(0)]^2\rangle
+\right]
+\sim
+r^{-\eta},</script><p>其中</p>
+<script type="math/tex; mode=display">
+\eta=\frac{k_B T}{4\pi J_s}.</script><p>可以看到二维低温相不是普通的长程有序，而是代数衰减的准长程序。因为$\theta$是角变量，所以它允许非平庸的绕转。考虑沿一个闭合回路$C$有</p>
+<script type="math/tex; mode=display">
+\oint_C \nabla\theta\cdot d\mathbf l=2\pi m,
+\qquad m\in\mathbb Z.</script><p>其中整数$m$是涡旋数或者拓扑电荷。最简单的单涡旋解位于原点时写作</p>
+<script type="math/tex; mode=display">
+\theta(\mathbf r)=m\phi,</script><p>其中$\phi$是极角，此时相位变换满足</p>
+<script type="math/tex; mode=display">
+\nabla\theta = \frac{m}{r}\hat{\boldsymbol \phi},
+\qquad
+|\nabla\theta|^2=\frac{m^2}{r^2}.\label{eq:b5}</script><p>可以看到这不是一个平庸的相位涨落，它存在一个拓扑奇点$r=0$。将上面的涡旋解$\eqref{eq:b5}$代入自由能$\eqref{eq:b6}$中可得</p>
+<script type="math/tex; mode=display">
+E_v
+=
+\frac{J_s}{2}\int d^2r\,\frac{m^2}{r^2}.</script><p>使用极坐标$d^2r=r\,dr\,d\phi$，并引入短程截断$a$和系统尺度$L$，从而得到涡旋的能量为</p>
+<script type="math/tex; mode=display">
+E_v
+=
+\frac{J_s}{2}
+\int_0^{2\pi}d\phi
+\int_a^L r\,dr\,\frac{m^2}{r^2}=
+\frac{J_s}{2}(2\pi)m^2\int_a^L \frac{dr}{r}
+=
+\pi J_s m^2 \ln\frac{L}{a}.</script><p>再加上涡旋芯的能量$\mu_c$，写作</p>
+<script type="math/tex; mode=display">
+E_v(m)=\pi J_s m^2\ln\frac{L}{a}+\mu_c.</script><p>此时可以看到产生涡旋度为$m$的涡旋是需要能量消耗的。考虑涡旋的大小，在体系中可以产生涡旋的数量为</p>
+<script type="math/tex; mode=display">
+N\sim \frac{L^2}{a^2}</script><p>其对应的熵为</p>
+<script type="math/tex; mode=display">
+S_v = k_B \ln N
+= 2k_B \ln\frac{L}{a}.</script><p>从而可以得到体系的自由能为</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+F_v = E_v - TS_v
+&=
+\pi J_s \ln\frac{L}{a}+\mu_c
+-2k_B T\ln\frac{L}{a},\\
+&
+=
+\left(\pi J_s - 2k_B T\right)\ln\frac{L}{a}+\mu_c.
+\end{aligned}</script><p>现在令$L\to \infty$:</p>
+<ul>
+<li>当$\pi J_s &gt; 2k_B T$时，自由能$F_v\to +\infty$，此时不利于产生自由涡旋</li>
+<li>当$\pi J_s &lt; 2k_B T$时，自由能$F_v\to -\infty$，此时自由涡旋大量产生</li>
+</ul>
+<p>所以临界条件为</p>
+<script type="math/tex; mode=display">
+\pi J_s = 2k_B T.</script><p>即得到BKT相变温度</p>
+<script type="math/tex; mode=display">
+T_{\mathrm{BKT}} = \frac{\pi}{2k_B}J_s.</script><p>因此，当$T &lt; T_{\rm  BKT}$时，产生自由涡旋在热力学上是不占优的，因此只能存在涡旋—-反涡旋对，体系保持准长程序。当$T &gt; T_{BKT}$时，产生自由涡旋在能量上占优，相位相干在长尺度上被完全打乱，体系进入指数衰减的无序相。因此BKT相变不是序参量振幅的普通Landau相变，而是涡旋—-反涡旋解绑定的拓扑相变。</p>
+<div class="note red flat"><p>鉴于该网站分享的大都是学习笔记，作者水平有限，若发现有问题可以发邮件给我</p>
+<ul>
+<li><strong>yxliphy@gmail.com</strong></li>
+</ul>
+<p>也非常欢迎喜欢分享的小伙伴投稿</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="/about">Yu-Xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2026/04/09/2026-04-09-SC-BKT/">http://example.com/2026/04/09/2026-04-09-SC-BKT/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Yu-Xuan's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Superconductor/">Superconductor</a></div><div class="post-share"><div class="social-share" data-image="/assets/images/SC/sc-2d.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg"/></a><div class="post-qr-code-desc"></div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg"/></a><div class="post-qr-code-desc"></div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/04/08/2026-04-08-Landau-Fan/" title="Landau 能级、SdH 振荡与 Onsager 关系"><img class="cover" src="/assets/images/Transport/Landau-Fan.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Landau 能级、SdH 振荡与 Onsager 关系</div></div><div class="info-2"><div class="info-item-1">Landau 能级、SdH 振荡与 Onsager 关系Landau能级与SdH振荡考虑二维自由电子气，施加沿$\hat{z}$方向的磁场$\mathbf B=B\hat z$，哈密顿量为  H...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2019/04/17/2019-04-17-julia/" title="Majorana Corner State in High Temperature Superconductor"><img class="cover" src="/assets/images/research/juliaresult.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2019-04-17</div><div class="info-item-2">Majorana Corner State in High Temperature Superconductor</div></div><div class="info-2"><div class="info-item-1">最近刚刚学习了julia, 手头上也正好在重复一篇文章，就正好拿新学习的内容一边温习一边做研究。   导入函数库1234567# Import external package that use...</div></div></div></a><a class="pagination-related" href="/2020/09/03/2020-09-03-Hubbard-doping/" title="电子掺杂，空穴掺杂与化学势的关系"><img class="cover" src="/img/defult-cover8.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-03</div><div class="info-item-2">电子掺杂，空穴掺杂与化学势的关系</div></div><div class="info-2"><div class="info-item-1">在研究超导问题的时候，不可避免的总会遇到体系时电子掺杂还是空穴掺杂，因为这两种不同的掺杂所对应的性质是不同的，最近重新温习一下超导的相关知识，正好也利用一个具体的紧束缚近似模型来说明一下电子和空...</div></div></div></a><a class="pagination-related" href="/2020/09/25/2020-09-25-MF-BdG/" title="BCS平均场近似及Bogoliubov对角化"><img class="cover" src="/img/defult-cover4.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-25</div><div class="info-item-2">BCS平均场近似及Bogoliubov对角化</div></div><div class="info-2"><div class="info-item-1">BCS理论对解释常规超导的解释很成功,这里我就整理一下如何对BCS哈密顿量做平均场处理,使其变成两粒子算符形式,然后利用Bogoliubov变换来对这种两粒子算符进行对角化处理.   平均场近似...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description">知行合一</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">332</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">26</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yxli8023"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:yxliphy@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><div style="text-align:center;"> <img src="/assets/images/qrcode.jpg" alt="公告图" style="max-width:100%; border-radius:10px; margin-bottom:10px;"> <br> 欢迎关注公众号，有趣的内容也会在上面同步。 有密码的文章属于正在建设中或者没有通过验证的内容，若有需要可通过邮件联系。</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E7%BB%B4%E8%B6%85%E5%AF%BC%E7%94%B5%E6%80%A7%E4%B8%8EBKT%E7%9B%B8%E5%8F%98"><span class="toc-number">1.</span> <span class="toc-text">二维超导电性与BKT相变</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%B4%E8%B1%A1Ginzburg-Landau%E7%90%86%E8%AE%BA"><span class="toc-number">1.1.</span> <span class="toc-text">维象Ginzburg-Landau理论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%8E%E8%83%BD%E9%95%BF%E6%B3%A2%E6%9E%81%E9%99%90"><span class="toc-number">1.2.</span> <span class="toc-text">低能长波极限</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E7%BB%B4XY%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.3.</span> <span class="toc-text">二维XY模型</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/04/09/2026-04-09-SC-BKT/" title="二维超导电性与BKT相变"><img src="/assets/images/SC/sc-2d.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="二维超导电性与BKT相变"/></a><div class="content"><a class="title" href="/2026/04/09/2026-04-09-SC-BKT/" title="二维超导电性与BKT相变">二维超导电性与BKT相变</a><time datetime="2026-04-08T16:00:00.000Z" title="发表于 2026-04-09 00:00:00">2026-04-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/04/08/2026-04-08-AB-Effect/" title="Aharonov–Bohm 效应"><img src="/assets/images/Transport/AB-effect.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Aharonov–Bohm 效应"/></a><div class="content"><a class="title" href="/2026/04/08/2026-04-08-AB-Effect/" title="Aharonov–Bohm 效应">Aharonov–Bohm 效应</a><time datetime="2026-04-07T16:00:00.000Z" title="发表于 2026-04-08 00:00:00">2026-04-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/04/08/2026-04-08-Landau-Fan/" title="Landau 能级、SdH 振荡与 Onsager 关系"><img src="/assets/images/Transport/Landau-Fan.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Landau 能级、SdH 振荡与 Onsager 关系"/></a><div class="content"><a class="title" href="/2026/04/08/2026-04-08-Landau-Fan/" title="Landau 能级、SdH 振荡与 Onsager 关系">Landau 能级、SdH 振荡与 Onsager 关系</a><time datetime="2026-04-07T16:00:00.000Z" title="发表于 2026-04-08 00:00:00">2026-04-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/04/07/2026-04-07-SC-impurity/" title="超导中的杂质效应"><img src="/assets/images/SC/SC-impurity.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导中的杂质效应"/></a><div class="content"><a class="title" href="/2026/04/07/2026-04-07-SC-impurity/" title="超导中的杂质效应">超导中的杂质效应</a><time datetime="2026-04-06T16:00:00.000Z" title="发表于 2026-04-07 00:00:00">2026-04-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/04/06/2026-04-06-ABS/" title="SNS 结中的 Andreev 束缚态"><img src="/assets/images/SC/SC-abs.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SNS 结中的 Andreev 束缚态"/></a><div class="content"><a class="title" href="/2026/04/06/2026-04-06-ABS/" title="SNS 结中的 Andreev 束缚态">SNS 结中的 Andreev 束缚态</a><time datetime="2026-04-05T16:00:00.000Z" title="发表于 2026-04-06 00:00:00">2026-04-06</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/assets/images/SC/sc-2d.png);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div><div class="footer_custom_text">Welcome to  Yu-Xuan's Blog</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  const initGitalk = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGitalk = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const gitalk = new Gitalk({
+      clientID: 'Ov23li0WvZEaIAZ7RFtH',
+      clientSecret: '03fcb77b7c28dafcdde00756e27f9b5bc76639e8',
+      repo: 'yxli8023.github.io',
+      owner: 'yxli8023',
+      admin: ['yxli8023'],
+      updateCountCallback: commentCount,
+      ...option,
+      id: isShuoshuo ? path : (option && option.id) || '7914524ae0dd96a74575871523a3b397'
+    })
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async(el, path) => {
+    if (typeof Gitalk === 'function') initGitalk(el, path)
+    else {
+      await btf.getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await btf.getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Gitalk' === 'Gitalk'
+      ? window.shuoshuoComment = { loadComment: loadGitalk }
+      : window.loadOtherComment = loadGitalk
+    return
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
