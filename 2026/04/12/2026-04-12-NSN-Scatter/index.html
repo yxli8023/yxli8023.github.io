@@ -1,0 +1,579 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>NSN纳米线输运(方法) | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="NSN纳米线输运考虑一个标准的三端器件  N_L \;-\; S \;-\; N_R\nonumber其中左端$N_L$是正常金属电极，中间$S$是超导覆盖的纳米线，右端$N_R$是正常金属电极。中间区域接地$V_s&#x3D;0$，两端正常金属的电压分别为$V_L,V_R$。为了公式推导的便捷性，这里先考虑单通道情形；多通道的情形只需要将概率替换成矩阵求迹即可。定义左端电流$I_L$的方向为正  I_L&gt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NSN纳米线输运(方法)">
+<meta property="og:url" content="http://example.com/2026/04/12/2026-04-12-NSN-Scatter/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39;s Blog">
+<meta property="og:description" content="NSN纳米线输运考虑一个标准的三端器件  N_L \;-\; S \;-\; N_R\nonumber其中左端$N_L$是正常金属电极，中间$S$是超导覆盖的纳米线，右端$N_R$是正常金属电极。中间区域接地$V_s&#x3D;0$，两端正常金属的电压分别为$V_L,V_R$。为了公式推导的便捷性，这里先考虑单通道情形；多通道的情形只需要将概率替换成矩阵求迹即可。定义左端电流$I_L$的方向为正  I_L&gt;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/assets/images/SC/sc-NSN.png">
+<meta property="article:published_time" content="2026-04-11T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-04-12T08:25:31.988Z">
+<meta property="article:author" content="Yu-Xuan">
+<meta property="article:tag" content="Superconductor">
+<meta property="article:tag" content="Transport">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/images/SC/sc-NSN.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "NSN纳米线输运(方法)",
+  "url": "http://example.com/2026/04/12/2026-04-12-NSN-Scatter/",
+  "image": "http://example.com/assets/images/SC/sc-NSN.png",
+  "datePublished": "2026-04-11T16:00:00.000Z",
+  "dateModified": "2026-04-12T08:25:31.988Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yu-Xuan",
+      "url": "http://example.com/about"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/logo.png"><link rel="canonical" href="http://example.com/2026/04/12/2026-04-12-NSN-Scatter/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"作者: Yu-Xuan","link":"链接: ","source":"来源: Yu-Xuan's Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'medium_zoom',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#f54966","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'NSN纳米线输运(方法)',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #dbeffd;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">335</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">26</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/assets/images/SC/sc-NSN.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo.png" alt="Logo"><span class="site-name">Yu-Xuan's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">NSN纳米线输运(方法)</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">NSN纳米线输运(方法)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-04-11T16:00:00.000Z" title="发表于 2026-04-12 00:00:00">2026-04-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-04-12T08:25:31.988Z" title="更新于 2026-04-12 16:25:31">2026-04-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Superconductor/">Superconductor</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">2.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>9分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;自上次更新已经过了&quot;,&quot;messageNext&quot;:&quot;天，文章内容可能已过时。&quot;,&quot;postUpdate&quot;:&quot;2026-04-12 16:25:31&quot;}" hidden></div><h1 id="NSN纳米线输运"><a href="#NSN纳米线输运" class="headerlink" title="NSN纳米线输运"></a>NSN纳米线输运</h1><p>考虑一个标准的三端器件</p>
+<script type="math/tex; mode=display">
+N_L \;-\; S \;-\; N_R\nonumber</script><p>其中左端$N_L$是正常金属电极，中间$S$是超导覆盖的纳米线，右端$N_R$是正常金属电极。中间区域接地$V_s=0$，两端正常金属的电压分别为$V_L,V_R$。为了公式推导的便捷性，这里先考虑单通道情形；多通道的情形只需要将概率替换成矩阵求迹即可。定义左端电流$I_L$的方向为正</p>
+<script type="math/tex; mode=display">
+I_L>0
+\quad\Longleftrightarrow\quad
+\text{电子从左电极流入器件}.\nonumber</script><p>在Nambu表象下，把准粒子入射与出射振幅写作</p>
+<script type="math/tex; mode=display">
+\mathbf a(E)=
+\begin{pmatrix}
+a_{Le}\\
+a_{Lh}\\
+a_{Re}\\
+a_{Rh}
+\end{pmatrix},
+\qquad
+\mathbf b(E)=
+\begin{pmatrix}
+b_{Le}\\
+b_{Lh}\\
+b_{Re}\\
+b_{Rh}
+\end{pmatrix}.</script><p>它们之间通过散射矩阵联系</p>
+<script type="math/tex; mode=display">
+\mathbf b(E)=S(E)\,\mathbf a(E).</script><p>将散射矩阵根据左、右段分块表示</p>
+<script type="math/tex; mode=display">
+S(E)=
+\begin{pmatrix}
+r^{LL}(E) & t^{LR}(E)\\
+t^{RL}(E) & r^{RR}(E)
+\end{pmatrix},</script><p>其中每一块又是电子/空穴空间中$2\times2$的矩阵</p>
+<script type="math/tex; mode=display">
+r^{LL}(E)=
+\begin{pmatrix}
+r_{ee}^{LL}(E) & r_{eh}^{LL}(E)\\
+r_{he}^{LL}(E) & r_{hh}^{LL}(E)
+\end{pmatrix}.</script><p>这里约定上标中第一个字母出射端，第二个字母是入射端；因此</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&r_{ee}^{LL}:\quad \text{左端入射电子}\to\text{左端出射电子}\\
+&r_{he}^{LL}:\quad \text{左端入射电子}\to\text{左端出射空穴}\\
+&t_{ee}^{LR}:\quad \text{右端入射电子}\to\text{左端出射电子}\\
+&t_{he}^{LR}:\quad \text{右端入射电子}\to\text{左端出射空穴}\\
+\end{aligned}\nonumber</script><p>比较常出现的是下面四个过程</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&R_{ee}^{LL}(E)=|r_{ee}^{LL}(E)|^2,
+\qquad
+R_{he}^{LL}(E)=|r_{he}^{LL}(E)|^2,\\
+&T_{ee}^{LR}(E)=|t_{ee}^{LR}(E)|^2,
+\qquad
+T_{he}^{LR}(E)=|t_{he}^{LR}(E)|^2.
+\end{aligned}</script><p>它们对应的物理过程分别是：</p>
+<ul>
+<li>普通反射</li>
+</ul>
+<script type="math/tex; mode=display">
+R_{ee}^{LL}:
+\quad
+e(L,\text{in}) \to e(L,\text{out})</script><p>左端入射的电子被反射回左端的概率。</p>
+<ul>
+<li>局域Andreev反射(LAR)</li>
+</ul>
+<script type="math/tex; mode=display">
+R_{he}^{LL}:
+\quad
+e(L,\text{in}) \to h(L,\text{out})</script><p>左端入射电子在左端反射为空穴，同时向超导体中注入一个Cooper对。</p>
+<ul>
+<li>电子共隧穿(EC)</li>
+</ul>
+<script type="math/tex; mode=display">
+T_{ee}^{LR}:
+\quad
+e(R,\text{in}) \to e(L,\text{out})</script><p>右端入射电子隧穿到左端。</p>
+<ul>
+<li>交叉Andreev反射</li>
+</ul>
+<script type="math/tex; mode=display">
+T_{he}^{LR}:
+\quad
+e(R,\text{in}) \to h(L,\text{out})</script><p>右端入射电子在左端输出空穴，等价于左右两端各贡献一个电子进入超导形成Cooper对。</p>
+<p>因为散射矩阵$S(E)$是幺正矩阵</p>
+<script type="math/tex; mode=display">
+S^\dagger(E)S(E)=1,</script><p>对“左端入射电子”这一列求模方和得到</p>
+<script type="math/tex; mode=display">
+R_{ee}^{LL}(E)+R_{he}^{LL}(E)+T_{ee}^{RL}(E)+T_{he}^{RL}(E)=1.</script><p>考虑能量小于超导能隙的散射，对于单通道情形，每个入射通道的总概率守恒；对于“左端入射电子”有</p>
+<script type="math/tex; mode=display">
+R_{ee}^{LL}+R_{he}^{LL}+T_{ee}^{RL}+T_{he}^{RL}=1.</script><p>对于右端入射电子就变成了</p>
+<script type="math/tex; mode=display">
+R_{ee}^{RR}+R_{he}^{RR}+T_{ee}^{LR}+T_{he}^{LR}=1.</script><p>因为BdG哈密顿量具有粒子—-空穴对称性，因此散射矩阵满足</p>
+<script type="math/tex; mode=display">
+S(E)=\tau_x\, S^*(-E)\,\tau_x,</script><p>其中$\tau_x$作用在Nambu表象，因此散射矩阵的分量满足</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&r_{hh}(E)=r_{ee}^*(-E),\qquad
+r_{he}(E)=r_{eh}^*(-E),\\
+&t_{hh}(E)=t_{ee}^*(-E),\qquad t_{he}(E)=t^*_{eh}(-E).
+\end{aligned}\label{eq:l3}</script><p>在正常端施加偏压后，电子型和空穴型入射态的占据数会不同。设平衡态费米分布为</p>
+<script type="math/tex; mode=display">
+f_0(E)=\frac{1}{e^{E/k_BT}+1}.</script><p>则左、右端的电子型与空穴型入射分布分别为</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&f_{Le}(E)=f_0(E-eV_L),\qquad
+f_{Lh}(E)=f_0(E+eV_L),\\
+&f_{Re}(E)=f_0(E-eV_R),\qquad
+f_{Rh}(E)=f_0(E+eV_R).
+\end{aligned}</script><p>电子型激发的化学势发生$-eV$的平移，而空穴型激发等价于负能电子缺失，所以能量为$E+eV$。</p>
+<h2 id="电流输运"><a href="#电流输运" class="headerlink" title="电流输运"></a>电流输运</h2><p>现在考虑左端电流，该电流包含的是左端流入器件的净电荷流，在Nambu表象中，电子带负电$-e$，空穴带正电$+e$。因此在能量为$E$时的电流算符表示为</p>
+<script type="math/tex; mode=display">
+\hat I_L(E)=
+\frac{e}{h}
+\Big(
+a_{Le}^\dagger a_{Le}
+-
+b_{Le}^\dagger b_{Le}
+-
+a_{Lh}^\dagger a_{Lh}
++
+b_{Lh}^\dagger b_{Lh}
+\Big).\label{eq:l1}</script><p>其中：</p>
+<ul>
+<li>$a_{Le}^\dagger a_{Le}$：入射电子把负电荷带出左电极并送入中间区域，所以对电流贡献为正</li>
+<li>$b_{Le}^\dagger b_{Le}$：出射电子返回到左电极，所以对$I_L$贡献为负。</li>
+<li>$a_{Lh}^\dagger a_{Lh}$：入射空穴等价于把负电荷带离中间区域而回到左电极，因此贡献为负。</li>
+<li>$b_{Lh}^\dagger b_{Lh}$：出射空穴等价与中间器件区向左电极送出一个“正电荷电子”，对应中间区域系数一个电子，因此对电流贡献为正。</li>
+</ul>
+<p>从而得到总电流为</p>
+<script type="math/tex; mode=display">
+I_L=\int_0^\infty dE\langle\hat{I}_L(E) \rangle\label{eq:l2}</script><p>将左端出射电子和空穴分开写</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&b_{Le}
+=
+r_{ee}^{LL}a_{Le}
++r_{eh}^{LL}a_{Lh}
++t_{ee}^{LR}a_{Re}
++t_{eh}^{LR}a_{Rh},\\
+&b_{Lh}
+=
+r_{he}^{LL}a_{Le}
++r_{hh}^{LL}a_{Lh}
++t_{he}^{LR}a_{Re}
++t_{hh}^{LR}a_{Rh}.
+\end{aligned}</script><p>因为不同端口、不同雷子类型的入射态在统计上互不相关，从而有</p>
+<script type="math/tex; mode=display">
+\langle a_{i\alpha}^\dagger(E)a_{j\beta}(E')\rangle
+=
+\delta_{ij}\delta_{\alpha\beta}\delta(E-E')\, f</script><p>交叉项都是小事的，只剩下</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&\langle b_{Le}^\dagger b_{Le}\rangle
+=
+R_{ee}^{LL}f_{Le}
++
+R_{eh}^{LL}f_{Lh}
++
+T_{ee}^{LR}f_{Re}
++
+T_{eh}^{LR}f_{Rh},\\
+&\langle b_{Lh}^\dagger b_{Lh}\rangle
+=
+R_{he}^{LL}f_{Le}
++
+R_{hh}^{LL}f_{Lh}
++
+T_{he}^{LR}f_{Re}
++
+T_{hh}^{LR}f_{Rh}.
+\end{aligned}</script><p>结合方程$\eqref{eq:l1}$并代入方程$\eqref{eq:l2}$可得</p>
+<script type="math/tex; mode=display">
+I_L=
+\frac{e}{h}\int_0^\infty dE
+\Big[
+f_{Le}
+-\langle b_{Le}^\dagger b_{Le}\rangle
+-f_{Lh}
++\langle b_{Lh}^\dagger b_{Lh}\rangle
+\Big].</script><p>进一步展开化简得到</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+I_L
+=
+\frac{e}{h}\int_0^\infty dE\,
+\Big\{
+&
+\big[1-R_{ee}^{LL}+R_{he}^{LL}\big]f_{Le}
+\\
+&+
+\big[-1-R_{eh}^{LL}+R_{hh}^{LL}\big]f_{Lh}
+\\
+&+
+\big[-T_{ee}^{LR}+T_{he}^{LR}\big]f_{Re}
+\\
+&+
+\big[-T_{eh}^{LR}+T_{hh}^{LR}\big]f_{Rh}
+\Big\}.
+\end{aligned}</script><p>结合方程$\eqref{eq:l3}$并对空穴将积分区间和能量调换可得</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&I_L=
+\frac{e}{h}\int_0^\infty dE\,
+\Big\{
+\mathcal A_L(E)\,[f_{Le}(E)-f_{Lh}(E)]
++
+\mathcal B_L(E)\,[f_{Re}(E)-f_{Rh}(E)]
+\Big\},\\
+&\mathcal A_L(E)=1-R_{ee}^{LL}(E)+R_{he}^{LL}(E),\\
+&\mathcal B_L(E)=T_{he}^{LR}(E)-T_{ee}^{LR}(E).
+\end{aligned}\label{eq:l4}</script><p>对于$\mathcal A_L$：$+1$表示左端电极向中间区域注入一个电子流；$-R_{ee}^{LL}$是普通反射将这部分电子流反射回去了，减小电流；$+R_{he}^{LL}$表示发生Andreev反射把一个电子转换成空穴并返回左端，等价于净注入了一个Cooper对的一半电荷，所以增加电流。</p>
+<p>对于$\mathcal B_L$表示右端偏压对左端电流的影响：$T_{ee}^{LR}$表示左端来的电子透射到了左端电极，根据电流约定的方向，该过程会减小电流；$T_{he}^{LR}$表示右端来的电子透射到左端成了空穴，等价于左右两端各向中间区域注入了一个电子形成Cooper对，所以会增加电流，因此</p>
+<script type="math/tex; mode=display">
+\mathcal B_L=\text{CAR}-\text{EC}.</script><p>将电极上的偏压显式代入</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&f_{Le}-f_{Lh}
+=
+f_0(E-eV_L)-f_0(E+eV_L),\\
+&f_{Re}-f_{Rh}
+=
+f_0(E-eV_R)-f_0(E+eV_R),
+\end{aligned}</script><p>方程$\eqref{eq:l4}$可化简为</p>
+<script type="math/tex; mode=display">
+\boxed{
+I_L=
+\frac{e}{h}\int_0^\infty dE\,
+\Big[
+\mathcal A_L(E)\big(f_0(E-eV_L)-f_0(E+eV_L)\big)
++
+\mathcal B_L(E)\big(f_0(E-eV_R)-f_0(E+eV_R)\big)
+\Big].
+}\label{eq:l5}</script><p>该公式就是计算微分电导的起点。</p>
+<h2 id="电导计算"><a href="#电导计算" class="headerlink" title="电导计算"></a>电导计算</h2><p>首先计算局域电导$G_{LL}$</p>
+<script type="math/tex; mode=display">
+G_{LL}(V_L)
+\equiv
+\frac{\partial I_L}{\partial V_L}
+\Big|_{V_R\text{固定}}</script><p>对方程$\eqref{eq:l5}$求导可得</p>
+<script type="math/tex; mode=display">
+{
+G_{LL}(V_L)
+=
+\frac{e^2}{h}
+\int_0^\infty dE\,
+\mathcal A_L(E)
+\Big[
+-f_0'(E-eV_L)-f_0'(E+eV_L)
+\Big].
+}</script><p>非局域电导为</p>
+<script type="math/tex; mode=display">
+G_{LR}(V_R)
+\equiv
+\frac{\partial I_L}{\partial V_R}
+\Big|_{V_L\;\text{固定}}.</script><p>同理可以得到</p>
+<script type="math/tex; mode=display">
+{
+G_{LR}(V_R)
+=
+\frac{e^2}{h}
+\int_0^\infty dE\,
+\mathcal B_L(E)
+\Big[
+-f_0'(E-eV_R)-f_0'(E+eV_R)
+\Big].
+}</script><p>将方程$\eqref{eq:l4}$代入可以得到</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&G_{LL}\ \text{主要由}\ 1-R_{ee}^{LL}+R_{he}^{LL}\ \text{控制},\\
+&G_{LR}\ \text{主要由}\ T_{he}^{LR}-T_{ee}^{LR}\ \text{控制}.
+\end{aligned}\nonumber</script><p>所以局域电导$G_{LL}$主要反映左端局域注入、普通反射以及Andreev反射，而非局域电导$G_{LR}$则反映右端注入对左端电流的影响，即CAR与EC的竞争。</p>
+<h2 id="极限NS结"><a href="#极限NS结" class="headerlink" title="极限NS结"></a>极限NS结</h2><p>考虑极限情况，右端电极不存在或者中间超导区域很长可以忽略跨端传输</p>
+<script type="math/tex; mode=display">
+T_{ee}=T_{he}=0.</script><p>从而有</p>
+<script type="math/tex; mode=display">
+\mathcal A_L(E)=1-R_{ee}^{LL}(E)+R_{he}^{LL}(E).</script><p>当准粒子能量在超导能隙中间，结合单通道散射矩阵的幺正性可得</p>
+<script type="math/tex; mode=display">
+R_{ee}^{LL}(E)+R_{he}^{LL}(E)=1.</script><p>因此最终可以得到</p>
+<script type="math/tex; mode=display">
+{
+G_{LL}(E)=\frac{2e^2}{h}\,R_{he}^{LL}(E).
+}</script><p>这正是BKT结果的核心：普通反射越小，Andreev反射越强，$G_{LL}$也就越大。如果对于理想透明的界面，零偏压时有$R_{he}^{LL}(0)=1$，从而得到局域电导为</p>
+<script type="math/tex; mode=display">
+G_{LL}(0)=\frac{2e^2}{h}.</script><div class="note red flat"><p>鉴于该网站分享的大都是学习笔记，作者水平有限，若发现有问题可以发邮件给我</p>
+<ul>
+<li><strong>yxliphy@gmail.com</strong></li>
+</ul>
+<p>也非常欢迎喜欢分享的小伙伴投稿</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="/about">Yu-Xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2026/04/12/2026-04-12-NSN-Scatter/">http://example.com/2026/04/12/2026-04-12-NSN-Scatter/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Yu-Xuan's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Superconductor/">Superconductor</a><a class="post-meta__tags" href="/tags/Transport/">Transport</a></div><div class="post-share"><div class="social-share" data-image="/assets/images/SC/sc-NSN.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg"/></a><div class="post-qr-code-desc"></div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg"/></a><div class="post-qr-code-desc"></div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width no-desc" href="/2026/04/10/2026-04-10-Dirac-Nano/" title="Dirac 半金属纳米线结构中的表面态"><img class="cover" src="/assets/images/topology/Dirac-nano.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Dirac 半金属纳米线结构中的表面态</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related no-desc" href="/2025/12/01/2025-12-01-Andreev-alaly/" title="Andreev 反射分析"><img class="cover" src="/assets/images/Transport/Andreev_reflection.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-01</div><div class="info-item-2">Andreev 反射分析</div></div></div></a><a class="pagination-related no-desc" href="/2025/12/08/2025-12-08-SC-weight/" title="超流权重推导"><img class="cover" src="/assets/images/SC/sc-weight.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-08</div><div class="info-item-2">超流权重推导</div></div></div></a><a class="pagination-related no-desc" href="/2025/12/19/2025-12-19-Ward-Takahashi-SC/" title="超导态中的 Ward-Takahashi 恒等式"><img class="cover" src="/assets/images/Field-Theory/Ward.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-19</div><div class="info-item-2">超导态中的 Ward-Takahashi 恒等式</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description">知行合一</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">335</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">26</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yxli8023"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:yxliphy@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><div style="text-align:center;"> <img src="/assets/images/qrcode.jpg" alt="公告图" style="max-width:100%; border-radius:10px; margin-bottom:10px;"> <br> 欢迎关注公众号，有趣的内容也会在上面同步。 有密码的文章属于正在建设中或者没有通过验证的内容，若有需要可通过邮件联系。</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#NSN%E7%BA%B3%E7%B1%B3%E7%BA%BF%E8%BE%93%E8%BF%90"><span class="toc-number">1.</span> <span class="toc-text">NSN纳米线输运</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%B5%E6%B5%81%E8%BE%93%E8%BF%90"><span class="toc-number">1.1.</span> <span class="toc-text">电流输运</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%B5%E5%AF%BC%E8%AE%A1%E7%AE%97"><span class="toc-number">1.2.</span> <span class="toc-text">电导计算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%81%E9%99%90NS%E7%BB%93"><span class="toc-number">1.3.</span> <span class="toc-text">极限NS结</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/04/12/2026-04-12-NSN-Scatter/" title="NSN纳米线输运(方法)"><img src="/assets/images/SC/sc-NSN.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="NSN纳米线输运(方法)"/></a><div class="content"><a class="title" href="/2026/04/12/2026-04-12-NSN-Scatter/" title="NSN纳米线输运(方法)">NSN纳米线输运(方法)</a><time datetime="2026-04-11T16:00:00.000Z" title="发表于 2026-04-12 00:00:00">2026-04-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/04/10/2026-04-10-Dirac-Nano/" title="Dirac 半金属纳米线结构中的表面态"><img src="/assets/images/topology/Dirac-nano.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Dirac 半金属纳米线结构中的表面态"/></a><div class="content"><a class="title" href="/2026/04/10/2026-04-10-Dirac-Nano/" title="Dirac 半金属纳米线结构中的表面态">Dirac 半金属纳米线结构中的表面态</a><time datetime="2026-04-09T16:00:00.000Z" title="发表于 2026-04-10 00:00:00">2026-04-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/04/09/2026-04-09-SC-BKT/" title="二维超导电性与BKT相变"><img src="/assets/images/SC/sc-2d.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="二维超导电性与BKT相变"/></a><div class="content"><a class="title" href="/2026/04/09/2026-04-09-SC-BKT/" title="二维超导电性与BKT相变">二维超导电性与BKT相变</a><time datetime="2026-04-08T16:00:00.000Z" title="发表于 2026-04-09 00:00:00">2026-04-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/04/09/2026-04-09-SC-Shapiro-Setp/" title="约瑟夫森效应与夏皮罗台阶"><img src="/assets/images/SC/sc-step.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="约瑟夫森效应与夏皮罗台阶"/></a><div class="content"><a class="title" href="/2026/04/09/2026-04-09-SC-Shapiro-Setp/" title="约瑟夫森效应与夏皮罗台阶">约瑟夫森效应与夏皮罗台阶</a><time datetime="2026-04-08T16:00:00.000Z" title="发表于 2026-04-09 00:00:00">2026-04-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/04/08/2026-04-08-AB-Effect/" title="Aharonov–Bohm 效应"><img src="/assets/images/Transport/AB-effect.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Aharonov–Bohm 效应"/></a><div class="content"><a class="title" href="/2026/04/08/2026-04-08-AB-Effect/" title="Aharonov–Bohm 效应">Aharonov–Bohm 效应</a><time datetime="2026-04-07T16:00:00.000Z" title="发表于 2026-04-08 00:00:00">2026-04-08</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/assets/images/SC/sc-NSN.png);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div><div class="footer_custom_text">Welcome to  Yu-Xuan's Blog</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  const initGitalk = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGitalk = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const gitalk = new Gitalk({
+      clientID: 'Ov23li0WvZEaIAZ7RFtH',
+      clientSecret: '03fcb77b7c28dafcdde00756e27f9b5bc76639e8',
+      repo: 'yxli8023.github.io',
+      owner: 'yxli8023',
+      admin: ['yxli8023'],
+      updateCountCallback: commentCount,
+      ...option,
+      id: isShuoshuo ? path : (option && option.id) || '5a12553d15054cafef0f84ba3ce3247f'
+    })
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async(el, path) => {
+    if (typeof Gitalk === 'function') initGitalk(el, path)
+    else {
+      await btf.getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await btf.getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Gitalk' === 'Gitalk'
+      ? window.shuoshuoComment = { loadComment: loadGitalk }
+      : window.loadOtherComment = loadGitalk
+    return
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
