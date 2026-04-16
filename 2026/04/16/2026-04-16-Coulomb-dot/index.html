@@ -1,0 +1,391 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Coulomb阻塞 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Coulomb阻塞        Coulomb阻塞  考虑一个很小的量子点(dot)加载source和drain之间，并通过一个背电极来条件量子点。因为量子点很小，总电容很小，所以多放一个电子进去就需要付出显著的静电充能。当外界给不了这部分能量补充，那么量子点的电子数就是锁定的，从而电流被阻塞。  假设量子点与source、drain、背电极的电容分别是$C_s,C_D,C_g$，那么体系的总电">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Coulomb阻塞">
+<meta property="og:url" content="http://example.com/2026/04/16/2026-04-16-Coulomb-dot/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39;s Blog">
+<meta property="og:description" content="Coulomb阻塞        Coulomb阻塞  考虑一个很小的量子点(dot)加载source和drain之间，并通过一个背电极来条件量子点。因为量子点很小，总电容很小，所以多放一个电子进去就需要付出显著的静电充能。当外界给不了这部分能量补充，那么量子点的电子数就是锁定的，从而电流被阻塞。  假设量子点与source、drain、背电极的电容分别是$C_s,C_D,C_g$，那么体系的总电">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/assets/images/Transport/Set_schematic.svg">
+<meta property="article:published_time" content="2026-04-15T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-04-16T12:56:26.804Z">
+<meta property="article:author" content="Yu-Xuan">
+<meta property="article:tag" content="Transport">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/images/Transport/Set_schematic.svg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Coulomb阻塞",
+  "url": "http://example.com/2026/04/16/2026-04-16-Coulomb-dot/",
+  "image": "http://example.com/assets/images/Transport/Set_schematic.svg",
+  "datePublished": "2026-04-15T16:00:00.000Z",
+  "dateModified": "2026-04-16T12:56:26.804Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yu-Xuan",
+      "url": "http://example.com/about"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/logo.png"><link rel="canonical" href="http://example.com/2026/04/16/2026-04-16-Coulomb-dot/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"作者: Yu-Xuan","link":"链接: ","source":"来源: Yu-Xuan's Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'medium_zoom',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#f54966","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Coulomb阻塞',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #dbeffd;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">339</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">26</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/assets/images/Transport/Set_schematic.svg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo.png" alt="Logo"><span class="site-name">Yu-Xuan's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">Coulomb阻塞</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Coulomb阻塞</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-04-15T16:00:00.000Z" title="发表于 2026-04-16 00:00:00">2026-04-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-04-16T12:56:26.804Z" title="更新于 2026-04-16 20:56:26">2026-04-16</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Transport/">Transport</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">2.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>9分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;自上次更新已经过了&quot;,&quot;messageNext&quot;:&quot;天，文章内容可能已过时。&quot;,&quot;postUpdate&quot;:&quot;2026-04-16 20:56:26&quot;}" hidden></div><h1 id="Coulomb阻塞"><a href="#Coulomb阻塞" class="headerlink" title="Coulomb阻塞"></a>Coulomb阻塞</h1><div style="display: flex; justify-content: space-between;">
+  <img src="/assets/images/Transport/Set_schematic.svg" alt="Image 1" width="50%" />
+</div>
+
+<blockquote>
+<ul>
+<li>Coulomb阻塞</li>
+</ul>
+<p>考虑一个很小的量子点(dot)加载source和drain之间，并通过一个背电极来条件量子点。因为量子点很小，总电容很小，所以多放一个电子进去就需要付出显著的静电充能。当外界给不了这部分能量补充，那么量子点的电子数就是锁定的，从而电流被阻塞。</p>
+</blockquote>
+<p>假设量子点与source、drain、背电极的电容分别是$C_s,C_D,C_g$，那么体系的总电容为</p>
+<script type="math/tex; mode=display">
+C_\Sigma = C_S + C_D + C_g.</script><p>如果量子点上有$N$个额外的电子，那么它的静电荷为</p>
+<script type="math/tex; mode=display">
+Q = -Ne + Q_0,</script><p>其中$Q_0$是外部电压通过电容在量子点上诱导出的背景电荷。首先来看背电极的作用，其诱导的背景电荷为</p>
+<script type="math/tex; mode=display">
+Q_0 = C_g V_{bg}.</script><p>因此量子点的静电能为</p>
+<script type="math/tex; mode=display">
+U(N)=\frac{Q^2}{2C_\Sigma}
+=\frac{(-Ne + C_gV_{bg})^2}{2C_\Sigma}.\label{eq:b1}</script><p>定义</p>
+<script type="math/tex; mode=display">
+n_g = \frac{C_gV_{bg}}{e},
+\qquad
+E_C = \frac{e^2}{2C_\Sigma},</script><p>则方程$\eqref{eq:b1}$变为</p>
+<script type="math/tex; mode=display">
+\boxed{
+U(N)=E_C(N-n_g)^2.
+}</script><p>这就是Coulomb阻塞的核心公式，可以看到对于每一个整数$N$，系统都有一条能量抛物线$U(N)$。随着背电极改变，$n_g$连续变化，这些抛物线会左右平移；然后真实的电子数必须取整数，所以系统只能在这些整数电荷态当中选择一个能量最低的。</p>
+<blockquote>
+<p>这里出现一个情况：因为$n_g$是连续可调的，但电子数$N$是离散的，这意味着量子点的电荷不是连续变化的，而是在某一段背电压调控范围内保持不变，只有达到临界值才会突然变化$1$，这就是电荷量子化，也是产生Coulomb阻塞的根本原因。</p>
+</blockquote>
+<p>这里背电极的作用是通过$n_g=C_gV_{bg}/e$连续的改变不同整数电荷态$N$的相对能量，当某个$N$态能量最低的时候，电子数就会被锁死在这个整数上；当$N$和$N+1$两个电荷态能量正好相等的时候，量子点就处在电荷简并点，此时电子就很容易进出，导电性能增强。电荷简并满足</p>
+<script type="math/tex; mode=display">
+U(N)=U(N+1).</script><p>代入</p>
+<script type="math/tex; mode=display">
+E_C(N-n_g)^2=E_C(N+1-n_g)^2</script><p>得到</p>
+<script type="math/tex; mode=display">
+n_g = N+\frac12.</script><p>也就是说当诱导电荷$n_g$达到电子数半整数倍时，相邻两个电荷态是简并的，此时阻塞被解除。因此当连续改变背电压的时候，量子点的电子数不是连续变化，而是</p>
+<script type="math/tex; mode=display">
+N,\;N,\;N,\;N+1,\;N+1,\;N+1,\;N+2,\cdots</script><p>电导峰则会出现在这些跳变点上。</p>
+<h2 id="零偏压情形"><a href="#零偏压情形" class="headerlink" title="零偏压情形"></a>零偏压情形</h2><p>现在先考虑最简单的情形：source和drain之间没有偏压，即$V_{sd}=0$，此时左右两侧电极的化学势相同，记为$\mu_F$。如果量子点处在某个固定的电荷态$N$，那么要让电子再进入或者跑出量子点，都需要消耗一定的能量。只要该能量非零，那么电子就不会轻易的流过量子点，从而电导很小。但是在背电压调节到某个简并点$n_g=N+1/2$的时候，两个相邻电荷态$N$和$N+1$能量相同，电子数可以在这两个态之间自由波动，从而就会出现电导峰。因此在很小的偏压下连续改变$V_{\rm bg}$，就会看到典型的Coulomb振荡。对于最简单的充电模型，相邻电导峰之间满足</p>
+<script type="math/tex; mode=display">
+C_g \Delta V_{bg}=e\qquad \Longrightarrow  \qquad 
+\Delta V_{bg} = \frac{e}{C_g}.</script><p>可以看到电极的电容$C_g$越大，电导峰间距越小；但通常背电极离样品较远，$C_g$往往会比较小，因此电导峰间距通常比较大。</p>
+<p>在真实的量子点中，除了充电能，通常还存在离散的单粒子能级$\epsilon_i$。此时总能表示为</p>
+<script type="math/tex; mode=display">
+E(N)=\sum_{i=1}^{N}\varepsilon_i + E_C(N-n_g)^2.</script><p>于是第$N+1$个电子进入量子点所需要的化学势为</p>
+<script type="math/tex; mode=display">
+\mu_{N+1}=E(N+1)-E(N)</script><p>即得到</p>
+<script type="math/tex; mode=display">
+{
+\mu_{N+1}(V_{bg})
+=
+\varepsilon_{N+1}
++
+2E_C\left(N+\frac12-n_g\right).
+}</script><p>因为</p>
+<script type="math/tex; mode=display">
+n_g=\frac{C_gV_{bg}}{e},\nonumber</script><p>所以化学势$\mu_{N+1}$对$V_{\rm bg}$是线性依赖的。也就是说背电极的本质作用就是把量子点的一整套加电子/减电子化学势整体向上或者向下移动。当$\mu_{N+1}$被移动到和电极费米能$\mu_F$对其的时候就会发生共振导电。所以从化学势的角度来说，改变背电压就是在扫描“哪个电荷跃迁正好落在费米面上”。</p>
+<h2 id="有限偏压"><a href="#有限偏压" class="headerlink" title="有限偏压"></a>有限偏压</h2><p>在零偏压时，source和drain的化学势相同，电子只能“精确共振”时通过量子点；在有限偏压时，左右电极的化学势被拉开，形成了一个有限宽度的能量窗口，只要量子点的某个跃迁能级落在该窗口之内就会有电流通过。令</p>
+<script type="math/tex; mode=display">
+\mu_S = \mu_F + \frac{eV_{sd}}{2},\qquad
+\mu_D = \mu_F - \frac{eV_{sd}}{2}.</script><p>此时source和drain之间的偏压窗口宽度为</p>
+<script type="math/tex; mode=display">
+\mu_S-\mu_D = eV_{sd}.</script><p>现在对于某个量子点跃迁$\mu_{N+1}(V_{bg})$，如果它满足</p>
+<script type="math/tex; mode=display">
+\mu_D < \mu_{N+1}(V_{bg}) < \mu_S,</script><p>那么电子就可以先从source进入量子点然后再流出到drain，于是出现了隧穿电流。因此对于零偏压</p>
+<script type="math/tex; mode=display">
+\mu_{N+1}(V_{bg})=\mu_F</script><p>只有当</p>
+<script type="math/tex; mode=display">
+\mu_{N+1}(V_{bg})=\mu_F</script><p>是才会发生共振隧穿，它对应一个精确的$V_{\rm bg}$，所以此时看到的Coulomb峰。而在有限偏压下则是满足</p>
+<script type="math/tex; mode=display">
+\mu_F-\frac{eV_{sd}}{2}
+<
+\mu_{N+1}(V_{bg})
+<
+\mu_F+\frac{eV_{sd}}{2}.</script><p>也就是说此时不再要求一个精确的$V_{\rm bg}$，只要能量落在一个宽度为$eV_{sd}$的窗口中即可。因此一旦加上有限偏压，每一个零偏压下的尖锐共振点，都会“展开”成一个有限宽度的导电区域。</p>
+<p>上面的条件可以写的更加直观一些，假设$V_{bg}^{(N)}$是第$N$个零偏压共振位置，满足$\mu_{N+1}(V_{bg}^{(N)})=\mu_F$。在其附近将$\mu_{N+1}$做线性展开</p>
+<script type="math/tex; mode=display">
+\mu_{N+1}(V_{bg})-\mu_F
+\approx
+-\alpha_g e\,(V_{bg}-V_{bg}^{(N)}),\qquad \alpha_g=\frac{C_g}{C_\Sigma}</script><p>因此有限偏压下的导电条件为</p>
+<script type="math/tex; mode=display">
+\left| \mu_{N+1}(V_{bg})-\mu_F \right|
+<
+\frac{e|V_{sd}|}{2}\quad\Longrightarrow \quad \alpha_g e\,|V_{bg}-V_{bg}^{(N)}|
+<
+\frac{e|V_{sd}|}{2}.</script><p>整理得到</p>
+<script type="math/tex; mode=display">
+|V_{sd}| > 2\alpha_g\,|V_{bg}-V_{bg}^{(N)}|.</script><p>这表明围绕每一个零偏压共振峰$V_{bg}^{(N)}$，都会向有限偏压方向展开一个$V$字型的导电区域。而在两个相邻共振峰之间的中间区域，则在小偏压下始终没有导电，于是形成了一个个封闭的阻塞区域。这些封闭区域在$(V_{sd},V_{bg})$平面上就是Coulomb diamonds。</p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ClearAll</span><span class="punctuation">[</span><span class="string">&quot;Global`*&quot;</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">(*----------parameters----------*)</span></span><br><span class="line"><span class="variable">Ec</span> <span class="operator">=</span> <span class="number">1.0</span><span class="operator">;</span>                <span class="comment">(*charging-energy scale:Ec=e^2/(2 C\</span></span><br><span class="line"><span class="comment">\[CapitalSigma]),in arbitrary units*)</span></span><br><span class="line"><span class="variable">alphaG</span> <span class="operator">=</span> <span class="number">0.22</span><span class="operator">;</span>           <span class="comment">(*gate lever arm~Cg/C\[CapitalSigma]*)</span></span><br><span class="line"><span class="variable">nMin</span> <span class="operator">=</span> <span class="operator">-</span><span class="number">2</span><span class="operator">;</span>               <span class="comment">(*minimum charge state shown*)</span></span><br><span class="line"><span class="variable">nMax</span> <span class="operator">=</span> <span class="number">6</span><span class="operator">;</span>                <span class="comment">(*maximum charge state shown*)</span></span><br><span class="line"></span><br><span class="line"><span class="variable">gamma</span> <span class="operator">=</span> <span class="number">0.08</span><span class="operator">;</span>            <span class="comment">(*width of zero-bias peaks/line broadening*)</span></span><br><span class="line"><span class="variable">eta</span> <span class="operator">=</span> <span class="number">0.03</span><span class="operator">;</span>              <span class="comment">(*smoothness of finite-bias transport window*)</span></span><br><span class="line"></span><br><span class="line"><span class="variable">vgMin</span> <span class="operator">=</span> <span class="punctuation">(</span><span class="variable">nMin</span> <span class="operator">-</span> <span class="number">1</span><span class="punctuation">)</span><span class="operator">/</span><span class="variable">alphaG</span><span class="operator">;</span></span><br><span class="line"><span class="variable">vgMax</span> <span class="operator">=</span> <span class="punctuation">(</span><span class="variable">nMax</span> <span class="operator">+</span> <span class="number">1</span><span class="punctuation">)</span><span class="operator">/</span><span class="variable">alphaG</span><span class="operator">;</span></span><br><span class="line"></span><br><span class="line"><span class="variable">vsdMax</span> <span class="operator">=</span> <span class="number">2.8</span><span class="operator">;</span>            <span class="comment">(*bias range shown*)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">(*----------basic formulas----------*)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">(*electrostatic energy of charge state N*)</span></span><br><span class="line"><span class="variable">U</span><span class="punctuation">[</span><span class="type">n_</span><span class="operator">,</span> <span class="type">vg_</span><span class="punctuation">]</span> <span class="operator">:=</span> <span class="variable">Ec</span> <span class="punctuation">(</span><span class="variable">n</span> <span class="operator">-</span> <span class="variable">alphaG</span> <span class="variable">vg</span><span class="punctuation">)</span><span class="operator">^</span><span class="number">2</span><span class="operator">;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">(*addition electrochemical potential for N-&gt;N+1*)</span></span><br><span class="line"><span class="variable">mu</span><span class="punctuation">[</span><span class="type">n_</span><span class="operator">,</span> <span class="type">vg_</span><span class="punctuation">]</span> <span class="operator">:=</span> <span class="number">2</span> <span class="variable">Ec</span> <span class="punctuation">(</span><span class="variable">n</span> <span class="operator">+</span> <span class="number">1</span><span class="operator">/</span><span class="number">2</span> <span class="operator">-</span> <span class="variable">alphaG</span> <span class="variable">vg</span><span class="punctuation">)</span><span class="operator">;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">(*smooth step: ~0 for x&lt;0, ~1 for x&gt;0*)</span></span><br><span class="line"><span class="variable">softStep</span><span class="punctuation">[</span><span class="type">x_</span><span class="punctuation">]</span> <span class="operator">:=</span> <span class="number">1</span><span class="operator">/</span><span class="punctuation">(</span><span class="number">1</span> <span class="operator">+</span> <span class="built_in">Exp</span><span class="punctuation">[</span><span class="operator">-</span><span class="variable">x</span><span class="operator">/</span><span class="variable">eta</span><span class="punctuation">]</span><span class="punctuation">)</span><span class="operator">;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">(*----------1) charging-energy parabolas----------*)</span></span><br><span class="line"></span><br><span class="line"><span class="variable">parabolaPlot</span> <span class="operator">=</span> </span><br><span class="line">  <span class="built_in">Plot</span><span class="punctuation">[</span><span class="built_in">Evaluate</span><span class="operator">@</span><span class="built_in">Table</span><span class="punctuation">[</span><span class="variable">U</span><span class="punctuation">[</span><span class="variable">n</span><span class="operator">,</span> <span class="variable">vg</span><span class="punctuation">]</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="variable">n</span><span class="operator">,</span> <span class="variable">nMin</span><span class="operator">,</span> <span class="variable">nMax</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="variable">vg</span><span class="operator">,</span> <span class="variable">vgMin</span><span class="operator">,</span> <span class="variable">vgMax</span><span class="punctuation">&#125;</span><span class="operator">,</span> </span><br><span class="line">   <span class="built_in">PlotStyle</span> <span class="operator">-&gt;</span> <span class="built_in">Table</span><span class="punctuation">[</span><span class="built_in">ColorData</span><span class="punctuation">[</span><span class="number">97</span><span class="punctuation">]</span><span class="punctuation">[</span><span class="variable">i</span><span class="punctuation">]</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="variable">i</span><span class="operator">,</span> <span class="number">1</span><span class="operator">,</span> <span class="variable">nMax</span> <span class="operator">-</span> <span class="variable">nMin</span> <span class="operator">+</span> <span class="number">1</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="operator">,</span> </span><br><span class="line">   <span class="built_in">Frame</span> <span class="operator">-&gt;</span> <span class="built_in">True</span><span class="operator">,</span> <span class="built_in">Axes</span> <span class="operator">-&gt;</span> <span class="built_in">False</span><span class="operator">,</span> </span><br><span class="line">   <span class="built_in">FrameLabel</span> <span class="operator">-&gt;</span> <span class="punctuation">(</span><span class="built_in">Style</span><span class="punctuation">[</span><span class="type">#</span><span class="operator">,</span> <span class="number">15</span><span class="punctuation">]</span> <span class="operator">&amp;</span> <span class="operator">/@</span> <span class="punctuation">&#123;</span><span class="string">&quot;Vbg&quot;</span><span class="operator">,</span> <span class="string">&quot;U(N,Vbg)&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">)</span><span class="operator">,</span> </span><br><span class="line">   <span class="built_in">PlotLabel</span> <span class="operator">-&gt;</span> <span class="built_in">Style</span><span class="punctuation">[</span><span class="string">&quot;Charging-energy parabolas&quot;</span><span class="operator">,</span> <span class="number">15</span><span class="operator">,</span> <span class="built_in">Bold</span><span class="punctuation">]</span><span class="operator">,</span> </span><br><span class="line">   <span class="built_in">ImageSize</span> <span class="operator">-&gt;</span> <span class="number">500</span><span class="operator">,</span> <span class="built_in">PlotRange</span> <span class="operator">-&gt;</span> <span class="punctuation">&#123;</span><span class="punctuation">&#123;</span><span class="variable">vgMin</span><span class="operator">,</span> <span class="variable">vgMax</span><span class="punctuation">&#125;</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="operator">-</span><span class="number">5</span><span class="operator">,</span> <span class="number">20</span><span class="punctuation">&#125;</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">(*mark the degeneracy points n_g=N+1/2*)</span></span><br><span class="line"><span class="variable">degeneracyPoints</span> <span class="operator">=</span> </span><br><span class="line">  <span class="built_in">Table</span><span class="punctuation">[</span><span class="punctuation">&#123;</span><span class="punctuation">(</span><span class="variable">n</span> <span class="operator">+</span> <span class="number">1</span><span class="operator">/</span><span class="number">2</span><span class="punctuation">)</span><span class="operator">/</span><span class="variable">alphaG</span><span class="operator">,</span> <span class="variable">U</span><span class="punctuation">[</span><span class="variable">n</span><span class="operator">,</span> <span class="punctuation">(</span><span class="variable">n</span> <span class="operator">+</span> <span class="number">1</span><span class="operator">/</span><span class="number">2</span><span class="punctuation">)</span><span class="operator">/</span><span class="variable">alphaG</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="variable">n</span><span class="operator">,</span> <span class="variable">nMin</span><span class="operator">,</span> </span><br><span class="line">    <span class="variable">nMax</span> <span class="operator">-</span> <span class="number">1</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line"></span><br><span class="line"><span class="variable">parabolaPlot</span> <span class="operator">=</span> </span><br><span class="line"> <span class="built_in">Show</span><span class="punctuation">[</span><span class="variable">parabolaPlot</span><span class="operator">,</span> </span><br><span class="line">  <span class="built_in">Graphics</span><span class="punctuation">[</span><span class="punctuation">&#123;</span><span class="built_in">Red</span><span class="operator">,</span> <span class="built_in">PointSize</span><span class="punctuation">[</span><span class="number">0.018</span><span class="punctuation">]</span><span class="operator">,</span> <span class="built_in">Point</span><span class="punctuation">[</span><span class="variable">degeneracyPoints</span><span class="punctuation">]</span><span class="operator">,</span> <span class="built_in">Black</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">(*----------2) zero-bias Coulomb oscillation----------*)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">(*At zero bias,conductance peaks when mu[n,vg]=0*)</span></span><br><span class="line"><span class="variable">Gzero</span><span class="punctuation">[</span><span class="type">vg_</span><span class="operator">?</span><span class="built_in">NumericQ</span><span class="punctuation">]</span> <span class="operator">:=</span> </span><br><span class="line">  <span class="built_in">Total</span><span class="operator">@</span><span class="built_in">Table</span><span class="punctuation">[</span><span class="built_in">Exp</span><span class="punctuation">[</span><span class="operator">-</span><span class="punctuation">(</span><span class="variable">mu</span><span class="punctuation">[</span><span class="variable">n</span><span class="operator">,</span> <span class="variable">vg</span><span class="punctuation">]</span><span class="operator">/</span><span class="variable">gamma</span><span class="punctuation">)</span><span class="operator">^</span><span class="number">2</span><span class="punctuation">]</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="variable">n</span><span class="operator">,</span> <span class="variable">nMin</span><span class="operator">,</span> <span class="variable">nMax</span> <span class="operator">-</span> <span class="number">1</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line"></span><br><span class="line"><span class="variable">peakPlot</span> <span class="operator">=</span> </span><br><span class="line"> <span class="built_in">Plot</span><span class="punctuation">[</span><span class="variable">Gzero</span><span class="punctuation">[</span><span class="variable">vg</span><span class="punctuation">]</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="variable">vg</span><span class="operator">,</span> <span class="variable">vgMin</span><span class="operator">,</span> <span class="variable">vgMax</span><span class="punctuation">&#125;</span><span class="operator">,</span> <span class="built_in">PlotRange</span> <span class="operator">-&gt;</span> <span class="built_in">All</span><span class="operator">,</span> </span><br><span class="line">  <span class="built_in">PlotStyle</span> <span class="operator">-&gt;</span> <span class="punctuation">&#123;</span><span class="built_in">Thick</span><span class="operator">,</span> <span class="built_in">Blue</span><span class="punctuation">&#125;</span><span class="operator">,</span> <span class="built_in">Frame</span> <span class="operator">-&gt;</span> <span class="built_in">True</span><span class="operator">,</span> <span class="built_in">Axes</span> <span class="operator">-&gt;</span> <span class="built_in">False</span><span class="operator">,</span> </span><br><span class="line">  <span class="built_in">FrameLabel</span> <span class="operator">-&gt;</span> <span class="punctuation">(</span><span class="built_in">Style</span><span class="punctuation">[</span><span class="type">#</span><span class="operator">,</span> <span class="number">15</span><span class="punctuation">]</span> <span class="operator">&amp;</span> <span class="operator">/@</span> <span class="punctuation">&#123;</span><span class="string">&quot;Vbg&quot;</span><span class="operator">,</span> <span class="string">&quot;G(Vsd=0)&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">)</span><span class="operator">,</span> </span><br><span class="line">  <span class="built_in">PlotLabel</span> <span class="operator">-&gt;</span> <span class="built_in">Style</span><span class="punctuation">[</span><span class="string">&quot;Zero-bias Coulomb oscillation&quot;</span><span class="operator">,</span> <span class="number">15</span><span class="operator">,</span> <span class="built_in">Bold</span><span class="punctuation">]</span><span class="operator">,</span> </span><br><span class="line">  <span class="built_in">ImageSize</span> <span class="operator">-&gt;</span> <span class="number">500</span><span class="operator">,</span> <span class="built_in">GridLines</span> <span class="operator">-&gt;</span> <span class="built_in">Automatic</span><span class="punctuation">]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">(*----------3) finite-bias Coulomb diamonds----------*)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">(*A sequential-tunneling channel opens when an addition energy enters \</span></span><br><span class="line"><span class="comment">the bias window:</span></span><br><span class="line"><span class="comment">|mu[n,vg]| &lt; |Vsd|/2 We use a smooth approximation so that \</span></span><br><span class="line"><span class="comment">DensityPlot looks nice.*)</span></span><br><span class="line"></span><br><span class="line"><span class="variable">openChannel</span><span class="punctuation">[</span><span class="type">vg_</span><span class="operator">?</span><span class="built_in">NumericQ</span><span class="operator">,</span> <span class="type">vsd_</span><span class="operator">?</span><span class="built_in">NumericQ</span><span class="punctuation">]</span> <span class="operator">:=</span> </span><br><span class="line">  <span class="number">1</span> <span class="operator">-</span> <span class="built_in">Times</span> <span class="operator">@@</span> </span><br><span class="line">    <span class="built_in">Table</span><span class="punctuation">[</span><span class="number">1</span> <span class="operator">-</span> <span class="variable">softStep</span><span class="punctuation">[</span><span class="built_in">Abs</span><span class="punctuation">[</span><span class="variable">vsd</span><span class="punctuation">]</span><span class="operator">/</span><span class="number">2</span> <span class="operator">-</span> <span class="built_in">Abs</span><span class="punctuation">[</span><span class="variable">mu</span><span class="punctuation">[</span><span class="variable">n</span><span class="operator">,</span> <span class="variable">vg</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="variable">n</span><span class="operator">,</span> <span class="variable">nMin</span><span class="operator">,</span> </span><br><span class="line">      <span class="variable">nMax</span> <span class="operator">-</span> <span class="number">1</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">(*brighten the diamond edges a bit*)</span></span><br><span class="line"><span class="variable">edgeSignal</span><span class="punctuation">[</span><span class="type">vg_</span><span class="operator">?</span><span class="built_in">NumericQ</span><span class="operator">,</span> <span class="type">vsd_</span><span class="operator">?</span><span class="built_in">NumericQ</span><span class="punctuation">]</span> <span class="operator">:=</span> </span><br><span class="line">  <span class="built_in">Total</span><span class="operator">@</span><span class="built_in">Table</span><span class="punctuation">[</span></span><br><span class="line">    <span class="built_in">Exp</span><span class="punctuation">[</span><span class="operator">-</span><span class="punctuation">(</span><span class="punctuation">(</span><span class="variable">mu</span><span class="punctuation">[</span><span class="variable">n</span><span class="operator">,</span> <span class="variable">vg</span><span class="punctuation">]</span> <span class="operator">-</span> <span class="variable">vsd</span><span class="operator">/</span><span class="number">2</span><span class="punctuation">)</span><span class="operator">/</span><span class="variable">gamma</span><span class="punctuation">)</span><span class="operator">^</span><span class="number">2</span><span class="punctuation">]</span> <span class="operator">+</span> </span><br><span class="line">     <span class="built_in">Exp</span><span class="punctuation">[</span><span class="operator">-</span><span class="punctuation">(</span><span class="punctuation">(</span><span class="variable">mu</span><span class="punctuation">[</span><span class="variable">n</span><span class="operator">,</span> <span class="variable">vg</span><span class="punctuation">]</span> <span class="operator">+</span> <span class="variable">vsd</span><span class="operator">/</span><span class="number">2</span><span class="punctuation">)</span><span class="operator">/</span><span class="variable">gamma</span><span class="punctuation">)</span><span class="operator">^</span><span class="number">2</span><span class="punctuation">]</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="variable">n</span><span class="operator">,</span> <span class="variable">nMin</span><span class="operator">,</span> <span class="variable">nMax</span> <span class="operator">-</span> <span class="number">1</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line"></span><br><span class="line"><span class="variable">Gmap</span><span class="punctuation">[</span><span class="type">vg_</span><span class="operator">?</span><span class="built_in">NumericQ</span><span class="operator">,</span> <span class="type">vsd_</span><span class="operator">?</span><span class="built_in">NumericQ</span><span class="punctuation">]</span> <span class="operator">:=</span> </span><br><span class="line">  <span class="number">0.65</span> <span class="variable">openChannel</span><span class="punctuation">[</span><span class="variable">vg</span><span class="operator">,</span> <span class="variable">vsd</span><span class="punctuation">]</span> <span class="operator">+</span> <span class="number">0.35</span> <span class="variable">edgeSignal</span><span class="punctuation">[</span><span class="variable">vg</span><span class="operator">,</span> <span class="variable">vsd</span><span class="punctuation">]</span><span class="operator">;</span></span><br><span class="line"></span><br><span class="line"><span class="variable">diamondPlot</span> <span class="operator">=</span> </span><br><span class="line"> <span class="built_in">DensityPlot</span><span class="punctuation">[</span></span><br><span class="line">  <span class="variable">Gmap</span><span class="punctuation">[</span><span class="variable">vg</span><span class="operator">,</span> <span class="variable">vsd</span><span class="punctuation">]</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="variable">vg</span><span class="operator">,</span> <span class="variable">vgMin</span><span class="operator">,</span> <span class="variable">vgMax</span><span class="punctuation">&#125;</span><span class="operator">,</span> <span class="punctuation">&#123;</span><span class="variable">vsd</span><span class="operator">,</span> <span class="operator">-</span><span class="variable">vsdMax</span><span class="operator">,</span> <span class="variable">vsdMax</span><span class="punctuation">&#125;</span><span class="operator">,</span> </span><br><span class="line">  <span class="built_in">PlotPoints</span> <span class="operator">-&gt;</span> <span class="number">90</span><span class="operator">,</span> <span class="built_in">MaxRecursion</span> <span class="operator">-&gt;</span> <span class="number">2</span><span class="operator">,</span> <span class="built_in">PlotRange</span> <span class="operator">-&gt;</span> <span class="built_in">All</span><span class="operator">,</span> </span><br><span class="line">  <span class="built_in">Frame</span> <span class="operator">-&gt;</span> <span class="built_in">True</span><span class="operator">,</span> <span class="built_in">Axes</span> <span class="operator">-&gt;</span> <span class="built_in">False</span><span class="operator">,</span> </span><br><span class="line">  <span class="built_in">FrameLabel</span> <span class="operator">-&gt;</span> <span class="punctuation">(</span><span class="built_in">Style</span><span class="punctuation">[</span><span class="type">#</span><span class="operator">,</span> <span class="number">15</span><span class="punctuation">]</span> <span class="operator">&amp;</span> <span class="operator">/@</span> <span class="punctuation">&#123;</span><span class="string">&quot;Vbg&quot;</span><span class="operator">,</span> <span class="string">&quot;Vsd&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">)</span><span class="operator">,</span> </span><br><span class="line">  <span class="built_in">PlotLabel</span> <span class="operator">-&gt;</span> <span class="built_in">Style</span><span class="punctuation">[</span><span class="string">&quot;Coulomb diamonds&quot;</span><span class="operator">,</span> <span class="number">15</span><span class="operator">,</span> <span class="built_in">Bold</span><span class="punctuation">]</span><span class="operator">,</span> <span class="built_in">ImageSize</span> <span class="operator">-&gt;</span> <span class="number">520</span><span class="operator">,</span> </span><br><span class="line">  <span class="built_in">ColorFunction</span> <span class="operator">-&gt;</span> <span class="string">&quot;SunsetColors&quot;</span><span class="operator">,</span> <span class="built_in">ColorFunctionScaling</span> <span class="operator">-&gt;</span> <span class="built_in">True</span><span class="punctuation">]</span></span><br></pre></td></tr></table></figure>
+<p><div style="display: flex; justify-content: space-between;">
+  <img src="/assets/images/Transport/coulomb-diamonds.png" alt="Image 1" width="50%" />
+</div><br><div class="note red flat"><p>鉴于该网站分享的大都是学习笔记，作者水平有限，若发现有问题可以发邮件给我</p>
+<ul>
+<li><strong>yxliphy@gmail.com</strong></li>
+</ul>
+<p>也非常欢迎喜欢分享的小伙伴投稿</p>
+</div></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="/about">Yu-Xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2026/04/16/2026-04-16-Coulomb-dot/">http://example.com/2026/04/16/2026-04-16-Coulomb-dot/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Yu-Xuan's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Transport/">Transport</a></div><div class="post-share"><div class="social-share" data-image="/assets/images/Transport/Set_schematic.svg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg"/></a><div class="post-qr-code-desc"></div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg"/></a><div class="post-qr-code-desc"></div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width no-desc" href="/2026/04/15/2026-04-15-Febry-Perot-ABS/" title="Fabry–Perot 干涉与Andreev束缚态"><img class="cover" src="/assets/images/Transport/FP.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Fabry–Perot 干涉与Andreev束缚态</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2020/09/16/2020-09-16-Kubo/" title="Kubo公式推导(线性响应理论)"><img class="cover" src="/img/defult-cover5.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-16</div><div class="info-item-2">Kubo公式推导(线性响应理论)</div></div><div class="info-2"><div class="info-item-1">物理是个实验学科,在凝聚态物理中,若想知道一个给定物理系统的特性,首先是以某种方式扰动系统(如加外场或者通过粒子辐射),然后观察系统的物理量因外加扰动所引起的改变—-响应.通过扰动于响应的关系即...</div></div></div></a><a class="pagination-related" href="/2022/03/25/2022-03-25-edge-polarization/" title="Title"><img class="cover" src="/img/defult-cover2.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-25</div><div class="info-item-2">Title</div></div><div class="info-2"><div class="info-item-1">本 Blog 提供计算边界极化的完整代码，理论部分参考边界极化这篇 Blog。  代码串行1234567891011121314151617181920212223242526272829303...</div></div></div></a><a class="pagination-related" href="/2025/07/12/2025-07-12-symmetry-response/" title="对称性约束响应系数"><img class="cover" src="/assets/images/Transport/current-symmetry.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-07-12</div><div class="info-item-2">对称性约束响应系数</div></div><div class="info-2"><div class="info-item-1">这里先用一个具体的例子来展示一下对称性是如何约束响应系数分量的。   这里来分析一下，在系统具有 $C_{2x}$ 对称性（即关于 $x$轴的二重旋转对称性）时，一阶电导率张量$\sigma_{...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description">知行合一</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">339</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">26</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yxli8023"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:yxliphy@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><div style="text-align:center;"> <img src="/assets/images/qrcode.jpg" alt="公告图" style="max-width:100%; border-radius:10px; margin-bottom:10px;"> <br> 欢迎关注公众号，有趣的内容也会在上面同步。 有密码的文章属于正在建设中或者没有通过验证的内容，若有需要可通过邮件联系。</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Coulomb%E9%98%BB%E5%A1%9E"><span class="toc-number">1.</span> <span class="toc-text">Coulomb阻塞</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9B%B6%E5%81%8F%E5%8E%8B%E6%83%85%E5%BD%A2"><span class="toc-number">1.1.</span> <span class="toc-text">零偏压情形</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%89%E9%99%90%E5%81%8F%E5%8E%8B"><span class="toc-number">1.2.</span> <span class="toc-text">有限偏压</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/04/16/2026-04-16-Coulomb-dot/" title="Coulomb阻塞"><img src="/assets/images/Transport/Set_schematic.svg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Coulomb阻塞"/></a><div class="content"><a class="title" href="/2026/04/16/2026-04-16-Coulomb-dot/" title="Coulomb阻塞">Coulomb阻塞</a><time datetime="2026-04-15T16:00:00.000Z" title="发表于 2026-04-16 00:00:00">2026-04-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/04/15/2026-04-15-Febry-Perot-ABS/" title="Fabry–Perot 干涉与Andreev束缚态"><img src="/assets/images/Transport/FP.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Fabry–Perot 干涉与Andreev束缚态"/></a><div class="content"><a class="title" href="/2026/04/15/2026-04-15-Febry-Perot-ABS/" title="Fabry–Perot 干涉与Andreev束缚态">Fabry–Perot 干涉与Andreev束缚态</a><time datetime="2026-04-14T16:00:00.000Z" title="发表于 2026-04-15 00:00:00">2026-04-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/04/14/2026-04-14-SC-Josephson-current/" title="磁场下的Josephson电流"><img src="/assets/images/SC/SC-abs.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="磁场下的Josephson电流"/></a><div class="content"><a class="title" href="/2026/04/14/2026-04-14-SC-Josephson-current/" title="磁场下的Josephson电流">磁场下的Josephson电流</a><time datetime="2026-04-13T16:00:00.000Z" title="发表于 2026-04-14 00:00:00">2026-04-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/04/13/2026-04-13-Fu-Kane-Proposal/" title="Fu-Kane proposal"><img src="/assets/images/SC/Fu-Kane.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Fu-Kane proposal"/></a><div class="content"><a class="title" href="/2026/04/13/2026-04-13-Fu-Kane-Proposal/" title="Fu-Kane proposal">Fu-Kane proposal</a><time datetime="2026-04-12T16:00:00.000Z" title="发表于 2026-04-13 00:00:00">2026-04-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/04/12/2026-04-12-NSN-Scatter/" title="NSN纳米线输运(方法)"><img src="/assets/images/SC/sc-NSN.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="NSN纳米线输运(方法)"/></a><div class="content"><a class="title" href="/2026/04/12/2026-04-12-NSN-Scatter/" title="NSN纳米线输运(方法)">NSN纳米线输运(方法)</a><time datetime="2026-04-11T16:00:00.000Z" title="发表于 2026-04-12 00:00:00">2026-04-12</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/assets/images/Transport/Set_schematic.svg);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div><div class="footer_custom_text">Welcome to  Yu-Xuan's Blog</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  const initGitalk = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGitalk = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const gitalk = new Gitalk({
+      clientID: 'Ov23li0WvZEaIAZ7RFtH',
+      clientSecret: '03fcb77b7c28dafcdde00756e27f9b5bc76639e8',
+      repo: 'yxli8023.github.io',
+      owner: 'yxli8023',
+      admin: ['yxli8023'],
+      updateCountCallback: commentCount,
+      ...option,
+      id: isShuoshuo ? path : (option && option.id) || '48f12101670369b22a4af256e81754cf'
+    })
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async(el, path) => {
+    if (typeof Gitalk === 'function') initGitalk(el, path)
+    else {
+      await btf.getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await btf.getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Gitalk' === 'Gitalk'
+      ? window.shuoshuoComment = { loadComment: loadGitalk }
+      : window.loadOtherComment = loadGitalk
+    return
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
