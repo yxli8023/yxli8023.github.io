@@ -1,0 +1,945 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>二维NSN结中的Tomasch振荡 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="二维NSN结中的Tomasch振荡考虑一个二维弹道NSN结，超导区域位于  0">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二维NSN结中的Tomasch振荡">
+<meta property="og:url" content="http://example.com/2026/05/16/2026-05-16-TSC-Tomasch-Oscallation/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39;s Blog">
+<meta property="og:description" content="二维NSN结中的Tomasch振荡考虑一个二维弹道NSN结，超导区域位于  0">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/assets/images/SC/Tomasch-Oscillations.png">
+<meta property="article:published_time" content="2026-05-15T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-05-17T12:22:33.973Z">
+<meta property="article:author" content="Yu-Xuan">
+<meta property="article:tag" content="Superconductor">
+<meta property="article:tag" content="Transport">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/images/SC/Tomasch-Oscillations.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "二维NSN结中的Tomasch振荡",
+  "url": "http://example.com/2026/05/16/2026-05-16-TSC-Tomasch-Oscallation/",
+  "image": "http://example.com/assets/images/SC/Tomasch-Oscillations.png",
+  "datePublished": "2026-05-15T16:00:00.000Z",
+  "dateModified": "2026-05-17T12:22:33.973Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yu-Xuan",
+      "url": "http://example.com/about"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/logo.png"><link rel="canonical" href="http://example.com/2026/05/16/2026-05-16-TSC-Tomasch-Oscallation/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"作者: Yu-Xuan","link":"链接: ","source":"来源: Yu-Xuan's Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'medium_zoom',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#f54966","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '二维NSN结中的Tomasch振荡',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #dbeffd;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">357</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">26</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/assets/images/SC/Tomasch-Oscillations.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo.png" alt="Logo"><span class="site-name">Yu-Xuan's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">二维NSN结中的Tomasch振荡</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">二维NSN结中的Tomasch振荡</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-05-15T16:00:00.000Z" title="发表于 2026-05-16 00:00:00">2026-05-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-05-17T12:22:33.973Z" title="更新于 2026-05-17 20:22:33">2026-05-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Superconductor/">Superconductor</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">24</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>1分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;自上次更新已经过了&quot;,&quot;messageNext&quot;:&quot;天，文章内容可能已过时。&quot;,&quot;postUpdate&quot;:&quot;2026-05-17 20:22:33&quot;}" hidden></div><h1 id="二维NSN结中的Tomasch振荡"><a href="#二维NSN结中的Tomasch振荡" class="headerlink" title="二维NSN结中的Tomasch振荡"></a>二维NSN结中的Tomasch振荡</h1><p>考虑一个二维弹道NSN结，超导区域位于</p>
+<script type="math/tex; mode=display">
+0<x<L,</script><p>两侧为正常金属。界面与$y$方向垂直，体系沿$y$方向具有平移不变性，横向动量$k_y$守恒。这里关注能隙以上$E&gt;\Delta$的准粒子输运。超导区是有限长度，因此电子型和空穴型 Bogoliubov 准粒子可以在两个 NS 界面之间往返反射，形成 Fabry-Pérot干涉。这种 above-gap 的准粒子干涉振荡就是 Tomasch 振荡。</p>
+<h2 id="连续BdG模型"><a href="#连续BdG模型" class="headerlink" title="连续BdG模型"></a>连续BdG模型</h2><p>这里先试用最简单的无自旋或者等效单自旋Nambu基矢</p>
+<script type="math/tex; mode=display">
+\Psi=
+\begin{pmatrix}
+\psi\\
+\psi^\dagger
+\end{pmatrix}.</script><p>正常金属区域的哈密顿量为</p>
+<script type="math/tex; mode=display">
+H_N(\mathbf k)
+=
+\xi_N(\mathbf k)\tau_z,\quad \xi_N(\mathbf k)
+=
+\frac{\hbar^2(k_x^2+k_y^2)}{2m_N}-\mu_N.</script><p>这里为了解析推导方便，选择左右金属区域和超导区域的电子具有相同的质量和化学势</p>
+<script type="math/tex; mode=display">
+m_N=m_S=m,
+\qquad
+\mu_N=\mu_S=\mu.</script><p>普通的$s$波配对为常数$\Delta(\mathbf k)=\Delta_s$，对应的BdG哈密顿量为</p>
+<script type="math/tex; mode=display">
+H_S^s(\mathbf k)
+=
+\xi_S(\mathbf k)\tau_z+\Delta_s\tau_x,\quad \xi_S(\mathbf k)
+=
+\frac{\hbar^2(k_x^2+k_y^2)}{2m}-\mu.</script><p>能谱为</p>
+<script type="math/tex; mode=display">
+\xi_S(\mathbf k)
+=
+\frac{\hbar^2(k_x^2+k_y^2)}{2m}-\mu.</script><p>二维手征$p$波配对为$\Delta(\mathbf k)\propto k_x+i k_y$，对应的BdG哈密顿量写作</p>
+<script type="math/tex; mode=display">
+H_S^p(\mathbf k)
+=
+\xi_S(\mathbf k)\tau_z
++
+\Delta_p k_x\tau_x
+-
+\Delta_p k_y\tau_y.</script><p>其能谱为</p>
+<script type="math/tex; mode=display">
+E_\pm^p(\mathbf k)
+=
+\pm
+\sqrt{
+\xi_S^2(\mathbf k)+\Delta_p^2(k_x^2+k_y^2)
+}.</script><p>如果希望$p$波配对在费米面上能隙大小与$s$波相同，可以选择$\Delta_p k_F=\Delta_s$，即</p>
+<script type="math/tex; mode=display">
+\Delta_p=\frac{\Delta_s}{k_F}.</script><h2 id="散射模式"><a href="#散射模式" class="headerlink" title="散射模式"></a>散射模式</h2><p>由于$y$方向具有平移对称性，波函数可以写作</p>
+<script type="math/tex; mode=display">
+\Psi(x,y)=e^{ik_y y}\psi(x).</script><p>因此，对于每一个固定的$k_y$都对应一个沿$x$方向的一维BdG散射问题</p>
+<script type="math/tex; mode=display">
+H(k_x\rightarrow -i\partial_x,k_y)\psi(x)=E\psi(x).</script><p>对于给定能量$E$和横向动量$k_y$，正常金属中的电子模式满足$E=\xi_N(k_x,k_y)$，因此</p>
+<script type="math/tex; mode=display">
+E=
+\frac{\hbar^2(k_x^2+k_y^2)}{2m}-\mu,</script><p>得到电子纵向波矢</p>
+<script type="math/tex; mode=display">
+k_e
+=
+\sqrt{
+\frac{2m(\mu+E)}{\hbar^2}-k_y^2
+}.</script><p>空穴模式满足$E=-\xi_N(k_x,k_y)$，那么空穴纵向波矢为</p>
+<script type="math/tex; mode=display">
+k_h
+=
+\sqrt{
+\frac{2m(\mu-E)}{\hbar^2}-k_y^2
+}.</script><p>正常金属Nambu旋量为</p>
+<script type="math/tex; mode=display">
+\chi_e=
+\begin{pmatrix}
+1\\0
+\end{pmatrix},
+\qquad
+\chi_h=
+\begin{pmatrix}
+0\\1
+\end{pmatrix}.</script><p>考虑从左侧入射一个电子，左侧波函数写作</p>
+<script type="math/tex; mode=display">
+\psi_L(x)
+=
+\chi_e e^{ik_e x}
++
+b\,\chi_e e^{-ik_e x}
++
+a\,\chi_h e^{ik_h x}.</script><p>其中$b$是正常反射振幅，$a$是Andreev反射振幅；这里的反射空穴为$e^{+ik_h x}$而不是$e^{-ik_hx}$，因为空穴的色散是$E_h(k_x)=-\xi_N(k_x,k_y)$，群速度为</p>
+<script type="math/tex; mode=display">
+v_h=
+\frac{1}{\hbar}\frac{\partial E_h}{\partial k_x}
+=
+-\frac{\hbar k_x}{m}.</script><p>所以$k_x=+k_h$的空穴群速度沿负$x$方向传播，对应反射回左侧。</p>
+<p>右侧波函数写作</p>
+<script type="math/tex; mode=display">
+\psi_R(x)
+=
+c\,\chi_e e^{ik_e(x-L)}
++
+d\,\chi_h e^{-ik_h(x-L)}.</script><p>其中$c$是电子透射振幅，$d$是交叉Andreev透射振幅。</p>
+<p>超导区域的波函数写成所有允许的BdG模式的线性组合</p>
+<script type="math/tex; mode=display">
+\psi_S(x)
+=
+\sum_{j=1}^{4}
+A_j\chi_j e^{iq_jx}.</script><p>其中$q_j$和$\chi_j$满足</p>
+<script type="math/tex; mode=display">
+H_S(q_j,k_y)\chi_j=E\chi_j.</script><p>因为BdG哈密顿量是$2\times2$的，而$q$通常以$q^2$或者$q$的形式进入，给定能量$E,k_y$之后一般有四个$q_j$</p>
+<script type="math/tex; mode=display">
+q_1,\ q_2,\ q_3,\ q_4.</script><p>它们对应右行、左行、右衰减、左衰减模式。</p>
+<ul>
+<li>$s$波超导</li>
+</ul>
+<p>对于$s$波超导</p>
+<script type="math/tex; mode=display">
+H_S^s=\xi_S\tau_z+\Delta_s\tau_x,</script><p>能谱满足$E^2=\xi_S^2+\Delta_s^2$，因此</p>
+<script type="math/tex; mode=display">
+\xi_S=\pm\Omega,\quad \Omega=\sqrt{E^2-\Delta_s^2}.</script><p>可以得到两类纵向波矢</p>
+<script type="math/tex; mode=display">
+q_e
+=
+\sqrt{
+\frac{2m(\mu+\Omega)}{\hbar^2}-k_y^2
+},\qquad q_h
+=
+\sqrt{
+\frac{2m(\mu-\Omega)}{\hbar^2}-k_y^2
+}.</script><p>四个超导模式为</p>
+<script type="math/tex; mode=display">
++q_e,\quad -q_e,\quad +q_h,\quad -q_h.</script><p>对应的旋量可以写成BCS相干因子形式</p>
+<script type="math/tex; mode=display">
+\chi_e=
+\begin{pmatrix}
+u\\v
+\end{pmatrix},
+\qquad
+\chi_h=
+\begin{pmatrix}
+v\\u
+\end{pmatrix},\qquad u^2=
+\frac12
+\left(
+1+\frac{\Omega}{E}
+\right),\quad v^2=
+\frac12
+\left(
+1-\frac{\Omega}{E}
+\right).</script><p>当$E&gt;\Delta_s$时$\Omega$为实数，准粒子可以传播；当$E&lt;\Delta_s$时$\Omega$为虚数，超导区域的主要模式为evanescent波。</p>
+<ul>
+<li>$p$波超导</li>
+</ul>
+<p>为了简化公式，取单位</p>
+<script type="math/tex; mode=display">
+\frac{\hbar^2}{2m}=1.</script><p>此时$\xi_S(q,k_y)=q^2+k_y^2-\mu$，对于$p$波</p>
+<script type="math/tex; mode=display">
+H_S^p(q,k_y)
+=
+\xi_S(q,k_y)\tau_z
++
+\Delta_p q\,\tau_x
+-
+\Delta_p k_y\tau_y.</script><p>能谱满足</p>
+<script type="math/tex; mode=display">
+E^2
+=
+\xi_S^2(q,k_y)
++
+\Delta_p^2(q^2+k_y^2).</script><p>定义$X=q^2+k_y^2$，则</p>
+<script type="math/tex; mode=display">
+E^2=(X-\mu)^2+\Delta_p^2 X.</script><p>展开$X^2<br>+<br>(\Delta_p^2-2\mu)X<br>+<br>\mu^2-E^2<br>=<br>0$，这个二次方程有两个根$X_1,\quad X_2$，每个$X_i$对应$q=\pm\sqrt{X_i-k_y^2}$，因此总共有四个超导模式。对应的旋量可以通过</p>
+<script type="math/tex; mode=display">
+\begin{pmatrix}
+\xi_j & \Delta_p(q_j+ik_y)\\
+\Delta_p(q_j-ik_y) & -\xi_j
+\end{pmatrix}
+\chi_j
+=
+E\chi_j,\qquad \xi_j=q_j^2+k_y^2-\mu.</script><p>得到。一个常用的本征矢量写法为</p>
+<script type="math/tex; mode=display">
+\chi_j
+\propto
+\begin{pmatrix}
+\Delta_p(q_j+ik_y)\\
+E-\xi_j
+\end{pmatrix},</script><h2 id="边界条件"><a href="#边界条件" class="headerlink" title="边界条件"></a>边界条件</h2><p>边界势垒取为</p>
+<script type="math/tex; mode=display">
+U(x)=U[\delta(x)+\delta(x-L)].</script><p>引入无量纲势垒强度</p>
+<script type="math/tex; mode=display">
+Z=
+\frac{mU}{\hbar^2 k_F}.</script><p>对普通二阶导数 Schrödinger 型方程，在界面附近积分可得波函数连续以及导数跃变</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&\psi_N=\psi_S,\\
+&\partial_x\psi_S-\partial_x\psi_N
+=
+\frac{2mU}{\hbar^2}\psi.
+\end{aligned}</script><p>由于</p>
+<script type="math/tex; mode=display">
+\frac{2mU}{\hbar^2}=2Zk_F,</script><p>左界面可以写成</p>
+<script type="math/tex; mode=display">
+\partial_x\psi_S(0^+)-\partial_x\psi_L(0^-)
+=
+B_0\psi(0),\quad B_0=2Zk_F.</script><p>右界面可以写成</p>
+<script type="math/tex; mode=display">
+\partial_x\psi_R(L^+)-\partial_x\psi_S(L^-)
+=
+B_L\psi(L).</script><p>对于普通的$s$波超导，$B_0,B_L$是标量乘以单位矩阵。</p>
+<p>在$p$波超导中</p>
+<script type="math/tex; mode=display">
+\Delta_p k_x
+\rightarrow
+-i\Delta_p\partial_x.</script><p>如果配对在界面处从正常态区域的$0$在超导区域突然变为有限只，更严格的应该采用对称化算符</p>
+<script type="math/tex; mode=display">
+\frac12
+\left[
+\Delta(x)(-i\partial_x)
++
+(-i\partial_x)\Delta(x)
+\right].</script><p>因为$\partial_x \Delta(x)$在界面处包含$\delta$函数，所以边界条件中会多出一个与配对有关的项</p>
+<script type="math/tex; mode=display">
+\partial_x\psi_S-\partial_x\psi_N
+=
+2Zk_F\psi
++
+P_p\psi.</script><p>其中$P_p$是Nambu空间矩阵，通常与$\Delta_p\tau_x$同类型。此时发现$p_x$配对中含有$-i\partial_x$，会直接改变界面导数的匹配条件。为了统一写法，后面将左、右界面的边界矩阵标记为</p>
+<p>$B_0,B_L$，那么</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&B_0=B_L=2Zk_F\,\mathbb I.\qquad \text{$s$波}\\
+&B_0=2Zk_F\,\mathbb I+P_0,\qquad B_L=2Zk_F\,\mathbb I+P_L.\qquad \text{$p$波}
+\end{aligned}</script><h2 id="模式匹配"><a href="#模式匹配" class="headerlink" title="模式匹配"></a>模式匹配</h2><p>把四个超导模式的 spinor 组成矩阵</p>
+<script type="math/tex; mode=display">
+C_0=
+\begin{pmatrix}
+| & | & | & |\\
+\chi_1&\chi_2&\chi_3&\chi_4\\
+| & | & | & |
+\end{pmatrix}.</script><p>这是一个$2\times4$的矩阵，在$x=0$处$\psi_S(0)=C_0 A$，其中</p>
+<script type="math/tex; mode=display">
+A=
+\begin{pmatrix}
+A_1\\A_2\\A_3\\A_4
+\end{pmatrix}.</script><p>定义</p>
+<script type="math/tex; mode=display">
+Q_0=
+\begin{pmatrix}
+| & | & | & |\\
+iq_1\chi_1&iq_2\chi_2&iq_3\chi_3&iq_4\chi_4\\
+| & | & | & |
+\end{pmatrix}.</script><p>则$\partial_x\psi_S(0)=Q_0 A$。在$x=L$处，定义</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&C_L=
+\begin{pmatrix}
+| & | & | & |\\
+e^{iq_1L}\chi_1&e^{iq_2L}\chi_2&e^{iq_3L}\chi_3&e^{iq_4L}\chi_4\\
+| & | & | & |
+\end{pmatrix},\\
+&Q_L=
+\begin{pmatrix}
+| & | & | & |\\
+iq_1e^{iq_1L}\chi_1&
+iq_2e^{iq_2L}\chi_2&
+iq_3e^{iq_3L}\chi_3&
+iq_4e^{iq_4L}\chi_4\\
+| & | & | & |
+\end{pmatrix}.
+\end{aligned}</script><p>于是</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&\psi_S(L)=C_L A,\\
+&\partial_x\psi_S(L)=Q_L A.
+\end{aligned}</script><p>左侧正常金属在$x=0$处的波函数为</p>
+<script type="math/tex; mode=display">
+\psi_L(0)
+=
+\chi_e+b\chi_e+a\chi_h.</script><p>超导区域在$x=0$处为</p>
+<script type="math/tex; mode=display">
+\psi_S(0)=C_0A.</script><p>连续性条件$\psi_L(0)=\psi_S(0)$给出</p>
+<script type="math/tex; mode=display">
+\chi_e+b\chi_e+a\chi_h-C_0A=0.</script><p>将未知量放在左边，常数项放在右边</p>
+<script type="math/tex; mode=display">
+a\chi_h+b\chi_e-C_0A=-\chi_e.\label{eq:m1}</script><p>这是一个二分量方程。</p>
+<p>左侧波函数的导数为</p>
+<script type="math/tex; mode=display">
+\partial_x\psi_L(x)
+=
+ik_e\chi_e e^{ik_ex}
+-
+ik_e b\chi_e e^{-ik_ex}
++
+ik_h a\chi_h e^{ik_hx}.</script><p>在$x=0$处</p>
+<script type="math/tex; mode=display">
+\partial_x\psi_L(0)
+=
+ik_e\chi_e
+-
+ik_e b\chi_e
++
+ik_h a\chi_h.</script><p>超导侧导数为</p>
+<script type="math/tex; mode=display">
+\partial_x\psi_S(0)=Q_0A.</script><p>左侧界面的跃变条件为</p>
+<script type="math/tex; mode=display">
+\partial_x\psi_S(0)-\partial_x\psi_L(0)
+=
+B_0\psi(0).</script><p>由于波函数连续，可以选择</p>
+<script type="math/tex; mode=display">
+\psi(0)=\psi_L(0)
+=
+\chi_e+b\chi_e+a\chi_h.</script><p>所以</p>
+<script type="math/tex; mode=display">
+Q_0A
+-
+\left(
+ik_e\chi_e
+-
+ik_e b\chi_e
++
+ik_h a\chi_h
+\right)
+-
+B_0
+\left(
+\chi_e+b\chi_e+a\chi_h
+\right)
+=
+0.</script><p>展开未知量</p>
+<script type="math/tex; mode=display">
+Q_0A
++
+\left(
+-ik_h\chi_h-B_0\chi_h
+\right)a
++
+\left(
+ik_e\chi_e-B_0\chi_e
+\right)b
+-
+ik_e\chi_e
+-
+B_0\chi_e
+=
+0.</script><p>然后移项</p>
+<script type="math/tex; mode=display">
+\left(
+-ik_h\chi_h-B_0\chi_h
+\right)a
++
+\left(
+ik_e\chi_e-B_0\chi_e
+\right)b
++
+Q_0A
+=
+ik_e\chi_e+B_0\chi_e.\label{eq:m2}</script><p>这也是一个二分量方程。</p>
+<p>右侧正常金属在$x=L$处为</p>
+<script type="math/tex; mode=display">
+\psi_R(L)=c\chi_e+d\chi_h.</script><p>超导区域在$x=L$处为</p>
+<script type="math/tex; mode=display">
+\psi_S(L)=C_LA.</script><p>结合连续性条件$\psi_S(L)=\psi_R(L)$给出</p>
+<script type="math/tex; mode=display">
+C_LA-c\chi_e-d\chi_h=0.\label{eq:m3}</script><p>右侧正常金属导数为</p>
+<script type="math/tex; mode=display">
+\partial_x\psi_R(x)
+=
+ik_ec\chi_e e^{ik_e(x-L)}
+-
+ik_hd\chi_h e^{-ik_h(x-L)}.</script><p>在$x=L$处</p>
+<script type="math/tex; mode=display">
+\partial_x\psi_R(L)
+=
+ik_ec\chi_e
+-
+ik_hd\chi_h.</script><p>超导侧导数为</p>
+<script type="math/tex; mode=display">
+\partial_x\psi_S(L)=Q_LA.</script><p>右界面导数跃变写作</p>
+<script type="math/tex; mode=display">
+\partial_x\psi_R(L)-\partial_x\psi_S(L)
+=
+B_L\psi(L).</script><p>由于连续性</p>
+<script type="math/tex; mode=display">
+\psi(L)=\psi_R(L)=c\chi_e+d\chi_h.</script><p>因此</p>
+<script type="math/tex; mode=display">
+ik_ec\chi_e
+-
+ik_hd\chi_h
+-
+Q_LA
+-
+B_L(c\chi_e+d\chi_h)
+=
+0.</script><p>整理可得</p>
+<script type="math/tex; mode=display">
+\left(
+ik_e\chi_e-B_L\chi_e
+\right)c
++
+\left(
+-ik_h\chi_h-B_L\chi_h
+\right)d
+-
+Q_LA
+=
+0.\label{eq:m4}</script><p>定义未知向量</p>
+<script type="math/tex; mode=display">
+X=
+\begin{pmatrix}
+a\\
+b\\
+c\\
+d\\
+A_1\\
+A_2\\
+A_3\\
+A_4
+\end{pmatrix}.</script><p>结合方程$\eqref{eq:m1},\eqref{eq:m2},\eqref{eq:m3},\eqref{eq:m4}$可以得到一个$8\times 8$的线性方程</p>
+<script type="math/tex; mode=display">
+\mathcal M(E,k_y)X=\mathcal B(E,k_y).</script><p>其中矩阵按$2\times1,2\times4$块写</p>
+<script type="math/tex; mode=display">
+\mathcal M=
+\begin{pmatrix}
+\chi_h & \chi_e & 0 & 0 & -C_0\\
+-ik_h\chi_h-B_0\chi_h
+&
+ik_e\chi_e-B_0\chi_e
+&
+0
+&
+0
+&
+Q_0\\
+0 & 0 & -\chi_e & -\chi_h & C_L\\
+0 & 0
+&
+ik_e\chi_e-B_L\chi_e
+&
+-ik_h\chi_h-B_L\chi_h
+&
+-Q_L
+\end{pmatrix}.</script><p>右侧为</p>
+<script type="math/tex; mode=display">
+\mathcal B=
+\begin{pmatrix}
+-\chi_e\\
+ik_e\chi_e+B_0\chi_e\\
+0\\
+0
+\end{pmatrix}.</script><p>这里要注意：每一个$\chi_e,\chi_h$都是$2\times1$的列向量，每一个$C_0,Q_0,C_L,Q_L$都是$2\times 4$的矩阵。因此整块矩阵的总维度是$8\times 8$。求解</p>
+<script type="math/tex; mode=display">
+X=\mathcal M^{-1}\mathcal B.</script><p>其中第一、第二个分量分别是</p>
+<script type="math/tex; mode=display">
+a=a_L(k_y,E),
+\qquad
+b=b_L(k_y,E).</script><p>正常反射的概率为</p>
+<script type="math/tex; mode=display">
+R_N(k_y,E)=|b_L(k_y,E)|^2.</script><p>Andreev反射概率需要考虑速度比</p>
+<script type="math/tex; mode=display">
+R_A(k_y,E)=\frac{|v_h|}{|v_e|}|a_L(k_y,E)|^2.</script><p>在正常金属中</p>
+<script type="math/tex; mode=display">
+v_e=
+\frac{\hbar k_e}{m},\quad |v_h|=
+\frac{\hbar k_h}{m}.</script><p>所以</p>
+<script type="math/tex; mode=display">
+R_A(k_y,E)=\frac{k_h}{k_e}|a_L(k_y,E)|^2.</script><p>在Andreev极限</p>
+<script type="math/tex; mode=display">
+\mu\gg E,\Delta,</script><p>下有$k_h\approx k_e$，所以$R_A\approx |a_L|^2$。BKT形式的单通道电导权重为</p>
+<script type="math/tex; mode=display">
+T(k_y,E)=1+R_A(k_y,E)-R_N(k_y,E).</script><p>该表达式说明：入射电子贡献为$+1$，正常反射把电子反射回左侧，减少向右的电流，贡献$-R_N$；Andreev反射把一个空穴反射回左侧，等效与向超导体中注入Cooper对，贡献$+R_A$。因为二维体系动量$k_y$是好量子数，给定能量$E$，入射电子允许的横向动量满足</p>
+<script type="math/tex; mode=display">
+|k_y|\le K(E),\quad K(E)=
+\sqrt{
+\frac{2m(\mu+E)}{\hbar^2}
+}.</script><p>总的电导为</p>
+<script type="math/tex; mode=display">
+{\color{blue}
+\frac{G(E)}{G_0}
+=
+\int_{-K(E)}^{K(E)}
+\frac{dk_y}{2K(E)}
+T(k_y,E).
+}</script><h2 id="Tomasch-振荡"><a href="#Tomasch-振荡" class="headerlink" title="Tomasch 振荡"></a>Tomasch 振荡</h2><p>在$E&gt;\Delta$时，超导区域存在传播的类电子和类空穴Bogoliubov模。它们在长度为$L$的超导腔内来回反射，形成类似Fabry-Pérot 腔的干涉。设超导区中类电子和类空穴的纵向波矢分别为</p>
+<script type="math/tex; mode=display">
+q_e(E,k_y),
+\qquad
+q_h(E,k_y).</script><p>它们穿过长度为$L$的超导区域时积累的相位差为</p>
+<script type="math/tex; mode=display">
+\Delta\varphi(E,k_y)=\frac{[q_e(E,k_y)-q_h(E,k_y)]}{L}</script><p>当</p>
+<script type="math/tex; mode=display">
+[q_e(E,k_y)-q_h(E,k_y)]L=2\pi n</script><p>时实现相长干涉。因此Tomasch振荡的基本条件为</p>
+<script type="math/tex; mode=display">
+q_e(E,k_y)-q_h(E,k_y)=\frac{2\pi n}{L}.</script><p>在Andreev极限下可以近似为</p>
+<script type="math/tex; mode=display">
+q_{e,h}
+\approx
+k_x^F
+\pm
+\frac{\Omega}{v_x},\qquad \Omega=\sqrt{E^2-\Delta^2},v_x=\frac{\hbar k_x^F}{m}.</script><p>因此</p>
+<script type="math/tex; mode=display">
+q_e-q_h\approx \frac{2\Omega}{v_x}.</script><p>干涉条件变为</p>
+<script type="math/tex; mode=display">
+\frac{2\Omega L}{v_x}=2\pi n\Longrightarrow \Omega_n\approx \frac{\pi n v_x}{L}.</script><p>于是</p>
+<script type="math/tex; mode=display">
+E_n
+\approx
+\sqrt{
+\Delta^2+
+\left(
+\frac{\pi n v_x}{L}
+\right)^2
+}.</script><p>该表达式说明，Tomasch振荡本质上是有限超导腔内Bogoliubov准粒子的相干干涉。超导区域越长，振荡乐迷；纵向速度越小，振荡也越密。</p>
+<h2 id="势垒影响"><a href="#势垒影响" class="headerlink" title="势垒影响"></a>势垒影响</h2><p>在NS界面处，势垒的存在对态的传播具有比较显著的影响。当界面透明度高时，lead 与超导区强耦合，Tomasch 振荡主要由传播准粒子的相位干涉决定，此时不同配对的差异可能不强。如果界面势垒很大$Z\gg1$，此时电极与超导区域的耦合较弱，输运主要发生在超导腔本征态附近。因此在强势垒极限下，理解透射率$T(k_y,E)$的关键就是分析超导腔中的驻波模式能谱。</p>
+<p>在$0&lt;x&lt;L$中取驻波</p>
+<script type="math/tex; mode=display">
+\varphi_\alpha(x)
+=
+\sqrt{\frac{2}{L}}
+\sin\left(\frac{\alpha\pi x}{L}\right),
+\qquad
+\alpha=1,2,3,\cdots.</script><p>此时在$y$方向仍然是平面波$e^{ik_y y}$，正常态能量为</p>
+<script type="math/tex; mode=display">
+\epsilon_\alpha(k_y)
+=
+\frac{\hbar^2}{2m}
+\left[
+\left(\frac{\alpha\pi}{L}\right)^2+k_y^2
+\right]
+-\mu.</script><p>定义Nambu旋量</p>
+<script type="math/tex; mode=display">
+D_{\alpha,k_y}
+=
+\begin{pmatrix}
+d_{\alpha,k_y}\\
+d^\dagger_{\alpha,-k_y}
+\end{pmatrix}.</script><p>对于$s$波配对，因为配对是常数，它不会改变驻波模式索引$\alpha$，所以</p>
+<script type="math/tex; mode=display">
+H_{\rm cav}^s
+=
+\sum_{\alpha,k_y}
+D_{\alpha,k_y}^\dagger
+\begin{pmatrix}
+\epsilon_\alpha(k_y)&\Delta_s\\
+\Delta_s^\ast&-\epsilon_\alpha(k_y)
+\end{pmatrix}
+D_{\alpha,k_y}.</script><p>不同的$\alpha$之间没有耦合，对于每个$\alpha$，本征能量为</p>
+<script type="math/tex; mode=display">
+E_\alpha^s(k_y)
+=
+\pm
+\sqrt{
+\epsilon_\alpha^2(k_y)+|\Delta_s|^2
+}.</script><p>因此$s$波只能给每个驻波模式单独打开主吵到能隙，而不会混合不同的驻波模式。所以在$s$波超导的孤立腔中，不同驻波模式的交叉不会打开secondary能隙。</p>
+<p>对于$p$波超导$k_x+i k_y$，其中$k_x\rightarrow -i\partial_x$，它作用在驻波上有</p>
+<script type="math/tex; mode=display">
+\partial_x
+\sin\left(\frac{\beta\pi x}{L}\right)
+=
+\frac{\beta\pi}{L}
+\cos\left(\frac{\beta\pi x}{L}\right).</script><p>这会导致不同驻波模式之间存在耦合。计算</p>
+<script type="math/tex; mode=display">
+I_{\alpha\beta}
+=
+\int_0^L dx\,
+\varphi_\alpha(x)
+\partial_x
+\varphi_\beta(x).</script><p>代入$\varphi_\alpha(x)<br>=<br>\sqrt{\frac{2}{L}}<br>\sin\left(\frac{\alpha\pi x}{L}\right)$得到</p>
+<script type="math/tex; mode=display">
+I_{\alpha\beta}
+=
+\frac{2}{L}
+\frac{\beta\pi}{L}
+\int_0^L dx\,
+\sin\left(\frac{\alpha\pi x}{L}\right)
+\cos\left(\frac{\beta\pi x}{L}\right).</script><p>利用</p>
+<script type="math/tex; mode=display">
+\sin A\cos B
+=
+\frac12[\sin(A+B)+\sin(A-B)].</script><p>可得</p>
+<script type="math/tex; mode=display">
+\int_0^L dx\,
+\sin\left(\frac{\alpha\pi x}{L}\right)
+\cos\left(\frac{\beta\pi x}{L}\right)
+=
+\frac{L}{2\pi}
+\left[
+\frac{1-(-1)^{\alpha+\beta}}{\alpha+\beta}
++
+\frac{1-(-1)^{\alpha-\beta}}{\alpha-\beta}
+\right].</script><p>由于$(-1)^{\alpha-\beta}=(-1)^{\alpha+\beta}$，上式整理可得</p>
+<script type="math/tex; mode=display">
+I_{\alpha\beta}
+=
+\frac{2\alpha\beta}{L(\alpha^2-\beta^2)}
+\left[
+1-(-1)^{\alpha+\beta}
+\right].</script><p>也可以表示为</p>
+<script type="math/tex; mode=display">
+I_{\alpha\beta}
+=
+\frac{2\alpha\beta}{L(\alpha^2-\beta^2)}
+\left[
+1-\cos(\pi\alpha)\cos(\pi\beta)
+\right].</script><p>此时可以看到，如果$\alpha$和$\beta$同奇偶，那么$\alpha+\beta$为偶数$(-1)^{\alpha+\beta}=1$，所以这种模式之间不会发生耦合$I_{\alpha\beta}=0$。如果$\alpha$和$\beta$的奇偶性相反则$\alpha+\beta$为奇数，从而$(-1)^{\alpha+\beta}=-1$，所以$(-1)^{\alpha+\beta}=-1$。因此$p_x$配对只耦合奇偶性相反的驻波模式。</p>
+<p>因此$p$波腔哈密顿量可以写作</p>
+<script type="math/tex; mode=display">
+H_{\rm cav}^p
+=
+\sum_{\alpha,\beta,k_y}
+D_{\alpha,k_y}^\dagger
+\begin{pmatrix}
+\epsilon_\alpha(k_y)\delta_{\alpha\beta}
+&
+\Delta_p\left[
+k_y\delta_{\alpha\beta}+q_{\alpha\beta}
+\right]
+\\
+\Delta_p^\ast\left[
+k_y\delta_{\alpha\beta}-q_{\alpha\beta}
+\right]
+&
+-\epsilon_\alpha(k_y)\delta_{\alpha\beta}
+\end{pmatrix}
+D_{\beta,k_y}.</script><p>其中$q_{\alpha\beta}\sim I_{\alpha\beta}$。现在考虑两个原本交叉的驻波模式分支$|\alpha\rangle,|\beta\rangle$，如果没有耦合，它们在某个$(k_y,E)$满足$E_\alpha(k_y)=E_\beta(k_y)$。有了$p_x$配对之后，二者之间出现耦合</p>
+<script type="math/tex; mode=display">
+V_{\alpha\beta}\sim \Delta_p q_{\alpha\beta}.</script><p>交叉点附近的有效哈密顿量可以表示为</p>
+<script type="math/tex; mode=display">
+H_{\rm eff}
+=
+\begin{pmatrix}
+E_\alpha & V_{\alpha\beta}\\
+V_{\alpha\beta}^\ast & E_\beta
+\end{pmatrix}.</script><p>本征值为</p>
+<script type="math/tex; mode=display">
+E_\pm
+=
+\frac{E_\alpha+E_\beta}{2}
+\pm
+\sqrt{
+\left(
+\frac{E_\alpha-E_\beta}{2}
+\right)^2
++
+|V_{\alpha\beta}|^2
+}.</script><p>在交叉点$E_\alpha=E_\beta$处产生的能隙为</p>
+<script type="math/tex; mode=display">
+\Delta_{\rm sec}=2|V_{\alpha\beta}|.</script><p>因此，secondary能隙是有限超导腔中驻波模式被配对诱导的耦合混合之后形成的反交叉点。</p>
+<blockquote>
+<p>因此，在强势垒极限下，$s$波配对$\Delta_s$是常数，不混合不同的驻波，所以孤立腔中的分支交叉此时还是保持的。而对于$p$波配对$\Delta_pk_x\to-i\Delta_p\partial_x$会混合不同奇偶性的驻波模式，所以原本的交叉点就变成了反交叉点，并打开secondary能隙。这就是为什么在强势垒极限下$p$波的above能隙Tomasch振荡更加稳健，而$s$波的振荡更容易被抑制。$s$波中类似的secondary能隙结构主要依赖电极耦合，所以势垒高会使得耦合变弱，这些结构就会消失；而$p$波中的secondary能隙来自配对自身的结构，因此在强势垒下仍然存在。</p>
+</blockquote>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ol>
+<li><a target="_blank" rel="noopener" href="https://link.aps.org/doi/10.1103/PhysRevLett.132.066301">Tomasch Oscillations as Above-Gap Signature of Topological Superconductivity</a></li>
+</ol>
+<div class="note red flat"><p>鉴于该网站分享的大都是学习笔记，作者水平有限，若发现有问题可以发邮件给我</p>
+<ul>
+<li><strong>yxliphy@gmail.com</strong></li>
+</ul>
+<p>也非常欢迎喜欢分享的小伙伴投稿</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="/about">Yu-Xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2026/05/16/2026-05-16-TSC-Tomasch-Oscallation/">http://example.com/2026/05/16/2026-05-16-TSC-Tomasch-Oscallation/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Yu-Xuan's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Superconductor/">Superconductor</a><a class="post-meta__tags" href="/tags/Transport/">Transport</a></div><div class="post-share"><div class="social-share" data-image="/assets/images/SC/Tomasch-Oscillations.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg"/></a><div class="post-qr-code-desc"></div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg"/></a><div class="post-qr-code-desc"></div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/05/16/2026-05-16-BdG-Current/" title="BdG 格点体系中Josephson键电流的格林函数推导"><img class="cover" src="/assets/images/SC/lattice-GF.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">BdG 格点体系中Josephson键电流的格林函数推导</div></div><div class="info-2"><div class="info-item-1">BdG 格点体系中Josephson键电流的格林函数推导基本设定考虑一个一般的格点BdG哈密顿量  \hat H = \frac12 \sum_{ij} \hat\Psi_i^\dagger H...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related no-desc" href="/2025/12/01/2025-12-01-Andreev-alaly/" title="Andreev 反射分析"><img class="cover" src="/assets/images/Transport/Andreev_reflection.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-01</div><div class="info-item-2">Andreev 反射分析</div></div></div></a><a class="pagination-related no-desc" href="/2025/12/08/2025-12-08-SC-weight/" title="超流权重推导(能带无简并)"><img class="cover" src="/assets/images/SC/sc-weight.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-08</div><div class="info-item-2">超流权重推导(能带无简并)</div></div></div></a><a class="pagination-related no-desc" href="/2025/12/19/2025-12-19-Ward-Takahashi-SC/" title="超导态中的 Ward-Takahashi 恒等式"><img class="cover" src="/assets/images/Field-Theory/Ward.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-19</div><div class="info-item-2">超导态中的 Ward-Takahashi 恒等式</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description">知行合一</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">357</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">26</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yxli8023"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:yxliphy@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><div style="text-align:center;"> <img src="/assets/images/qrcode.jpg" alt="公告图" style="max-width:100%; border-radius:10px; margin-bottom:10px;"> <br> 欢迎关注公众号，有趣的内容也会在上面同步。 有密码的文章属于正在建设中或者没有通过验证的内容，若有需要可通过邮件联系。</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E7%BB%B4NSN%E7%BB%93%E4%B8%AD%E7%9A%84Tomasch%E6%8C%AF%E8%8D%A1"><span class="toc-number">1.</span> <span class="toc-text">二维NSN结中的Tomasch振荡</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9E%E7%BB%ADBdG%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.1.</span> <span class="toc-text">连续BdG模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%A3%E5%B0%84%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.2.</span> <span class="toc-text">散射模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%B9%E7%95%8C%E6%9D%A1%E4%BB%B6"><span class="toc-number">1.3.</span> <span class="toc-text">边界条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D"><span class="toc-number">1.4.</span> <span class="toc-text">模式匹配</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tomasch-%E6%8C%AF%E8%8D%A1"><span class="toc-number">1.5.</span> <span class="toc-text">Tomasch 振荡</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%BF%E5%9E%92%E5%BD%B1%E5%93%8D"><span class="toc-number">1.6.</span> <span class="toc-text">势垒影响</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">2.</span> <span class="toc-text">参考文献</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/05/16/2026-05-16-BdG-Current/" title="BdG 格点体系中Josephson键电流的格林函数推导"><img src="/assets/images/SC/lattice-GF.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="BdG 格点体系中Josephson键电流的格林函数推导"/></a><div class="content"><a class="title" href="/2026/05/16/2026-05-16-BdG-Current/" title="BdG 格点体系中Josephson键电流的格林函数推导">BdG 格点体系中Josephson键电流的格林函数推导</a><time datetime="2026-05-15T16:00:00.000Z" title="发表于 2026-05-16 00:00:00">2026-05-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/05/16/2026-05-16-TSC-Tomasch-Oscallation/" title="二维NSN结中的Tomasch振荡"><img src="/assets/images/SC/Tomasch-Oscillations.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="二维NSN结中的Tomasch振荡"/></a><div class="content"><a class="title" href="/2026/05/16/2026-05-16-TSC-Tomasch-Oscallation/" title="二维NSN结中的Tomasch振荡">二维NSN结中的Tomasch振荡</a><time datetime="2026-05-15T16:00:00.000Z" title="发表于 2026-05-16 00:00:00">2026-05-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/05/15/2026-05-15-CPR-Green/" title="Matsubara格林函数方法计算 Josephson 电流"><img src="/assets/images/SC/CPR-Green.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Matsubara格林函数方法计算 Josephson 电流"/></a><div class="content"><a class="title" href="/2026/05/15/2026-05-15-CPR-Green/" title="Matsubara格林函数方法计算 Josephson 电流">Matsubara格林函数方法计算 Josephson 电流</a><time datetime="2026-05-14T16:00:00.000Z" title="发表于 2026-05-15 00:00:00">2026-05-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/05/14/2026-05-14-CPS-Magnets/" title="磁场下的Josephson电流"><img src="/assets/images/SC/SC-FM.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="磁场下的Josephson电流"/></a><div class="content"><a class="title" href="/2026/05/14/2026-05-14-CPS-Magnets/" title="磁场下的Josephson电流">磁场下的Josephson电流</a><time datetime="2026-05-13T16:00:00.000Z" title="发表于 2026-05-14 00:00:00">2026-05-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/05/13/2026-05-13-TMD-model/" title="转角TMD连续模型与平面波基矢"><img src="/assets/images/Twisted/moire2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="转角TMD连续模型与平面波基矢"/></a><div class="content"><a class="title" href="/2026/05/13/2026-05-13-TMD-model/" title="转角TMD连续模型与平面波基矢">转角TMD连续模型与平面波基矢</a><time datetime="2026-05-12T16:00:00.000Z" title="发表于 2026-05-13 00:00:00">2026-05-13</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/assets/images/SC/Tomasch-Oscillations.png);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div><div class="footer_custom_text">Welcome to  Yu-Xuan's Blog</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  const initGitalk = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGitalk = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const gitalk = new Gitalk({
+      clientID: 'Ov23li0WvZEaIAZ7RFtH',
+      clientSecret: '03fcb77b7c28dafcdde00756e27f9b5bc76639e8',
+      repo: 'yxli8023.github.io',
+      owner: 'yxli8023',
+      admin: ['yxli8023'],
+      updateCountCallback: commentCount,
+      ...option,
+      id: isShuoshuo ? path : (option && option.id) || 'c9fd841c8041fcaecc1ce6dedd49545a'
+    })
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async(el, path) => {
+    if (typeof Gitalk === 'function') initGitalk(el, path)
+    else {
+      await btf.getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await btf.getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Gitalk' === 'Gitalk'
+      ? window.shuoshuoComment = { loadComment: loadGitalk }
+      : window.loadOtherComment = loadGitalk
+    return
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

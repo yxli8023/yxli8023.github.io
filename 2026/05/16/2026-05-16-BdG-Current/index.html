@@ -1,0 +1,803 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>BdG 格点体系中Josephson键电流的格林函数推导 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="BdG 格点体系中Josephson键电流的格林函数推导基本设定考虑一个一般的格点BdG哈密顿量  \hat H &#x3D; \frac12 \sum_{ij} \hat\Psi_i^\dagger H_{ij} \hat\Psi_j .这里的$i,j$可以表示格点，也可以表示沿输运方向的切片；$\hat\Psi_i$是Nambu旋量，最简单的情形下为  \hat\Psi_i &#x3D; \begin{pmatr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BdG 格点体系中Josephson键电流的格林函数推导">
+<meta property="og:url" content="http://example.com/2026/05/16/2026-05-16-BdG-Current/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39;s Blog">
+<meta property="og:description" content="BdG 格点体系中Josephson键电流的格林函数推导基本设定考虑一个一般的格点BdG哈密顿量  \hat H &#x3D; \frac12 \sum_{ij} \hat\Psi_i^\dagger H_{ij} \hat\Psi_j .这里的$i,j$可以表示格点，也可以表示沿输运方向的切片；$\hat\Psi_i$是Nambu旋量，最简单的情形下为  \hat\Psi_i &#x3D; \begin{pmatr">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/assets/images/SC/lattice-GF.png">
+<meta property="article:published_time" content="2026-05-15T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-05-17T03:33:07.839Z">
+<meta property="article:author" content="Yu-Xuan">
+<meta property="article:tag" content="Superconductor">
+<meta property="article:tag" content="Transport">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/images/SC/lattice-GF.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "BdG 格点体系中Josephson键电流的格林函数推导",
+  "url": "http://example.com/2026/05/16/2026-05-16-BdG-Current/",
+  "image": "http://example.com/assets/images/SC/lattice-GF.png",
+  "datePublished": "2026-05-15T16:00:00.000Z",
+  "dateModified": "2026-05-17T03:33:07.839Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yu-Xuan",
+      "url": "http://example.com/about"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/logo.png"><link rel="canonical" href="http://example.com/2026/05/16/2026-05-16-BdG-Current/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"作者: Yu-Xuan","link":"链接: ","source":"来源: Yu-Xuan's Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'medium_zoom',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#f54966","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'BdG 格点体系中Josephson键电流的格林函数推导',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #dbeffd;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">357</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">26</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/assets/images/SC/lattice-GF.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo.png" alt="Logo"><span class="site-name">Yu-Xuan's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">BdG 格点体系中Josephson键电流的格林函数推导</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">BdG 格点体系中Josephson键电流的格林函数推导</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-05-15T16:00:00.000Z" title="发表于 2026-05-16 00:00:00">2026-05-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-05-17T03:33:07.839Z" title="更新于 2026-05-17 11:33:07">2026-05-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Superconductor/">Superconductor</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">1.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;自上次更新已经过了&quot;,&quot;messageNext&quot;:&quot;天，文章内容可能已过时。&quot;,&quot;postUpdate&quot;:&quot;2026-05-17 11:33:07&quot;}" hidden></div><h1 id="BdG-格点体系中Josephson键电流的格林函数推导"><a href="#BdG-格点体系中Josephson键电流的格林函数推导" class="headerlink" title="BdG 格点体系中Josephson键电流的格林函数推导"></a>BdG 格点体系中Josephson键电流的格林函数推导</h1><h2 id="基本设定"><a href="#基本设定" class="headerlink" title="基本设定"></a>基本设定</h2><p>考虑一个一般的格点BdG哈密顿量</p>
+<script type="math/tex; mode=display">
+\hat H
+=
+\frac12
+\sum_{ij}
+\hat\Psi_i^\dagger
+H_{ij}
+\hat\Psi_j .</script><p>这里的$i,j$可以表示格点，也可以表示沿输运方向的切片；$\hat\Psi_i$是Nambu旋量，最简单的情形下为</p>
+<script type="math/tex; mode=display">
+\hat\Psi_i
+=
+\begin{pmatrix}
+\hat c_i\\
+\hat c_i^\dagger
+\end{pmatrix}.</script><p>如果还有自旋、轨道、横向格点等自由度，它们都包含在$\hat\Psi_i$的内部指标中。$H_{ij}$是BdG矩阵块，满足厄米性$H_{ji}=H_{ij}^\dagger$。Nambu空间中的电荷矩阵为</p>
+<script type="math/tex; mode=display">
+\tau_z
+=
+\begin{pmatrix}
+1 & 0\\
+0 & -1
+\end{pmatrix},</script><p>更一般的表示是</p>
+<script type="math/tex; mode=display">
+\tau_z
+=
+\begin{pmatrix}
+I & 0\\
+0 & -I
+\end{pmatrix}.</script><p>局域电荷算符可写成</p>
+<script type="math/tex; mode=display">
+\hat Q_m=-\frac{e}{2}\hat{\Psi}^\dagger_m\tau_z\hat{\Psi}_m</script><p>这里的$1/2$来自 Nambu 表示的双计数。很多 BdG 线性响应文献会把这个$1/2$与 Nambu 求迹的双计数约定合并处理，最后电流公式常写成没有显式$1/2$的形式。下面推导重点是矩阵结构和格林函数关系；整体$1/2$因子取决于 Nambu 规范，但物理电流不变。</p>
+<h2 id="连续性方程"><a href="#连续性方程" class="headerlink" title="连续性方程"></a>连续性方程</h2><p>局域电荷变化由 Heisenberg 方程给出</p>
+<script type="math/tex; mode=display">
+\frac{d\hat Q_m}{dt}
+=
+\frac{i}{\hbar}
+[\hat H,\hat Q_m].</script><p>我们只关系从格点$m$到相邻格点$n$的键电流，因此只保留哈密顿量中连接$m$和$n$的部分</p>
+<script type="math/tex; mode=display">
+\hat H_{mn}
+=
+\hat\Psi_m^\dagger H_{mn}\hat\Psi_n
++
+\hat\Psi_n^\dagger H_{nm}\hat\Psi_m .</script><p>这里先省略BdG总哈密顿量中的整体$1/2$，把它理解为已经包含在最终的Nambu规范中。利用费米子双线性算符的対易关系，对于任意矩阵$A,B$有</p>
+<script type="math/tex; mode=display">
+[
+\hat\Psi_i^\dagger A\hat\Psi_j,
+\hat\Psi_l^\dagger B\hat\Psi_l
+]
+=
+\delta_{jl}
+\hat\Psi_i^\dagger A B\hat\Psi_l
+-
+\delta_{il}
+\hat\Psi_l^\dagger B A\hat\Psi_j .</script><p>现在选择$l=m,B=\tau_z$，第一项为</p>
+<script type="math/tex; mode=display">
+[
+\hat\Psi_m^\dagger H_{mn}\hat\Psi_n,
+\hat\Psi_m^\dagger \tau_z \hat\Psi_m
+]
+=
+-
+\hat\Psi_m^\dagger
+\tau_z H_{mn}
+\hat\Psi_n .</script><p>第二项为</p>
+<script type="math/tex; mode=display">
+[
+\hat\Psi_n^\dagger H_{nm}\hat\Psi_m,
+\hat\Psi_m^\dagger \tau_z \hat\Psi_m
+]
+=
+\hat\Psi_n^\dagger
+H_{nm}\tau_z
+\hat\Psi_m .</script><p>因此，键$m\leftrightarrow n$对局域电荷变化的贡献为</p>
+<script type="math/tex; mode=display">
+\left.
+\frac{d\hat Q_m}{dt}
+\right|_{mn}
+=
+-\frac{e i}{\hbar}
+\left[
+-
+\hat\Psi_m^\dagger
+\tau_z H_{mn}
+\hat\Psi_n
++
+\hat\Psi_n^\dagger
+H_{nm}\tau_z
+\hat\Psi_m
+\right].</script><p>连续性方程写作</p>
+<script type="math/tex; mode=display">
+\frac{d\hat Q_m}{dt}
++
+\sum_n \hat I_{m\rightarrow n}
+=
+\hat S_m .</script><p>其中$\hat{S}_m$是局域配对项带来的凝聚源项。如果我们在没有跨键配对的正常态跃迁键上取电流，则键电流定义为</p>
+<script type="math/tex; mode=display">
+\hat I_{m\rightarrow n}
+=
+-\left.
+\frac{d\hat Q_m}{dt}
+\right|_{mn}.</script><p>从而得到</p>
+<script type="math/tex; mode=display">
+\hat I_{m\rightarrow n}
+=
+-\frac{e}{i\hbar}
+\left[
+\hat\Psi_m^\dagger
+\tau_z H_{mn}
+\hat\Psi_n
+-
+\hat\Psi_n^\dagger
+H_{nm}\tau_z
+\hat\Psi_m
+\right].\label{eq:k1}</script><p>如果$H_{mn}$是普通的BdG跃迁块</p>
+<script type="math/tex; mode=display">
+H_{mn}
+=
+\begin{pmatrix}
+T_{mn} & 0\\
+0 & -T_{mn}^*
+\end{pmatrix},</script><p>它与$\tau_z$时対易的$[H_{mn},\tau_z]=0$，这时候可以将$\tau_z$放到求迹的统一位置。</p>
+<p>定义等时的单粒子密度矩阵</p>
+<script type="math/tex; mode=display">
+\rho_{ij}
+=
+\langle
+\hat\Psi_j^\dagger
+\hat\Psi_i
+\rangle .</script><p>利用恒等式</p>
+<script type="math/tex; mode=display">
+\langle
+\hat\Psi_a^\dagger A \hat\Psi_b
+\rangle
+=
+\operatorname{Tr}
+\left[
+A\rho_{ba}
+\right],</script><p>键电流$\eqref{eq:k1}$的期望值可以表示为</p>
+<script type="math/tex; mode=display">
+I_{m\rightarrow n}
+=
+-\frac{e}{i\hbar}
+\operatorname{Tr}
+\left[
+\tau_z
+\left(
+\rho_{nm}H_{mn}
+-
+H_{nm}\rho_{mn}
+\right)
+\right].\label{eq:k2}</script><p>这就是最核心的公式。后面将会看到，它比Matsubara形式和非平衡形式都更加基本，后面所有格林函数的表达，都是在解决如何计算$\rho_{ij}$？</p>
+<h2 id="Matsubara频率形式"><a href="#Matsubara频率形式" class="headerlink" title="Matsubara频率形式"></a>Matsubara频率形式</h2><p>平衡态中定义 Matsubara 格林函数</p>
+<script type="math/tex; mode=display">
+G_{ij}(\tau)
+=
+-
+\langle
+T_\tau
+\hat\Psi_i(\tau)
+\hat\Psi_j^\dagger(0)
+\rangle .</script><p>当$\tau\to 0^-$时，由于虚时序排列有</p>
+<script type="math/tex; mode=display">
+G_{ij}(0^-)
+=
+\langle
+\hat\Psi_j^\dagger
+\hat\Psi_i
+\rangle
+=
+\rho_{ij}.</script><p>另一方面</p>
+<script type="math/tex; mode=display">
+G_{ij}(\tau)
+=
+\frac{1}{\beta}
+\sum_{\omega_n}
+e^{-i\omega_n\tau}
+G_{ij}(i\omega_n),\quad \omega_n=(2n+1)\pi/\beta .</script><p>令$\tau=0^-$得到</p>
+<script type="math/tex; mode=display">
+\rho_{ij}
+=
+\frac{1}{\beta}
+\sum_{\omega_n}
+G_{ij}(i\omega_n).</script><p>因此</p>
+<script type="math/tex; mode=display">
+\rho_{nm}
+=
+\frac{1}{\beta}
+\sum_{\omega_n}
+G_{nm}(i\omega_n),\qquad \rho_{mn}
+=
+\frac{1}{\beta}
+\sum_{\omega_n}
+G_{mn}(i\omega_n).</script><p>代入密度矩阵形式的键电流公式$\eqref{eq:k2}$得到</p>
+<script type="math/tex; mode=display">
+I_{m\rightarrow n}
+=
+-\frac{e}{i\hbar}
+\operatorname{Tr}
+\left[
+\tau_z
+\left(
+\frac1\beta
+\sum_{\omega_n}
+G_{nm}(i\omega_n)H_{mn}
+-
+H_{nm}
+\frac1\beta
+\sum_{\omega_n}
+G_{mn}(i\omega_n)
+\right)
+\right].</script><p>整理之后为</p>
+<script type="math/tex; mode=display">
+{\color{blue}
+I_{m\rightarrow n}
+=
+-\frac{e}{i\hbar\beta}
+\sum_{\omega_n}
+\operatorname{Tr}
+\left[
+\tau_z
+\left(
+G_{nm}(i\omega_n)H_{mn}
+-
+H_{nm}G_{mn}(i\omega_n)
+\right)
+\right].
+}</script><h2 id="非平衡小于格林函数形式"><a href="#非平衡小于格林函数形式" class="headerlink" title="非平衡小于格林函数形式"></a>非平衡小于格林函数形式</h2><p>非平衡 Keldysh 方法中，核心对象是小于格林函数</p>
+<script type="math/tex; mode=display">
+G^<_{ij}(t,t')
+=
+i
+\langle
+\hat\Psi_j^\dagger(t')
+\hat\Psi_i(t)
+\rangle .</script><p>令$t’=t$得到</p>
+<script type="math/tex; mode=display">
+G^<_{ij}(t,t)
+=
+i
+\langle
+\hat\Psi_j^\dagger(t)
+\hat\Psi_i(t)
+\rangle
+=
+i\rho_{ij}(t).</script><p>因此</p>
+<script type="math/tex; mode=display">
+\rho_{ij}(t)
+=
+-iG^<_{ij}(t,t).</script><p>如果系统达到稳态，那么格林函数只依赖于时间差</p>
+<script type="math/tex; mode=display">
+G^<_{ij}(t,t')=G^<_{ij}(t-t')</script><p>Fourier变换为</p>
+<script type="math/tex; mode=display">
+G^<_{ij}(t-t')
+=
+\int\frac{dE}{2\pi}
+e^{-iE(t-t')}
+G^<_{ij}(E).</script><p>令$t=t’$得到</p>
+<script type="math/tex; mode=display">
+G^<_{ij}(t,t)
+=
+\int
+\frac{dE}{2\pi}
+G^<_{ij}(E).</script><p>因此密度矩阵为</p>
+<script type="math/tex; mode=display">
+\boxed{
+\rho_{ij}
+=
+-i
+\int
+\frac{dE}{2\pi}
+G^<_{ij}(E).
+}</script><p>代入键电流公式$\eqref{eq:k2}$得到</p>
+<script type="math/tex; mode=display">
+I_{m\rightarrow n}
+=
+-\frac{e}{i\hbar}
+\left(-i\right)
+\int\frac{dE}{2\pi}
+\operatorname{Tr}
+\left[
+\tau_z
+\left(
+G^<_{nm}(E)H_{mn}
+-
+H_{nm}G^<_{mn}(E)
+\right)
+\right].</script><p>其中</p>
+<script type="math/tex; mode=display">
+\rho_{nm}
+=
+-i
+\int\frac{dE}{2\pi}
+G^<_{nm}(E),\qquad \rho_{mn}
+=
+-i
+\int\frac{dE}{2\pi}
+G^<_{mn}(E),</script><p>化简最终得到</p>
+<script type="math/tex; mode=display">
+{\color{blue}
+I_{m\rightarrow n}
+=
+\frac{e}{\hbar}
+\int\frac{dE}{2\pi}
+\operatorname{Tr}
+\left[
+\tau_z
+\left(
+G^<_{nm}(E)H_{mn}
+-
+H_{nm}G^<_{mn}(E)
+\right)
+\right].
+}\label{eq:k3}</script><p>这就是非平衡格林函数的键电流公式。</p>
+<p>上式中只是将电流写成了$G^&lt;$，真正非平衡物理来自于$G^&lt;$如果计算。在稳定的非平衡格林函数中，有Keldysh方程</p>
+<script type="math/tex; mode=display">
+\boxed{
+G^<(E)
+=
+G^r(E)\Sigma^<(E)G^a(E).
+}</script><p>其中</p>
+<script type="math/tex; mode=display">
+G^r(E)
+=
+\left[
+E+i0^+
+-
+H
+-
+\Sigma^r(E)
+\right]^{-1},\qquad G^a(E)
+=
+\left[
+G^r(E)
+\right]^\dagger .</script><p>这里的$\Sigma^&lt;(E)$描述外部reservoir 向系统注入粒子的分布信息。若系统连接多个 reservoir，则</p>
+<script type="math/tex; mode=display">
+\Sigma^<(E)
+=
+\sum_\alpha
+\Sigma_\alpha^<(E).</script><p>对处于局域平衡的第$\alpha$个reservoir</p>
+<script type="math/tex; mode=display">
+\Sigma_\alpha^<(E)
+=
+i f_\alpha(E)\Gamma_\alpha(E),</script><p>其中</p>
+<script type="math/tex; mode=display">
+\Gamma_\alpha(E)
+=
+i
+\left[
+\Sigma_\alpha^r(E)
+-
+\Sigma_\alpha^a(E)
+\right].</script><p>所以小于格林函数为</p>
+<script type="math/tex; mode=display">
+{
+G^<(E)
+=
+G^r(E)
+\left[
+\sum_\alpha
+i f_\alpha(E)\Gamma_\alpha(E)
+\right]
+G^a(E).
+}</script><p>代入非平衡键电流公式$\eqref{eq:k3}$中得到</p>
+<script type="math/tex; mode=display">
+{\color{magenta}
+I_{m\rightarrow n}
+=
+\frac{e}{\hbar}
+\int
+\frac{dE}{2\pi}
+\operatorname{Tr}
+\left\{
+\tau_z
+\left[
+\left(
+G^r\Sigma^<G^a
+\right)_{nm}
+H_{mn}
+-
+H_{nm}
+\left(
+G^r\Sigma^<G^a
+\right)_{mn}
+\right]
+\right\}.
+}</script><p>这就是非平衡形式，它的核心不是把$G$替换成了$G^r$，而是将平衡态密度矩阵</p>
+<script type="math/tex; mode=display">
+\rho
+=
+\frac1\beta
+\sum_{\omega_n}G(i\omega_n)</script><p>推广为</p>
+<script type="math/tex; mode=display">
+\rho
+=
+-i
+\int
+\frac{dE}{2\pi}
+G^<(E),</script><p>并且用$G^&lt;<br>=<br>G^r\Sigma^&lt;G^a$来反映非平衡分布。</p>
+<h2 id="平衡态极限"><a href="#平衡态极限" class="headerlink" title="平衡态极限"></a>平衡态极限</h2><p>如果所有 reservoir 处于同一温度和同一化学势，则</p>
+<script type="math/tex; mode=display">
+f_\alpha(E)=f(E).</script><p>此时</p>
+<script type="math/tex; mode=display">
+\Sigma^<(E)
+=
+i f(E)\Gamma(E),\qquad \Gamma(E)
+=
+i
+[
+\Sigma^r(E)-\Sigma^a(E)
+].</script><p>因此</p>
+<script type="math/tex; mode=display">
+\Sigma^<(E)
+=
+f(E)
+[
+\Sigma^a(E)-\Sigma^r(E)
+].</script><p>通过Dyson方程可得恒等式</p>
+<script type="math/tex; mode=display">
+G^a(E)-G^r(E)
+=
+G^r(E)
+[
+\Sigma^a(E)-\Sigma^r(E)]G^a(E)</script><p>所以</p>
+<script type="math/tex; mode=display">
+G^<(E)
+=
+G^r(E)\Sigma^<(E)G^a(E)
+=
+f(E)
+[
+G^a(E)-G^r(E)
+].</script><p>于是</p>
+<script type="math/tex; mode=display">
+\rho_{ij}
+=
+-i
+\int
+\frac{dE}{2\pi}
+G^<_{ij}(E)
+=
+-i
+\int
+\frac{dE}{2\pi}
+f(E)
+[
+G^a_{ij}(E)-G^r_{ij}(E)
+].</script><p>这就是平衡实频率格林函数的表达式。</p>
+<p>另一方面，Matsubara形式给出</p>
+<script type="math/tex; mode=display">
+\rho_{ij}
+=
+\frac1\beta
+\sum_{\omega_n}
+G_{ij}(i\omega_n).</script><p>两者是等价的，因为谱表示给出</p>
+<script type="math/tex; mode=display">
+G(z)
+=
+\int
+\frac{dE}{2\pi}
+\frac{
+A(E)
+}{
+z-E
+},\qquad A(E)
+=
+i
+[
+G^r(E)-G^a(E)
+].</script><p>代入Matsbara求和</p>
+<script type="math/tex; mode=display">
+\frac1\beta
+\sum_{\omega_n}
+G(i\omega_n)
+=
+\int
+\frac{dE}{2\pi}
+A(E)
+\left[
+\frac1\beta
+\sum_{\omega_n}
+\frac{1}{i\omega_n-E}
+\right],\quad \frac1\beta
+\sum_{\omega_n}
+\frac{1}{i\omega_n-E}
+=
+f(E).</script><p>从而得到</p>
+<script type="math/tex; mode=display">
+{\color{teal}
+\frac1\beta
+\sum_{\omega_n}
+G(i\omega_n)
+=
+\int
+\frac{dE}{2\pi}
+f(E)
+i
+[
+G^r(E)-G^a(E)
+].
+}</script><p>因此，Matsubara频率求和与平衡实频谱积分实际上是等价的。</p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ol>
+<li><a target="_blank" rel="noopener" href="https://link.aps.org/doi/10.1103/ds5z-fxy5">Spin-Polarized Josephson Supercurrent in Nodeless Altermagnets</a></li>
+<li><a target="_blank" rel="noopener" href="https://link.aps.org/doi/10.1103/PhysRevLett.132.216001">Universal Spin Superconducting Diode Effect from Spin-Orbit Coupling</a></li>
+</ol>
+<div class="note red flat"><p>鉴于该网站分享的大都是学习笔记，作者水平有限，若发现有问题可以发邮件给我</p>
+<ul>
+<li><strong>yxliphy@gmail.com</strong></li>
+</ul>
+<p>也非常欢迎喜欢分享的小伙伴投稿</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="/about">Yu-Xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2026/05/16/2026-05-16-BdG-Current/">http://example.com/2026/05/16/2026-05-16-BdG-Current/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Yu-Xuan's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Superconductor/">Superconductor</a><a class="post-meta__tags" href="/tags/Transport/">Transport</a></div><div class="post-share"><div class="social-share" data-image="/assets/images/SC/lattice-GF.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg"/></a><div class="post-qr-code-desc"></div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg"/></a><div class="post-qr-code-desc"></div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/05/16/2026-05-16-TSC-Tomasch-Oscallation/" title="二维NSN结中的Tomasch振荡"><img class="cover" src="/assets/images/SC/Tomasch-Oscillations.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">二维NSN结中的Tomasch振荡</div></div><div class="info-2"><div class="info-item-1">二维NSN结中的Tomasch振荡考虑一个二维弹道NSN结，超导区域位于  0</div></div></div></a><a class="pagination-related  no-desc" href="/2026/05/15/2026-05-15-CPR-Green/" title="Matsubara格林函数方法计算 Josephson 电流"><img class="cover" src="/assets/images/SC/CPR-Green.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Matsubara格林函数方法计算 Josephson 电流</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related no-desc" href="/2025/12/01/2025-12-01-Andreev-alaly/" title="Andreev 反射分析"><img class="cover" src="/assets/images/Transport/Andreev_reflection.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-01</div><div class="info-item-2">Andreev 反射分析</div></div></div></a><a class="pagination-related no-desc" href="/2025/12/08/2025-12-08-SC-weight/" title="超流权重推导(能带无简并)"><img class="cover" src="/assets/images/SC/sc-weight.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-08</div><div class="info-item-2">超流权重推导(能带无简并)</div></div></div></a><a class="pagination-related no-desc" href="/2025/12/19/2025-12-19-Ward-Takahashi-SC/" title="超导态中的 Ward-Takahashi 恒等式"><img class="cover" src="/assets/images/Field-Theory/Ward.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-19</div><div class="info-item-2">超导态中的 Ward-Takahashi 恒等式</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description">知行合一</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">357</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">26</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yxli8023"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:yxliphy@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><div style="text-align:center;"> <img src="/assets/images/qrcode.jpg" alt="公告图" style="max-width:100%; border-radius:10px; margin-bottom:10px;"> <br> 欢迎关注公众号，有趣的内容也会在上面同步。 有密码的文章属于正在建设中或者没有通过验证的内容，若有需要可通过邮件联系。</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#BdG-%E6%A0%BC%E7%82%B9%E4%BD%93%E7%B3%BB%E4%B8%ADJosephson%E9%94%AE%E7%94%B5%E6%B5%81%E7%9A%84%E6%A0%BC%E6%9E%97%E5%87%BD%E6%95%B0%E6%8E%A8%E5%AF%BC"><span class="toc-number">1.</span> <span class="toc-text">BdG 格点体系中Josephson键电流的格林函数推导</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E8%AE%BE%E5%AE%9A"><span class="toc-number">1.1.</span> <span class="toc-text">基本设定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9E%E7%BB%AD%E6%80%A7%E6%96%B9%E7%A8%8B"><span class="toc-number">1.2.</span> <span class="toc-text">连续性方程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Matsubara%E9%A2%91%E7%8E%87%E5%BD%A2%E5%BC%8F"><span class="toc-number">1.3.</span> <span class="toc-text">Matsubara频率形式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%9E%E5%B9%B3%E8%A1%A1%E5%B0%8F%E4%BA%8E%E6%A0%BC%E6%9E%97%E5%87%BD%E6%95%B0%E5%BD%A2%E5%BC%8F"><span class="toc-number">1.4.</span> <span class="toc-text">非平衡小于格林函数形式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%B3%E8%A1%A1%E6%80%81%E6%9E%81%E9%99%90"><span class="toc-number">1.5.</span> <span class="toc-text">平衡态极限</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">2.</span> <span class="toc-text">参考文献</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/05/16/2026-05-16-BdG-Current/" title="BdG 格点体系中Josephson键电流的格林函数推导"><img src="/assets/images/SC/lattice-GF.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="BdG 格点体系中Josephson键电流的格林函数推导"/></a><div class="content"><a class="title" href="/2026/05/16/2026-05-16-BdG-Current/" title="BdG 格点体系中Josephson键电流的格林函数推导">BdG 格点体系中Josephson键电流的格林函数推导</a><time datetime="2026-05-15T16:00:00.000Z" title="发表于 2026-05-16 00:00:00">2026-05-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/05/16/2026-05-16-TSC-Tomasch-Oscallation/" title="二维NSN结中的Tomasch振荡"><img src="/assets/images/SC/Tomasch-Oscillations.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="二维NSN结中的Tomasch振荡"/></a><div class="content"><a class="title" href="/2026/05/16/2026-05-16-TSC-Tomasch-Oscallation/" title="二维NSN结中的Tomasch振荡">二维NSN结中的Tomasch振荡</a><time datetime="2026-05-15T16:00:00.000Z" title="发表于 2026-05-16 00:00:00">2026-05-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/05/15/2026-05-15-CPR-Green/" title="Matsubara格林函数方法计算 Josephson 电流"><img src="/assets/images/SC/CPR-Green.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Matsubara格林函数方法计算 Josephson 电流"/></a><div class="content"><a class="title" href="/2026/05/15/2026-05-15-CPR-Green/" title="Matsubara格林函数方法计算 Josephson 电流">Matsubara格林函数方法计算 Josephson 电流</a><time datetime="2026-05-14T16:00:00.000Z" title="发表于 2026-05-15 00:00:00">2026-05-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/05/14/2026-05-14-CPS-Magnets/" title="磁场下的Josephson电流"><img src="/assets/images/SC/SC-FM.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="磁场下的Josephson电流"/></a><div class="content"><a class="title" href="/2026/05/14/2026-05-14-CPS-Magnets/" title="磁场下的Josephson电流">磁场下的Josephson电流</a><time datetime="2026-05-13T16:00:00.000Z" title="发表于 2026-05-14 00:00:00">2026-05-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/05/13/2026-05-13-TMD-model/" title="转角TMD连续模型与平面波基矢"><img src="/assets/images/Twisted/moire2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="转角TMD连续模型与平面波基矢"/></a><div class="content"><a class="title" href="/2026/05/13/2026-05-13-TMD-model/" title="转角TMD连续模型与平面波基矢">转角TMD连续模型与平面波基矢</a><time datetime="2026-05-12T16:00:00.000Z" title="发表于 2026-05-13 00:00:00">2026-05-13</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/assets/images/SC/lattice-GF.png);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div><div class="footer_custom_text">Welcome to  Yu-Xuan's Blog</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  const initGitalk = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGitalk = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const gitalk = new Gitalk({
+      clientID: 'Ov23li0WvZEaIAZ7RFtH',
+      clientSecret: '03fcb77b7c28dafcdde00756e27f9b5bc76639e8',
+      repo: 'yxli8023.github.io',
+      owner: 'yxli8023',
+      admin: ['yxli8023'],
+      updateCountCallback: commentCount,
+      ...option,
+      id: isShuoshuo ? path : (option && option.id) || '08ec7ad2cd403fd6551eb8e95fe9fcf9'
+    })
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async(el, path) => {
+    if (typeof Gitalk === 'function') initGitalk(el, path)
+    else {
+      await btf.getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await btf.getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Gitalk' === 'Gitalk'
+      ? window.shuoshuoComment = { loadComment: loadGitalk }
+      : window.loadOtherComment = loadGitalk
+    return
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
