@@ -1,0 +1,829 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>超导磁电效应 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="超导磁电效应超导线性磁电效应，也叫超导Edelstein效应，描述的是超流驱动产生自旋磁化。超流可以用 Cooper pair 的有限动量 $\mathbf q$ 表示。对于小 $\mathbf q$，自旋磁化可以展开为  M_a(\mathbf q) &#x3D; M_a^{(0)} + \delta M_a^{(1)} + O(q^2),其中线性磁电效应定义为  { \delta M_a^{(1)}&#x3D;\">
+<meta property="og:type" content="article">
+<meta property="og:title" content="超导磁电效应">
+<meta property="og:url" content="http://example.com/2026/05/17/2026-05-17-SC-Edelstein/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39;s Blog">
+<meta property="og:description" content="超导磁电效应超导线性磁电效应，也叫超导Edelstein效应，描述的是超流驱动产生自旋磁化。超流可以用 Cooper pair 的有限动量 $\mathbf q$ 表示。对于小 $\mathbf q$，自旋磁化可以展开为  M_a(\mathbf q) &#x3D; M_a^{(0)} + \delta M_a^{(1)} + O(q^2),其中线性磁电效应定义为  { \delta M_a^{(1)}&#x3D;\">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/assets/images/SC/SC-Edelstein.png">
+<meta property="article:published_time" content="2026-05-16T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-05-18T14:34:16.363Z">
+<meta property="article:author" content="Yu-Xuan">
+<meta property="article:tag" content="Code">
+<meta property="article:tag" content="Superconductor">
+<meta property="article:tag" content="Transport">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/images/SC/SC-Edelstein.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "超导磁电效应",
+  "url": "http://example.com/2026/05/17/2026-05-17-SC-Edelstein/",
+  "image": "http://example.com/assets/images/SC/SC-Edelstein.png",
+  "datePublished": "2026-05-16T16:00:00.000Z",
+  "dateModified": "2026-05-18T14:34:16.363Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yu-Xuan",
+      "url": "http://example.com/about"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/logo.png"><link rel="canonical" href="http://example.com/2026/05/17/2026-05-17-SC-Edelstein/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"作者: Yu-Xuan","link":"链接: ","source":"来源: Yu-Xuan's Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'medium_zoom',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#f54966","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '超导磁电效应',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #dbeffd;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">359</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/assets/images/SC/SC-Edelstein.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo.png" alt="Logo"><span class="site-name">Yu-Xuan's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">超导磁电效应</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">超导磁电效应</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-05-16T16:00:00.000Z" title="发表于 2026-05-17 00:00:00">2026-05-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-05-18T14:34:16.363Z" title="更新于 2026-05-18 22:34:16">2026-05-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Superconductor/">Superconductor</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">2.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>10分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;自上次更新已经过了&quot;,&quot;messageNext&quot;:&quot;天，文章内容可能已过时。&quot;,&quot;postUpdate&quot;:&quot;2026-05-18 22:34:16&quot;}" hidden></div><h1 id="超导磁电效应"><a href="#超导磁电效应" class="headerlink" title="超导磁电效应"></a>超导磁电效应</h1><p>超导线性磁电效应，也叫超导Edelstein效应，描述的是超流驱动产生自旋磁化。超流可以用 Cooper pair 的有限动量 $\mathbf q$ 表示。对于小 $\mathbf q$，自旋磁化可以展开为</p>
+<script type="math/tex; mode=display">
+M_a(\mathbf q)
+=
+M_a^{(0)}
++
+\delta M_a^{(1)}
++
+O(q^2),</script><p>其中线性磁电效应定义为</p>
+<script type="math/tex; mode=display">
+{
+\delta M_a^{(1)}=\alpha_{ab}q_b .
+}</script><p>若进一步用超流密度 $\mathbf J_s$ 表示，由于$J_{s,b}=\nu_s q_b$，也可以写成</p>
+<script type="math/tex; mode=display">
+\delta M_a^{(1)}
+=
+\frac{\alpha_{ab}}{\nu_s}J_{s,b}.</script><p>考虑一般正常态 Bloch哈密顿量$H_{\mathbf k}$，它可以包含轨道、自旋、子格等内部自由度。超导配对矩阵记为$\hat\Delta_{\mathbf k}$，若超导序参量携带空间相位$\Delta(\mathbf r)=\Delta_0 e^{i\mathbf q\cdot \mathbf r}$，则 Cooper对的总动量为 $\mathbf q$。配对的两个电子动量可以写成</p>
+<script type="math/tex; mode=display">
+\mathbf k+\frac{\mathbf q}{2},
+\qquad
+-\mathbf k+\frac{\mathbf q}{2}.</script><p>于是定义 Nambu 基底</p>
+<script type="math/tex; mode=display">
+\Psi_{\mathbf k,\mathbf q}
+=
+\begin{pmatrix}
+c_{\mathbf k+\mathbf q/2}\\
+c^\dagger_{-\mathbf k+\mathbf q/2}
+\end{pmatrix}.</script><p>在显式自旋基底下，可以写为</p>
+<script type="math/tex; mode=display">
+\Psi_{\mathbf k,\mathbf q}
+=
+\left(
+c_{\mathbf k+\mathbf q/2,\uparrow},
+c_{\mathbf k+\mathbf q/2,\downarrow},
+c^\dagger_{-\mathbf k+\mathbf q/2,\uparrow},
+c^\dagger_{-\mathbf k+\mathbf q/2,\downarrow}
+\right)^T .</script><p>有限 $\mathbf q$ 的 BdG Hamiltonian 为</p>
+<script type="math/tex; mode=display">
+{
+\mathcal H_{\rm BdG}(\mathbf k,\mathbf q)
+=
+\begin{pmatrix}
+H_{\mathbf k+\mathbf q/2} & \hat\Delta_{\mathbf k}\\
+\hat\Delta_{\mathbf k}^\dagger & -H^*_{-\mathbf k+\mathbf q/2}
+\end{pmatrix}.
+}</script><p>这里暂时假设 $\hat\Delta_{\mathbf k}$ 不显式依赖 $\mathbf q$。这个近似适用于弱超流，也就是 $\mathbf q$ 足够小的情况。</p>
+<h2 id="磁化的热力学定义"><a href="#磁化的热力学定义" class="headerlink" title="磁化的热力学定义"></a>磁化的热力学定义</h2><p>为了计算自旋磁化，引入一个辅助 Zeeman 场 $\mathbf h$。电子的 Zeeman 耦合为</p>
+<script type="math/tex; mode=display">
+-\frac{g_s\mu_B}{2}\mathbf h\cdot \mathbf s,</script><p>其中 $s_a$ 是 Pauli 矩阵，真正的自旋算符是 $s_a/2$。在 Nambu 空间中，相应的广义自旋矩阵定义为</p>
+<script type="math/tex; mode=display">
+{\color{blue}
+\eta_a
+=
+\begin{pmatrix}
+s_a & 0\\
+0 & -s_a^*
+\end{pmatrix}.
+}</script><p>这里空穴块前面的负号来自粒子—-空穴结构。含辅助 Zeeman 场的格林函数写成</p>
+<script type="math/tex; mode=display">
+G^{-1}(\mathbf k,\mathbf q,\mathbf h,i\omega_n)
+=
+G^{-1}(\mathbf k,\mathbf q,i\omega_n)
++
+\Sigma(\mathbf h),\quad \Sigma(\mathbf h)
+=
+\frac{g_s\mu_B}{2}
+\mathbf h\cdot \boldsymbol{\eta}.</script><p>Gor’kov 格林函数为</p>
+<script type="math/tex; mode=display">
+G(\mathbf k,\mathbf q,i\omega_n)
+=
+\left[
+i\omega_n-\mathcal H_{\rm BdG}(\mathbf k,\mathbf q)
+\right]^{-1}.</script><p>辅助场 $\mathbf h$ 最后要取零。磁化由配分函数对 $\mathbf h$ 求导得到</p>
+<script type="math/tex; mode=display">
+M_a
+=
+-\frac{1}{\beta}
+\frac{\partial \log Z(\mathbf h)}
+{\partial h_a}
+\bigg|_{\mathbf h=0}.</script><p>由于 Nambu 表象中有一半的 double counting，配分函数中出现因子 $1/2$。对 $\mathrm{Tr}\log G^{-1}$ 求导，使用</p>
+<script type="math/tex; mode=display">
+\frac{\partial}{\partial h_a}
+\mathrm{Tr}\log G^{-1}
+=
+\mathrm{Tr}
+\left[
+G
+\frac{\partial G^{-1}}{\partial h_a}
+\right],\qquad \frac{\partial G^{-1}}{\partial h_a}
+=
+\frac{g_s\mu_B}{2}\eta_a,</script><p>得到</p>
+<script type="math/tex; mode=display">
+{\color{blue}
+M_a(\mathbf q)
+=
+-\frac{g_s\mu_B}{4\beta}
+\sum_{\mathbf k,n}
+\mathrm{Tr}
+\left[
+G(\mathbf k,\mathbf q,i\omega_n)\eta_a
+\right].
+}\label{eq:m2}</script><p>现在对$\mathcal H_{\rm BdG}(\mathbf k,\mathbf q)$在 $\mathbf q=0$ 附近展开，首先定义没有超流态的 BdG 哈密顿量</p>
+<script type="math/tex; mode=display">
+\mathcal H_0(\mathbf k)
+\equiv
+\mathcal H_{\rm BdG}(\mathbf k,\mathbf q=0)
+=
+\begin{pmatrix}
+H_{\mathbf k} & \hat\Delta_{\mathbf k}\\
+\hat\Delta_{\mathbf k}^\dagger & -H^*_{-\mathbf k}
+\end{pmatrix}.</script><p>正常态速度矩阵定义为</p>
+<script type="math/tex; mode=display">
+V_b(\mathbf k)
+=
+\frac{\partial H_{\mathbf k}}{\partial k_b}.</script><p>由于电子块是 $H_{\mathbf k+\mathbf q/2}$，所以一阶展开为</p>
+<script type="math/tex; mode=display">
+H_{\mathbf k+\mathbf q/2}
+=
+H_{\mathbf k}
++
+\frac{q_b}{2}
+V_b(\mathbf k)
++
+O(q^2).</script><p>空穴块是$-H^*_{-\mathbf k+\mathbf q/2}$，因此一阶展开为</p>
+<script type="math/tex; mode=display">
+-H^*_{-\mathbf k+\mathbf q/2}
+=
+-H^*_{-\mathbf k}
+-
+\frac{q_b}{2}
+V_b^*(-\mathbf k)
++
+O(q^2)</script><p>所以 BdG Hamiltonian 的一阶展开可以写成</p>
+<script type="math/tex; mode=display">
+{\color{blue}
+\mathcal H_{\rm BdG}(\mathbf k,\mathbf q)
+=
+\mathcal H_0(\mathbf k)
++
+\frac{q_b}{2}
+\hat v_b(\mathbf k)
++
+O(q^2),
+}\label{eq:m1}</script><p>其中 Nambu 空间速度矩阵为</p>
+<script type="math/tex; mode=display">
+{
+\hat v_b(\mathbf k)
+=
+\begin{pmatrix}
+V_b(\mathbf k) & 0\\
+0 & -V_b^*(-\mathbf k)
+\end{pmatrix}.
+}</script><p>接下来对格林函数进行展开，定义没有超流态的格林函数</p>
+<script type="math/tex; mode=display">
+G_0(\mathbf k,i\omega_n)
+=
+\left[
+i\omega_n-\mathcal H_0(\mathbf k)
+\right]^{-1}.</script><p>由方程$\eqref{eq:m1}$可得</p>
+<script type="math/tex; mode=display">
+G^{-1}(\mathbf k,\mathbf q,i\omega_n)
+=
+i\omega_n-\mathcal H_{\rm BdG}(\mathbf k,\mathbf q)=G_0^{-1}-\frac{q_b}{2}\hat{v}_b(\mathbf k)</script><p>因此</p>
+<script type="math/tex; mode=display">
+G
+=
+\left[
+G_0^{-1}
+-
+\frac{q_b}{2}\hat v_b
+\right]^{-1}.</script><p>使用矩阵恒等式</p>
+<script type="math/tex; mode=display">
+(A-B)^{-1}
+=
+A^{-1}
++
+A^{-1}BA^{-1}
++
+O(B^2),</script><p>得到</p>
+<script type="math/tex; mode=display">
+{
+G(\mathbf k,\mathbf q,i\omega_n)
+=
+G_0(\mathbf k,i\omega_n)
++
+\frac{q_b}{2}
+G_0(\mathbf k,i\omega_n)
+\hat v_b(\mathbf k)
+G_0(\mathbf k,i\omega_n)
++
+O(q^2).
+}</script><p>将其代入方程$\eqref{eq:m2}$得到</p>
+<script type="math/tex; mode=display">
+M_a(\mathbf q)
+=
+-\frac{g_s\mu_B}{4\beta}
+\sum_{\mathbf k,n}
+\mathrm{Tr}
+\left[
+G_0\eta_a
+\right]
+-
+\frac{g_s\mu_B}{8\beta}
+q_b
+\sum_{\mathbf k,n}
+\mathrm{Tr}
+\left[
+G_0\hat v_bG_0\eta_a
+\right]
++
+O(q^2).</script><p>利用迹的循环不变性</p>
+<script type="math/tex; mode=display">
+\mathrm{Tr}
+\left[
+G_0\hat v_bG_0\eta_a
+\right]
+=
+\mathrm{Tr}
+\left[
+\eta_aG_0\hat v_bG_0
+\right],</script><p>因此</p>
+<script type="math/tex; mode=display">
+M_a(\mathbf q)
+=
+M_a^{(0)}
++
+\alpha_{ab}q_b
++
+O(q^2),</script><p>其中</p>
+<script type="math/tex; mode=display">
+M_a^{(0)}
+=
+-\frac{g_s\mu_B}{4\beta}
+\sum_{\mathbf k,n}
+\mathrm{Tr}
+\left[
+G_0\eta_a
+\right],</script><p>而线性磁电张量为</p>
+<script type="math/tex; mode=display">
+{\color{blue}
+\alpha_{ab}
+=
+-\frac{g_s\mu_B}{8\beta}
+\sum_{\mathbf k,n}
+\mathrm{Tr}
+\left[
+\eta_aG_0\hat v_bG_0
+\right].
+}</script><p>这就是超导线性磁电效应的 Kubo-like格林函数形式。现在将上式改写成 BdG 能带表象，对零超流态 BdG哈密顿量对角化</p>
+<script type="math/tex; mode=display">
+{
+\mathcal H_0(\mathbf k)
+|u_{n\mathbf k}\rangle
+=
+E_{n\mathbf k}
+|u_{n\mathbf k}\rangle .
+}</script><p>这里 $n$ 是 BdG 能带指标。由于 BdG 哈密顿量具有粒子—-空穴对称性，能谱通常成对出现$E_{n\mathbf k}<br>\leftrightarrow<br>-E_{n,-\mathbf k}$，但是在下面的推导中，我们直接对所有 BdG 本征态求和，不需要额外区分正能和负能分支。</p>
+<p>格林函数可以谱分解为</p>
+<script type="math/tex; mode=display">
+{
+G_0(\mathbf k,i\omega_n)
+=
+\sum_l
+\frac{
+|u_{l\mathbf k}\rangle
+\langle u_{l\mathbf k}|
+}{
+i\omega_n-E_{l\mathbf k}
+}.
+}</script><p>定义能带表象中的矩阵元</p>
+<script type="math/tex; mode=display">
+\eta^a_{nm}(\mathbf k)
+=
+\langle u_{n\mathbf k}|
+\eta_a
+|u_{m\mathbf k}\rangle,\qquad v^b_{mn}(\mathbf k)
+=
+\langle u_{m\mathbf k}|
+\hat v_b(\mathbf k)
+|u_{n\mathbf k}\rangle.</script><p>将格林函数的谱分解代入$\mathrm{Tr}<br>\left[<br>\eta_aG_0\hat v_bG_0<br>\right]$中得到</p>
+<script type="math/tex; mode=display">
+\mathrm{Tr}
+\left[
+\eta_aG_0\hat v_bG_0
+\right]
+=
+\sum_{n,m}
+\frac{
+\eta^a_{nm}(\mathbf k)
+v^b_{mn}(\mathbf k)
+}{
+(i\omega_n-E_{m\mathbf k})
+(i\omega_n-E_{n\mathbf k})
+}.</script><p>因此线性磁电张量系数为</p>
+<script type="math/tex; mode=display">
+\alpha_{ab}
+=
+-\frac{g_s\mu_B}{8\beta}
+\sum_{\mathbf k}
+\sum_{\omega_n}
+\sum_{n,m}
+\frac{
+\eta^a_{nm}(\mathbf k)
+v^b_{mn}(\mathbf k)
+}{
+(i\omega_n-E_{n\mathbf k})
+(i\omega_n-E_{m\mathbf k})
+}.</script><p>下面对松原频率求和，定义</p>
+<script type="math/tex; mode=display">
+I_{nm}(\mathbf k)
+=
+\frac{1}{\beta}
+\sum_{\omega_n}
+\frac{1}{
+(i\omega_n-E_{n\mathbf k})
+(i\omega_n-E_{m\mathbf k})
+}.</script><p>当 $n\neq m$ 时，用部分分式分解</p>
+<script type="math/tex; mode=display">
+\frac{1}{
+(i\omega_n-E_n)(i\omega_n-E_m)
+}
+=
+\frac{1}{E_n-E_m}
+\left[
+\frac{1}{i\omega_n-E_n}
+-
+\frac{1}{i\omega_n-E_m}
+\right].</script><p>结合标准松原频率求和公式</p>
+<script type="math/tex; mode=display">
+\frac{1}{\beta}
+\sum_{\omega_n}
+\frac{1}{i\omega_n-E}
+=
+-f(E),\qquad f(E)=\frac{1}{e^{\beta E}+1}</script><p>因此</p>
+<script type="math/tex; mode=display">
+I_{nm}
+=
+\frac{f(E_{m\mathbf k})-f(E_{n\mathbf k})}
+{E_{n\mathbf k}-E_{m\mathbf k}}.</script><p>于是</p>
+<script type="math/tex; mode=display">
+\alpha_{ab}
+=
+-\frac{g_s\mu_B}{8}
+\sum_{\mathbf k}
+\sum_{n,m}
+\eta^a_{nm}(\mathbf k)
+v^b_{mn}(\mathbf k)
+\frac{
+f(E_{m\mathbf k})-f(E_{n\mathbf k})
+}{
+E_{n\mathbf k}-E_{m\mathbf k}
+}.</script><p>等价的可以表示为</p>
+<script type="math/tex; mode=display">
+{
+\alpha_{ab}
+=
+\frac{g_s\mu_B}{8}
+\sum_{\mathbf k}
+\sum_{n,m}
+\eta^a_{nm}(\mathbf k)
+v^b_{mn}(\mathbf k)
+\frac{
+f(E_{n\mathbf k})-f(E_{m\mathbf k})
+}{
+E_{n\mathbf k}-E_{m\mathbf k}
+}.
+}</script><p>由于 $\alpha_{ab}$ 是实物理量，通常可显式写成</p>
+<script type="math/tex; mode=display">
+{
+\alpha_{ab}
+=
+\frac{g_s\mu_B}{8}
+\sum_{\mathbf k}
+\sum_{n,m}
+\mathrm{Re}
+\left[
+\eta^a_{nm}(\mathbf k)
+v^b_{mn}(\mathbf k)
+\right]
+\frac{
+f(E_{n\mathbf k})-f(E_{m\mathbf k})
+}{
+E_{n\mathbf k}-E_{m\mathbf k}
+}.
+}</script><p>当$E_{n\mathbf k}=E_{m\mathbf k}$时上式需要取极限，特别是$n=m$时</p>
+<script type="math/tex; mode=display">
+\frac{
+f(E_{n\mathbf k})-f(E_{m\mathbf k})
+}{
+E_{n\mathbf k}-E_{m\mathbf k}
+}
+\longrightarrow
+f'(E_{n\mathbf k}),\qquad f'(E)
+=
+-\beta f(E)\left[1-f(E)\right].</script><p>因此对角项为</p>
+<script type="math/tex; mode=display">
+{
+\alpha_{ab}^{\rm diag}
+=
+\frac{g_s\mu_B}{8}
+\sum_{\mathbf k,n}
+f'(E_{n\mathbf k})
+\eta^a_{nn}(\mathbf k)
+v^b_{nn}(\mathbf k).
+}</script><p>注意 $f’(E)&lt;0$。低温下，$f’(E)$ 只在 $E\approx 0$ 附近有明显贡献。因此，如果 BdG 谱完全打开能隙，那么这个对角项在 $T\to 0$ 时通常会被指数压低。</p>
+<p>能带表象的表达式可以自然分成两部分</p>
+<script type="math/tex; mode=display">
+\alpha_{ab}
+=
+\alpha_{ab}^{\rm intra}
++
+\alpha_{ab}^{\rm inter}.</script><p>对角部分，即 $n=m$，为</p>
+<script type="math/tex; mode=display">
+{
+\alpha_{ab}^{\rm intra}
+=
+\frac{g_s\mu_B}{8}
+\sum_{\mathbf k,n}
+f'(E_{n\mathbf k})
+\eta^a_{nn}(\mathbf k)
+v^b_{nn}(\mathbf k).
+}</script><p>这个部分反映 BdG 准粒子能带在有限 $\mathbf q$ 下的占据变化。它类似金属正常态响应中的费米面贡献。</p>
+<p>非对角部分，即 $n\neq m$，为</p>
+<script type="math/tex; mode=display">
+{
+\alpha_{ab}^{\rm inter}
+=
+\frac{g_s\mu_B}{8}
+\sum_{\mathbf k}
+\sum_{n\neq m}
+\mathrm{Re}
+\left[
+\eta^a_{nm}(\mathbf k)
+v^b_{mn}(\mathbf k)
+\right]
+\frac{
+f(E_{n\mathbf k})-f(E_{m\mathbf k})
+}{
+E_{n\mathbf k}-E_{m\mathbf k}
+}.
+}</script><p>这个部分来自不同 BdG 本征态之间的虚跃迁，类似带间极化率。也可以利用 $n,m$ 的对称性写成 $n&lt;m$ 的形式</p>
+<script type="math/tex; mode=display">
+{
+\alpha_{ab}^{\rm inter}
+=
+\frac{g_s\mu_B}{4}
+\sum_{\mathbf k}
+\sum_{n<m}
+\mathrm{Re}
+\left[
+\eta^a_{nm}(\mathbf k)
+v^b_{mn}(\mathbf k)
+\right]
+\frac{
+f(E_{n\mathbf k})-f(E_{m\mathbf k})
+}{
+E_{n\mathbf k}-E_{m\mathbf k}
+}.
+}</script><h2 id="Rashba-超导"><a href="#Rashba-超导" class="headerlink" title="Rashba 超导"></a>Rashba 超导</h2><p>对于二维 Rashba 超导，正常态哈密顿量可写成</p>
+<script type="math/tex; mode=display">
+H_{\mathbf k}
+=
+\xi_{\mathbf k}s_0
++
+\lambda a(k_xs_y-k_ys_x),\quad \xi_{\mathbf k}
+=
+ta^2(k_x^2+k_y^2)-\mu.</script><p>配对取常规的$s$波配对</p>
+<script type="math/tex; mode=display">
+\hat\Delta_{\mathbf k}
+=
+\Delta_0 i s_y.</script><p>速度矩阵为</p>
+<script type="math/tex; mode=display">
+V_x(\mathbf k)
+=
+2ta^2k_xs_0+\lambda a s_y,\qquad V_y(\mathbf k)
+=
+2ta^2k_ys_0-\lambda a s_x.</script><p>由于 Rashba SOC 使自旋和动量锁定，超流沿 $x$ 方向时，主要诱导 $y$ 方向磁化</p>
+<script type="math/tex; mode=display">
+M_y
+=
+\alpha_{yx}q_x.</script><p>超流沿 $y$ 方向时，主要诱导 $x$ 方向磁化</p>
+<script type="math/tex; mode=display">
+M_x
+=
+\alpha_{xy}q_y.</script><p>在连续旋转对称的 Rashba 系统中</p>
+<script type="math/tex; mode=display">
+\alpha_{xy}=-\alpha_{yx}.</script><p>因此整体上有</p>
+<script type="math/tex; mode=display">
+{
+\delta \mathbf M^{(1)}
+\propto
+\hat{\mathbf z}\times \mathbf q.
+}</script><p>由于</p>
+<script type="math/tex; mode=display">
+\mathbf J_s=\nu_s\mathbf q,</script><p>也就是</p>
+<script type="math/tex; mode=display">
+{
+\delta \mathbf M^{(1)}
+\propto
+\hat{\mathbf z}\times \mathbf J_s.
+}</script><h2 id="对称性约束"><a href="#对称性约束" class="headerlink" title="对称性约束"></a>对称性约束</h2><p>线性磁电效应</p>
+<script type="math/tex; mode=display">
+\delta M_a^{(1)}
+=
+\alpha_{ab}q_b</script><p>对称性上要求反演对称性破缺。因为$\mathbf{q}$是极矢量，在空间反演 $P$ 下变号</p>
+<script type="math/tex; mode=display">
+P:\quad \mathbf q\rightarrow-\mathbf q</script><p>而磁化$\mathbf M$是轴矢量，在空间反演下不变</p>
+<script type="math/tex; mode=display">
+P:\quad \mathbf M\rightarrow \mathbf M.</script><p>因此如果体系有反演对称性，那么$\mathbf M\propto \mathbf q$这一线性关系被禁止$(\alpha_{ab}=0)$。但是时间反演 $T$ 本身不禁止线性磁电效应，因为</p>
+<script type="math/tex; mode=display">
+T:\quad \mathbf M\rightarrow -\mathbf M,
+\qquad
+\mathbf q\rightarrow -\mathbf q.</script><p>所以$\mathbf M\propto\mathbf q$在时间反演下是允许的。所以Rashba 超导可以在保持时间反演对称性的情况下存在超导Edelstein效应。</p>
+<h1 id="程序代码"><a href="#程序代码" class="headerlink" title="程序代码"></a>程序代码</h1><ul>
+<li><p>计算代码</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env julia</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"><span class="comment"># Square-lattice Rashba superconductor</span></span><br><span class="line"><span class="comment"># Superconducting Edelstein effect</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># MPI parallel version.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Output:</span></span><br><span class="line"><span class="comment">#   data/rashba_lattice_edelstein_mpi.dat</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Tensor:</span></span><br><span class="line"><span class="comment">#   delta M_a = alpha_ab q_b</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Main Rashba Edelstein component:</span></span><br><span class="line"><span class="comment">#   alpha_yx : q_x -&gt; M_y</span></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> MPI</span><br><span class="line"><span class="keyword">using</span> LinearAlgebra</span><br><span class="line"><span class="keyword">using</span> Printf</span><br><span class="line"><span class="keyword">using</span> Dates</span><br><span class="line"></span><br><span class="line">BLAS.set_num_threads(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"><span class="comment"># 0. MPI initialization</span></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"></span><br><span class="line">MPI.Init()</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> comm = MPI.COMM_WORLD</span><br><span class="line"><span class="keyword">const</span> rank = MPI.Comm_rank(comm)</span><br><span class="line"><span class="keyword">const</span> nprocs = MPI.Comm_size(comm)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"><span class="comment"># 1. Parameters</span></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> t_hop = <span class="number">1.0</span></span><br><span class="line"><span class="keyword">const</span> mu = -<span class="number">3.0</span></span><br><span class="line"><span class="keyword">const</span> Delta0 = <span class="number">0.10</span></span><br><span class="line"><span class="keyword">const</span> temperature = <span class="number">0.03</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># k mesh</span></span><br><span class="line"><span class="keyword">const</span> Nk = <span class="number">251</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Rashba SOC scan</span></span><br><span class="line"><span class="keyword">const</span> lambda_min = <span class="number">0.0</span></span><br><span class="line"><span class="keyword">const</span> lambda_max = <span class="number">0.60</span></span><br><span class="line"><span class="keyword">const</span> lambda_num = <span class="number">61</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Constants, dimensionless units</span></span><br><span class="line"><span class="keyword">const</span> gs = <span class="number">2.0</span></span><br><span class="line"><span class="keyword">const</span> muB = <span class="number">1.0</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Degeneracy tolerance for K_nm</span></span><br><span class="line"><span class="keyword">const</span> degeneracy_eps = <span class="number">1.0e-10</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Output</span></span><br><span class="line"><span class="keyword">const</span> data_dir = <span class="string">&quot;data&quot;</span></span><br><span class="line"><span class="keyword">const</span> output_file = joinpath(data_dir, <span class="string">&quot;rashba_lattice_edelstein_mpi.dat&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"><span class="comment"># 2. Pauli matrices</span></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> s0 = <span class="built_in">ComplexF64</span>[</span><br><span class="line">    <span class="number">1.0</span> + <span class="number">0</span><span class="literal">im</span>  <span class="number">0.0</span> + <span class="number">0</span><span class="literal">im</span></span><br><span class="line">    <span class="number">0.0</span> + <span class="number">0</span><span class="literal">im</span>  <span class="number">1.0</span> + <span class="number">0</span><span class="literal">im</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> sx = <span class="built_in">ComplexF64</span>[</span><br><span class="line">    <span class="number">0.0</span> + <span class="number">0</span><span class="literal">im</span>  <span class="number">1.0</span> + <span class="number">0</span><span class="literal">im</span></span><br><span class="line">    <span class="number">1.0</span> + <span class="number">0</span><span class="literal">im</span>  <span class="number">0.0</span> + <span class="number">0</span><span class="literal">im</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> sy = <span class="built_in">ComplexF64</span>[</span><br><span class="line">    <span class="number">0.0</span> + <span class="number">0</span><span class="literal">im</span>   <span class="number">0.0</span> - <span class="number">1</span><span class="literal">im</span></span><br><span class="line">    <span class="number">0.0</span> + <span class="number">1</span><span class="literal">im</span>   <span class="number">0.0</span> + <span class="number">0</span><span class="literal">im</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> sz = <span class="built_in">ComplexF64</span>[</span><br><span class="line">    <span class="number">1.0</span> + <span class="number">0</span><span class="literal">im</span>   <span class="number">0.0</span> + <span class="number">0</span><span class="literal">im</span></span><br><span class="line">    <span class="number">0.0</span> + <span class="number">0</span><span class="literal">im</span>  -<span class="number">1.0</span> + <span class="number">0</span><span class="literal">im</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> zero2 = zeros(<span class="built_in">ComplexF64</span>, <span class="number">2</span>, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"><span class="comment"># 3. Small matrix helpers</span></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> block2x2(A::<span class="built_in">Matrix</span>&#123;<span class="built_in">ComplexF64</span>&#125;, B::<span class="built_in">Matrix</span>&#123;<span class="built_in">ComplexF64</span>&#125;,</span><br><span class="line">                  C::<span class="built_in">Matrix</span>&#123;<span class="built_in">ComplexF64</span>&#125;, D::<span class="built_in">Matrix</span>&#123;<span class="built_in">ComplexF64</span>&#125;)</span><br><span class="line">    M = zeros(<span class="built_in">ComplexF64</span>, <span class="number">4</span>, <span class="number">4</span>)</span><br><span class="line">    <span class="meta">@views</span> <span class="keyword">begin</span></span><br><span class="line">        M[<span class="number">1</span>:<span class="number">2</span>, <span class="number">1</span>:<span class="number">2</span>] .= A</span><br><span class="line">        M[<span class="number">1</span>:<span class="number">2</span>, <span class="number">3</span>:<span class="number">4</span>] .= B</span><br><span class="line">        M[<span class="number">3</span>:<span class="number">4</span>, <span class="number">1</span>:<span class="number">2</span>] .= C</span><br><span class="line">        M[<span class="number">3</span>:<span class="number">4</span>, <span class="number">3</span>:<span class="number">4</span>] .= D</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">return</span> M</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"><span class="comment"># 4. Normal-state Rashba lattice Hamiltonian</span></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> h_normal(kx::<span class="built_in">Float64</span>, ky::<span class="built_in">Float64</span>, lambda_R::<span class="built_in">Float64</span>)</span><br><span class="line">    xi = -<span class="number">2.0</span> * t_hop * (cos(kx) + cos(ky)) - mu</span><br><span class="line">    H = xi .* s0 .+</span><br><span class="line">        lambda_R .* (sin(kx) .* sy .- sin(ky) .* sx)</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Matrix</span>&#123;<span class="built_in">ComplexF64</span>&#125;(H)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> dh_dk(kx::<span class="built_in">Float64</span>, ky::<span class="built_in">Float64</span>, lambda_R::<span class="built_in">Float64</span>, direction::<span class="built_in">Symbol</span>)</span><br><span class="line">    <span class="keyword">if</span> direction == :x</span><br><span class="line">        V = <span class="number">2.0</span> * t_hop * sin(kx) .* s0 .+</span><br><span class="line">            lambda_R * cos(kx) .* sy</span><br><span class="line">    <span class="keyword">elseif</span> direction == :y</span><br><span class="line">        V = <span class="number">2.0</span> * t_hop * sin(ky) .* s0 .-</span><br><span class="line">            lambda_R * cos(ky) .* sx</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        error(<span class="string">&quot;direction must be :x or :y&quot;</span>)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Matrix</span>&#123;<span class="built_in">ComplexF64</span>&#125;(V)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"><span class="comment"># 5. BdG Hamiltonian and Nambu operators</span></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> bdg_hamiltonian(kx::<span class="built_in">Float64</span>, ky::<span class="built_in">Float64</span>, lambda_R::<span class="built_in">Float64</span>)</span><br><span class="line">    Hk = h_normal(kx, ky, lambda_R)</span><br><span class="line">    Hmk = h_normal(-kx, -ky, lambda_R)</span><br><span class="line"></span><br><span class="line">    Delta = Delta0 .* (<span class="number">1</span><span class="literal">im</span> .* sy)</span><br><span class="line"></span><br><span class="line">    HBdG = block2x2(</span><br><span class="line">        Hk,</span><br><span class="line">        <span class="built_in">Matrix</span>&#123;<span class="built_in">ComplexF64</span>&#125;(Delta),</span><br><span class="line">        <span class="built_in">Matrix</span>&#123;<span class="built_in">ComplexF64</span>&#125;(Delta&#x27;),</span><br><span class="line">        -conj.(Hmk),</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> HBdG</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> nambu_velocity(kx::<span class="built_in">Float64</span>, ky::<span class="built_in">Float64</span>, lambda_R::<span class="built_in">Float64</span>, direction::<span class="built_in">Symbol</span>)</span><br><span class="line">    Ve = dh_dk(kx, ky, lambda_R, direction)</span><br><span class="line">    Vh = -conj.(dh_dk(-kx, -ky, lambda_R, direction))</span><br><span class="line"></span><br><span class="line">    Vbdg = block2x2(</span><br><span class="line">        Ve,</span><br><span class="line">        zero2,</span><br><span class="line">        zero2,</span><br><span class="line">        Vh,</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> Vbdg</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> nambu_spin(direction::<span class="built_in">Symbol</span>)</span><br><span class="line">    s = <span class="keyword">if</span> direction == :x</span><br><span class="line">        sx</span><br><span class="line">    <span class="keyword">elseif</span> direction == :y</span><br><span class="line">        sy</span><br><span class="line">    <span class="keyword">elseif</span> direction == :z</span><br><span class="line">        sz</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        error(<span class="string">&quot;spin direction must be :x, :y, or :z&quot;</span>)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    eta = block2x2(</span><br><span class="line">        <span class="built_in">Matrix</span>&#123;<span class="built_in">ComplexF64</span>&#125;(s),</span><br><span class="line">        zero2,</span><br><span class="line">        zero2,</span><br><span class="line">        -conj.(s),</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> eta</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> eta_ops = (</span><br><span class="line">    nambu_spin(:x),</span><br><span class="line">    nambu_spin(:y),</span><br><span class="line">    nambu_spin(:z),</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"><span class="comment"># 6. Fermi function and response kernel</span></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@inline</span> <span class="keyword">function</span> fermi(E::<span class="built_in">Float64</span>, beta::<span class="built_in">Float64</span>)</span><br><span class="line">    x = clamp(beta * E, -<span class="number">700.0</span>, <span class="number">700.0</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1.0</span> / (exp(x) + <span class="number">1.0</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@inline</span> <span class="keyword">function</span> fermi_derivative(E::<span class="built_in">Float64</span>, beta::<span class="built_in">Float64</span>)</span><br><span class="line">    f = fermi(E, beta)</span><br><span class="line">    <span class="keyword">return</span> -beta * f * (<span class="number">1.0</span> - f)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> response_kernel!(K::<span class="built_in">Matrix</span>&#123;<span class="built_in">Float64</span>&#125;, E::<span class="built_in">Vector</span>&#123;<span class="built_in">Float64</span>&#125;, beta::<span class="built_in">Float64</span>)</span><br><span class="line">    nb = length(E)</span><br><span class="line"></span><br><span class="line">    <span class="meta">@inbounds</span> <span class="keyword">for</span> n <span class="keyword">in</span> <span class="number">1</span>:nb</span><br><span class="line">        En = E[n]</span><br><span class="line">        fn = fermi(En, beta)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> m <span class="keyword">in</span> <span class="number">1</span>:nb</span><br><span class="line">            Em = E[m]</span><br><span class="line">            fm = fermi(Em, beta)</span><br><span class="line"></span><br><span class="line">            denom = En - Em</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> abs(denom) &gt; degeneracy_eps</span><br><span class="line">                K[n, m] = (fn - fm) / denom</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                K[n, m] = fermi_derivative(<span class="number">0.5</span> * (En + Em), beta)</span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nothing</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"><span class="comment"># 7. k mesh distribution over MPI ranks</span></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@inline</span> <span class="keyword">function</span> linear_index_to_k(idx::<span class="built_in">Int</span>)</span><br><span class="line">    <span class="comment"># idx = 1, ..., Nk*Nk</span></span><br><span class="line">    ix = div(idx - <span class="number">1</span>, Nk) + <span class="number">1</span></span><br><span class="line">    iy = mod(idx - <span class="number">1</span>, Nk) + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    dk = <span class="number">2.0</span> * <span class="literal">pi</span> / Nk</span><br><span class="line"></span><br><span class="line">    <span class="comment"># midpoint mesh on [-pi, pi)</span></span><br><span class="line">    kx = -<span class="literal">pi</span> + (ix - <span class="number">0.5</span>) * dk</span><br><span class="line">    ky = -<span class="literal">pi</span> + (iy - <span class="number">0.5</span>) * dk</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> kx, ky</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> lambda_grid()</span><br><span class="line">    <span class="keyword">if</span> lambda_num == <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> [lambda_min]</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> collect(range(lambda_min, lambda_max, length=lambda_num))</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"><span class="comment"># 8. Local calculation for one lambda_R</span></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> local_accumulate_for_lambda(lambda_R::<span class="built_in">Float64</span>)</span><br><span class="line">    beta = <span class="number">1.0</span> / temperature</span><br><span class="line"></span><br><span class="line">    <span class="comment"># alpha accumulator: 3 spin components x 2 q directions</span></span><br><span class="line">    acc_total = zeros(<span class="built_in">Float64</span>, <span class="number">3</span>, <span class="number">2</span>)</span><br><span class="line">    acc_intra = zeros(<span class="built_in">Float64</span>, <span class="number">3</span>, <span class="number">2</span>)</span><br><span class="line">    acc_inter = zeros(<span class="built_in">Float64</span>, <span class="number">3</span>, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    nb = <span class="number">4</span></span><br><span class="line">    K = zeros(<span class="built_in">Float64</span>, nb, nb)</span><br><span class="line"></span><br><span class="line">    total_k = Nk * Nk</span><br><span class="line"></span><br><span class="line">    <span class="comment"># MPI distribution over k points</span></span><br><span class="line">    <span class="keyword">for</span> idx <span class="keyword">in</span> (rank + <span class="number">1</span>):nprocs:total_k</span><br><span class="line">        kx, ky = linear_index_to_k(idx)</span><br><span class="line"></span><br><span class="line">        HBdG = bdg_hamiltonian(kx, ky, lambda_R)</span><br><span class="line"></span><br><span class="line">        eig = eigen(Hermitian(HBdG))</span><br><span class="line">        E = <span class="built_in">Vector</span>&#123;<span class="built_in">Float64</span>&#125;(eig.values)</span><br><span class="line">        U = <span class="built_in">Matrix</span>&#123;<span class="built_in">ComplexF64</span>&#125;(eig.vectors)</span><br><span class="line"></span><br><span class="line">        response_kernel!(K, E, beta)</span><br><span class="line"></span><br><span class="line">        Udag = U&#x27;</span><br><span class="line"></span><br><span class="line">        eta_band = (</span><br><span class="line">            Udag * eta_ops[<span class="number">1</span>] * U,</span><br><span class="line">            Udag * eta_ops[<span class="number">2</span>] * U,</span><br><span class="line">            Udag * eta_ops[<span class="number">3</span>] * U,</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">        vx_op = nambu_velocity(kx, ky, lambda_R, :x)</span><br><span class="line">        vy_op = nambu_velocity(kx, ky, lambda_R, :y)</span><br><span class="line"></span><br><span class="line">        v_band = (</span><br><span class="line">            Udag * vx_op * U,</span><br><span class="line">            Udag * vy_op * U,</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">        <span class="meta">@inbounds</span> <span class="keyword">for</span> ia <span class="keyword">in</span> <span class="number">1</span>:<span class="number">3</span></span><br><span class="line">            eta_b = eta_band[ia]</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> ib <span class="keyword">in</span> <span class="number">1</span>:<span class="number">2</span></span><br><span class="line">                v_b = v_band[ib]</span><br><span class="line"></span><br><span class="line">                total_val = <span class="number">0.0</span></span><br><span class="line">                intra_val = <span class="number">0.0</span></span><br><span class="line">                inter_val = <span class="number">0.0</span></span><br><span class="line"></span><br><span class="line">                <span class="keyword">for</span> n <span class="keyword">in</span> <span class="number">1</span>:nb</span><br><span class="line">                    <span class="keyword">for</span> m <span class="keyword">in</span> <span class="number">1</span>:nb</span><br><span class="line">                        <span class="comment"># eta_nm * v_mn * K_nm</span></span><br><span class="line">                        val = real(eta_b[n, m] * v_b[m, n]) * K[n, m]</span><br><span class="line"></span><br><span class="line">                        total_val += val</span><br><span class="line"></span><br><span class="line">                        <span class="keyword">if</span> n == m</span><br><span class="line">                            intra_val += val</span><br><span class="line">                        <span class="keyword">else</span></span><br><span class="line">                            inter_val += val</span><br><span class="line">                        <span class="keyword">end</span></span><br><span class="line">                    <span class="keyword">end</span></span><br><span class="line">                <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">                acc_total[ia, ib] += total_val</span><br><span class="line">                acc_intra[ia, ib] += intra_val</span><br><span class="line">                acc_inter[ia, ib] += inter_val</span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> acc_total, acc_intra, acc_inter</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"><span class="comment"># 9. MPI allreduce helper</span></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> allreduce_sum_matrix(local_mat::<span class="built_in">Matrix</span>&#123;<span class="built_in">Float64</span>&#125;)</span><br><span class="line">    global_mat = similar(local_mat)</span><br><span class="line">    MPI.Allreduce!(local_mat, global_mat, +, comm)</span><br><span class="line">    <span class="keyword">return</span> global_mat</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"><span class="comment"># 10. Main calculation</span></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> main()</span><br><span class="line">    lambdas = lambda_grid()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> rank == <span class="number">0</span></span><br><span class="line">        mkpath(data_dir)</span><br><span class="line"></span><br><span class="line">        <span class="meta">@printf</span>(<span class="string">&quot;============================================================\n&quot;</span>)</span><br><span class="line">        <span class="meta">@printf</span>(<span class="string">&quot;Rashba lattice superconducting Edelstein effect\n&quot;</span>)</span><br><span class="line">        <span class="meta">@printf</span>(<span class="string">&quot;Julia MPI calculation\n&quot;</span>)</span><br><span class="line">        <span class="meta">@printf</span>(<span class="string">&quot;============================================================\n&quot;</span>)</span><br><span class="line">        <span class="meta">@printf</span>(<span class="string">&quot;MPI processes     = %d\n&quot;</span>, nprocs)</span><br><span class="line">        <span class="meta">@printf</span>(<span class="string">&quot;t                 = %.8f\n&quot;</span>, t_hop)</span><br><span class="line">        <span class="meta">@printf</span>(<span class="string">&quot;mu                = %.8f\n&quot;</span>, mu)</span><br><span class="line">        <span class="meta">@printf</span>(<span class="string">&quot;Delta0            = %.8f\n&quot;</span>, Delta0)</span><br><span class="line">        <span class="meta">@printf</span>(<span class="string">&quot;T                 = %.8f\n&quot;</span>, temperature)</span><br><span class="line">        <span class="meta">@printf</span>(<span class="string">&quot;Nk                = %d x %d\n&quot;</span>, Nk, Nk)</span><br><span class="line">        <span class="meta">@printf</span>(<span class="string">&quot;lambda_R range    = [%.8f, %.8f], N = %d\n&quot;</span>,</span><br><span class="line">                lambda_min, lambda_max, lambda_num)</span><br><span class="line">        <span class="meta">@printf</span>(<span class="string">&quot;output            = %s\n&quot;</span>, output_file)</span><br><span class="line">        <span class="meta">@printf</span>(<span class="string">&quot;============================================================\n&quot;</span>)</span><br><span class="line">        flush(<span class="literal">stdout</span>)</span><br><span class="line"></span><br><span class="line">        open(output_file, <span class="string">&quot;w&quot;</span>) <span class="keyword">do</span> io</span><br><span class="line">            println(io, <span class="string">&quot;# Square-lattice Rashba superconductor&quot;</span>)</span><br><span class="line">            println(io, <span class="string">&quot;# H(k) = xi(k) s0 + lambda_R [sin(kx) sy - sin(ky) sx]&quot;</span>)</span><br><span class="line">            println(io, <span class="string">&quot;# xi(k) = -2t [cos(kx)+cos(ky)] - mu&quot;</span>)</span><br><span class="line">            println(io, <span class="string">&quot;# Delta = Delta0 i sy&quot;</span>)</span><br><span class="line">            println(io, <span class="string">&quot;# Response: delta M_a = alpha_ab q_b&quot;</span>)</span><br><span class="line">            println(io, <span class="string">&quot;# Units: a = hbar = kB = muB = 1&quot;</span>)</span><br><span class="line">            println(io, <span class="string">&quot;#&quot;</span>)</span><br><span class="line">            <span class="meta">@printf</span>(io, <span class="string">&quot;# t = %.16e\n&quot;</span>, t_hop)</span><br><span class="line">            <span class="meta">@printf</span>(io, <span class="string">&quot;# mu = %.16e\n&quot;</span>, mu)</span><br><span class="line">            <span class="meta">@printf</span>(io, <span class="string">&quot;# Delta0 = %.16e\n&quot;</span>, Delta0)</span><br><span class="line">            <span class="meta">@printf</span>(io, <span class="string">&quot;# temperature = %.16e\n&quot;</span>, temperature)</span><br><span class="line">            <span class="meta">@printf</span>(io, <span class="string">&quot;# Nk = %d\n&quot;</span>, Nk)</span><br><span class="line">            <span class="meta">@printf</span>(io, <span class="string">&quot;# nprocs = %d\n&quot;</span>, nprocs)</span><br><span class="line">            println(io, <span class="string">&quot;#&quot;</span>)</span><br><span class="line">            println(io, <span class="string">&quot;# columns:&quot;</span>)</span><br><span class="line">            println(io, <span class="string">&quot;# lambda_R alpha_xx alpha_xy alpha_yx alpha_yy alpha_zx alpha_zy alpha_yx_intra alpha_yx_inter&quot;</span>)</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    MPI.Barrier(comm)</span><br><span class="line"></span><br><span class="line">    t0 = time()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (iλ, λ) <span class="keyword">in</span> enumerate(lambdas)</span><br><span class="line">        local_total, local_intra, local_inter = local_accumulate_for_lambda(λ)</span><br><span class="line"></span><br><span class="line">        global_total_raw = allreduce_sum_matrix(local_total)</span><br><span class="line">        global_intra_raw = allreduce_sum_matrix(local_intra)</span><br><span class="line">        global_inter_raw = allreduce_sum_matrix(local_inter)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># For BZ = [-pi, pi]^2,</span></span><br><span class="line">        <span class="comment"># ∫BZ d^2k/(2π)^2 equals uniform average over k mesh.</span></span><br><span class="line">        <span class="comment">#</span></span><br><span class="line">        <span class="comment"># Formula:</span></span><br><span class="line">        <span class="comment"># alpha_ab = (gs*muB/8) * average_k sum_nm Re[eta_nm v_mn] K_nm</span></span><br><span class="line">        prefactor = gs * muB / <span class="number">8.0</span></span><br><span class="line">        norm = <span class="number">1.0</span> / (Nk * Nk)</span><br><span class="line"></span><br><span class="line">        alpha_total = prefactor .* norm .* global_total_raw</span><br><span class="line">        alpha_intra = prefactor .* norm .* global_intra_raw</span><br><span class="line">        alpha_inter = prefactor .* norm .* global_inter_raw</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> rank == <span class="number">0</span></span><br><span class="line">            αxx = alpha_total[<span class="number">1</span>, <span class="number">1</span>]</span><br><span class="line">            αxy = alpha_total[<span class="number">1</span>, <span class="number">2</span>]</span><br><span class="line">            αyx = alpha_total[<span class="number">2</span>, <span class="number">1</span>]</span><br><span class="line">            αyy = alpha_total[<span class="number">2</span>, <span class="number">2</span>]</span><br><span class="line">            αzx = alpha_total[<span class="number">3</span>, <span class="number">1</span>]</span><br><span class="line">            αzy = alpha_total[<span class="number">3</span>, <span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">            αyx_intra = alpha_intra[<span class="number">2</span>, <span class="number">1</span>]</span><br><span class="line">            αyx_inter = alpha_inter[<span class="number">2</span>, <span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">            open(output_file, <span class="string">&quot;a&quot;</span>) <span class="keyword">do</span> io</span><br><span class="line">                <span class="meta">@printf</span>(io,</span><br><span class="line">                    <span class="string">&quot;%.16e %.16e %.16e %.16e %.16e %.16e %.16e %.16e %.16e\n&quot;</span>,</span><br><span class="line">                    λ, αxx, αxy, αyx, αyy, αzx, αzy, αyx_intra, αyx_inter</span><br><span class="line">                )</span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">            <span class="meta">@printf</span>(<span class="string">&quot;[%4d/%4d] lambda_R = %.8f | alpha_yx = %+ .8e | intra = %+ .8e | inter = %+ .8e\n&quot;</span>,</span><br><span class="line">                    iλ, length(lambdas), λ, αyx, αyx_intra, αyx_inter)</span><br><span class="line">            flush(<span class="literal">stdout</span>)</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    MPI.Barrier(comm)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> rank == <span class="number">0</span></span><br><span class="line">        elapsed = time() - t0</span><br><span class="line">        <span class="meta">@printf</span>(<span class="string">&quot;============================================================\n&quot;</span>)</span><br><span class="line">        <span class="meta">@printf</span>(<span class="string">&quot;Finished. Elapsed time = %.2f s\n&quot;</span>, elapsed)</span><br><span class="line">        <span class="meta">@printf</span>(<span class="string">&quot;Data saved to: %s\n&quot;</span>, output_file)</span><br><span class="line">        <span class="meta">@printf</span>(<span class="string">&quot;============================================================\n&quot;</span>)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">main()</span><br><span class="line"></span><br><span class="line">MPI.Finalize()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>绘图代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Plot superconducting Edelstein response from Julia MPI dat output.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Input:</span></span><br><span class="line"><span class="string">    data/rashba_lattice_edelstein_mpi.dat</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Output:</span></span><br><span class="line"><span class="string">    figures/rashba_lattice_edelstein_alpha_tensor.png</span></span><br><span class="line"><span class="string">    figures/rashba_lattice_edelstein_alpha_tensor.pdf</span></span><br><span class="line"><span class="string">    figures/rashba_lattice_edelstein_alpha_yx_intra_inter.png</span></span><br><span class="line"><span class="string">    figures/rashba_lattice_edelstein_alpha_yx_intra_inter.pdf</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> matplotlib.ticker <span class="keyword">import</span> MaxNLocator</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"><span class="comment"># 0. Settings</span></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"></span><br><span class="line">DATA_FILE = <span class="string">&quot;data/rashba_lattice_edelstein_mpi.dat&quot;</span></span><br><span class="line">FIG_DIR = <span class="string">&quot;figures&quot;</span></span><br><span class="line"></span><br><span class="line">SAVE_PREFIX = <span class="string">&quot;rashba_lattice_edelstein&quot;</span></span><br><span class="line"></span><br><span class="line">PLOT_ONLY_MAIN_COMPONENTS = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># If True, show the figures interactively.</span></span><br><span class="line">SHOW_FIG = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"><span class="comment"># 1. Plot style</span></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">setup_style</span>():</span><br><span class="line">    plt.rcParams[<span class="string">&quot;font.family&quot;</span>] = <span class="string">&quot;Times New Roman&quot;</span></span><br><span class="line">    plt.rcParams[<span class="string">&quot;mathtext.fontset&quot;</span>] = <span class="string">&quot;stix&quot;</span></span><br><span class="line">    plt.rcParams[<span class="string">&quot;font.size&quot;</span>] = <span class="number">18</span></span><br><span class="line">    plt.rcParams[<span class="string">&quot;axes.linewidth&quot;</span>] = <span class="number">1.2</span></span><br><span class="line">    plt.rcParams[<span class="string">&quot;xtick.direction&quot;</span>] = <span class="string">&quot;in&quot;</span></span><br><span class="line">    plt.rcParams[<span class="string">&quot;ytick.direction&quot;</span>] = <span class="string">&quot;in&quot;</span></span><br><span class="line">    plt.rcParams[<span class="string">&quot;xtick.top&quot;</span>] = <span class="literal">True</span></span><br><span class="line">    plt.rcParams[<span class="string">&quot;ytick.right&quot;</span>] = <span class="literal">True</span></span><br><span class="line">    plt.rcParams[<span class="string">&quot;legend.frameon&quot;</span>] = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">format_axes</span>(<span class="params">ax</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Common axis formatting:</span></span><br><span class="line"><span class="string">        1. Square plotting box.</span></span><br><span class="line"><span class="string">        2. At most 3 major tick labels on x and y axes.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    ax.set_box_aspect(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># nbins=2 usually gives at most 3 major ticks.</span></span><br><span class="line">    ax.xaxis.set_major_locator(MaxNLocator(nbins=<span class="number">2</span>, min_n_ticks=<span class="number">2</span>))</span><br><span class="line">    ax.yaxis.set_major_locator(MaxNLocator(nbins=<span class="number">2</span>, min_n_ticks=<span class="number">2</span>))</span><br><span class="line"></span><br><span class="line">    ax.tick_params(width=<span class="number">1.2</span>, length=<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"><span class="comment"># 2. Load data</span></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">load_data</span>(<span class="params">path</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(path):</span><br><span class="line">        <span class="keyword">raise</span> FileNotFoundError(<span class="string">f&quot;Cannot find data file: <span class="subst">&#123;path&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">    data = np.loadtxt(path, comments=<span class="string">&quot;#&quot;</span>)</span><br><span class="line"></span><br><span class="line">    lam = data[:, <span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">    alpha_xx = data[:, <span class="number">1</span>]</span><br><span class="line">    alpha_xy = data[:, <span class="number">2</span>]</span><br><span class="line">    alpha_yx = data[:, <span class="number">3</span>]</span><br><span class="line">    alpha_yy = data[:, <span class="number">4</span>]</span><br><span class="line">    alpha_zx = data[:, <span class="number">5</span>]</span><br><span class="line">    alpha_zy = data[:, <span class="number">6</span>]</span><br><span class="line"></span><br><span class="line">    alpha_yx_intra = data[:, <span class="number">7</span>]</span><br><span class="line">    alpha_yx_inter = data[:, <span class="number">8</span>]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="string">&quot;lambda&quot;</span>: lam,</span><br><span class="line">        <span class="string">&quot;alpha_xx&quot;</span>: alpha_xx,</span><br><span class="line">        <span class="string">&quot;alpha_xy&quot;</span>: alpha_xy,</span><br><span class="line">        <span class="string">&quot;alpha_yx&quot;</span>: alpha_yx,</span><br><span class="line">        <span class="string">&quot;alpha_yy&quot;</span>: alpha_yy,</span><br><span class="line">        <span class="string">&quot;alpha_zx&quot;</span>: alpha_zx,</span><br><span class="line">        <span class="string">&quot;alpha_zy&quot;</span>: alpha_zy,</span><br><span class="line">        <span class="string">&quot;alpha_yx_intra&quot;</span>: alpha_yx_intra,</span><br><span class="line">        <span class="string">&quot;alpha_yx_inter&quot;</span>: alpha_yx_inter,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"><span class="comment"># 3. Plot tensor components</span></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">plot_alpha_tensor</span>(<span class="params">d</span>):</span><br><span class="line">    lam = d[<span class="string">&quot;lambda&quot;</span>]</span><br><span class="line"></span><br><span class="line">    fig, ax = plt.subplots(figsize=(<span class="number">5.8</span>, <span class="number">5.8</span>))</span><br><span class="line"></span><br><span class="line">    ax.plot(</span><br><span class="line">        lam,</span><br><span class="line">        d[<span class="string">&quot;alpha_yx&quot;</span>],</span><br><span class="line">        marker=<span class="string">&quot;o&quot;</span>,</span><br><span class="line">        markersize=<span class="number">4</span>,</span><br><span class="line">        linewidth=<span class="number">1.8</span>,</span><br><span class="line">        label=<span class="string">r&quot;$\alpha_&#123;yx&#125;$&quot;</span>,</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    ax.plot(</span><br><span class="line">        lam,</span><br><span class="line">        d[<span class="string">&quot;alpha_xy&quot;</span>],</span><br><span class="line">        marker=<span class="string">&quot;s&quot;</span>,</span><br><span class="line">        markersize=<span class="number">4</span>,</span><br><span class="line">        linewidth=<span class="number">1.8</span>,</span><br><span class="line">        linestyle=<span class="string">&quot;--&quot;</span>,</span><br><span class="line">        label=<span class="string">r&quot;$\alpha_&#123;xy&#125;$&quot;</span>,</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> PLOT_ONLY_MAIN_COMPONENTS:</span><br><span class="line">        ax.plot(</span><br><span class="line">            lam,</span><br><span class="line">            d[<span class="string">&quot;alpha_xx&quot;</span>],</span><br><span class="line">            linewidth=<span class="number">1.3</span>,</span><br><span class="line">            linestyle=<span class="string">&quot;:&quot;</span>,</span><br><span class="line">            label=<span class="string">r&quot;$\alpha_&#123;xx&#125;$&quot;</span>,</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">        ax.plot(</span><br><span class="line">            lam,</span><br><span class="line">            d[<span class="string">&quot;alpha_yy&quot;</span>],</span><br><span class="line">            linewidth=<span class="number">1.3</span>,</span><br><span class="line">            linestyle=<span class="string">&quot;-.&quot;</span>,</span><br><span class="line">            label=<span class="string">r&quot;$\alpha_&#123;yy&#125;$&quot;</span>,</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">        ax.plot(</span><br><span class="line">            lam,</span><br><span class="line">            d[<span class="string">&quot;alpha_zx&quot;</span>],</span><br><span class="line">            linewidth=<span class="number">1.1</span>,</span><br><span class="line">            linestyle=(<span class="number">0</span>, (<span class="number">5</span>, <span class="number">2</span>)),</span><br><span class="line">            label=<span class="string">r&quot;$\alpha_&#123;zx&#125;$&quot;</span>,</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">        ax.plot(</span><br><span class="line">            lam,</span><br><span class="line">            d[<span class="string">&quot;alpha_zy&quot;</span>],</span><br><span class="line">            linewidth=<span class="number">1.1</span>,</span><br><span class="line">            linestyle=(<span class="number">0</span>, (<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">2</span>)),</span><br><span class="line">            label=<span class="string">r&quot;$\alpha_&#123;zy&#125;$&quot;</span>,</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    ax.axhline(<span class="number">0.0</span>, linewidth=<span class="number">1.0</span>, color=<span class="string">&quot;black&quot;</span>, alpha=<span class="number">0.5</span>)</span><br><span class="line"></span><br><span class="line">    ax.set_xlabel(<span class="string">r&quot;Rashba SOC $\lambda_R/t$&quot;</span>)</span><br><span class="line">    ax.set_ylabel(<span class="string">r&quot;Edelstein response $\alpha_&#123;ab&#125;$&quot;</span>)</span><br><span class="line"></span><br><span class="line">    ax.set_xlim(lam.<span class="built_in">min</span>(), lam.<span class="built_in">max</span>())</span><br><span class="line"></span><br><span class="line">    format_axes(ax)</span><br><span class="line"></span><br><span class="line">    ax.legend(fontsize=<span class="number">12</span>, loc=<span class="string">&quot;best&quot;</span>)</span><br><span class="line"></span><br><span class="line">    fig.tight_layout()</span><br><span class="line"></span><br><span class="line">    png_path = os.path.join(FIG_DIR, <span class="string">f&quot;<span class="subst">&#123;SAVE_PREFIX&#125;</span>_alpha_tensor.png&quot;</span>)</span><br><span class="line">    pdf_path = os.path.join(FIG_DIR, <span class="string">f&quot;<span class="subst">&#123;SAVE_PREFIX&#125;</span>_alpha_tensor.pdf&quot;</span>)</span><br><span class="line"></span><br><span class="line">    fig.savefig(png_path, dpi=<span class="number">300</span>, bbox_inches=<span class="string">&quot;tight&quot;</span>, pad_inches=<span class="number">0.02</span>)</span><br><span class="line">    fig.savefig(pdf_path, bbox_inches=<span class="string">&quot;tight&quot;</span>, pad_inches=<span class="number">0.02</span>)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Saved figure: <span class="subst">&#123;png_path&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Saved figure: <span class="subst">&#123;pdf_path&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> fig, ax</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"><span class="comment"># 4. Plot intra/inter decomposition</span></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">plot_alpha_yx_intra_inter</span>(<span class="params">d</span>):</span><br><span class="line">    lam = d[<span class="string">&quot;lambda&quot;</span>]</span><br><span class="line"></span><br><span class="line">    fig, ax = plt.subplots(figsize=(<span class="number">5.8</span>, <span class="number">5.8</span>))</span><br><span class="line"></span><br><span class="line">    ax.plot(</span><br><span class="line">        lam,</span><br><span class="line">        d[<span class="string">&quot;alpha_yx&quot;</span>],</span><br><span class="line">        marker=<span class="string">&quot;o&quot;</span>,</span><br><span class="line">        markersize=<span class="number">4</span>,</span><br><span class="line">        linewidth=<span class="number">1.8</span>,</span><br><span class="line">        label=<span class="string">r&quot;total $\alpha_&#123;yx&#125;$&quot;</span>,</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    ax.plot(</span><br><span class="line">        lam,</span><br><span class="line">        d[<span class="string">&quot;alpha_yx_intra&quot;</span>],</span><br><span class="line">        linewidth=<span class="number">1.8</span>,</span><br><span class="line">        linestyle=<span class="string">&quot;--&quot;</span>,</span><br><span class="line">        label=<span class="string">r&quot;intra-band&quot;</span>,</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    ax.plot(</span><br><span class="line">        lam,</span><br><span class="line">        d[<span class="string">&quot;alpha_yx_inter&quot;</span>],</span><br><span class="line">        linewidth=<span class="number">1.8</span>,</span><br><span class="line">        linestyle=<span class="string">&quot;-.&quot;</span>,</span><br><span class="line">        label=<span class="string">r&quot;inter-band&quot;</span>,</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    ax.axhline(<span class="number">0.0</span>, linewidth=<span class="number">1.0</span>, color=<span class="string">&quot;black&quot;</span>, alpha=<span class="number">0.5</span>)</span><br><span class="line"></span><br><span class="line">    ax.set_xlabel(<span class="string">r&quot;Rashba SOC $\lambda_R/t$&quot;</span>)</span><br><span class="line">    ax.set_ylabel(<span class="string">r&quot;$\alpha_&#123;yx&#125;$&quot;</span>)</span><br><span class="line"></span><br><span class="line">    ax.set_xlim(lam.<span class="built_in">min</span>(), lam.<span class="built_in">max</span>())</span><br><span class="line"></span><br><span class="line">    format_axes(ax)</span><br><span class="line"></span><br><span class="line">    ax.legend(fontsize=<span class="number">12</span>, loc=<span class="string">&quot;best&quot;</span>)</span><br><span class="line"></span><br><span class="line">    fig.tight_layout()</span><br><span class="line"></span><br><span class="line">    png_path = os.path.join(FIG_DIR, <span class="string">f&quot;<span class="subst">&#123;SAVE_PREFIX&#125;</span>_alpha_yx_intra_inter.png&quot;</span>)</span><br><span class="line">    pdf_path = os.path.join(FIG_DIR, <span class="string">f&quot;<span class="subst">&#123;SAVE_PREFIX&#125;</span>_alpha_yx_intra_inter.pdf&quot;</span>)</span><br><span class="line"></span><br><span class="line">    fig.savefig(png_path, dpi=<span class="number">300</span>, bbox_inches=<span class="string">&quot;tight&quot;</span>, pad_inches=<span class="number">0.02</span>)</span><br><span class="line">    fig.savefig(pdf_path, bbox_inches=<span class="string">&quot;tight&quot;</span>, pad_inches=<span class="number">0.02</span>)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Saved figure: <span class="subst">&#123;png_path&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Saved figure: <span class="subst">&#123;pdf_path&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> fig, ax</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"><span class="comment"># 5. Main</span></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    setup_style()</span><br><span class="line"></span><br><span class="line">    os.makedirs(FIG_DIR, exist_ok=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    d = load_data(DATA_FILE)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;=&quot;</span> * <span class="number">80</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Loaded data&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;=&quot;</span> * <span class="number">80</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Data file       = <span class="subst">&#123;DATA_FILE&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Number of SOCs  = <span class="subst">&#123;<span class="built_in">len</span>(d[<span class="string">&#x27;lambda&#x27;</span>])&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;lambda range    = [<span class="subst">&#123;d[<span class="string">&#x27;lambda&#x27;</span>].<span class="built_in">min</span>():<span class="number">.6</span>f&#125;</span>, <span class="subst">&#123;d[<span class="string">&#x27;lambda&#x27;</span>].<span class="built_in">max</span>():<span class="number">.6</span>f&#125;</span>]&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;=&quot;</span> * <span class="number">80</span>)</span><br><span class="line"></span><br><span class="line">    plot_alpha_tensor(d)</span><br><span class="line">    plot_alpha_yx_intra_inter(d)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> SHOW_FIG:</span><br><span class="line">        plt.show()</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        plt.close(<span class="string">&quot;all&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<div style="display: flex; justify-content: space-between;">
+  <img src="/assets/images/SC/rashba_lattice_edelstein_alpha_tensor.png" alt="Image 1" width="40%" />
+  <img src="/assets/images/SC/rashba_lattice_edelstein_alpha_yx_intra_inter.png" alt="Image 1" width="40%" />
+</div>
+
+<p><a href="/assets/data/PRL-134-026001.zip">完整程序点击这里下载</a></p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ol>
+<li><a target="_blank" rel="noopener" href="https://link.aps.org/doi/10.1103/PhysRevLett.134.026001">Nonlinear Superconducting Magnetoelectric Effect</a></li>
+</ol>
+<div class="note red flat"><p>鉴于该网站分享的大都是学习笔记，作者水平有限，若发现有问题可以发邮件给我</p>
+<ul>
+<li><strong>yxliphy@gmail.com</strong></li>
+</ul>
+<p>也非常欢迎喜欢分享的小伙伴投稿</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="/about">Yu-Xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2026/05/17/2026-05-17-SC-Edelstein/">http://example.com/2026/05/17/2026-05-17-SC-Edelstein/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Yu-Xuan's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Code/">Code</a><a class="post-meta__tags" href="/tags/Superconductor/">Superconductor</a><a class="post-meta__tags" href="/tags/Transport/">Transport</a></div><div class="post-share"><div class="social-share" data-image="/assets/images/SC/SC-Edelstein.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg"/></a><div class="post-qr-code-desc"></div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg"/></a><div class="post-qr-code-desc"></div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width no-desc" href="/2026/05/17/2026-05-17-Hartree-Fock/" title="Hartree Fock平均场方法"><img class="cover" src="/assets/images/FengMian/Hartree-Fock.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Hartree Fock平均场方法</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related no-desc" href="/2026/01/19/2026-01-19-T-Structure/" title="构建T结构模拟Majorana移动"><img class="cover" src="/assets/images/Majorana/T-structure.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-01-19</div><div class="info-item-2">构建T结构模拟Majorana移动</div></div></div></a><a class="pagination-related no-desc" href="/2026/05/09/2026-05-09-SC-weight/" title="超流权重推导与结果复现（能带简并情形）"><img class="cover" src="/assets/images/SC/sc-weight.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-05-09</div><div class="info-item-2">超流权重推导与结果复现（能带简并情形）</div></div></div></a><a class="pagination-related no-desc" href="/2026/05/10/2026-05-10-SC-RPA/" title="排斥相互作用产生超导,理论推导与数值实现（RPA计算超导）"><img class="cover" src="/assets/images/SC/gap_raw_on_FS_delta_0p23_mode_01.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-05-10</div><div class="info-item-2">排斥相互作用产生超导,理论推导与数值实现（RPA计算超导）</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description">知行合一</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">359</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yxli8023"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:yxliphy@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><div style="text-align:center;"> <img src="/assets/images/qrcode.jpg" alt="公告图" style="max-width:100%; border-radius:10px; margin-bottom:10px;"> <br> 欢迎关注公众号，有趣的内容也会在上面同步。 有密码的文章属于正在建设中或者没有通过验证的内容，若有需要可通过邮件联系。</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B6%85%E5%AF%BC%E7%A3%81%E7%94%B5%E6%95%88%E5%BA%94"><span class="toc-number">1.</span> <span class="toc-text">超导磁电效应</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A3%81%E5%8C%96%E7%9A%84%E7%83%AD%E5%8A%9B%E5%AD%A6%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.</span> <span class="toc-text">磁化的热力学定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rashba-%E8%B6%85%E5%AF%BC"><span class="toc-number">1.2.</span> <span class="toc-text">Rashba 超导</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E7%A7%B0%E6%80%A7%E7%BA%A6%E6%9D%9F"><span class="toc-number">1.3.</span> <span class="toc-text">对称性约束</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E4%BB%A3%E7%A0%81"><span class="toc-number">2.</span> <span class="toc-text">程序代码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">3.</span> <span class="toc-text">参考文献</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/05/17/2026-05-17-Hartree-Fock/" title="Hartree Fock平均场方法"><img src="/assets/images/FengMian/Hartree-Fock.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hartree Fock平均场方法"/></a><div class="content"><a class="title" href="/2026/05/17/2026-05-17-Hartree-Fock/" title="Hartree Fock平均场方法">Hartree Fock平均场方法</a><time datetime="2026-05-16T16:00:00.000Z" title="发表于 2026-05-17 00:00:00">2026-05-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/05/17/2026-05-17-SC-Edelstein/" title="超导磁电效应"><img src="/assets/images/SC/SC-Edelstein.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导磁电效应"/></a><div class="content"><a class="title" href="/2026/05/17/2026-05-17-SC-Edelstein/" title="超导磁电效应">超导磁电效应</a><time datetime="2026-05-16T16:00:00.000Z" title="发表于 2026-05-17 00:00:00">2026-05-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/05/16/2026-05-16-BdG-Current/" title="BdG 格点体系中Josephson键电流的格林函数推导"><img src="/assets/images/SC/lattice-GF.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="BdG 格点体系中Josephson键电流的格林函数推导"/></a><div class="content"><a class="title" href="/2026/05/16/2026-05-16-BdG-Current/" title="BdG 格点体系中Josephson键电流的格林函数推导">BdG 格点体系中Josephson键电流的格林函数推导</a><time datetime="2026-05-15T16:00:00.000Z" title="发表于 2026-05-16 00:00:00">2026-05-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/05/16/2026-05-16-TSC-Tomasch-Oscallation/" title="二维NSN结中的Tomasch振荡"><img src="/assets/images/SC/Tomasch-Oscillations.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="二维NSN结中的Tomasch振荡"/></a><div class="content"><a class="title" href="/2026/05/16/2026-05-16-TSC-Tomasch-Oscallation/" title="二维NSN结中的Tomasch振荡">二维NSN结中的Tomasch振荡</a><time datetime="2026-05-15T16:00:00.000Z" title="发表于 2026-05-16 00:00:00">2026-05-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/05/15/2026-05-15-CPR-Green/" title="Matsubara格林函数方法计算 Josephson 电流"><img src="/assets/images/SC/CPR-Green.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Matsubara格林函数方法计算 Josephson 电流"/></a><div class="content"><a class="title" href="/2026/05/15/2026-05-15-CPR-Green/" title="Matsubara格林函数方法计算 Josephson 电流">Matsubara格林函数方法计算 Josephson 电流</a><time datetime="2026-05-14T16:00:00.000Z" title="发表于 2026-05-15 00:00:00">2026-05-15</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/assets/images/SC/SC-Edelstein.png);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div><div class="footer_custom_text">Welcome to  Yu-Xuan's Blog</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  const initGitalk = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGitalk = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const gitalk = new Gitalk({
+      clientID: 'Ov23li0WvZEaIAZ7RFtH',
+      clientSecret: '03fcb77b7c28dafcdde00756e27f9b5bc76639e8',
+      repo: 'yxli8023.github.io',
+      owner: 'yxli8023',
+      admin: ['yxli8023'],
+      updateCountCallback: commentCount,
+      ...option,
+      id: isShuoshuo ? path : (option && option.id) || '12a0366f9973588f7b799f925fba82b5'
+    })
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async(el, path) => {
+    if (typeof Gitalk === 'function') initGitalk(el, path)
+    else {
+      await btf.getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await btf.getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Gitalk' === 'Gitalk'
+      ? window.shuoshuoComment = { loadComment: loadGitalk }
+      : window.loadOtherComment = loadGitalk
+    return
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
