@@ -1,0 +1,623 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Odd-parity magnets toy model | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Odd-parity magnets toy model      考虑一条一维链，原始晶格常数为 a，每个格点包含一个轨道和两个真实自旋自由度。模型的磁性周期为四个原始格点，因此一个磁性单胞包含四个子格  A,\ B,\ C,\ D .用 R 标记磁性单胞，用 s&#x3D;0,1,2,3 标记单胞内子格，即  s&#x3D;0,1,2,3 \quad\leftrightarrow\quad A,B,C,D .物理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Odd-parity magnets toy model">
+<meta property="og:url" content="http://example.com/2026/05/31/2026-05-31-odd-AM/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39;s Blog">
+<meta property="og:description" content="Odd-parity magnets toy model      考虑一条一维链，原始晶格常数为 a，每个格点包含一个轨道和两个真实自旋自由度。模型的磁性周期为四个原始格点，因此一个磁性单胞包含四个子格  A,\ B,\ C,\ D .用 R 标记磁性单胞，用 s&#x3D;0,1,2,3 标记单胞内子格，即  s&#x3D;0,1,2,3 \quad\leftrightarrow\quad A,B,C,D .物理">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/assets/images/Altermagnets/odd-AM.png">
+<meta property="article:published_time" content="2026-05-30T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-06-01T13:13:07.656Z">
+<meta property="article:author" content="Yu-Xuan">
+<meta property="article:tag" content="Code">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Altermagnets">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/images/Altermagnets/odd-AM.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Odd-parity magnets toy model",
+  "url": "http://example.com/2026/05/31/2026-05-31-odd-AM/",
+  "image": "http://example.com/assets/images/Altermagnets/odd-AM.png",
+  "datePublished": "2026-05-30T16:00:00.000Z",
+  "dateModified": "2026-06-01T13:13:07.656Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yu-Xuan",
+      "url": "http://example.com/about"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/logo.png"><link rel="canonical" href="http://example.com/2026/05/31/2026-05-31-odd-AM/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"作者: Yu-Xuan","link":"链接: ","source":"来源: Yu-Xuan's Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'medium_zoom',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#f54966","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Odd-parity magnets toy model',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #dbeffd;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">364</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/assets/images/Altermagnets/odd-AM.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo.png" alt="Logo"><span class="site-name">Yu-Xuan's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">Odd-parity magnets toy model</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Odd-parity magnets toy model</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-05-30T16:00:00.000Z" title="发表于 2026-05-31 00:00:00">2026-05-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-06-01T13:13:07.656Z" title="更新于 2026-06-01 21:13:07">2026-06-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Altermagnets/">Altermagnets</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">3.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>19分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;自上次更新已经过了&quot;,&quot;messageNext&quot;:&quot;天，文章内容可能已过时。&quot;,&quot;postUpdate&quot;:&quot;2026-06-01 21:13:07&quot;}" hidden></div><h1 id="Odd-parity-magnets-toy-model"><a href="#Odd-parity-magnets-toy-model" class="headerlink" title="Odd-parity magnets toy model"></a>Odd-parity magnets toy model</h1><div style="display: flex; justify-content: space-between;">
+  <img src="/assets/images/Altermagnets/odd-AM.png" alt="Image 1" width="95%" />
+</div>
+
+<p>考虑一条一维链，原始晶格常数为 <script type="math/tex">a</script>，每个格点包含一个轨道和两个真实自旋自由度。模型的磁性周期为四个原始格点，因此一个磁性单胞包含四个子格</p>
+<script type="math/tex; mode=display">
+A,\ B,\ C,\ D .</script><p>用 <script type="math/tex">R</script> 标记磁性单胞，用 <script type="math/tex">s=0,1,2,3</script> 标记单胞内子格，即</p>
+<script type="math/tex; mode=display">
+s=0,1,2,3
+\quad\leftrightarrow\quad
+A,B,C,D .</script><p>物理格点编号为$j=4R+s$，相应电子算符记为</p>
+<script type="math/tex; mode=display">
+c_{Rs\sigma},
+\qquad
+\sigma=\uparrow,\downarrow .</script><p>磁性单胞长度为$a_{\rm M}=4a$，模型的四个子格局域磁矩取为</p>
+<script type="math/tex; mode=display">
+\mathbf m_A=\frac{1}{\sqrt3}(1,1,1),
+\qquad
+\mathbf m_B=\frac{1}{\sqrt3}(1,1,-1),\qquad \mathbf m_C=\frac{1}{\sqrt3}(-1,-1,-1),
+\qquad
+\mathbf m_D=\frac{1}{\sqrt3}(-1,-1,1).</script><p>它们满足</p>
+<script type="math/tex; mode=display">
+\mathbf m_C=-\mathbf m_A,
+\qquad
+\mathbf m_D=-\mathbf m_B,</script><p>也就是$\mathbf m_{s+2}=-\mathbf m_s$。因此，平移两个原始格点会使局域磁矩整体反号，这是该模型最关键的实空间结构。</p>
+<p>模型哈密顿量写为$H=H_t+H_J$，最近邻自旋无关 hopping 为</p>
+<script type="math/tex; mode=display">
+H_t
+=
+t\sum_{j,\sigma}
+\left(
+c_{j\sigma}^\dagger c_{j+1,\sigma}
++
+c_{j+1,\sigma}^\dagger c_{j\sigma}
+\right).</script><p>用磁性单胞表示，</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+H_t
+=
+t\sum_{R,\sigma}
+\Big(
+&c_{RA\sigma}^\dagger c_{RB\sigma}
++
+c_{RB\sigma}^\dagger c_{RC\sigma}
++
+c_{RC\sigma}^\dagger c_{RD\sigma}
++
+c_{RD\sigma}^\dagger c_{R+1,A,\sigma}
++
+{\rm H.c.}
+\Big).
+\end{aligned}</script><p>前三项是磁性单胞内部跃迁，最后一项是跨磁性单胞跃迁。局域交换项为</p>
+<script type="math/tex; mode=display">
+H_J
+=
+J\sum_{R,s}
+c_{Rs}^\dagger
+\left(
+\mathbf m_s\cdot\boldsymbol\sigma
+\right)
+c_{Rs},</script><p>其中</p>
+<script type="math/tex; mode=display">
+c_{Rs}
+=
+\begin{pmatrix}
+c_{Rs\uparrow}\\
+c_{Rs\downarrow}
+\end{pmatrix},
+\qquad
+\boldsymbol\sigma=(\sigma_x,\sigma_y,\sigma_z).</script><p>于是四个子格上的 onsite exchange matrix 分别为</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&M_A
+=
+\frac{J}{\sqrt3}
+(\sigma_x+\sigma_y+\sigma_z),\quad M_B
+=
+\frac{J}{\sqrt3}
+(\sigma_x+\sigma_y-\sigma_z),\\
+&M_C
+=
+-\frac{J}{\sqrt3}
+(\sigma_x+\sigma_y+\sigma_z),\quad M_D
+=
+\frac{J}{\sqrt3}
+(-\sigma_x-\sigma_y+\sigma_z).
+\end{aligned}</script><p>由于磁性周期为 <script type="math/tex">4a</script>，动量空间应使用磁性 Brillouin zone。定义无量纲磁性单胞动量</p>
+<script type="math/tex; mode=display">
+K=4k_xa,
+\qquad
+K\in[-\pi,\pi].</script><p>采用元胞周期规范</p>
+<script type="math/tex; mode=display">
+c_{Rs\sigma}
+=
+\frac{1}{\sqrt N}
+\sum_K
+e^{iKR}
+c_{Ks\sigma},\qquad c_{Ks\sigma}
+=
+\frac{1}{\sqrt N}
+\sum_R
+e^{-iKR}
+c_{Rs\sigma}.</script><p>这个规范只把磁性单胞编号 <script type="math/tex">R</script> 放入 Fourier 相位，而不把子格内部位置 <script type="math/tex">sa</script> 放入指数中。因此单胞内 hopping 不带动量相位，只有跨单胞 hopping 带 <script type="math/tex">e^{\pm iK}</script>。</p>
+<p>以单胞内 <script type="math/tex">A_R\rightarrow B_R</script> hopping 为例，</p>
+<script type="math/tex; mode=display">
+t\sum_R c_{RA\sigma}^\dagger c_{RB\sigma}
+=
+\frac{t}{N}
+\sum_{R,K,K'}
+e^{-iKR}e^{iK'R}
+c_{KA\sigma}^\dagger c_{K'B\sigma}.</script><p>利用</p>
+<script type="math/tex; mode=display">
+\sum_R e^{i(K'-K)R}
+=
+N\delta_{K,K'},</script><p>得到</p>
+<script type="math/tex; mode=display">
+t\sum_K
+c_{KA\sigma}^\dagger c_{KB\sigma}.</script><p>因此单胞内 hopping 给出</p>
+<script type="math/tex; mode=display">
+A\leftrightarrow B:\quad t\sigma_0,\quad B\leftrightarrow C:\quad t\sigma_0,\quad C\leftrightarrow D:\quad t\sigma_0.</script><p>跨单胞 hopping 为</p>
+<script type="math/tex; mode=display">
+t\sum_R c_{RD\sigma}^\dagger c_{R+1,A,\sigma}.</script><p>代入 Bloch 变换：</p>
+<script type="math/tex; mode=display">
+c_{RD\sigma}^\dagger
+=
+\frac{1}{\sqrt N}
+\sum_K
+e^{-iKR}
+c_{KD\sigma}^\dagger,\qquad c_{R+1,A,\sigma}
+=
+\frac{1}{\sqrt N}
+\sum_{K'}
+e^{iK'(R+1)}
+c_{K'A\sigma}.</script><p>于是</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+t\sum_R c_{RD\sigma}^\dagger c_{R+1,A,\sigma}
+&=
+\frac{t}{N}
+\sum_{R,K,K'}
+e^{-iKR}e^{iK'(R+1)}
+c_{KD\sigma}^\dagger c_{K'A\sigma}
+=
+t\sum_K
+e^{iK}
+c_{KD\sigma}^\dagger c_{KA\sigma}.
+\end{aligned}</script><p>因此跨单胞项给出</p>
+<script type="math/tex; mode=display">
+D_R\rightarrow A_{R+1}:
+\quad
+t e^{iK}\sigma_0,</script><p>其厄米共轭给出</p>
+<script type="math/tex; mode=display">
+A_{R+1}\rightarrow D_R:
+\quad
+t e^{-iK}\sigma_0.</script><p>取 Bloch 基矢</p>
+<script type="math/tex; mode=display">
+\Psi_K
+=
+\left(
+c_{KA\uparrow},
+c_{KA\downarrow},
+c_{KB\uparrow},
+c_{KB\downarrow},
+c_{KC\uparrow},
+c_{KC\downarrow},
+c_{KD\uparrow},
+c_{KD\downarrow}
+\right)^T.</script><p>则</p>
+<script type="math/tex; mode=display">
+H
+=
+\sum_K
+\Psi_K^\dagger
+h(K)
+\Psi_K.</script><p>动量空间哈密顿量为</p>
+<script type="math/tex; mode=display">
+h(K)
+=
+\begin{pmatrix}
+M_A & t\sigma_0 & 0 & t e^{-iK}\sigma_0\\
+t\sigma_0 & M_B & t\sigma_0 & 0\\
+0 & t\sigma_0 & M_C & t\sigma_0\\
+t e^{iK}\sigma_0 & 0 & t\sigma_0 & M_D
+\end{pmatrix}.</script><p>这里每一个矩阵元都是 <script type="math/tex">2\times2</script> 自旋矩阵，因此 <script type="math/tex">h(K)</script> 是一个 <script type="math/tex">8\times8</script> 矩阵。对角化</p>
+<script type="math/tex; mode=display">
+h(K)|u_{nK}\rangle
+=
+E_n(K)|u_{nK}\rangle</script><p>即可得到能带。第 <script type="math/tex">n</script> 条能带的自旋期望值定义为</p>
+<script type="math/tex; mode=display">
+s_\alpha^{(n)}(K)
+=
+\langle u_{nK}|
+\mathcal S_\alpha
+|u_{nK}\rangle,
+\qquad
+\alpha=x,y,z,</script><p>其中完整子格-自旋空间中的自旋算符为$\mathcal S_\alpha<br>=<br>I_4\otimes\sigma_\alpha$，因此</p>
+<script type="math/tex; mode=display">
+s_\alpha^{(n)}(K)
+=
+u_{nK}^\dagger
+\left(
+I_4\otimes\sigma_\alpha
+\right)
+u_{nK}.</script><p>如果某个 <script type="math/tex">K</script> 点存在严格简并，则单条能带的自旋期望值可能依赖于简并子空间中本征矢的选取。此时更严格的做法是在简并子空间内重新对角化自旋算符，或者只讨论非简并区域的自旋纹理。</p>
+<p>该模型最重要的对称性有两个。第一是半磁性周期平移与时间反演的组合。定义</p>
+<script type="math/tex; mode=display">
+\tau_2:\quad j\rightarrow j+2.</script><p>由于</p>
+<script type="math/tex; mode=display">
+\mathbf m_{j+2}=-\mathbf m_j,</script><p>单独的 <script type="math/tex">\tau_2</script> 不是磁结构的对称性。真实时间反演 <script type="math/tex">\mathcal T</script> 使电子自旋反号：</p>
+<script type="math/tex; mode=display">
+\mathcal T\boldsymbol\sigma\mathcal T^{-1}
+=
+-\boldsymbol\sigma.</script><p>因此交换项在 <script type="math/tex">\tau_2</script> 下变为</p>
+<script type="math/tex; mode=display">
+\mathbf m_{j+2}\cdot\boldsymbol\sigma
+=
+-\mathbf m_j\cdot\boldsymbol\sigma,</script><p>再经过 <script type="math/tex">\mathcal T</script> 后，自旋矩阵反号，于是重新回到</p>
+<script type="math/tex; mode=display">
+\mathbf m_j\cdot\boldsymbol\sigma.</script><p>所以组合反幺正操作</p>
+<script type="math/tex; mode=display">
+\widetilde{\mathcal T}
+=
+\mathcal T\tau_2</script><p>是体系的对称性，并满足</p>
+<script type="math/tex; mode=display">
+\widetilde{\mathcal T}
+h(K)
+\widetilde{\mathcal T}^{-1}
+=
+h(-K).</script><p>因为 <script type="math/tex">\tau_2</script> 是半个磁性单胞平移，所以$\tau_2^2=\tau_4$，其中 <script type="math/tex">\tau_4</script> 是完整磁性单胞平移。在 Bloch 态上，完整磁性单胞平移给出相位 <script type="math/tex">e^{iK}</script> 或 <script type="math/tex">e^{-iK}</script>，具体符号取决于 Bloch 变换约定。由于自旋 <script type="math/tex">1/2</script> 电子满足</p>
+<script type="math/tex; mode=display">
+\mathcal T^2=-1,</script><p>于是</p>
+<script type="math/tex; mode=display">
+\widetilde{\mathcal T}^2
+=
+-e^{iK},</script><p>或者等价地写为</p>
+<script type="math/tex; mode=display">
+\widetilde{\mathcal T}^2
+=
+-e^{-iK}.</script><p>物理结论是</p>
+<script type="math/tex; mode=display">
+K=0:
+\qquad
+\widetilde{\mathcal T}^2=-1,</script><p>因此有 Kramers-like 简并；而</p>
+<script type="math/tex; mode=display">
+K=\pi:
+\qquad
+\widetilde{\mathcal T}^2=+1,</script><p>因此不再强制 Kramers-like 简并。也就是说，真实时间反演已经被磁序破坏，但组合反幺正对称性仍然可以在特定动量点保护简并。另一些 TRIM 点则允许简并被打开，这可以理解为 hidden Zeeman field 的能带表现。</p>
+<p>第二个关键对称性是空间反演与自旋旋转的组合。取一维反演 <script type="math/tex">P</script>，使其在四子格之间实现</p>
+<script type="math/tex; mode=display">
+P:\quad A\leftrightarrow D,
+\qquad
+B\leftrightarrow C.</script><p>再考虑绕 <script type="math/tex">z</script> 轴的自旋 <script type="math/tex">\pi</script> 旋转$U_z(\pi)$，它对自旋分量的作用为</p>
+<script type="math/tex; mode=display">
+\sigma_x\rightarrow-\sigma_x,
+\qquad
+\sigma_y\rightarrow-\sigma_y,
+\qquad
+\sigma_z\rightarrow\sigma_z.</script><p>对磁矩向量也相应有</p>
+<script type="math/tex; mode=display">
+(m_x,m_y,m_z)
+\rightarrow
+(-m_x,-m_y,m_z).</script><p>逐个检查四个磁矩：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&U_z(\pi)\mathbf m_A
+=
+\frac{1}{\sqrt3}(-1,-1,1)
+=
+\mathbf m_D,\qquad U_z(\pi)\mathbf m_B
+=
+\frac{1}{\sqrt3}(-1,-1,-1)
+=
+\mathbf m_C,\\
+&U_z(\pi)\mathbf m_C
+=
+\frac{1}{\sqrt3}(1,1,-1)
+=
+\mathbf m_B,\qquad  U_z(\pi)\mathbf m_D
+=
+\frac{1}{\sqrt3}(1,1,1)
+=
+\mathbf m_A.
+\end{aligned}</script><p>因此 <script type="math/tex">P</script> 交换子格，<script type="math/tex">U_z(\pi)</script> 旋转自旋，二者组合后保持磁结构不变。这个组合对称性可以写为$\{U_z(\pi)\Vert P\}$，它在动量空间中使$K\rightarrow -K$，同时使自旋分量变换为</p>
+<script type="math/tex; mode=display">
+(s_x,s_y,s_z)
+\rightarrow
+(-s_x,-s_y,s_z).</script><p>因此它给出约束</p>
+<script type="math/tex; mode=display">
+s_x(K)=-s_x(-K),\quad s_y(K)=-s_y(-K),\quad s_z(K)=s_z(-K).</script><p>另一方面，<script type="math/tex">\widetilde{\mathcal T}=\mathcal T\tau_2</script> 包含时间反演，因此它使自旋反号，并把 <script type="math/tex">K</script> 变为 <script type="math/tex">-K</script>。所以它给出</p>
+<script type="math/tex; mode=display">
+\mathbf s(K)=-\mathbf s(-K),</script><p>即</p>
+<script type="math/tex; mode=display">
+s_x(K)=-s_x(-K),\quad s_y(K)=-s_y(-K),\quad s_z(K)=-s_z(-K).</script><p>合并两个对称性的约束。对于 <script type="math/tex">x,y</script> 分量，两者都允许</p>
+<script type="math/tex; mode=display">
+s_x(K)=-s_x(-K),
+\qquad
+s_y(K)=-s_y(-K).</script><p>但对于 <script type="math/tex">z</script> 分量，一个对称性要求</p>
+<script type="math/tex; mode=display">
+s_z(K)=-s_z(-K),</script><p>另一个要求</p>
+<script type="math/tex; mode=display">
+s_z(K)=s_z(-K).</script><p>二者同时成立只能给出</p>
+<script type="math/tex; mode=display">
+s_z(K)=0.</script><p>因此该模型的动量空间自旋纹理满足</p>
+<script type="math/tex; mode=display">
+\boxed{
+s_z(K)=0,
+\qquad
+s_x(K),s_y(K)\ \text{are odd in }K.
+}</script><p>局域磁序本身是非共面的，因为四个 <script type="math/tex">\mathbf m_s</script> 不在同一个平面内；但动量空间能带的自旋纹理被对称性限制在 <script type="math/tex">xy</script> 平面内。因此该 toy model 体现的是</p>
+<script type="math/tex; mode=display">
+\text{noncoplanar real-space magnetic texture}
+\quad
+\Longrightarrow
+\quad
+\text{coplanar odd-parity spin texture in momentum space}.</script><p>简言之，四子格磁序破坏真实时间反演，但保留 <script type="math/tex">\mathcal T\tau_2</script>，使动量空间自旋纹理具有 odd parity；同时保留 <script type="math/tex">\{U_z(\pi)\Vert P\}</script>，进一步强制 <script type="math/tex">s_z(K)=0</script>。因此，该模型不是普通反铁磁链，而是由磁性半平移和自旋-空间组合对称性共同约束的 odd-parity magnetic chain。</p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br><span class="line">453</span><br><span class="line">454</span><br><span class="line">455</span><br><span class="line">456</span><br><span class="line">457</span><br><span class="line">458</span><br><span class="line">459</span><br><span class="line">460</span><br><span class="line">461</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Band structure of the 1D odd-parity magnets toy model.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Magnetic unit cell:</span></span><br><span class="line"><span class="string">    A, B, C, D</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Local moments:</span></span><br><span class="line"><span class="string">    m_A = ( 1,  1,  1) / sqrt(3)</span></span><br><span class="line"><span class="string">    m_B = ( 1,  1, -1) / sqrt(3)</span></span><br><span class="line"><span class="string">    m_C = (-1, -1, -1) / sqrt(3)</span></span><br><span class="line"><span class="string">    m_D = (-1, -1,  1) / sqrt(3)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Hamiltonian:</span></span><br><span class="line"><span class="string">    H = t sum_&lt;ij&gt;,s c^dag_&#123;i s&#125; c_&#123;j s&#125;</span></span><br><span class="line"><span class="string">        + J sum_i c^dag_i [m_i · sigma] c_i</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Momentum:</span></span><br><span class="line"><span class="string">    K = 4 k_x a</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Bloch Hamiltonian:</span></span><br><span class="line"><span class="string">    h(K) =</span></span><br><span class="line"><span class="string">    [ M_A          t I        0          t e^&#123;-iK&#125; I ]</span></span><br><span class="line"><span class="string">    [ t I          M_B        t I        0           ]</span></span><br><span class="line"><span class="string">    [ 0            t I        M_C        t I         ]</span></span><br><span class="line"><span class="string">    [ t e^&#123;iK&#125; I   0          t I        M_D         ]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Outputs:</span></span><br><span class="line"><span class="string">    output_opm_toy_band/data/bands_and_spin.npz</span></span><br><span class="line"><span class="string">    output_opm_toy_band/figures/band_plain.png</span></span><br><span class="line"><span class="string">    output_opm_toy_band/figures/band_spin_x.png</span></span><br><span class="line"><span class="string">    output_opm_toy_band/figures/band_spin_y.png</span></span><br><span class="line"><span class="string">    output_opm_toy_band/figures/band_spin_z.png</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> matplotlib.collections <span class="keyword">import</span> LineCollection</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"><span class="comment"># 0. User parameters</span></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"></span><br><span class="line">RUN_CALCULATION = <span class="literal">True</span></span><br><span class="line">RUN_PLOTTING = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Model parameters</span></span><br><span class="line">T_HOP = <span class="number">1.0</span></span><br><span class="line">JEX = <span class="number">0.5</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># k mesh in magnetic Brillouin zone K in [-pi, pi]</span></span><br><span class="line">NK = <span class="number">1001</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Optional chemical-potential guide line</span></span><br><span class="line">DRAW_MU_LINE = <span class="literal">True</span></span><br><span class="line">MU = -<span class="number">1.0</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Output folders</span></span><br><span class="line">OUTPUT_DIR = <span class="string">&quot;output_opm_toy_band&quot;</span></span><br><span class="line">DATA_DIR = os.path.join(OUTPUT_DIR, <span class="string">&quot;data&quot;</span>)</span><br><span class="line">FIG_DIR = os.path.join(OUTPUT_DIR, <span class="string">&quot;figures&quot;</span>)</span><br><span class="line"></span><br><span class="line">SAVE_FIGURES = <span class="literal">True</span></span><br><span class="line">SHOW_FIGURES = <span class="literal">True</span></span><br><span class="line">DPI = <span class="number">300</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Plot windows</span></span><br><span class="line">E_WINDOW = (-<span class="number">2.4</span>, <span class="number">2.4</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Spin-colored band plot controls</span></span><br><span class="line">SPIN_CMAP = <span class="string">&quot;bwr&quot;</span></span><br><span class="line">SPIN_VMIN = -<span class="number">1.0</span></span><br><span class="line">SPIN_VMAX = <span class="number">1.0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"><span class="comment"># 1. Pauli matrices</span></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"></span><br><span class="line">sigma_0 = np.array([[<span class="number">1</span>, <span class="number">0</span>], [<span class="number">0</span>, <span class="number">1</span>]], dtype=<span class="built_in">complex</span>)</span><br><span class="line">sigma_x = np.array([[<span class="number">0</span>, <span class="number">1</span>], [<span class="number">1</span>, <span class="number">0</span>]], dtype=<span class="built_in">complex</span>)</span><br><span class="line">sigma_y = np.array([[<span class="number">0</span>, -<span class="number">1j</span>], [<span class="number">1j</span>, <span class="number">0</span>]], dtype=<span class="built_in">complex</span>)</span><br><span class="line">sigma_z = np.array([[<span class="number">1</span>, <span class="number">0</span>], [<span class="number">0</span>, -<span class="number">1</span>]], dtype=<span class="built_in">complex</span>)</span><br><span class="line"></span><br><span class="line">SIGMA = &#123;</span><br><span class="line">    <span class="string">&quot;x&quot;</span>: sigma_x,</span><br><span class="line">    <span class="string">&quot;y&quot;</span>: sigma_y,</span><br><span class="line">    <span class="string">&quot;z&quot;</span>: sigma_z,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"><span class="comment"># 2. Magnetic texture</span></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">local_moments</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Return local magnetic moments in one 4-site magnetic unit cell.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Order:</span></span><br><span class="line"><span class="string">        A, B, C, D</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    q = <span class="number">1.0</span> / np.sqrt(<span class="number">3.0</span>)</span><br><span class="line"></span><br><span class="line">    moments = np.array([</span><br><span class="line">        [ q,  q,  q],   <span class="comment"># A</span></span><br><span class="line">        [ q,  q, -q],   <span class="comment"># B</span></span><br><span class="line">        [-q, -q, -q],   <span class="comment"># C</span></span><br><span class="line">        [-q, -q,  q],   <span class="comment"># D</span></span><br><span class="line">    ], dtype=<span class="built_in">float</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> moments</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"><span class="comment"># 3. Bloch Hamiltonian</span></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">bloch_hamiltonian</span>(<span class="params">K, t_hop, jex</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Construct the 8 x 8 Bloch Hamiltonian h(K).</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Basis:</span></span><br><span class="line"><span class="string">        (A up, A down,</span></span><br><span class="line"><span class="string">         B up, B down,</span></span><br><span class="line"><span class="string">         C up, C down,</span></span><br><span class="line"><span class="string">         D up, D down)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    K = 4 k_x a.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    moments = local_moments()</span><br><span class="line">    n_sub = <span class="built_in">len</span>(moments)</span><br><span class="line">    dim = <span class="number">2</span> * n_sub</span><br><span class="line"></span><br><span class="line">    H = np.zeros((dim, dim), dtype=<span class="built_in">complex</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Onsite exchange: M_s = J m_s · sigma</span></span><br><span class="line">    <span class="keyword">for</span> s, m <span class="keyword">in</span> <span class="built_in">enumerate</span>(moments):</span><br><span class="line">        onsite = jex * (</span><br><span class="line">            m[<span class="number">0</span>] * sigma_x</span><br><span class="line">            + m[<span class="number">1</span>] * sigma_y</span><br><span class="line">            + m[<span class="number">2</span>] * sigma_z</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">        sl = <span class="built_in">slice</span>(<span class="number">2</span> * s, <span class="number">2</span> * s + <span class="number">2</span>)</span><br><span class="line">        H[sl, sl] += onsite</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Intra-cell hopping: A-B, B-C, C-D</span></span><br><span class="line">    <span class="keyword">for</span> s <span class="keyword">in</span> <span class="built_in">range</span>(n_sub - <span class="number">1</span>):</span><br><span class="line">        sl = <span class="built_in">slice</span>(<span class="number">2</span> * s, <span class="number">2</span> * s + <span class="number">2</span>)</span><br><span class="line">        sr = <span class="built_in">slice</span>(<span class="number">2</span> * (s + <span class="number">1</span>), <span class="number">2</span> * (s + <span class="number">1</span>) + <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">        H[sl, sr] += t_hop * sigma_0</span><br><span class="line">        H[sr, sl] += t_hop * sigma_0</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Inter-cell hopping: D_R -&gt; A_&#123;R+1&#125;</span></span><br><span class="line">    sl_first = <span class="built_in">slice</span>(<span class="number">0</span>, <span class="number">2</span>)</span><br><span class="line">    sl_last = <span class="built_in">slice</span>(<span class="number">2</span> * (n_sub - <span class="number">1</span>), <span class="number">2</span> * n_sub)</span><br><span class="line"></span><br><span class="line">    H[sl_last, sl_first] += t_hop * np.exp(<span class="number">1j</span> * K) * sigma_0</span><br><span class="line">    H[sl_first, sl_last] += t_hop * np.exp(-<span class="number">1j</span> * K) * sigma_0</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> np.allclose(H, H.conj().T, atol=<span class="number">1.0e-12</span>):</span><br><span class="line">        <span class="keyword">raise</span> RuntimeError(<span class="string">&quot;Bloch Hamiltonian is not Hermitian.&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> H</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">spin_operator</span>(<span class="params">component</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Full spin operator I_4 tensor sigma_component.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    n_sub = <span class="number">4</span></span><br><span class="line">    <span class="keyword">return</span> np.kron(np.eye(n_sub, dtype=<span class="built_in">complex</span>), SIGMA[component])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"><span class="comment"># 4. Calculation</span></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">calculate_bands_and_spin</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Calculate eigenvalues and spin expectation values.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    K_grid = np.linspace(-np.pi, np.pi, NK)</span><br><span class="line"></span><br><span class="line">    n_band = <span class="number">8</span></span><br><span class="line">    energies = np.zeros((NK, n_band), dtype=<span class="built_in">float</span>)</span><br><span class="line"></span><br><span class="line">    sx = np.zeros((NK, n_band), dtype=<span class="built_in">float</span>)</span><br><span class="line">    sy = np.zeros((NK, n_band), dtype=<span class="built_in">float</span>)</span><br><span class="line">    sz = np.zeros((NK, n_band), dtype=<span class="built_in">float</span>)</span><br><span class="line"></span><br><span class="line">    Sx = spin_operator(<span class="string">&quot;x&quot;</span>)</span><br><span class="line">    Sy = spin_operator(<span class="string">&quot;y&quot;</span>)</span><br><span class="line">    Sz = spin_operator(<span class="string">&quot;z&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> ik, K <span class="keyword">in</span> <span class="built_in">enumerate</span>(K_grid):</span><br><span class="line">        H = bloch_hamiltonian(K, T_HOP, JEX)</span><br><span class="line">        evals, evecs = np.linalg.eigh(H)</span><br><span class="line"></span><br><span class="line">        energies[ik, :] = evals</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> ib <span class="keyword">in</span> <span class="built_in">range</span>(n_band):</span><br><span class="line">            psi = evecs[:, ib]</span><br><span class="line"></span><br><span class="line">            sx[ik, ib] = np.real(np.vdot(psi, Sx @ psi))</span><br><span class="line">            sy[ik, ib] = np.real(np.vdot(psi, Sy @ psi))</span><br><span class="line">            sz[ik, ib] = np.real(np.vdot(psi, Sz @ psi))</span><br><span class="line"></span><br><span class="line">    data = &#123;</span><br><span class="line">        <span class="string">&quot;K_grid&quot;</span>: K_grid,</span><br><span class="line">        <span class="string">&quot;energies&quot;</span>: energies,</span><br><span class="line">        <span class="string">&quot;sx&quot;</span>: sx,</span><br><span class="line">        <span class="string">&quot;sy&quot;</span>: sy,</span><br><span class="line">        <span class="string">&quot;sz&quot;</span>: sz,</span><br><span class="line">        <span class="string">&quot;T_HOP&quot;</span>: np.array([T_HOP]),</span><br><span class="line">        <span class="string">&quot;JEX&quot;</span>: np.array([JEX]),</span><br><span class="line">        <span class="string">&quot;MU&quot;</span>: np.array([MU]),</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> data</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"><span class="comment"># 5. Data I/O</span></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">ensure_dirs</span>():</span><br><span class="line">    os.makedirs(DATA_DIR, exist_ok=<span class="literal">True</span>)</span><br><span class="line">    os.makedirs(FIG_DIR, exist_ok=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">save_data</span>(<span class="params">data</span>):</span><br><span class="line">    ensure_dirs()</span><br><span class="line">    fname = os.path.join(DATA_DIR, <span class="string">&quot;bands_and_spin.npz&quot;</span>)</span><br><span class="line">    np.savez(fname, **data)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Saved data: <span class="subst">&#123;fname&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">load_data</span>():</span><br><span class="line">    fname = os.path.join(DATA_DIR, <span class="string">&quot;bands_and_spin.npz&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(fname):</span><br><span class="line">        <span class="keyword">raise</span> FileNotFoundError(</span><br><span class="line">            <span class="string">f&quot;Data file not found: <span class="subst">&#123;fname&#125;</span>\n&quot;</span></span><br><span class="line">            <span class="string">f&quot;Please set RUN_CALCULATION = True first.&quot;</span></span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    raw = np.load(fname)</span><br><span class="line">    data = &#123;key: raw[key] <span class="keyword">for</span> key <span class="keyword">in</span> raw.files&#125;</span><br><span class="line">    <span class="keyword">return</span> data</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"><span class="comment"># 6. Plotting style</span></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">set_plot_style</span>():</span><br><span class="line">    plt.rcParams.update(&#123;</span><br><span class="line">        <span class="string">&quot;font.family&quot;</span>: <span class="string">&quot;Times New Roman&quot;</span>,</span><br><span class="line">        <span class="string">&quot;mathtext.fontset&quot;</span>: <span class="string">&quot;stix&quot;</span>,</span><br><span class="line">        <span class="string">&quot;font.size&quot;</span>: <span class="number">14</span>,</span><br><span class="line">        <span class="string">&quot;axes.linewidth&quot;</span>: <span class="number">1.1</span>,</span><br><span class="line">        <span class="string">&quot;xtick.direction&quot;</span>: <span class="string">&quot;in&quot;</span>,</span><br><span class="line">        <span class="string">&quot;ytick.direction&quot;</span>: <span class="string">&quot;in&quot;</span>,</span><br><span class="line">        <span class="string">&quot;xtick.top&quot;</span>: <span class="literal">True</span>,</span><br><span class="line">        <span class="string">&quot;ytick.right&quot;</span>: <span class="literal">True</span>,</span><br><span class="line">        <span class="string">&quot;xtick.major.size&quot;</span>: <span class="number">4.5</span>,</span><br><span class="line">        <span class="string">&quot;ytick.major.size&quot;</span>: <span class="number">4.5</span>,</span><br><span class="line">        <span class="string">&quot;xtick.major.width&quot;</span>: <span class="number">1.0</span>,</span><br><span class="line">        <span class="string">&quot;ytick.major.width&quot;</span>: <span class="number">1.0</span>,</span><br><span class="line">        <span class="string">&quot;legend.frameon&quot;</span>: <span class="literal">False</span>,</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">save_or_show</span>(<span class="params">fig, filename</span>):</span><br><span class="line">    <span class="keyword">if</span> SAVE_FIGURES:</span><br><span class="line">        ensure_dirs()</span><br><span class="line">        path = os.path.join(FIG_DIR, filename)</span><br><span class="line">        fig.savefig(path, dpi=DPI, bbox_inches=<span class="string">&quot;tight&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;Saved figure: <span class="subst">&#123;path&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> SHOW_FIGURES:</span><br><span class="line">        plt.show()</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        plt.close(fig)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">colored_band_line</span>(<span class="params">ax, x, y, c, lw=<span class="number">1.2</span></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Plot one band as a spin-colored line.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    points = np.array([x, y]).T.reshape(-<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">    segments = np.concatenate([points[:-<span class="number">1</span>], points[<span class="number">1</span>:]], axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    cseg = <span class="number">0.5</span> * (c[:-<span class="number">1</span>] + c[<span class="number">1</span>:])</span><br><span class="line"></span><br><span class="line">    lc = LineCollection(</span><br><span class="line">        segments,</span><br><span class="line">        array=cseg,</span><br><span class="line">        cmap=SPIN_CMAP,</span><br><span class="line">        norm=plt.Normalize(vmin=SPIN_VMIN, vmax=SPIN_VMAX),</span><br><span class="line">        linewidth=lw,</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    ax.add_collection(lc)</span><br><span class="line">    <span class="keyword">return</span> lc</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"><span class="comment"># 7. Plot functions</span></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">setup_band_axis</span>(<span class="params">ax</span>):</span><br><span class="line">    ax.set_xlim(-np.pi, np.pi)</span><br><span class="line">    ax.set_ylim(*E_WINDOW)</span><br><span class="line"></span><br><span class="line">    ax.set_xticks([-np.pi, <span class="number">0.0</span>, np.pi])</span><br><span class="line">    ax.set_xticklabels([<span class="string">r&quot;$-\pi$&quot;</span>, <span class="string">r&quot;$0$&quot;</span>, <span class="string">r&quot;$\pi$&quot;</span>])</span><br><span class="line"></span><br><span class="line">    ax.set_yticks([-<span class="number">2.0</span>, <span class="number">0.0</span>, <span class="number">2.0</span>])</span><br><span class="line"></span><br><span class="line">    ax.set_xlabel(<span class="string">r&quot;$K=4k_xa$&quot;</span>)</span><br><span class="line">    ax.set_ylabel(<span class="string">r&quot;$E$&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> DRAW_MU_LINE:</span><br><span class="line">        ax.axhline(MU, color=<span class="string">&quot;black&quot;</span>, lw=<span class="number">0.9</span>, ls=<span class="string">&quot;--&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Helpful high-symmetry markers</span></span><br><span class="line">    ax.axvline(<span class="number">0.0</span>, color=<span class="string">&quot;gray&quot;</span>, lw=<span class="number">0.7</span>, ls=<span class="string">&quot;:&quot;</span>, alpha=<span class="number">0.8</span>)</span><br><span class="line">    ax.axvline(np.pi, color=<span class="string">&quot;gray&quot;</span>, lw=<span class="number">0.7</span>, ls=<span class="string">&quot;:&quot;</span>, alpha=<span class="number">0.8</span>)</span><br><span class="line">    ax.axvline(-np.pi, color=<span class="string">&quot;gray&quot;</span>, lw=<span class="number">0.7</span>, ls=<span class="string">&quot;:&quot;</span>, alpha=<span class="number">0.8</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">plot_plain_band</span>(<span class="params">data</span>):</span><br><span class="line">    K = data[<span class="string">&quot;K_grid&quot;</span>]</span><br><span class="line">    E = data[<span class="string">&quot;energies&quot;</span>]</span><br><span class="line"></span><br><span class="line">    fig, ax = plt.subplots(figsize=(<span class="number">4.6</span>, <span class="number">3.5</span>))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> ib <span class="keyword">in</span> <span class="built_in">range</span>(E.shape[<span class="number">1</span>]):</span><br><span class="line">        ax.plot(K, E[:, ib], color=<span class="string">&quot;black&quot;</span>, lw=<span class="number">1.2</span>)</span><br><span class="line"></span><br><span class="line">    setup_band_axis(ax)</span><br><span class="line">    ax.set_title(<span class="string">r&quot;Band structure&quot;</span>)</span><br><span class="line"></span><br><span class="line">    fig.tight_layout()</span><br><span class="line">    save_or_show(fig, <span class="string">&quot;band_plain.png&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">plot_spin_colored_band</span>(<span class="params">data, component</span>):</span><br><span class="line">    K = data[<span class="string">&quot;K_grid&quot;</span>]</span><br><span class="line">    E = data[<span class="string">&quot;energies&quot;</span>]</span><br><span class="line">    S = data[<span class="string">f&quot;s<span class="subst">&#123;component&#125;</span>&quot;</span>]</span><br><span class="line"></span><br><span class="line">    fig, ax = plt.subplots(figsize=(<span class="number">4.8</span>, <span class="number">3.6</span>))</span><br><span class="line"></span><br><span class="line">    last_lc = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> ib <span class="keyword">in</span> <span class="built_in">range</span>(E.shape[<span class="number">1</span>]):</span><br><span class="line">        last_lc = colored_band_line(</span><br><span class="line">            ax,</span><br><span class="line">            K,</span><br><span class="line">            E[:, ib],</span><br><span class="line">            S[:, ib],</span><br><span class="line">            lw=<span class="number">1.2</span>,</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    setup_band_axis(ax)</span><br><span class="line">    ax.set_title(<span class="string">rf&quot;Band structure colored by $s_<span class="subst">&#123;component&#125;</span>$&quot;</span>)</span><br><span class="line"></span><br><span class="line">    cbar = fig.colorbar(last_lc, ax=ax, pad=<span class="number">0.025</span>, shrink=<span class="number">0.88</span>)</span><br><span class="line">    cbar.set_ticks([-<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>])</span><br><span class="line">    cbar.set_label(<span class="string">rf&quot;$s_<span class="subst">&#123;component&#125;</span>$&quot;</span>, rotation=<span class="number">90</span>)</span><br><span class="line"></span><br><span class="line">    fig.tight_layout()</span><br><span class="line">    save_or_show(fig, <span class="string">f&quot;band_spin_<span class="subst">&#123;component&#125;</span>.png&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">plot_spin_components_near_mu</span>(<span class="params">data</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Plot spin expectation values of the band closest to MU.</span></span><br><span class="line"><span class="string">    Useful for checking odd-parity spin texture.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    K = data[<span class="string">&quot;K_grid&quot;</span>]</span><br><span class="line">    E = data[<span class="string">&quot;energies&quot;</span>]</span><br><span class="line"></span><br><span class="line">    sx = data[<span class="string">&quot;sx&quot;</span>]</span><br><span class="line">    sy = data[<span class="string">&quot;sy&quot;</span>]</span><br><span class="line">    sz = data[<span class="string">&quot;sz&quot;</span>]</span><br><span class="line"></span><br><span class="line">    closest = np.argmin(np.<span class="built_in">abs</span>(E - MU), axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    sx_mu = np.array([sx[i, closest[i]] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(K))])</span><br><span class="line">    sy_mu = np.array([sy[i, closest[i]] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(K))])</span><br><span class="line">    sz_mu = np.array([sz[i, closest[i]] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(K))])</span><br><span class="line"></span><br><span class="line">    fig, ax = plt.subplots(figsize=(<span class="number">5.2</span>, <span class="number">3.5</span>))</span><br><span class="line"></span><br><span class="line">    ax.plot(K, sx_mu, lw=<span class="number">1.5</span>, label=<span class="string">r&quot;$s_x$&quot;</span>)</span><br><span class="line">    ax.plot(K, sy_mu, lw=<span class="number">1.5</span>, label=<span class="string">r&quot;$s_y$&quot;</span>)</span><br><span class="line">    ax.plot(K, sz_mu, lw=<span class="number">1.5</span>, label=<span class="string">r&quot;$s_z$&quot;</span>)</span><br><span class="line"></span><br><span class="line">    ax.axhline(<span class="number">0.0</span>, color=<span class="string">&quot;black&quot;</span>, lw=<span class="number">0.8</span>)</span><br><span class="line">    ax.axvline(<span class="number">0.0</span>, color=<span class="string">&quot;gray&quot;</span>, lw=<span class="number">0.7</span>, ls=<span class="string">&quot;:&quot;</span>, alpha=<span class="number">0.8</span>)</span><br><span class="line"></span><br><span class="line">    ax.set_xlim(-np.pi, np.pi)</span><br><span class="line">    ax.set_ylim(-<span class="number">1.05</span>, <span class="number">1.05</span>)</span><br><span class="line"></span><br><span class="line">    ax.set_xticks([-np.pi, <span class="number">0.0</span>, np.pi])</span><br><span class="line">    ax.set_xticklabels([<span class="string">r&quot;$-\pi$&quot;</span>, <span class="string">r&quot;$0$&quot;</span>, <span class="string">r&quot;$\pi$&quot;</span>])</span><br><span class="line"></span><br><span class="line">    ax.set_yticks([-<span class="number">1.0</span>, <span class="number">0.0</span>, <span class="number">1.0</span>])</span><br><span class="line"></span><br><span class="line">    ax.set_xlabel(<span class="string">r&quot;$K=4k_xa$&quot;</span>)</span><br><span class="line">    ax.set_ylabel(<span class="string">r&quot;$s_\alpha$&quot;</span>)</span><br><span class="line">    ax.set_title(<span class="string">r&quot;Spin expectation of the band closest to $\mu$&quot;</span>)</span><br><span class="line"></span><br><span class="line">    ax.legend(loc=<span class="string">&quot;best&quot;</span>)</span><br><span class="line"></span><br><span class="line">    fig.tight_layout()</span><br><span class="line">    save_or_show(fig, <span class="string">&quot;spin_texture_closest_to_mu.png&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"><span class="comment"># 8. Main</span></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    <span class="keyword">if</span> RUN_CALCULATION:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;====================================================&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Calculating odd-parity magnets toy-model bands&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;====================================================&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;T_HOP = <span class="subst">&#123;T_HOP&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;JEX   = <span class="subst">&#123;JEX&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;MU    = <span class="subst">&#123;MU&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;NK    = <span class="subst">&#123;NK&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;====================================================&quot;</span>)</span><br><span class="line"></span><br><span class="line">        data = calculate_bands_and_spin()</span><br><span class="line">        save_data(data)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> RUN_PLOTTING:</span><br><span class="line">        set_plot_style()</span><br><span class="line">        data = load_data()</span><br><span class="line"></span><br><span class="line">        plot_plain_band(data)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> comp <span class="keyword">in</span> [<span class="string">&quot;x&quot;</span>, <span class="string">&quot;y&quot;</span>, <span class="string">&quot;z&quot;</span>]:</span><br><span class="line">            plot_spin_colored_band(data, comp)</span><br><span class="line"></span><br><span class="line">        plot_spin_components_near_mu(data)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<div style="display: flex; justify-content: space-between;">
+  <img src="/assets/images/Altermagnets/band_spin_y.png" alt="Image 1" width="45%" />
+  <img src="/assets/images/Altermagnets/band_spin_x.png" alt="Image 1" width="45%" />
+</div>
+
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ol>
+<li><a target="_blank" rel="noopener" href="http://arxiv.org/abs/2603.15147">Hidden Zeeman Field in Odd-Parity Magnets: An Ideal Platform for Topological Superconductivity</a></li>
+</ol>
+<div class="note red flat"><p>鉴于该网站分享的大都是学习笔记，作者水平有限，若发现有问题可以发邮件给我</p>
+<ul>
+<li><strong>yxliphy@gmail.com</strong></li>
+</ul>
+<p>也非常欢迎喜欢分享的小伙伴投稿</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="/about">Yu-Xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2026/05/31/2026-05-31-odd-AM/">http://example.com/2026/05/31/2026-05-31-odd-AM/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Yu-Xuan's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Code/">Code</a><a class="post-meta__tags" href="/tags/Python/">Python</a><a class="post-meta__tags" href="/tags/Altermagnets/">Altermagnets</a></div><div class="post-share"><div class="social-share" data-image="/assets/images/Altermagnets/odd-AM.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg"/></a><div class="post-qr-code-desc"></div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg"/></a><div class="post-qr-code-desc"></div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/06/01/2026-06-01-SC-Proximity/" title="超导近邻效应"><img class="cover" src="/assets/images/SC/SC-proximity.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">超导近邻效应</div></div><div class="info-2"><div class="info-item-1">超导近邻效应      超导近邻效应指的是：当一个普通材料$N$、磁性材料$M$、拓扑材料或交错磁体与超导体$S$ 接触时，即使该材料本身没有本征吸引相互作用，也会由于界面隧穿或耦合而获得超导关...</div></div></div></a><a class="pagination-related  no-desc" href="/2026/05/29/2026-05-29-Slave-particle/" title="Slave particle方法研究超导"><img class="cover" src="/assets/images/SC/slave-particle.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Slave particle方法研究超导</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2020/07/01/2020-07-01-Chern-Number/" title="两种方法计算Chern Number"><img class="cover" src="/img/defult-cover2.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-01</div><div class="info-item-2">两种方法计算Chern Number</div></div><div class="info-2"><div class="info-item-1">计算Chern数是最初学习拓扑物理都会遇到的问题，正好在假期空闲的时候自己学习了一下Chern数的数值计算方法，在博客上记录一下希望可以帮助到别人。   具体的计算方法和细节就不在这里说明了，只...</div></div></div></a><a class="pagination-related" href="/2020/08/10/2020-08-10-sparse-matrix-eig/" title="超大型系数矩阵对角化"><img class="cover" src="/img/defult-cover4.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-08-10</div><div class="info-item-2">超大型系数矩阵对角化</div></div><div class="info-2"><div class="info-item-1">最近在进行一些三维实空间中系统性质的研究，利用紧束缚束缚模型，当三个方向都取开边界时，矩阵会变的非常大，组里的服务器完全不能计算，所以只好寻找一些替代的方法。首先哈密顿量是个大型系数矩阵，这个时...</div></div></div></a><a class="pagination-related" href="/2020/09/14/2020-09-14-Loop-speed/" title="Julia,Python,Fortran,Mathematica循环计算速度比较"><img class="cover" src="/img/defult-cover5.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-14</div><div class="info-item-2">Julia,Python,Fortran,Mathematica循环计算速度比较</div></div><div class="info-2"><div class="info-item-1">在平时进行数值计算时，我经常会遇到的两种比较消耗时间计算，其一是对大型矩阵的对角化问题，这是在对哈密顿量厄密矩阵求解本征问题时经常遇到的；另外一个就是循环计算了，这个结构在动量空间计算体系格林函...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description">知行合一</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">364</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yxli8023"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:yxliphy@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><div style="text-align:center;"> <img src="/assets/images/qrcode.jpg" alt="公告图" style="max-width:100%; border-radius:10px; margin-bottom:10px;"> <br> 欢迎关注公众号，有趣的内容也会在上面同步。 有密码的文章属于正在建设中或者没有通过验证的内容，若有需要可通过邮件联系。</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Odd-parity-magnets-toy-model"><span class="toc-number">1.</span> <span class="toc-text">Odd-parity magnets toy model</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-number">2.</span> <span class="toc-text">代码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">3.</span> <span class="toc-text">参考文献</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/06/01/2026-06-01-SC-Proximity/" title="超导近邻效应"><img src="/assets/images/SC/SC-proximity.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导近邻效应"/></a><div class="content"><a class="title" href="/2026/06/01/2026-06-01-SC-Proximity/" title="超导近邻效应">超导近邻效应</a><time datetime="2026-05-31T16:00:00.000Z" title="发表于 2026-06-01 00:00:00">2026-06-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/05/31/2026-05-31-odd-AM/" title="Odd-parity magnets toy model"><img src="/assets/images/Altermagnets/odd-AM.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Odd-parity magnets toy model"/></a><div class="content"><a class="title" href="/2026/05/31/2026-05-31-odd-AM/" title="Odd-parity magnets toy model">Odd-parity magnets toy model</a><time datetime="2026-05-30T16:00:00.000Z" title="发表于 2026-05-31 00:00:00">2026-05-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/05/29/2026-05-29-Slave-particle/" title="Slave particle方法研究超导"><img src="/assets/images/SC/slave-particle.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Slave particle方法研究超导"/></a><div class="content"><a class="title" href="/2026/05/29/2026-05-29-Slave-particle/" title="Slave particle方法研究超导">Slave particle方法研究超导</a><time datetime="2026-05-28T16:00:00.000Z" title="发表于 2026-05-29 00:00:00">2026-05-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/05/28/2026-05-28-Josephson/" title="约瑟夫森$0$结、$\pi$结与$\varphi$结"><img src="/assets/images/Transport/josepnson-1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="约瑟夫森$0$结、$\pi$结与$\varphi$结"/></a><div class="content"><a class="title" href="/2026/05/28/2026-05-28-Josephson/" title="约瑟夫森$0$结、$\pi$结与$\varphi$结">约瑟夫森$0$结、$\pi$结与$\varphi$结</a><time datetime="2026-05-27T16:00:00.000Z" title="发表于 2026-05-28 00:00:00">2026-05-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/05/18/2026-05-18-Heisenberg-Ising/" title="自旋相互作用与单重态/三重态超导"><img src="/assets/images/SC/SC-Heisenberg-Ising.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="自旋相互作用与单重态/三重态超导"/></a><div class="content"><a class="title" href="/2026/05/18/2026-05-18-Heisenberg-Ising/" title="自旋相互作用与单重态/三重态超导">自旋相互作用与单重态/三重态超导</a><time datetime="2026-05-17T16:00:00.000Z" title="发表于 2026-05-18 00:00:00">2026-05-18</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/assets/images/Altermagnets/odd-AM.png);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div><div class="footer_custom_text">Welcome to  Yu-Xuan's Blog</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  const initGitalk = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGitalk = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const gitalk = new Gitalk({
+      clientID: 'Ov23li0WvZEaIAZ7RFtH',
+      clientSecret: '03fcb77b7c28dafcdde00756e27f9b5bc76639e8',
+      repo: 'yxli8023.github.io',
+      owner: 'yxli8023',
+      admin: ['yxli8023'],
+      updateCountCallback: commentCount,
+      ...option,
+      id: isShuoshuo ? path : (option && option.id) || 'f7a5dfc5c52a1c65a494076dfc37bd87'
+    })
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async(el, path) => {
+    if (typeof Gitalk === 'function') initGitalk(el, path)
+    else {
+      await btf.getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await btf.getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Gitalk' === 'Gitalk'
+      ? window.shuoshuoComment = { loadComment: loadGitalk }
+      : window.loadOtherComment = loadGitalk
+    return
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
