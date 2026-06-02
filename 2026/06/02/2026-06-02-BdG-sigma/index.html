@@ -1,0 +1,720 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>BdG框架下的电导 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="BdG 框架下的电导      考虑一个多轨道正常态哈密顿量  H_0 &#x3D; \sum_{\mathbf k} c^\dagger_{\mathbf k} h(\mathbf k) c_{\mathbf k},其中 $h(\mathbf k)$ 可以包含轨道、自旋、子晶格等自由度。进入超导态后，定义 Nambu 旋量  \Psi_{\mathbf k} &#x3D; \begin{pmatrix} c_{\m">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BdG框架下的电导">
+<meta property="og:url" content="http://example.com/2026/06/02/2026-06-02-BdG-sigma/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39;s Blog">
+<meta property="og:description" content="BdG 框架下的电导      考虑一个多轨道正常态哈密顿量  H_0 &#x3D; \sum_{\mathbf k} c^\dagger_{\mathbf k} h(\mathbf k) c_{\mathbf k},其中 $h(\mathbf k)$ 可以包含轨道、自旋、子晶格等自由度。进入超导态后，定义 Nambu 旋量  \Psi_{\mathbf k} &#x3D; \begin{pmatrix} c_{\m">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/assets/images/SC/bdg-sigma.png">
+<meta property="article:published_time" content="2026-06-01T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-06-02T15:00:53.540Z">
+<meta property="article:author" content="Yu-Xuan">
+<meta property="article:tag" content="Superconductor">
+<meta property="article:tag" content="Transport">
+<meta property="article:tag" content="QuantumGeometry">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/images/SC/bdg-sigma.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "BdG框架下的电导",
+  "url": "http://example.com/2026/06/02/2026-06-02-BdG-sigma/",
+  "image": "http://example.com/assets/images/SC/bdg-sigma.png",
+  "datePublished": "2026-06-01T16:00:00.000Z",
+  "dateModified": "2026-06-02T15:00:53.540Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yu-Xuan",
+      "url": "http://example.com/about"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/logo.png"><link rel="canonical" href="http://example.com/2026/06/02/2026-06-02-BdG-sigma/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"作者: Yu-Xuan","link":"链接: ","source":"来源: Yu-Xuan's Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'medium_zoom',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#f54966","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'BdG框架下的电导',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #dbeffd;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">368</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/assets/images/SC/bdg-sigma.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo.png" alt="Logo"><span class="site-name">Yu-Xuan's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">BdG框架下的电导</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">BdG框架下的电导</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-06-01T16:00:00.000Z" title="发表于 2026-06-02 00:00:00">2026-06-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-06-02T15:00:53.540Z" title="更新于 2026-06-02 23:00:53">2026-06-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Superconductor/">Superconductor</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>13分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;自上次更新已经过了&quot;,&quot;messageNext&quot;:&quot;天，文章内容可能已过时。&quot;,&quot;postUpdate&quot;:&quot;2026-06-02 23:00:53&quot;}" hidden></div><h1 id="BdG-框架下的电导"><a href="#BdG-框架下的电导" class="headerlink" title="BdG 框架下的电导"></a>BdG 框架下的电导</h1><div style="display: flex; justify-content: space-between;">
+  <img src="/assets/images/SC/bdg-sigma.png" alt="Image 1" width="100%" />
+</div>
+
+<p>考虑一个多轨道正常态哈密顿量</p>
+<script type="math/tex; mode=display">
+H_0
+=
+\sum_{\mathbf k}
+c^\dagger_{\mathbf k}
+h(\mathbf k)
+c_{\mathbf k},</script><p>其中 $h(\mathbf k)$ 可以包含轨道、自旋、子晶格等自由度。进入超导态后，定义 Nambu 旋量</p>
+<script type="math/tex; mode=display">
+\Psi_{\mathbf k}
+=
+\begin{pmatrix}
+c_{\mathbf k}\\
+c^\dagger_{-\mathbf k}
+\end{pmatrix}.</script><p>BdG 平均场哈密顿量 写成</p>
+<script type="math/tex; mode=display">
+H_{\mathrm{BdG}}
+=
+\frac{1}{2}
+\sum_{\mathbf k}
+\Psi^\dagger_{\mathbf k}
+\mathcal H(\mathbf k)
+\Psi_{\mathbf k}
++\text{const.},</script><p>其中</p>
+<script type="math/tex; mode=display">
+\mathcal H(\mathbf k)
+=
+\begin{pmatrix}
+h(\mathbf k)-\mu & \Delta(\mathbf k)\\
+\Delta^\dagger(\mathbf k) & -h^T(-\mathbf k)+\mu
+\end{pmatrix}.</script><p>如果考虑 onsite配对或者局域吸引 Hubbard 模型的平均场，那么通常有</p>
+<script type="math/tex; mode=display">
+\Delta(\mathbf k)=\Delta,</script><p>即序参量不显含动量。若 $\Delta(\mathbf k)$ 显含动量，则电流顶角需要额外包含 $\partial_\mu\Delta(\mathbf k)$。</p>
+<h2 id="电导定义"><a href="#电导定义" class="headerlink" title="电导定义"></a>电导定义</h2><p>电导定义为电流对电场的响应</p>
+<script type="math/tex; mode=display">
+j_\mu(\omega)
+=
+\sigma_{\mu\nu}(\omega)E_\nu(\omega).</script><p>如果取标量势为零的规范($\phi=0$)，那么电场由矢势给出。采用时间因子 $e^{-i\omega t}$，有</p>
+<script type="math/tex; mode=display">
+\mathbf E(\omega)
+=
+-\partial_t \mathbf A(\omega)
+=
+i\omega \mathbf A(\omega).\label{eq:e1}</script><p>另一方面，线性响应通常先给出电流对矢势的响应</p>
+<script type="math/tex; mode=display">
+j_\mu(\omega)
+=
+K^R_{\mu\nu}(\omega)A_\nu(\omega),</script><p>那么形式上有</p>
+<script type="math/tex; mode=display">
+\sigma_{\mu\nu}(\omega)
+=
+\frac{K^R_{\mu\nu}(\omega)}{i(\omega+i0^+)}.</script><p>但是这里需要注意一个物理问题：<strong>均匀静态矢势并不产生电场</strong>。当</p>
+<script type="math/tex; mode=display">
+\omega=0,
+\qquad
+\mathbf q=0,</script><p>时</p>
+<script type="math/tex; mode=display">
+\mathbf E=i\omega\mathbf A=0,\qquad \mathbf B=i\mathbf q\times\mathbf A=0.</script><p>所以<strong>严格的均匀静态矢势只是一个纯规范扰动，它本身不对应真实的电场驱动，也不应该被解释为有限频率光学吸收</strong>。因此，把响应核写成</p>
+<script type="math/tex; mode=display">
+K^R_{\mu\nu}(\omega)
+=
+K^R_{\mu\nu}(0)
++
+\left[
+K^R_{\mu\nu}(\omega)-K^R_{\mu\nu}(0)
+\right].</script><p>代入电导定义得到</p>
+<script type="math/tex; mode=display">
+\sigma_{\mu\nu}(\omega)
+=
+\frac{K^R_{\mu\nu}(0)}{i(\omega+i0^+)}
++
+\frac{
+K^R_{\mu\nu}(\omega)-K^R_{\mu\nu}(0)
+}{
+i(\omega+i0^+)
+}.\label{eq:e3}</script><p>第一项是零频奇异项</p>
+<script type="math/tex; mode=display">
+\sigma^{\mathrm{sing}}_{\mu\nu}(\omega)
+=
+\frac{K^R_{\mu\nu}(0)}{i(\omega+i0^+)}.</script><p>利用</p>
+<script type="math/tex; mode=display">
+\frac{1}{\omega+i0^+}
+=
+\mathcal P\frac{1}{\omega}
+-
+i\pi\delta(\omega),</script><p>可以看到这一项会给出</p>
+<script type="math/tex; mode=display">
+\mathrm{Im}\,\sigma(\omega)\sim \frac{1}{\omega},\qquad \mathrm{Re}\,\sigma(\omega)\sim \delta(\omega).</script><p>这部分描述的是零频无耗散响应，例如干净金属中的 Drude权重或超导态中的零频凝聚响应。它不是普通意义上的有限频光学吸收。方程$\eqref{eq:e3}$中的第二项</p>
+<script type="math/tex; mode=display">
+\sigma^{\mathrm{reg}}_{\mu\nu}(\omega)
+=
+\frac{
+K^R_{\mu\nu}(\omega)-K^R_{\mu\nu}(0)
+}{
+i(\omega+i0^+)
+}</script><p>才是 regular光电导。它描述的是有限频率电场驱动下，体系通过准粒子跃迁等过程产生的常规吸收和输运响应。这个 subtraction 还有一个规范不变性的含义：对于均匀静态矢势，物理电场和磁场都为零，因此一个规范不变的电磁响应不应对这种纯规范扰动产生 regular 电流响应。减去 $K^R_{\mu\nu}(0)$ 正是在电导公式中去掉这部分静态纯规范响应，使剩余部分只对应真实的动态电场响应。因此，在电导计算中通常区分</p>
+<script type="math/tex; mode=display">
+\sigma_{\mu\nu}(\omega)
+=
+\sigma^{\mathrm{sing}}_{\mu\nu}(\omega)
++
+\sigma^{\mathrm{reg}}_{\mu\nu}(\omega),</script><p>其中</p>
+<script type="math/tex; mode=display">
+\sigma^{\mathrm{sing}}_{\mu\nu}(\omega)
+=
+\frac{K^R_{\mu\nu}(0)}{i(\omega+i0^+)},\qquad \sigma^{\mathrm{reg}}_{\mu\nu}(\omega)
+=
+\frac{
+K^R_{\mu\nu}(\omega)-K^R_{\mu\nu}(0)
+}{
+i(\omega+i0^+)
+}.</script><p>如果研究的是有限频光电导、吸收谱或 Hall 光学响应，通常主要关注 $\sigma^{\mathrm{reg}}_{\mu\nu}(\omega)$。如果研究的是零频无耗散响应，则必须保留第一项中的 $\delta(\omega)$ 权重。所以电导计算的极限是</p>
+<script type="math/tex; mode=display">
+\mathbf q=0,
+\qquad
+\omega \text{有限},\nonumber</script><p>最后根据需要取$\omega\to 0$或者研究有限频率的光电导。</p>
+<h2 id="电流顶角"><a href="#电流顶角" class="headerlink" title="电流顶角"></a>电流顶角</h2><p>外加矢势通过 Peierls替换进入正常态哈密顿量。对于均匀矢势，可以理解为</p>
+<script type="math/tex; mode=display">
+h(\mathbf k)
+\rightarrow
+h(\mathbf k-\mathbf A).</script><p>因此正常态电流顶角为</p>
+<script type="math/tex; mode=display">
+v_\mu(\mathbf k)
+=
+\partial_\mu h(\mathbf k),
+\qquad
+\partial_\mu\equiv \frac{\partial}{\partial k_\mu}.</script><p>在 BdG 表示中，电流顶角不是简单的 $\partial_\mu\mathcal H$。原因是粒子和空穴对电磁场的耦合符号相反。定义</p>
+<script type="math/tex; mode=display">
+\gamma^z
+=
+\tau^z\otimes I,</script><p>其中 $\tau^z$ 作用在 Nambu particle-hole 空间，$I$ 作用在轨道/自旋空间。若 $\Delta$ 不依赖 $\mathbf k$，常用的 BdG charge-current vertex 可以写成</p>
+<script type="math/tex; mode=display">
+\Gamma_\mu(\mathbf k)
+=
+\partial_\mu\mathcal H(\mathbf k)\gamma^z.</script><p>等价地，它在块对角形式中表示粒子与空穴的电荷耦合符号相反。如果 $\Delta(\mathbf k)$ 显含动量，则不能简单使用上式作为完整电流顶角。此时</p>
+<script type="math/tex; mode=display">
+\partial_\mu\mathcal H(\mathbf k)
+=
+\begin{pmatrix}
+\partial_\mu h(\mathbf k) & \partial_\mu\Delta(\mathbf k)\\
+\partial_\mu\Delta^\dagger(\mathbf k) & \partial_\mu[-h^T(-\mathbf k)]
+\end{pmatrix},</script><p>其中 $\partial_\mu\Delta(\mathbf k)$ 会产生配对电流顶角。对于非局域配对、$p$ 波、$d$ 波配对，必须认真处理这部分。下面先采用最常见的局域配对情形$\partial_\mu\Delta=0$。</p>
+<h2 id="响应核-K-mu-nu"><a href="#响应核-K-mu-nu" class="headerlink" title="响应核 $K_{\mu\nu}$"></a>响应核 $K_{\mu\nu}$</h2><p>电流响应核包含两部分</p>
+<script type="math/tex; mode=display">
+K_{\mu\nu}(\omega)
+=
+K^{\mathrm{dia}}_{\mu\nu}
++
+K^{\mathrm{para}}_{\mu\nu}(\omega).</script><p>这里 $K^{\mathrm{dia}}_{\mu\nu}$ 是抗磁项，来自哈密顿量 对 $\mathbf A$ 的二阶展开；$K^{\mathrm{para}}_{\mu\nu}$ 是顺磁流-流关联。不过对于很多 Hall 电导计算，尤其是 $\mu\neq\nu$ 的反对称部分，抗磁项通常不直接贡献主要的 Hall 响应。但为了公式完整，先保留它。定义抗磁顶角</p>
+<script type="math/tex; mode=display">
+\Gamma_{\mu\nu}(\mathbf k)
+=
+\partial_\mu\partial_\nu \mathcal H(\mathbf k),</script><p>则</p>
+<script type="math/tex; mode=display">
+K^{\mathrm{dia}}_{\mu\nu}
+=
+\frac{1}{2}
+\frac{1}{\beta}
+\sum_{\mathbf k,\Omega_m}
+\mathrm{Tr}
+\left[
+\Gamma_{\mu\nu}(\mathbf k)
+G(i\Omega_m,\mathbf k)
+\right].</script><p>这里的 $1/2$ 来自 Nambu 表示的粒子-空穴冗余。如果你的 Nambu 约定没有重复计数，例如只在半个布里渊区求和，或者像某些文献一样采用非冗余 spinor 约定，这个 $1/2$ 可能不显式出现，实际写程序时必须保持统一。BdG格林函数为</p>
+<script type="math/tex; mode=display">
+G(i\Omega_m,\mathbf k)
+=
+\frac{1}{i\Omega_m-\mathcal H(\mathbf k)}.</script><p>顺磁响应为 bubble</p>
+<script type="math/tex; mode=display">
+K^{\mathrm{para}}_{\mu\nu}(i\omega_n)
+=
+\frac{1}{2}
+\frac{1}{\beta}
+\sum_{\mathbf k,\Omega_m}
+\mathrm{Tr}
+\left[
+G(i\Omega_m,\mathbf k)
+\Gamma_\nu(\mathbf k)
+G(i\Omega_m+i\omega_n,\mathbf k)
+\Gamma_\mu(\mathbf k)
+\right].</script><p>这里已经取了$\mathbf{q}=0$，因为电导对应空间均匀电场响应，而不是有限动量磁响应。因此完整 Matsubara 响应核为</p>
+<script type="math/tex; mode=display">
+K_{\mu\nu}(i\omega_n)
+=
+K^{\mathrm{dia}}_{\mu\nu}
++
+K^{\mathrm{para}}_{\mu\nu}(i\omega_n).</script><p>设 BdG哈密顿量 的本征方程为</p>
+<script type="math/tex; mode=display">
+\mathcal H(\mathbf k)|a\mathbf k\rangle
+=
+E_{a\mathbf k}|a\mathbf k\rangle.</script><p>格林函数的谱表示为</p>
+<script type="math/tex; mode=display">
+G(i\Omega_m,\mathbf k)
+=
+\sum_a
+\frac{
+|a\mathbf k\rangle\langle a\mathbf k|
+}{
+i\Omega_m-E_{a\mathbf k}
+}.</script><p>定义电流矩阵元</p>
+<script type="math/tex; mode=display">
+\Gamma^\mu_{ab}(\mathbf k)
+=
+\langle a\mathbf k|
+\Gamma_\mu(\mathbf k)
+|b\mathbf k\rangle.</script><p>同理，抗磁顶角矩阵为</p>
+<script type="math/tex; mode=display">
+\Gamma^{\mu\nu}_{aa}(\mathbf k)
+=
+\langle a\mathbf k|
+\Gamma_{\mu\nu}(\mathbf k)
+|a\mathbf k\rangle.</script><p>将谱分解代入顺磁 bubble</p>
+<script type="math/tex; mode=display">
+K^{\mathrm{para}}_{\mu\nu}(i\omega_n)
+=
+\frac{1}{2}
+\sum_{\mathbf k,a,b}
+\Gamma^\nu_{ab}(\mathbf k)
+\Gamma^\mu_{ba}(\mathbf k)
+\frac{1}{\beta}
+\sum_{\Omega_m}
+\frac{1}{
+(i\Omega_m-E_a)
+(i\Omega_m+i\omega_n-E_b)
+}.</script><p>Matsubara 求和为</p>
+<script type="math/tex; mode=display">
+\frac{1}{\beta}
+\sum_{\Omega_m}
+\frac{1}{
+(i\Omega_m-E_a)
+(i\Omega_m+i\omega_n-E_b)
+}
+=
+\frac{
+n(E_a)-n(E_b)
+}{
+i\omega_n+E_a-E_b
+}.</script><p>所以</p>
+<script type="math/tex; mode=display">
+K^{\mathrm{para}}_{\mu\nu}(i\omega_n)
+=
+\frac{1}{2}
+\sum_{\mathbf k,a,b}
+\frac{
+n(E_a)-n(E_b)
+}{
+i\omega_n+E_a-E_b
+}
+\Gamma^\nu_{ab}(\mathbf k)
+\Gamma^\mu_{ba}(\mathbf k).</script><p>解析延拓$i\omega_n\rightarrow \omega+i0^+$得到推迟响应</p>
+<script type="math/tex; mode=display">
+K^{R,\mathrm{para}}_{\mu\nu}(\omega)
+=
+\frac{1}{2}
+\sum_{\mathbf k,a,b}
+\frac{
+n(E_a)-n(E_b)
+}{
+\omega+E_a-E_b+i0^+
+}
+\Gamma^\nu_{ab}(\mathbf k)
+\Gamma^\mu_{ba}(\mathbf k).</script><p>抗磁项为</p>
+<script type="math/tex; mode=display">
+K^{\mathrm{dia}}_{\mu\nu}
+=
+\frac{1}{2}
+\sum_{\mathbf k,a}
+n(E_a)
+\Gamma^{\mu\nu}_{aa}(\mathbf{k})</script><p>因此</p>
+<script type="math/tex; mode=display">
+K^R_{\mu\nu}(\omega)
+=
+K^{\mathrm{dia}}_{\mu\nu}
++
+\frac{1}{2}
+\sum_{\mathbf k,a,b}
+\frac{
+n(E_a)-n(E_b)
+}{
+\omega+E_a-E_b+i0^+
+}
+\Gamma^\nu_{ab}(\mathbf k)
+\Gamma^\mu_{ba}(\mathbf k).</script><p>电导是电流对电场的响应，结合方程$\eqref{eq:e1}$和$\eqref{eq:e2}$，最终得到</p>
+<script type="math/tex; mode=display">
+\sigma^{\mathrm{reg}}_{\mu\nu}(\omega)
+=
+\frac{1}{2}
+\frac{1}{i(\omega+i0^+)}
+\sum_{\mathbf k,a,b}
+\left[
+\frac{
+n(E_a)-n(E_b)
+}{
+\omega+E_a-E_b+i0^+
+}
+-
+\frac{
+n(E_a)-n(E_b)
+}{
+E_a-E_b
+}
+\right]
+\Gamma^\nu_{ab}(\mathbf k)
+\Gamma^\mu_{ba}(\mathbf k).</script><p>如果抗磁项不依赖频率，那么在$K^R_{\mu\nu}(\omega)-K^R_{\mu\nu}(0)$会被抵消。因此 regular光电导可以只用顺磁 bubble 的频率差来写。对于 $\mu\neq\nu$ 的 Hall 响应，抗磁项通常也不会贡献反对称部分。</p>
+<ul>
+<li>纵向电导</li>
+</ul>
+<p>对于纵向电导，例如$\sigma_{xx}(\omega)$，其regular部分为</p>
+<script type="math/tex; mode=display">
+\sigma^{\mathrm{reg}}_{xx}(\omega)
+=
+\frac{1}{2}
+\frac{1}{i(\omega+i0^+)}
+\sum_{\mathbf k,a,b}
+\left[
+\frac{
+n(E_a)-n(E_b)
+}{
+\omega+E_a-E_b+i0^+
+}
+-
+\frac{
+n(E_a)-n(E_b)
+}{
+E_a-E_b
+}
+\right]
+\Gamma^x_{ab}(\mathbf k)
+\Gamma^x_{ba}(\mathbf k).</script><p>其中$\Gamma^x_{ab}(\mathbf k)<br>=<br>\langle a\mathbf k|<br>\Gamma_x(\mathbf k)<br>|b\mathbf k\rangle$，物理上，这个式子描述的是外加电场驱动 BdG 准粒子态之间发生跃迁。跃迁能量由$E_b-E_a$决定，矩阵元由电流顶角决定。在 gapped 超导中，低温下若 $\omega$ 小于两倍能隙，regular准粒子吸收通常很弱；当 $\omega$ 超过配对破缺能量尺度时，会出现吸收。</p>
+<ul>
+<li>Hall电导</li>
+</ul>
+<p>Hall 电导关注反对称部分</p>
+<script type="math/tex; mode=display">
+\sigma^H_{xy}(\omega)
+=
+\frac{1}{2}
+\left[
+\sigma_{xy}(\omega)
+-
+\sigma_{yx}(\omega)
+\right].</script><p>代入 regular电导表达式</p>
+<script type="math/tex; mode=display">
+\sigma^H_{xy}(\omega)
+=
+\frac{1}{4}
+\frac{1}{i(\omega+i0^+)}
+\sum_{\mathbf k,a,b}
+\left[
+\frac{
+n(E_a)-n(E_b)
+}{
+\omega+E_a-E_b+i0^+
+}
+-
+\frac{
+n(E_a)-n(E_b)
+}{
+E_a-E_b
+}
+\right]
+\left[
+\Gamma^y_{ab}\Gamma^x_{ba}
+-
+\Gamma^x_{ab}\Gamma^y_{ba}
+\right].</script><p>这里所有矩阵元都依赖 $\mathbf k$，为简洁省略了 $(\mathbf k)$。由于</p>
+<script type="math/tex; mode=display">
+\Gamma^y_{ab}\Gamma^x_{ba}
+-
+\Gamma^x_{ab}\Gamma^y_{ba}\nonumber</script><p>是反对称组合，所以 Hall 电导对时间反演破缺、手性配对、多能带轨道结构、Berry曲率类似的带间矩阵元特别敏感。如果体系保持时间反演对称性，通常有</p>
+<script type="math/tex; mode=display">
+\sigma^H_{xy}(\omega)=0.</script><p>如果体系是手征或磁性超导，可能得到非零 Hall 响应。</p>
+<h2 id="直流极限"><a href="#直流极限" class="headerlink" title="直流极限"></a>直流极限</h2><p>若关注 clean limit 下的直流 Hall 响应，可以考虑$\omega\to 0$，忽略简并和散射复杂性时，反对称 Hall 部分可以写成类似 Berry曲率的形式</p>
+<script type="math/tex; mode=display">
+\sigma^H_{xy}(0)
+=
+\frac{i}{2}
+\sum_{\mathbf k,a\neq b}
+\frac{
+n(E_a)-n(E_b)
+}{
+(E_a-E_b)^2
+}
+\left[
+\Gamma^y_{ab}\Gamma^x_{ba}
+-
+\Gamma^x_{ab}\Gamma^y_{ba}
+\right].</script><p>等价地，可以定义 BdG框架下的Berry曲率类似的量</p>
+<script type="math/tex; mode=display">
+\Omega^{\mathrm{charge}}_{a,xy}(\mathbf k)
+=
+-2\,\mathrm{Im}
+\sum_{b\neq a}
+\frac{
+\Gamma^x_{ab}(\mathbf k)
+\Gamma^y_{ba}(\mathbf k)
+}{
+(E_a-E_b)^2
+}.</script><p>那么</p>
+<script type="math/tex; mode=display">
+\sigma^H_{xy}(0)
+=
+-\frac{1}{2}
+\sum_{\mathbf k,a}
+n(E_a)
+\Omega^{\mathrm{charge}}_{a,xy}(\mathbf k),</script><p>其中整体符号和 $1/2$ 因子仍然依赖具体 Nambu 约定。需要强调：这个对象不是简单的 BdG能带Berry曲率。因为电荷电导率中的顶角是物理电荷电流顶角 $\Gamma_\mu$，而不是单纯的 $\partial_\mu\mathcal H$。在超导态中，电荷 U(1) 对称性已经被平均场破缺，因此电荷Hall电导率一般不等同于BdG Chern数。</p>
+<h2 id="规范不变性"><a href="#规范不变性" class="headerlink" title="规范不变性"></a>规范不变性</h2><p>上面的推导是<strong>裸BdG Kubo bubble</strong>。它是很多超导态光电导和 Hall响应计算的起点，但有一个重要限制：BdG平均场显式破坏了电荷守恒的$U(1)$对称性，因此严格的电磁响应有时需要加入集体激发模式或顶角修正来满足Ward恒等式。具体来说，如果外场会引起</p>
+<script type="math/tex; mode=display">
+\Delta\rightarrow \Delta+\delta\Delta,</script><p>或者</p>
+<script type="math/tex; mode=display">
+\theta\rightarrow \theta+\delta\theta,</script><p>那么只算准粒子bubble 可能不够。</p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ol>
+<li><a target="_blank" rel="noopener" href="https://doi.org/10.1017/CBO9781139020916">Introduction to many body physics</a></li>
+<li><a target="_blank" rel="noopener" href="https://link.aps.org/doi/10.1103/9prb-whh8">Vertex corrections to nonlinear photoinduced currents in two-dimensional superconductors</a></li>
+<li><a target="_blank" rel="noopener" href="https://link.aps.org/doi/10.1103/76lk-kj4x">Vertex correction for the linear and nonlinear optical responses in superconductors: Multiband effect and topological superconductivity</a></li>
+<li><a target="_blank" rel="noopener" href="https://link.aps.org/doi/10.1103/PhysRevB.98.094507">Gauge-invariant microscopic kinetic theory of superconductivity in response to electromagnetic fields</a></li>
+</ol>
+<div class="note red flat"><p>鉴于该网站分享的大都是学习笔记，作者水平有限，若发现有问题可以发邮件给我</p>
+<ul>
+<li><strong>yxliphy@gmail.com</strong></li>
+</ul>
+<p>也非常欢迎喜欢分享的小伙伴投稿</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="/about">Yu-Xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2026/06/02/2026-06-02-BdG-sigma/">http://example.com/2026/06/02/2026-06-02-BdG-sigma/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Yu-Xuan's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Superconductor/">Superconductor</a><a class="post-meta__tags" href="/tags/Transport/">Transport</a><a class="post-meta__tags" href="/tags/QuantumGeometry/">QuantumGeometry</a></div><div class="post-share"><div class="social-share" data-image="/assets/images/SC/bdg-sigma.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg"/></a><div class="post-qr-code-desc"></div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg"/></a><div class="post-qr-code-desc"></div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width no-desc" href="/2026/06/02/2026-06-02-SC-weght2/" title="从响应核到超流权重(II)"><img class="cover" src="/assets/images/SC/SC-Ds2.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">从响应核到超流权重(II)</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related no-desc" href="/2025/12/08/2025-12-08-SC-weight/" title="超流权重推导(能带无简并)"><img class="cover" src="/assets/images/SC/sc-weight.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-08</div><div class="info-item-2">超流权重推导(能带无简并)</div></div></div></a><a class="pagination-related no-desc" href="/2026/05/09/2026-05-09-SC-weight/" title="超流权重推导与结果复现（能带简并情形）"><img class="cover" src="/assets/images/SC/sc-weight.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-05-09</div><div class="info-item-2">超流权重推导与结果复现（能带简并情形）</div></div></div></a><a class="pagination-related no-desc" href="/2026/06/02/2026-06-02-SC-weight/" title="从响应核到超流权重(I)"><img class="cover" src="/assets/images/SC/SC-Ds.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-06-02</div><div class="info-item-2">从响应核到超流权重(I)</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description">知行合一</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">368</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yxli8023"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:yxliphy@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><div style="text-align:center;"> <img src="/assets/images/qrcode.jpg" alt="公告图" style="max-width:100%; border-radius:10px; margin-bottom:10px;"> <br> 欢迎关注公众号，有趣的内容也会在上面同步。 有密码的文章属于正在建设中或者没有通过验证的内容，若有需要可通过邮件联系。</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#BdG-%E6%A1%86%E6%9E%B6%E4%B8%8B%E7%9A%84%E7%94%B5%E5%AF%BC"><span class="toc-number">1.</span> <span class="toc-text">BdG 框架下的电导</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%B5%E5%AF%BC%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.</span> <span class="toc-text">电导定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%B5%E6%B5%81%E9%A1%B6%E8%A7%92"><span class="toc-number">1.2.</span> <span class="toc-text">电流顶角</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%93%8D%E5%BA%94%E6%A0%B8-K-mu-nu"><span class="toc-number">1.3.</span> <span class="toc-text">响应核 $K_{\mu\nu}$</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B4%E6%B5%81%E6%9E%81%E9%99%90"><span class="toc-number">1.4.</span> <span class="toc-text">直流极限</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%84%E8%8C%83%E4%B8%8D%E5%8F%98%E6%80%A7"><span class="toc-number">1.5.</span> <span class="toc-text">规范不变性</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">2.</span> <span class="toc-text">参考文献</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/06/02/2026-06-02-current-order/" title="电导率与超流密度计算中的极限顺序"><img src="/assets/images/SC/SC-current.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="电导率与超流密度计算中的极限顺序"/></a><div class="content"><a class="title" href="/2026/06/02/2026-06-02-current-order/" title="电导率与超流密度计算中的极限顺序">电导率与超流密度计算中的极限顺序</a><time datetime="2026-06-01T16:00:00.000Z" title="发表于 2026-06-02 00:00:00">2026-06-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/06/02/2026-06-02-SC-weight/" title="从响应核到超流权重(I)"><img src="/assets/images/SC/SC-Ds.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="从响应核到超流权重(I)"/></a><div class="content"><a class="title" href="/2026/06/02/2026-06-02-SC-weight/" title="从响应核到超流权重(I)">从响应核到超流权重(I)</a><time datetime="2026-06-01T16:00:00.000Z" title="发表于 2026-06-02 00:00:00">2026-06-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/06/02/2026-06-02-SC-weght2/" title="从响应核到超流权重(II)"><img src="/assets/images/SC/SC-Ds2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="从响应核到超流权重(II)"/></a><div class="content"><a class="title" href="/2026/06/02/2026-06-02-SC-weght2/" title="从响应核到超流权重(II)">从响应核到超流权重(II)</a><time datetime="2026-06-01T16:00:00.000Z" title="发表于 2026-06-02 00:00:00">2026-06-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/06/02/2026-06-02-BdG-sigma/" title="BdG框架下的电导"><img src="/assets/images/SC/bdg-sigma.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="BdG框架下的电导"/></a><div class="content"><a class="title" href="/2026/06/02/2026-06-02-BdG-sigma/" title="BdG框架下的电导">BdG框架下的电导</a><time datetime="2026-06-01T16:00:00.000Z" title="发表于 2026-06-02 00:00:00">2026-06-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/06/01/2026-06-01-SC-Proximity/" title="超导近邻效应"><img src="/assets/images/SC/SC-proximity.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导近邻效应"/></a><div class="content"><a class="title" href="/2026/06/01/2026-06-01-SC-Proximity/" title="超导近邻效应">超导近邻效应</a><time datetime="2026-05-31T16:00:00.000Z" title="发表于 2026-06-01 00:00:00">2026-06-01</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/assets/images/SC/bdg-sigma.png);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div><div class="footer_custom_text">Welcome to  Yu-Xuan's Blog</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  const initGitalk = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGitalk = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const gitalk = new Gitalk({
+      clientID: 'Ov23li0WvZEaIAZ7RFtH',
+      clientSecret: '03fcb77b7c28dafcdde00756e27f9b5bc76639e8',
+      repo: 'yxli8023.github.io',
+      owner: 'yxli8023',
+      admin: ['yxli8023'],
+      updateCountCallback: commentCount,
+      ...option,
+      id: isShuoshuo ? path : (option && option.id) || 'bcd05e268e6836dd2b4dcd83df9e07ee'
+    })
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async(el, path) => {
+    if (typeof Gitalk === 'function') initGitalk(el, path)
+    else {
+      await btf.getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await btf.getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Gitalk' === 'Gitalk'
+      ? window.shuoshuoComment = { loadComment: loadGitalk }
+      : window.loadOtherComment = loadGitalk
+    return
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
