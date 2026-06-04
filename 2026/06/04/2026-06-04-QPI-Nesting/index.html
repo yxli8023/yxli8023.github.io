@@ -1,0 +1,583 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Regular光电导与光学$f$求和规则 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="QPI 与费米面 nesting 波矢的关系       基本物理图像QPI，全称为 quasiparticle interference，即准粒子干涉。它的基本物理图像是：在金属或其他具有准粒子激发的体系中，杂质会把一个动量态上的准粒子散射到另一个动量态。入射波和散射波在实空间发生干涉，从而导致局域态密度出现空间振荡。没有杂质时，体系具有平移对称性，准粒子态可以用动量 $\mathbf{k}$">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Regular光电导与光学$f$求和规则">
+<meta property="og:url" content="http://example.com/2026/06/04/2026-06-04-QPI-Nesting/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39;s Blog">
+<meta property="og:description" content="QPI 与费米面 nesting 波矢的关系       基本物理图像QPI，全称为 quasiparticle interference，即准粒子干涉。它的基本物理图像是：在金属或其他具有准粒子激发的体系中，杂质会把一个动量态上的准粒子散射到另一个动量态。入射波和散射波在实空间发生干涉，从而导致局域态密度出现空间振荡。没有杂质时，体系具有平移对称性，准粒子态可以用动量 $\mathbf{k}$">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/assets/images/Transport/ill-qpi.png">
+<meta property="article:published_time" content="2026-06-03T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-06-04T03:45:24.222Z">
+<meta property="article:author" content="Yu-Xuan">
+<meta property="article:tag" content="Code">
+<meta property="article:tag" content="Transport">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/images/Transport/ill-qpi.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Regular光电导与光学$f$求和规则",
+  "url": "http://example.com/2026/06/04/2026-06-04-QPI-Nesting/",
+  "image": "http://example.com/assets/images/Transport/ill-qpi.png",
+  "datePublished": "2026-06-03T16:00:00.000Z",
+  "dateModified": "2026-06-04T03:45:24.222Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yu-Xuan",
+      "url": "http://example.com/about"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/logo.png"><link rel="canonical" href="http://example.com/2026/06/04/2026-06-04-QPI-Nesting/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"作者: Yu-Xuan","link":"链接: ","source":"来源: Yu-Xuan's Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'medium_zoom',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#f54966","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Regular光电导与光学$f$求和规则',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #dbeffd;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">371</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/assets/images/Transport/ill-qpi.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo.png" alt="Logo"><span class="site-name">Yu-Xuan's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">Regular光电导与光学$f$求和规则</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Regular光电导与光学$f$求和规则</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-06-03T16:00:00.000Z" title="发表于 2026-06-04 00:00:00">2026-06-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-06-04T03:45:24.222Z" title="更新于 2026-06-04 11:45:24">2026-06-04</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Transport/">Transport</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">4.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>24分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;自上次更新已经过了&quot;,&quot;messageNext&quot;:&quot;天，文章内容可能已过时。&quot;,&quot;postUpdate&quot;:&quot;2026-06-04 11:45:24&quot;}" hidden></div><h1 id="QPI-与费米面-nesting-波矢的关系"><a href="#QPI-与费米面-nesting-波矢的关系" class="headerlink" title="QPI 与费米面 nesting 波矢的关系"></a>QPI 与费米面 nesting 波矢的关系</h1><div style="display: flex; justify-content: space-between;">
+  <img src="/assets/images/Transport/ill-qpi.png" alt="Image 1" width="100%" />
+</div>
+
+
+<h2 id="基本物理图像"><a href="#基本物理图像" class="headerlink" title="基本物理图像"></a>基本物理图像</h2><p>QPI，全称为 quasiparticle interference，即准粒子干涉。它的基本物理图像是：在金属或其他具有准粒子激发的体系中，杂质会把一个动量态上的准粒子散射到另一个动量态。入射波和散射波在实空间发生干涉，从而导致局域态密度出现空间振荡。没有杂质时，体系具有平移对称性，准粒子态可以用动量 $\mathbf{k}$ 标记，局域态密度在空间中是均匀的。加入一个点杂质后，准粒子可以发生散射</p>
+<script type="math/tex; mode=display">
+\mathbf{k}\rightarrow \mathbf{k}+\mathbf{q}.</script><p>入射态和散射态叠加后，会在实空间产生局域态密度调制</p>
+<script type="math/tex; mode=display">
+\delta \rho(\mathbf{r},\omega).</script><p>对这个空间调制做傅里叶变换，就得到 QPI 图案：</p>
+<script type="math/tex; mode=display">
+\delta \rho(\mathbf{q},\omega).</script><p>因此，QPI 的核心含义是：</p>
+<script type="math/tex; mode=display">
+\boxed{
+\text{实空间 LDOS 振荡的傅里叶分量，对应准粒子的散射波矢 } \mathbf{q}.
+}\nonumber</script><p>换句话说，QPI 把杂质诱导的实空间驻波转换成动量空间中的散射信息。一个亮斑或亮线对应某类强散射过程，其波矢为 $\mathbf{q}$。</p>
+<h2 id="从-LDOS-修正得到-QPI-响应函数"><a href="#从-LDOS-修正得到-QPI-响应函数" class="headerlink" title="从 LDOS 修正得到 QPI 响应函数"></a>从 LDOS 修正得到 QPI 响应函数</h2><p>局域态密度可以由格林函数表示为</p>
+<script type="math/tex; mode=display">
+\rho(\mathbf{r},\omega)
+=
+-\frac{1}{\pi}
+\operatorname{Im}G(\mathbf{r},\mathbf{r};\omega).</script><p>有杂质后，总格林函数可以写成</p>
+<script type="math/tex; mode=display">
+G
+=
+G_0+\delta G.</script><p>在 $T$-matrix 形式下，杂质导致的格林函数修正为</p>
+<script type="math/tex; mode=display">
+\delta G
+=
+G_0TG_0.</script><p>这里 $G_0$ 是无杂质格林函数，$T$ 是杂质散射矩阵。于是 LDOS 的变化为</p>
+<script type="math/tex; mode=display">
+\delta \rho(\mathbf{r},\omega)
+=
+-\frac{1}{\pi}
+\operatorname{Im}
+\delta G(\mathbf{r},\mathbf{r};\omega).</script><p>对 $\delta \rho(\mathbf{r},\omega)$ 做傅里叶变换，可以得到</p>
+<script type="math/tex; mode=display">
+\delta \rho(\mathbf{q},\omega)
+\propto
+-\frac{1}{\pi}
+\operatorname{Im}
+\sum_{\mathbf{k}}
+G_0(\mathbf{k}+\mathbf{q},\omega)
+T(\omega)
+G_0(\mathbf{k},\omega).</script><p>对于最简单的弱非磁性点杂质，在 Born 近似下有</p>
+<script type="math/tex; mode=display">
+T(\omega)\approx V_0.</script><p>因此</p>
+<script type="math/tex; mode=display">
+\delta \rho(\mathbf{q},\omega)
+\propto
+-\frac{V_0}{\pi}
+\operatorname{Im}
+\sum_{\mathbf{k}}
+G_0(\mathbf{k}+\mathbf{q},\omega)
+G_0(\mathbf{k},\omega).</script><p>这个公式已经显示出 QPI 的本质：它是一个 particle-hole 型响应函数，描述准粒子从 $\mathbf{k}$ 散射到 $\mathbf{k}+\mathbf{q}$ 的过程。</p>
+<h2 id="谱函数近似与-JDOS-图像"><a href="#谱函数近似与-JDOS-图像" class="headerlink" title="谱函数近似与 JDOS 图像"></a>谱函数近似与 JDOS 图像</h2><p>为了更直接地看出 QPI 和费米面 nesting 的关系，引入单粒子谱函数</p>
+<script type="math/tex; mode=display">
+A(\mathbf{k},\omega)
+=
+-\frac{1}{\pi}
+\operatorname{Im}
+G_0(\mathbf{k},\omega).</script><p>在很多直观分析中，QPI 强度可以近似写成 joint density of states，简称 JDOS：</p>
+<script type="math/tex; mode=display">
+I_{\mathrm{QPI}}(\mathbf{q},\omega)
+\sim
+\sum_{\mathbf{k}}
+A(\mathbf{k},\omega)
+A(\mathbf{k}+\mathbf{q},\omega).</script><p>如果准粒子寿命较长，谱函数在能带上非常尖锐，可以近似为</p>
+<script type="math/tex; mode=display">
+A(\mathbf{k},\omega)
+\approx
+\delta(\omega-\epsilon_{\mathbf{k}}).</script><p>于是</p>
+<script type="math/tex; mode=display">
+I_{\mathrm{QPI}}(\mathbf{q},\omega)
+\sim
+\sum_{\mathbf{k}}
+\delta(\omega-\epsilon_{\mathbf{k}})
+\delta(\omega-\epsilon_{\mathbf{k}+\mathbf{q}}).</script><p>这就是 JDOS：</p>
+<script type="math/tex; mode=display">
+J(\mathbf{q},\omega)
+=
+\sum_{\mathbf{k}}
+\delta(\omega-\epsilon_{\mathbf{k}})
+\delta(\omega-\epsilon_{\mathbf{k}+\mathbf{q}}).</script><p>这个表达式的物理意义非常清楚：对于一个给定的散射波矢 $\mathbf{q}$，它统计有多少个动量点 $\mathbf{k}$ 同时满足</p>
+<script type="math/tex; mode=display">
+\epsilon_{\mathbf{k}}=\omega,</script><p>以及</p>
+<script type="math/tex; mode=display">
+\epsilon_{\mathbf{k}+\mathbf{q}}=\omega.</script><p>也就是说，$\mathbf{q}$ 必须连接同一能量上的两个态。</p>
+<p>当 $\omega=E_F$ 时，上述条件变成</p>
+<script type="math/tex; mode=display">
+\epsilon_{\mathbf{k}}=E_F,</script><script type="math/tex; mode=display">
+\epsilon_{\mathbf{k}+\mathbf{q}}=E_F.</script><p>这说明 $\mathbf{k}$ 和 $\mathbf{k}+\mathbf{q}$ 都在费米面上。因此：</p>
+<script type="math/tex; mode=display">
+\boxed{
+\text{QPI 在费米能附近探测的是连接费米面上两点的散射波矢。}
+}\nonumber</script><h2 id="nesting-波矢增强-QPI"><a href="#nesting-波矢增强-QPI" class="headerlink" title="nesting 波矢增强 QPI"></a>nesting 波矢增强 QPI</h2><p>费米面 nesting 指的是存在一个波矢 $\mathbf{q}_N$，可以把一段费米面平移到另一段费米面上，使两段费米面大面积重合或近似平行：</p>
+<script type="math/tex; mode=display">
+C_2 \approx C_1+\mathbf{q}_N.</script><p>如果 $\mathbf{q}$ 只是连接费米面上的少数两个点，那么 JDOS 有贡献，但不一定很强。相反，如果 $\mathbf{q}=\mathbf{q}_N$ 能连接两段近似平行的费米面，那么很多 $\mathbf{k}$ 都会同时满足</p>
+<script type="math/tex; mode=display">
+\epsilon_{\mathbf{k}}=E_F,\qquad \epsilon_{\mathbf{k}+\mathbf{q}_N}=E_F.</script><p>因此</p>
+<script type="math/tex; mode=display">
+J(\mathbf{q}_N,E_F)
+=
+\sum_{\mathbf{k}}
+\delta(E_F-\epsilon_{\mathbf{k}})
+\delta(E_F-\epsilon_{\mathbf{k}+\mathbf{q}_N})</script><p>会显著增强。所以 QPI 和 nesting 的关系可以概括为：</p>
+<script type="math/tex; mode=display">
+\boxed{
+\text{费米面 nesting 波矢 } \mathbf{q}_N
+\text{ 会在 QPI 中表现为强峰、亮线或增强轮廓。}
+}\nonumber</script><h2 id="更严格的奇异性条件"><a href="#更严格的奇异性条件" class="headerlink" title="更严格的奇异性条件"></a>更严格的奇异性条件</h2><p>从连续形式出发，</p>
+<script type="math/tex; mode=display">
+J(\mathbf{q},\omega)
+=
+\int
+\frac{d^2 k}{(2\pi)^2}
+\delta(\omega-\epsilon_{\mathbf{k}})
+\delta(\omega-\epsilon_{\mathbf{k}+\mathbf{q}}).</script><p>两个 $\delta$ 函数要求 $\mathbf{k}$ 同时位于两条等能线上：</p>
+<script type="math/tex; mode=display">
+C_1:\epsilon_{\mathbf{k}}=\omega,\qquad C_2:\epsilon_{\mathbf{k}+\mathbf{q}}=\omega.</script><p>用变量变换可以得到</p>
+<script type="math/tex; mode=display">
+J(\mathbf{q},\omega)
+\sim
+\sum_{\mathbf{k}_0}
+\frac{1}{
+\left|
+\nabla_{\mathbf{k}}\epsilon_{\mathbf{k}_0}
+\times
+\nabla_{\mathbf{k}}\epsilon_{\mathbf{k}_0+\mathbf{q}}
+\right|
+}.</script><p>其中 $\mathbf{k}_0$ 满足</p>
+<script type="math/tex; mode=display">
+\epsilon_{\mathbf{k}_0}=\omega,\qquad \epsilon_{\mathbf{k}_0+\mathbf{q}}=\omega.</script><p>当</p>
+<script type="math/tex; mode=display">
+\nabla_{\mathbf{k}}\epsilon_{\mathbf{k}_0}
+\parallel
+\nabla_{\mathbf{k}}\epsilon_{\mathbf{k}_0+\mathbf{q}},</script><p>也就是</p>
+<script type="math/tex; mode=display">
+\nabla_{\mathbf{k}}\epsilon_{\mathbf{k}_0}
+\times
+\nabla_{\mathbf{k}}\epsilon_{\mathbf{k}_0+\mathbf{q}}
+=
+0</script><p>时，分母变小，QPI/JDOS 增强。因为</p>
+<script type="math/tex; mode=display">
+\mathbf{v}_{\mathbf{k}}
+=
+\nabla_{\mathbf{k}}\epsilon_{\mathbf{k}},</script><p>所以这个条件也可以写成</p>
+<script type="math/tex; mode=display">
+\mathbf{v}_{\mathbf{k}_0}
+\parallel
+\mathbf{v}_{\mathbf{k}_0+\mathbf{q}}.</script><p>这意味着散射波矢 $\mathbf{q}$ 连接两个费米速度平行或反平行的等能面点。对于二维等能线而言，这等价于两条等能线在相应位置具有平行切线。</p>
+<p>因此，QPI 的奇异增强条件是：</p>
+<script type="math/tex; mode=display">
+\boxed{
+\epsilon_{\mathbf{k}}=\omega,\quad
+\epsilon_{\mathbf{k}+\mathbf{q}}=\omega,\quad
+\mathbf{v}_{\mathbf{k}}\parallel \mathbf{v}_{\mathbf{k}+\mathbf{q}}.
+}</script><p>当 $\omega=E_F$ 时，这正是费米面 nesting 的几何条件。</p>
+<h2 id="线积分形式：QPI-是费米面与其平移副本的重叠"><a href="#线积分形式：QPI-是费米面与其平移副本的重叠" class="headerlink" title="线积分形式：QPI 是费米面与其平移副本的重叠"></a>线积分形式：QPI 是费米面与其平移副本的重叠</h2><p>从 JDOS 公式出发：</p>
+<script type="math/tex; mode=display">
+J(\mathbf{q},\omega)
+=
+\int
+\frac{d^2 k}{(2\pi)^2}
+\delta(\omega-\epsilon_{\mathbf{k}})
+\delta(\omega-\epsilon_{\mathbf{k}+\mathbf{q}}).</script><p>先利用第一个 $\delta$ 函数把二维积分限制到等能线 $C_\omega$ 上。利用恒等式</p>
+<script type="math/tex; mode=display">
+\int d^2k\,\delta(\omega-\epsilon_{\mathbf{k}})
+=
+\oint_{C_\omega}
+\frac{dl}{|\mathbf{v}_{\mathbf{k}}|},</script><p>可以得到</p>
+<script type="math/tex; mode=display">
+J(\mathbf{q},\omega)
+=
+\oint_{C_\omega}
+\frac{dl}{(2\pi)^2|\mathbf{v}_{\mathbf{k}}|}
+\delta(\omega-\epsilon_{\mathbf{k}+\mathbf{q}}).</script><p>这个表达式的含义是：沿着等能线 $C_\omega$ 扫描每一个点 $\mathbf{k}$，检查平移 $\mathbf{q}$ 之后的点 $\mathbf{k}+\mathbf{q}$ 是否仍然位于同一个等能线上。如果 $\mathbf{q}$ 是 nesting 波矢，那么一整段等能线经过 $\mathbf{q}$ 平移后仍然接近另一段等能线。因此这个线积分会累积大量贡献。</p>
+<p>所以：</p>
+<script type="math/tex; mode=display">
+\boxed{
+J(\mathbf{q},\omega)
+\text{ 测量的是等能线与其平移副本之间的重叠程度。}
+}\nonumber</script><p>在费米能处：</p>
+<script type="math/tex; mode=display">
+\boxed{
+J(\mathbf{q},E_F)
+\text{ 测量的是费米面与其平移副本之间的重叠程度。}
+}\nonumber</script><p>这就是 QPI 和费米面 nesting 关系最直观的数学表达。</p>
+<hr>
+<h2 id="例子：二维圆形费米面"><a href="#例子：二维圆形费米面" class="headerlink" title="例子：二维圆形费米面"></a>例子：二维圆形费米面</h2><p>考虑二维自由电子模型：</p>
+<script type="math/tex; mode=display">
+\epsilon_{\mathbf{k}}
+=
+\frac{k^2}{2m}-E_F.</script><p>费米面为圆：</p>
+<script type="math/tex; mode=display">
+|\mathbf{k}|=k_F.</script><p>QPI/JDOS 为</p>
+<script type="math/tex; mode=display">
+J(\mathbf{q},E_F)
+=
+\int d^2k\,
+\delta(k^2-k_F^2)
+\delta(|\mathbf{k}+\mathbf{q}|^2-k_F^2).</script><p>该积分在$|\mathbf{q}|\leq 2k_F$时有贡献，并且在$|\mathbf{q}|=2k_F$附近增强。这是因为 $|\mathbf{q}|=2k_F$ 对应 backscattering：</p>
+<script type="math/tex; mode=display">
+\mathbf{k}\rightarrow -\mathbf{k}.</script><p>因此普通二维金属的 QPI 常常出现 $2k_F$ 特征。这个 $2k_F$ 可以看作最简单的费米面自 nesting 波矢。</p>
+<h2 id="实际-QPI-不等于纯-JDOS"><a href="#实际-QPI-不等于纯-JDOS" class="headerlink" title="实际 QPI 不等于纯 JDOS"></a>实际 QPI 不等于纯 JDOS</h2><p>虽然 JDOS 给出了 QPI 和 nesting 的基本关系，但真实 QPI 还包含散射矩阵元。更完整地说，</p>
+<script type="math/tex; mode=display">
+I_{\mathrm{QPI}}(\mathbf{q},\omega)
+\sim
+\sum_{\mathbf{k}}
+M(\mathbf{k},\mathbf{k}+\mathbf{q})
+A(\mathbf{k},\omega)
+A(\mathbf{k}+\mathbf{q},\omega).</script><p>其中 $M(\mathbf{k},\mathbf{k}+\mathbf{q})$ 是矩阵元因子，可能来自：</p>
+<ul>
+<li>自旋重叠；</li>
+<li>轨道重叠；</li>
+<li>杂质类型；</li>
+<li>超导 coherence factor；</li>
+<li>STM tip 的选择性。</li>
+</ul>
+<p>因此，费米面 nesting 决定哪些 $\mathbf{q}$ 在几何上可能增强，而矩阵元决定这些几何允许的散射是否真的在 QPI 图案中显著。</p>
+<p>可以总结为：</p>
+<script type="math/tex; mode=display">
+\boxed{
+\text{nesting 决定几何相空间，矩阵元决定可见强度。}
+}\nonumber</script><p>如果一个 nesting 波矢连接的两个费米面态自旋完全相反，而杂质又是非磁性的，那么该散射可能被自旋选择规则压制。此时即使几何上存在 nesting，QPI 中也未必出现强峰。</p>
+<h2 id="QPI-与费米面-nesting-的最终关系"><a href="#QPI-与费米面-nesting-的最终关系" class="headerlink" title="QPI 与费米面 nesting 的最终关系"></a>QPI 与费米面 nesting 的最终关系</h2><p>从公式链条看，QPI 与费米面 nesting 的关系可以总结为：</p>
+<script type="math/tex; mode=display">
+\delta \rho(\mathbf{q},\omega)
+\sim
+\sum_{\mathbf{k}}
+G_0(\mathbf{k}+\mathbf{q},\omega)
+G_0(\mathbf{k},\omega).</script><p>在谱函数近似下：</p>
+<script type="math/tex; mode=display">
+I_{\mathrm{QPI}}(\mathbf{q},\omega)
+\sim
+\sum_{\mathbf{k}}
+A(\mathbf{k},\omega)
+A(\mathbf{k}+\mathbf{q},\omega).</script><p>在长寿命极限：</p>
+<script type="math/tex; mode=display">
+I_{\mathrm{QPI}}(\mathbf{q},\omega)
+\sim
+\sum_{\mathbf{k}}
+\delta(\omega-\epsilon_{\mathbf{k}})
+\delta(\omega-\epsilon_{\mathbf{k}+\mathbf{q}}).</script><p>在费米能处：</p>
+<script type="math/tex; mode=display">
+I_{\mathrm{QPI}}(\mathbf{q},E_F)
+\sim
+\sum_{\mathbf{k}}
+\delta(E_F-\epsilon_{\mathbf{k}})
+\delta(E_F-\epsilon_{\mathbf{k}+\mathbf{q}}).</script><p>因此，QPI 的强峰出现在能够连接大量费米面态的波矢上：</p>
+<script type="math/tex; mode=display">
+\boxed{
+\mathbf{q}\approx \mathbf{q}_N,
+\qquad
+\epsilon_{\mathbf{k}}=E_F,
+\qquad
+\epsilon_{\mathbf{k}+\mathbf{q}_N}=E_F.
+}</script><p>更严格的增强条件为：</p>
+<script type="math/tex; mode=display">
+\boxed{
+\nabla_{\mathbf{k}}\epsilon_{\mathbf{k}}
+\parallel
+\nabla_{\mathbf{k}}\epsilon_{\mathbf{k}+\mathbf{q}_N}.
+}</script><p>这正是费米面 nesting 的几何条件。</p>
+<blockquote>
+<ul>
+<li>Summary</li>
+</ul>
+<p>QPI 是杂质散射导致的 LDOS 干涉图案。其傅里叶分量 $\delta\rho(\mathbf{q},\omega)$ 对应准粒子从 $\mathbf{k}$ 到 $\mathbf{k}+\mathbf{q}$ 的散射过程。在弱散射和长寿命近似下，QPI 强度近似为等能面自相关，即 JDOS。当 $\omega=E_F$ 时，这个自相关就是费米面与其平移副本的重叠。因此，费米面 nesting 波矢会在 QPI 中表现为增强的峰、亮线或特征轮廓。</p>
+</blockquote>
+<h1 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br><span class="line">453</span><br><span class="line">454</span><br><span class="line">455</span><br><span class="line">456</span><br><span class="line">457</span><br><span class="line">458</span><br><span class="line">459</span><br><span class="line">460</span><br><span class="line">461</span><br><span class="line">462</span><br><span class="line">463</span><br><span class="line">464</span><br><span class="line">465</span><br><span class="line">466</span><br><span class="line">467</span><br><span class="line">468</span><br><span class="line">469</span><br><span class="line">470</span><br><span class="line">471</span><br><span class="line">472</span><br><span class="line">473</span><br><span class="line">474</span><br><span class="line">475</span><br><span class="line">476</span><br><span class="line">477</span><br><span class="line">478</span><br><span class="line">479</span><br><span class="line">480</span><br><span class="line">481</span><br><span class="line">482</span><br><span class="line">483</span><br><span class="line">484</span><br><span class="line">485</span><br><span class="line">486</span><br><span class="line">487</span><br><span class="line">488</span><br><span class="line">489</span><br><span class="line">490</span><br><span class="line">491</span><br><span class="line">492</span><br><span class="line">493</span><br><span class="line">494</span><br><span class="line">495</span><br><span class="line">496</span><br><span class="line">497</span><br><span class="line">498</span><br><span class="line">499</span><br><span class="line">500</span><br><span class="line">501</span><br><span class="line">502</span><br><span class="line">503</span><br><span class="line">504</span><br><span class="line">505</span><br><span class="line">506</span><br><span class="line">507</span><br><span class="line">508</span><br><span class="line">509</span><br><span class="line">510</span><br><span class="line">511</span><br><span class="line">512</span><br><span class="line">513</span><br><span class="line">514</span><br><span class="line">515</span><br><span class="line">516</span><br><span class="line">517</span><br><span class="line">518</span><br><span class="line">519</span><br><span class="line">520</span><br><span class="line">521</span><br><span class="line">522</span><br><span class="line">523</span><br><span class="line">524</span><br><span class="line">525</span><br><span class="line">526</span><br><span class="line">527</span><br><span class="line">528</span><br><span class="line">529</span><br><span class="line">530</span><br><span class="line">531</span><br><span class="line">532</span><br><span class="line">533</span><br><span class="line">534</span><br><span class="line">535</span><br><span class="line">536</span><br><span class="line">537</span><br><span class="line">538</span><br><span class="line">539</span><br><span class="line">540</span><br><span class="line">541</span><br><span class="line">542</span><br><span class="line">543</span><br><span class="line">544</span><br><span class="line">545</span><br><span class="line">546</span><br><span class="line">547</span><br><span class="line">548</span><br><span class="line">549</span><br><span class="line">550</span><br><span class="line">551</span><br><span class="line">552</span><br><span class="line">553</span><br><span class="line">554</span><br><span class="line">555</span><br><span class="line">556</span><br><span class="line">557</span><br><span class="line">558</span><br><span class="line">559</span><br><span class="line">560</span><br><span class="line">561</span><br><span class="line">562</span><br><span class="line">563</span><br><span class="line">564</span><br><span class="line">565</span><br><span class="line">566</span><br><span class="line">567</span><br><span class="line">568</span><br><span class="line">569</span><br><span class="line">570</span><br><span class="line">571</span><br><span class="line">572</span><br><span class="line">573</span><br><span class="line">574</span><br><span class="line">575</span><br><span class="line">576</span><br><span class="line">577</span><br><span class="line">578</span><br><span class="line">579</span><br><span class="line">580</span><br><span class="line">581</span><br><span class="line">582</span><br><span class="line">583</span><br><span class="line">584</span><br><span class="line">585</span><br><span class="line">586</span><br><span class="line">587</span><br><span class="line">588</span><br><span class="line">589</span><br><span class="line">590</span><br><span class="line">591</span><br><span class="line">592</span><br><span class="line">593</span><br><span class="line">594</span><br><span class="line">595</span><br><span class="line">596</span><br><span class="line">597</span><br><span class="line">598</span><br><span class="line">599</span><br><span class="line">600</span><br><span class="line">601</span><br><span class="line">602</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">QPI and JDOS nesting demo.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">This script separately calculates:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">1. JDOS approximation:</span></span><br><span class="line"><span class="string">       JDOS(q, omega) = sum_k A(k, omega) A(k+q, omega)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">2. Born-QPI response:</span></span><br><span class="line"><span class="string">       Lambda(q, omega) = sum_k G(k+q, omega) G(k, omega)</span></span><br><span class="line"><span class="string">       QPI(q, omega)    = -Im Lambda(q, omega) / pi</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Model:</span></span><br><span class="line"><span class="string">       epsilon(k) = -2t (cos kx + cos ky) - mu</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">At mu = 0, the square-lattice Fermi surface is nested by</span></span><br><span class="line"><span class="string">       Q_N = (pi, pi).</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Outputs:</span></span><br><span class="line"><span class="string">    data_qpi_jdos/</span></span><br><span class="line"><span class="string">        fs_points_mu_*.dat</span></span><br><span class="line"><span class="string">        jdos_mu_*.dat</span></span><br><span class="line"><span class="string">        qpi_mu_*.dat</span></span><br><span class="line"><span class="string">        linecut_jdos_mu_*.dat</span></span><br><span class="line"><span class="string">        linecut_qpi_mu_*.dat</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    fig_qpi_jdos/</span></span><br><span class="line"><span class="string">        fs_mu_*.png</span></span><br><span class="line"><span class="string">        spectral_mu_*.png</span></span><br><span class="line"><span class="string">        jdos_mu_*.png</span></span><br><span class="line"><span class="string">        qpi_mu_*.png</span></span><br><span class="line"><span class="string">        linecut_jdos_mu_*.png</span></span><br><span class="line"><span class="string">        linecut_qpi_mu_*.png</span></span><br><span class="line"><span class="string">        comparison_jdos_linecut.png</span></span><br><span class="line"><span class="string">        comparison_qpi_linecut.png</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> matplotlib.ticker <span class="keyword">import</span> MaxNLocator</span><br><span class="line"><span class="keyword">from</span> matplotlib.colors <span class="keyword">import</span> LogNorm, TwoSlopeNorm</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"><span class="comment"># 1. Global settings</span></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"></span><br><span class="line">USE_LATEX = <span class="literal">True</span></span><br><span class="line">FIG_DPI = <span class="number">400</span></span><br><span class="line"></span><br><span class="line">DATA_DIR = <span class="string">&quot;data_qpi_jdos&quot;</span></span><br><span class="line">FIG_DIR = <span class="string">&quot;fig_qpi_jdos&quot;</span></span><br><span class="line"></span><br><span class="line">os.makedirs(DATA_DIR, exist_ok=<span class="literal">True</span>)</span><br><span class="line">os.makedirs(FIG_DIR, exist_ok=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">plt.rcParams[<span class="string">&quot;figure.facecolor&quot;</span>] = <span class="string">&quot;white&quot;</span></span><br><span class="line">plt.rcParams[<span class="string">&quot;axes.facecolor&quot;</span>] = <span class="string">&quot;white&quot;</span></span><br><span class="line">plt.rcParams[<span class="string">&quot;savefig.facecolor&quot;</span>] = <span class="string">&quot;white&quot;</span></span><br><span class="line"></span><br><span class="line">plt.rcParams[<span class="string">&quot;font.family&quot;</span>] = <span class="string">&quot;serif&quot;</span></span><br><span class="line">plt.rcParams[<span class="string">&quot;font.serif&quot;</span>] = [<span class="string">&quot;Times New Roman&quot;</span>, <span class="string">&quot;Times&quot;</span>, <span class="string">&quot;DejaVu Serif&quot;</span>]</span><br><span class="line">plt.rcParams[<span class="string">&quot;mathtext.fontset&quot;</span>] = <span class="string">&quot;stix&quot;</span></span><br><span class="line"></span><br><span class="line">plt.rcParams[<span class="string">&quot;text.usetex&quot;</span>] = USE_LATEX</span><br><span class="line"><span class="keyword">if</span> USE_LATEX:</span><br><span class="line">    plt.rcParams[<span class="string">&quot;text.latex.preamble&quot;</span>] = <span class="string">r&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    \usepackage&#123;amsmath&#125;</span></span><br><span class="line"><span class="string">    \usepackage&#123;mathptmx&#125;</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">plt.rcParams[<span class="string">&quot;axes.linewidth&quot;</span>] = <span class="number">1.0</span></span><br><span class="line">plt.rcParams[<span class="string">&quot;xtick.direction&quot;</span>] = <span class="string">&quot;in&quot;</span></span><br><span class="line">plt.rcParams[<span class="string">&quot;ytick.direction&quot;</span>] = <span class="string">&quot;in&quot;</span></span><br><span class="line">plt.rcParams[<span class="string">&quot;xtick.top&quot;</span>] = <span class="literal">True</span></span><br><span class="line">plt.rcParams[<span class="string">&quot;ytick.right&quot;</span>] = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">plt.rcParams[<span class="string">&quot;font.size&quot;</span>] = <span class="number">14</span></span><br><span class="line">plt.rcParams[<span class="string">&quot;axes.labelsize&quot;</span>] = <span class="number">16</span></span><br><span class="line">plt.rcParams[<span class="string">&quot;legend.fontsize&quot;</span>] = <span class="number">12</span></span><br><span class="line">plt.rcParams[<span class="string">&quot;xtick.labelsize&quot;</span>] = <span class="number">13</span></span><br><span class="line">plt.rcParams[<span class="string">&quot;ytick.labelsize&quot;</span>] = <span class="number">13</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"><span class="comment"># 2. Parameters</span></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"></span><br><span class="line">N_K = <span class="number">512</span></span><br><span class="line">T_HOP = <span class="number">1.0</span></span><br><span class="line"></span><br><span class="line">OMEGA = <span class="number">0.0</span></span><br><span class="line">ETA = <span class="number">0.035</span></span><br><span class="line"></span><br><span class="line">FS_CUT = <span class="number">0.03</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># mu=0: nested Fermi surface</span></span><br><span class="line"><span class="comment"># mu=-0.8: away from perfect nesting</span></span><br><span class="line">MU_LIST = [<span class="number">0.0</span>, -<span class="number">0.8</span>]</span><br><span class="line"></span><br><span class="line">USE_LOG_JDOS = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"><span class="comment"># 3. Basic helpers</span></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">savefig</span>(<span class="params">fig, filename</span>):</span><br><span class="line">    path = os.path.join(FIG_DIR, filename)</span><br><span class="line">    fig.savefig(path, dpi=FIG_DPI, bbox_inches=<span class="string">&quot;tight&quot;</span>)</span><br><span class="line">    plt.close(fig)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Saved: <span class="subst">&#123;path&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">mu_tag</span>(<span class="params">mu</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">abs</span>(mu) &lt; <span class="number">1e-12</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;0p0&quot;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">f&quot;<span class="subst">&#123;mu:+<span class="number">.2</span>f&#125;</span>&quot;</span>.replace(<span class="string">&quot;+&quot;</span>, <span class="string">&quot;p&quot;</span>).replace(<span class="string">&quot;-&quot;</span>, <span class="string">&quot;m&quot;</span>).replace(<span class="string">&quot;.&quot;</span>, <span class="string">&quot;p&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">pi_ticks</span>(<span class="params">ax</span>):</span><br><span class="line">    ax.set_xlim(-np.pi, np.pi)</span><br><span class="line">    ax.set_ylim(-np.pi, np.pi)</span><br><span class="line">    ax.set_xticks([-np.pi, <span class="number">0.0</span>, np.pi])</span><br><span class="line">    ax.set_yticks([-np.pi, <span class="number">0.0</span>, np.pi])</span><br><span class="line">    ax.set_xticklabels([<span class="string">r&quot;$-\pi$&quot;</span>, <span class="string">r&quot;$0$&quot;</span>, <span class="string">r&quot;$\pi$&quot;</span>])</span><br><span class="line">    ax.set_yticklabels([<span class="string">r&quot;$-\pi$&quot;</span>, <span class="string">r&quot;$0$&quot;</span>, <span class="string">r&quot;$\pi$&quot;</span>])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">max_three_ticks</span>(<span class="params">ax</span>):</span><br><span class="line">    ax.xaxis.set_major_locator(MaxNLocator(nbins=<span class="number">3</span>))</span><br><span class="line">    ax.yaxis.set_major_locator(MaxNLocator(nbins=<span class="number">3</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">max_three_cbar_ticks</span>(<span class="params">cbar</span>):</span><br><span class="line">    cbar.ax.yaxis.set_major_locator(MaxNLocator(nbins=<span class="number">3</span>))</span><br><span class="line">    cbar.update_ticks()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">nesting_corner_points</span>():</span><br><span class="line">    <span class="keyword">return</span> [-np.pi, np.pi, -np.pi, np.pi], [-np.pi, -np.pi, np.pi, np.pi]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"><span class="comment"># 4. Model</span></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">square_lattice_energy</span>(<span class="params">kx, ky, mu, t=T_HOP</span>):</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">2.0</span> * t * (np.cos(kx) + np.cos(ky)) - mu</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">green_function</span>(<span class="params">eps, omega=OMEGA, eta=ETA</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1.0</span> / (omega - eps + <span class="number">1j</span> * eta)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">spectral_function</span>(<span class="params">eps, omega=OMEGA, eta=ETA</span>):</span><br><span class="line">    <span class="keyword">return</span> (eta / np.pi) / ((omega - eps) ** <span class="number">2</span> + eta ** <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"><span class="comment"># 5. JDOS and QPI</span></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">compute_jdos_fft</span>(<span class="params">A</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    JDOS(q) = sum_k A(k) A(k+q)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    For real A, this periodic autocorrelation is obtained by</span></span><br><span class="line"><span class="string">        ifft2(|fft2(A)|^2).</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    F = np.fft.fft2(A)</span><br><span class="line">    jdos = np.fft.ifft2(np.<span class="built_in">abs</span>(F) ** <span class="number">2</span>).real</span><br><span class="line">    jdos /= A.size</span><br><span class="line">    <span class="keyword">return</span> np.fft.fftshift(jdos)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">reverse_fft_indices</span>(<span class="params">arr</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Return arr[-p_y, -p_x] on a periodic FFT grid.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    ny, nx = arr.shape</span><br><span class="line">    iy = (-np.arange(ny)) % ny</span><br><span class="line">    ix = (-np.arange(nx)) % nx</span><br><span class="line">    <span class="keyword">return</span> arr[np.ix_(iy, ix)]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">compute_born_qpi_fft</span>(<span class="params">G</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Lambda(q) = sum_k G(k+q) G(k).</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    This is a periodic correlation without complex conjugation.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    In Fourier space:</span></span><br><span class="line"><span class="string">        Lambda_hat(p) = G_hat(p) G_hat(-p).</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    QPI(q) = -Im Lambda(q) / pi.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    F = np.fft.fft2(G)</span><br><span class="line">    F_neg = reverse_fft_indices(F)</span><br><span class="line"></span><br><span class="line">    lam = np.fft.ifft2(F * F_neg)</span><br><span class="line">    lam /= G.size</span><br><span class="line">    lam = np.fft.fftshift(lam)</span><br><span class="line"></span><br><span class="line">    qpi = -np.imag(lam) / np.pi</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> lam, qpi</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"><span class="comment"># 6. Save data</span></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">save_fs_points</span>(<span class="params">kx, ky, eps, mu</span>):</span><br><span class="line">    tag = mu_tag(mu)</span><br><span class="line">    mask = np.<span class="built_in">abs</span>(eps - OMEGA) &lt; FS_CUT</span><br><span class="line"></span><br><span class="line">    data = np.column_stack([</span><br><span class="line">        kx[mask],</span><br><span class="line">        ky[mask],</span><br><span class="line">        eps[mask],</span><br><span class="line">    ])</span><br><span class="line"></span><br><span class="line">    path = os.path.join(DATA_DIR, <span class="string">f&quot;fs_points_mu_<span class="subst">&#123;tag&#125;</span>.dat&quot;</span>)</span><br><span class="line">    np.savetxt(path, data, header=<span class="string">&quot;kx ky epsilon&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Saved: <span class="subst">&#123;path&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">save_jdos_data</span>(<span class="params">qx, qy, jdos, mu</span>):</span><br><span class="line">    tag = mu_tag(mu)</span><br><span class="line">    QX, QY = np.meshgrid(qx, qy, indexing=<span class="string">&quot;xy&quot;</span>)</span><br><span class="line"></span><br><span class="line">    data = np.column_stack([</span><br><span class="line">        QX.ravel(),</span><br><span class="line">        QY.ravel(),</span><br><span class="line">        jdos.ravel(),</span><br><span class="line">    ])</span><br><span class="line"></span><br><span class="line">    path = os.path.join(DATA_DIR, <span class="string">f&quot;jdos_mu_<span class="subst">&#123;tag&#125;</span>.dat&quot;</span>)</span><br><span class="line">    np.savetxt(path, data, header=<span class="string">&quot;qx qy JDOS&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Saved: <span class="subst">&#123;path&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">save_qpi_data</span>(<span class="params">qx, qy, lam, qpi, mu</span>):</span><br><span class="line">    tag = mu_tag(mu)</span><br><span class="line">    QX, QY = np.meshgrid(qx, qy, indexing=<span class="string">&quot;xy&quot;</span>)</span><br><span class="line"></span><br><span class="line">    data = np.column_stack([</span><br><span class="line">        QX.ravel(),</span><br><span class="line">        QY.ravel(),</span><br><span class="line">        np.real(lam).ravel(),</span><br><span class="line">        np.imag(lam).ravel(),</span><br><span class="line">        qpi.ravel(),</span><br><span class="line">        np.<span class="built_in">abs</span>(qpi).ravel(),</span><br><span class="line">    ])</span><br><span class="line"></span><br><span class="line">    path = os.path.join(DATA_DIR, <span class="string">f&quot;qpi_mu_<span class="subst">&#123;tag&#125;</span>.dat&quot;</span>)</span><br><span class="line">    header = <span class="string">&quot;qx qy Re_Lambda Im_Lambda QPI_minus_ImLambda_over_pi abs_QPI&quot;</span></span><br><span class="line">    np.savetxt(path, data, header=header)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Saved: <span class="subst">&#123;path&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">save_linecuts</span>(<span class="params">qvals, jdos_cut, qpi_cut, mu</span>):</span><br><span class="line">    tag = mu_tag(mu)</span><br><span class="line"></span><br><span class="line">    data_jdos = np.column_stack([qvals, jdos_cut])</span><br><span class="line">    path_jdos = os.path.join(DATA_DIR, <span class="string">f&quot;linecut_jdos_mu_<span class="subst">&#123;tag&#125;</span>.dat&quot;</span>)</span><br><span class="line">    np.savetxt(path_jdos, data_jdos, header=<span class="string">&quot;qx JDOS(qx, qy=-pi)&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Saved: <span class="subst">&#123;path_jdos&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">    data_qpi = np.column_stack([qvals, qpi_cut])</span><br><span class="line">    path_qpi = os.path.join(DATA_DIR, <span class="string">f&quot;linecut_qpi_mu_<span class="subst">&#123;tag&#125;</span>.dat&quot;</span>)</span><br><span class="line">    np.savetxt(path_qpi, data_qpi, header=<span class="string">&quot;qx QPI(qx, qy=-pi)&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Saved: <span class="subst">&#123;path_qpi&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"><span class="comment"># 7. Plotting: FS and spectral function</span></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">plot_fermi_surface</span>(<span class="params">kx, ky, eps, mu</span>):</span><br><span class="line">    tag = mu_tag(mu)</span><br><span class="line"></span><br><span class="line">    fig, ax = plt.subplots(figsize=(<span class="number">5.2</span>, <span class="number">4.6</span>))</span><br><span class="line"></span><br><span class="line">    im = ax.imshow(</span><br><span class="line">        eps,</span><br><span class="line">        origin=<span class="string">&quot;lower&quot;</span>,</span><br><span class="line">        extent=(-np.pi, np.pi, -np.pi, np.pi),</span><br><span class="line">        cmap=<span class="string">&quot;RdBu_r&quot;</span>,</span><br><span class="line">        aspect=<span class="string">&quot;equal&quot;</span>,</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    cbar = fig.colorbar(im, ax=ax, fraction=<span class="number">0.046</span>, pad=<span class="number">0.04</span>)</span><br><span class="line">    cbar.set_label(<span class="string">r&quot;$\epsilon_&#123;\mathbf&#123;k&#125;&#125;$&quot;</span>)</span><br><span class="line">    max_three_cbar_ticks(cbar)</span><br><span class="line"></span><br><span class="line">    ax.contour(kx, ky, eps, levels=[OMEGA], linewidths=<span class="number">1.8</span>)</span><br><span class="line"></span><br><span class="line">    ax.set_xlabel(<span class="string">r&quot;$k_x$&quot;</span>)</span><br><span class="line">    ax.set_ylabel(<span class="string">r&quot;$k_y$&quot;</span>)</span><br><span class="line">    ax.set_title(<span class="string">rf&quot;Fermi surface, $\mu=<span class="subst">&#123;mu:<span class="number">.2</span>f&#125;</span>$&quot;</span>)</span><br><span class="line">    pi_ticks(ax)</span><br><span class="line">    ax.set_aspect(<span class="string">&quot;equal&quot;</span>, adjustable=<span class="string">&quot;box&quot;</span>)</span><br><span class="line"></span><br><span class="line">    savefig(fig, <span class="string">f&quot;fs_mu_<span class="subst">&#123;tag&#125;</span>.png&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">plot_spectral_function</span>(<span class="params">A, mu</span>):</span><br><span class="line">    tag = mu_tag(mu)</span><br><span class="line"></span><br><span class="line">    fig, ax = plt.subplots(figsize=(<span class="number">5.2</span>, <span class="number">4.6</span>))</span><br><span class="line"></span><br><span class="line">    im = ax.imshow(</span><br><span class="line">        A,</span><br><span class="line">        origin=<span class="string">&quot;lower&quot;</span>,</span><br><span class="line">        extent=(-np.pi, np.pi, -np.pi, np.pi),</span><br><span class="line">        cmap=<span class="string">&quot;viridis&quot;</span>,</span><br><span class="line">        aspect=<span class="string">&quot;equal&quot;</span>,</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    cbar = fig.colorbar(im, ax=ax, fraction=<span class="number">0.046</span>, pad=<span class="number">0.04</span>)</span><br><span class="line">    cbar.set_label(<span class="string">r&quot;$A(\mathbf&#123;k&#125;,\omega)$&quot;</span>)</span><br><span class="line">    max_three_cbar_ticks(cbar)</span><br><span class="line"></span><br><span class="line">    ax.set_xlabel(<span class="string">r&quot;$k_x$&quot;</span>)</span><br><span class="line">    ax.set_ylabel(<span class="string">r&quot;$k_y$&quot;</span>)</span><br><span class="line">    ax.set_title(<span class="string">rf&quot;Spectral function, $\mu=<span class="subst">&#123;mu:<span class="number">.2</span>f&#125;</span>$&quot;</span>)</span><br><span class="line">    pi_ticks(ax)</span><br><span class="line">    ax.set_aspect(<span class="string">&quot;equal&quot;</span>, adjustable=<span class="string">&quot;box&quot;</span>)</span><br><span class="line"></span><br><span class="line">    savefig(fig, <span class="string">f&quot;spectral_mu_<span class="subst">&#123;tag&#125;</span>.png&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"><span class="comment"># 8. Plotting: JDOS and QPI separately</span></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">plot_jdos</span>(<span class="params">jdos, mu</span>):</span><br><span class="line">    tag = mu_tag(mu)</span><br><span class="line"></span><br><span class="line">    fig, ax = plt.subplots(figsize=(<span class="number">5.2</span>, <span class="number">4.6</span>))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> USE_LOG_JDOS:</span><br><span class="line">        positive = jdos[jdos &gt; <span class="number">0</span>]</span><br><span class="line">        vmin = np.percentile(positive, <span class="number">5</span>)</span><br><span class="line">        vmax = np.percentile(positive, <span class="number">99.5</span>)</span><br><span class="line"></span><br><span class="line">        im = ax.imshow(</span><br><span class="line">            jdos,</span><br><span class="line">            origin=<span class="string">&quot;lower&quot;</span>,</span><br><span class="line">            extent=(-np.pi, np.pi, -np.pi, np.pi),</span><br><span class="line">            cmap=<span class="string">&quot;magma&quot;</span>,</span><br><span class="line">            norm=LogNorm(vmin=<span class="built_in">max</span>(vmin, <span class="number">1e-14</span>), vmax=vmax),</span><br><span class="line">            aspect=<span class="string">&quot;equal&quot;</span>,</span><br><span class="line">        )</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        im = ax.imshow(</span><br><span class="line">            jdos,</span><br><span class="line">            origin=<span class="string">&quot;lower&quot;</span>,</span><br><span class="line">            extent=(-np.pi, np.pi, -np.pi, np.pi),</span><br><span class="line">            cmap=<span class="string">&quot;magma&quot;</span>,</span><br><span class="line">            aspect=<span class="string">&quot;equal&quot;</span>,</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    cbar = fig.colorbar(im, ax=ax, fraction=<span class="number">0.046</span>, pad=<span class="number">0.04</span>)</span><br><span class="line">    cbar.set_label(<span class="string">r&quot;$J_&#123;\mathrm&#123;JDOS&#125;&#125;(\mathbf&#123;q&#125;,\omega)$&quot;</span>)</span><br><span class="line">    max_three_cbar_ticks(cbar)</span><br><span class="line"></span><br><span class="line">    xq, yq = nesting_corner_points()</span><br><span class="line">    ax.scatter(</span><br><span class="line">        xq,</span><br><span class="line">        yq,</span><br><span class="line">        marker=<span class="string">&quot;x&quot;</span>,</span><br><span class="line">        s=<span class="number">60</span>,</span><br><span class="line">        linewidths=<span class="number">1.4</span>,</span><br><span class="line">        label=<span class="string">r&quot;$\mathbf&#123;Q&#125;_N=(\pi,\pi)$&quot;</span>,</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    ax.set_xlabel(<span class="string">r&quot;$q_x$&quot;</span>)</span><br><span class="line">    ax.set_ylabel(<span class="string">r&quot;$q_y$&quot;</span>)</span><br><span class="line">    ax.set_title(<span class="string">rf&quot;JDOS, $\mu=<span class="subst">&#123;mu:<span class="number">.2</span>f&#125;</span>$&quot;</span>)</span><br><span class="line">    pi_ticks(ax)</span><br><span class="line">    ax.set_aspect(<span class="string">&quot;equal&quot;</span>, adjustable=<span class="string">&quot;box&quot;</span>)</span><br><span class="line">    ax.legend(frameon=<span class="literal">True</span>, loc=<span class="string">&quot;lower left&quot;</span>)</span><br><span class="line"></span><br><span class="line">    savefig(fig, <span class="string">f&quot;jdos_mu_<span class="subst">&#123;tag&#125;</span>.png&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">plot_qpi</span>(<span class="params">qpi, mu</span>):</span><br><span class="line">    tag = mu_tag(mu)</span><br><span class="line"></span><br><span class="line">    fig, ax = plt.subplots(figsize=(<span class="number">5.2</span>, <span class="number">4.6</span>))</span><br><span class="line"></span><br><span class="line">    vmax = np.nanpercentile(np.<span class="built_in">abs</span>(qpi), <span class="number">99.5</span>)</span><br><span class="line">    <span class="keyword">if</span> vmax &lt;= <span class="number">0</span> <span class="keyword">or</span> <span class="keyword">not</span> np.isfinite(vmax):</span><br><span class="line">        vmax = <span class="number">1.0</span></span><br><span class="line"></span><br><span class="line">    norm = TwoSlopeNorm(vmin=-vmax, vcenter=<span class="number">0.0</span>, vmax=vmax)</span><br><span class="line"></span><br><span class="line">    im = ax.imshow(</span><br><span class="line">        qpi,</span><br><span class="line">        origin=<span class="string">&quot;lower&quot;</span>,</span><br><span class="line">        extent=(-np.pi, np.pi, -np.pi, np.pi),</span><br><span class="line">        cmap=<span class="string">&quot;RdBu_r&quot;</span>,</span><br><span class="line">        norm=norm,</span><br><span class="line">        aspect=<span class="string">&quot;equal&quot;</span>,</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    cbar = fig.colorbar(im, ax=ax, fraction=<span class="number">0.046</span>, pad=<span class="number">0.04</span>)</span><br><span class="line">    cbar.set_label(<span class="string">r&quot;$\delta\rho(\mathbf&#123;q&#125;,\omega)$&quot;</span>)</span><br><span class="line">    max_three_cbar_ticks(cbar)</span><br><span class="line"></span><br><span class="line">    xq, yq = nesting_corner_points()</span><br><span class="line">    ax.scatter(</span><br><span class="line">        xq,</span><br><span class="line">        yq,</span><br><span class="line">        marker=<span class="string">&quot;x&quot;</span>,</span><br><span class="line">        s=<span class="number">60</span>,</span><br><span class="line">        linewidths=<span class="number">1.4</span>,</span><br><span class="line">        label=<span class="string">r&quot;$\mathbf&#123;Q&#125;_N=(\pi,\pi)$&quot;</span>,</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    ax.set_xlabel(<span class="string">r&quot;$q_x$&quot;</span>)</span><br><span class="line">    ax.set_ylabel(<span class="string">r&quot;$q_y$&quot;</span>)</span><br><span class="line">    ax.set_title(<span class="string">rf&quot;Born-QPI, $\mu=<span class="subst">&#123;mu:<span class="number">.2</span>f&#125;</span>$&quot;</span>)</span><br><span class="line">    pi_ticks(ax)</span><br><span class="line">    ax.set_aspect(<span class="string">&quot;equal&quot;</span>, adjustable=<span class="string">&quot;box&quot;</span>)</span><br><span class="line">    ax.legend(frameon=<span class="literal">True</span>, loc=<span class="string">&quot;lower left&quot;</span>)</span><br><span class="line"></span><br><span class="line">    savefig(fig, <span class="string">f&quot;qpi_mu_<span class="subst">&#123;tag&#125;</span>.png&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">plot_linecut_jdos</span>(<span class="params">qvals, cut, mu</span>):</span><br><span class="line">    tag = mu_tag(mu)</span><br><span class="line"></span><br><span class="line">    fig, ax = plt.subplots(figsize=(<span class="number">5.2</span>, <span class="number">3.8</span>))</span><br><span class="line"></span><br><span class="line">    ax.plot(qvals, cut, lw=<span class="number">1.8</span>)</span><br><span class="line"></span><br><span class="line">    ax.set_xlabel(<span class="string">r&quot;$q_x$&quot;</span>)</span><br><span class="line">    ax.set_ylabel(<span class="string">r&quot;$J_&#123;\mathrm&#123;JDOS&#125;&#125;(q_x,-\pi)$&quot;</span>)</span><br><span class="line">    ax.set_title(<span class="string">rf&quot;JDOS line cut, $\mu=<span class="subst">&#123;mu:<span class="number">.2</span>f&#125;</span>$&quot;</span>)</span><br><span class="line"></span><br><span class="line">    ax.set_xlim(-np.pi, np.pi)</span><br><span class="line">    ax.set_xticks([-np.pi, <span class="number">0.0</span>, np.pi])</span><br><span class="line">    ax.set_xticklabels([<span class="string">r&quot;$-\pi$&quot;</span>, <span class="string">r&quot;$0$&quot;</span>, <span class="string">r&quot;$\pi$&quot;</span>])</span><br><span class="line">    ax.yaxis.set_major_locator(MaxNLocator(nbins=<span class="number">3</span>))</span><br><span class="line"></span><br><span class="line">    savefig(fig, <span class="string">f&quot;linecut_jdos_mu_<span class="subst">&#123;tag&#125;</span>.png&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">plot_linecut_qpi</span>(<span class="params">qvals, cut, mu</span>):</span><br><span class="line">    tag = mu_tag(mu)</span><br><span class="line"></span><br><span class="line">    fig, ax = plt.subplots(figsize=(<span class="number">5.2</span>, <span class="number">3.8</span>))</span><br><span class="line"></span><br><span class="line">    ax.plot(qvals, cut, lw=<span class="number">1.8</span>)</span><br><span class="line"></span><br><span class="line">    ax.set_xlabel(<span class="string">r&quot;$q_x$&quot;</span>)</span><br><span class="line">    ax.set_ylabel(<span class="string">r&quot;$\delta\rho(q_x,-\pi)$&quot;</span>)</span><br><span class="line">    ax.set_title(<span class="string">rf&quot;Born-QPI line cut, $\mu=<span class="subst">&#123;mu:<span class="number">.2</span>f&#125;</span>$&quot;</span>)</span><br><span class="line"></span><br><span class="line">    ax.set_xlim(-np.pi, np.pi)</span><br><span class="line">    ax.set_xticks([-np.pi, <span class="number">0.0</span>, np.pi])</span><br><span class="line">    ax.set_xticklabels([<span class="string">r&quot;$-\pi$&quot;</span>, <span class="string">r&quot;$0$&quot;</span>, <span class="string">r&quot;$\pi$&quot;</span>])</span><br><span class="line">    ax.yaxis.set_major_locator(MaxNLocator(nbins=<span class="number">3</span>))</span><br><span class="line"></span><br><span class="line">    savefig(fig, <span class="string">f&quot;linecut_qpi_mu_<span class="subst">&#123;tag&#125;</span>.png&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"><span class="comment"># 9. Comparison plots</span></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">plot_comparison_linecuts</span>(<span class="params">all_results</span>):</span><br><span class="line">    fig, ax = plt.subplots(figsize=(<span class="number">5.4</span>, <span class="number">4.0</span>))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> mu, result <span class="keyword">in</span> all_results.items():</span><br><span class="line">        qvals = result[<span class="string">&quot;qvals&quot;</span>]</span><br><span class="line">        cut = result[<span class="string">&quot;jdos_linecut&quot;</span>]</span><br><span class="line">        cut_norm = cut / np.<span class="built_in">max</span>(cut)</span><br><span class="line"></span><br><span class="line">        ax.plot(</span><br><span class="line">            qvals,</span><br><span class="line">            cut_norm,</span><br><span class="line">            lw=<span class="number">1.8</span>,</span><br><span class="line">            label=<span class="string">rf&quot;$\mu=<span class="subst">&#123;mu:<span class="number">.2</span>f&#125;</span>$&quot;</span>,</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    ax.set_xlabel(<span class="string">r&quot;$q_x$&quot;</span>)</span><br><span class="line">    ax.set_ylabel(<span class="string">r&quot;Normalized $J_&#123;\mathrm&#123;JDOS&#125;&#125;(q_x,-\pi)$&quot;</span>)</span><br><span class="line">    ax.set_title(<span class="string">r&quot;JDOS nesting enhancement&quot;</span>)</span><br><span class="line"></span><br><span class="line">    ax.set_xlim(-np.pi, np.pi)</span><br><span class="line">    ax.set_xticks([-np.pi, <span class="number">0.0</span>, np.pi])</span><br><span class="line">    ax.set_xticklabels([<span class="string">r&quot;$-\pi$&quot;</span>, <span class="string">r&quot;$0$&quot;</span>, <span class="string">r&quot;$\pi$&quot;</span>])</span><br><span class="line">    ax.yaxis.set_major_locator(MaxNLocator(nbins=<span class="number">3</span>))</span><br><span class="line">    ax.legend(frameon=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    savefig(fig, <span class="string">&quot;comparison_jdos_linecut.png&quot;</span>)</span><br><span class="line"></span><br><span class="line">    fig, ax = plt.subplots(figsize=(<span class="number">5.4</span>, <span class="number">4.0</span>))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> mu, result <span class="keyword">in</span> all_results.items():</span><br><span class="line">        qvals = result[<span class="string">&quot;qvals&quot;</span>]</span><br><span class="line">        cut = result[<span class="string">&quot;qpi_linecut&quot;</span>]</span><br><span class="line"></span><br><span class="line">        max_abs = np.<span class="built_in">max</span>(np.<span class="built_in">abs</span>(cut))</span><br><span class="line">        <span class="keyword">if</span> max_abs &gt; <span class="number">0</span>:</span><br><span class="line">            cut_norm = cut / max_abs</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            cut_norm = cut</span><br><span class="line"></span><br><span class="line">        ax.plot(</span><br><span class="line">            qvals,</span><br><span class="line">            cut_norm,</span><br><span class="line">            lw=<span class="number">1.8</span>,</span><br><span class="line">            label=<span class="string">rf&quot;$\mu=<span class="subst">&#123;mu:<span class="number">.2</span>f&#125;</span>$&quot;</span>,</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    ax.set_xlabel(<span class="string">r&quot;$q_x$&quot;</span>)</span><br><span class="line">    ax.set_ylabel(<span class="string">r&quot;Normalized $\delta\rho(q_x,-\pi)$&quot;</span>)</span><br><span class="line">    ax.set_title(<span class="string">r&quot;Born-QPI nesting feature&quot;</span>)</span><br><span class="line"></span><br><span class="line">    ax.set_xlim(-np.pi, np.pi)</span><br><span class="line">    ax.set_xticks([-np.pi, <span class="number">0.0</span>, np.pi])</span><br><span class="line">    ax.set_xticklabels([<span class="string">r&quot;$-\pi$&quot;</span>, <span class="string">r&quot;$0$&quot;</span>, <span class="string">r&quot;$\pi$&quot;</span>])</span><br><span class="line">    ax.yaxis.set_major_locator(MaxNLocator(nbins=<span class="number">3</span>))</span><br><span class="line">    ax.legend(frameon=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    savefig(fig, <span class="string">&quot;comparison_qpi_linecut.png&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"><span class="comment"># 10. Main calculation</span></span><br><span class="line"><span class="comment"># ============================================================</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">run_case</span>(<span class="params">mu</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;=&quot;</span> * <span class="number">60</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Running JDOS and Born-QPI for mu = <span class="subst">&#123;mu:<span class="number">.4</span>f&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">    k = np.linspace(-np.pi, np.pi, N_K, endpoint=<span class="literal">False</span>)</span><br><span class="line">    q = np.linspace(-np.pi, np.pi, N_K, endpoint=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">    KX, KY = np.meshgrid(k, k, indexing=<span class="string">&quot;xy&quot;</span>)</span><br><span class="line"></span><br><span class="line">    eps = square_lattice_energy(KX, KY, mu)</span><br><span class="line">    G = green_function(eps)</span><br><span class="line">    A = spectral_function(eps)</span><br><span class="line"></span><br><span class="line">    jdos = compute_jdos_fft(A)</span><br><span class="line">    lam, qpi = compute_born_qpi_fft(G)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># q_y = -pi line cut. Q=(pi,pi) appears at BZ corners.</span></span><br><span class="line">    qy_index = <span class="number">0</span></span><br><span class="line">    jdos_linecut = jdos[qy_index, :]</span><br><span class="line">    qpi_linecut = qpi[qy_index, :]</span><br><span class="line"></span><br><span class="line">    save_fs_points(KX, KY, eps, mu)</span><br><span class="line">    save_jdos_data(q, q, jdos, mu)</span><br><span class="line">    save_qpi_data(q, q, lam, qpi, mu)</span><br><span class="line">    save_linecuts(q, jdos_linecut, qpi_linecut, mu)</span><br><span class="line"></span><br><span class="line">    plot_fermi_surface(KX, KY, eps, mu)</span><br><span class="line">    plot_spectral_function(A, mu)</span><br><span class="line"></span><br><span class="line">    plot_jdos(jdos, mu)</span><br><span class="line">    plot_qpi(qpi, mu)</span><br><span class="line"></span><br><span class="line">    plot_linecut_jdos(q, jdos_linecut, mu)</span><br><span class="line">    plot_linecut_qpi(q, qpi_linecut, mu)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="string">&quot;qvals&quot;</span>: q,</span><br><span class="line">        <span class="string">&quot;jdos&quot;</span>: jdos,</span><br><span class="line">        <span class="string">&quot;qpi&quot;</span>: qpi,</span><br><span class="line">        <span class="string">&quot;jdos_linecut&quot;</span>: jdos_linecut,</span><br><span class="line">        <span class="string">&quot;qpi_linecut&quot;</span>: qpi_linecut,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    all_results = &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> mu <span class="keyword">in</span> MU_LIST:</span><br><span class="line">        all_results[mu] = run_case(mu)</span><br><span class="line"></span><br><span class="line">    plot_comparison_linecuts(all_results)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;=&quot;</span> * <span class="number">60</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Finished.&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Figures saved in: <span class="subst">&#123;FIG_DIR&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Data saved in: <span class="subst">&#123;DATA_DIR&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<div style="display: flex; justify-content: space-between;">
+  <img src="/assets/images/Transport/comparison_qpi_linecut.png" alt="Image 1" width="30%" />
+  <img src="/assets/images/Transport/fs_mu_0p0.png" alt="Image 1" width="30%" />
+  <img src="/assets/images/Transport/comparisofs_mu_m0p80n_qpi_linecut.png" alt="Image 1" width="30%" />
+</div>
+
+<div style="display: flex; justify-content: space-between;">
+  <img src="/assets/images/Transport/qpi_mu_0p0.png" alt="Image 1" width="45%" />
+  <img src="/assets/images/Transport/qpi_mu_m0p80.png" alt="Image 1" width="45%" />
+</div>
+
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ol>
+<li><a target="_blank" rel="noopener" href="https://link.aps.org/doi/10.1103/PhysRevB.111.035132">Quasiparticle interference in altermagnets</a></li>
+</ol>
+<div class="note red flat"><p>鉴于该网站分享的大都是学习笔记，作者水平有限，若发现有问题可以发邮件给我</p>
+<ul>
+<li><strong>yxliphy@gmail.com</strong></li>
+</ul>
+<p>也非常欢迎喜欢分享的小伙伴投稿</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="/about">Yu-Xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2026/06/04/2026-06-04-QPI-Nesting/">http://example.com/2026/06/04/2026-06-04-QPI-Nesting/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Yu-Xuan's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Code/">Code</a><a class="post-meta__tags" href="/tags/Transport/">Transport</a></div><div class="post-share"><div class="social-share" data-image="/assets/images/Transport/ill-qpi.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg"/></a><div class="post-qr-code-desc"></div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg"/></a><div class="post-qr-code-desc"></div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width no-desc" href="/2026/06/03/2026-06-03-Regular-fsum-Ds/" title="超导态光学零频权重 $D_x^{SC}$ 与超流权重 $D_{s,xx}$ 的关系"><img class="cover" src="/assets/images/Transport/sc-Ds.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">超导态光学零频权重 $D_x^{SC}$ 与超流权重 $D_{s,xx}$ 的关系</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2022/03/25/2022-03-25-edge-polarization/" title="Title"><img class="cover" src="/img/defult-cover7.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-25</div><div class="info-item-2">Title</div></div><div class="info-2"><div class="info-item-1">本 Blog 提供计算边界极化的完整代码，理论部分参考边界极化这篇 Blog。  代码串行1234567891011121314151617181920212223242526272829303...</div></div></div></a><a class="pagination-related" href="/2025/10/07/2025-10-01-kwant-study/" title="Kwant学习"><img class="cover" src="/img/defult-cover7.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-10-07</div><div class="info-item-2">Kwant学习</div></div><div class="info-2"><div class="info-item-1">最近打算转学一下输运,首先项借助Kwant学习一下其中的例子先帮助自己理解一些输运中的概念和基本的计算,后面再自己利用格林函数的方法边学习边实践,这里还是想整理记录一下自己在学习Kwant的实例...</div></div></div></a><a class="pagination-related" href="/2025/10/02/2025-10-02-selfenergy/" title="迭代方法自能计算"><img class="cover" src="/img/defult-cover2.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-10-02</div><div class="info-item-2">迭代方法自能计算</div></div><div class="info-2"><div class="info-item-1">最近在学习输运方面的内容，这篇Blog主要就是整理如何通过迭代格林函数的方式来计算电极与导体耦合之后的自能。不得不说知乎是个学习的好地方，我这里的主要内容也都是在知乎上学习的，自己整理一下再加上...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description">知行合一</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">371</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yxli8023"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:yxliphy@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><div style="text-align:center;"> <img src="/assets/images/qrcode.jpg" alt="公告图" style="max-width:100%; border-radius:10px; margin-bottom:10px;"> <br> 欢迎关注公众号，有趣的内容也会在上面同步。 有密码的文章属于正在建设中或者没有通过验证的内容，若有需要可通过邮件联系。</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#QPI-%E4%B8%8E%E8%B4%B9%E7%B1%B3%E9%9D%A2-nesting-%E6%B3%A2%E7%9F%A2%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">1.</span> <span class="toc-text">QPI 与费米面 nesting 波矢的关系</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%89%A9%E7%90%86%E5%9B%BE%E5%83%8F"><span class="toc-number">1.1.</span> <span class="toc-text">基本物理图像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E-LDOS-%E4%BF%AE%E6%AD%A3%E5%BE%97%E5%88%B0-QPI-%E5%93%8D%E5%BA%94%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.</span> <span class="toc-text">从 LDOS 修正得到 QPI 响应函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%B1%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC%E4%B8%8E-JDOS-%E5%9B%BE%E5%83%8F"><span class="toc-number">1.3.</span> <span class="toc-text">谱函数近似与 JDOS 图像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nesting-%E6%B3%A2%E7%9F%A2%E5%A2%9E%E5%BC%BA-QPI"><span class="toc-number">1.4.</span> <span class="toc-text">nesting 波矢增强 QPI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E4%B8%A5%E6%A0%BC%E7%9A%84%E5%A5%87%E5%BC%82%E6%80%A7%E6%9D%A1%E4%BB%B6"><span class="toc-number">1.5.</span> <span class="toc-text">更严格的奇异性条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A7%AF%E5%88%86%E5%BD%A2%E5%BC%8F%EF%BC%9AQPI-%E6%98%AF%E8%B4%B9%E7%B1%B3%E9%9D%A2%E4%B8%8E%E5%85%B6%E5%B9%B3%E7%A7%BB%E5%89%AF%E6%9C%AC%E7%9A%84%E9%87%8D%E5%8F%A0"><span class="toc-number">1.6.</span> <span class="toc-text">线积分形式：QPI 是费米面与其平移副本的重叠</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E5%AD%90%EF%BC%9A%E4%BA%8C%E7%BB%B4%E5%9C%86%E5%BD%A2%E8%B4%B9%E7%B1%B3%E9%9D%A2"><span class="toc-number">1.7.</span> <span class="toc-text">例子：二维圆形费米面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%99%85-QPI-%E4%B8%8D%E7%AD%89%E4%BA%8E%E7%BA%AF-JDOS"><span class="toc-number">1.8.</span> <span class="toc-text">实际 QPI 不等于纯 JDOS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#QPI-%E4%B8%8E%E8%B4%B9%E7%B1%B3%E9%9D%A2-nesting-%E7%9A%84%E6%9C%80%E7%BB%88%E5%85%B3%E7%B3%BB"><span class="toc-number">1.9.</span> <span class="toc-text">QPI 与费米面 nesting 的最终关系</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E6%BC%94%E7%A4%BA"><span class="toc-number">2.</span> <span class="toc-text">代码演示</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">3.</span> <span class="toc-text">参考文献</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/06/04/2026-06-04-QPI-Nesting/" title="Regular光电导与光学$f$求和规则"><img src="/assets/images/Transport/ill-qpi.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Regular光电导与光学$f$求和规则"/></a><div class="content"><a class="title" href="/2026/06/04/2026-06-04-QPI-Nesting/" title="Regular光电导与光学$f$求和规则">Regular光电导与光学$f$求和规则</a><time datetime="2026-06-03T16:00:00.000Z" title="发表于 2026-06-04 00:00:00">2026-06-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/06/03/2026-06-03-Regular-fsum/" title="Regular光电导与光学$f$求和规则"><img src="/assets/images/Transport/fsum.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Regular光电导与光学$f$求和规则"/></a><div class="content"><a class="title" href="/2026/06/03/2026-06-03-Regular-fsum/" title="Regular光电导与光学$f$求和规则">Regular光电导与光学$f$求和规则</a><time datetime="2026-06-02T16:00:00.000Z" title="发表于 2026-06-03 00:00:00">2026-06-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/06/03/2026-06-03-Regular-fsum-Ds/" title="超导态光学零频权重 $D_x^{SC}$ 与超流权重 $D_{s,xx}$ 的关系"><img src="/assets/images/Transport/sc-Ds.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导态光学零频权重 $D_x^{SC}$ 与超流权重 $D_{s,xx}$ 的关系"/></a><div class="content"><a class="title" href="/2026/06/03/2026-06-03-Regular-fsum-Ds/" title="超导态光学零频权重 $D_x^{SC}$ 与超流权重 $D_{s,xx}$ 的关系">超导态光学零频权重 $D_x^{SC}$ 与超流权重 $D_{s,xx}$ 的关系</a><time datetime="2026-06-02T16:00:00.000Z" title="发表于 2026-06-03 00:00:00">2026-06-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/06/02/2026-06-02-current-order/" title="电导率与超流密度计算中的极限顺序"><img src="/assets/images/SC/SC-current.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="电导率与超流密度计算中的极限顺序"/></a><div class="content"><a class="title" href="/2026/06/02/2026-06-02-current-order/" title="电导率与超流密度计算中的极限顺序">电导率与超流密度计算中的极限顺序</a><time datetime="2026-06-01T16:00:00.000Z" title="发表于 2026-06-02 00:00:00">2026-06-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/06/02/2026-06-02-SC-weight/" title="从响应核到超流权重(I)"><img src="/assets/images/SC/SC-Ds.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="从响应核到超流权重(I)"/></a><div class="content"><a class="title" href="/2026/06/02/2026-06-02-SC-weight/" title="从响应核到超流权重(I)">从响应核到超流权重(I)</a><time datetime="2026-06-01T16:00:00.000Z" title="发表于 2026-06-02 00:00:00">2026-06-02</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/assets/images/Transport/ill-qpi.png);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div><div class="footer_custom_text">Welcome to  Yu-Xuan's Blog</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  const initGitalk = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGitalk = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const gitalk = new Gitalk({
+      clientID: 'Ov23li0WvZEaIAZ7RFtH',
+      clientSecret: '03fcb77b7c28dafcdde00756e27f9b5bc76639e8',
+      repo: 'yxli8023.github.io',
+      owner: 'yxli8023',
+      admin: ['yxli8023'],
+      updateCountCallback: commentCount,
+      ...option,
+      id: isShuoshuo ? path : (option && option.id) || 'f3a95f6da5f23d76bd96c07307d23f1b'
+    })
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async(el, path) => {
+    if (typeof Gitalk === 'function') initGitalk(el, path)
+    else {
+      await btf.getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await btf.getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Gitalk' === 'Gitalk'
+      ? window.shuoshuoComment = { loadComment: loadGitalk }
+      : window.loadOtherComment = loadGitalk
+    return
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
