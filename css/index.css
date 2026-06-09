@@ -1346,7 +1346,7 @@ canvas:not(#ribbon-canvas),
   }
 }
 :root {
-  --global-font-size: 16px;
+  --global-font-size: 20px;
   --global-bg: #fff;
   --font-color: #4c4948;
   --hr-border: #a4d8fa;
@@ -1393,7 +1393,7 @@ body {
   background: var(--global-bg);
   color: var(--font-color);
   font-size: var(--global-font-size);
-  font-family: SimSun;
+  font-family: "LXGW WenKai", "霞鹜文楷", "Noto Serif SC", serif;
   line-height: 2;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
   scroll-behavior: smooth;
@@ -2311,7 +2311,7 @@ figure.highlight pre .javascript .function {
 }
 @media screen and (min-width: 2000px) {
   .layout {
-    max-width: 70%;
+    max-width: 90%;
   }
 }
 .layout > div:first-child:not(.nc) {
@@ -2532,7 +2532,14 @@ figure.highlight pre .javascript .function {
 }
 #recent-posts .recent-post-item .post_cover {
   overflow: hidden;
-  width: 42%;
+  width: 36%;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 0 0 36%;
+  -ms-flex: 0 0 36%;
+  flex: 0 0 36%;
   height: 100%;
 }
 @media screen and (max-width: 768px) {
@@ -2564,7 +2571,15 @@ figure.highlight pre .javascript .function {
 }
 #recent-posts .recent-post-item >.recent-post-info {
   padding: 0 40px;
-  width: 58%;
+  width: auto;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  min-width: 0;
 }
 @media screen and (max-width: 768px) {
   #recent-posts .recent-post-item >.recent-post-info {
@@ -2639,7 +2654,7 @@ figure.highlight pre .javascript .function {
   text-decoration: underline;
 }
 #recent-posts .recent-post-item >.recent-post-info > .content {
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   word-break: break-word;
 }
 #article-container .shuoshuo-item {
