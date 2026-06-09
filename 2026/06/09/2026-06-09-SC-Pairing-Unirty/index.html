@@ -1,0 +1,999 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>幺正配对与非幺正配对 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="幺正配对与非幺正配对       超导序参量矩阵对于无自旋自由度的简单模型，超导序参量常写成标量 $\Delta(\boldsymbol{k})$。但真实电子具有自旋，Cooper pair 可以由不同的自旋组合构成，因此序参量一般是自旋空间中的 $2\times 2$ 矩阵：  \hat{\Delta}(\boldsymbol{k}) &#x3D; \begin{pmatrix} \Delta_{\upa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="幺正配对与非幺正配对">
+<meta property="og:url" content="http://example.com/2026/06/09/2026-06-09-SC-Pairing-Unirty/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39;s Blog">
+<meta property="og:description" content="幺正配对与非幺正配对       超导序参量矩阵对于无自旋自由度的简单模型，超导序参量常写成标量 $\Delta(\boldsymbol{k})$。但真实电子具有自旋，Cooper pair 可以由不同的自旋组合构成，因此序参量一般是自旋空间中的 $2\times 2$ 矩阵：  \hat{\Delta}(\boldsymbol{k}) &#x3D; \begin{pmatrix} \Delta_{\upa">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/assets/images/SC/unitary_nonunitary_pairing.png">
+<meta property="article:published_time" content="2026-06-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-06-09T06:57:27.030Z">
+<meta property="article:author" content="Yu-Xuan">
+<meta property="article:tag" content="Superconductor">
+<meta property="article:tag" content="Transport">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/images/SC/unitary_nonunitary_pairing.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "幺正配对与非幺正配对",
+  "url": "http://example.com/2026/06/09/2026-06-09-SC-Pairing-Unirty/",
+  "image": "http://example.com/assets/images/SC/unitary_nonunitary_pairing.png",
+  "datePublished": "2026-06-08T16:00:00.000Z",
+  "dateModified": "2026-06-09T06:57:27.030Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yu-Xuan",
+      "url": "http://example.com/about"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/logo.png"><link rel="canonical" href="http://example.com/2026/06/09/2026-06-09-SC-Pairing-Unirty/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"作者: Yu-Xuan","link":"链接: ","source":"来源: Yu-Xuan's Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'medium_zoom',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#f54966","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '幺正配对与非幺正配对',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #dbeffd;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">373</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/assets/images/SC/unitary_nonunitary_pairing.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo.png" alt="Logo"><span class="site-name">Yu-Xuan's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">幺正配对与非幺正配对</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">幺正配对与非幺正配对</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-06-08T16:00:00.000Z" title="发表于 2026-06-09 00:00:00">2026-06-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-06-09T06:57:27.030Z" title="更新于 2026-06-09 14:57:27">2026-06-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Superconductor/">Superconductor</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">4.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>18分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;自上次更新已经过了&quot;,&quot;messageNext&quot;:&quot;天，文章内容可能已过时。&quot;,&quot;postUpdate&quot;:&quot;2026-06-09 14:57:27&quot;}" hidden></div><h1 id="幺正配对与非幺正配对"><a href="#幺正配对与非幺正配对" class="headerlink" title="幺正配对与非幺正配对"></a>幺正配对与非幺正配对</h1><div style="display: flex; justify-content: space-between;">
+  <img src="/assets/images/SC/unitary_nonunitary_pairing.png" alt="Image 1" width="100%" />
+</div>
+
+
+<h2 id="超导序参量矩阵"><a href="#超导序参量矩阵" class="headerlink" title="超导序参量矩阵"></a>超导序参量矩阵</h2><p>对于无自旋自由度的简单模型，超导序参量常写成标量 $\Delta(\boldsymbol{k})$。但真实电子具有自旋，Cooper pair 可以由不同的自旋组合构成，因此序参量一般是自旋空间中的 $2\times 2$ 矩阵：</p>
+<script type="math/tex; mode=display">
+\hat{\Delta}(\boldsymbol{k})
+=
+\begin{pmatrix}
+\Delta_{\uparrow\uparrow}(\boldsymbol{k})
+&
+\Delta_{\uparrow\downarrow}(\boldsymbol{k})
+\\
+\Delta_{\downarrow\uparrow}(\boldsymbol{k})
+&
+\Delta_{\downarrow\downarrow}(\boldsymbol{k})
+\end{pmatrix}.</script><p>其中，$\Delta_{\sigma\sigma’}(\boldsymbol{k})$ 描述电子 $(\boldsymbol{k},\sigma)$ 与 $(-\boldsymbol{k},\sigma’)$ 形成Cooper对的振幅。由于电子是费米子，交换两个电子后波函数必须变号，因此配对矩阵满足</p>
+<script type="math/tex; mode=display">
+\hat{\Delta}(\boldsymbol{k})
+=
+-\hat{\Delta}^{T}(-\boldsymbol{k}).</script><p>一般配对矩阵可以统一分解为自旋单重态和自旋三重态：</p>
+<script type="math/tex; mode=display">
+{\color{blue}
+\hat{\Delta}(\boldsymbol{k})
+=
+\left[
+\psi(\boldsymbol{k})\sigma_0
++
+\boldsymbol d(\boldsymbol{k})\cdot\boldsymbol\sigma
+\right]i\sigma_y
+}.</script><p>这里，$\psi(\boldsymbol{k})$ 是自旋单重态序参量，而</p>
+<script type="math/tex; mode=display">
+\boldsymbol d(\boldsymbol{k})
+=
+\bigl(
+d_x(\boldsymbol{k}),
+d_y(\boldsymbol{k}),
+d_z(\boldsymbol{k})
+\bigr)</script><p>是描述自旋三重态结构的 $\boldsymbol d$-vector。将上式展开，可得</p>
+<script type="math/tex; mode=display">
+\hat{\Delta}(\boldsymbol{k})
+=
+\begin{pmatrix}
+-d_x+i d_y
+&
+\psi+d_z
+\\
+-\psi+d_z
+&
+d_x+i d_y
+\end{pmatrix}.</script><p>因此，</p>
+<script type="math/tex; mode=display">
+\Delta_{\uparrow\uparrow}
+=
+-d_x+i d_y,
+\qquad
+\Delta_{\downarrow\downarrow}
+=
+d_x+i d_y,\qquad \Delta_{\uparrow\downarrow}
+=
+\psi+d_z,
+\qquad
+\Delta_{\downarrow\uparrow}
+=
+-\psi+d_z.</script><p>由此可以看出，$d_x$ 和 $d_y$ 控制等自旋配对，$d_z$ 控制 $S_z=0$ 的三重态分量，而 $\psi$ 对应自旋单重态。在具有反演对称性的单轨道体系中，费米统计进一步要求</p>
+<script type="math/tex; mode=display">
+\psi(-\boldsymbol{k})=\psi(\boldsymbol{k}),\qquad \boldsymbol d(-\boldsymbol{k})
+=
+-\boldsymbol d(\boldsymbol{k}).</script><p>因此单重态通常具有偶宇称，而三重态通常具有奇宇称。需要强调的是，幺正和非幺正主要描述的是配对矩阵在自旋空间中的结构。它与轨道部分是 $s$、$p$、$d$ 波属于不同的分类依据。</p>
+<h2 id="幺正配对的定义"><a href="#幺正配对的定义" class="headerlink" title="幺正配对的定义"></a>幺正配对的定义</h2><p>先考虑纯三重态，即$\psi(\boldsymbol{k})=0$，此时配对矩阵为</p>
+<script type="math/tex; mode=display">
+\hat{\Delta}(\boldsymbol{k})
+=
+\bigl[
+\boldsymbol d(\boldsymbol{k})\cdot\boldsymbol\sigma
+\bigr]
+i\sigma_y.</script><p>为了判断不同自旋方向感受到的配对强度是否相同，需要研究矩阵</p>
+<script type="math/tex; mode=display">
+\hat{\Delta}(\boldsymbol{k})
+\hat{\Delta}^{\dagger}(\boldsymbol{k}).</script><p>因为$(i\sigma_y)(i\sigma_y)^\dagger<br>=<br>\sigma_0$，所以</p>
+<script type="math/tex; mode=display">
+\hat{\Delta}\hat{\Delta}^{\dagger}
+=
+(\boldsymbol d\cdot\boldsymbol\sigma)
+(\boldsymbol d^*\cdot\boldsymbol\sigma).</script><p>利用 Pauli 矩阵恒等式</p>
+<script type="math/tex; mode=display">
+(\boldsymbol a\cdot\boldsymbol\sigma)
+(\boldsymbol b\cdot\boldsymbol\sigma)
+=
+(\boldsymbol a\cdot\boldsymbol b)\sigma_0
++
+i(\boldsymbol a\times\boldsymbol b)
+\cdot\boldsymbol\sigma,</script><p>令 $\boldsymbol a=\boldsymbol d$、$\boldsymbol b=\boldsymbol d^*$，可得</p>
+<script type="math/tex; mode=display">
+\hat{\Delta}\hat{\Delta}^{\dagger}
+=
+|\boldsymbol d|^2\sigma_0
++
+i
+\left(
+\boldsymbol d\times\boldsymbol d^*
+\right)
+\cdot\boldsymbol\sigma.</script><p>定义非幺正向量</p>
+<script type="math/tex; mode=display">
+{
+\boldsymbol q_{\Delta}(\boldsymbol{k})
+=
+i\boldsymbol d(\boldsymbol{k})
+\times
+\boldsymbol d^*(\boldsymbol{k})
+}.</script><p>于是</p>
+<script type="math/tex; mode=display">
+{
+\hat{\Delta}\hat{\Delta}^{\dagger}
+=
+|\boldsymbol d|^2\sigma_0
++
+\boldsymbol q_{\Delta}\cdot\boldsymbol\sigma
+}.</script><p>如果对每一个动量都有$\boldsymbol q_{\Delta}(\boldsymbol{k})=0$，那么</p>
+<script type="math/tex; mode=display">
+\hat{\Delta}\hat{\Delta}^{\dagger}
+=
+|\boldsymbol d|^2\sigma_0.</script><p>此时配对强度在自旋空间中与单位矩阵成正比，不存在特殊自旋方向，称为<strong>幺正三重态配对</strong>。如果存在某些动量使$\boldsymbol q_{\Delta}(\boldsymbol{k})\neq0$，那么</p>
+<script type="math/tex; mode=display">
+\hat{\Delta}\hat{\Delta}^{\dagger}
+\not\propto\sigma_0,</script><p>说明不同自旋方向感受到的配对强度不同，称为<strong>非幺正三重态配对</strong>。因此最一般的判断标准为</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&{
+\hat{\Delta}\hat{\Delta}^{\dagger}
+\propto\sigma_0
+\quad\Longrightarrow\quad
+\text{幺正配对}
+}\\
+&{
+\hat{\Delta}\hat{\Delta}^{\dagger}
+\not\propto\sigma_0
+\quad\Longrightarrow\quad
+\text{非幺正配对}
+}.
+\end{aligned}
+\nonumber</script><p>“幺正”这个名字并不表示 $\hat{\Delta}$ 本身是通常意义下的幺正矩阵，而是表示经过模长归一化后，$\hat{\Delta}\hat{\Delta}^\dagger$ 与单位矩阵成正比。</p>
+<h2 id="从实部和虚部理解非幺正性"><a href="#从实部和虚部理解非幺正性" class="headerlink" title="从实部和虚部理解非幺正性"></a>从实部和虚部理解非幺正性</h2><p>将复数 $\boldsymbol d$-vector 写成</p>
+<script type="math/tex; mode=display">
+\boldsymbol d
+=
+\boldsymbol d_1+i\boldsymbol d_2,</script><p>其中 $\boldsymbol d_1$ 和 $\boldsymbol d_2$ 都是实向量。于是</p>
+<script type="math/tex; mode=display">
+\boldsymbol d^*
+=
+\boldsymbol d_1-i\boldsymbol d_2.</script><p>计算叉积：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\boldsymbol d\times\boldsymbol d^*
+&=
+(\boldsymbol d_1+i\boldsymbol d_2)
+\times
+(\boldsymbol d_1-i\boldsymbol d_2)
+=
+-i\boldsymbol d_1\times\boldsymbol d_2
++i\boldsymbol d_2\times\boldsymbol d_1
+\\
+&=
+-2i\boldsymbol d_1\times\boldsymbol d_2.
+\end{aligned}</script><p>因此</p>
+<script type="math/tex; mode=display">
+{
+\boldsymbol q_{\Delta}
+=
+2\boldsymbol d_1\times\boldsymbol d_2
+}.</script><p>若 $\boldsymbol d$ 只有一个整体复相位，</p>
+<script type="math/tex; mode=display">
+\boldsymbol d(\boldsymbol{k})
+=
+e^{i\phi}
+\boldsymbol d_0(\boldsymbol{k}),</script><p>且 $\boldsymbol d_0$ 是实向量，那么 $\boldsymbol d$ 的实部和虚部彼此平行，因此</p>
+<script type="math/tex; mode=display">
+\boldsymbol d_1\times\boldsymbol d_2=0.</script><p>这种状态是幺正的。若 $\boldsymbol d$ 的实部和虚部在自旋空间中指向不同方向，则</p>
+<script type="math/tex; mode=display">
+\boldsymbol d_1\times\boldsymbol d_2\neq0,</script><p>状态是非幺正的。因此</p>
+<script type="math/tex; mode=display">
+{
+\text{序参量是复数}
+\quad\not\Rightarrow\quad
+\text{配对是非幺正的}
+}.\nonumber</script><p>真正决定非幺正性的不是序参量是否复数，而是不同自旋分量之间是否存在不能通过整体规范变换消除的相对相位。</p>
+<ul>
+<li>复数序参量幺正的例子</li>
+</ul>
+<p>考虑</p>
+<script type="math/tex; mode=display">
+\boldsymbol d(\boldsymbol{k})
+=
+\Delta_0
+(k_x+i k_y)
+\hat{\boldsymbol z}.</script><p>这是具有 $p_x+ip_y$ 轨道结构的手性三重态。虽然轨道部分是复数的，但 $\boldsymbol d$ 的实部和虚部都沿 $\hat{\boldsymbol z}$：</p>
+<script type="math/tex; mode=display">
+\boldsymbol d_1
+=
+\Delta_0 k_x\hat{\boldsymbol z},\qquad \boldsymbol d_2
+=
+\Delta_0 k_y\hat{\boldsymbol z}.</script><p>由于二者平行，</p>
+<script type="math/tex; mode=display">
+\boldsymbol d_1\times\boldsymbol d_2=0,</script><p>所以</p>
+<script type="math/tex; mode=display">
+\boldsymbol q_{\Delta}=0.</script><p>因此这是一个<strong>手性但幺正</strong>的三重态。这说明</p>
+<script type="math/tex; mode=display">
+{
+\text{破坏时间反演对称性}
+\quad\not\Rightarrow\quad
+\text{非幺正}
+}.\nonumber</script><p>轨道手性与自旋非幺正性是两个不同概念。</p>
+<h2 id="典型非幺正态"><a href="#典型非幺正态" class="headerlink" title="典型非幺正态"></a>典型非幺正态</h2><p>考虑</p>
+<script type="math/tex; mode=display">
+\boldsymbol d(\boldsymbol{k})
+=
+\Delta_0 f(\boldsymbol{k})
+\left(
+\hat{\boldsymbol x}
++i\hat{\boldsymbol y}
+\right).</script><p>其实部和虚部分别为</p>
+<script type="math/tex; mode=display">
+\boldsymbol d_1
+=
+\Delta_0 f(\boldsymbol{k})\hat{\boldsymbol x},\qquad \boldsymbol d_2
+=
+\Delta_0 f(\boldsymbol{k})\hat{\boldsymbol y}.</script><p>二者正交，因此</p>
+<script type="math/tex; mode=display">
+\boldsymbol q_{\Delta}
+=
+2|\Delta_0f(\boldsymbol{k})|^2
+\hat{\boldsymbol z}
+\neq0.</script><p>利用</p>
+<script type="math/tex; mode=display">
+\Delta_{\uparrow\uparrow}
+=
+-d_x+i d_y,\qquad \Delta_{\downarrow\downarrow}
+=
+d_x+i d_y,</script><p>代入</p>
+<script type="math/tex; mode=display">
+d_x=\Delta_0 f,
+\qquad
+d_y=i\Delta_0 f,</script><p>得到</p>
+<script type="math/tex; mode=display">
+\Delta_{\uparrow\uparrow}
+=
+-2\Delta_0f,\qquad \Delta_{\downarrow\downarrow}
+=
+0.</script><p>因此这个状态只包含一个等自旋分量，即完全单自旋配对。它是最大程度的非幺正态。</p>
+<h2 id="从-Cooper-pair-波函数理解非幺正性"><a href="#从-Cooper-pair-波函数理解非幺正性" class="headerlink" title="从 Cooper-pair 波函数理解非幺正性"></a>从 Cooper-pair 波函数理解非幺正性</h2><p>考虑只有等自旋分量的 Cooper pair：</p>
+<script type="math/tex; mode=display">
+|\Psi_{\rm pair}\rangle
+=
+A|\uparrow\uparrow\rangle
++
+B|\downarrow\downarrow\rangle.</script><p>其中$A=\Delta_{\uparrow\uparrow}(\boldsymbol{k}),<br>B=\Delta_{\downarrow\downarrow}(\boldsymbol{k})$。归一化后的配对波函数为</p>
+<script type="math/tex; mode=display">
+|\widetilde{\Psi}_{\rm pair}\rangle
+=
+\frac{
+A|\uparrow\uparrow\rangle
++
+B|\downarrow\downarrow\rangle
+}{
+\sqrt{|A|^2+|B|^2}
+}.</script><p>两个电子的总自旋算符为</p>
+<script type="math/tex; mode=display">
+\boldsymbol S
+=
+\frac{\hbar}{2}
+\left(
+\boldsymbol\sigma_1+\boldsymbol\sigma_2
+\right).</script><p>因为</p>
+<script type="math/tex; mode=display">
+S_z|\uparrow\uparrow\rangle
+=
+\hbar|\uparrow\uparrow\rangle,\qquad S_z|\downarrow\downarrow\rangle
+=
+-\hbar|\downarrow\downarrow\rangle,</script><p>所以</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\langle S_z\rangle
+&=
+\langle\widetilde{\Psi}_{\rm pair}|
+S_z
+|\widetilde{\Psi}_{\rm pair}\rangle
+=
+\hbar
+\frac{|A|^2-|B|^2}
+{|A|^2+|B|^2}.
+\end{aligned}</script><p>因此，</p>
+<script type="math/tex; mode=display">
+|A|=|B|
+\quad\Longrightarrow\quad
+\langle S_z\rangle=0,</script><p>而</p>
+<script type="math/tex; mode=display">
+|A|\neq|B|
+\quad\Longrightarrow\quad
+\langle S_z\rangle\neq0.</script><p>写出能隙矩阵</p>
+<script type="math/tex; mode=display">
+\hat{\Delta}
+=
+\begin{pmatrix}
+A&0\\
+0&B
+\end{pmatrix}.</script><p>则</p>
+<script type="math/tex; mode=display">
+\hat{\Delta}\hat{\Delta}^{\dagger}
+=
+\begin{pmatrix}
+|A|^2&0\\
+0&|B|^2
+\end{pmatrix}
+=
+\frac{|A|^2+|B|^2}{2}\sigma_0
++
+\frac{|A|^2-|B|^2}{2}\sigma_z.</script><p>因此</p>
+<script type="math/tex; mode=display">
+\boxed{
+q_{\Delta,z}(\boldsymbol{k})
+=
+\frac12
+\left[
+|\Delta_{\uparrow\uparrow}(\boldsymbol{k})|^2
+-
+|\Delta_{\downarrow\downarrow}(\boldsymbol{k})|^2
+\right]
+}.</script><p>将其与 $\langle S_z\rangle$ 比较，可得</p>
+<script type="math/tex; mode=display">
+\frac{\langle S_z\rangle}{\hbar}
+=
+\frac{
+2q_{\Delta,z}
+}{
+|\Delta_{\uparrow\uparrow}|^2
++
+|\Delta_{\downarrow\downarrow}|^2
+}.</script><p>所以 $\boldsymbol q_{\Delta}$ 是 Cooper-pair 自旋极化的未归一化表征。对于一般纯三重态，可以写成</p>
+<script type="math/tex; mode=display">
+\boxed{
+\frac{
+\langle\boldsymbol S_{\rm pair}\rangle
+}{\hbar}
+=
+\frac{
+\boldsymbol q_{\Delta}
+}{
+|\boldsymbol d|^2
+}
+}.</script><h2 id="boldsymbol-d-vector与Cooper对自旋方向"><a href="#boldsymbol-d-vector与Cooper对自旋方向" class="headerlink" title="$\boldsymbol d$-vector与Cooper对自旋方向"></a>$\boldsymbol d$-vector与Cooper对自旋方向</h2><p>$\boldsymbol d$-vector 一般并不表示 Cooper对自旋指向。真正反映配对自旋极化的是</p>
+<script type="math/tex; mode=display">
+\boldsymbol q_{\Delta}
+=
+i\boldsymbol d\times\boldsymbol d^*.</script><p>例如，若</p>
+<script type="math/tex; mode=display">
+\boldsymbol d=d_z\hat{\boldsymbol z}\quad \Longrightarrow\quad  \Delta_{\uparrow\uparrow}
+=
+\Delta_{\downarrow\downarrow}
+=
+0,</script><p>而$\Delta_{\uparrow\downarrow}<br>=<br>\Delta_{\downarrow\uparrow}<br>=<br>d_z$，这对应</p>
+<script type="math/tex; mode=display">
+\frac{
+|\uparrow\downarrow\rangle
++
+|\downarrow\uparrow\rangle
+}{
+\sqrt2
+},</script><p>即 $S_z=0$ 的三重态，而不是自旋沿 $z$ 的配对。对于幺正三重态，$\boldsymbol d$ 矢量更接近于“Cooper对自旋投影被抑制的方向”。这也是为什么三重态超导的Knight位移往往沿 $\boldsymbol d$ 方向下降得更明显。</p>
+<h2 id="幺正性对BdG-准粒子能谱的影响"><a href="#幺正性对BdG-准粒子能谱的影响" class="headerlink" title="幺正性对BdG 准粒子能谱的影响"></a>幺正性对BdG 准粒子能谱的影响</h2><p>考虑最简单的自旋简并正常态：</p>
+<script type="math/tex; mode=display">
+h_0(\boldsymbol{k})
+=
+\xi_{\boldsymbol{k}}\sigma_0.</script><p>BdG 哈密顿量为</p>
+<script type="math/tex; mode=display">
+H_{\rm BdG}(\boldsymbol{k})
+=
+\begin{pmatrix}
+\xi_{\boldsymbol{k}}\sigma_0
+&
+\hat{\Delta}(\boldsymbol{k})
+\\
+\hat{\Delta}^{\dagger}(\boldsymbol{k})
+&
+-\xi_{\boldsymbol{k}}\sigma_0
+\end{pmatrix}.</script><p>计算其平方：</p>
+<script type="math/tex; mode=display">
+H_{\rm BdG}^2
+=
+\begin{pmatrix}
+\xi_{\boldsymbol{k}}^2\sigma_0
++
+\hat{\Delta}\hat{\Delta}^{\dagger}
+&
+0
+\\
+0
+&
+\xi_{\boldsymbol{k}}^2\sigma_0
++
+\hat{\Delta}^{\dagger}\hat{\Delta}
+\end{pmatrix}.</script><p>因此正能准粒子的 $E^2$ 等于矩阵</p>
+<script type="math/tex; mode=display">
+\xi_{\boldsymbol{k}}^2\sigma_0
++
+\hat{\Delta}\hat{\Delta}^{\dagger}</script><p>的本征值。对于纯三重态，</p>
+<script type="math/tex; mode=display">
+\hat{\Delta}\hat{\Delta}^{\dagger}
+=
+|\boldsymbol d|^2\sigma_0
++
+\boldsymbol q_{\Delta}\cdot\boldsymbol\sigma.</script><p>由于 $\boldsymbol q_{\Delta}\cdot\boldsymbol\sigma$ 的本征值为 $\pm|\boldsymbol q_{\Delta}|$，两个超导分支满足</p>
+<script type="math/tex; mode=display">
+{
+E_{\boldsymbol{k},\pm}^2
+=
+\xi_{\boldsymbol{k}}^2
++
+|\boldsymbol d(\boldsymbol{k})|^2
+\pm
+|\boldsymbol q_{\Delta}(\boldsymbol{k})|
+}.</script><p>对于幺正态，$\boldsymbol q_{\Delta}=0$，因此</p>
+<script type="math/tex; mode=display">
+E_{\boldsymbol{k},+}
+=
+E_{\boldsymbol{k},-}
+=
+\sqrt{
+\xi_{\boldsymbol{k}}^2
++
+|\boldsymbol d(\boldsymbol{k})|^2
+}.</script><p>两个自旋相关准粒子分支具有相同的配对能隙。对于非幺正态，$\boldsymbol q_{\Delta}\neq0$，所以</p>
+<script type="math/tex; mode=display">
+E_{\boldsymbol{k},+}
+\neq
+E_{\boldsymbol{k},-}.</script><p>两个分支的有效能隙分别为</p>
+<script type="math/tex; mode=display">
+\Delta_\pm^2(\boldsymbol{k})
+=
+|\boldsymbol d(\boldsymbol{k})|^2
+\pm
+|\boldsymbol q_{\Delta}(\boldsymbol{k})|.</script><p>因此非幺正态可能出现两个不同的超导能隙。在最大非幺正极限下，</p>
+<script type="math/tex; mode=display">
+|\boldsymbol q_{\Delta}|=|\boldsymbol d|^2,</script><p>从而$\Delta_-^2=0$，这意味着一个自旋分支完全不配对，而另一个分支具有有限超导能隙。这一简单能谱只适用于正常态自旋简并且没有复杂 SOC 的情况。如果正常态本身具有磁性或自旋轨道劈裂，完整 BdG 能谱还会包含正常态自旋结构。此时，判断配对是否幺正仍应使用 $\hat{\Delta}\hat{\Delta}^{\dagger}$，不能简单根据 BdG 能带是否自旋简并来判断。</p>
+<h2 id="一般单重态-三重态混合时的幺正条件"><a href="#一般单重态-三重态混合时的幺正条件" class="headerlink" title="一般单重态/三重态混合时的幺正条件"></a>一般单重态/三重态混合时的幺正条件</h2><p>对于缺乏反演对称性的体系，单重态和三重态可以混合：</p>
+<script type="math/tex; mode=display">
+\hat{\Delta}
+=
+\left(
+\psi\sigma_0
++
+\boldsymbol d\cdot\boldsymbol\sigma
+\right)i\sigma_y.</script><p>此时</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\hat{\Delta}\hat{\Delta}^{\dagger}
+=
+(\psi\sigma_0+\boldsymbol d\cdot\boldsymbol\sigma)
+(\psi^*\sigma_0+\boldsymbol d^*\cdot\boldsymbol\sigma)
+=
+\left(
+|\psi|^2+|\boldsymbol d|^2
+\right)\sigma_0
++
+\boldsymbol q_{\rm gen}\cdot\boldsymbol\sigma,
+\end{aligned}</script><p>其中</p>
+<script type="math/tex; mode=display">
+{
+\boldsymbol q_{\rm gen}
+=
+\psi\boldsymbol d^*
++
+\psi^*\boldsymbol d
++
+i\boldsymbol d\times\boldsymbol d^*
+}.</script><p>因此一般配对态的幺正条件为</p>
+<script type="math/tex; mode=display">
+{
+\boldsymbol q_{\rm gen}(\boldsymbol{k})=0
+}.</script><p>这里包含两种产生自旋不对称的机制：一是三重态内部的非幺正性 $i\boldsymbol d\times\boldsymbol d^<em>$；二是单重态和三重态之间的干涉 $\psi\boldsymbol d^</em>+\psi^<em>\boldsymbol d$。在具有反演对称性的单带体系中，偶宇称单重态和奇宇称三重态一般不混合，所以讨论幺正性时通常只需考虑$i\boldsymbol d\times\boldsymbol d^</em>$。</p>
+<h2 id="幺正性与时间反演对称性"><a href="#幺正性与时间反演对称性" class="headerlink" title="幺正性与时间反演对称性"></a>幺正性与时间反演对称性</h2><p>对于三重态，时间反演作用大致为</p>
+<script type="math/tex; mode=display">
+\boldsymbol d(\boldsymbol{k})
+\longrightarrow
+-\boldsymbol d^*(-\boldsymbol{k}).</script><p>而非幺正向量在时间反演下变号：</p>
+<script type="math/tex; mode=display">
+\boldsymbol q_{\Delta}(\boldsymbol{k})
+\longrightarrow
+-\boldsymbol q_{\Delta}(-\boldsymbol{k}).</script><p>因此，在时间反演对称的正常态中，如果超导态具有未补偿的 $\boldsymbol q_{\Delta}\neq0$，通常意味着超导态破坏时间反演对称性。但是，时间反演破缺并不必然意味着非幺正。例如手性轨道态</p>
+<script type="math/tex; mode=display">
+\boldsymbol d
+=
+(k_x+i k_y)\hat{\boldsymbol z}</script><p>破坏时间反演，但仍满足$\boldsymbol q_{\Delta}=0$。所以${\color{blue}<br>\text{非幺正态通常伴随时间反演破缺}<br>}$，但${\color{blue}\text{时间反演破缺态不一定是非幺正态}}$。</p>
+<h2 id="非幺正性与实际磁化"><a href="#非幺正性与实际磁化" class="headerlink" title="非幺正性与实际磁化"></a>非幺正性与实际磁化</h2><p>需要区分三个量：</p>
+<script type="math/tex; mode=display">
+\boldsymbol q_{\Delta}(\boldsymbol{k}),\qquad \boldsymbol Q_{\Delta}
+=
+\sum_{\boldsymbol{k}}
+\boldsymbol q_{\Delta}(\boldsymbol{k}),\qquad \boldsymbol M
+=
+\mu_B
+\sum_{\boldsymbol{k}}
+\left\langle
+c_{\boldsymbol{k}}^{\dagger}
+\boldsymbol\sigma
+c_{\boldsymbol{k}}
+\right\rangle.</script><p>其中$\boldsymbol q_{\Delta}(\boldsymbol{k})$ 描述给定动量处配对矩阵的自旋不对称；$\boldsymbol Q_{\Delta}$ 描述其动量空间总和；$\boldsymbol M$ 才是可通过磁性测量直接探测的电子自旋磁化。在 Ginzburg–Landau 理论中，若 $\boldsymbol Q_{\Delta}\neq0$，自由能中通常允许出现</p>
+<script type="math/tex; mode=display">
+F_{\rm coupling}
+=
+-\gamma
+\boldsymbol M\cdot\boldsymbol Q_{\Delta}.</script><p>加上正常态磁化能$F_M<br>=<br>\frac{\boldsymbol M^2}{2\chi_N}$，总自由能为</p>
+<script type="math/tex; mode=display">
+F
+=
+\frac{\boldsymbol M^2}{2\chi_N}
+-
+\gamma
+\boldsymbol M\cdot\boldsymbol Q_{\Delta}.</script><p>对 $\boldsymbol M$ 极小化：</p>
+<script type="math/tex; mode=display">
+\frac{\partial F}{\partial\boldsymbol M}
+=
+\frac{\boldsymbol M}{\chi_N}
+-
+\gamma\boldsymbol Q_{\Delta}
+=
+0,</script><p>得到</p>
+<script type="math/tex; mode=display">
+\boldsymbol M
+=
+\gamma\chi_N
+\boldsymbol Q_{\Delta}.</script><p>所以未补偿的非幺正配对可能诱导均匀磁化。但如果 $\boldsymbol q_{\Delta}(\boldsymbol{k})\neq0$ 而</p>
+<script type="math/tex; mode=display">
+\sum_{\boldsymbol{k}}
+\boldsymbol q_{\Delta}(\boldsymbol{k})=0,</script><p>则均匀耦合项不能诱导净磁化。因此</p>
+<script type="math/tex; mode=display">
+{\color{magenta}
+\text{动量分辨非幺正}
+\quad\not\Rightarrow\quad
+\text{均匀磁化一定非零}
+}.\nonumber</script><h2 id="局域非幺正与全局非幺正"><a href="#局域非幺正与全局非幺正" class="headerlink" title="局域非幺正与全局非幺正"></a>局域非幺正与全局非幺正</h2><p>幺正条件本质上是动量分辨条件</p>
+<script type="math/tex; mode=display">
+\boldsymbol q_{\Delta}(\boldsymbol{k})
+\stackrel{?}{=}0.</script><p>如果 $\boldsymbol q_{\Delta}(\boldsymbol{k})=0$ 对所有动量成立，状态是严格幺正的。如果在一般动量处 $\boldsymbol q_{\Delta}(\boldsymbol{k})\neq0$，状态在局域动量空间中是非幺正的。根据动量积分是否为零，还可将非幺正态分成两类。未补偿非幺正态满足</p>
+<script type="math/tex; mode=display">
+\sum_{\boldsymbol{k}}
+\boldsymbol q_{\Delta}(\boldsymbol{k})
+\neq0.</script><p>这种状态具有净配对自旋极化，并可能产生均匀磁化。补偿非幺正态满足 $\boldsymbol q_{\Delta}(\boldsymbol{k})\neq0$，但某种对称性保证</p>
+<script type="math/tex; mode=display">
+\boldsymbol q_{\Delta}(\widetilde{\boldsymbol{k}})
+=
+-\boldsymbol q_{\Delta}(\boldsymbol{k})~\Longrightarrow ~\sum_{\boldsymbol{k}}
+\boldsymbol q_{\Delta}(\boldsymbol{k})
+=
+0.</script><p>这种状态局域上具有自旋极化，但整体上完全补偿。</p>
+<h2 id="能隙非幺正性与凝聚态配对极化"><a href="#能隙非幺正性与凝聚态配对极化" class="headerlink" title="能隙非幺正性与凝聚态配对极化"></a>能隙非幺正性与凝聚态配对极化</h2><p>非幺正向量$\boldsymbol q_{\Delta}<br>=<br>i\boldsymbol d\times\boldsymbol d^*$由能隙定义，描述配对相互作用或序参量本身的自旋结构。但实际有多少 Cooper 对分布在某个动量附近，还取决于正常态色散和 BdG 相干。实际凝聚体权重更自然地由反常平均表示</p>
+<script type="math/tex; mode=display">
+F_{\sigma\sigma'}(\boldsymbol{k})
+=
+\left\langle
+c_{-\boldsymbol{k}\sigma'}
+c_{\boldsymbol{k}\sigma}
+\right\rangle.</script><p>对于两个独立的等自旋 BdG sector，</p>
+<script type="math/tex; mode=display">
+F_{\sigma\sigma}(\boldsymbol{k})
+=
+\frac{
+\Delta_{\sigma\sigma}(\boldsymbol{k})
+}{
+2E_{\boldsymbol{k}\sigma}
+}
+\tanh
+\left(
+\frac{E_{\boldsymbol{k}\sigma}}{2T}
+\right).</script><p>因此可以定义凝聚体的动量分辨自旋极化：</p>
+<script type="math/tex; mode=display">
+P_z(\boldsymbol{k})
+=
+|F_{\uparrow\uparrow}(\boldsymbol{k})|^2
+-
+|F_{\downarrow\downarrow}(\boldsymbol{k})|^2.</script><p>而 gap 层面的自旋不对称为</p>
+<script type="math/tex; mode=display">
+q_{\Delta,z}(\boldsymbol{k})
+=
+\frac12
+\left[
+|\Delta_{\uparrow\uparrow}(\boldsymbol{k})|^2
+-
+|\Delta_{\downarrow\downarrow}(\boldsymbol{k})|^2
+\right].</script><p>二者具有相似的符号结构，但物理含义不同。$q_{\Delta,z}$ 表征配对势本身是否非幺正，而 $P_z$ 表征实际异常配对权重在两个自旋通道之间是否不平衡。由于 $F_{\sigma\sigma}$ 包含</p>
+<script type="math/tex; mode=display">
+\frac{1}{2E_{\boldsymbol{k}\sigma}}
+\tanh
+\left(
+\frac{E_{\boldsymbol{k}\sigma}}{2T}
+\right),</script><p>它通常在费米面附近更显著。</p>
+<h2 id="实验区分幺正和非幺正配对"><a href="#实验区分幺正和非幺正配对" class="headerlink" title="实验区分幺正和非幺正配对"></a>实验区分幺正和非幺正配对</h2><p>在自旋简并正常态中，非幺正配对使两个自旋相关超导分支具有不同能隙：</p>
+<script type="math/tex; mode=display">
+\Delta_\pm^2
+=
+|\boldsymbol d|^2
+\pm
+|\boldsymbol q_{\Delta}|.</script><p>因此可能产生自旋分辨态密度差异：</p>
+<script type="math/tex; mode=display">
+N_\uparrow(E)
+\neq
+N_\downarrow(E).</script><p>自旋极化隧穿或自旋分辨 Andreev 反射可以直接探测这种差异。非幺正态还可能表现出异常的自旋磁化率、方向依赖 Knight shift，以及热驱动自旋流。若非幺正极化在动量空间中未补偿，还可能出现超导转变以下的自发磁化、零场 $\mu$SR 信号或磁光响应。普通比热主要测量所有准粒子态密度的总和。两个不同超导能隙可能导致多尺度温度依赖或多个特征峰，但比热本身通常不能唯一证明非幺正性，因为多带幺正超导也可能产生相似现象。因此，对非幺正配对最有针对性的实验通常是能够直接区分自旋通道的测量，而不是单纯的总态密度或总比热。</p>
+<h1 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h1><p>这里选用一个最直观的$^{3}\text{He}-A_1$型等自旋配对**作为演示原型：一个自旋通道配对较强，另一个较弱，极限情况下只保留单一等自旋凝聚体。$A_1$相正是经典的自旋极化等自旋配对实例。正常态采用自旋简并的二维方格晶格</p>
+<script type="math/tex; mode=display">
+\xi_{\boldsymbol k}
+=
+-2t(\cos k_x+\cos k_y)
+-4t_2\cos k_x\cos k_y
+-\mu .</script><p>取手性等自旋$p$波配对</p>
+<script type="math/tex; mode=display">
+\Delta_{\uparrow\uparrow}(\boldsymbol k,T)
+=
+\Delta(T)
+\left(
+\sin k_x+i\sin k_y
+\right),\qquad \Delta_{\downarrow\downarrow}(\boldsymbol k,T)
+=
+r\Delta(T)
+\left(
+\sin k_x+i\sin k_y
+\right),</script><p>其中$0\leq r\leq1$控制非幺正程度。当$r=1$时</p>
+<script type="math/tex; mode=display">
+|\Delta_{\uparrow\uparrow}|
+=
+|\Delta_{\downarrow\downarrow}|,</script><p>为幺正态。当$r&lt;1$时，两个等自旋分量强度不同，配对为非幺正态。$r=0$对应只有$\uparrow\uparrow$配对的最大非幺正极限。对于</p>
+<script type="math/tex; mode=display">
+\hat\Delta(\boldsymbol k)
+=
+\begin{pmatrix}
+\Delta_{\uparrow\uparrow}(\boldsymbol k)&0\\
+0&\Delta_{\downarrow\downarrow}(\boldsymbol k)
+\end{pmatrix},</script><p>有 </p>
+<script type="math/tex; mode=display">
+\hat\Delta\hat\Delta^\dagger
+=
+\frac{
+|\Delta_{\uparrow\uparrow}|^2+
+|\Delta_{\downarrow\downarrow}|^2
+}{2}\sigma_0
++
+q_{\Delta,z}(\boldsymbol k)\sigma_z,</script><p>其中</p>
+<script type="math/tex; mode=display">
+q_{\Delta,z}(\boldsymbol k)
+=
+\frac12
+\left[
+|\Delta_{\uparrow\uparrow}(\boldsymbol k)|^2
+-
+|\Delta_{\downarrow\downarrow}(\boldsymbol k)|^2
+\right]=
+\frac{1-r^2}{2}
+\Delta^2(T)
+\left(
+\sin^2 k_x+\sin^2 k_y
+\right).</script><p>因此$r&lt;1$时整个费米面上的配对自旋极化指向同一$z$方向，是未补偿非幺正配对。两个自旋 sector 的 BdG 能谱分别为</p>
+<script type="math/tex; mode=display">
+E_{\boldsymbol k\uparrow}
+=
+\sqrt{
+\xi_{\boldsymbol k}^2+
+|\Delta_{\uparrow\uparrow}(\boldsymbol k)|^2
+},\qquad E_{\boldsymbol k\downarrow}
+=
+\sqrt{
+\xi_{\boldsymbol k}^2+
+|\Delta_{\downarrow\downarrow}(\boldsymbol k)|^2
+}.</script><p>每个自旋通道的电子占据数为</p>
+<script type="math/tex; mode=display">
+n_{\boldsymbol k\sigma}
+=
+\frac12
+\left[
+1-
+\frac{\xi_{\boldsymbol k}}
+{E_{\boldsymbol k\sigma}}
+\tanh
+\left(
+\frac{E_{\boldsymbol k\sigma}}{2T}
+\right)
+\right].</script><p>于是实际均匀自旋磁化为</p>
+<script type="math/tex; mode=display">
+M_z
+=
+\frac{\mu_B}{N}
+\sum_{\boldsymbol k}
+\left[
+n_{\boldsymbol k\uparrow}
+-
+n_{\boldsymbol k\downarrow}
+\right].</script><div style="display: flex; justify-content: space-between;">
+  <img src="/assets/images/SC/magnetization_vs_temperature.png" alt="Image 1" width="40%" />
+  <img src="/assets/images/SC/pair_spin_vs_temperature.png" alt="Image 1" width="40%" />
+</div>
+
+<p><a href="/assets/data/nonunitary_magnetization_program_and_results.zip">完整程序点击这里下载</a></p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p><a target="_blank" rel="noopener" href="https://link.aps.org/doi/10.1103/RevModPhys.63.239">Phenomenological theory of unconventional superconductivity</a></p>
+<div class="note red flat"><p>鉴于该网站分享的大都是学习笔记，作者水平有限，若发现有问题可以发邮件给我</p>
+<ul>
+<li><strong>yxliphy@gmail.com</strong></li>
+</ul>
+<p>也非常欢迎喜欢分享的小伙伴投稿</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="/about">Yu-Xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2026/06/09/2026-06-09-SC-Pairing-Unirty/">http://example.com/2026/06/09/2026-06-09-SC-Pairing-Unirty/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Yu-Xuan's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Superconductor/">Superconductor</a><a class="post-meta__tags" href="/tags/Transport/">Transport</a></div><div class="post-share"><div class="social-share" data-image="/assets/images/SC/unitary_nonunitary_pairing.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg"/></a><div class="post-qr-code-desc"></div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg"/></a><div class="post-qr-code-desc"></div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/06/06/2026-06-06-Hartree-dAM/" title="Hartree–Fock方法在 Fermi–Hubbard 模型中实现交错磁性"><img class="cover" src="/assets/images/Altermagnets/hartree-AM.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Hartree–Fock方法在 Fermi–Hubbard 模型中实现交错磁性</div></div><div class="info-2"><div class="info-item-1">Hartree–Fock方法在 Fermi–Hubbard 模型中实现交错磁性      Fermi–Hubbard 模型与交替对角跃迁考虑二维方格上的单轨道Fermi–Hubbard模型  H...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related no-desc" href="/2025/12/01/2025-12-01-Andreev-alaly/" title="Andreev 反射分析"><img class="cover" src="/assets/images/Transport/Andreev_reflection.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-01</div><div class="info-item-2">Andreev 反射分析</div></div></div></a><a class="pagination-related no-desc" href="/2025/12/08/2025-12-08-SC-weight/" title="超流权重推导(能带无简并)"><img class="cover" src="/assets/images/SC/sc-weight.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-08</div><div class="info-item-2">超流权重推导(能带无简并)</div></div></div></a><a class="pagination-related no-desc" href="/2025/12/19/2025-12-19-Ward-Takahashi-SC/" title="超导态中的 Ward-Takahashi 恒等式"><img class="cover" src="/assets/images/Field-Theory/Ward.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-19</div><div class="info-item-2">超导态中的 Ward-Takahashi 恒等式</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description">知行合一</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">373</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yxli8023"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:yxliphy@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><div style="text-align:center;"> <img src="/assets/images/qrcode.jpg" alt="公告图" style="max-width:100%; border-radius:10px; margin-bottom:10px;"> <br> 欢迎关注公众号，有趣的内容也会在上面同步。 有密码的文章属于正在建设中或者没有通过验证的内容，若有需要可通过邮件联系。</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B9%BA%E6%AD%A3%E9%85%8D%E5%AF%B9%E4%B8%8E%E9%9D%9E%E5%B9%BA%E6%AD%A3%E9%85%8D%E5%AF%B9"><span class="toc-number">1.</span> <span class="toc-text">幺正配对与非幺正配对</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B6%85%E5%AF%BC%E5%BA%8F%E5%8F%82%E9%87%8F%E7%9F%A9%E9%98%B5"><span class="toc-number">1.1.</span> <span class="toc-text">超导序参量矩阵</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%BA%E6%AD%A3%E9%85%8D%E5%AF%B9%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">1.2.</span> <span class="toc-text">幺正配对的定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E5%AE%9E%E9%83%A8%E5%92%8C%E8%99%9A%E9%83%A8%E7%90%86%E8%A7%A3%E9%9D%9E%E5%B9%BA%E6%AD%A3%E6%80%A7"><span class="toc-number">1.3.</span> <span class="toc-text">从实部和虚部理解非幺正性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B8%E5%9E%8B%E9%9D%9E%E5%B9%BA%E6%AD%A3%E6%80%81"><span class="toc-number">1.4.</span> <span class="toc-text">典型非幺正态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E-Cooper-pair-%E6%B3%A2%E5%87%BD%E6%95%B0%E7%90%86%E8%A7%A3%E9%9D%9E%E5%B9%BA%E6%AD%A3%E6%80%A7"><span class="toc-number">1.5.</span> <span class="toc-text">从 Cooper-pair 波函数理解非幺正性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#boldsymbol-d-vector%E4%B8%8ECooper%E5%AF%B9%E8%87%AA%E6%97%8B%E6%96%B9%E5%90%91"><span class="toc-number">1.6.</span> <span class="toc-text">$\boldsymbol d$-vector与Cooper对自旋方向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%BA%E6%AD%A3%E6%80%A7%E5%AF%B9BdG-%E5%87%86%E7%B2%92%E5%AD%90%E8%83%BD%E8%B0%B1%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="toc-number">1.7.</span> <span class="toc-text">幺正性对BdG 准粒子能谱的影响</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E8%88%AC%E5%8D%95%E9%87%8D%E6%80%81-%E4%B8%89%E9%87%8D%E6%80%81%E6%B7%B7%E5%90%88%E6%97%B6%E7%9A%84%E5%B9%BA%E6%AD%A3%E6%9D%A1%E4%BB%B6"><span class="toc-number">1.8.</span> <span class="toc-text">一般单重态&#x2F;三重态混合时的幺正条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%BA%E6%AD%A3%E6%80%A7%E4%B8%8E%E6%97%B6%E9%97%B4%E5%8F%8D%E6%BC%94%E5%AF%B9%E7%A7%B0%E6%80%A7"><span class="toc-number">1.9.</span> <span class="toc-text">幺正性与时间反演对称性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%9E%E5%B9%BA%E6%AD%A3%E6%80%A7%E4%B8%8E%E5%AE%9E%E9%99%85%E7%A3%81%E5%8C%96"><span class="toc-number">1.10.</span> <span class="toc-text">非幺正性与实际磁化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%80%E5%9F%9F%E9%9D%9E%E5%B9%BA%E6%AD%A3%E4%B8%8E%E5%85%A8%E5%B1%80%E9%9D%9E%E5%B9%BA%E6%AD%A3"><span class="toc-number">1.11.</span> <span class="toc-text">局域非幺正与全局非幺正</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%BD%E9%9A%99%E9%9D%9E%E5%B9%BA%E6%AD%A3%E6%80%A7%E4%B8%8E%E5%87%9D%E8%81%9A%E6%80%81%E9%85%8D%E5%AF%B9%E6%9E%81%E5%8C%96"><span class="toc-number">1.12.</span> <span class="toc-text">能隙非幺正性与凝聚态配对极化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%8C%BA%E5%88%86%E5%B9%BA%E6%AD%A3%E5%92%8C%E9%9D%9E%E5%B9%BA%E6%AD%A3%E9%85%8D%E5%AF%B9"><span class="toc-number">1.13.</span> <span class="toc-text">实验区分幺正和非幺正配对</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%BE%E4%BE%8B"><span class="toc-number">2.</span> <span class="toc-text">举例</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">3.</span> <span class="toc-text">参考文献</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/06/09/2026-06-09-SC-Pairing-Unirty/" title="幺正配对与非幺正配对"><img src="/assets/images/SC/unitary_nonunitary_pairing.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="幺正配对与非幺正配对"/></a><div class="content"><a class="title" href="/2026/06/09/2026-06-09-SC-Pairing-Unirty/" title="幺正配对与非幺正配对">幺正配对与非幺正配对</a><time datetime="2026-06-08T16:00:00.000Z" title="发表于 2026-06-09 00:00:00">2026-06-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/06/06/2026-06-06-Hartree-dAM/" title="Hartree–Fock方法在 Fermi–Hubbard 模型中实现交错磁性"><img src="/assets/images/Altermagnets/hartree-AM.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hartree–Fock方法在 Fermi–Hubbard 模型中实现交错磁性"/></a><div class="content"><a class="title" href="/2026/06/06/2026-06-06-Hartree-dAM/" title="Hartree–Fock方法在 Fermi–Hubbard 模型中实现交错磁性">Hartree–Fock方法在 Fermi–Hubbard 模型中实现交错磁性</a><time datetime="2026-06-05T16:00:00.000Z" title="发表于 2026-06-06 00:00:00">2026-06-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/06/04/2026-06-04-QPI-Nesting/" title="准粒子干涉(QPI)与费米面 nesting 波矢的关系"><img src="/assets/images/Transport/ill-qpi.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="准粒子干涉(QPI)与费米面 nesting 波矢的关系"/></a><div class="content"><a class="title" href="/2026/06/04/2026-06-04-QPI-Nesting/" title="准粒子干涉(QPI)与费米面 nesting 波矢的关系">准粒子干涉(QPI)与费米面 nesting 波矢的关系</a><time datetime="2026-06-03T16:00:00.000Z" title="发表于 2026-06-04 00:00:00">2026-06-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/06/03/2026-06-03-Regular-fsum/" title="Regular光电导与光学$f$求和规则"><img src="/assets/images/Transport/fsum.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Regular光电导与光学$f$求和规则"/></a><div class="content"><a class="title" href="/2026/06/03/2026-06-03-Regular-fsum/" title="Regular光电导与光学$f$求和规则">Regular光电导与光学$f$求和规则</a><time datetime="2026-06-02T16:00:00.000Z" title="发表于 2026-06-03 00:00:00">2026-06-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/06/03/2026-06-03-Regular-fsum-Ds/" title="超导态光学零频权重 $D_x^{SC}$ 与超流权重 $D_{s,xx}$ 的关系"><img src="/assets/images/Transport/sc-Ds.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导态光学零频权重 $D_x^{SC}$ 与超流权重 $D_{s,xx}$ 的关系"/></a><div class="content"><a class="title" href="/2026/06/03/2026-06-03-Regular-fsum-Ds/" title="超导态光学零频权重 $D_x^{SC}$ 与超流权重 $D_{s,xx}$ 的关系">超导态光学零频权重 $D_x^{SC}$ 与超流权重 $D_{s,xx}$ 的关系</a><time datetime="2026-06-02T16:00:00.000Z" title="发表于 2026-06-03 00:00:00">2026-06-03</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/assets/images/SC/unitary_nonunitary_pairing.png);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div><div class="footer_custom_text">Welcome to  Yu-Xuan's Blog</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  const initGitalk = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGitalk = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const gitalk = new Gitalk({
+      clientID: 'Ov23li0WvZEaIAZ7RFtH',
+      clientSecret: '03fcb77b7c28dafcdde00756e27f9b5bc76639e8',
+      repo: 'yxli8023.github.io',
+      owner: 'yxli8023',
+      admin: ['yxli8023'],
+      updateCountCallback: commentCount,
+      ...option,
+      id: isShuoshuo ? path : (option && option.id) || 'c58b3f72b2b9da04651cf2b21a8b1389'
+    })
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async(el, path) => {
+    if (typeof Gitalk === 'function') initGitalk(el, path)
+    else {
+      await btf.getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await btf.getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Gitalk' === 'Gitalk'
+      ? window.shuoshuoComment = { loadComment: loadGitalk }
+      : window.loadOtherComment = loadGitalk
+    return
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
