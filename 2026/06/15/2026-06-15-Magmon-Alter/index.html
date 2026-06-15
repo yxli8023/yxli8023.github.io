@@ -1,0 +1,767 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Altermagnets 中的 $d$-wave 手性 magnon劈裂 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Altermagnets 中的 $d$-wave 手性 magnon劈裂基本概念Magnon 是磁有序体系中自旋波的量子化激发。对于铁磁体，一个 magnon 可以直观理解为铁磁背景中的一个离域自旋翻转。对于共线反铁磁体，由于存在两个反向排列的磁子格，线性自旋波理论通常给出两个相反圆偏振的 magnon 模式。它们携带相反的自旋角动量，可以记为 $s_m&#x3D;+\hbar$ 和 $s_m&#x3D;-\hbar">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Altermagnets 中的 $d$-wave 手性 magnon劈裂">
+<meta property="og:url" content="http://example.com/2026/06/15/2026-06-15-Magmon-Alter/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39;s Blog">
+<meta property="og:description" content="Altermagnets 中的 $d$-wave 手性 magnon劈裂基本概念Magnon 是磁有序体系中自旋波的量子化激发。对于铁磁体，一个 magnon 可以直观理解为铁磁背景中的一个离域自旋翻转。对于共线反铁磁体，由于存在两个反向排列的磁子格，线性自旋波理论通常给出两个相反圆偏振的 magnon 模式。它们携带相反的自旋角动量，可以记为 $s_m&#x3D;+\hbar$ 和 $s_m&#x3D;-\hbar">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/assets/images/Altermagnets/Magmon-alter.png">
+<meta property="article:published_time" content="2026-06-14T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-06-15T11:58:05.305Z">
+<meta property="article:author" content="Yu-Xuan">
+<meta property="article:tag" content="Altermagnets">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/images/Altermagnets/Magmon-alter.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Altermagnets 中的 $d$-wave 手性 magnon劈裂",
+  "url": "http://example.com/2026/06/15/2026-06-15-Magmon-Alter/",
+  "image": "http://example.com/assets/images/Altermagnets/Magmon-alter.png",
+  "datePublished": "2026-06-14T16:00:00.000Z",
+  "dateModified": "2026-06-15T11:58:05.305Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yu-Xuan",
+      "url": "http://example.com/about"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/logo.png"><link rel="canonical" href="http://example.com/2026/06/15/2026-06-15-Magmon-Alter/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"作者: Yu-Xuan","link":"链接: ","source":"来源: Yu-Xuan's Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'medium_zoom',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#f54966","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Altermagnets 中的 $d$-wave 手性 magnon劈裂',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #dbeffd;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">381</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/assets/images/Altermagnets/Magmon-alter.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo.png" alt="Logo"><span class="site-name">Yu-Xuan's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">Altermagnets 中的 $d$-wave 手性 magnon劈裂</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Altermagnets 中的 $d$-wave 手性 magnon劈裂</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-06-14T16:00:00.000Z" title="发表于 2026-06-15 00:00:00">2026-06-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-06-15T11:58:05.305Z" title="更新于 2026-06-15 19:58:05">2026-06-15</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Altermagnets/">Altermagnets</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">5.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>28分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;自上次更新已经过了&quot;,&quot;messageNext&quot;:&quot;天，文章内容可能已过时。&quot;,&quot;postUpdate&quot;:&quot;2026-06-15 19:58:05&quot;}" hidden></div><h1 id="Altermagnets-中的-d-wave-手性-magnon劈裂"><a href="#Altermagnets-中的-d-wave-手性-magnon劈裂" class="headerlink" title="Altermagnets 中的 $d$-wave 手性 magnon劈裂"></a>Altermagnets 中的 $d$-wave 手性 magnon劈裂</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>Magnon 是磁有序体系中自旋波的量子化激发。对于铁磁体，一个 magnon 可以直观理解为铁磁背景中的一个离域自旋翻转。对于共线反铁磁体，由于存在两个反向排列的磁子格，线性自旋波理论通常给出两个相反圆偏振的 magnon 模式。它们携带相反的自旋角动量，可以记为 $s_m=+\hbar$ 和 $s_m=-\hbar$。</p>
+<p>在普通共线反铁磁体中，这两个相反手性的 magnon 分支通常在同一个 $\mathbf q$ 点上简并：</p>
+<script type="math/tex; mode=display">
+\omega_+(\mathbf q)=\omega_-(\mathbf q).</script><p>这里的 $+$ 和 $-$ 不是电子自旋的上下，而是 magnon 的相反手性，或者说相反的圆偏振进动模式。所谓 magnon 的“自旋劈裂”，更准确地说是 <strong>opposite-手性ity magnon modes</strong> 的劈裂，即</p>
+<script type="math/tex; mode=display">
+\omega_+(\mathbf q)\neq \omega_-(\mathbf q).</script><p>Altermagnet 也是补偿共线磁体，净磁化为零，但它不同于普通反铁磁体。普通反铁磁体中，两个反平行磁子格通常由平移、反演，或者它们与时间反演的组合联系；而 altermagnet 中，两个反平行磁子格往往由晶体旋转或镜面操作联系。这个差别使得相反手性的 magnon 不再必须在同一个 $\mathbf q$ 处简并，而是只需要在经过晶体操作变换后的动量点上对应</p>
+<script type="math/tex; mode=display">
+\omega_+(\mathbf q)=\omega_-(g\mathbf q).</script><p>其中 $g$ 是把两个反平行磁子格联系起来的晶体操作。对于二维 $d$-wave altermagnet，$g$ 可以理解为 $C_4$ 旋转。于是劈裂函数</p>
+<script type="math/tex; mode=display">
+\Delta\omega(\mathbf q)=\omega_+(\mathbf q)-\omega_-(\mathbf q)</script><p>满足</p>
+<script type="math/tex; mode=display">
+\Delta\omega(C_4\mathbf q)=-\Delta\omega(\mathbf q).</script><p>最简单的晶格函数为</p>
+<script type="math/tex; mode=display">
+\Delta\omega(\mathbf q)\propto \cos q_y-\cos q_x.</script><p>在小 $\mathbf q$ 极限下，</p>
+<script type="math/tex; mode=display">
+\cos q_y-\cos q_x\simeq \frac{1}{2}(q_x^2-q_y^2).</script><p>因此这种 magnon splitting 具有 $d_{x^2-y^2}$ 型角向结构。</p>
+<h2 id="普通共线-AFM-的线性自旋波理论"><a href="#普通共线-AFM-的线性自旋波理论" class="headerlink" title="普通共线 AFM 的线性自旋波理论"></a>普通共线 AFM 的线性自旋波理论</h2><p>先考虑最简单的二子格反铁磁 Heisenberg 模型：</p>
+<script type="math/tex; mode=display">
+H_1=
+J_1\sum_{\langle i\in A,j\in B\rangle}
+\mathbf S_{i,A}\cdot\mathbf S_{j,B},
+\qquad J_1>0.</script><p>这里 $A$ 和 $B$ 是两个反平行磁子格。Néel 基态为</p>
+<script type="math/tex; mode=display">
+\mathbf S_A=S\hat z,
+\qquad
+\mathbf S_B=-S\hat z.</script><p>对 $A$ 子格使用 Holstein—Primakoff 变换：</p>
+<script type="math/tex; mode=display">
+S_{i,A}^z=S-a_i^\dagger a_i,\qquad S_{i,A}^+\simeq \sqrt{2S}a_i,
+\qquad
+S_{i,A}^-\simeq \sqrt{2S}a_i^\dagger.</script><p>对 $B$ 子格，由于自旋方向相反，需要使用反向量子化轴：</p>
+<script type="math/tex; mode=display">
+S_{j,B}^z=-S+b_j^\dagger b_j,\qquad S_{j,B}^+\simeq \sqrt{2S}b_j^\dagger,
+\qquad
+S_{j,B}^-\simeq \sqrt{2S}b_j.</script><p>对一条 $A-B$ 键，有</p>
+<script type="math/tex; mode=display">
+\mathbf S_{i,A}\cdot\mathbf S_{j,B}
+=
+S_{i,A}^zS_{j,B}^z
++
+\frac{1}{2}
+\left(
+S_{i,A}^+S_{j,B}^-
++
+S_{i,A}^-S_{j,B}^+
+\right).</script><p>代入线性自旋波近似，得到</p>
+<script type="math/tex; mode=display">
+S_{i,A}^zS_{j,B}^z
+\simeq
+-S^2
++
+S a_i^\dagger a_i
++
+S b_j^\dagger b_j,</script><p>以及</p>
+<script type="math/tex; mode=display">
+\frac{1}{2}
+\left(
+S_{i,A}^+S_{j,B}^-
++
+S_{i,A}^-S_{j,B}^+
+\right)
+\simeq
+S(a_i b_j+a_i^\dagger b_j^\dagger).</script><p>因此</p>
+<script type="math/tex; mode=display">
+\mathbf S_{i,A}\cdot\mathbf S_{j,B}
+\simeq
+-S^2
++
+S a_i^\dagger a_i
++
+S b_j^\dagger b_j
++
+S(a_i b_j+a_i^\dagger b_j^\dagger).</script><p>二次自旋波哈密顿量为</p>
+<script type="math/tex; mode=display">
+H_{\rm sw}
+=
+E_0
++
+J_1S
+\sum_{\langle i\in A,j\in B\rangle}
+\left[
+a_i^\dagger a_i
++
+b_j^\dagger b_j
++
+a_i b_j
++
+a_i^\dagger b_j^\dagger
+\right].</script><p>在二维方格晶格中，配位数 $z=4$。傅里叶变换后可以写成</p>
+<script type="math/tex; mode=display">
+H_{\rm sw}
+=
+E_0
++
+4J_1S
+\sum_{\mathbf q}
+\left[
+a_{\mathbf q}^\dagger a_{\mathbf q}
++
+b_{\mathbf q}^\dagger b_{\mathbf q}
++
+\gamma_{\mathbf q}
+\left(
+a_{\mathbf q}b_{-\mathbf q}
++
+a_{\mathbf q}^\dagger b_{-\mathbf q}^\dagger
+\right)
+\right],</script><p>其中</p>
+<script type="math/tex; mode=display">
+\gamma_{\mathbf q}
+=
+\frac{1}{2}(\cos q_x+\cos q_y).</script><p>由于哈密顿量包含 $a_{\mathbf q}b_{-\mathbf q}$ 和 $a_{\mathbf q}^\dagger b_{-\mathbf q}^\dagger$，它是 bosonic BdG 问题。经过 Bogoliubov 对角化，得到</p>
+<script type="math/tex; mode=display">
+\omega_+(\mathbf q)=\omega_-(\mathbf q)
+=
+4J_1S\sqrt{1-\gamma_{\mathbf q}^2}.</script><p>这说明普通共线 AFM 中，两个相反手性 magnon 在同一个 $\mathbf q$ 点上简并。</p>
+<h2 id="普通-AFM-中-magnon-简并的对称性来源"><a href="#普通-AFM-中-magnon-简并的对称性来源" class="headerlink" title="普通 AFM 中 magnon 简并的对称性来源"></a>普通 AFM 中 magnon 简并的对称性来源</h2><p>普通共线 AFM 的 magnon 手性简并不是偶然的。其核心原因是：两个反平行磁子格在晶体结构上是等价的，并且存在某个操作可以在不改变动量点的情况下把一个手性 magnon 映射到另一个手性 magnon。可以把 magnon 的两个手性记为 $\chi=\pm$。如果体系存在对称操作 $\mathcal S$，满足</p>
+<script type="math/tex; mode=display">
+\mathcal S:
+(\chi,\mathbf q)\rightarrow(-\chi,\mathbf q),</script><p>那么两个相反手性模式在同一个 $\mathbf q$ 处必须简并：</p>
+<script type="math/tex; mode=display">
+\omega_+(\mathbf q)=\omega_-(\mathbf q).</script><p>在常规共线 AFM 中，这个操作通常可以理解为子格交换与自旋反转的组合。由于 $A$ 和 $B$ 子格由平移或反演等操作联系，所以这种操作不会把 $\mathbf q$ 变到一个本质不同的动量点。结果是，两个相反圆偏振 magnon 的能量必须相等。在线性自旋波哈密顿量中，这个对称性表现为</p>
+<script type="math/tex; mode=display">
+A_A(\mathbf q)=A_B(\mathbf q).</script><p>其中 $A_A(\mathbf q)$ 和 $A_B(\mathbf q)$ 分别是 $A$、$B$ 子格玻色子的对角项。只要 $A_A=A_B$，两个手性分支就简并。</p>
+<h2 id="Altermagnet-中为什么允许-magnon劈裂"><a href="#Altermagnet-中为什么允许-magnon劈裂" class="headerlink" title="Altermagnet 中为什么允许 magnon劈裂"></a>Altermagnet 中为什么允许 magnon劈裂</h2><p>Altermagnet 仍然是补偿共线磁体，满足</p>
+<script type="math/tex; mode=display">
+\mathbf M_A+\mathbf M_B=0.</script><p>因此它没有铁磁体中的净磁化，也没有普通 Zeeman 型劈裂。但是 altermagnet 的两个反平行磁子格不是由简单平移或反演联系，而是由晶体旋转或镜面对称联系。例如二维 $d$-wave altermagnet 中，可以有</p>
+<script type="math/tex; mode=display">
+A\xrightarrow{C_4}B.</script><p>这意味着相反手性的 magnon 分支不是在同一个动量点对应，而是在旋转后的动量点对应：</p>
+<script type="math/tex; mode=display">
+\omega_+(q_x,q_y)=\omega_-(-q_y,q_x).</script><p>因此，对称性不再要求</p>
+<script type="math/tex; mode=display">
+\omega_+(q_x,q_y)=\omega_-(q_x,q_y).</script><p>所以在一般动量处，可以出现</p>
+<script type="math/tex; mode=display">
+\omega_+(q_x,q_y)\neq \omega_-(q_x,q_y).</script><p>但是劈裂函数仍然受到晶体对称性约束。定义</p>
+<script type="math/tex; mode=display">
+\Delta\omega(\mathbf q)=\omega_+(\mathbf q)-\omega_-(\mathbf q).</script><p>由</p>
+<script type="math/tex; mode=display">
+\omega_+(q_x,q_y)=\omega_-(-q_y,q_x)</script><p>可知</p>
+<script type="math/tex; mode=display">
+\Delta\omega(-q_y,q_x)=-\Delta\omega(q_x,q_y).</script><p>这说明 $\Delta\omega$ 在 $C_4$ 旋转下变号。最简单满足这个条件的晶格函数就是</p>
+<script type="math/tex; mode=display">
+f_d(\mathbf q)=\cos q_y-\cos q_x.</script><p>因此</p>
+<script type="math/tex; mode=display">
+\Delta\omega(\mathbf q)\propto \cos q_y-\cos q_x.</script><p>这个函数具有 $d_{x^2-y^2}$ 型角向结构。它在 $q_x=\pm q_y$ 方向上为零，在 $q_x$ 和 $q_y$ 方向上符号相反。</p>
+<h2 id="最小交换模型"><a href="#最小交换模型" class="headerlink" title="最小交换模型"></a>最小交换模型</h2><p>为了具体推导，可以构造一个二维方格二子格模型。最近邻 $A-B$ 交换为反铁磁交换 $J_1&gt;0$。此外，引入同子格交换刚度项。关键是：$A$ 子格与 $B$ 子格的同子格交换各向异性互相旋转 $90^\circ$。</p>
+<p>模型写为</p>
+<script type="math/tex; mode=display">
+H=H_1+H_2.</script><p>其中</p>
+<script type="math/tex; mode=display">
+H_1=
+J_1
+\sum_{\langle i\in A,j\in B\rangle}
+\mathbf S_{i,A}\cdot\mathbf S_{j,B}.</script><p>同子格交换取为</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+H_2
+=&
+-
+\sum_{i\in A}
+\left[
+K_{A,x}\mathbf S_{i,A}\cdot\mathbf S_{i+\hat x,A}
++
+K_{A,y}\mathbf S_{i,A}\cdot\mathbf S_{i+\hat y,A}
+\right]
+\\
+&
+-
+\sum_{j\in B}
+\left[
+K_{B,x}\mathbf S_{j,B}\cdot\mathbf S_{j+\hat x,B}
++
+K_{B,y}\mathbf S_{j,B}\cdot\mathbf S_{j+\hat y,B}
+\right].
+\end{aligned}</script><p>这里 $K&gt;0$ 可以理解为同子格上的铁磁型自旋刚度。为了实现 $d$-wave altermagnetic 结构，取</p>
+<script type="math/tex; mode=display">
+K_{A,x}=K_0+\delta K,
+\qquad
+K_{A,y}=K_0-\delta K,</script><script type="math/tex; mode=display">
+K_{B,x}=K_0-\delta K,
+\qquad
+K_{B,y}=K_0+\delta K.</script><p>也就是说，$A$ 子格沿 $x$ 方向的刚度更强，$B$ 子格沿 $y$ 方向的刚度更强。两个子格不是简单相同，而是互相旋转 $90^\circ$。</p>
+<ul>
+<li><p>当 $\delta K=0$ 时，两个子格环境完全等价，模型退化为普通共线 AFM。此时没有 手性 magnon劈裂</p>
+</li>
+<li><p>当 $\delta K\neq0$ 时，两个子格环境具有旋转等价性而非平移等价性，于是允许 altermagnetic magnon劈裂</p>
+</li>
+</ul>
+<p>对 $A$ 和 $B$ 子格分别进行 Holstein—Primakoff 变换。最近邻 $A-B$ 交换给出</p>
+<script type="math/tex; mode=display">
+H_1^{(2)}
+=
+J_1S
+\sum_{\langle i\in A,j\in B\rangle}
+\left[
+a_i^\dagger a_i
++
+b_j^\dagger b_j
++
+a_i b_j
++
+a_i^\dagger b_j^\dagger
+\right].</script><p>同子格交换给出对角项。以 $A$ 子格为例，</p>
+<script type="math/tex; mode=display">
+-\mathbf S_{i,A}\cdot\mathbf S_{i+\delta,A}
+\simeq
+- S^2
++
+S(a_i^\dagger a_i+a_{i+\delta}^\dagger a_{i+\delta})
+-
+S(a_i^\dagger a_{i+\delta}+a_{i+\delta}^\dagger a_i).</script><p>傅里叶变换后，$A$ 子格同子格交换贡献为</p>
+<script type="math/tex; mode=display">
+2S
+\left[
+K_{A,x}(1-\cos q_x)
++
+K_{A,y}(1-\cos q_y)
+\right]
+a_{\mathbf q}^\dagger a_{\mathbf q}.</script><p>同理，$B$ 子格贡献为</p>
+<script type="math/tex; mode=display">
+2S
+\left[
+K_{B,x}(1-\cos q_x)
++
+K_{B,y}(1-\cos q_y)
+\right]
+b_{\mathbf q}^\dagger b_{\mathbf q}.</script><p>因此总的二次自旋波哈密顿量可以写成</p>
+<script type="math/tex; mode=display">
+H_{\rm sw}
+=
+E_0+
+\sum_{\mathbf q}
+\left[
+A_A(\mathbf q)a_{\mathbf q}^\dagger a_{\mathbf q}
++
+A_B(\mathbf q)b_{\mathbf q}^\dagger b_{\mathbf q}
++
+B(\mathbf q)
+\left(
+a_{\mathbf q}b_{-\mathbf q}
++
+a_{\mathbf q}^\dagger b_{-\mathbf q}^\dagger
+\right)
+\right].</script><p>其中</p>
+<script type="math/tex; mode=display">
+A_A(\mathbf q)
+=
+4J_1S
++
+2S
+\left[
+K_{A,x}(1-\cos q_x)
++
+K_{A,y}(1-\cos q_y)
+\right],</script><script type="math/tex; mode=display">
+A_B(\mathbf q)
+=
+4J_1S
++
+2S
+\left[
+K_{B,x}(1-\cos q_x)
++
+K_{B,y}(1-\cos q_y)
+\right],</script><p>以及</p>
+<script type="math/tex; mode=display">
+B(\mathbf q)=4J_1S\gamma_{\mathbf q},\qquad \gamma_{\mathbf q}=\frac{1}{2}(\cos q_x+\cos q_y).</script><p>把 $A_A$ 和 $A_B$ 写成平均部分与差异部分：</p>
+<script type="math/tex; mode=display">
+A_A(\mathbf q)=A_0(\mathbf q)+\delta A(\mathbf q),\qquad A_B(\mathbf q)=A_0(\mathbf q)-\delta A(\mathbf q).</script><p>直接计算得到</p>
+<script type="math/tex; mode=display">
+A_0(\mathbf q)
+=
+4J_1S
++
+2SK_0
+\left[
+2-\cos q_x-\cos q_y
+\right],</script><script type="math/tex; mode=display">
+\delta A(\mathbf q)
+=
+2S\delta K
+\left[
+\cos q_y-\cos q_x
+\right].</script><p>这里 $\delta A(\mathbf q)$ 就是 $d$-wave altermagnetic 结构进入自旋波哈密顿量的关键项。</p>
+<h2 id="Bosonic-BdG-对角化"><a href="#Bosonic-BdG-对角化" class="headerlink" title="Bosonic BdG 对角化"></a>Bosonic BdG 对角化</h2><p>由于哈密顿量中含有 $a_{\mathbf q}b_{-\mathbf q}$ 和 $a_{\mathbf q}^\dagger b_{-\mathbf q}^\dagger$，它是 bosonic BdG 问题。考虑 Nambu 块</p>
+<script type="math/tex; mode=display">
+\Psi_{+,\mathbf q}
+=
+\begin{pmatrix}
+a_{\mathbf q}\\
+b_{-\mathbf q}^\dagger
+\end{pmatrix}.</script><p>对应的动力学矩阵为</p>
+<script type="math/tex; mode=display">
+\mathcal M_{+}(\mathbf q)
+=
+\begin{pmatrix}
+A_A(\mathbf q) & B(\mathbf q)\\
+-B(\mathbf q) & -A_B(\mathbf q)
+\end{pmatrix}.</script><p>它的正本征值给出一个手性分支 $\omega_+(\mathbf q)$。本征值方程为</p>
+<script type="math/tex; mode=display">
+\det
+\begin{pmatrix}
+A_A-\omega & B\\
+-B & -A_B-\omega
+\end{pmatrix}
+=0.</script><p>展开得到</p>
+<script type="math/tex; mode=display">
+\omega^2
+-
+(A_A-A_B)\omega
+-
+A_AA_B
++
+B^2
+=0.</script><p>代入</p>
+<script type="math/tex; mode=display">
+A_A=A_0+\delta A,
+\qquad
+A_B=A_0-\delta A,</script><p>得到</p>
+<script type="math/tex; mode=display">
+(\omega-\delta A)^2=A_0^2-B^2.</script><p>因此</p>
+<script type="math/tex; mode=display">
+\omega_+(\mathbf q)
+=
+\omega_0(\mathbf q)+\delta A(\mathbf q),</script><p>其中$\omega_0(\mathbf q)=\sqrt{A_0^2(\mathbf q)-B^2(\mathbf q)}$。另一个 Nambu 块为</p>
+<script type="math/tex; mode=display">
+\Psi_{-,\mathbf q}
+=
+\begin{pmatrix}
+b_{\mathbf q}\\
+a_{-\mathbf q}^\dagger
+\end{pmatrix}.</script><p>它给出相反手性的分支</p>
+<script type="math/tex; mode=display">
+\omega_-(\mathbf q)
+=
+\omega_0(\mathbf q)-\delta A(\mathbf q).</script><p>于是最终得到</p>
+<script type="math/tex; mode=display">
+\omega_\pm(\mathbf q)
+=
+\omega_0(\mathbf q)
+\pm
+2S\delta K(\cos q_y-\cos q_x).</script><p>因此两个手性分支的劈裂为</p>
+<script type="math/tex; mode=display">
+\Delta\omega(\mathbf q)
+=
+\omega_+(\mathbf q)-\omega_-(\mathbf q)
+=
+4S\delta K(\cos q_y-\cos q_x).</script><p>这就是 $d$-wave altermagnetic magnon splitting 的最小模型推导。这个模型清楚地体现了普通 AFM 与 altermagnetic magnon splitting 的区别。对于普通 AFM，两个子格的同子格交换环境相同：</p>
+<script type="math/tex; mode=display">
+K_{A,x}=K_{B,x},
+\qquad
+K_{A,y}=K_{B,y}.</script><p>于是</p>
+<script type="math/tex; mode=display">
+A_A(\mathbf q)=A_B(\mathbf q),</script><p>从而</p>
+<script type="math/tex; mode=display">
+\delta A(\mathbf q)=0.</script><p>最终得到</p>
+<script type="math/tex; mode=display">
+\omega_+(\mathbf q)=\omega_-(\mathbf q).</script><p>这就是普通 AFM 的 手性 magnon degeneracy。对于 $d$-wave altermagnet，两个子格的交换环境满足</p>
+<script type="math/tex; mode=display">
+K_{A,x}=K_{B,y},
+\qquad
+K_{A,y}=K_{B,x}.</script><p>因此</p>
+<script type="math/tex; mode=display">
+A_A(q_x,q_y)=A_B(-q_y,q_x).</script><p>这说明 $A$ 和 $B$ 子格不是在同一个动量点等价，而是在 $C_4$ 旋转后的动量点等价。于是 magnon 分支满足</p>
+<script type="math/tex; mode=display">
+\omega_+(q_x,q_y)=\omega_-(-q_y,q_x),</script><p>但一般不满足</p>
+<script type="math/tex; mode=display">
+\omega_+(q_x,q_y)=\omega_-(q_x,q_y).</script><p>这就是 altermagnetic magnon劈裂 的对称性本质。</p>
+<h2 id="d-wave-劈裂的动量空间结构"><a href="#d-wave-劈裂的动量空间结构" class="headerlink" title="$d$-wave 劈裂的动量空间结构"></a>$d$-wave 劈裂的动量空间结构</h2><p>由</p>
+<script type="math/tex; mode=display">
+\Delta\omega(\mathbf q)
+=
+4S\delta K(\cos q_y-\cos q_x)</script><p>可见，劈裂具有几个重要特征。</p>
+<p>第一，在 $\Gamma$ 点，</p>
+<script type="math/tex; mode=display">
+\Delta\omega(0,0)=0.</script><p>这是因为 $\cos 0-\cos 0=0$。</p>
+<p>第二，在 $q_x$ 方向上，即 $\mathbf q=(q,0)$，</p>
+<script type="math/tex; mode=display">
+\Delta\omega(q,0)=4S\delta K(1-\cos q).</script><p>第三，在 $q_y$ 方向上，即 $\mathbf q=(0,q)$，</p>
+<script type="math/tex; mode=display">
+\Delta\omega(0,q)=4S\delta K(\cos q-1).</script><p>因此</p>
+<script type="math/tex; mode=display">
+\Delta\omega(q,0)=-\Delta\omega(0,q).</script><p>这说明沿 $q_x$ 和 $q_y$ 两个方向，magnon 手性劈裂符号相反。这正是 $d$-wave 特征。</p>
+<p>第四，在对角线方向 $q_x=\pm q_y$ 上，</p>
+<script type="math/tex; mode=display">
+\cos q_y-\cos q_x=0,</script><p>所以</p>
+<script type="math/tex; mode=display">
+\Delta\omega(\mathbf q)=0.</script><p>这说明 $d$-wave altermagnetic magnon劈裂存在节点方向。</p>
+<h2 id="与电子-altermagnetic-spin-splitting-的类比"><a href="#与电子-altermagnetic-spin-splitting-的类比" class="headerlink" title="与电子 altermagnetic spin splitting 的类比"></a>与电子 altermagnetic spin splitting 的类比</h2><p>电子 altermagnet 中，最小形式常写为</p>
+<script type="math/tex; mode=display">
+H_e(\mathbf k)
+=
+\varepsilon_0(\mathbf k)
++
+\Delta_e(\cos k_x-\cos k_y)s_z.</script><p>于是电子自旋劈裂为</p>
+<script type="math/tex; mode=display">
+E_\uparrow(\mathbf k)-E_\downarrow(\mathbf k)
+=
+2\Delta_e(\cos k_x-\cos k_y).</script><p>magnon 中对应的形式是</p>
+<script type="math/tex; mode=display">
+\omega_+(\mathbf q)-\omega_-(\mathbf q)
+=
+4S\delta K(\cos q_y-\cos q_x).</script><p>两者的结构完全平行：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>电子 altermagnet</th>
+<th>magnon altermagnet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>自旋上/自旋下电子带</td>
+<td>相反手性 magnon 分支</td>
+</tr>
+<tr>
+<td>$E_\uparrow-E_\downarrow$</td>
+<td>$\omega_+-\omega_-$</td>
+</tr>
+<tr>
+<td>spin splitting</td>
+<td>手性 magnon splitting</td>
+</tr>
+<tr>
+<td>$\cos k_x-\cos k_y$</td>
+<td>$\cos q_y-\cos q_x$</td>
+</tr>
+<tr>
+<td>零净磁化但动量依赖自旋劈裂</td>
+<td>零净磁化但动量依赖 magnon 手性劈裂</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>需要注意的是，magnon 中的“自旋劈裂”不应简单理解为电子自旋上、下能带劈裂。更准确的说法是：两个相反圆偏振、相反自旋角动量的 magnon 模式发生了手性劈裂。</p>
+<h2 id="为什么这种劈裂不需要-SOC-或-DMI"><a href="#为什么这种劈裂不需要-SOC-或-DMI" class="headerlink" title="为什么这种劈裂不需要 SOC 或 DMI"></a>为什么这种劈裂不需要 SOC 或 DMI</h2><p>普通 magnon 非互易性或 magnon band splitting 常常与 Dzyaloshinskii—Moriya interaction、偶极相互作用、外磁场或自旋轨道耦合有关。但是 altermagnetic magnon splitting 的关键不同在于：它可以来自非相对论的对称交换相互作用。在上面的模型中，所有相互作用都是各向同性 Heisenberg 型交换：</p>
+<script type="math/tex; mode=display">
+\mathbf S_i\cdot\mathbf S_j.</script><p>没有显式 SOC，没有 DMI，也没有外磁场。劈裂来自两个反平行子格的交换路径各向异性不同，并且这种不同通过晶体旋转而不是平移联系。因此，它是非相对论交换作用和晶体对称性共同导致的手性 magnon 劈裂。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>普通共线 AFM 和 altermagnetic magnon splitting 的区别可以总结为：</p>
+<p>普通 AFM 中，两个反平行磁子格由平移、反演或等价的子格交换操作联系。该操作可以把 $s_m=+\hbar$ magnon 映射到 $s_m=-\hbar$ magnon，并保持同一个动量点。因此普通 AFM 中有</p>
+<script type="math/tex; mode=display">
+\omega_+(\mathbf q)=\omega_-(\mathbf q).</script><p>Altermagnet 中，两个反平行磁子格不是由简单平移或反演联系，而是由晶体旋转或镜面对称联系。因此相反手性的 magnon 分支满足</p>
+<script type="math/tex; mode=display">
+\omega_+(\mathbf q)=\omega_-(g\mathbf q),</script><p>但一般不满足同一 $\mathbf q$ 处的简并关系。因此可以出现</p>
+<script type="math/tex; mode=display">
+\omega_+(\mathbf q)\neq\omega_-(\mathbf q).</script><p>对于二维 $d$-wave altermagnet，$g$ 可以是 $C_4$ 旋转。于是劈裂函数在 $C_4$ 下变号，最低阶晶格函数为</p>
+<script type="math/tex; mode=display">
+\Delta\omega(\mathbf q)
+\propto
+\cos q_y-\cos q_x.</script><p>在最小交换模型中，两个子格的同子格交换刚度满足</p>
+<script type="math/tex; mode=display">
+K_{A,x}=K_{B,y},
+\qquad
+K_{A,y}=K_{B,x}.</script><p>线性自旋波理论给出</p>
+<script type="math/tex; mode=display">
+\omega_\pm(\mathbf q)
+=
+\omega_0(\mathbf q)
+\pm
+2S\delta K(\cos q_y-\cos q_x),</script><p>因此</p>
+<script type="math/tex; mode=display">
+\omega_+(\mathbf q)-\omega_-(\mathbf q)
+=
+4S\delta K(\cos q_y-\cos q_x).</script><p>这就是 altermagnets 中 $d$-wave 手性 magnon splitting 的最基本理论图像。</p>
+<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br><span class="line">453</span><br><span class="line">454</span><br><span class="line">455</span><br><span class="line">456</span><br><span class="line">457</span><br><span class="line">458</span><br><span class="line">459</span><br><span class="line">460</span><br><span class="line">461</span><br><span class="line">462</span><br><span class="line">463</span><br><span class="line">464</span><br><span class="line">465</span><br><span class="line">466</span><br><span class="line">467</span><br><span class="line">468</span><br><span class="line">469</span><br><span class="line">470</span><br><span class="line">471</span><br><span class="line">472</span><br><span class="line">473</span><br><span class="line">474</span><br><span class="line">475</span><br><span class="line">476</span><br><span class="line">477</span><br><span class="line">478</span><br><span class="line">479</span><br><span class="line">480</span><br><span class="line">481</span><br><span class="line">482</span><br><span class="line">483</span><br><span class="line">484</span><br><span class="line">485</span><br><span class="line">486</span><br><span class="line">487</span><br><span class="line">488</span><br><span class="line">489</span><br><span class="line">490</span><br><span class="line">491</span><br><span class="line">492</span><br><span class="line">493</span><br><span class="line">494</span><br><span class="line">495</span><br><span class="line">496</span><br><span class="line">497</span><br><span class="line">498</span><br><span class="line">499</span><br><span class="line">500</span><br><span class="line">501</span><br><span class="line">502</span><br><span class="line">503</span><br><span class="line">504</span><br><span class="line">505</span><br><span class="line">506</span><br><span class="line">507</span><br><span class="line">508</span><br><span class="line">509</span><br><span class="line">510</span><br><span class="line">511</span><br><span class="line">512</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Spin/chirality-resolved magnon splitting in a minimal d-wave altermagnetic model.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">This script starts from a linear spin-wave Hamiltonian and diagonalizes the</span></span><br><span class="line"><span class="string">bosonic BdG dynamical matrices.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Output:</span></span><br><span class="line"><span class="string">    All figures are saved as PNG only in</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        magnon_altermagnet_results/figures/</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Main plots:</span></span><br><span class="line"><span class="string">    01_spin_resolved_magnon_bands.png</span></span><br><span class="line"><span class="string">        Spin/chirality-resolved magnon bands along Gamma-X-M-Gamma.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    02_chiral_splitting_path.png</span></span><br><span class="line"><span class="string">        Splitting omega_+ - omega_- along Gamma-X-M-Gamma.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    03_chiral_splitting_map.png</span></span><br><span class="line"><span class="string">        d-wave splitting map in the 2D Brillouin zone.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    04_near_gamma_spin_split_dispersion.png</span></span><br><span class="line"><span class="string">        Near-Gamma split dispersion shown on a combined axis:</span></span><br><span class="line"><span class="string">            left  side  -&gt; Gamma to X  (q_y = 0, displayed as q_x side)</span></span><br><span class="line"><span class="string">            right side  -&gt; Gamma to Y  (q_x = 0, displayed as q_y side)</span></span><br><span class="line"><span class="string">        Only the two split branches are plotted, so the sign reversal of the</span></span><br><span class="line"><span class="string">        d-wave splitting becomes visually clear.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Model:</span></span><br><span class="line"><span class="string">    A and B sublattices form a compensated collinear AFM.</span></span><br><span class="line"><span class="string">    Nearest-neighbor A-B exchange is antiferromagnetic: J1 &gt; 0.</span></span><br><span class="line"><span class="string">    Same-sublattice exchange is treated as spin stiffness and is anisotropic.</span></span><br><span class="line"><span class="string">    The anisotropy pattern on B is rotated by 90 degrees relative to A.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Linear spin-wave Hamiltonian:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    H_sw = E0 + sum_q [</span></span><br><span class="line"><span class="string">        A_A(q) a_q^† a_q</span></span><br><span class="line"><span class="string">      + A_B(q) b_q^† b_q</span></span><br><span class="line"><span class="string">      + B(q) (a_q b_-q + a_q^† b_-q^†)</span></span><br><span class="line"><span class="string">    ]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">with</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    A_A(q) = z J1 S</span></span><br><span class="line"><span class="string">             + 2 S [K_Ax (1 - cos qx) + K_Ay (1 - cos qy)] + h_gap</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    A_B(q) = z J1 S</span></span><br><span class="line"><span class="string">             + 2 S [K_Bx (1 - cos qx) + K_By (1 - cos qy)] + h_gap</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    B(q)   = z J1 S gamma_q</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    gamma_q = (cos qx + cos qy) / 2</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">d-wave altermagnetic exchange pattern:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    K_Ax = K0 + dK,    K_Ay = K0 - dK</span></span><br><span class="line"><span class="string">    K_Bx = K0 - dK,    K_By = K0 + dK</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Then</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    omega_+(q) - omega_-(q) is proportional to cos(qy) - cos(qx),</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">which is the d-wave chiral magnon splitting.</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> pathlib <span class="keyword">import</span> Path</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> matplotlib.ticker <span class="keyword">import</span> MaxNLocator</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># =========================================================</span></span><br><span class="line"><span class="comment"># Global plotting controls</span></span><br><span class="line"><span class="comment"># =========================================================</span></span><br><span class="line">OUT_DIR = Path(<span class="string">&quot;magnon_altermagnet_results&quot;</span>)</span><br><span class="line">FIG_DIR = OUT_DIR / <span class="string">&quot;figures&quot;</span></span><br><span class="line">FIG_DIR.mkdir(parents=<span class="literal">True</span>, exist_ok=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">USE_TEX = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">FONT_SIZE = <span class="number">16</span></span><br><span class="line">LINE_WIDTH = <span class="number">2.5</span></span><br><span class="line">AXIS_WIDTH = <span class="number">1.0</span></span><br><span class="line">DPI = <span class="number">300</span></span><br><span class="line"></span><br><span class="line">plt.rcParams.update(&#123;</span><br><span class="line">    <span class="string">&quot;text.usetex&quot;</span>: USE_TEX,</span><br><span class="line">    <span class="string">&quot;font.family&quot;</span>: <span class="string">&quot;serif&quot;</span>,</span><br><span class="line">    <span class="string">&quot;font.serif&quot;</span>: [<span class="string">&quot;Times New Roman&quot;</span>, <span class="string">&quot;Times&quot;</span>, <span class="string">&quot;DejaVu Serif&quot;</span>],</span><br><span class="line">    <span class="string">&quot;mathtext.fontset&quot;</span>: <span class="string">&quot;stix&quot;</span>,</span><br><span class="line">    <span class="string">&quot;font.size&quot;</span>: FONT_SIZE,</span><br><span class="line">    <span class="string">&quot;axes.labelsize&quot;</span>: FONT_SIZE,</span><br><span class="line">    <span class="string">&quot;axes.titlesize&quot;</span>: FONT_SIZE,</span><br><span class="line">    <span class="string">&quot;xtick.labelsize&quot;</span>: FONT_SIZE - <span class="number">2</span>,</span><br><span class="line">    <span class="string">&quot;ytick.labelsize&quot;</span>: FONT_SIZE - <span class="number">2</span>,</span><br><span class="line">    <span class="string">&quot;legend.fontsize&quot;</span>: FONT_SIZE - <span class="number">4</span>,</span><br><span class="line">    <span class="string">&quot;axes.linewidth&quot;</span>: AXIS_WIDTH,</span><br><span class="line">    <span class="string">&quot;xtick.direction&quot;</span>: <span class="string">&quot;in&quot;</span>,</span><br><span class="line">    <span class="string">&quot;ytick.direction&quot;</span>: <span class="string">&quot;in&quot;</span>,</span><br><span class="line">    <span class="string">&quot;xtick.top&quot;</span>: <span class="literal">True</span>,</span><br><span class="line">    <span class="string">&quot;ytick.right&quot;</span>: <span class="literal">True</span>,</span><br><span class="line">    <span class="string">&quot;savefig.bbox&quot;</span>: <span class="string">&quot;tight&quot;</span>,</span><br><span class="line">    <span class="string">&quot;savefig.dpi&quot;</span>: DPI,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># =========================================================</span></span><br><span class="line"><span class="comment"># Model parameters</span></span><br><span class="line"><span class="comment"># =========================================================</span></span><br><span class="line">S = <span class="number">1.0</span></span><br><span class="line">J1 = <span class="number">1.0</span>       <span class="comment"># AFM A-B exchange</span></span><br><span class="line">K0 = <span class="number">0.25</span>      <span class="comment"># average same-sublattice stiffness</span></span><br><span class="line">dK = <span class="number">0.14</span>      <span class="comment"># d-wave altermagnetic anisotropy; dK=0 restores ordinary AFM degeneracy</span></span><br><span class="line">h_gap = <span class="number">0.00</span>   <span class="comment"># optional uniform magnon gap</span></span><br><span class="line">a_lat = <span class="number">1.0</span></span><br><span class="line">z = <span class="number">4</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Near-Gamma plot settings</span></span><br><span class="line">QMAX_GAMMA = <span class="number">1.10</span></span><br><span class="line">N_GAMMA = <span class="number">601</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Colors and line styles</span></span><br><span class="line">COLOR_PLUS = <span class="string">&quot;#0072B2&quot;</span>    <span class="comment"># blue</span></span><br><span class="line">COLOR_MINUS = <span class="string">&quot;#D55E00&quot;</span>   <span class="comment"># orange</span></span><br><span class="line">COLOR_SPLIT = <span class="string">&quot;#009E73&quot;</span>   <span class="comment"># green</span></span><br><span class="line">COLOR_ZERO = <span class="string">&quot;0.35&quot;</span></span><br><span class="line"></span><br><span class="line">LS_PLUS = <span class="string">&quot;-&quot;</span></span><br><span class="line">LS_MINUS = <span class="string">&quot;--&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># =========================================================</span></span><br><span class="line"><span class="comment"># Utilities</span></span><br><span class="line"><span class="comment"># =========================================================</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">set_max_three_ticks</span>(<span class="params">ax, x=<span class="literal">True</span>, y=<span class="literal">True</span></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Limit major ticks to at most three.</span></span><br><span class="line"><span class="string">    Do not use this on the high-symmetry path x-axis.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">if</span> x:</span><br><span class="line">        ax.xaxis.set_major_locator(MaxNLocator(nbins=<span class="number">3</span>))</span><br><span class="line">    <span class="keyword">if</span> y:</span><br><span class="line">        ax.yaxis.set_major_locator(MaxNLocator(nbins=<span class="number">3</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">savefig</span>(<span class="params">fig, name</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Save PNG only.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    png_path = FIG_DIR / <span class="string">f&quot;<span class="subst">&#123;name&#125;</span>.png&quot;</span></span><br><span class="line">    fig.savefig(png_path, dpi=DPI)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Saved: <span class="subst">&#123;png_path&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">positive_eigenvalue</span>(<span class="params">matrix</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Return the positive bosonic BdG eigenvalue from the dynamical matrix.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    evals = np.linalg.eigvals(matrix)</span><br><span class="line">    evals = np.real_if_close(evals, tol=<span class="number">1000</span>).real</span><br><span class="line"></span><br><span class="line">    positive = evals[evals &gt;= -<span class="number">1e-10</span>]</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(positive) == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> np.<span class="built_in">max</span>(evals)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> np.<span class="built_in">max</span>(positive)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># =========================================================</span></span><br><span class="line"><span class="comment"># Linear spin-wave Hamiltonian</span></span><br><span class="line"><span class="comment"># =========================================================</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">exchange_parameters</span>(<span class="params">K0=K0, dK=dK</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    d-wave altermagnetic exchange-stiffness pattern:</span></span><br><span class="line"><span class="string">        A sublattice: stronger stiffness along x</span></span><br><span class="line"><span class="string">        B sublattice: stronger stiffness along y</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    K_Ax = K0 + dK</span><br><span class="line">    K_Ay = K0 - dK</span><br><span class="line">    K_Bx = K0 - dK</span><br><span class="line">    K_By = K0 + dK</span><br><span class="line">    <span class="keyword">return</span> K_Ax, K_Ay, K_Bx, K_By</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">coefficients</span>(<span class="params">qx, qy, S=S, J1=J1, K0=K0, dK=dK, h_gap=h_gap</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Return A_A(q), A_B(q), B(q), A0(q), deltaA(q), gamma(q).</span></span><br><span class="line"><span class="string">    q values are dimensionless if a_lat = 1.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    K_Ax, K_Ay, K_Bx, K_By = exchange_parameters(K0, dK)</span><br><span class="line"></span><br><span class="line">    cx = np.cos(qx * a_lat)</span><br><span class="line">    cy = np.cos(qy * a_lat)</span><br><span class="line"></span><br><span class="line">    gamma = <span class="number">0.5</span> * (cx + cy)</span><br><span class="line"></span><br><span class="line">    AA = (</span><br><span class="line">        z * J1 * S</span><br><span class="line">        + h_gap</span><br><span class="line">        + <span class="number">2.0</span> * S * (K_Ax * (<span class="number">1.0</span> - cx) + K_Ay * (<span class="number">1.0</span> - cy))</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    AB = (</span><br><span class="line">        z * J1 * S</span><br><span class="line">        + h_gap</span><br><span class="line">        + <span class="number">2.0</span> * S * (K_Bx * (<span class="number">1.0</span> - cx) + K_By * (<span class="number">1.0</span> - cy))</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    B = z * J1 * S * gamma</span><br><span class="line"></span><br><span class="line">    A0 = <span class="number">0.5</span> * (AA + AB)</span><br><span class="line">    deltaA = <span class="number">0.5</span> * (AA - AB)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> AA, AB, B, A0, deltaA, gamma</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">dynamic_matrix_plus</span>(<span class="params">qx, qy</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Bosonic dynamical matrix for the Nambu block:</span></span><br><span class="line"><span class="string">        Psi_+ = (a_q, b_-q^†)^T</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    AA, AB, B, _, _, _ = coefficients(qx, qy)</span><br><span class="line">    <span class="keyword">return</span> np.array([[AA, B], [-B, -AB]], dtype=<span class="built_in">float</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">dynamic_matrix_minus</span>(<span class="params">qx, qy</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Bosonic dynamical matrix for the Nambu block:</span></span><br><span class="line"><span class="string">        Psi_- = (b_q, a_-q^†)^T</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    AA, AB, B, _, _, _ = coefficients(qx, qy)</span><br><span class="line">    <span class="keyword">return</span> np.array([[AB, B], [-B, -AA]], dtype=<span class="built_in">float</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">magnon_energies</span>(<span class="params">qx, qy</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Diagonalize the two bosonic BdG dynamical matrices.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Returns</span></span><br><span class="line"><span class="string">        omega_plus, omega_minus, spin_plus, spin_minus</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    omega_plus = positive_eigenvalue(dynamic_matrix_plus(qx, qy))</span><br><span class="line">    omega_minus = positive_eigenvalue(dynamic_matrix_minus(qx, qy))</span><br><span class="line"></span><br><span class="line">    spin_plus = +<span class="number">1.0</span></span><br><span class="line">    spin_minus = -<span class="number">1.0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> omega_plus, omega_minus, spin_plus, spin_minus</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># =========================================================</span></span><br><span class="line"><span class="comment"># High-symmetry path</span></span><br><span class="line"><span class="comment"># =========================================================</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">interpolate_path</span>(<span class="params">points, n_per_segment=<span class="number">240</span></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Return kpts, xcoord, xticks for a piecewise linear path.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    kpts = []</span><br><span class="line">    xcoord = []</span><br><span class="line">    xticks = [<span class="number">0.0</span>]</span><br><span class="line">    total = <span class="number">0.0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> iseg <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(points) - <span class="number">1</span>):</span><br><span class="line">        start = np.array(points[iseg], dtype=<span class="built_in">float</span>)</span><br><span class="line">        end = np.array(points[iseg + <span class="number">1</span>], dtype=<span class="built_in">float</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(n_per_segment):</span><br><span class="line">            t = j / n_per_segment</span><br><span class="line">            q = (<span class="number">1.0</span> - t) * start + t * end</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> kpts:</span><br><span class="line">                total += np.linalg.norm(q - kpts[-<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">            kpts.append(q)</span><br><span class="line">            xcoord.append(total)</span><br><span class="line"></span><br><span class="line">        xticks.append(total + np.linalg.norm(end - kpts[-<span class="number">1</span>]))</span><br><span class="line"></span><br><span class="line">    kpts.append(np.array(points[-<span class="number">1</span>], dtype=<span class="built_in">float</span>))</span><br><span class="line">    total += np.linalg.norm(kpts[-<span class="number">1</span>] - kpts[-<span class="number">2</span>])</span><br><span class="line">    xcoord.append(total)</span><br><span class="line">    xticks[-<span class="number">1</span>] = total</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> np.array(kpts), np.array(xcoord), xticks</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">compute_high_symmetry_bands</span>():</span><br><span class="line">    Gamma = (<span class="number">0.0</span>, <span class="number">0.0</span>)</span><br><span class="line">    X = (np.pi, <span class="number">0.0</span>)</span><br><span class="line">    M = (np.pi, np.pi)</span><br><span class="line"></span><br><span class="line">    kpts, xcoord, xticks = interpolate_path([Gamma, X, M, Gamma], n_per_segment=<span class="number">240</span>)</span><br><span class="line"></span><br><span class="line">    omega_p = np.zeros(<span class="built_in">len</span>(kpts))</span><br><span class="line">    omega_m = np.zeros(<span class="built_in">len</span>(kpts))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i, (qx, qy) <span class="keyword">in</span> <span class="built_in">enumerate</span>(kpts):</span><br><span class="line">        omega_p[i], omega_m[i], _, _ = magnon_energies(qx, qy)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> kpts, xcoord, xticks, omega_p, omega_m</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># =========================================================</span></span><br><span class="line"><span class="comment"># Plot 1: spin/chirality-resolved bands</span></span><br><span class="line"><span class="comment"># =========================================================</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">plot_spin_resolved_bands</span>():</span><br><span class="line">    _, xcoord, xticks, omega_p, omega_m = compute_high_symmetry_bands()</span><br><span class="line"></span><br><span class="line">    fig, ax = plt.subplots(figsize=(<span class="number">5.4</span>, <span class="number">4.0</span>))</span><br><span class="line"></span><br><span class="line">    ax.plot(</span><br><span class="line">        xcoord, omega_p,</span><br><span class="line">        color=COLOR_PLUS, lw=LINE_WIDTH, ls=LS_PLUS,</span><br><span class="line">        label=<span class="string">r&quot;$s_&#123;\mathrm&#123;m&#125;&#125;=+\hbar$&quot;</span>,</span><br><span class="line">    )</span><br><span class="line">    ax.plot(</span><br><span class="line">        xcoord, omega_m,</span><br><span class="line">        color=COLOR_MINUS, lw=LINE_WIDTH, ls=LS_MINUS,</span><br><span class="line">        label=<span class="string">r&quot;$s_&#123;\mathrm&#123;m&#125;&#125;=-\hbar$&quot;</span>,</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> xticks:</span><br><span class="line">        ax.axvline(x, color=<span class="string">&quot;0.75&quot;</span>, lw=<span class="number">0.8</span>, ls=<span class="string">&quot;--&quot;</span>, zorder=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    ax.set_xlim(xcoord[<span class="number">0</span>], xcoord[-<span class="number">1</span>])</span><br><span class="line">    ax.set_xticks(xticks)</span><br><span class="line">    ax.set_xticklabels([<span class="string">r&quot;$\Gamma$&quot;</span>, <span class="string">r&quot;$X$&quot;</span>, <span class="string">r&quot;$M$&quot;</span>, <span class="string">r&quot;$\Gamma$&quot;</span>])</span><br><span class="line">    ax.set_ylabel(<span class="string">r&quot;$\hbar\omega_&#123;\mathbf&#123;q&#125;&#125;$&quot;</span>)</span><br><span class="line">    ax.legend(frameon=<span class="literal">False</span>, loc=<span class="string">&quot;best&quot;</span>)</span><br><span class="line"></span><br><span class="line">    set_max_three_ticks(ax, x=<span class="literal">False</span>, y=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    fig.tight_layout()</span><br><span class="line">    savefig(fig, <span class="string">&quot;01_spin_resolved_magnon_bands&quot;</span>)</span><br><span class="line">    plt.close(fig)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># =========================================================</span></span><br><span class="line"><span class="comment"># Plot 2: splitting along high-symmetry path</span></span><br><span class="line"><span class="comment"># =========================================================</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">plot_splitting_along_path</span>():</span><br><span class="line">    _, xcoord, xticks, omega_p, omega_m = compute_high_symmetry_bands()</span><br><span class="line">    split = omega_p - omega_m</span><br><span class="line"></span><br><span class="line">    fig, ax = plt.subplots(figsize=(<span class="number">5.4</span>, <span class="number">3.6</span>))</span><br><span class="line"></span><br><span class="line">    ax.plot(xcoord, split, color=COLOR_SPLIT, lw=LINE_WIDTH, ls=<span class="string">&quot;-&quot;</span>)</span><br><span class="line">    ax.axhline(<span class="number">0.0</span>, color=COLOR_ZERO, lw=<span class="number">0.9</span>, ls=<span class="string">&quot;--&quot;</span>, zorder=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> xticks:</span><br><span class="line">        ax.axvline(x, color=<span class="string">&quot;0.75&quot;</span>, lw=<span class="number">0.8</span>, ls=<span class="string">&quot;--&quot;</span>, zorder=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    ax.set_xlim(xcoord[<span class="number">0</span>], xcoord[-<span class="number">1</span>])</span><br><span class="line">    ax.set_xticks(xticks)</span><br><span class="line">    ax.set_xticklabels([<span class="string">r&quot;$\Gamma$&quot;</span>, <span class="string">r&quot;$X$&quot;</span>, <span class="string">r&quot;$M$&quot;</span>, <span class="string">r&quot;$\Gamma$&quot;</span>])</span><br><span class="line">    ax.set_ylabel(<span class="string">r&quot;$\omega_&#123;+&#125;-\omega_&#123;-&#125;$&quot;</span>)</span><br><span class="line"></span><br><span class="line">    set_max_three_ticks(ax, x=<span class="literal">False</span>, y=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    fig.tight_layout()</span><br><span class="line">    savefig(fig, <span class="string">&quot;02_chiral_splitting_path&quot;</span>)</span><br><span class="line">    plt.close(fig)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># =========================================================</span></span><br><span class="line"><span class="comment"># Plot 3: splitting map in BZ</span></span><br><span class="line"><span class="comment"># =========================================================</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">plot_splitting_map</span>(<span class="params">nk=<span class="number">301</span></span>):</span><br><span class="line">    q = np.linspace(-np.pi, np.pi, nk)</span><br><span class="line">    qx_grid, qy_grid = np.meshgrid(q, q, indexing=<span class="string">&quot;xy&quot;</span>)</span><br><span class="line"></span><br><span class="line">    split = np.zeros_like(qx_grid)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> ix <span class="keyword">in</span> <span class="built_in">range</span>(nk):</span><br><span class="line">        <span class="keyword">for</span> iy <span class="keyword">in</span> <span class="built_in">range</span>(nk):</span><br><span class="line">            op, om, _, _ = magnon_energies(qx_grid[iy, ix], qy_grid[iy, ix])</span><br><span class="line">            split[iy, ix] = op - om</span><br><span class="line"></span><br><span class="line">    vmax = np.<span class="built_in">max</span>(np.<span class="built_in">abs</span>(split))</span><br><span class="line">    <span class="keyword">if</span> vmax &lt; <span class="number">1e-12</span>:</span><br><span class="line">        vmax = <span class="number">1.0</span></span><br><span class="line"></span><br><span class="line">    fig, ax = plt.subplots(figsize=(<span class="number">4.8</span>, <span class="number">4.0</span>))</span><br><span class="line"></span><br><span class="line">    im = ax.imshow(</span><br><span class="line">        split,</span><br><span class="line">        origin=<span class="string">&quot;lower&quot;</span>,</span><br><span class="line">        extent=(-np.pi, np.pi, -np.pi, np.pi),</span><br><span class="line">        cmap=<span class="string">&quot;RdBu_r&quot;</span>,</span><br><span class="line">        vmin=-vmax,</span><br><span class="line">        vmax=vmax,</span><br><span class="line">        interpolation=<span class="string">&quot;bicubic&quot;</span>,</span><br><span class="line">        aspect=<span class="string">&quot;equal&quot;</span>,</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    ax.set_xlabel(<span class="string">r&quot;$q_x$&quot;</span>)</span><br><span class="line">    ax.set_ylabel(<span class="string">r&quot;$q_y$&quot;</span>)</span><br><span class="line"></span><br><span class="line">    ax.set_xticks([-np.pi, <span class="number">0.0</span>, np.pi])</span><br><span class="line">    ax.set_xticklabels([<span class="string">r&quot;$-\pi$&quot;</span>, <span class="string">r&quot;$0$&quot;</span>, <span class="string">r&quot;$\pi$&quot;</span>])</span><br><span class="line">    ax.set_yticks([-np.pi, <span class="number">0.0</span>, np.pi])</span><br><span class="line">    ax.set_yticklabels([<span class="string">r&quot;$-\pi$&quot;</span>, <span class="string">r&quot;$0$&quot;</span>, <span class="string">r&quot;$\pi$&quot;</span>])</span><br><span class="line"></span><br><span class="line">    cbar = fig.colorbar(im, ax=ax, shrink=<span class="number">0.82</span>, pad=<span class="number">0.03</span>)</span><br><span class="line">    cbar.set_label(<span class="string">r&quot;$\omega_&#123;+&#125;-\omega_&#123;-&#125;$&quot;</span>)</span><br><span class="line">    cbar.locator = MaxNLocator(nbins=<span class="number">3</span>)</span><br><span class="line">    cbar.update_ticks()</span><br><span class="line"></span><br><span class="line">    fig.tight_layout()</span><br><span class="line">    savefig(fig, <span class="string">&quot;03_chiral_splitting_map&quot;</span>)</span><br><span class="line">    plt.close(fig)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># =========================================================</span></span><br><span class="line"><span class="comment"># Plot 4: near-Gamma split dispersion with left qx and right qy</span></span><br><span class="line"><span class="comment"># =========================================================</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">plot_near_gamma_split_dispersion</span>(<span class="params">qmax=QMAX_GAMMA, nq=N_GAMMA</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Build a combined near-Gamma axis:</span></span><br><span class="line"><span class="string">        x &lt; 0 : Gamma -&gt; X direction, with q = (|x|, 0)</span></span><br><span class="line"><span class="string">        x &gt; 0 : Gamma -&gt; Y direction, with q = (0, x)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Only the two split branches are plotted. This makes the sign reversal of</span></span><br><span class="line"><span class="string">    the d-wave splitting between qx and qy directions clearly visible.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    x = np.linspace(-qmax, qmax, nq)</span><br><span class="line"></span><br><span class="line">    omega_p = np.zeros_like(x)</span><br><span class="line">    omega_m = np.zeros_like(x)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i, xx <span class="keyword">in</span> <span class="built_in">enumerate</span>(x):</span><br><span class="line">        <span class="keyword">if</span> xx &lt; <span class="number">0</span>:</span><br><span class="line">            qx = -xx</span><br><span class="line">            qy = <span class="number">0.0</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            qx = <span class="number">0.0</span></span><br><span class="line">            qy = xx</span><br><span class="line"></span><br><span class="line">        omega_p[i], omega_m[i], _, _ = magnon_energies(qx, qy)</span><br><span class="line"></span><br><span class="line">    fig, ax = plt.subplots(figsize=(<span class="number">5.4</span>, <span class="number">4.0</span>))</span><br><span class="line"></span><br><span class="line">    ax.plot(</span><br><span class="line">        x, omega_p,</span><br><span class="line">        color=COLOR_PLUS, lw=LINE_WIDTH, ls=LS_PLUS,</span><br><span class="line">        label=<span class="string">r&quot;$s_&#123;\mathrm&#123;m&#125;&#125;=+\hbar$&quot;</span>,</span><br><span class="line">    )</span><br><span class="line">    ax.plot(</span><br><span class="line">        x, omega_m,</span><br><span class="line">        color=COLOR_MINUS, lw=LINE_WIDTH, ls=LS_MINUS,</span><br><span class="line">        label=<span class="string">r&quot;$s_&#123;\mathrm&#123;m&#125;&#125;=-\hbar$&quot;</span>,</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    ax.axvline(<span class="number">0.0</span>, color=<span class="string">&quot;0.75&quot;</span>, lw=<span class="number">0.9</span>, ls=<span class="string">&quot;--&quot;</span>, zorder=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    ax.set_xlim(-qmax, qmax)</span><br><span class="line">    ax.set_xticks([-qmax, <span class="number">0.0</span>, qmax])</span><br><span class="line">    ax.set_xticklabels([<span class="string">r&quot;$q_x$&quot;</span>, <span class="string">r&quot;$\Gamma$&quot;</span>, <span class="string">r&quot;$q_y$&quot;</span>])</span><br><span class="line"></span><br><span class="line">    ax.set_ylabel(<span class="string">r&quot;$\hbar\omega_&#123;\mathbf&#123;q&#125;&#125;$&quot;</span>)</span><br><span class="line">    ax.legend(frameon=<span class="literal">False</span>, loc=<span class="string">&quot;best&quot;</span>)</span><br><span class="line"></span><br><span class="line">    set_max_three_ticks(ax, x=<span class="literal">False</span>, y=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    fig.tight_layout()</span><br><span class="line">    savefig(fig, <span class="string">&quot;04_near_gamma_spin_split_dispersion&quot;</span>)</span><br><span class="line">    plt.close(fig)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># =========================================================</span></span><br><span class="line"><span class="comment"># Summary and main</span></span><br><span class="line"><span class="comment"># =========================================================</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">print_model_summary</span>():</span><br><span class="line">    K_Ax, K_Ay, K_Bx, K_By = exchange_parameters(K0, dK)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;\nMinimal d-wave altermagnetic magnon model&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;==========================================&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;S      = <span class="subst">&#123;S&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;J1     = <span class="subst">&#123;J1&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;K0     = <span class="subst">&#123;K0&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;dK     = <span class="subst">&#123;dK&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;h_gap  = <span class="subst">&#123;h_gap&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Same-sublattice exchange pattern:&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;K_Ax = <span class="subst">&#123;K_Ax:<span class="number">.6</span>f&#125;</span>, K_Ay = <span class="subst">&#123;K_Ay:<span class="number">.6</span>f&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;K_Bx = <span class="subst">&#123;K_Bx:<span class="number">.6</span>f&#125;</span>, K_By = <span class="subst">&#123;K_By:<span class="number">.6</span>f&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Expected d-wave splitting:&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;omega_+(q) - omega_-(q) ∝ cos(q_y) - cos(q_x)&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Near-Gamma plot:&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;left side  = q_x direction (q_y = 0)&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;right side = q_y direction (q_x = 0)&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Figures saved to: <span class="subst">&#123;FIG_DIR.resolve()&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    print_model_summary()</span><br><span class="line"></span><br><span class="line">    plot_spin_resolved_bands()</span><br><span class="line">    plot_splitting_along_path()</span><br><span class="line">    plot_splitting_map(nk=<span class="number">301</span>)</span><br><span class="line">    plot_near_gamma_split_dispersion(qmax=QMAX_GAMMA, nq=N_GAMMA)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;\nDone.&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<div style="display: flex; justify-content: space-between;">
+  <img src="/assets/images/Altermagnets/01_spin_resolved_magnon_bands.png" alt="Image 1" width="45%" />
+  <img src="/assets/images/Altermagnets/04_near_gamma_spin_split_dispersion.png" alt="Image 1" width="45%" />
+</div>
+
+<div class="note red flat"><p>鉴于该网站分享的大都是学习笔记，作者水平有限，若发现有问题可以发邮件给我</p>
+<ul>
+<li><strong>yxliphy@gmail.com</strong></li>
+</ul>
+<p>也非常欢迎喜欢分享的小伙伴投稿</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="/about">Yu-Xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2026/06/15/2026-06-15-Magmon-Alter/">http://example.com/2026/06/15/2026-06-15-Magmon-Alter/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Yu-Xuan's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Altermagnets/">Altermagnets</a></div><div class="post-share"><div class="social-share" data-image="/assets/images/Altermagnets/Magmon-alter.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/assets/images/WM.png" target="_blank"><img class="post-qr-code-img" src="/assets/images/WM.png"/></a><div class="post-qr-code-desc"></div></li><li class="reward-item"><a href="/assets/images/ZM.png" target="_blank"><img class="post-qr-code-img" src="/assets/images/ZM.png"/></a><div class="post-qr-code-desc"></div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related  no-desc" href="/2026/06/15/2026-06-15-Magmon-SC/" title="电子通过交换 magnon 实现超导"><img class="cover" src="/assets/images/SC/SC-Magnon.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">电子通过交换 magnon 实现超导</div></div></div></a><a class="pagination-related" href="/2026/06/14/2026-06-14-Magmon/" title="磁振子 Magnon 的基本理论与能谱推导"><img class="cover" src="/assets/images/Altermagnets/Magmon.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">磁振子 Magnon 的基本理论与能谱推导</div></div><div class="info-2"><div class="info-item-1">磁振子 Magnon 的基本理论与能谱推导Magnon 是什么Magnon 中文通常称为磁振子。它是磁有序体系中自旋波的量子化激发。这个概念和声子的逻辑非常相似：声子是晶格振动的量子，magno...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related no-desc" href="/2026/03/26/2026-03-26-Spin-Group/" title="自旋空间群操作在实空间与动量空间中的作用"><img class="cover" src="/assets/images/Altermagnets/spin-group.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-26</div><div class="info-item-2">自旋空间群操作在实空间与动量空间中的作用</div></div></div></a><a class="pagination-related no-desc" href="/2026/03/26/2026-03-26-Magnets-orders/" title="共线磁序与非共线磁序"><img class="cover" src="/assets/images/Altermagnets/magnets-order.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-26</div><div class="info-item-2">共线磁序与非共线磁序</div></div></div></a><a class="pagination-related no-desc" href="/2026/03/25/2026-03-25-Group-Landau-AM/" title="群表示理论与 Landau 自由能：交错磁体"><img class="cover" src="/assets/images/Altermagnets/AM-1.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-25</div><div class="info-item-2">群表示理论与 Landau 自由能：交错磁体</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description">知行合一</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">381</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yxli8023"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:yxliphy@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><div style="text-align:center;"> <img src="/assets/images/qrcode.jpg" alt="公告图" style="max-width:100%; border-radius:10px; margin-bottom:10px;"> <br> 欢迎关注公众号，有趣的内容也会在上面同步。 有密码的文章属于正在建设中或者没有通过验证的内容，若有需要可通过邮件联系。</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Altermagnets-%E4%B8%AD%E7%9A%84-d-wave-%E6%89%8B%E6%80%A7-magnon%E5%8A%88%E8%A3%82"><span class="toc-number">1.</span> <span class="toc-text">Altermagnets 中的 $d$-wave 手性 magnon劈裂</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">1.1.</span> <span class="toc-text">基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%99%AE%E9%80%9A%E5%85%B1%E7%BA%BF-AFM-%E7%9A%84%E7%BA%BF%E6%80%A7%E8%87%AA%E6%97%8B%E6%B3%A2%E7%90%86%E8%AE%BA"><span class="toc-number">1.2.</span> <span class="toc-text">普通共线 AFM 的线性自旋波理论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%99%AE%E9%80%9A-AFM-%E4%B8%AD-magnon-%E7%AE%80%E5%B9%B6%E7%9A%84%E5%AF%B9%E7%A7%B0%E6%80%A7%E6%9D%A5%E6%BA%90"><span class="toc-number">1.3.</span> <span class="toc-text">普通 AFM 中 magnon 简并的对称性来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Altermagnet-%E4%B8%AD%E4%B8%BA%E4%BB%80%E4%B9%88%E5%85%81%E8%AE%B8-magnon%E5%8A%88%E8%A3%82"><span class="toc-number">1.4.</span> <span class="toc-text">Altermagnet 中为什么允许 magnon劈裂</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%B0%8F%E4%BA%A4%E6%8D%A2%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.5.</span> <span class="toc-text">最小交换模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bosonic-BdG-%E5%AF%B9%E8%A7%92%E5%8C%96"><span class="toc-number">1.6.</span> <span class="toc-text">Bosonic BdG 对角化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#d-wave-%E5%8A%88%E8%A3%82%E7%9A%84%E5%8A%A8%E9%87%8F%E7%A9%BA%E9%97%B4%E7%BB%93%E6%9E%84"><span class="toc-number">1.7.</span> <span class="toc-text">$d$-wave 劈裂的动量空间结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8E%E7%94%B5%E5%AD%90-altermagnetic-spin-splitting-%E7%9A%84%E7%B1%BB%E6%AF%94"><span class="toc-number">1.8.</span> <span class="toc-text">与电子 altermagnetic spin splitting 的类比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E7%A7%8D%E5%8A%88%E8%A3%82%E4%B8%8D%E9%9C%80%E8%A6%81-SOC-%E6%88%96-DMI"><span class="toc-number">1.9.</span> <span class="toc-text">为什么这种劈裂不需要 SOC 或 DMI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.10.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Code"><span class="toc-number">2.</span> <span class="toc-text">Code</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/06/15/2026-06-15-Magmon-Alter/" title="Altermagnets 中的 $d$-wave 手性 magnon劈裂"><img src="/assets/images/Altermagnets/Magmon-alter.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Altermagnets 中的 $d$-wave 手性 magnon劈裂"/></a><div class="content"><a class="title" href="/2026/06/15/2026-06-15-Magmon-Alter/" title="Altermagnets 中的 $d$-wave 手性 magnon劈裂">Altermagnets 中的 $d$-wave 手性 magnon劈裂</a><time datetime="2026-06-14T16:00:00.000Z" title="发表于 2026-06-15 00:00:00">2026-06-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/06/15/2026-06-15-Magmon-SC/" title="电子通过交换 magnon 实现超导"><img src="/assets/images/SC/SC-Magnon.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="电子通过交换 magnon 实现超导"/></a><div class="content"><a class="title" href="/2026/06/15/2026-06-15-Magmon-SC/" title="电子通过交换 magnon 实现超导">电子通过交换 magnon 实现超导</a><time datetime="2026-06-14T16:00:00.000Z" title="发表于 2026-06-15 00:00:00">2026-06-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/06/15/2026-06-15-Magmon-SC2/" title="电子通过交换 magnon 实现超导(具体模型)"><img src="/assets/images/SC/SC-Magnon.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="电子通过交换 magnon 实现超导(具体模型)"/></a><div class="content"><a class="title" href="/2026/06/15/2026-06-15-Magmon-SC2/" title="电子通过交换 magnon 实现超导(具体模型)">电子通过交换 magnon 实现超导(具体模型)</a><time datetime="2026-06-14T16:00:00.000Z" title="发表于 2026-06-15 00:00:00">2026-06-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/06/14/2026-06-14-Magmon/" title="磁振子 Magnon 的基本理论与能谱推导"><img src="/assets/images/Altermagnets/Magmon.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="磁振子 Magnon 的基本理论与能谱推导"/></a><div class="content"><a class="title" href="/2026/06/14/2026-06-14-Magmon/" title="磁振子 Magnon 的基本理论与能谱推导">磁振子 Magnon 的基本理论与能谱推导</a><time datetime="2026-06-13T16:00:00.000Z" title="发表于 2026-06-14 00:00:00">2026-06-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/06/13/2026-06-13-Phono-SC/" title="声子介导吸引相互作用与超导"><img src="/assets/images/SC/SC-Phono.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="声子介导吸引相互作用与超导"/></a><div class="content"><a class="title" href="/2026/06/13/2026-06-13-Phono-SC/" title="声子介导吸引相互作用与超导">声子介导吸引相互作用与超导</a><time datetime="2026-06-12T16:00:00.000Z" title="发表于 2026-06-13 00:00:00">2026-06-13</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/assets/images/Altermagnets/Magmon-alter.png);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div><div class="footer_custom_text">Welcome to  Yu-Xuan's Blog</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  const initGitalk = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGitalk = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const gitalk = new Gitalk({
+      clientID: 'Ov23li0WvZEaIAZ7RFtH',
+      clientSecret: '03fcb77b7c28dafcdde00756e27f9b5bc76639e8',
+      repo: 'yxli8023.github.io',
+      owner: 'yxli8023',
+      admin: ['yxli8023'],
+      updateCountCallback: commentCount,
+      ...option,
+      id: isShuoshuo ? path : (option && option.id) || '7500544b44b8198423b05a97714d2d4b'
+    })
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async(el, path) => {
+    if (typeof Gitalk === 'function') initGitalk(el, path)
+    else {
+      await btf.getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await btf.getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Gitalk' === 'Gitalk'
+      ? window.shuoshuoComment = { loadComment: loadGitalk }
+      : window.loadOtherComment = loadGitalk
+    return
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

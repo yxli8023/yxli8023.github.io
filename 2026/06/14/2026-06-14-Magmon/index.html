@@ -1,0 +1,838 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>磁振子 Magnon 的基本理论与能谱推导 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="磁振子 Magnon 的基本理论与能谱推导Magnon 是什么Magnon 中文通常称为磁振子。它是磁有序体系中自旋波的量子化激发。这个概念和声子的逻辑非常相似：声子是晶格振动的量子，magnon 是自旋集体振动的量子。在铁磁体中，基态可以近似看成所有局域磁矩沿同一方向排列。如果某个自旋稍微偏离平衡方向，这个扰动会通过交换相互作用传播到整个晶格中，形成自旋波。一个动量为 $\mathbf k$ 的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="磁振子 Magnon 的基本理论与能谱推导">
+<meta property="og:url" content="http://example.com/2026/06/14/2026-06-14-Magmon/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39;s Blog">
+<meta property="og:description" content="磁振子 Magnon 的基本理论与能谱推导Magnon 是什么Magnon 中文通常称为磁振子。它是磁有序体系中自旋波的量子化激发。这个概念和声子的逻辑非常相似：声子是晶格振动的量子，magnon 是自旋集体振动的量子。在铁磁体中，基态可以近似看成所有局域磁矩沿同一方向排列。如果某个自旋稍微偏离平衡方向，这个扰动会通过交换相互作用传播到整个晶格中，形成自旋波。一个动量为 $\mathbf k$ 的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/assets/images/Altermagnets/Magmon.png">
+<meta property="article:published_time" content="2026-06-13T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-06-15T11:55:43.957Z">
+<meta property="article:author" content="Yu-Xuan">
+<meta property="article:tag" content="Altermagnets">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/images/Altermagnets/Magmon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "磁振子 Magnon 的基本理论与能谱推导",
+  "url": "http://example.com/2026/06/14/2026-06-14-Magmon/",
+  "image": "http://example.com/assets/images/Altermagnets/Magmon.png",
+  "datePublished": "2026-06-13T16:00:00.000Z",
+  "dateModified": "2026-06-15T11:55:43.957Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yu-Xuan",
+      "url": "http://example.com/about"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/logo.png"><link rel="canonical" href="http://example.com/2026/06/14/2026-06-14-Magmon/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"作者: Yu-Xuan","link":"链接: ","source":"来源: Yu-Xuan's Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'medium_zoom',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#f54966","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '磁振子 Magnon 的基本理论与能谱推导',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #dbeffd;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">381</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/assets/images/Altermagnets/Magmon.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo.png" alt="Logo"><span class="site-name">Yu-Xuan's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">磁振子 Magnon 的基本理论与能谱推导</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">磁振子 Magnon 的基本理论与能谱推导</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-06-13T16:00:00.000Z" title="发表于 2026-06-14 00:00:00">2026-06-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-06-15T11:55:43.957Z" title="更新于 2026-06-15 19:55:43">2026-06-15</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Altermagnets/">Altermagnets</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">4.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>19分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;自上次更新已经过了&quot;,&quot;messageNext&quot;:&quot;天，文章内容可能已过时。&quot;,&quot;postUpdate&quot;:&quot;2026-06-15 19:55:43&quot;}" hidden></div><h1 id="磁振子-Magnon-的基本理论与能谱推导"><a href="#磁振子-Magnon-的基本理论与能谱推导" class="headerlink" title="磁振子 Magnon 的基本理论与能谱推导"></a>磁振子 Magnon 的基本理论与能谱推导</h1><h2 id="Magnon-是什么"><a href="#Magnon-是什么" class="headerlink" title="Magnon 是什么"></a>Magnon 是什么</h2><p>Magnon 中文通常称为<strong>磁振子</strong>。它是磁有序体系中<strong>自旋波的量子化激发</strong>。这个概念和声子的逻辑非常相似：声子是晶格振动的量子，magnon 是自旋集体振动的量子。在铁磁体中，基态可以近似看成所有局域磁矩沿同一方向排列。如果某个自旋稍微偏离平衡方向，这个扰动会通过交换相互作用传播到整个晶格中，形成自旋波。一个动量为 $\mathbf k$ 的自旋波模式量子化以后，就是一个动量为 $\mathbf k$ 的 magnon。</p>
+<p>可以概括为</p>
+<script type="math/tex; mode=display">
+\text{spin wave}
+\quad
+\xrightarrow{\text{quantization}}
+\quad
+\text{magnon}.\nonumber</script><p>因此 magnon 不是单个局域自旋的简单翻转，而是一个在整个晶格上离域的集体激发。对铁磁体而言，一个 magnon 可以理解为一个离域的自旋降低激发。对反铁磁体而言，由于存在两个反向排列的子格，magnon 的结构更复杂，需要 Bogoliubov 变换才能得到真正的准粒子模式。</p>
+<h2 id="经典自旋波图像"><a href="#经典自旋波图像" class="headerlink" title="经典自旋波图像"></a>经典自旋波图像</h2><p>考虑一个铁磁体，基态中所有自旋沿 $z$ 方向排列：</p>
+<script type="math/tex; mode=display">
+\mathbf S_i=S\hat z.</script><p>若某个自旋发生小的横向偏离，就可以用 $S_i^x$ 和 $S_i^y$ 描述。定义升降算符</p>
+<script type="math/tex; mode=display">
+S_i^+=S_i^x+iS_i^y,
+\qquad
+S_i^-=S_i^x-iS_i^y.</script><p>如果横向扰动以波的形式传播，可以写成</p>
+<script type="math/tex; mode=display">
+S_i^+(t)\propto e^{i(\mathbf k\cdot \mathbf R_i-\omega t)}.</script><p>这里 $\mathbf k$ 是自旋波波矢，$\omega(\mathbf k)$ 是自旋波频率。量子化后，这个模式对应一个玻色准粒子。其产生算符记为 $a_{\mathbf k}^\dagger$，作用在磁有序基态上得到单 magnon 态：</p>
+<script type="math/tex; mode=display">
+|\mathbf k\rangle_{\rm mag}
+=
+a_{\mathbf k}^\dagger |0\rangle_{\rm mag}.</script><p>其中 $|0\rangle_{\rm mag}$ 是 magnon 真空，也就是理想磁有序基态。</p>
+<h2 id="最基本模型：Heisenberg-磁体"><a href="#最基本模型：Heisenberg-磁体" class="headerlink" title="最基本模型：Heisenberg 磁体"></a>最基本模型：Heisenberg 磁体</h2><p>局域磁矩体系最常用的模型是 Heisenberg 模型：</p>
+<script type="math/tex; mode=display">
+H
+=
+-\sum_{ij}J_{ij}\mathbf S_i\cdot\mathbf S_j
+-
+h\sum_i S_i^z.</script><p>这里 $\mathbf S_i$ 是格点 $i$ 上的自旋算符，$J_{ij}$ 是交换相互作用，$h=g\mu_BB$ 是外磁场对应的 Zeeman 能量。若只考虑最近邻交换，可写成</p>
+<script type="math/tex; mode=display">
+H
+=
+-J\sum_{\langle ij\rangle}\mathbf S_i\cdot\mathbf S_j
+-
+h\sum_iS_i^z.</script><p>当 $J&gt;0$ 时，相邻自旋倾向于平行排列，这是铁磁交换。铁磁基态为</p>
+<script type="math/tex; mode=display">
+|{\rm FM}\rangle
+=
+|\uparrow\uparrow\uparrow\cdots\uparrow\rangle.</script><p>当 $J&lt;0$ 时，相邻自旋倾向于反平行排列。也常把反铁磁模型写成</p>
+<script type="math/tex; mode=display">
+H
+=
+J\sum_{\langle ij\rangle}\mathbf S_i\cdot\mathbf S_j,
+\qquad
+J>0.</script><p>此时基态是 Néel 反铁磁态。</p>
+<h2 id="铁磁体中的magnon"><a href="#铁磁体中的magnon" class="headerlink" title="铁磁体中的magnon"></a>铁磁体中的magnon</h2><p>先考虑铁磁 Heisenberg 模型</p>
+<script type="math/tex; mode=display">
+H
+=
+-J\sum_{\langle ij\rangle}\mathbf S_i\cdot\mathbf S_j
+-
+h\sum_iS_i^z,
+\qquad
+J>0.</script><p>铁磁基态是所有自旋向上排列。局域自旋翻转态可写为</p>
+<script type="math/tex; mode=display">
+S_i^-|{\rm FM}\rangle.</script><p>但由于交换相互作用，这个局域翻转不是本征态。真正的本征态是 Bloch 叠加：</p>
+<script type="math/tex; mode=display">
+|\mathbf k\rangle
+=
+\frac{1}{\sqrt{2SN}}
+\sum_i
+e^{i\mathbf k\cdot\mathbf R_i}
+S_i^-|{\rm FM}\rangle.</script><p>这个态表示一个自旋降低激发在整个晶格中传播。它就是一个单 magnon 态。对铁磁体而言，线性自旋波理论给出的单 magnon 结果与这个离域自旋翻转图像是一致的。</p>
+<hr>
+<h2 id="Holstein—Primakoff-变换"><a href="#Holstein—Primakoff-变换" class="headerlink" title="Holstein—Primakoff 变换"></a>Holstein—Primakoff 变换</h2><p>为了系统推导 magnon 能谱，需要把自旋算符映射成玻色算符。对铁磁基态，取量子化轴沿磁化方向。引入玻色算符 $a_i$ 和 $a_i^\dagger$，满足 $[a_i,a_j^\dagger]=\delta_{ij}$。Holstein—Primakoff 变换为</p>
+<script type="math/tex; mode=display">
+S_i^z
+=
+S-a_i^\dagger a_i,\qquad S_i^+
+=
+\sqrt{2S-a_i^\dagger a_i}\,a_i,\qquad S_i^-
+=
+a_i^\dagger\sqrt{2S-a_i^\dagger a_i}.</script><p>这个变换保持自旋代数，但形式是非线性的。物理意义很清楚：$a_i^\dagger a_i$ 是格点 $i$ 上的 magnon 数，每产生一个 magnon，$S_i^z$ 减少 $1$。因此铁磁体中的 magnon 携带相对于磁化方向的角动量 $-\hbar$。在低温或低激发密度下，magnon 数远小于最大自旋偏离，即 $a_i^\dagger a_i\ll 2S$。于是可以展开平方根：</p>
+<script type="math/tex; mode=display">
+\sqrt{2S-a_i^\dagger a_i}
+\simeq
+\sqrt{2S}
+\left(
+1-\frac{a_i^\dagger a_i}{4S}+\cdots
+\right).</script><p>线性自旋波理论只保留最低阶，得到</p>
+<script type="math/tex; mode=display">
+S_i^+\simeq \sqrt{2S}\,a_i,
+\qquad
+S_i^-\simeq \sqrt{2S}\,a_i^\dagger,
+\qquad
+S_i^z=S-a_i^\dagger a_i.</script><p>如果继续保留更高阶项，会得到 magnon—magnon 相互作用。下面先只讨论非相互作用的线性自旋波理论。</p>
+<h2 id="铁磁-magnon-能谱"><a href="#铁磁-magnon-能谱" class="headerlink" title="铁磁 magnon 能谱"></a>铁磁 magnon 能谱</h2><p>从最近邻铁磁 Heisenberg 模型出发：</p>
+<script type="math/tex; mode=display">
+H
+=
+-J\sum_{\langle ij\rangle}\mathbf S_i\cdot\mathbf S_j
+-
+h\sum_iS_i^z.</script><p>将自旋内积写成</p>
+<script type="math/tex; mode=display">
+\mathbf S_i\cdot\mathbf S_j
+=
+S_i^zS_j^z
++
+\frac{1}{2}
+\left(
+S_i^+S_j^-
++
+S_i^-S_j^+
+\right).</script><p>在线性自旋波近似下，</p>
+<script type="math/tex; mode=display">
+S_i^zS_j^z
+=
+(S-a_i^\dagger a_i)(S-a_j^\dagger a_j)
+\simeq
+S^2
+-
+S a_i^\dagger a_i
+-
+S a_j^\dagger a_j.</script><p>横向项为</p>
+<script type="math/tex; mode=display">
+\frac{1}{2}
+\left(
+S_i^+S_j^-
++
+S_i^-S_j^+
+\right)
+\simeq
+S
+\left(
+a_i a_j^\dagger
++
+a_i^\dagger a_j
+\right).</script><p>不同格点的玻色算符对易，因此 $a_i a_j^\dagger=a_j^\dagger a_i$。于是</p>
+<script type="math/tex; mode=display">
+\mathbf S_i\cdot\mathbf S_j
+\simeq
+S^2
+-
+S(a_i^\dagger a_i+a_j^\dagger a_j)
++
+S(a_i^\dagger a_j+a_j^\dagger a_i).</script><p>代回哈密顿量，得到</p>
+<script type="math/tex; mode=display">
+H
+\simeq
+E_0
++
+JS
+\sum_{\langle ij\rangle}
+\left[
+a_i^\dagger a_i
++
+a_j^\dagger a_j
+-
+a_i^\dagger a_j
+-
+a_j^\dagger a_i
+\right]
++
+h\sum_i a_i^\dagger a_i.</script><p>其中基态能量为</p>
+<script type="math/tex; mode=display">
+E_0
+=
+-JS^2N_b-hSN.</script><p>这里 $N_b$ 是最近邻键数，$N$ 是格点数。若晶格配位数为 $z$，则 $N_b=Nz/2$。二次哈密顿量也可以写成更直观的形式：</p>
+<script type="math/tex; mode=display">
+H
+\simeq
+E_0
++
+JS
+\sum_{\langle ij\rangle}
+(a_i^\dagger-a_j^\dagger)(a_i-a_j)
++
+h\sum_i a_i^\dagger a_i.</script><p>这个式子说明，如果所有格点的横向偏离完全同相，即没有空间变化，那么交换能不增加；如果横向偏离随空间变化，就会付出交换能。</p>
+<h2 id="傅里叶变换与一般铁磁能谱"><a href="#傅里叶变换与一般铁磁能谱" class="headerlink" title="傅里叶变换与一般铁磁能谱"></a>傅里叶变换与一般铁磁能谱</h2><p>做傅里叶变换：</p>
+<script type="math/tex; mode=display">
+a_i
+=
+\frac{1}{\sqrt{N}}
+\sum_{\mathbf k}
+a_{\mathbf k}e^{i\mathbf k\cdot\mathbf R_i},
+\qquad
+a_i^\dagger
+=
+\frac{1}{\sqrt{N}}
+\sum_{\mathbf k}
+a_{\mathbf k}^\dagger e^{-i\mathbf k\cdot\mathbf R_i}.</script><p>设最近邻矢量为 $\boldsymbol\delta$，则</p>
+<script type="math/tex; mode=display">
+\sum_{\langle ij\rangle}
+(a_i^\dagger a_i+a_j^\dagger a_j)
+=
+z\sum_i a_i^\dagger a_i
+=
+z\sum_{\mathbf k}a_{\mathbf k}^\dagger a_{\mathbf k}.</script><p>跃迁项满足</p>
+<script type="math/tex; mode=display">
+\sum_{\langle ij\rangle}
+(a_i^\dagger a_j+a_j^\dagger a_i)
+=
+\sum_{\mathbf k}
+\left(
+\sum_{\boldsymbol\delta}
+e^{i\mathbf k\cdot\boldsymbol\delta}
+\right)
+a_{\mathbf k}^\dagger a_{\mathbf k}.</script><p>定义结构因子</p>
+<script type="math/tex; mode=display">
+\gamma_{\mathbf k}
+=
+\frac{1}{z}
+\sum_{\boldsymbol\delta}
+e^{i\mathbf k\cdot\boldsymbol\delta}.</script><p>于是哈密顿量对角化为</p>
+<script type="math/tex; mode=display">
+H
+=
+E_0
++
+\sum_{\mathbf k}
+\hbar\omega_{\mathbf k}
+a_{\mathbf k}^\dagger a_{\mathbf k},</script><p>其中</p>
+<script type="math/tex; mode=display">
+\hbar\omega_{\mathbf k}
+=
+h
++
+JSz(1-\gamma_{\mathbf k}).</script><p>对具有反演对称的最近邻晶格，$\gamma_{\mathbf k}$ 是实数。这个式子就是最基本的铁磁 magnon 能谱。如果 $h=0$，则 $\gamma_{\mathbf 0}=1$，所以 $\omega_{\mathbf 0}=0$。这是连续自旋旋转对称性自发破缺导致的 Goldstone 模式。</p>
+<h2 id="一维铁磁链"><a href="#一维铁磁链" class="headerlink" title="一维铁磁链"></a>一维铁磁链</h2><p>一维最近邻铁磁链的模型为</p>
+<script type="math/tex; mode=display">
+H
+=
+-J\sum_i
+\mathbf S_i\cdot\mathbf S_{i+1}
+-
+h\sum_iS_i^z,
+\qquad
+J>0.</script><p>格点间距为 $a$，最近邻矢量为 $\delta=\pm a$，配位数 $z=2$，所以</p>
+<script type="math/tex; mode=display">
+\gamma_k
+=
+\frac{1}{2}
+(e^{ika}+e^{-ika})
+=
+\cos ka.</script><p>因此 magnon 能谱为</p>
+<script type="math/tex; mode=display">
+\hbar\omega_k
+=
+h
++
+2JS(1-\cos ka).</script><p>若 $h=0$，</p>
+<script type="math/tex; mode=display">
+\hbar\omega_k
+=
+2JS(1-\cos ka).</script><p>长波极限 $ka\ll 1$ 下，$\cos ka\simeq 1-(ka)^2/2$，所以</p>
+<script type="math/tex; mode=display">
+\hbar\omega_k
+\simeq
+JSa^2k^2.</script><p>这表明铁磁 magnon 在长波极限下是二次色散，即 $\omega_k\propto k^2$。</p>
+<h2 id="二维方格铁磁体"><a href="#二维方格铁磁体" class="headerlink" title="二维方格铁磁体"></a>二维方格铁磁体</h2><p>二维方格晶格最近邻矢量为 $\boldsymbol\delta=\pm a\hat x,\pm a\hat y$，配位数为 $z=4$。结构因子为</p>
+<script type="math/tex; mode=display">
+\gamma_{\mathbf k}
+=
+\frac{1}{4}
+\left(
+e^{ik_xa}+e^{-ik_xa}
++
+e^{ik_ya}+e^{-ik_ya}
+\right)
+=
+\frac{1}{2}
+(\cos k_xa+\cos k_ya).</script><p>因此</p>
+<script type="math/tex; mode=display">
+\hbar\omega_{\mathbf k}
+=
+h
++
+4JS
+\left[
+1-\frac{1}{2}
+(\cos k_xa+\cos k_ya)
+\right].</script><p>也就是</p>
+<script type="math/tex; mode=display">
+\hbar\omega_{\mathbf k}
+=
+h
++
+2JS
+\left[
+2-\cos k_xa-\cos k_ya
+\right].</script><p>在长波极限下，</p>
+<script type="math/tex; mode=display">
+\cos k_xa\simeq 1-\frac{k_x^2a^2}{2},
+\qquad
+\cos k_ya\simeq 1-\frac{k_y^2a^2}{2}.</script><p>于是</p>
+<script type="math/tex; mode=display">
+\hbar\omega_{\mathbf k}
+\simeq
+h
++
+JSa^2(k_x^2+k_y^2).</script><p>因此二维铁磁 magnon 在无外场时也是二次 Goldstone 模式。</p>
+<h2 id="各向异性的铁磁-magnon"><a href="#各向异性的铁磁-magnon" class="headerlink" title="各向异性的铁磁 magnon"></a>各向异性的铁磁 magnon</h2><p>真实磁体常常有自旋各向异性。最简单的易轴各向异性可以写为</p>
+<script type="math/tex; mode=display">
+H_D
+=
+-D\sum_i(S_i^z)^2.</script><p>当 $D&gt;0$ 时，$z$ 方向是易轴。在线性自旋波近似下，</p>
+<script type="math/tex; mode=display">
+(S_i^z)^2
+=
+(S-a_i^\dagger a_i)^2
+\simeq
+S^2-2S a_i^\dagger a_i.</script><p>因此</p>
+<script type="math/tex; mode=display">
+H_D
+\simeq
+- DNS^2
++
+2DS\sum_i a_i^\dagger a_i.</script><p>所以各向异性会给 magnon 能谱增加一个能隙：</p>
+<script type="math/tex; mode=display">
+\hbar\omega_{\mathbf k}
+=
+h
++
+2DS
++
+JSz(1-\gamma_{\mathbf k}).</script><p>这说明理想各向同性 Heisenberg 铁磁体有无能隙 Goldstone 模式，但易轴各向异性会打开 magnon gap。</p>
+<h2 id="反铁磁-magnon"><a href="#反铁磁-magnon" class="headerlink" title="反铁磁 magnon"></a>反铁磁 magnon</h2><p>反铁磁体的自旋波稍微复杂，因为基态有两个反向排列的子格。考虑最近邻反铁磁 Heisenberg 模型：</p>
+<script type="math/tex; mode=display">
+H
+=
+J\sum_{\langle ij\rangle}
+\mathbf S_i\cdot\mathbf S_j,
+\qquad
+J>0.</script><p>对二分晶格，可以分成 $A$ 和 $B$ 两个子格。Néel 基态中 $A$ 子格自旋向上，$B$ 子格自旋向下。对 $A$ 子格使用通常的 Holstein—Primakoff 变换：</p>
+<script type="math/tex; mode=display">
+S_{i,A}^z
+=
+S-a_i^\dagger a_i,\qquad S_{i,A}^+
+\simeq
+\sqrt{2S}a_i,
+\qquad
+S_{i,A}^-
+\simeq
+\sqrt{2S}a_i^\dagger.</script><p>对 $B$ 子格，由于自旋方向相反，需要使用反向量子化轴：</p>
+<script type="math/tex; mode=display">
+S_{j,B}^z
+=
+-S+b_j^\dagger b_j,\qquad S_{j,B}^+
+\simeq
+\sqrt{2S}b_j^\dagger,
+\qquad
+S_{j,B}^-
+\simeq
+\sqrt{2S}b_j.</script><p>对于一条连接 $A$ 和 $B$ 的最近邻键，有</p>
+<script type="math/tex; mode=display">
+\mathbf S_{i,A}\cdot\mathbf S_{j,B}
+=
+S_{i,A}^zS_{j,B}^z
++
+\frac{1}{2}
+\left(
+S_{i,A}^+S_{j,B}^-
++
+S_{i,A}^-S_{j,B}^+
+\right).</script><p>纵向项为</p>
+<script type="math/tex; mode=display">
+S_{i,A}^zS_{j,B}^z
+=
+(S-a_i^\dagger a_i)(-S+b_j^\dagger b_j)
+\simeq
+-S^2
++
+S a_i^\dagger a_i
++
+S b_j^\dagger b_j.</script><p>横向项为</p>
+<script type="math/tex; mode=display">
+\frac{1}{2}
+\left(
+S_{i,A}^+S_{j,B}^-
++
+S_{i,A}^-S_{j,B}^+
+\right)
+\simeq
+S
+\left(
+a_i b_j
++
+a_i^\dagger b_j^\dagger
+\right).</script><p>因此</p>
+<script type="math/tex; mode=display">
+\mathbf S_{i,A}\cdot\mathbf S_{j,B}
+\simeq
+-S^2
++
+S a_i^\dagger a_i
++
+S b_j^\dagger b_j
++
+S(a_i b_j+a_i^\dagger b_j^\dagger).</script><p>代回哈密顿量：</p>
+<script type="math/tex; mode=display">
+H
+\simeq
+E_0
++
+JS
+\sum_{\langle i\in A,j\in B\rangle}
+\left[
+a_i^\dagger a_i
++
+b_j^\dagger b_j
++
+a_i b_j
++
+a_i^\dagger b_j^\dagger
+\right].</script><p>这里出现了 $a_i b_j$ 和 $a_i^\dagger b_j^\dagger$，它们对应 magnon 成对湮灭和成对产生。因此反铁磁自旋波哈密顿量不是普通的粒子数守恒玻色哈密顿量，必须进行 Bogoliubov 对角化。</p>
+<h2 id="反铁磁体的-Bogoliubov-对角化"><a href="#反铁磁体的-Bogoliubov-对角化" class="headerlink" title="反铁磁体的 Bogoliubov 对角化"></a>反铁磁体的 Bogoliubov 对角化</h2><p>做傅里叶变换后，反铁磁二次哈密顿量可以写成</p>
+<script type="math/tex; mode=display">
+H
+=
+E_0
++
+JSz
+\sum_{\mathbf k}
+\left[
+a_{\mathbf k}^\dagger a_{\mathbf k}
++
+b_{\mathbf k}^\dagger b_{\mathbf k}
++
+\gamma_{\mathbf k}a_{\mathbf k}b_{-\mathbf k}
++
+\gamma_{\mathbf k}^*a_{\mathbf k}^\dagger b_{-\mathbf k}^\dagger
+\right],</script><p>其中</p>
+<script type="math/tex; mode=display">
+\gamma_{\mathbf k}
+=
+\frac{1}{z}
+\sum_{\boldsymbol\delta}
+e^{i\mathbf k\cdot\boldsymbol\delta}.</script><p>为了对角化，引入 Bogoliubov 变换：</p>
+<script type="math/tex; mode=display">
+\alpha_{\mathbf k}
+=
+u_{\mathbf k}a_{\mathbf k}
++
+v_{\mathbf k}b_{-\mathbf k}^\dagger,</script><script type="math/tex; mode=display">
+\beta_{\mathbf k}
+=
+u_{\mathbf k}b_{\mathbf k}
++
+v_{\mathbf k}a_{-\mathbf k}^\dagger.</script><p>要求保持玻色对易关系，所以</p>
+<script type="math/tex; mode=display">
+u_{\mathbf k}^2-v_{\mathbf k}^2=1.</script><p>通过选择合适的 $u_{\mathbf k}$ 和 $v_{\mathbf k}$，可以消去非对角的成对产生项，得到</p>
+<script type="math/tex; mode=display">
+H
+=
+E_0'
++
+\sum_{\mathbf k}
+\hbar\omega_{\mathbf k}
+\left(
+\alpha_{\mathbf k}^\dagger\alpha_{\mathbf k}
++
+\beta_{\mathbf k}^\dagger\beta_{\mathbf k}
+\right).</script><p>反铁磁 magnon 能谱为</p>
+<script type="math/tex; mode=display">
+\hbar\omega_{\mathbf k}
+=
+JSz
+\sqrt{
+1-|\gamma_{\mathbf k}|^2
+}.</script><p>这里 $\alpha_{\mathbf k}$ 和 $\beta_{\mathbf k}$ 是两个反铁磁 magnon 分支。对简单共线反铁磁体，在没有各向异性和外场时它们通常是简并的。</p>
+<h2 id="二维方格反铁磁体"><a href="#二维方格反铁磁体" class="headerlink" title="二维方格反铁磁体"></a>二维方格反铁磁体</h2><p>对二维方格反铁磁体，最近邻矢量为 $\pm a\hat x$ 和 $\pm a\hat y$，配位数为 $z=4$，结构因子为</p>
+<script type="math/tex; mode=display">
+\gamma_{\mathbf k}
+=
+\frac{1}{2}
+(\cos k_xa+\cos k_ya).</script><p>因此</p>
+<script type="math/tex; mode=display">
+\hbar\omega_{\mathbf k}
+=
+4JS
+\sqrt{
+1-
+\left[
+\frac{\cos k_xa+\cos k_ya}{2}
+\right]^2
+}.</script><p>长波极限下，在 Néel 有序波矢附近展开，反铁磁 magnon 是线性色散：</p>
+<script type="math/tex; mode=display">
+\omega_{\mathbf k}
+\propto |\mathbf k|.</script><p>这与铁磁 magnon 的 $\omega_{\mathbf k}\propto k^2$ 不同。差别来自铁磁体和反铁磁体的低能动力学不同：铁磁体中净磁化不为零，长波模式是二次的；反铁磁体中两个子格磁化抵消，低能自旋波表现为相对 Néel 矢量的振荡，通常是线性的。</p>
+<h2 id="铁磁与反铁磁-magnon-的对比"><a href="#铁磁与反铁磁-magnon-的对比" class="headerlink" title="铁磁与反铁磁 magnon 的对比"></a>铁磁与反铁磁 magnon 的对比</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>体系</th>
+<th>基态</th>
+<th>最小模型</th>
+<th>长波色散</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>铁磁体</td>
+<td>自旋平行排列</td>
+<td>$-J\mathbf S_i\cdot\mathbf S_j$, $J&gt;0$</td>
+<td>$\omega_{\mathbf k}\propto k^2$</td>
+<td></td>
+</tr>
+<tr>
+<td>反铁磁体</td>
+<td>两子格反平行排列</td>
+<td>$J\mathbf S_i\cdot\mathbf S_j$, $J&gt;0$</td>
+<td>$\omega_{\mathbf k}\propto k$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>铁磁 magnon 可以近似理解为一个自旋翻转在铁磁背景中传播。反铁磁 magnon 则是两个子格自旋的耦合集体振荡，其二次哈密顿量包含成对产生和湮灭项，因此需要 Bogoliubov 变换。</p>
+<h2 id="用-Python-绘制最简单的-magnon-能谱"><a href="#用-Python-绘制最简单的-magnon-能谱" class="headerlink" title="用 Python 绘制最简单的 magnon 能谱"></a>用 Python 绘制最简单的 magnon 能谱</h2><p>下面给出一个简单 Python 程序，用来绘制一维铁磁链、二维方格铁磁体沿高对称路径的 magnon 能谱，以及二维方格反铁磁体的 magnon 能谱。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> rcParams</span><br><span class="line"></span><br><span class="line"><span class="comment"># =========================================================</span></span><br><span class="line"><span class="comment"># 全局字体与样式设置</span></span><br><span class="line"><span class="comment"># =========================================================</span></span><br><span class="line">plt.rcParams[<span class="string">&quot;font.family&quot;</span>] = <span class="string">&quot;Times New Roman&quot;</span></span><br><span class="line">plt.rcParams[<span class="string">&#x27;text.usetex&#x27;</span>] = <span class="literal">True</span>   <span class="comment"># 需要系统安装 LaTeX</span></span><br><span class="line">plt.rcParams[<span class="string">&quot;mathtext.fontset&quot;</span>] = <span class="string">&quot;stix&quot;</span></span><br><span class="line">plt.rcParams[<span class="string">&quot;axes.linewidth&quot;</span>] = <span class="number">1.5</span></span><br><span class="line">plt.rcParams[<span class="string">&quot;xtick.direction&quot;</span>] = <span class="string">&quot;in&quot;</span></span><br><span class="line">plt.rcParams[<span class="string">&quot;ytick.direction&quot;</span>] = <span class="string">&quot;in&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 全局字体大小</span></span><br><span class="line">fs_axis_label = <span class="number">20</span></span><br><span class="line">fs_title = <span class="number">20</span></span><br><span class="line">fs_tick_label = <span class="number">18</span></span><br><span class="line">fs_legend = <span class="number">18</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># =========================================================</span></span><br><span class="line"><span class="comment"># 创建保存文件夹</span></span><br><span class="line"><span class="comment"># =========================================================</span></span><br><span class="line">save_dir = <span class="string">&quot;magnon_figures&quot;</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(save_dir):</span><br><span class="line">    os.makedirs(save_dir)</span><br><span class="line"></span><br><span class="line"><span class="comment"># =========================================================</span></span><br><span class="line"><span class="comment"># Parameters</span></span><br><span class="line"><span class="comment"># =========================================================</span></span><br><span class="line">J = <span class="number">1.0</span></span><br><span class="line">S = <span class="number">1.0</span></span><br><span class="line">a = <span class="number">1.0</span></span><br><span class="line">h = <span class="number">0.0</span></span><br><span class="line">D = <span class="number">0.0</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 自定义颜色</span></span><br><span class="line">color_1d = <span class="string">&quot;#2A6EBB&quot;</span>        <span class="comment"># 蓝色</span></span><br><span class="line">color_2d_fm = <span class="string">&quot;#D94E4E&quot;</span>     <span class="comment"># 红色</span></span><br><span class="line">color_2d_afm = <span class="string">&quot;#3A9D6A&quot;</span>    <span class="comment"># 绿色</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># =========================================================</span></span><br><span class="line"><span class="comment"># 1D ferromagnetic chain</span></span><br><span class="line"><span class="comment"># omega(k) = h + 2JS(1 - cos ka)</span></span><br><span class="line"><span class="comment"># =========================================================</span></span><br><span class="line">k = np.linspace(-np.pi, np.pi, <span class="number">600</span>)</span><br><span class="line">omega_1d_fm = h + <span class="number">2.0</span> * J * S * (<span class="number">1.0</span> - np.cos(k * a))</span><br><span class="line"></span><br><span class="line">fig, ax = plt.subplots(figsize=(<span class="number">5</span>, <span class="number">4</span>))</span><br><span class="line">ax.plot(k / np.pi, omega_1d_fm, lw=<span class="number">2</span>, color=color_1d)</span><br><span class="line">ax.set_xlabel(<span class="string">r&quot;$k/\pi$&quot;</span>, fontsize=fs_axis_label)</span><br><span class="line">ax.set_ylabel(<span class="string">r&quot;$\hbar\omega_k$&quot;</span>, fontsize=fs_axis_label)</span><br><span class="line">ax.set_title(<span class="string">&quot;1D Ferromagnetic Magnon&quot;</span>, fontsize=fs_title)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置刻度数量</span></span><br><span class="line">ax.xaxis.set_major_locator(plt.MaxNLocator(<span class="number">3</span>))</span><br><span class="line">ax.yaxis.set_major_locator(plt.MaxNLocator(<span class="number">3</span>))</span><br><span class="line">ax.tick_params(axis=<span class="string">&#x27;both&#x27;</span>, labelsize=fs_tick_label)</span><br><span class="line"></span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.savefig(os.path.join(save_dir, <span class="string">&quot;magnon_1d_fm.png&quot;</span>), dpi=<span class="number">300</span>, bbox_inches=<span class="string">&#x27;tight&#x27;</span>)</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"><span class="comment"># =========================================================</span></span><br><span class="line"><span class="comment"># High-symmetry path for square lattice: Gamma-X-M-Gamma</span></span><br><span class="line"><span class="comment"># Gamma=(0,0), X=(pi,0), M=(pi,pi)</span></span><br><span class="line"><span class="comment"># =========================================================</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">interpolate_path</span>(<span class="params">points, n_per_segment=<span class="number">200</span></span>):</span><br><span class="line">    kpts = []</span><br><span class="line">    xcoord = []</span><br><span class="line">    xticks = [<span class="number">0.0</span>]</span><br><span class="line">    total = <span class="number">0.0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(points) - <span class="number">1</span>):</span><br><span class="line">        start = np.array(points[i], dtype=<span class="built_in">float</span>)</span><br><span class="line">        end = np.array(points[i + <span class="number">1</span>], dtype=<span class="built_in">float</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(n_per_segment):</span><br><span class="line">            t = j / n_per_segment</span><br><span class="line">            kpt = (<span class="number">1.0</span> - t) * start + t * end</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(kpts) &gt; <span class="number">0</span>:</span><br><span class="line">                total += np.linalg.norm(kpt - kpts[-<span class="number">1</span>])</span><br><span class="line">            kpts.append(kpt)</span><br><span class="line">            xcoord.append(total)</span><br><span class="line"></span><br><span class="line">        xticks.append(total + np.linalg.norm(end - kpts[-<span class="number">1</span>]))</span><br><span class="line"></span><br><span class="line">    kpts.append(np.array(points[-<span class="number">1</span>], dtype=<span class="built_in">float</span>))</span><br><span class="line">    total += np.linalg.norm(kpts[-<span class="number">1</span>] - kpts[-<span class="number">2</span>])</span><br><span class="line">    xcoord.append(total)</span><br><span class="line">    xticks[-<span class="number">1</span>] = total</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> np.array(kpts), np.array(xcoord), xticks</span><br><span class="line"></span><br><span class="line">Gamma = (<span class="number">0.0</span>, <span class="number">0.0</span>)</span><br><span class="line">X = (np.pi, <span class="number">0.0</span>)</span><br><span class="line">M = (np.pi, np.pi)</span><br><span class="line"></span><br><span class="line">kpts, xcoord, xticks = interpolate_path([Gamma, X, M, Gamma], n_per_segment=<span class="number">200</span>)</span><br><span class="line">kx = kpts[:, <span class="number">0</span>]</span><br><span class="line">ky = kpts[:, <span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># =========================================================</span></span><br><span class="line"><span class="comment"># 2D square ferromagnet</span></span><br><span class="line"><span class="comment"># omega(k) = h + 2JS[2 - cos(kx a) - cos(ky a)]</span></span><br><span class="line"><span class="comment"># =========================================================</span></span><br><span class="line">omega_2d_fm = h + <span class="number">2.0</span> * J * S * (<span class="number">2.0</span> - np.cos(kx * a) - np.cos(ky * a))</span><br><span class="line"></span><br><span class="line">fig, ax = plt.subplots(figsize=(<span class="number">5</span>, <span class="number">4</span>))</span><br><span class="line">ax.plot(xcoord, omega_2d_fm, lw=<span class="number">2</span>, color=color_2d_fm)</span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> xticks:</span><br><span class="line">    ax.axvline(x, lw=<span class="number">0.8</span>, ls=<span class="string">&quot;--&quot;</span>, color=<span class="string">&#x27;gray&#x27;</span>, alpha=<span class="number">0.7</span>)</span><br><span class="line">ax.set_xticks(xticks)</span><br><span class="line">ax.set_xticklabels([<span class="string">r&quot;$\Gamma$&quot;</span>, <span class="string">r&quot;$X$&quot;</span>, <span class="string">r&quot;$M$&quot;</span>, <span class="string">r&quot;$\Gamma$&quot;</span>], fontsize=fs_tick_label)</span><br><span class="line">ax.set_ylabel(<span class="string">r&quot;$\hbar\omega_&#123;\mathbf&#123;k&#125;&#125;$&quot;</span>, fontsize=fs_axis_label)</span><br><span class="line">ax.set_title(<span class="string">&quot;2D Square Ferromagnetic Magnon&quot;</span>, fontsize=fs_title)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 只对y轴设置刻度数量，x轴保留高对称点</span></span><br><span class="line">ax.yaxis.set_major_locator(plt.MaxNLocator(<span class="number">3</span>))</span><br><span class="line">ax.tick_params(axis=<span class="string">&#x27;both&#x27;</span>, labelsize=fs_tick_label)</span><br><span class="line"></span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.savefig(os.path.join(save_dir, <span class="string">&quot;magnon_2d_square_fm.png&quot;</span>), dpi=<span class="number">300</span>, bbox_inches=<span class="string">&#x27;tight&#x27;</span>)</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"><span class="comment"># =========================================================</span></span><br><span class="line"><span class="comment"># 2D square antiferromagnet</span></span><br><span class="line"><span class="comment"># omega(k) = 4JS sqrt(1 - gamma_k^2)</span></span><br><span class="line"><span class="comment"># gamma_k = [cos(kx a) + cos(ky a)] / 2</span></span><br><span class="line"><span class="comment"># =========================================================</span></span><br><span class="line">gamma = <span class="number">0.5</span> * (np.cos(kx * a) + np.cos(ky * a))</span><br><span class="line">omega_2d_afm = <span class="number">4.0</span> * J * S * np.sqrt(np.maximum(<span class="number">0.0</span>, <span class="number">1.0</span> - gamma**<span class="number">2</span>))</span><br><span class="line"></span><br><span class="line">fig, ax = plt.subplots(figsize=(<span class="number">5</span>, <span class="number">4</span>))</span><br><span class="line">ax.plot(xcoord, omega_2d_afm, lw=<span class="number">2</span>, color=color_2d_afm)</span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> xticks:</span><br><span class="line">    ax.axvline(x, lw=<span class="number">0.8</span>, ls=<span class="string">&quot;--&quot;</span>, color=<span class="string">&#x27;gray&#x27;</span>, alpha=<span class="number">0.7</span>)</span><br><span class="line">ax.set_xticks(xticks)</span><br><span class="line">ax.set_xticklabels([<span class="string">r&quot;$\Gamma$&quot;</span>, <span class="string">r&quot;$X$&quot;</span>, <span class="string">r&quot;$M$&quot;</span>, <span class="string">r&quot;$\Gamma$&quot;</span>], fontsize=fs_tick_label)</span><br><span class="line">ax.set_ylabel(<span class="string">r&quot;$\hbar\omega_&#123;\mathbf&#123;k&#125;&#125;$&quot;</span>, fontsize=fs_axis_label)</span><br><span class="line">ax.set_title(<span class="string">&quot;2D Square Antiferromagnetic Magnon&quot;</span>, fontsize=fs_title)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 只对y轴设置刻度数量</span></span><br><span class="line">ax.yaxis.set_major_locator(plt.MaxNLocator(<span class="number">3</span>))</span><br><span class="line">ax.tick_params(axis=<span class="string">&#x27;both&#x27;</span>, labelsize=fs_tick_label)</span><br><span class="line"></span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.savefig(os.path.join(save_dir, <span class="string">&quot;magnon_2d_square_afm.png&quot;</span>), dpi=<span class="number">300</span>, bbox_inches=<span class="string">&#x27;tight&#x27;</span>)</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;所有图片已保存至文件夹: <span class="subst">&#123;save_dir&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>这个程序中取 $J=S=a=1$。如果想展示外场或各向异性打开的 gap，可以把 $h$ 或 $D$ 设为非零。</p>
+<div style="display: flex; justify-content: space-between;">
+  <img src="/assets/images/Altermagnets/magnon_1d_fm.png" alt="Image 1" width="30%" />
+  <img src="/assets/images/Altermagnets/magnon_2d_square_fm.png" alt="Image 1" width="30%" />
+  <img src="/assets/images/Altermagnets/magnon_2d_square_afm.png" alt="Image 1" width="30%" />
+</div>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Magnon 是磁有序体系中自旋波的量子。对于铁磁体，最简单的图像是：一个局域自旋降低激发会由于交换相互作用在晶格中传播，形成动量为 $\mathbf k$ 的离域激发。用 Holstein—Primakoff 变换可以把自旋算符映射成玻色算符，在线性自旋波近似下得到自由 magnon 哈密顿量</p>
+<script type="math/tex; mode=display">
+H
+=
+E_0
++
+\sum_{\mathbf k}
+\hbar\omega_{\mathbf k}
+a_{\mathbf k}^\dagger a_{\mathbf k}.</script><p>对于最近邻铁磁 Heisenberg 模型，magnon 能谱为</p>
+<script type="math/tex; mode=display">
+\hbar\omega_{\mathbf k}
+=
+h
++
+JSz(1-\gamma_{\mathbf k}).</script><p>在无外场、无各向异性的情况下，$\mathbf k=0$ 模式无能隙，这是自发破缺连续自旋旋转对称性带来的 Goldstone 模式。铁磁 magnon 的长波色散通常为 $\omega_{\mathbf k}\propto k^2$。对于反铁磁体，由于存在两个反向排列的子格，线性自旋波哈密顿量中会出现成对产生和湮灭项，因此需要 Bogoliubov 变换。二维方格反铁磁体的 magnon 能谱为</p>
+<script type="math/tex; mode=display">
+\hbar\omega_{\mathbf k}
+=
+4JS
+\sqrt{
+1-
+\left[
+\frac{\cos k_xa+\cos k_ya}{2}
+\right]^2
+}.</script><p>反铁磁 magnon 的长波色散通常为 $\omega_{\mathbf k}\propto |\mathbf k|$，这与铁磁 magnon 的二次色散形成鲜明区别。</p>
+<div class="note red flat"><p>鉴于该网站分享的大都是学习笔记，作者水平有限，若发现有问题可以发邮件给我</p>
+<ul>
+<li><strong>yxliphy@gmail.com</strong></li>
+</ul>
+<p>也非常欢迎喜欢分享的小伙伴投稿</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="/about">Yu-Xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2026/06/14/2026-06-14-Magmon/">http://example.com/2026/06/14/2026-06-14-Magmon/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Yu-Xuan's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Altermagnets/">Altermagnets</a></div><div class="post-share"><div class="social-share" data-image="/assets/images/Altermagnets/Magmon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/assets/images/WM.png" target="_blank"><img class="post-qr-code-img" src="/assets/images/WM.png"/></a><div class="post-qr-code-desc"></div></li><li class="reward-item"><a href="/assets/images/ZM.png" target="_blank"><img class="post-qr-code-img" src="/assets/images/ZM.png"/></a><div class="post-qr-code-desc"></div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/06/15/2026-06-15-Magmon-Alter/" title="Altermagnets 中的 $d$-wave 手性 magnon劈裂"><img class="cover" src="/assets/images/Altermagnets/Magmon-alter.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Altermagnets 中的 $d$-wave 手性 magnon劈裂</div></div><div class="info-2"><div class="info-item-1">Altermagnets 中的 $d$-wave 手性 magnon劈裂基本概念Magnon 是磁有序体系中自旋波的量子化激发。对于铁磁体，一个 magnon 可以直观理解为铁磁背景中的一个离域...</div></div></div></a><a class="pagination-related" href="/2026/06/13/2026-06-13-Phono-SC/" title="声子介导吸引相互作用与超导"><img class="cover" src="/assets/images/SC/SC-Phono.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">声子介导吸引相互作用与超导</div></div><div class="info-2"><div class="info-item-1">声子介导吸引相互作用与超导        电子–声子模型讨论声子介导常规超导时，不能只从电子–声子耦合项出发。真实电子体系中本来存在库仑排斥，因此更完整的模型应写为  H = H_e + H_{...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related no-desc" href="/2026/03/26/2026-03-26-Spin-Group/" title="自旋空间群操作在实空间与动量空间中的作用"><img class="cover" src="/assets/images/Altermagnets/spin-group.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-26</div><div class="info-item-2">自旋空间群操作在实空间与动量空间中的作用</div></div></div></a><a class="pagination-related no-desc" href="/2026/03/26/2026-03-26-Magnets-orders/" title="共线磁序与非共线磁序"><img class="cover" src="/assets/images/Altermagnets/magnets-order.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-26</div><div class="info-item-2">共线磁序与非共线磁序</div></div></div></a><a class="pagination-related no-desc" href="/2026/03/25/2026-03-25-Group-Landau-AM/" title="群表示理论与 Landau 自由能：交错磁体"><img class="cover" src="/assets/images/Altermagnets/AM-1.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-25</div><div class="info-item-2">群表示理论与 Landau 自由能：交错磁体</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description">知行合一</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">381</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yxli8023"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:yxliphy@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><div style="text-align:center;"> <img src="/assets/images/qrcode.jpg" alt="公告图" style="max-width:100%; border-radius:10px; margin-bottom:10px;"> <br> 欢迎关注公众号，有趣的内容也会在上面同步。 有密码的文章属于正在建设中或者没有通过验证的内容，若有需要可通过邮件联系。</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A3%81%E6%8C%AF%E5%AD%90-Magnon-%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%90%86%E8%AE%BA%E4%B8%8E%E8%83%BD%E8%B0%B1%E6%8E%A8%E5%AF%BC"><span class="toc-number">1.</span> <span class="toc-text">磁振子 Magnon 的基本理论与能谱推导</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Magnon-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">1.1.</span> <span class="toc-text">Magnon 是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%8F%E5%85%B8%E8%87%AA%E6%97%8B%E6%B3%A2%E5%9B%BE%E5%83%8F"><span class="toc-number">1.2.</span> <span class="toc-text">经典自旋波图像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%9F%BA%E6%9C%AC%E6%A8%A1%E5%9E%8B%EF%BC%9AHeisenberg-%E7%A3%81%E4%BD%93"><span class="toc-number">1.3.</span> <span class="toc-text">最基本模型：Heisenberg 磁体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%93%81%E7%A3%81%E4%BD%93%E4%B8%AD%E7%9A%84magnon"><span class="toc-number">1.4.</span> <span class="toc-text">铁磁体中的magnon</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Holstein%E2%80%94Primakoff-%E5%8F%98%E6%8D%A2"><span class="toc-number">1.5.</span> <span class="toc-text">Holstein—Primakoff 变换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%93%81%E7%A3%81-magnon-%E8%83%BD%E8%B0%B1"><span class="toc-number">1.6.</span> <span class="toc-text">铁磁 magnon 能谱</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2%E4%B8%8E%E4%B8%80%E8%88%AC%E9%93%81%E7%A3%81%E8%83%BD%E8%B0%B1"><span class="toc-number">1.7.</span> <span class="toc-text">傅里叶变换与一般铁磁能谱</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E7%BB%B4%E9%93%81%E7%A3%81%E9%93%BE"><span class="toc-number">1.8.</span> <span class="toc-text">一维铁磁链</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E7%BB%B4%E6%96%B9%E6%A0%BC%E9%93%81%E7%A3%81%E4%BD%93"><span class="toc-number">1.9.</span> <span class="toc-text">二维方格铁磁体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%84%E5%90%91%E5%BC%82%E6%80%A7%E7%9A%84%E9%93%81%E7%A3%81-magnon"><span class="toc-number">1.10.</span> <span class="toc-text">各向异性的铁磁 magnon</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8D%E9%93%81%E7%A3%81-magnon"><span class="toc-number">1.11.</span> <span class="toc-text">反铁磁 magnon</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8D%E9%93%81%E7%A3%81%E4%BD%93%E7%9A%84-Bogoliubov-%E5%AF%B9%E8%A7%92%E5%8C%96"><span class="toc-number">1.12.</span> <span class="toc-text">反铁磁体的 Bogoliubov 对角化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E7%BB%B4%E6%96%B9%E6%A0%BC%E5%8F%8D%E9%93%81%E7%A3%81%E4%BD%93"><span class="toc-number">1.13.</span> <span class="toc-text">二维方格反铁磁体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%93%81%E7%A3%81%E4%B8%8E%E5%8F%8D%E9%93%81%E7%A3%81-magnon-%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="toc-number">1.14.</span> <span class="toc-text">铁磁与反铁磁 magnon 的对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8-Python-%E7%BB%98%E5%88%B6%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84-magnon-%E8%83%BD%E8%B0%B1"><span class="toc-number">1.15.</span> <span class="toc-text">用 Python 绘制最简单的 magnon 能谱</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.16.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/06/15/2026-06-15-Magmon-Alter/" title="Altermagnets 中的 $d$-wave 手性 magnon劈裂"><img src="/assets/images/Altermagnets/Magmon-alter.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Altermagnets 中的 $d$-wave 手性 magnon劈裂"/></a><div class="content"><a class="title" href="/2026/06/15/2026-06-15-Magmon-Alter/" title="Altermagnets 中的 $d$-wave 手性 magnon劈裂">Altermagnets 中的 $d$-wave 手性 magnon劈裂</a><time datetime="2026-06-14T16:00:00.000Z" title="发表于 2026-06-15 00:00:00">2026-06-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/06/15/2026-06-15-Magmon-SC/" title="电子通过交换 magnon 实现超导"><img src="/assets/images/SC/SC-Magnon.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="电子通过交换 magnon 实现超导"/></a><div class="content"><a class="title" href="/2026/06/15/2026-06-15-Magmon-SC/" title="电子通过交换 magnon 实现超导">电子通过交换 magnon 实现超导</a><time datetime="2026-06-14T16:00:00.000Z" title="发表于 2026-06-15 00:00:00">2026-06-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/06/15/2026-06-15-Magmon-SC2/" title="电子通过交换 magnon 实现超导(具体模型)"><img src="/assets/images/SC/SC-Magnon.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="电子通过交换 magnon 实现超导(具体模型)"/></a><div class="content"><a class="title" href="/2026/06/15/2026-06-15-Magmon-SC2/" title="电子通过交换 magnon 实现超导(具体模型)">电子通过交换 magnon 实现超导(具体模型)</a><time datetime="2026-06-14T16:00:00.000Z" title="发表于 2026-06-15 00:00:00">2026-06-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/06/14/2026-06-14-Magmon/" title="磁振子 Magnon 的基本理论与能谱推导"><img src="/assets/images/Altermagnets/Magmon.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="磁振子 Magnon 的基本理论与能谱推导"/></a><div class="content"><a class="title" href="/2026/06/14/2026-06-14-Magmon/" title="磁振子 Magnon 的基本理论与能谱推导">磁振子 Magnon 的基本理论与能谱推导</a><time datetime="2026-06-13T16:00:00.000Z" title="发表于 2026-06-14 00:00:00">2026-06-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/06/13/2026-06-13-Phono-SC/" title="声子介导吸引相互作用与超导"><img src="/assets/images/SC/SC-Phono.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="声子介导吸引相互作用与超导"/></a><div class="content"><a class="title" href="/2026/06/13/2026-06-13-Phono-SC/" title="声子介导吸引相互作用与超导">声子介导吸引相互作用与超导</a><time datetime="2026-06-12T16:00:00.000Z" title="发表于 2026-06-13 00:00:00">2026-06-13</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/assets/images/Altermagnets/Magmon.png);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div><div class="footer_custom_text">Welcome to  Yu-Xuan's Blog</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  const initGitalk = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGitalk = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const gitalk = new Gitalk({
+      clientID: 'Ov23li0WvZEaIAZ7RFtH',
+      clientSecret: '03fcb77b7c28dafcdde00756e27f9b5bc76639e8',
+      repo: 'yxli8023.github.io',
+      owner: 'yxli8023',
+      admin: ['yxli8023'],
+      updateCountCallback: commentCount,
+      ...option,
+      id: isShuoshuo ? path : (option && option.id) || 'e31fc0f291ffbaa82962312e9f5f4022'
+    })
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async(el, path) => {
+    if (typeof Gitalk === 'function') initGitalk(el, path)
+    else {
+      await btf.getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await btf.getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Gitalk' === 'Gitalk'
+      ? window.shuoshuoComment = { loadComment: loadGitalk }
+      : window.loadOtherComment = loadGitalk
+    return
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
