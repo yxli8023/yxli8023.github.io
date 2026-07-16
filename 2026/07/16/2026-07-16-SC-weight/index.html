@@ -1,0 +1,671 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>超流权重推导 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="超流权重推导设序参量为  \Delta(\mathbf r)&#x3D;|\Delta|e^{i\theta(\mathbf r)},\qquad \theta(\mathbf r)&#x3D;2\mathbf q\cdot\mathbf r.自由能展开为  F(\mathbf q)&#x3D;F(0)+ \left.\frac{\partial F}{\partial q_\mu}\right|_{\mathbf q&#x3D;0}q">
+<meta property="og:type" content="article">
+<meta property="og:title" content="超流权重推导">
+<meta property="og:url" content="http://example.com/2026/07/16/2026-07-16-SC-weight/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39;s Blog">
+<meta property="og:description" content="超流权重推导设序参量为  \Delta(\mathbf r)&#x3D;|\Delta|e^{i\theta(\mathbf r)},\qquad \theta(\mathbf r)&#x3D;2\mathbf q\cdot\mathbf r.自由能展开为  F(\mathbf q)&#x3D;F(0)+ \left.\frac{\partial F}{\partial q_\mu}\right|_{\mathbf q&#x3D;0}q">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/assets/images/SC/superfluid_weight_cover.png">
+<meta property="article:published_time" content="2026-07-15T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-07-16T14:54:53.034Z">
+<meta property="article:author" content="Yu-Xuan">
+<meta property="article:tag" content="Superconductor">
+<meta property="article:tag" content="QuantumGrometry">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/images/SC/superfluid_weight_cover.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "超流权重推导",
+  "url": "http://example.com/2026/07/16/2026-07-16-SC-weight/",
+  "image": "http://example.com/assets/images/SC/superfluid_weight_cover.png",
+  "datePublished": "2026-07-15T16:00:00.000Z",
+  "dateModified": "2026-07-16T14:54:53.034Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yu-Xuan",
+      "url": "http://example.com/about"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/logo.png"><link rel="canonical" href="http://example.com/2026/07/16/2026-07-16-SC-weight/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"作者: Yu-Xuan","link":"链接: ","source":"来源: Yu-Xuan's Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'medium_zoom',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#f54966","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '超流权重推导',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #dbeffd;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">388</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/assets/images/SC/superfluid_weight_cover.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo.png" alt="Logo"><span class="site-name">Yu-Xuan's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">超流权重推导</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">超流权重推导</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-07-15T16:00:00.000Z" title="发表于 2026-07-16 00:00:00">2026-07-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-07-16T14:54:53.034Z" title="更新于 2026-07-16 22:54:53">2026-07-16</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/QuantumGrometry/">QuantumGrometry</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">2.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>13分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;自上次更新已经过了&quot;,&quot;messageNext&quot;:&quot;天，文章内容可能已过时。&quot;,&quot;postUpdate&quot;:&quot;2026-07-16 22:54:53&quot;}" hidden></div><h1 id="超流权重推导"><a href="#超流权重推导" class="headerlink" title="超流权重推导"></a>超流权重推导</h1><p>设序参量为</p>
+<script type="math/tex; mode=display">
+\Delta(\mathbf r)=|\Delta|e^{i\theta(\mathbf r)},\qquad
+\theta(\mathbf r)=2\mathbf q\cdot\mathbf r.</script><p>自由能展开为</p>
+<script type="math/tex; mode=display">
+F(\mathbf q)=F(0)+
+\left.\frac{\partial F}{\partial q_\mu}\right|_{\mathbf q=0}q_\mu+
+\frac12\left.\frac{\partial^2F}{\partial q_\mu\partial q_\nu}\right|_{\mathbf q=0}q_\mu q_\nu+O(q^3).</script><p>平衡态一阶项为零，定义</p>
+<script type="math/tex; mode=display">
+\color{blue}
+D^s_{\mu\nu}=\frac1V\left.\frac{\partial^2F}{\partial q_\mu\partial q_\nu}\right|_{\mathbf q=0}
+\label{eq:def}</script><p>于是</p>
+<script type="math/tex; mode=display">
+\frac{F(\mathbf q)-F(0)}V=\frac12D^s_{\mu\nu}q_\mu q_\nu.
+\label{eq:stiffness}</script><p>正常态哈密顿量为</p>
+<script type="math/tex; mode=display">
+H_0=\sum_{\mathbf k}c^\dagger_{\mathbf k}[h(\mathbf k)-\mu]c_{\mathbf k}.</script><p>在 Nambu 基底 $\Psi_{\mathbf k}=(c_{\mathbf k},c^\dagger_{-\mathbf k})^T$ 下，</p>
+<script type="math/tex; mode=display">
+H_{\mathrm{BdG}}(\mathbf k,\mathbf q)=
+\begin{pmatrix}
+h(\mathbf k+\mathbf q)-\mu&\Delta(\mathbf k)\\
+\Delta^\dagger(\mathbf k)&-h^T(-\mathbf k+\mathbf q)+\mu
+\end{pmatrix}.
+\label{eq:bdg-q}</script><p>这里使用了平均场近似，并且只考虑静态、均匀、长波长的相位扭转。Taylor 展开：</p>
+<script type="math/tex; mode=display">
+H_{\mathrm{BdG}}(\mathbf k,\mathbf q)
+=H_0(\mathbf k)+q_\mu H_\mu(\mathbf k)+\frac12q_\mu q_\nu H_{\mu\nu}(\mathbf k)+O(q^3),
+\label{eq:bdg-expansion}</script><p>其中</p>
+<script type="math/tex; mode=display">
+H_\mu=\left.\frac{\partial H_{\mathrm{BdG}}}{\partial q_\mu}\right|_0,
+\qquad
+H_{\mu\nu}=\left.\frac{\partial^2H_{\mathrm{BdG}}}{\partial q_\mu\partial q_\nu}\right|_0.</script><p>设</p>
+<script type="math/tex; mode=display">
+H(\mathbf q)|n(\mathbf q)\rangle=E_n(\mathbf q)|n(\mathbf q)\rangle.</script><p>对 $q_\mu$ 求导并左乘 $\langle n|$：</p>
+<script type="math/tex; mode=display">
+{
+\partial_\mu E_n=\langle n|H_\mu|n\rangle
+}
+\label{eq:hf}</script><p>对本征方程求导后左乘 $\langle m|$，其中 $m\ne n$：</p>
+<script type="math/tex; mode=display">
+\langle m|H_\mu|n\rangle=(E_n-E_m)\langle m|\partial_\mu n\rangle.</script><p>所以</p>
+<script type="math/tex; mode=display">
+\color{blue}
+\langle m|\partial_\mu n\rangle=
+\frac{\langle m|H_\mu|n\rangle}{E_n-E_m}
+\label{eq:state-derivative}</script><p>再次求导</p>
+<script type="math/tex; mode=display">
+{
+\partial_\mu\partial_\nu E_n
+=\langle n|H_{\mu\nu}|n\rangle
++2\operatorname{Re}\sum_{m\ne n}
+\frac{\langle n|H_\mu|m\rangle\langle m|H_\nu|n\rangle}{E_n-E_m}
+}
+\label{eq:second-energy}</script><p>式 $\eqref{eq:second-energy}$ 使用了非简并微扰理论；简并时须先在简并子空间中对角化扰动。</p>
+<ul>
+<li>BdG 对角化与自由能 Hessian</li>
+</ul>
+<p>对固定的 $\mathbf q$，平均场哈密顿量具有形式</p>
+<script type="math/tex; mode=display">
+H_{\mathrm{MF}}(\mathbf q)
+=E_{\mathrm{vac}}(\mathbf q)
++\frac12\sum_{\mathbf k}
+\Psi^\dagger_{\mathbf k}
+H_{\mathrm{BdG}}(\mathbf k,\mathbf q)
+\Psi_{\mathbf k}.
+\label{eq:mf-bdg}</script><p>对 $H_{\mathrm{BdG}}$ 做 Bogoliubov 变换。若 $E_{a\mathbf k}(\mathbf q)&gt;0$ 表示正能量 BdG 分支，则</p>
+<script type="math/tex; mode=display">
+H_{\mathrm{MF}}(\mathbf q)
+=E_0(\mathbf q)
++\sum_{\mathbf k,a>0}
+E_{a\mathbf k}(\mathbf q)
+\gamma^\dagger_{a\mathbf k}(\mathbf q)
+\gamma_{a\mathbf k}(\mathbf q),
+\label{eq:bdg-diagonal}</script><p>其中 $E_0(\mathbf q)$ 包含 BdG 真空能、配对场常数项以及 Nambu 双计数修正。每个正能量费米准粒子模式的占据数为 $0$ 或 $1$，因此该模式的配分函数是</p>
+<script type="math/tex; mode=display">
+Z_{a\mathbf k}(\mathbf q)
+=\sum_{n=0}^{1}
+\exp[-\beta nE_{a\mathbf k}(\mathbf q)]
+=1+\exp[-\beta E_{a\mathbf k}(\mathbf q)].
+\label{eq:mode-partition}</script><p>所有独立正能量模式相互独立，所以总配分函数为</p>
+<script type="math/tex; mode=display">
+Z(\mathbf q)
+=\exp[-\beta E_0(\mathbf q)]
+\prod_{\mathbf k,a>0}
+\left[1+\exp(-\beta E_{a\mathbf k}(\mathbf q))\right].
+\label{eq:bdg-partition}</script><p>由 $F=-\beta^{-1}\ln Z$：</p>
+<script type="math/tex; mode=display">
+F(\mathbf q)
+=E_0(\mathbf q)
+-\frac1\beta
+\sum_{\mathbf k,a>0}
+\ln\left[1+\exp(-\beta E_{a\mathbf k}(\mathbf q))\right].
+\label{eq:bdg-free-energy}</script><p>因此，最基本的单个 BdG 正能量分支贡献函数是</p>
+<script type="math/tex; mode=display">
+\phi_a(E)
+=-\frac1\beta\ln(1+e^{-\beta E}).
+\label{eq:phi-basic}</script><p>如果一个正能量分支具有简并度 $g_a$，则右侧乘以 $g_a$。在常用的自旋简并 BCS 记号中，真空能中的 $-E$ 项与两个自旋简并的热项合并为</p>
+<script type="math/tex; mode=display">
+\phi(E)
+=-E-\frac2\beta\ln(1+e^{-\beta E})
+=-\frac2\beta\ln\left(2\cosh\frac{\beta E}{2}\right).
+\label{eq:phi-bcs}</script><p>因此，本文后面的单带 BCS 推导使用的是式 $\eqref{eq:phi-bcs}$；一般 BdG 推导则使用式 $\eqref{eq:bdg-free-energy}$，并把 $E_0(\mathbf q)$ 的显式二阶导数保留下来。对任意一条能量分支，设其自由能贡献为 $\phi(E_n(\mathbf q))$，则</p>
+<script type="math/tex; mode=display">
+\phi(E_n(\mathbf q))
+=\phi(E_n)
++\phi'(E_n)q_\mu\partial_\mu E_n
++\frac12\phi'(E_n)q_\mu q_\nu\partial_\mu\partial_\nu E_n
++\frac12\phi''(E_n)q_\mu q_\nu
+\partial_\mu E_n\partial_\nu E_n.</script><p>如果显式真空能和配对常数项的二阶响应定义为</p>
+<script type="math/tex; mode=display">
+D^{\mathrm{expl}}_{\mu\nu}
+=\frac1V
+\left.
+\frac{\partial^2E_0(\mathbf q)}
+{\partial q_\mu\partial q_\nu}
+\right|_{\mathbf q=0},
+\label{eq:explicit-response}</script><p>那么由式 $\eqref{eq:def}$：</p>
+<script type="math/tex; mode=display">
+{
+D^s_{\mu\nu}
+=D^{\mathrm{expl}}_{\mu\nu}
++\frac1V\sum_{\mathbf k,n}
+\left[
+\phi'(E_n)\partial_\mu\partial_\nu E_n
++\phi''(E_n)
+\partial_\mu E_n\partial_\nu E_n
+\right]
+}
+\label{eq:hessian}</script><p>代入式 $\eqref{eq:hf}$ 和式 $\eqref{eq:second-energy}$：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+D^s_{\mu\nu}
+=D^{\mathrm{expl}}_{\mu\nu}
++\frac1V\sum_{\mathbf k,n}\Bigg[&
+\phi'(E_n)\langle n|H_{\mu\nu}|n\rangle+\phi''(E_n)
+\langle n|H_\mu|n\rangle
+\langle n|H_\nu|n\rangle\\
+&+2\phi'(E_n)\operatorname{Re}\sum_{m\ne n}
+\frac{\langle n|H_\mu|m\rangle\langle m|H_\nu|n\rangle}
+{E_n-E_m}
+\Bigg].
+\end{aligned}
+\label{eq:general-response}</script><p>这就是从 BdG 对角化和配分函数直接得到的自由能响应。后续单带计算会把 $E_0(\mathbf q)$ 的显式项写出来，而不是把它隐含在 $\phi$ 中。</p>
+<ul>
+<li>单带 BCS 结果</li>
+</ul>
+<p>取</p>
+<script type="math/tex; mode=display">
+\xi_{\mathbf k}=\epsilon_{\mathbf k}-\mu,\qquad
+H_{\mathbf k}=\xi_{\mathbf k}\tau_z+\Delta\tau_x.</script><p>BdG 能量为</p>
+<script type="math/tex; mode=display">
+E_{\mathbf k}=\sqrt{\xi_{\mathbf k}^2+\Delta^2}.</script><p>假设时间反演对称：$\xi_{-\mathbf k}=\xi_{\mathbf k}$，定义</p>
+<script type="math/tex; mode=display">
+v_{\mathbf k,\mu}=\partial_\mu\epsilon_{\mathbf k},
+\qquad
+m^{-1}_{\mathbf k,\mu\nu}=\partial_\mu\partial_\nu\epsilon_{\mathbf k}.</script><p>则</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&\xi_{\mathbf k+\mathbf q}
+=\xi_{\mathbf k}+q_\mu v_{\mathbf k,\mu}
++\frac12q_\mu q_\nu m^{-1}_{\mathbf k,\mu\nu}+O(q^3),\\
+&\xi_{-\mathbf k+\mathbf q}
+=\xi_{\mathbf k}-q_\mu v_{\mathbf k,\mu}
++\frac12q_\mu q_\nu m^{-1}_{\mathbf k,\mu\nu}+O(q^3).
+\end{aligned}</script><p>对角化这个 $2\times2$ BdG 块后，正能量准粒子为 $E_{\mathbf k}(\mathbf q)$。结合其真空能和自旋简并的热占据，单带自由能可写为</p>
+<script type="math/tex; mode=display">
+F(\mathbf q)
+=\sum_{\mathbf k}
+\left[
+\xi^+_{\mathbf k}(\mathbf q)
++\phi\left(E_{\mathbf k}(\mathbf q)\right)
+\right]
++\frac{\Delta^2}{g},
+\label{eq:single-band-free-energy}</script><p>其中 $\xi^+_{\mathbf k}(\mathbf q)$ 是粒子和空穴色散的平均值：</p>
+<script type="math/tex; mode=display">
+\xi^+_{\mathbf k}(\mathbf q)
+=\frac12\left[
+\xi_{\mathbf k+\mathbf q}
++\xi_{-\mathbf k+\mathbf q}
+\right].</script><p>这里的 $\phi$ 就是式 $\eqref{eq:phi-bcs}$ 中由 BdG 配分函数得到的函数：</p>
+<script type="math/tex; mode=display">
+\phi(E)
+=-E-\frac2\beta\ln(1+e^{-\beta E})
+=-\frac2\beta\ln\left(2\cosh\frac{\beta E}{2}\right).</script><p>因此</p>
+<script type="math/tex; mode=display">
+\phi'(E)=-\tanh\frac{\beta E}{2},
+\qquad
+\phi''(E)=-\frac{\beta}{2\cosh^2(\beta E/2)}.
+\label{eq:phi-bcs-derivatives}</script><p>代入自由能展开后：</p>
+<script type="math/tex; mode=display">
+D^s_{\mu\nu}
+=\sum_{\mathbf k}
+\left[
+A_{\mathbf k}m^{-1}_{\mathbf k,\mu\nu}
+-\frac{\beta}{2\cosh^2(\beta E_{\mathbf k}/2)}
+v_{\mathbf k,\mu}v_{\mathbf k,\nu}
+\right],\qquad A_{\mathbf k}=1-\frac{\xi_{\mathbf k}}{E_{\mathbf k}}\tanh\frac{\beta E_{\mathbf k}}2.</script><p>使用周期性布里渊区恒等式</p>
+<script type="math/tex; mode=display">
+\sum_{\mathbf k}\partial_\mu[v_{\mathbf k,\nu}A_{\mathbf k}]=0,</script><p>以及</p>
+<script type="math/tex; mode=display">
+\partial_\mu E_{\mathbf k}=\frac{\xi_{\mathbf k}}{E_{\mathbf k}}v_{\mathbf k,\mu},
+\qquad
+\partial_\mu\left(\frac{\xi_{\mathbf k}}{E_{\mathbf k}}\right)
+=\frac{\Delta^2}{E_{\mathbf k}^3}v_{\mathbf k,\mu},</script><p>得到</p>
+<script type="math/tex; mode=display">
+\partial_\mu A_{\mathbf k}
+=-\left[
+\frac{\Delta^2}{E_{\mathbf k}^3}\tanh\frac{\beta E_{\mathbf k}}2
++\frac{\beta\Delta^2}{2E_{\mathbf k}^2\cosh^2(\beta E_{\mathbf k}/2)}
+\right]v_{\mathbf k,\mu}.</script><p>代回后得到常规超流权重：</p>
+<script type="math/tex; mode=display">
+{
+\begin{aligned}
+D^s_{\mu\nu}
+=\sum_{\mathbf k}
+&\left[
+-\frac{\beta}{2\cosh^2(\beta E_{\mathbf k}/2)}
++\frac{\tanh(\beta E_{\mathbf k}/2)}{E_{\mathbf k}}
+\right]\times\frac{\Delta^2}{E_{\mathbf k}^2}
+v_{\mathbf k,\mu}v_{\mathbf k,\nu}.
+\end{aligned}
+}
+\label{eq:single-stiffness}</script><p>逆质量项并未忽略，而是通过分部积分转化为速度平方项。</p>
+<ul>
+<li>多带电流矩阵</li>
+</ul>
+<p>正常态本征方程：</p>
+<script type="math/tex; mode=display">
+h(\mathbf k)|u_m(\mathbf k)\rangle=\epsilon_m(\mathbf k)|u_m(\mathbf k)\rangle.</script><p>对其求导并左乘 $\langle u_n|$：</p>
+<script type="math/tex; mode=display">
+\langle u_n|\partial_\mu h|u_m\rangle
+=\partial_\mu\epsilon_m\delta_{nm}
++(\epsilon_m-\epsilon_n)\langle u_n|\partial_\mu u_m\rangle.</script><p>令</p>
+<script type="math/tex; mode=display">
+J^\mu_{nm}=\langle u_n|\partial_\mu h|u_m\rangle,</script><p>则</p>
+<script type="math/tex; mode=display">
+{
+J^\mu_{nm}
+=\underbrace{\partial_\mu\epsilon_m\delta_{nm}}_{\mathrm{带内}}
++\underbrace{(\epsilon_m-\epsilon_n)\langle u_n|\partial_\mu u_m\rangle}_{\mathrm{带间}}
+}
+\label{eq:current-decomposition}</script><ul>
+<li>多带配对条件</li>
+</ul>
+<blockquote>
+<p>为了得到常规项和几何项，使用：</p>
+<ol>
+<li>时间反演对称：$\epsilon_m(\mathbf k)=\epsilon_m(-\mathbf k)$；</li>
+<li>均匀带内配对：$\Delta_{mn}(\mathbf k)=\Delta\delta_{mn}$；</li>
+<li>固定 $\Delta$，不考虑 $\Delta(\mathbf q)$ 的自洽反馈。</li>
+</ol>
+</blockquote>
+<p>每条能带的 BdG 块为</p>
+<script type="math/tex; mode=display">
+H_m^{\mathrm{BdG}}=\xi_m\tau_z+\Delta\tau_x,
+\qquad
+\xi_m=\epsilon_m-\mu,</script><p>其能量为$E_m=\sqrt{\xi_m^2+\Delta^2}$。带内电流满足</p>
+<script type="math/tex; mode=display">
+J^\mu_{mm}=\partial_\mu\epsilon_m.</script><p>将式 $\eqref{eq:single-stiffness}$ 应用于每条能带</p>
+<script type="math/tex; mode=display">
+{\color{blue}
+\begin{aligned}
+D^{\mathrm{conv}}_{\mu\nu}
+=\sum_{\mathbf k,m}
+&\left[
+-\frac{\beta}{2\cosh^2(\beta E_m/2)}
++\frac{\tanh(\beta E_m/2)}{E_m}
+\right]\times\frac{\Delta^2}{E_m^2}
+(\partial_\mu\epsilon_m)(\partial_\nu\epsilon_m).
+\end{aligned}
+}
+\label{eq:conventional}</script><ul>
+<li>带间几何项</li>
+</ul>
+<p>当 $m\ne n$：</p>
+<script type="math/tex; mode=display">
+J^\mu_{nm}=(\epsilon_m-\epsilon_n)\langle u_n|\partial_\mu u_m\rangle.</script><p>因此</p>
+<script type="math/tex; mode=display">
+J^\mu_{nm}J^\nu_{mn}
+=(\epsilon_m-\epsilon_n)^2
+\langle u_n|\partial_\mu u_m\rangle
+\langle\partial_\nu u_m|u_n\rangle.</script><p>每条 BdG 块满足</p>
+<script type="math/tex; mode=display">
+(H_m^{\mathrm{BdG}})^2=E_m^2.</script><p>正负能量投影算符为</p>
+<script type="math/tex; mode=display">
+P_{m,s}=\frac12\left[
+1+s\frac{\xi_m\tau_z+\Delta\tau_x}{E_m}
+\right],
+\qquad s=\pm.</script><p>将投影算符代入一般谱响应并计算 Nambu 迹，得到</p>
+<script type="math/tex; mode=display">
+W_{mn}
+=\left[
+\frac{\tanh(\beta E_m/2)}{E_m}
+-\frac{\tanh(\beta E_n/2)}{E_n}
+\right]
+\frac{\Delta^2(\epsilon_n-\epsilon_m)}
+{\epsilon_n+\epsilon_m-2\mu}.</script><p>因此</p>
+<script type="math/tex; mode=display">
+{\color{blue}
+\begin{aligned}
+D^{\mathrm{geom}}_{\mu\nu}
+=\sum_{\mathbf k,m\ne n}
+&\left[
+\frac{\tanh(\beta E_m/2)}{E_m}
+-\frac{\tanh(\beta E_n/2)}{E_n}
+\right]\times\frac{\Delta^2(\epsilon_n-\epsilon_m)}
+{\epsilon_n+\epsilon_m-2\mu}\times\left[
+\langle\partial_\mu u_m|u_n\rangle
+\langle u_n|\partial_\nu u_m\rangle
++\mu\leftrightarrow\nu
+\right].
+\end{aligned}
+}
+\label{eq:geometric}</script><h2 id="量子几何张量"><a href="#量子几何张量" class="headerlink" title="量子几何张量"></a>量子几何张量</h2><p>定义</p>
+<script type="math/tex; mode=display">
+P_m=|u_m\rangle\langle u_m|,
+\qquad
+Q_m=1-P_m.</script><p>量子几何张量为</p>
+<script type="math/tex; mode=display">
+{
+\mathcal Q^{(m)}_{\mu\nu}
+=\langle\partial_\mu u_m|Q_m|\partial_\nu u_m\rangle
+}
+\label{eq:qgt}</script><p>利用</p>
+<script type="math/tex; mode=display">
+Q_m=\sum_{n\ne m}|u_n\rangle\langle u_n|,</script><p>可得</p>
+<script type="math/tex; mode=display">
+\mathcal Q^{(m)}_{\mu\nu}
+=\sum_{n\ne m}
+\langle\partial_\mu u_m|u_n\rangle
+\langle u_n|\partial_\nu u_m\rangle.</script><p>定义量子度规</p>
+<script type="math/tex; mode=display">
+{
+g^{(m)}_{\mu\nu}=\operatorname{Re}\mathcal Q^{(m)}_{\mu\nu}
+}
+\label{eq:metric}</script><p>所以</p>
+<script type="math/tex; mode=display">
+\sum_{n\ne m}
+\left[
+\langle\partial_\mu u_m|u_n\rangle
+\langle u_n|\partial_\nu u_m\rangle
++\mu\leftrightarrow\nu
+\right]
+=2g^{(m)}_{\mu\nu}.</script><h2 id="孤立能带近似"><a href="#孤立能带近似" class="headerlink" title="孤立能带近似"></a>孤立能带近似</h2><p>若</p>
+<script type="math/tex; mode=display">
+|\epsilon_n-\epsilon_m|\gg\Delta,T,\qquad n\ne m,</script><p>则采用孤立能带近似。其他能带不能被配对或热涨落显著激发，但仍通过 Bloch 波函数导数贡献量子几何。式 $\eqref{eq:geometric}$ 化为</p>
+<script type="math/tex; mode=display">
+{
+D^{\mathrm{geom}}_{\mu\nu}
+=4\Delta^2
+\sum_{\mathbf k}
+\frac{\tanh(\beta E_m/2)}{E_m}
+g^{(m)}_{\mu\nu}(\mathbf k)
+}
+\label{eq:isolated-geometric}</script><p>若采用 $g^{\mathrm{sym}}_{\mu\nu}=2g_{\mu\nu}$，则等价地写成</p>
+<script type="math/tex; mode=display">
+D^{\mathrm{geom}}_{\mu\nu}
+=2\Delta^2
+\sum_{\mathbf k}
+\frac{\tanh(\beta E_m/2)}{E_m}
+g^{\mathrm{sym}}_{\mu\nu}(\mathbf k).</script><ul>
+<li>平带极限</li>
+</ul>
+<p>若$\epsilon_m(\mathbf k)=\epsilon_0$，则$\partial_\mu\epsilon_m=0$，从而</p>
+<script type="math/tex; mode=display">
+D^{\mathrm{conv}}_{\mu\nu}=0.</script><p>若 Bloch 态仍随动量变化，则 $g^{(m)}_{\mu\nu}$ 可以非零，因此</p>
+<script type="math/tex; mode=display">
+D^s_{\mu\nu}=D^{\mathrm{geom}}_{\mu\nu}\ne0.</script><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ol>
+<li>Liang, L., Vanhala, O., Peotta, S., Siro, T., and Törmä, P., “Band geometry, Berry curvature, and superfluid weight,” <em>Physical Review B</em> <strong>95</strong>, 024515 (2017).</li>
+<li>Peotta, S. and Törmä, P., “Superfluidity in topologically nontrivial flat bands,” <em>Nature Communications</em> <strong>6</strong>, 8944 (2015). </li>
+<li>Peotta, S., Huhtinen, K.-E., Lipparini, F., and Törmä, P., “Quantum geometry in superfluidity and superconductivity,” <em>Nature Communications</em> <strong>14</strong>, 1–18 (2023). </li>
+<li>Peltonen, J. T. and Heikkilä, M. T., “Superfluid weight in periodically strained graphene,” (2019). </li>
+</ol>
+<div class="note red flat"><p>鉴于该网站分享的大都是学习笔记，作者水平有限，若发现有问题可以发邮件给我</p>
+<ul>
+<li><strong>yxliphy@gmail.com</strong></li>
+</ul>
+<p>也非常欢迎喜欢分享的小伙伴投稿</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="/about">Yu-Xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2026/07/16/2026-07-16-SC-weight/">http://example.com/2026/07/16/2026-07-16-SC-weight/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Yu-Xuan's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Superconductor/">Superconductor</a><a class="post-meta__tags" href="/tags/QuantumGrometry/">QuantumGrometry</a></div><div class="post-share"><div class="social-share" data-image="/assets/images/SC/superfluid_weight_cover.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/assets/images/WM.png" target="_blank"><img class="post-qr-code-img" src="/assets/images/WM.png"/></a><div class="post-qr-code-desc"></div></li><li class="reward-item"><a href="/assets/images/ZM.png" target="_blank"><img class="post-qr-code-img" src="/assets/images/ZM.png"/></a><div class="post-qr-code-desc"></div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width no-desc" href="/2026/07/14/2026-07-14-LLL-Project/" title="投影形式因子与 Landau 能级的关系"><img class="cover" src="/assets/images/QuantumGrometry/Landau-Proj.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">投影形式因子与 Landau 能级的关系</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2019/04/17/2019-04-17-julia/" title="Majorana Corner State in High Temperature Superconductor"><img class="cover" src="/assets/images/research/juliaresult.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2019-04-17</div><div class="info-item-2">Majorana Corner State in High Temperature Superconductor</div></div><div class="info-2"><div class="info-item-1">最近刚刚学习了julia, 手头上也正好在重复一篇文章，就正好拿新学习的内容一边温习一边做研究。   导入函数库1234567# Import external package that use...</div></div></div></a><a class="pagination-related" href="/2020/09/03/2020-09-03-Hubbard-doping/" title="电子掺杂，空穴掺杂与化学势的关系"><img class="cover" src="/img/defult-cover5.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-03</div><div class="info-item-2">电子掺杂，空穴掺杂与化学势的关系</div></div><div class="info-2"><div class="info-item-1">在研究超导问题的时候，不可避免的总会遇到体系时电子掺杂还是空穴掺杂，因为这两种不同的掺杂所对应的性质是不同的，最近重新温习一下超导的相关知识，正好也利用一个具体的紧束缚近似模型来说明一下电子和空...</div></div></div></a><a class="pagination-related" href="/2020/09/25/2020-09-25-MF-BdG/" title="BCS平均场近似及Bogoliubov对角化"><img class="cover" src="/img/defult-cover2.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-25</div><div class="info-item-2">BCS平均场近似及Bogoliubov对角化</div></div><div class="info-2"><div class="info-item-1">BCS理论对解释常规超导的解释很成功,这里我就整理一下如何对BCS哈密顿量做平均场处理,使其变成两粒子算符形式,然后利用Bogoliubov变换来对这种两粒子算符进行对角化处理.   平均场近似...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description">知行合一</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">388</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yxli8023"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:yxliphy@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><div style="text-align:center;"> <img src="/assets/images/qrcode.jpg" alt="公告图" style="max-width:100%; border-radius:10px; margin-bottom:10px;"> <br> 欢迎关注公众号，有趣的内容也会在上面同步。 有密码的文章属于正在建设中或者没有通过验证的内容，若有需要可通过邮件联系。</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B6%85%E6%B5%81%E6%9D%83%E9%87%8D%E6%8E%A8%E5%AF%BC"><span class="toc-number">1.</span> <span class="toc-text">超流权重推导</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8F%E5%AD%90%E5%87%A0%E4%BD%95%E5%BC%A0%E9%87%8F"><span class="toc-number">1.1.</span> <span class="toc-text">量子几何张量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%A4%E7%AB%8B%E8%83%BD%E5%B8%A6%E8%BF%91%E4%BC%BC"><span class="toc-number">1.2.</span> <span class="toc-text">孤立能带近似</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">1.3.</span> <span class="toc-text">参考文献</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/07/16/2026-07-16-SC-weight/" title="超流权重推导"><img src="/assets/images/SC/superfluid_weight_cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超流权重推导"/></a><div class="content"><a class="title" href="/2026/07/16/2026-07-16-SC-weight/" title="超流权重推导">超流权重推导</a><time datetime="2026-07-15T16:00:00.000Z" title="发表于 2026-07-16 00:00:00">2026-07-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/07/14/2026-07-14-LLL-Project/" title="投影形式因子与 Landau 能级的关系"><img src="/assets/images/QuantumGrometry/Landau-Proj.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="投影形式因子与 Landau 能级的关系"/></a><div class="content"><a class="title" href="/2026/07/14/2026-07-14-LLL-Project/" title="投影形式因子与 Landau 能级的关系">投影形式因子与 Landau 能级的关系</a><time datetime="2026-07-13T16:00:00.000Z" title="发表于 2026-07-14 00:00:00">2026-07-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/07/13/2026-07-13-LLL-Real/" title="从实空间位置算符理解最低 Landau 能级的量子度规"><img src="/assets/images/QuantumGrometry/Landau-Real.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="从实空间位置算符理解最低 Landau 能级的量子度规"/></a><div class="content"><a class="title" href="/2026/07/13/2026-07-13-LLL-Real/" title="从实空间位置算符理解最低 Landau 能级的量子度规">从实空间位置算符理解最低 Landau 能级的量子度规</a><time datetime="2026-07-12T16:00:00.000Z" title="发表于 2026-07-13 00:00:00">2026-07-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/07/11/2026-07-11-Landau-Level-Geometry/" title="Landau 能级波函数与理想量子几何条件"><img src="/assets/images/QuantumGrometry/Landau-Geometry.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Landau 能级波函数与理想量子几何条件"/></a><div class="content"><a class="title" href="/2026/07/11/2026-07-11-Landau-Level-Geometry/" title="Landau 能级波函数与理想量子几何条件">Landau 能级波函数与理想量子几何条件</a><time datetime="2026-07-10T16:00:00.000Z" title="发表于 2026-07-11 00:00:00">2026-07-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/07/08/2026-07-08-Twisted-TMD/" title="Twisted TMD Homobilayer中的层赝自旋与连续模型"><img src="/assets/images/Twisted/tmd-2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Twisted TMD Homobilayer中的层赝自旋与连续模型"/></a><div class="content"><a class="title" href="/2026/07/08/2026-07-08-Twisted-TMD/" title="Twisted TMD Homobilayer中的层赝自旋与连续模型">Twisted TMD Homobilayer中的层赝自旋与连续模型</a><time datetime="2026-07-07T16:00:00.000Z" title="发表于 2026-07-08 00:00:00">2026-07-08</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/assets/images/SC/superfluid_weight_cover.png);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div><div class="footer_custom_text">Welcome to  Yu-Xuan's Blog</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  const initGitalk = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGitalk = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const gitalk = new Gitalk({
+      clientID: 'Ov23li0WvZEaIAZ7RFtH',
+      clientSecret: '03fcb77b7c28dafcdde00756e27f9b5bc76639e8',
+      repo: 'yxli8023.github.io',
+      owner: 'yxli8023',
+      admin: ['yxli8023'],
+      updateCountCallback: commentCount,
+      ...option,
+      id: isShuoshuo ? path : (option && option.id) || 'f45883100c6812e9a3c128f3fbcffb09'
+    })
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async(el, path) => {
+    if (typeof Gitalk === 'function') initGitalk(el, path)
+    else {
+      await btf.getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await btf.getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Gitalk' === 'Gitalk'
+      ? window.shuoshuoComment = { loadComment: loadGitalk }
+      : window.loadOtherComment = loadGitalk
+    return
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
