@@ -1,0 +1,1301 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Skyrmion 晶格连续电子模型 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Skyrmion 晶格连续电子模型模型与符号约定考虑二维巡游电子与周期性 Skyrmion 磁构型之间的交换耦合。为了同时容纳两套感受到相反磁织构的 flavor，写成  H_{\tau} &#x3D; \frac{\mathbf p^2}{2m} + V(\mathbf r) - \tau J\,\mathbf n(\mathbf r)\cdot\boldsymbol{\sigma}, \qquad \t">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Skyrmion 晶格连续电子模型">
+<meta property="og:url" content="http://example.com/2026/07/18/2026-07-18-Skyrmion/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39;s Blog">
+<meta property="og:description" content="Skyrmion 晶格连续电子模型模型与符号约定考虑二维巡游电子与周期性 Skyrmion 磁构型之间的交换耦合。为了同时容纳两套感受到相反磁织构的 flavor，写成  H_{\tau} &#x3D; \frac{\mathbf p^2}{2m} + V(\mathbf r) - \tau J\,\mathbf n(\mathbf r)\cdot\boldsymbol{\sigma}, \qquad \t">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/assets/images/QuantumGrometry/Skyrmion.png">
+<meta property="article:published_time" content="2026-07-17T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-07-18T13:45:03.169Z">
+<meta property="article:author" content="Yu-Xuan">
+<meta property="article:tag" content="QuantumGeometry">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/images/QuantumGrometry/Skyrmion.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Skyrmion 晶格连续电子模型",
+  "url": "http://example.com/2026/07/18/2026-07-18-Skyrmion/",
+  "image": "http://example.com/assets/images/QuantumGrometry/Skyrmion.png",
+  "datePublished": "2026-07-17T16:00:00.000Z",
+  "dateModified": "2026-07-18T13:45:03.169Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yu-Xuan",
+      "url": "http://example.com/about"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/logo.png"><link rel="canonical" href="http://example.com/2026/07/18/2026-07-18-Skyrmion/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"作者: Yu-Xuan","link":"链接: ","source":"来源: Yu-Xuan's Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'medium_zoom',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#f54966","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Skyrmion 晶格连续电子模型',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #dbeffd;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">390</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/assets/images/QuantumGrometry/Skyrmion.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo.png" alt="Logo"><span class="site-name">Yu-Xuan's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">Skyrmion 晶格连续电子模型</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Skyrmion 晶格连续电子模型</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-07-17T16:00:00.000Z" title="发表于 2026-07-18 00:00:00">2026-07-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-07-18T13:45:03.169Z" title="更新于 2026-07-18 21:45:03">2026-07-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/QuantumGeometry/">QuantumGeometry</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">4.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>22分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;自上次更新已经过了&quot;,&quot;messageNext&quot;:&quot;天，文章内容可能已过时。&quot;,&quot;postUpdate&quot;:&quot;2026-07-18 21:45:03&quot;}" hidden></div><h1 id="Skyrmion-晶格连续电子模型"><a href="#Skyrmion-晶格连续电子模型" class="headerlink" title="Skyrmion 晶格连续电子模型"></a>Skyrmion 晶格连续电子模型</h1><h2 id="模型与符号约定"><a href="#模型与符号约定" class="headerlink" title="模型与符号约定"></a>模型与符号约定</h2><p>考虑二维巡游电子与周期性 Skyrmion 磁构型之间的交换耦合。为了同时容纳两套感受到相反磁织构的 flavor，写成</p>
+<script type="math/tex; mode=display">
+H_{\tau}
+=
+\frac{\mathbf p^2}{2m}
++
+V(\mathbf r)
+-
+\tau J\,\mathbf n(\mathbf r)\cdot\boldsymbol{\sigma},
+\qquad
+\tau=\pm1.
+\label{eq:basic_hamiltonian}</script><p>其中，$\mathbf p=-i\hbar\nabla$ 是二维动量算符，$m$ 是电子有效质量，$\boldsymbol{\sigma}=(\sigma_x,\sigma_y,\sigma_z)$ 是电子自旋或赝自旋空间中的 Pauli 矩阵，$J&gt;0$ 是交换耦合强度，$\mathbf n(\mathbf r)$ 是单位磁化方向，满足 $|\mathbf n(\mathbf r)|=1$，而 $V(\mathbf r)$ 是可选的周期标量势。指标 $\tau=\pm1$ 表示两套交换耦合符号相反的 flavor。</p>
+<p>磁构型和标量势满足超晶格周期性</p>
+<script type="math/tex; mode=display">
+\mathbf n(\mathbf r+\mathbf R)
+=
+\mathbf n(\mathbf r),
+\qquad
+V(\mathbf r+\mathbf R)
+=
+V(\mathbf r),
+\label{eq:periodicity}</script><p>其中 $\mathbf R=l_1\mathbf a_1+l_2\mathbf a_2$ 是 Skyrmion 晶格的实空间平移矢量。对固定位置 $\mathbf r$，交换项 $-\tau J\,\mathbf n(\mathbf r)\cdot\boldsymbol{\sigma}$ 的本征值为 $\pm J$。因此，在固定模长模型中，局域交换劈裂始终为 $2J$，空间依赖只来自自旋量子化轴的旋转，而不是交换场强度的变化。若只研究单个 flavor，可以固定 $\tau=+1$，模型简化为</p>
+<script type="math/tex; mode=display">
+H
+=
+\frac{\mathbf p^2}{2m}
++
+V(\mathbf r)
+-
+J\,\mathbf n(\mathbf r)\cdot\boldsymbol{\sigma}.
+\label{eq:single_flavor_hamiltonian}</script><ul>
+<li>Skyrmion 磁构型</li>
+</ul>
+<p>单位磁化方向可以用两个角度参数化为</p>
+<script type="math/tex; mode=display">
+\mathbf n(\mathbf r)
+=
+\begin{pmatrix}
+\sin\theta(\mathbf r)\cos\phi(\mathbf r)\\
+\sin\theta(\mathbf r)\sin\phi(\mathbf r)\\
+\cos\theta(\mathbf r)
+\end{pmatrix}.
+\label{eq:n_parameterization}</script><p>Skyrmion 拓扑荷密度定义为</p>
+<script type="math/tex; mode=display">
+\rho_{\mathrm{sk}}(\mathbf r)
+=
+\frac{1}{4\pi}
+\mathbf n\cdot
+\left(
+\partial_x\mathbf n
+\times
+\partial_y\mathbf n
+\right).
+\label{eq:skyrmion_density}</script><p>一个磁性晶胞中的 Skyrmion 数为</p>
+<script type="math/tex; mode=display">
+Q_{\mathrm{sk}}
+=
+\frac{1}{4\pi}
+\int_{\mathrm{cell}}
+d^2r\,
+\mathbf n\cdot
+\left(
+\partial_x\mathbf n
+\times
+\partial_y\mathbf n
+\right).
+\label{eq:skyrmion_number}</script><p>式 $\eqref{eq:skyrmion_density}$ 中的三重积</p>
+<script type="math/tex; mode=display">
+\mathbf n\cdot
+\left(
+\partial_x\mathbf n
+\times
+\partial_y\mathbf n
+\right)
+\label{eq:scalar_chirality_density}</script><p>衡量磁化方向在单位球面上的局部winding程度。后面可以看到，同一个组合也决定电子在单交换分支中感受到的涌现磁场。</p>
+<p>考虑三角磁性超晶格，取倒格子基矢</p>
+<script type="math/tex; mode=display">
+\mathbf b_1
+=
+Q(1,0),
+\qquad
+\mathbf b_2
+=
+Q\left(
+-\frac12,\frac{\sqrt3}{2}
+\right).
+\label{eq:triangular_reciprocal_vectors}</script><p>第一壳层的第三个等价波矢为</p>
+<script type="math/tex; mode=display">
+\mathbf b_3
+=
+-\mathbf b_1-\mathbf b_2
+=
+Q\left(
+-\frac12,-\frac{\sqrt3}{2}
+\right),
+\label{eq:third_reciprocal_vector}</script><p>并满足</p>
+<script type="math/tex; mode=display">
+\mathbf b_1+\mathbf b_2+\mathbf b_3=0.
+\label{eq:q_sum_zero}</script><p>与式 $\eqref{eq:triangular_reciprocal_vectors}$ 对应的实空间基矢可以取为</p>
+<script type="math/tex; mode=display">
+\mathbf a_1
+=
+\left(
+\frac{2\pi}{Q},
+\frac{2\pi}{\sqrt3Q}
+\right),
+\qquad
+\mathbf a_2
+=
+\left(
+0,
+\frac{4\pi}{\sqrt3Q}
+\right),
+\label{eq:triangular_real_vectors}</script><p>它们满足 $\mathbf a_i\cdot\mathbf b_j=2\pi\delta_{ij}$。磁性晶胞面积为</p>
+<script type="math/tex; mode=display">
+A_M
+=
+|\mathbf a_1\times\mathbf a_2|
+=
+\frac{8\pi^2}{\sqrt3Q^2}.
+\label{eq:magnetic_cell_area}</script><p>一般倒格矢写成</p>
+<script type="math/tex; mode=display">
+\mathbf G_{mn}
+=
+m\mathbf b_1+n\mathbf b_2,
+\qquad
+m,n\in\mathbb Z.
+\label{eq:general_reciprocal_vector}</script><p>一种方便的构造方法是先定义未归一化矢量场</p>
+<script type="math/tex; mode=display">
+\mathbf m(\mathbf r)
+=
+m_0\hat{\mathbf z}
++
+m_1\sum_{j=1}^{3}
+\left[
+\hat{\mathbf z}
+\cos(\mathbf b_j\cdot\mathbf r+\varphi_j)
++
+\chi\,\mathbf e_j
+\sin(\mathbf b_j\cdot\mathbf r+\varphi_j)
+\right],
+\label{eq:triple_q_texture}</script><p>然后归一化：</p>
+<script type="math/tex; mode=display">
+\mathbf n(\mathbf r)
+=
+\frac{\mathbf m(\mathbf r)}
+{|\mathbf m(\mathbf r)|}.
+\label{eq:normalized_texture}</script><p>对于 Bloch 型 Skyrmion，可以取</p>
+<script type="math/tex; mode=display">
+\mathbf e_j
+=
+\hat{\mathbf z}\times\hat{\mathbf b}_j,
+\label{eq:bloch_helicity_vector}</script><p>而对于 Néel 型 Skyrmion，可以取</p>
+<script type="math/tex; mode=display">
+\mathbf e_j
+=
+\hat{\mathbf b}_j.
+\label{eq:neel_helicity_vector}</script><p>参数 $m_0/m_1$ 控制均匀背景磁化与螺旋调制之间的竞争，$\chi=\pm1$ 控制面内旋转方向，$\varphi_j$ 控制三个螺旋之间的相对相位。需要注意，triple-$Q$ 叠加并不自动保证 $Q_{\mathrm{sk}}=\pm1$。具体磁织构是否为 Skyrmion 晶格，应由式 $\eqref{eq:skyrmion_number}$ 直接确认。</p>
+<p>如果直接把式 $\eqref{eq:triple_q_texture}$ 作为交换场，</p>
+<script type="math/tex; mode=display">
+\mathbf J(\mathbf r)
+=
+J_1\mathbf m(\mathbf r),
+\label{eq:finite_harmonic_exchange}</script><p>则 $|\mathbf J(\mathbf r)|$ 随位置变化，局域交换劈裂也随位置变化。如果使用</p>
+<script type="math/tex; mode=display">
+\mathbf J(\mathbf r)
+=
+J\mathbf n(\mathbf r),
+\qquad
+\mathbf n(\mathbf r)
+=
+\frac{\mathbf m(\mathbf r)}
+{|\mathbf m(\mathbf r)|},
+\label{eq:fixed_magnitude_exchange}</script><p>则局域交换劈裂固定为 $2J$。这两个模型在 Fourier 空间中的结构不同。未归一化的 $\mathbf m(\mathbf r)$ 只包含 $\mathbf G=0$ 和 $\mathbf G=\pm\mathbf b_1,\pm\mathbf b_2,\pm\mathbf b_3$ 这些谐波；但归一化因子 $1/|\mathbf m(\mathbf r)|$ 是非线性周期函数，因此 $\mathbf n(\mathbf r)$ 会包含无限多个高次 Fourier 分量。固定模长模型更适合讨论磁化方向本身引起的规范场。实际平面波计算时，则需要先在实空间构造 $\mathbf n(\mathbf r)$，再通过 FFT 获得其 Fourier 系数。</p>
+<h2 id="将交换构型改写成-SU-2-规范场"><a href="#将交换构型改写成-SU-2-规范场" class="headerlink" title="将交换构型改写成 $SU(2)$ 规范场"></a>将交换构型改写成 $SU(2)$ 规范场</h2><p>为简化符号，暂时固定 $\tau=+1$，考虑式 $\eqref{eq:single_flavor_hamiltonian}$。定义局域自旋旋转矩阵</p>
+<script type="math/tex; mode=display">
+U(\mathbf r)
+=
+e^{-i\phi(\mathbf r)\sigma_z/2}
+e^{-i\theta(\mathbf r)\sigma_y/2}.
+\label{eq:local_spin_rotation}</script><p>它满足</p>
+<script type="math/tex; mode=display">
+U(\mathbf r)\sigma_zU^\dagger(\mathbf r)
+=
+\mathbf n(\mathbf r)\cdot\boldsymbol{\sigma},
+\label{eq:rotation_identity}</script><p>因此</p>
+<script type="math/tex; mode=display">
+U^\dagger(\mathbf r)
+\left[
+\mathbf n(\mathbf r)\cdot\boldsymbol{\sigma}
+\right]
+U(\mathbf r)
+=
+\sigma_z.
+\label{eq:exchange_diagonalization}</script><p>将波函数写成</p>
+<script type="math/tex; mode=display">
+\Psi(\mathbf r)
+=
+U(\mathbf r)\widetilde\Psi(\mathbf r).
+\label{eq:wavefunction_rotation}</script><p>旋转后的 Hamiltonian 为</p>
+<script type="math/tex; mode=display">
+\widetilde H
+=
+U^\dagger H U.
+\label{eq:rotated_hamiltonian_definition}</script><p>交换项变成空间无关的形式：</p>
+<script type="math/tex; mode=display">
+U^\dagger
+\left[
+-J\mathbf n\cdot\boldsymbol{\sigma}
+\right]
+U
+=
+-J\sigma_z.
+\label{eq:uniform_exchange_after_rotation}</script><p>定义矩阵规范场</p>
+<script type="math/tex; mode=display">
+\boldsymbol{\mathcal A}(\mathbf r)
+=
+iU^\dagger(\mathbf r)\nabla U(\mathbf r),
+\label{eq:su2_gauge_field}</script><p>则有</p>
+<script type="math/tex; mode=display">
+U^\dagger\mathbf pU
+=
+\mathbf p-\hbar\boldsymbol{\mathcal A}.
+\label{eq:covariant_momentum}</script><p>因此，原始模型可以精确写成</p>
+<script type="math/tex; mode=display">
+\widetilde H
+=
+\frac{
+\left[
+\mathbf p-\hbar\boldsymbol{\mathcal A}(\mathbf r)
+\right]^2
+}{2m}
++
+V(\mathbf r)
+-
+J\sigma_z.
+\label{eq:su2_hamiltonian}</script><p>式 $\eqref{eq:su2_hamiltonian}$ 与式 $\eqref{eq:single_flavor_hamiltonian}$ 完全幺正等价。空间依赖的交换方向被旋转成固定的 $z$ 方向，而磁织构的空间变化全部进入动能中的矩阵规范场。</p>
+<p>对式 $\eqref{eq:local_spin_rotation}$ 求导，可以得到</p>
+<script type="math/tex; mode=display">
+\mathcal A_i
+=
+\frac12
+\left[
+(\partial_i\theta)\sigma_y
++
+(\partial_i\phi)
+\left(
+\cos\theta\,\sigma_z
+-
+\sin\theta\,\sigma_x
+\right)
+\right],
+\qquad
+i=x,y.
+\label{eq:su2_gauge_components}</script><p>矩阵形式为</p>
+<script type="math/tex; mode=display">
+\mathcal A_i
+=
+\frac12
+\begin{pmatrix}
+\cos\theta\,\partial_i\phi
+&
+-\sin\theta\,\partial_i\phi-i\partial_i\theta
+\\
+-\sin\theta\,\partial_i\phi+i\partial_i\theta
+&
+-\cos\theta\,\partial_i\phi
+\end{pmatrix}.
+\label{eq:su2_gauge_matrix}</script><p>可以将其分为对角部分</p>
+<script type="math/tex; mode=display">
+\mathcal A_i^{\parallel}
+=
+\frac12
+\cos\theta\,
+\partial_i\phi\,
+\sigma_z,
+\label{eq:su2_diagonal_part}</script><p>和非对角部分</p>
+<script type="math/tex; mode=display">
+\mathcal A_i^{\perp}
+=
+\frac12
+\left[
+(\partial_i\theta)\sigma_y
+-
+\sin\theta(\partial_i\phi)\sigma_x
+\right].
+\label{eq:su2_offdiagonal_part}</script><p>完整的动能需要按照算符次序展开：</p>
+<script type="math/tex; mode=display">
+\left(
+\mathbf p-\hbar\boldsymbol{\mathcal A}
+\right)^2
+=
+\mathbf p^2
+-
+\hbar\sum_i
+\{p_i,\mathcal A_i\}
++
+\hbar^2\sum_i\mathcal A_i^2.
+\label{eq:covariant_kinetic_expansion}</script><p>因此</p>
+<script type="math/tex; mode=display">
+\widetilde H
+=
+\frac{\mathbf p^2}{2m}
+-
+\frac{\hbar}{2m}
+\sum_i
+\{p_i,\mathcal A_i\}
++
+\frac{\hbar^2}{2m}
+\sum_i\mathcal A_i^2
++
+V
+-
+J\sigma_z.
+\label{eq:expanded_su2_hamiltonian}</script><p>完整的 $SU(2)$ 规范场由局域基底旋转产生。其非阿贝尔场强定义为</p>
+<script type="math/tex; mode=display">
+\mathcal F_{ij}
+=
+\partial_i\mathcal A_j
+-
+\partial_j\mathcal A_i
+-
+i[\mathcal A_i,\mathcal A_j].
+\label{eq:nonabelian_field_strength}</script><p>在局域旋转 $U(\mathbf r)$ 光滑的区域内式 $\eqref{eq:nonabelian_field_strength}$ 为零，这是因为完整的 $\boldsymbol{\mathcal A}$ 是纯规范场。真正与 Landau 磁场对应的非零曲率，是在只保留一个局域交换分支后得到的 Abelian Berry 曲率。</p>
+<h2 id="单交换分支与涌现-U-1-规范场"><a href="#单交换分支与涌现-U-1-规范场" class="headerlink" title="单交换分支与涌现 $U(1)$ 规范场"></a>单交换分支与涌现 $U(1)$ 规范场</h2><p>局域算符 $\mathbf n(\mathbf r)\cdot\boldsymbol{\sigma}$ 的本征态满足</p>
+<script type="math/tex; mode=display">
+\mathbf n\cdot\boldsymbol{\sigma}
+|\chi_\eta(\mathbf r)\rangle
+=
+\eta|\chi_\eta(\mathbf r)\rangle,
+\qquad
+\eta=\pm1.
+\label{eq:local_spin_eigenproblem}</script><p>对 $\tau=+1$ 的 Hamiltonian，交换能量为</p>
+<script type="math/tex; mode=display">
+E_\eta^{\mathrm{ex}}
+=
+-\eta J.
+\label{eq:local_exchange_energy}</script><p>因此低能分支为 $\eta=+1$。一种局域本征态选择为</p>
+<script type="math/tex; mode=display">
+|\chi_+\rangle
+=
+\begin{pmatrix}
+e^{-i\phi/2}\cos(\theta/2)\\
+e^{i\phi/2}\sin(\theta/2)
+\end{pmatrix}.
+\label{eq:local_spinor}</script><p>将电子波函数限制在该局域分支，</p>
+<script type="math/tex; mode=display">
+|\Psi(\mathbf r)\rangle
+=
+\psi(\mathbf r)
+|\chi_+(\mathbf r)\rangle,
+\label{eq:projected_wavefunction}</script><p>可以得到有效 Hamiltonian</p>
+<script type="math/tex; mode=display">
+H_{\mathrm{eff}}
+=
+\frac{
+\left[
+\mathbf p-\mathbf a(\mathbf r)
+\right]^2
+}{2m}
++
+V(\mathbf r)
+-
+J
++
+\Phi(\mathbf r).
+\label{eq:projected_hamiltonian}</script><p>其中</p>
+<script type="math/tex; mode=display">
+\mathbf a(\mathbf r)
+=
+i\hbar
+\langle\chi_+|
+\nabla\chi_+\rangle
+\label{eq:abelian_connection}</script><p>是 Abelian Berry connection，而</p>
+<script type="math/tex; mode=display">
+\Phi(\mathbf r)
+=
+\frac{\hbar^2}{2m}
+\sum_i
+\left[
+\langle\partial_i\chi_+|
+\partial_i\chi_+\rangle
+-
+|\langle\chi_+|\partial_i\chi_+\rangle|^2
+\right]
+\label{eq:geometric_scalar_potential_definition}</script><p>是投影产生的几何标量势。在式 $\eqref{eq:local_spinor}$ 的规范中，</p>
+<script type="math/tex; mode=display">
+\mathbf a
+=
+\frac{\hbar}{2}
+\cos\theta\,\nabla\phi.
+\label{eq:abelian_connection_symmetric_gauge}</script><p>通过局域相位变换，也可以写成</p>
+<script type="math/tex; mode=display">
+\mathbf a
+=
+-\frac{\hbar}{2}
+(1-\cos\theta)\nabla\phi.
+\label{eq:abelian_connection_north_gauge}</script><p>式 $\eqref{eq:abelian_connection_symmetric_gauge}$ 和式 $\eqref{eq:abelian_connection_north_gauge}$ 相差一个梯度，因此给出的物理曲率相同。</p>
+<ul>
+<li>涌现磁场</li>
+</ul>
+<p>定义动量量纲的涌现磁场</p>
+<script type="math/tex; mode=display">
+b(\mathbf r)
+=
+\partial_xa_y-\partial_ya_x.
+\label{eq:emergent_b_definition}</script><p>直接计算得到</p>
+<script type="math/tex; mode=display">
+b(\mathbf r)
+=
+-\frac{\hbar}{2}
+\mathbf n\cdot
+\left(
+\partial_x\mathbf n
+\times
+\partial_y\mathbf n
+\right).
+\label{eq:emergent_b_texture}</script><p>结合式 $\eqref{eq:skyrmion_density}$，有</p>
+<script type="math/tex; mode=display">
+b(\mathbf r)
+=
+-2\pi\hbar\,
+\rho_{\mathrm{sk}}(\mathbf r).
+\label{eq:b_and_skyrmion_density}</script><p>对一个磁性晶胞积分：</p>
+<script type="math/tex; mode=display">
+\Phi_b
+=
+\int_{\mathrm{cell}}
+d^2r\,
+b(\mathbf r)
+=
+-2\pi\hbar Q_{\mathrm{sk}}
+=
+-hQ_{\mathrm{sk}}.
+\label{eq:momentum_flux}</script><p>若把 $\mathbf a$ 与电子电荷 $-e$ 的电磁矢势对应，即</p>
+<script type="math/tex; mode=display">
+\mathbf p-\mathbf a
+=
+\mathbf p+e\mathbf A_{\mathrm{em}},
+\label{eq:electromagnetic_identification}</script><p>则</p>
+<script type="math/tex; mode=display">
+\mathbf A_{\mathrm{em}}
+=
+-\frac{\mathbf a}{e},
+\qquad
+B_{\mathrm{em}}
+=
+-\frac{b}{e}.
+\label{eq:emergent_electromagnetic_fields}</script><p>因此，每个磁性晶胞中的物理涌现磁通为</p>
+<script type="math/tex; mode=display">
+\Phi_{\mathrm{em}}
+=
+\frac{h}{e}
+Q_{\mathrm{sk}}.
+\label{eq:emergent_flux_quantization}</script><p>对于 $Q_{\mathrm{sk}}=\pm1$，每个 Skyrmion 晶胞正好对应一个单电子磁通量子 $h/e$。</p>
+<ul>
+<li>两个 flavor 的关系</li>
+</ul>
+<p>回到式 $\eqref{eq:basic_hamiltonian}$。对 flavor $\tau$，低能局域分支满足 $\eta=\tau$，因此其涌现磁场为</p>
+<script type="math/tex; mode=display">
+b_\tau(\mathbf r)
+=
+-\tau\frac{\hbar}{2}
+\mathbf n\cdot
+\left(
+\partial_x\mathbf n
+\times
+\partial_y\mathbf n
+\right).
+\label{eq:flavor_emergent_field}</script><p>两个 flavor 感受到符号相反的涌现磁场：</p>
+<script type="math/tex; mode=display">
+b_+(\mathbf r)
+=
+-b_-(\mathbf r).
+\label{eq:opposite_emergent_fields}</script><p>相应的物理磁通为</p>
+<script type="math/tex; mode=display">
+\Phi_{\mathrm{em},\tau}
+=
+\tau\frac{h}{e}
+Q_{\mathrm{sk}}.
+\label{eq:flavor_flux}</script><p>在没有 flavor 混合时，它们可以具有相同的能量色散，但对应相反的轨道环流和 Landau-level 拓扑方向。</p>
+<ul>
+<li>几何标量势</li>
+</ul>
+<p>式 $\eqref{eq:geometric_scalar_potential_definition}$ 可以显式写成</p>
+<script type="math/tex; mode=display">
+\Phi(\mathbf r)
+=
+\frac{\hbar^2}{8m}
+\left[
+(\nabla\theta)^2
++
+\sin^2\theta
+(\nabla\phi)^2
+\right].
+\label{eq:geometric_scalar_potential_angles}</script><p>利用</p>
+<script type="math/tex; mode=display">
+\partial_i\mathbf n\cdot\partial_i\mathbf n
+=
+(\partial_i\theta)^2
++
+\sin^2\theta
+(\partial_i\phi)^2,
+\label{eq:texture_gradient_identity}</script><p>也可写成</p>
+<script type="math/tex; mode=display">
+\Phi(\mathbf r)
+=
+\frac{\hbar^2}{8m}
+\sum_{i=x,y}
+\partial_i\mathbf n\cdot\partial_i\mathbf n.
+\label{eq:geometric_scalar_potential_n}</script><p>因此，Skyrmion 磁织构在单分支模型中同时产生周期涌现磁场 $b(\mathbf r)$ 和周期几何标量势 $\Phi(\mathbf r)$。</p>
+<h2 id="与-Landau-能级的关系"><a href="#与-Landau-能级的关系" class="headerlink" title="与 Landau 能级的关系"></a>与 Landau 能级的关系</h2><p>虽然 $b(\mathbf r)$ 通常在晶胞中高度不均匀，但其晶胞平均值完全由 $Q_{\mathrm{sk}}$ 决定：</p>
+<script type="math/tex; mode=display">
+\overline b
+=
+\frac{1}{A_M}
+\int_{\mathrm{cell}}
+b(\mathbf r)d^2r
+=
+-\frac{2\pi\hbar Q_{\mathrm{sk}}}{A_M}.
+\label{eq:average_momentum_field}</script><p>对应的物理平均磁场为</p>
+<script type="math/tex; mode=display">
+\overline B_{\mathrm{em}}
+=
+\frac{hQ_{\mathrm{sk}}}
+{eA_M}.
+\label{eq:average_emergent_field}</script><p>如果暂时忽略磁场的空间起伏，并把几何势替换为平均值，则式 $\eqref{eq:projected_hamiltonian}$ 近似成为</p>
+<script type="math/tex; mode=display">
+H_{\mathrm{LL}}
+=
+\frac{
+(\mathbf p-\overline{\mathbf a})^2
+}{2m}
+-
+J
++
+\overline\Phi.
+\label{eq:uniform_landau_hamiltonian}</script><p>这就是普通的均匀磁场 Landau 问题。对应的磁长度为</p>
+<script type="math/tex; mode=display">
+l_B
+=
+\sqrt{
+\frac{\hbar}
+{|\overline b|}
+}
+=
+\sqrt{
+\frac{A_M}
+{2\pi|Q_{\mathrm{sk}}|}
+}.
+\label{eq:magnetic_length}</script><p>对于每个磁性晶胞一个 Skyrmion，即 $|Q_{\mathrm{sk}}|=1$，</p>
+<script type="math/tex; mode=display">
+l_B
+=
+\sqrt{
+\frac{A_M}{2\pi}
+}.
+\label{eq:magnetic_length_qone}</script><p>将式 $\eqref{eq:magnetic_cell_area}$ 代入式 $\eqref{eq:magnetic_length_qone}$，得到</p>
+<script type="math/tex; mode=display">
+l_B
+=
+\sqrt{
+\frac{4\pi}{\sqrt3}
+}
+\frac{1}{Q}.</script><p>有效回旋频率为</p>
+<script type="math/tex; mode=display">
+\omega_c^{\mathrm{em}}
+=
+\frac{|\overline b|}{m},
+\label{eq:emergent_cyclotron_frequency}</script><p>因此</p>
+<script type="math/tex; mode=display">
+\hbar\omega_c^{\mathrm{em}}
+=
+\frac{
+2\pi\hbar^2
+|Q_{\mathrm{sk}}|
+}{
+mA_M
+}.
+\label{eq:emergent_cyclotron_energy}</script><p>理想均匀场中的能级为</p>
+<script type="math/tex; mode=display">
+E_n
+=
+-J
++
+\overline\Phi
++
+\hbar\omega_c^{\mathrm{em}}
+\left(
+n+\frac12
+\right),
+\qquad
+n=0,1,2,\ldots.
+\label{eq:landau_levels}</script><p>定义超晶格动能尺度</p>
+<script type="math/tex; mode=display">
+E_Q
+=
+\frac{\hbar^2Q^2}{2m}.
+\label{eq:superlattice_kinetic_scale}</script><p>当 $|Q_{\mathrm{sk}}|=1$ 时，</p>
+<script type="math/tex; mode=display">
+\hbar\omega_c^{\mathrm{em}}
+=
+\frac{\sqrt3}{2\pi}
+E_Q.
+\label{eq:cyclotron_energy_in_eq}</script><p>因此，Skyrmion 晶格的 Landau 能级间隔由超晶格动能尺度 $E_Q$ 决定。</p>
+<ul>
+<li>每个晶胞的 Landau 简并度</li>
+</ul>
+<p>均匀磁场中，每单位面积的 Landau 能级简并度为</p>
+<script type="math/tex; mode=display">
+\frac{1}{2\pi l_B^2}.
+\label{eq:landau_degeneracy_density}</script><p>因此，一个磁性晶胞内的态数为</p>
+<script type="math/tex; mode=display">
+N_{\mathrm{LL,cell}}
+=
+\frac{A_M}{2\pi l_B^2}
+=
+|Q_{\mathrm{sk}}|.
+\label{eq:landau_states_per_cell}</script><p>对于 $|Q_{\mathrm{sk}}|=1$，</p>
+<script type="math/tex; mode=display">
+N_{\mathrm{LL,cell}}
+=
+1.
+\label{eq:one_state_per_cell}</script><p>这意味着每个 Landau 能级在每个 Skyrmion 晶胞中恰好提供一个单粒子态。经过 Bloch 组合后，一个 Landau 能级通常对应一条 Bloch miniband。</p>
+<h2 id="从-Landau-能级到-Skyrmion-miniband"><a href="#从-Landau-能级到-Skyrmion-miniband" class="headerlink" title="从 Landau 能级到 Skyrmion miniband"></a>从 Landau 能级到 Skyrmion miniband</h2><p>真实的 Skyrmion 磁场不是均匀的，可以写成</p>
+<script type="math/tex; mode=display">
+b(\mathbf r)
+=
+\overline b
++
+\delta b(\mathbf r),
+\label{eq:field_decomposition}</script><p>其中</p>
+<script type="math/tex; mode=display">
+\int_{\mathrm{cell}}
+\delta b(\mathbf r)d^2r
+=
+0.
+\label{eq:zero_average_field_modulation}</script><p>投影 Hamiltonian 因而可以理解为</p>
+<script type="math/tex; mode=display">
+H_{\mathrm{eff}}
+=
+H_{\mathrm{LL}}
++
+\delta H_b
++
+\delta\Phi(\mathbf r).
+\label{eq:landau_plus_modulation}</script><p>均匀场中的完全平坦 Landau 能级，在周期性 $\delta b$ 和 $\Phi$ 的作用下会展宽成具有有限带宽的 Bloch miniband。因此，Skyrmion 晶格能带更准确地说是周期非均匀涌现磁场中的 Landau miniband。如果最低能带的带宽为 $W$，它与下一条能带的间隔为 $\Delta$，那么 Landau-level-like 的理想情况要求</p>
+<script type="math/tex; mode=display">
+W\ll\Delta.
+\label{eq:landau_like_flatness_condition}</script><p>Skyrmion 数只固定晶胞总磁通，并不单独决定带宽。两个具有相同 $Q_{\mathrm{sk}}$ 的磁织构，可以因为局域磁场分布不同而产生不同的 miniband 色散。局域交换劈裂相对于超晶格动能的强弱可以用</p>
+<script type="math/tex; mode=display">
+\lambda_J
+=
+\frac{J}{E_Q}
+\label{eq:dimensionless_exchange}</script><p>衡量，较大的 $J/E_Q$ 有利于分离两个交换分支。同时，涌现磁场不能过度集中在晶胞中很小的区域，否则周期磁场调制会使 Landau 能级产生较大色散。几何标量势 $\Phi(\mathbf r)$ 也不能产生过强的周期势调制。因此，是否形成平坦 Landau-level-like 能带，不只取决于 $Q_{\mathrm{sk}}$，还取决于磁织构的具体 profile。</p>
+<h2 id="最低-Landau-能级的-form-factor-与量子度规"><a href="#最低-Landau-能级的-form-factor-与量子度规" class="headerlink" title="最低 Landau 能级的 form factor 与量子度规"></a>最低 Landau 能级的 form factor 与量子度规</h2><p>最低 Landau 能级的投影 form factor 为</p>
+<script type="math/tex; mode=display">
+F_{\mathrm{LLL}}(q)
+=
+e^{-q^2l_B^2/4},
+\label{eq:lll_form_factor}</script><p>其模平方为</p>
+<script type="math/tex; mode=display">
+|F_{\mathrm{LLL}}(q)|^2
+=
+e^{-q^2l_B^2/2}.
+\label{eq:lll_form_factor_squared}</script><p>与小动量 Bloch 重叠</p>
+<script type="math/tex; mode=display">
+|\Lambda(\mathbf k,\mathbf k+\mathbf q)|^2
+=
+1-g_{ij}q_iq_j+\cdots
+\label{eq:small_q_overlap}</script><p>比较，可以得到理想最低 Landau 能级的量子度规</p>
+<script type="math/tex; mode=display">
+g_{ij}
+=
+\frac{l_B^2}{2}
+\delta_{ij}.
+\label{eq:lll_quantum_metric}</script><p>利用式 $\eqref{eq:magnetic_length}$，有</p>
+<script type="math/tex; mode=display">
+g_{ij}
+=
+\frac{
+A_M
+}{
+4\pi|Q_{\mathrm{sk}}|
+}
+\delta_{ij}.
+\label{eq:lll_metric_cell_area}</script><p>对应的动量空间几何宽度为</p>
+<script type="math/tex; mode=display">
+q_g
+=
+\frac{1}{\sqrt g}
+=
+\frac{\sqrt2}{l_B}
+=
+\sqrt{
+\frac{
+4\pi|Q_{\mathrm{sk}}|
+}{
+A_M
+}
+}.
+\label{eq:geometric_momentum_width}</script><p>因此，Skyrmion 晶格面积、磁长度、量子度规和 Gaussian form factor 之间形成了直接联系：</p>
+<script type="math/tex; mode=display">
+A_M
+\longrightarrow
+l_B
+\longrightarrow
+g
+\longrightarrow
+F(q).
+\label{eq:geometry_chain}</script><h2 id="平面波展开"><a href="#平面波展开" class="headerlink" title="平面波展开"></a>平面波展开</h2><p>规范场形式主要用于理解 Landau 能级图像。实际计算能带时，最直接的方法是在原始固定自旋基底中展开式 $\eqref{eq:basic_hamiltonian}$。波函数写成</p>
+<script type="math/tex; mode=display">
+\Psi_{n\tau\mathbf k}(\mathbf r)
+=
+e^{i\mathbf k\cdot\mathbf r}
+u_{n\tau\mathbf k}(\mathbf r),
+\label{eq:bloch_wavefunction}</script><p>其中</p>
+<script type="math/tex; mode=display">
+u_{n\tau\mathbf k}(\mathbf r+\mathbf R)
+=
+u_{n\tau\mathbf k}(\mathbf r).
+\label{eq:periodic_bloch_part}</script><p>周期部分满足</p>
+<script type="math/tex; mode=display">
+H_\tau(\mathbf k)
+u_{n\tau\mathbf k}
+=
+E_{n\tau}(\mathbf k)
+u_{n\tau\mathbf k},
+\label{eq:bloch_eigenproblem}</script><p>其中</p>
+<script type="math/tex; mode=display">
+H_\tau(\mathbf k)
+=
+\frac{
+(-i\hbar\nabla+\hbar\mathbf k)^2
+}{2m}
++
+V(\mathbf r)
+-
+\tau J
+\mathbf n(\mathbf r)\cdot\boldsymbol{\sigma}.</script><p>将三个磁化分量展开为</p>
+<script type="math/tex; mode=display">
+n_\alpha(\mathbf r)
+=
+\sum_{\mathbf G}
+n_{\alpha,\mathbf G}
+e^{i\mathbf G\cdot\mathbf r},
+\qquad
+\alpha=x,y,z,
+\label{eq:texture_fourier_expansion}</script><p>其中</p>
+<script type="math/tex; mode=display">
+n_{\alpha,\mathbf G}
+=
+\frac{1}{A_M}
+\int_{\mathrm{cell}}
+d^2r\,
+n_\alpha(\mathbf r)
+e^{-i\mathbf G\cdot\mathbf r}.
+\label{eq:texture_fourier_coefficient}</script><p>因为 $n_\alpha(\mathbf r)$ 是实函数，</p>
+<script type="math/tex; mode=display">
+n_{\alpha,-\mathbf G}
+=
+n_{\alpha,\mathbf G}^{\ast}.
+\label{eq:texture_fourier_reality}</script><p>同样，</p>
+<script type="math/tex; mode=display">
+V(\mathbf r)
+=
+\sum_{\mathbf G}
+V_{\mathbf G}
+e^{i\mathbf G\cdot\mathbf r},
+\label{eq:scalar_potential_fourier}</script><p>且</p>
+<script type="math/tex; mode=display">
+V_{-\mathbf G}
+=
+V_{\mathbf G}^{\ast}.
+\label{eq:scalar_potential_reality}</script><ul>
+<li>平面波基矢</li>
+</ul>
+<p>周期 Bloch 波函数展开为</p>
+<script type="math/tex; mode=display">
+u_{n\tau\mathbf k}(\mathbf r)
+=
+\frac{1}{\sqrt{A_M}}
+\sum_{\mathbf G}
+e^{i\mathbf G\cdot\mathbf r}
+C_{n\tau\mathbf k}(\mathbf G),
+\label{eq:plane_wave_expansion}</script><p>其中</p>
+<script type="math/tex; mode=display">
+C_{n\tau\mathbf k}(\mathbf G)
+=
+\begin{pmatrix}
+C_{\mathbf G\uparrow}^{n\tau\mathbf k}\\
+C_{\mathbf G\downarrow}^{n\tau\mathbf k}
+\end{pmatrix}.
+\label{eq:spinor_coefficients}</script><p>基矢可以写成</p>
+<script type="math/tex; mode=display">
+|\mathbf G,s\rangle
+=
+\frac{1}{\sqrt{A_M}}
+e^{i\mathbf G\cdot\mathbf r}
+|s\rangle,
+\qquad
+s=\uparrow,\downarrow.
+\label{eq:plane_wave_basis}</script><p>若保留 $N_G$ 个倒格矢，则每个 flavor 的 Hamiltonian 维数为 $2N_G\times2N_G$。</p>
+<p>动能矩阵元为</p>
+<script type="math/tex; mode=display">
+\left\langle
+\mathbf G,s
+\left|
+\frac{
+(-i\hbar\nabla+\hbar\mathbf k)^2
+}{2m}
+\right|
+\mathbf G',s'
+\right\rangle
+=
+\frac{
+\hbar^2|\mathbf k+\mathbf G|^2
+}{2m}
+\delta_{\mathbf G\mathbf G'}
+\delta_{ss'}.
+\label{eq:kinetic_matrix_element}</script><p>定义</p>
+<script type="math/tex; mode=display">
+\varepsilon_{\mathbf G}(\mathbf k)
+=
+\frac{
+\hbar^2|\mathbf k+\mathbf G|^2
+}{2m}.</script><p>标量势矩阵元为</p>
+<script type="math/tex; mode=display">
+\langle\mathbf G,s|
+V(\mathbf r)
+|\mathbf G',s'\rangle
+=
+V_{\mathbf G-\mathbf G'}
+\delta_{ss'}.</script><p>交换项矩阵元为</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&
+\left\langle
+\mathbf G,s
+\left|
+-\tau J
+\mathbf n(\mathbf r)\cdot\boldsymbol{\sigma}
+\right|
+\mathbf G',s'
+\right\rangle
+=
+-\tau J
+\sum_{\alpha=x,y,z}
+n_{\alpha,\mathbf G-\mathbf G'}
+(\sigma_\alpha)_{ss'}.
+\end{aligned}
+\label{eq:exchange_matrix_element}</script><p>因此，完整平面波矩阵为</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+H_{\mathbf Gs,\mathbf G's'}^{(\tau)}(\mathbf k)
+={}&
+\varepsilon_{\mathbf G}(\mathbf k)
+\delta_{\mathbf G\mathbf G'}
+\delta_{ss'}+
+V_{\mathbf G-\mathbf G'}
+\delta_{ss'}-
+\tau J
+\sum_{\alpha}
+n_{\alpha,\mathbf G-\mathbf G'}
+(\sigma_\alpha)_{ss'}.
+\end{aligned}
+\label{eq:full_plane_wave_hamiltonian}</script><p>式 $\eqref{eq:full_plane_wave_hamiltonian}$ 是实际能带计算的核心公式。令</p>
+<script type="math/tex; mode=display">
+\mathbf q
+=
+\mathbf G-\mathbf G',
+\label{eq:momentum_transfer_G}</script><p>并定义</p>
+<script type="math/tex; mode=display">
+D_{\mathbf G,\mathbf G'}
+=
+\varepsilon_{\mathbf G}(\mathbf k)
+\delta_{\mathbf G\mathbf G'}
++
+V_{\mathbf q}.
+\label{eq:D_block_definition}</script><p>由于</p>
+<script type="math/tex; mode=display">
+\mathbf n_{\mathbf q}\cdot\boldsymbol{\sigma}
+=
+\begin{pmatrix}
+n_{z,\mathbf q}
+&
+n_{x,\mathbf q}-in_{y,\mathbf q}
+\\
+n_{x,\mathbf q}+in_{y,\mathbf q}
+&
+-n_{z,\mathbf q}
+\end{pmatrix},
+\label{eq:texture_pauli_matrix}</script><p>每一对 $(\mathbf G,\mathbf G’)$ 对应的 $2\times2$ 块为</p>
+<script type="math/tex; mode=display">
+H_{\mathbf G,\mathbf G'}^{(\tau)}(\mathbf k)
+=
+\begin{pmatrix}
+D_{\mathbf G,\mathbf G'}
+-\tau Jn_{z,\mathbf q}
+&
+-\tau J
+\left(
+n_{x,\mathbf q}-in_{y,\mathbf q}
+\right)
+\\
+-\tau J
+\left(
+n_{x,\mathbf q}+in_{y,\mathbf q}
+\right)
+&
+D_{\mathbf G,\mathbf G'}
++\tau Jn_{z,\mathbf q}
+\end{pmatrix}.
+\label{eq:explicit_spin_block}</script><p>由式 $\eqref{eq:explicit_spin_block}$ 可以直接看出，$n_z$ 产生相同自旋之间的散射，而 $n_x\pm in_y$ 产生自旋翻转散射。Fourier 分量 $\mathbf n_{\mathbf q}$ 将 $\mathbf G’$ 耦合到 $\mathbf G’+\mathbf q$。</p>
+<blockquote>
+<p>数值 Fourier 展开</p>
+</blockquote>
+<p>在分数坐标中定义实空间网格</p>
+<script type="math/tex; mode=display">
+\mathbf r_{ij}
+=
+\frac{i}{N_1}\mathbf a_1
++
+\frac{j}{N_2}\mathbf a_2,
+\label{eq:real_space_grid}</script><p>其中 $i=0,\ldots,N_1-1$，$j=0,\ldots,N_2-1$。</p>
+<p>对于 $\mathbf G_{mn}=m\mathbf b_1+n\mathbf b_2$，有</p>
+<script type="math/tex; mode=display">
+\mathbf G_{mn}\cdot\mathbf r_{ij}
+=
+2\pi
+\left(
+\frac{mi}{N_1}
++
+\frac{nj}{N_2}
+\right).
+\label{eq:grid_phase_relation}</script><p>因此 Fourier 系数可通过二维 FFT 计算：</p>
+<script type="math/tex; mode=display">
+n_{\alpha,mn}
+\simeq
+\frac{1}{N_1N_2}
+\sum_{i,j}
+n_\alpha(\mathbf r_{ij})
+\exp
+\left[
+-2\pi i
+\left(
+\frac{mi}{N_1}
++
+\frac{nj}{N_2}
+\right)
+\right].
+\label{eq:discrete_fourier_transform}</script><p>构造 Hamiltonian 时需要访问的是 $\mathbf q=\mathbf G-\mathbf G’$。如果平面波基底包含 $-N\leq m,n\leq N$，那么差矢量范围可以达到</p>
+<script type="math/tex; mode=display">
+-2N
+\leq
+m-m',
+n-n'
+\leq
+2N.
+\label{eq:difference_index_range}</script><p>因此 FFT 网格和 Fourier 系数字典必须覆盖完整的差矢量范围。</p>
+<h2 id="平面波截断与无量纲参数"><a href="#平面波截断与无量纲参数" class="headerlink" title="平面波截断与无量纲参数"></a>平面波截断与无量纲参数</h2><p>一种常用的平面波截断是</p>
+<script type="math/tex; mode=display">
+-N_G
+\leq
+m,n
+\leq
+N_G.
+\label{eq:index_cutoff}</script><p>此时倒格矢数为</p>
+<script type="math/tex; mode=display">
+N_{\mathrm{PW}}
+=
+(2N_G+1)^2,
+\label{eq:number_plane_waves}</script><p>Hamiltonian 维数为</p>
+<script type="math/tex; mode=display">
+\dim H
+=
+2(2N_G+1)^2.
+\label{eq:hamiltonian_dimension}</script><p>另一种选择是圆形截断</p>
+<script type="math/tex; mode=display">
+|\mathbf G|
+\leq
+G_{\mathrm{cut}}.
+\label{eq:circular_cutoff}</script><p>所有 $\mathbf k$ 点必须使用同一组 $\mathbf G$ 基矢。用 $E_Q$ 作为能量单位后，式 $\eqref{eq:full_plane_wave_hamiltonian}$ 可以写成</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\frac{
+H_{\mathbf G,\mathbf G'}^{(\tau)}(\mathbf k)
+}{
+E_Q
+}
+={}&
+|\widetilde{\mathbf k}
++
+\widetilde{\mathbf G}|^2
+\delta_{\mathbf G\mathbf G'}
+\mathbb I+
+\widetilde V_{\mathbf G-\mathbf G'}
+\mathbb I-
+\tau\lambda_J
+\mathbf n_{\mathbf G-\mathbf G'}
+\cdot\boldsymbol{\sigma},
+\end{aligned}
+\label{eq:dimensionless_plane_wave_hamiltonian}</script><p>其中 $\lambda_J=J/E_Q$。</p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p><a target="_blank" rel="noopener" href="http://arxiv.org/abs/2606.17205">Kohn—Luttinger Superconductivity in Flat Chern Bands</a><br><a target="_blank" rel="noopener" href="https://link.aps.org/doi/10.1103/h22z-4hsj">Chiral Superconductivity from Spin Polarized Chern Band in Twisted ${\mathrm{MoTe}}_{2}$</a></p>
+<div class="note red flat"><p>鉴于该网站分享的大都是学习笔记，作者水平有限，若发现有问题可以发邮件给我</p>
+<ul>
+<li><strong>yxliphy@gmail.com</strong></li>
+</ul>
+<p>也非常欢迎喜欢分享的小伙伴投稿</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="/about">Yu-Xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2026/07/18/2026-07-18-Skyrmion/">http://example.com/2026/07/18/2026-07-18-Skyrmion/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Yu-Xuan's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/QuantumGeometry/">QuantumGeometry</a></div><div class="post-share"><div class="social-share" data-image="/assets/images/QuantumGrometry/Skyrmion.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/assets/images/WM.png" target="_blank"><img class="post-qr-code-img" src="/assets/images/WM.png"/></a><div class="post-qr-code-desc"></div></li><li class="reward-item"><a href="/assets/images/ZM.png" target="_blank"><img class="post-qr-code-img" src="/assets/images/ZM.png"/></a><div class="post-qr-code-desc"></div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/07/17/2026-07-17-Kagome-SC/" title="Kagome 晶格中交换自旋涨落实现非常规超导"><img class="cover" src="/assets/images/SC/Kagome-SC.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Kagome 晶格中交换自旋涨落实现非常规超导</div></div><div class="info-2"><div class="info-item-1">Kagome 晶格中交换自旋涨落介导的非常规超导排斥相互作用本身并不等价于两个电子在实空间直接相吸。涨落介导配对的基本过程是  \text{电子 1} \rightarrow \text{激发粒...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2024/12/01/2024-12-01-Quantum-Geometry/" title="几个简单模型的量子几何张量计算"><img class="cover" src="/assets/images/QuantumGrometry/QGT.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-12-01</div><div class="info-item-2">几个简单模型的量子几何张量计算</div></div><div class="info-2"><div class="info-item-1">这篇博客整理了几个简单平带模型中量子度规的计算，作为学习笔记整理了一下。   前言对于一个量子态$\lvert u(\mathbf{k}\rangle$，它的量子几何张量为  \begin{eq...</div></div></div></a><a class="pagination-related no-desc" href="/2025/12/08/2025-12-08-SC-weight/" title="超流权重推导(能带无简并)"><img class="cover" src="/assets/images/SC/sc-weight.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-08</div><div class="info-item-2">超流权重推导(能带无简并)</div></div></div></a><a class="pagination-related no-desc" href="/2026/05/04/2026-05-04-SC-QGT/" title="Spin-triplet superconductivity from quantum-geometry-induced ferromagnetic fluctuation(结果复现)"><img class="cover" src="/assets/images/SC/Xnip1.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-05-04</div><div class="info-item-2">Spin-triplet superconductivity from quantum-geometry-induced ferromagnetic fluctuation(结果复现)</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description">知行合一</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">390</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yxli8023"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:yxliphy@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><div style="text-align:center;"> <img src="/assets/images/qrcode.jpg" alt="公告图" style="max-width:100%; border-radius:10px; margin-bottom:10px;"> <br> 欢迎关注公众号，有趣的内容也会在上面同步。 有密码的文章属于正在建设中或者没有通过验证的内容，若有需要可通过邮件联系。</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Skyrmion-%E6%99%B6%E6%A0%BC%E8%BF%9E%E7%BB%AD%E7%94%B5%E5%AD%90%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">Skyrmion 晶格连续电子模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E4%B8%8E%E7%AC%A6%E5%8F%B7%E7%BA%A6%E5%AE%9A"><span class="toc-number">1.1.</span> <span class="toc-text">模型与符号约定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%86%E4%BA%A4%E6%8D%A2%E6%9E%84%E5%9E%8B%E6%94%B9%E5%86%99%E6%88%90-SU-2-%E8%A7%84%E8%8C%83%E5%9C%BA"><span class="toc-number">1.2.</span> <span class="toc-text">将交换构型改写成 $SU(2)$ 规范场</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E4%BA%A4%E6%8D%A2%E5%88%86%E6%94%AF%E4%B8%8E%E6%B6%8C%E7%8E%B0-U-1-%E8%A7%84%E8%8C%83%E5%9C%BA"><span class="toc-number">1.3.</span> <span class="toc-text">单交换分支与涌现 $U(1)$ 规范场</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8E-Landau-%E8%83%BD%E7%BA%A7%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">1.4.</span> <span class="toc-text">与 Landau 能级的关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E-Landau-%E8%83%BD%E7%BA%A7%E5%88%B0-Skyrmion-miniband"><span class="toc-number">1.5.</span> <span class="toc-text">从 Landau 能级到 Skyrmion miniband</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E4%BD%8E-Landau-%E8%83%BD%E7%BA%A7%E7%9A%84-form-factor-%E4%B8%8E%E9%87%8F%E5%AD%90%E5%BA%A6%E8%A7%84"><span class="toc-number">1.6.</span> <span class="toc-text">最低 Landau 能级的 form factor 与量子度规</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%B3%E9%9D%A2%E6%B3%A2%E5%B1%95%E5%BC%80"><span class="toc-number">1.7.</span> <span class="toc-text">平面波展开</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%B3%E9%9D%A2%E6%B3%A2%E6%88%AA%E6%96%AD%E4%B8%8E%E6%97%A0%E9%87%8F%E7%BA%B2%E5%8F%82%E6%95%B0"><span class="toc-number">1.8.</span> <span class="toc-text">平面波截断与无量纲参数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">2.</span> <span class="toc-text">参考文献</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/07/18/2026-07-18-Skyrmion/" title="Skyrmion 晶格连续电子模型"><img src="/assets/images/QuantumGrometry/Skyrmion.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Skyrmion 晶格连续电子模型"/></a><div class="content"><a class="title" href="/2026/07/18/2026-07-18-Skyrmion/" title="Skyrmion 晶格连续电子模型">Skyrmion 晶格连续电子模型</a><time datetime="2026-07-17T16:00:00.000Z" title="发表于 2026-07-18 00:00:00">2026-07-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/07/17/2026-07-17-Kagome-SC/" title="Kagome 晶格中交换自旋涨落实现非常规超导"><img src="/assets/images/SC/Kagome-SC.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Kagome 晶格中交换自旋涨落实现非常规超导"/></a><div class="content"><a class="title" href="/2026/07/17/2026-07-17-Kagome-SC/" title="Kagome 晶格中交换自旋涨落实现非常规超导">Kagome 晶格中交换自旋涨落实现非常规超导</a><time datetime="2026-07-16T16:00:00.000Z" title="发表于 2026-07-17 00:00:00">2026-07-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/07/16/2026-07-16-SC-weight/" title="超流权重推导"><img src="/assets/images/SC/superfluid_weight_cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超流权重推导"/></a><div class="content"><a class="title" href="/2026/07/16/2026-07-16-SC-weight/" title="超流权重推导">超流权重推导</a><time datetime="2026-07-15T16:00:00.000Z" title="发表于 2026-07-16 00:00:00">2026-07-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/07/14/2026-07-14-LLL-Project/" title="投影形式因子与 Landau 能级的关系"><img src="/assets/images/QuantumGrometry/Landau-Proj.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="投影形式因子与 Landau 能级的关系"/></a><div class="content"><a class="title" href="/2026/07/14/2026-07-14-LLL-Project/" title="投影形式因子与 Landau 能级的关系">投影形式因子与 Landau 能级的关系</a><time datetime="2026-07-13T16:00:00.000Z" title="发表于 2026-07-14 00:00:00">2026-07-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/07/13/2026-07-13-LLL-Real/" title="从实空间位置算符理解最低 Landau 能级的量子度规"><img src="/assets/images/QuantumGrometry/Landau-Real.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="从实空间位置算符理解最低 Landau 能级的量子度规"/></a><div class="content"><a class="title" href="/2026/07/13/2026-07-13-LLL-Real/" title="从实空间位置算符理解最低 Landau 能级的量子度规">从实空间位置算符理解最低 Landau 能级的量子度规</a><time datetime="2026-07-12T16:00:00.000Z" title="发表于 2026-07-13 00:00:00">2026-07-13</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/assets/images/QuantumGrometry/Skyrmion.png);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div><div class="footer_custom_text">Welcome to  Yu-Xuan's Blog</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  const initGitalk = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGitalk = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const gitalk = new Gitalk({
+      clientID: 'Ov23li0WvZEaIAZ7RFtH',
+      clientSecret: '03fcb77b7c28dafcdde00756e27f9b5bc76639e8',
+      repo: 'yxli8023.github.io',
+      owner: 'yxli8023',
+      admin: ['yxli8023'],
+      updateCountCallback: commentCount,
+      ...option,
+      id: isShuoshuo ? path : (option && option.id) || 'e3e4dc1a4e8e81f137fc0fd487c8f690'
+    })
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async(el, path) => {
+    if (typeof Gitalk === 'function') initGitalk(el, path)
+    else {
+      await btf.getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await btf.getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Gitalk' === 'Gitalk'
+      ? window.shuoshuoComment = { loadComment: loadGitalk }
+      : window.loadOtherComment = loadGitalk
+    return
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
