@@ -1,0 +1,940 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Majorana 诱导的自旋选择性等自旋 Andreev 反射 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Majorana 诱导的自旋选择性等自旋 Andreev 反射考虑一个具有真实自旋自由度的正常金属导线，末端耦合一个局域 Majorana 零模。正常导线中的电子场记为  \psi_\uparrow(x),\qquad \psi_\downarrow(x),其中 $\uparrow,\downarrow$ 表示真实电子自旋。线性化后的导线 Hamiltonian 写成  \boxed{ H_L &#x3D;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Majorana 诱导的自旋选择性等自旋 Andreev 反射">
+<meta property="og:url" content="http://example.com/2026/09/07/2026-09-07-Spin-MZMs/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39;s Blog">
+<meta property="og:description" content="Majorana 诱导的自旋选择性等自旋 Andreev 反射考虑一个具有真实自旋自由度的正常金属导线，末端耦合一个局域 Majorana 零模。正常导线中的电子场记为  \psi_\uparrow(x),\qquad \psi_\downarrow(x),其中 $\uparrow,\downarrow$ 表示真实电子自旋。线性化后的导线 Hamiltonian 写成  \boxed{ H_L &#x3D;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/assets/images/SC/MZM-Spin.png">
+<meta property="article:published_time" content="2026-09-06T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-09T12:38:36.038Z">
+<meta property="article:author" content="Yu-Xuan">
+<meta property="article:tag" content="Superconductor">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/images/SC/MZM-Spin.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Majorana 诱导的自旋选择性等自旋 Andreev 反射",
+  "url": "http://example.com/2026/09/07/2026-09-07-Spin-MZMs/",
+  "image": "http://example.com/assets/images/SC/MZM-Spin.png",
+  "datePublished": "2026-09-06T16:00:00.000Z",
+  "dateModified": "2026-09-09T12:38:36.038Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yu-Xuan",
+      "url": "http://example.com/about"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/logo.png"><link rel="canonical" href="http://example.com/2026/09/07/2026-09-07-Spin-MZMs/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"作者: Yu-Xuan","link":"链接: ","source":"来源: Yu-Xuan's Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'medium_zoom',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#f54966","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Majorana 诱导的自旋选择性等自旋 Andreev 反射',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #dbeffd;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">392</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/assets/images/SC/MZM-Spin.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo.png" alt="Logo"><span class="site-name">Yu-Xuan's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">Majorana 诱导的自旋选择性等自旋 Andreev 反射</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Majorana 诱导的自旋选择性等自旋 Andreev 反射</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-09-06T16:00:00.000Z" title="发表于 2026-09-07 00:00:00">2026-09-07</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-09-09T12:38:36.038Z" title="更新于 2026-09-09 20:38:36">2026-09-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Superconductor/">Superconductor</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">2.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>11分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;自上次更新已经过了&quot;,&quot;messageNext&quot;:&quot;天，文章内容可能已过时。&quot;,&quot;postUpdate&quot;:&quot;2026-09-09 20:38:36&quot;}" hidden></div><h1 id="Majorana-诱导的自旋选择性等自旋-Andreev-反射"><a href="#Majorana-诱导的自旋选择性等自旋-Andreev-反射" class="headerlink" title="Majorana 诱导的自旋选择性等自旋 Andreev 反射"></a>Majorana 诱导的自旋选择性等自旋 Andreev 反射</h1><p>考虑一个具有真实自旋自由度的正常金属导线，末端耦合一个局域 Majorana 零模。正常导线中的电子场记为</p>
+<script type="math/tex; mode=display">
+\psi_\uparrow(x),\qquad \psi_\downarrow(x),</script><p>其中 $\uparrow,\downarrow$ 表示真实电子自旋。线性化后的导线 Hamiltonian 写成</p>
+<script type="math/tex; mode=display">
+\boxed{
+H_L
+=
+-i v_F
+\sum_{\alpha=\uparrow,\downarrow}
+\int_{-\infty}^{+\infty}
+dx\,
+\psi_\alpha^\dagger(x)\partial_x\psi_\alpha(x)
+}
+\label{eq:majorana-1}</script><p>这里界面前后的 incoming 和 outgoing 模式被展开成同一个手性场。</p>
+<p>设超导端点存在一个 Majorana 模式</p>
+<script type="math/tex; mode=display">
+\boxed{
+\gamma=\gamma^\dagger
+}
+\label{eq:majorana-2}</script><p>Majorana 与正常导线的最一般局域耦合可以写成</p>
+<script type="math/tex; mode=display">
+\boxed{
+H_c
+=
+\tilde t\,\gamma
+\left[
+a\psi_\uparrow(0)
++
+b\psi_\downarrow(0)
+-
+a^*\psi_\uparrow^\dagger(0)
+-
+b^*\psi_\downarrow^\dagger(0)
+\right]
+}
+\label{eq:majorana-3}</script><p>其中</p>
+<script type="math/tex; mode=display">
+|a|^2+|b|^2=1.
+\label{eq:majorana-4}</script><p>这里最重要的结构是：electron coupling 和 hole coupling 不是独立参数。由于 Majorana 满足</p>
+<script type="math/tex; mode=display">
+\gamma=\gamma^\dagger,</script><p>一旦它与某个电子组合</p>
+<script type="math/tex; mode=display">
+a\psi_\uparrow+b\psi_\downarrow</script><p>耦合，Hermiticity 就同时要求它与相应的 hole combination 耦合。</p>
+<hr>
+<h2 id="Majorana-选择了真实自旋空间中的一个方向"><a href="#Majorana-选择了真实自旋空间中的一个方向" class="headerlink" title="Majorana 选择了真实自旋空间中的一个方向"></a>Majorana 选择了真实自旋空间中的一个方向</h2><p>定义新的自旋通道</p>
+<script type="math/tex; mode=display">
+{
+\Psi_1
+=
+a\psi_\uparrow+b\psi_\downarrow
+}
+\label{eq:majorana-5}</script><p>以及与它正交的组合</p>
+<script type="math/tex; mode=display">
+{
+\Psi_2
+=
+-b^*\psi_\uparrow+a^*\psi_\downarrow
+}
+\label{eq:majorana-6}</script><p>矩阵形式为</p>
+<script type="math/tex; mode=display">
+\begin{pmatrix}
+\Psi_1\\
+\Psi_2
+\end{pmatrix}
+=
+\begin{pmatrix}
+a&b\\
+-b^*&a^*
+\end{pmatrix}
+\begin{pmatrix}
+\psi_\uparrow\\
+\psi_\downarrow
+\end{pmatrix}.
+\label{eq:majorana-7}</script><p>由于$|a|^2+|b|^2=1$。这个变换是自旋空间中的幺正变换。因此 $\Psi_1,\Psi_2$ 仍然是两个真实自旋态，只不过自旋量子化轴不再是原来的 $z$ 轴。</p>
+<p>任意归一化 spinor 都可以写成</p>
+<script type="math/tex; mode=display">
+a
+=
+\cos\frac{\theta}{2},
+\qquad
+b
+=
+e^{i\phi}
+\sin\frac{\theta}{2},
+\label{eq:majorana-8}</script><p>这里已经省略了一个没有物理意义的整体相位。于是 $\Psi_1$ 对应的自旋态为</p>
+<script type="math/tex; mode=display">
+{
+|s_1\rangle
+=
+\begin{pmatrix}
+\cos\frac{\theta}{2}\\
+e^{i\phi}\sin\frac{\theta}{2}
+\end{pmatrix}
+}
+\label{eq:majorana-9}</script><p>真实自旋极化方向定义为</p>
+<script type="math/tex; mode=display">
+\mathbf n
+=
+\langle s_1|
+\boldsymbol{\sigma}
+|s_1\rangle.
+\label{eq:majorana-10}</script><p>逐项计算：</p>
+<script type="math/tex; mode=display">
+\langle \sigma_x\rangle
+=
+\sin\theta\cos\phi,</script><script type="math/tex; mode=display">
+\langle \sigma_y\rangle
+=
+\sin\theta\sin\phi,</script><script type="math/tex; mode=display">
+\langle \sigma_z\rangle
+=
+\cos\theta.</script><p>因此</p>
+<script type="math/tex; mode=display">
+{
+\mathbf n
+=
+(
+\sin\theta\cos\phi,\,
+\sin\theta\sin\phi,\,
+\cos\theta
+)
+}
+\label{eq:majorana-11}</script><p>而 $\Psi_2$ 对应的 spinor 可以写成</p>
+<script type="math/tex; mode=display">
+{
+|s_2\rangle
+=
+\begin{pmatrix}
+-\sin\frac{\theta}{2}\\
+e^{i\phi}\cos\frac{\theta}{2}
+\end{pmatrix}
+}
+\label{eq:majorana-12}</script><p>有</p>
+<script type="math/tex; mode=display">
+\langle s_1|s_2\rangle=0,
+\label{eq:majorana-13}</script><p>并且</p>
+<script type="math/tex; mode=display">
+{
+\langle s_2|
+\boldsymbol{\sigma}
+|s_2\rangle
+=
+-\mathbf n
+}
+\label{eq:majorana-14}</script><p>所以可以直接理解为</p>
+<script type="math/tex; mode=display">
+{
+\Psi_1=\psi_{+\mathbf n},
+\qquad
+\Psi_2=\psi_{-\mathbf n}
+}
+\label{eq:majorana-15}</script><p>也就是说，$\Psi_1$ 和 $\Psi_2$ 是沿同一根新量子化轴 $\mathbf n$ 的 spin-up 和 spin-down 通道。把它们代回耦合 Hamiltonian，</p>
+<script type="math/tex; mode=display">
+{
+H_c
+=
+\tilde t\,\gamma
+[\Psi_1(0)-\Psi_1^\dagger(0)]
+}
+\label{eq:majorana-16}</script><p>这里出现了一个极其重要的结果：</p>
+<script type="math/tex; mode=display">
+{\color{blue}
+\Psi_2\ \text{完全不出现在耦合中}
+}
+\label{eq:majorana-17}\nonumber</script><p>因此 Majorana 只和 $+\mathbf n$ 方向的电子耦合，而与 $-\mathbf n$ 方向电子完全解耦。这个自旋选择并不是来自 normal lead 本身的自旋极化，因为 normal lead 本来是顺磁的；它是 Majorana–lead coupling 自己定义出来的。</p>
+<p>由于 $\Psi_2$ 完全解耦，只需要研究</p>
+<script type="math/tex; mode=display">
+\psi\equiv \Psi_1.</script><p>有效 Hamiltonian 变成</p>
+<script type="math/tex; mode=display">
+{
+H
+=
+-i v_F\int dx\,
+\psi^\dagger(x)\partial_x\psi(x)
++
+\tilde t\,\gamma
+[\psi(0)-\psi^\dagger(0)]
+}
+\label{eq:majorana-18}</script><p>定义能量为 $E$ 的 incoming 和 outgoing electron amplitude：</p>
+<script type="math/tex; mode=display">
+e_{\rm in}
+=
+\psi_E(0^-),
+\qquad
+e_{\rm out}
+=
+\psi_E(0^+),
+\label{eq:majorana-19}</script><p>以及相应的 hole amplitude：</p>
+<script type="math/tex; mode=display">
+h_{\rm in}
+=
+\psi_E^\dagger(0^-),
+\qquad
+h_{\rm out}
+=
+\psi_E^\dagger(0^+).
+\label{eq:majorana-20}</script><p>我们的目标是得到</p>
+<script type="math/tex; mode=display">
+\boxed{
+\begin{pmatrix}
+e_{\rm out}\\
+h_{\rm out}
+\end{pmatrix}
+=
+S(E)
+\begin{pmatrix}
+e_{\rm in}\\
+h_{\rm in}
+\end{pmatrix}
+}
+\label{eq:majorana-21}</script><hr>
+<h2 id="局域-Majorana-耦合导致场在界面发生跳变"><a href="#局域-Majorana-耦合导致场在界面发生跳变" class="headerlink" title="局域 Majorana 耦合导致场在界面发生跳变"></a>局域 Majorana 耦合导致场在界面发生跳变</h2><p>由 Hamiltonian 得到 electron 场的运动方程。采用与最终散射矩阵一致的 Fourier convention，可写为</p>
+<script type="math/tex; mode=display">
+E\psi(x)
+=
+iv_F\partial_x\psi(x)
+-
+\tilde t\,\gamma\,\delta(x).
+\label{eq:majorana-22}</script><p>在 $x=0$ 两侧积分：</p>
+<script type="math/tex; mode=display">
+\int_{-\epsilon}^{+\epsilon}
+dx\,E\psi(x)
+=
+iv_F
+\int_{-\epsilon}^{+\epsilon}
+dx\,\partial_x\psi(x)
+-
+\tilde t\gamma.
+\label{eq:majorana-23}</script><p>令$\epsilon\rightarrow0$，上式左侧趋于零，因此</p>
+<script type="math/tex; mode=display">
+0
+=
+iv_F
+[\psi(0^+)-\psi(0^-)]
+-
+\tilde t\gamma.
+\label{eq:majorana-24}</script><p>得到</p>
+<script type="math/tex; mode=display">
+{
+e_{\rm out}-e_{\rm in}
+=
+-i\frac{\tilde t}{v_F}\gamma
+}
+\label{eq:majorana-25}</script><p>这一步的物理很简单：这里的 lead Hamiltonian 是一阶微分算符$-i v_F\partial_x$，而 Majorana 耦合是一个位于 $x=0$ 的 $\delta(x)$ 局域源，所以穿过界面时场本身产生有限跳变。hole 分量的耦合符号相反，因此</p>
+<script type="math/tex; mode=display">
+{
+h_{\rm out}-h_{\rm in}
+=
++i\frac{\tilde t}{v_F}\gamma
+}
+\label{eq:majorana-26}</script><p>定义</p>
+<script type="math/tex; mode=display">
+{
+q
+=
+-i\frac{\tilde t}{v_F}\gamma
+}
+\label{eq:majorana-27}</script><p>于是</p>
+<script type="math/tex; mode=display">
+{
+e_{\rm out}
+=
+e_{\rm in}+q
+}
+\label{eq:majorana-28}</script><script type="math/tex; mode=display">
+{
+h_{\rm out}
+=
+h_{\rm in}-q
+}
+\label{eq:majorana-29}</script><p>注意 electron 和 hole 的散射修正大小完全相同，只是符号相反。这正是</p>
+<script type="math/tex; mode=display">
+H_c\propto\gamma(\psi-\psi^\dagger)</script><p>的直接反映。</p>
+<hr>
+<h2 id="Majorana-自己的运动方程"><a href="#Majorana-自己的运动方程" class="headerlink" title="Majorana 自己的运动方程"></a>Majorana 自己的运动方程</h2><p>利用</p>
+<script type="math/tex; mode=display">
+\{\gamma,\gamma\}=2,
+\qquad
+\{\gamma,\psi\}=0,</script><p>可以得到</p>
+<script type="math/tex; mode=display">
+i\partial_t\gamma
+=
+2\tilde t
+[\psi(0)-\psi^\dagger(0)].
+\label{eq:majorana-30}</script><p>对能量为 $E$ 的定态，</p>
+<script type="math/tex; mode=display">
+{
+-E\gamma
+=
+2\tilde t
+[\psi(0)-\psi^\dagger(0)]
+}
+\label{eq:majorana-31}</script><p>由于 $\psi$ 在界面有跳变，局域场取左右两侧平均：</p>
+<script type="math/tex; mode=display">
+\psi(0)
+=
+\frac{
+e_{\rm in}+e_{\rm out}
+}{2},
+\label{eq:majorana-32}</script><script type="math/tex; mode=display">
+\psi^\dagger(0)
+=
+\frac{
+h_{\rm in}+h_{\rm out}
+}{2}.
+\label{eq:majorana-33}</script><p>代入：</p>
+<script type="math/tex; mode=display">
+-E\gamma
+=
+\tilde t
+[
+e_{\rm in}
++
+e_{\rm out}
+-
+h_{\rm in}
+-
+h_{\rm out}
+].
+\label{eq:majorana-34}</script><p>再利用</p>
+<script type="math/tex; mode=display">
+e_{\rm out}
+=
+e_{\rm in}+q,\qquad h_{\rm out}
+=
+h_{\rm in}-q,</script><p>有</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&e_{\rm in}+e_{\rm out}
+-h_{\rm in}-h_{\rm out}
+\\
+&=
+e_{\rm in}
++
+(e_{\rm in}+q)
+-
+h_{\rm in}
+-
+(h_{\rm in}-q)
+\\
+&=
+2(e_{\rm in}-h_{\rm in}+q).
+\end{aligned}
+\label{eq:majorana-35}</script><p>所以</p>
+<script type="math/tex; mode=display">
+-E\gamma
+=
+2\tilde t
+(e_{\rm in}-h_{\rm in}+q).
+\label{eq:majorana-36}</script><p>由</p>
+<script type="math/tex; mode=display">
+q
+=
+-i\frac{\tilde t}{v_F}\gamma</script><p>得到</p>
+<script type="math/tex; mode=display">
+\gamma
+=
+i\frac{v_F}{\tilde t}q.
+\label{eq:majorana-37}</script><p>代入：</p>
+<script type="math/tex; mode=display">
+-E
+\left(
+i\frac{v_F}{\tilde t}q
+\right)
+=
+2\tilde t
+(e_{\rm in}-h_{\rm in}+q).
+\label{eq:majorana-38}</script><p>定义 Majorana 与 lead 耦合产生的展宽</p>
+<script type="math/tex; mode=display">
+{
+\Gamma
+=
+\frac{2\tilde t^2}{v_F}
+}
+\label{eq:majorana-39}</script><p>则</p>
+<script type="math/tex; mode=display">
+-iEq
+=
+\Gamma
+(e_{\rm in}-h_{\rm in}+q).
+\label{eq:majorana-40}</script><p>整理为</p>
+<script type="math/tex; mode=display">
+(\Gamma+iE)q
+=
+-\Gamma
+(e_{\rm in}-h_{\rm in}),
+\label{eq:majorana-41}</script><p>于是</p>
+<script type="math/tex; mode=display">
+{
+q
+=
+-\frac{\Gamma}
+{\Gamma+iE}
+(e_{\rm in}-h_{\rm in})
+}</script><p>利用</p>
+<script type="math/tex; mode=display">
+e_{\rm out}
+=
+e_{\rm in}+q,</script><p>有</p>
+<script type="math/tex; mode=display">
+e_{\rm out}
+=
+e_{\rm in}
+-
+\frac{\Gamma}
+{\Gamma+iE}
+(e_{\rm in}-h_{\rm in}).
+\label{eq:majorana-43}</script><p>展开：</p>
+<script type="math/tex; mode=display">
+e_{\rm out}
+=
+\left[
+1-
+\frac{\Gamma}{\Gamma+iE}
+\right]
+e_{\rm in}
++
+\frac{\Gamma}{\Gamma+iE}
+h_{\rm in}.
+\label{eq:majorana-44}</script><p>因为</p>
+<script type="math/tex; mode=display">
+1-
+\frac{\Gamma}{\Gamma+iE}
+=
+\frac{iE}{\Gamma+iE},</script><p>所以</p>
+<script type="math/tex; mode=display">
+{
+e_{\rm out}
+=
+\frac{iE}{\Gamma+iE}
+e_{\rm in}
++
+\frac{\Gamma}{\Gamma+iE}
+h_{\rm in}
+}
+\label{eq:majorana-45}</script><p>同样，</p>
+<script type="math/tex; mode=display">
+h_{\rm out}
+=
+h_{\rm in}-q,</script><p>给出</p>
+<script type="math/tex; mode=display">
+h_{\rm out}
+=
+h_{\rm in}
++
+\frac{\Gamma}{\Gamma+iE}
+(e_{\rm in}-h_{\rm in}),
+\label{eq:majorana-46}</script><p>即</p>
+<script type="math/tex; mode=display">
+{
+h_{\rm out}
+=
+\frac{\Gamma}{\Gamma+iE}
+e_{\rm in}
++
+\frac{iE}{\Gamma+iE}
+h_{\rm in}
+}
+\label{eq:majorana-47}</script><p>因此最终散射矩阵为</p>
+<script type="math/tex; mode=display">
+{
+S(E)
+=
+\frac{1}{\Gamma+iE}
+\begin{pmatrix}
+iE&\Gamma\\
+\Gamma&iE
+\end{pmatrix}
+}
+\label{eq:majorana-48}</script><p>也就是</p>
+<script type="math/tex; mode=display">
+{
+\begin{pmatrix}
+e_{\rm out}\\
+h_{\rm out}
+\end{pmatrix}
+=
+\frac{1}{\Gamma+iE}
+\begin{pmatrix}
+iE&\Gamma\\
+\Gamma&iE
+\end{pmatrix}
+\begin{pmatrix}
+e_{\rm in}\\
+h_{\rm in}
+\end{pmatrix}
+}
+\label{eq:majorana-49}</script><p>因此 normal reflection amplitude 为</p>
+<script type="math/tex; mode=display">
+{
+r_{ee}(E)
+=
+\frac{iE}{\Gamma+iE}
+}
+\label{eq:majorana-50}</script><p>Andreev reflection amplitude 为</p>
+<script type="math/tex; mode=display">
+{
+r_{he}(E)
+=
+\frac{\Gamma}{\Gamma+iE}
+}
+\label{eq:majorana-51}</script><p>对应概率：</p>
+<script type="math/tex; mode=display">
+R_{ee}(E)
+=
+\frac{E^2}{E^2+\Gamma^2},\qquad R_{he}(E)
+=
+\frac{\Gamma^2}{E^2+\Gamma^2}</script><p>所以</p>
+<script type="math/tex; mode=display">
+R_{ee}+R_{he}=1.
+\label{eq:majorana-54}</script><p>在零能 $E=0$ 时，</p>
+<script type="math/tex; mode=display">
+{
+r_{ee}(0)=0,
+\qquad
+r_{he}(0)=1
+}
+\label{eq:majorana-55}</script><p>即</p>
+<script type="math/tex; mode=display">
+{
+R_{ee}(0)=0,
+\qquad
+R_{he}(0)=1
+}
+\label{eq:majorana-56}</script><p>所以被 Majorana 选中的 $\Psi_1$ 通道发生完美共振 Andreev reflection。</p>
+<hr>
+<h2 id="为什么-Majorana-会产生自旋选择？"><a href="#为什么-Majorana-会产生自旋选择？" class="headerlink" title="为什么 Majorana 会产生自旋选择？"></a>为什么 Majorana 会产生自旋选择？</h2><p>这里最好把两个不同的物理机制分开：</p>
+<ol>
+<li>为什么只选择一个自旋方向？</li>
+<li>为什么这个自旋方向发生 equal-spin Andreev reflection？</li>
+</ol>
+<p>正常导线的自旋空间是二维的：</p>
+<script type="math/tex; mode=display">
+\begin{pmatrix}
+\psi_\uparrow\\
+\psi_\downarrow
+\end{pmatrix}.</script><p>Majorana 与电子的耦合只通过一个二维向量</p>
+<script type="math/tex; mode=display">
+\boxed{
+\mathbf t
+=
+\tilde t
+\begin{pmatrix}
+a\\
+b
+\end{pmatrix}
+}
+\label{eq:majorana-57}</script><p>发生。因此 Majorana 实际只看到沿 $\mathbf t$ 方向的自旋组合</p>
+<script type="math/tex; mode=display">
+\Psi_1
+=
+a\psi_\uparrow+b\psi_\downarrow.</script><p>与它正交的组合 $\Psi_2$ 必然处在 coupling matrix 的 null space：</p>
+<script type="math/tex; mode=display">
+\boxed{
+H_c[\Psi_2]=0
+}
+\label{eq:majorana-58}</script><p>所以从线性代数上可以概括成</p>
+<script type="math/tex; mode=display">
+{
+\text{single Majorana}
+\Longrightarrow
+\text{rank-one coupling in spin space}
+}\nonumber</script><p>这意味着 $+\mathbf n$ 方向被选中，而 $-\mathbf n$ 方向完全解耦。因此</p>
+<script type="math/tex; mode=display">
+{\color{blue}
+\text{spin selectivity}
+=
+\text{Majorana coupling selects one spinor}
+}\nonumber</script><blockquote>
+<p>Equal-spin Andreev reflection 来自 Majorana 的自共轭性质</p>
+</blockquote>
+<p>Majorana 满足</p>
+<script type="math/tex; mode=display">
+\boxed{
+\gamma=\gamma^\dagger
+}
+\label{eq:majorana-61}</script><p>因此同一个局域态同时具有 electron 和 hole character。耦合 Hamiltonian 是</p>
+<script type="math/tex; mode=display">
+H_c
+=
+\tilde t\gamma
+(\Psi_1-\Psi_1^\dagger).</script><p>这意味着同一个 Majorana 同时连接$\Psi_1$和$\Psi_1^\dagger$。因此散射路径可以理解为</p>
+<script type="math/tex; mode=display">
+{
+\Psi_1
+\rightarrow
+\gamma
+\rightarrow
+\Psi_1^\dagger
+}
+\label{eq:majorana-62}</script><p>由于 $\Psi_1$ 对应真实自旋 $+\mathbf n$，所以这个过程实际上就是</p>
+<script type="math/tex; mode=display">
+\boxed{
+e_{+\mathbf n}
+\rightarrow
+h_{+\mathbf n}
+}
+\label{eq:majorana-63}</script><p>electron 和 hole 属于同一个 $\Psi_1$ 自旋通道，因此这是 equal-spin Andreev reflection。而正交自旋</p>
+<script type="math/tex; mode=display">
+\Psi_2=\psi_{-\mathbf n}</script><p>不和 Majorana 耦合，所以</p>
+<script type="math/tex; mode=display">
+{
+R_{he}^{(-\mathbf n)}=0
+}
+\label{eq:majorana-64}</script><p>在零能处：</p>
+<script type="math/tex; mode=display">
+{
+R_{he}^{(+\mathbf n)}=1,
+\qquad
+R_{he}^{(-\mathbf n)}=0
+}
+\label{eq:majorana-65}</script><p>同时</p>
+<script type="math/tex; mode=display">
+{
+R_{ee}^{(+\mathbf n)}=0,
+\qquad
+R_{ee}^{(-\mathbf n)}=1
+}
+\label{eq:majorana-66}</script><p>所以整个零能散射可以总结成</p>
+<script type="math/tex; mode=display">
+\boxed{
+\begin{array}{c|cc}
+\text{incoming spin}
+&
+R_{he}
+&
+R_{ee}
+\\ \hline
++\mathbf n
+&
+1
+&
+0
+\\
+-\mathbf n
+&
+0
+&
+1
+\end{array}
+}
+\label{eq:majorana-67}</script><p>这就是 selective equal-spin Andreev reflection。</p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p><a target="_blank" rel="noopener" href="https://link.aps.org/doi/10.1103/PhysRevLett.112.037001">Selective Equal-Spin Andreev Reflections Induced by Majorana Fermions</a></p>
+<div class="note red flat"><p>鉴于该网站分享的大都是学习笔记，作者水平有限，若发现有问题可以发邮件给我</p>
+<ul>
+<li><strong>yxliphy@gmail.com</strong></li>
+</ul>
+<p>也非常欢迎喜欢分享的小伙伴投稿</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="/about">Yu-Xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2026/09/07/2026-09-07-Spin-MZMs/">http://example.com/2026/09/07/2026-09-07-Spin-MZMs/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Yu-Xuan's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Superconductor/">Superconductor</a></div><div class="post-share"><div class="social-share" data-image="/assets/images/SC/MZM-Spin.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/assets/images/WM.png" target="_blank"><img class="post-qr-code-img" src="/assets/images/WM.png"/></a><div class="post-qr-code-desc"></div></li><li class="reward-item"><a href="/assets/images/ZM.png" target="_blank"><img class="post-qr-code-img" src="/assets/images/ZM.png"/></a><div class="post-qr-code-desc"></div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/09/01/2026-09-01-SC-fitness/" title="超导 Fitness"><img class="cover" src="/assets/images/SC/SC-fitness.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">超导 Fitness</div></div><div class="info-2"><div class="info-item-1">超导 Fitness在最简单的单带 BCS 超导中，正常态通常写成  H_0=\sum_{\mathbf k,\sigma}\xi_{\mathbf k}c_{\mathbf k\sigma}^...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2019/04/17/2019-04-17-julia/" title="Majorana Corner State in High Temperature Superconductor"><img class="cover" src="/assets/images/research/juliaresult.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2019-04-17</div><div class="info-item-2">Majorana Corner State in High Temperature Superconductor</div></div><div class="info-2"><div class="info-item-1">最近刚刚学习了julia, 手头上也正好在重复一篇文章，就正好拿新学习的内容一边温习一边做研究。   导入函数库1234567# Import external package that use...</div></div></div></a><a class="pagination-related" href="/2020/09/03/2020-09-03-Hubbard-doping/" title="电子掺杂，空穴掺杂与化学势的关系"><img class="cover" src="/img/defult-cover2.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-03</div><div class="info-item-2">电子掺杂，空穴掺杂与化学势的关系</div></div><div class="info-2"><div class="info-item-1">在研究超导问题的时候，不可避免的总会遇到体系时电子掺杂还是空穴掺杂，因为这两种不同的掺杂所对应的性质是不同的，最近重新温习一下超导的相关知识，正好也利用一个具体的紧束缚近似模型来说明一下电子和空...</div></div></div></a><a class="pagination-related" href="/2020/09/25/2020-09-25-MF-BdG/" title="BCS平均场近似及Bogoliubov对角化"><img class="cover" src="/img/defult-cover7.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-25</div><div class="info-item-2">BCS平均场近似及Bogoliubov对角化</div></div><div class="info-2"><div class="info-item-1">BCS理论对解释常规超导的解释很成功,这里我就整理一下如何对BCS哈密顿量做平均场处理,使其变成两粒子算符形式,然后利用Bogoliubov变换来对这种两粒子算符进行对角化处理.   平均场近似...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description">知行合一</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">392</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yxli8023"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:yxliphy@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><div style="text-align:center;"> <img src="/assets/images/qrcode.jpg" alt="公告图" style="max-width:100%; border-radius:10px; margin-bottom:10px;"> <br> 欢迎关注公众号，有趣的内容也会在上面同步。 有密码的文章属于正在建设中或者没有通过验证的内容，若有需要可通过邮件联系。</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Majorana-%E8%AF%B1%E5%AF%BC%E7%9A%84%E8%87%AA%E6%97%8B%E9%80%89%E6%8B%A9%E6%80%A7%E7%AD%89%E8%87%AA%E6%97%8B-Andreev-%E5%8F%8D%E5%B0%84"><span class="toc-number">1.</span> <span class="toc-text">Majorana 诱导的自旋选择性等自旋 Andreev 反射</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Majorana-%E9%80%89%E6%8B%A9%E4%BA%86%E7%9C%9F%E5%AE%9E%E8%87%AA%E6%97%8B%E7%A9%BA%E9%97%B4%E4%B8%AD%E7%9A%84%E4%B8%80%E4%B8%AA%E6%96%B9%E5%90%91"><span class="toc-number">1.1.</span> <span class="toc-text">Majorana 选择了真实自旋空间中的一个方向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%80%E5%9F%9F-Majorana-%E8%80%A6%E5%90%88%E5%AF%BC%E8%87%B4%E5%9C%BA%E5%9C%A8%E7%95%8C%E9%9D%A2%E5%8F%91%E7%94%9F%E8%B7%B3%E5%8F%98"><span class="toc-number">1.2.</span> <span class="toc-text">局域 Majorana 耦合导致场在界面发生跳变</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Majorana-%E8%87%AA%E5%B7%B1%E7%9A%84%E8%BF%90%E5%8A%A8%E6%96%B9%E7%A8%8B"><span class="toc-number">1.3.</span> <span class="toc-text">Majorana 自己的运动方程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-Majorana-%E4%BC%9A%E4%BA%A7%E7%94%9F%E8%87%AA%E6%97%8B%E9%80%89%E6%8B%A9%EF%BC%9F"><span class="toc-number">1.4.</span> <span class="toc-text">为什么 Majorana 会产生自旋选择？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">2.</span> <span class="toc-text">参考文献</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/09/07/2026-09-07-Spin-MZMs/" title="Majorana 诱导的自旋选择性等自旋 Andreev 反射"><img src="/assets/images/SC/MZM-Spin.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Majorana 诱导的自旋选择性等自旋 Andreev 反射"/></a><div class="content"><a class="title" href="/2026/09/07/2026-09-07-Spin-MZMs/" title="Majorana 诱导的自旋选择性等自旋 Andreev 反射">Majorana 诱导的自旋选择性等自旋 Andreev 反射</a><time datetime="2026-09-06T16:00:00.000Z" title="发表于 2026-09-07 00:00:00">2026-09-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/09/01/2026-09-01-SC-fitness/" title="超导 Fitness"><img src="/assets/images/SC/SC-fitness.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导 Fitness"/></a><div class="content"><a class="title" href="/2026/09/01/2026-09-01-SC-fitness/" title="超导 Fitness">超导 Fitness</a><time datetime="2026-08-31T16:00:00.000Z" title="发表于 2026-09-01 00:00:00">2026-09-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/07/18/2026-07-18-Skyrmion/" title="Skyrmion 晶格连续电子模型"><img src="/assets/images/QuantumGrometry/Skyrmion.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Skyrmion 晶格连续电子模型"/></a><div class="content"><a class="title" href="/2026/07/18/2026-07-18-Skyrmion/" title="Skyrmion 晶格连续电子模型">Skyrmion 晶格连续电子模型</a><time datetime="2026-07-17T16:00:00.000Z" title="发表于 2026-07-18 00:00:00">2026-07-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/07/17/2026-07-17-Kagome-SC/" title="Kagome 晶格中交换自旋涨落实现非常规超导"><img src="/assets/images/SC/Kagome-SC.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Kagome 晶格中交换自旋涨落实现非常规超导"/></a><div class="content"><a class="title" href="/2026/07/17/2026-07-17-Kagome-SC/" title="Kagome 晶格中交换自旋涨落实现非常规超导">Kagome 晶格中交换自旋涨落实现非常规超导</a><time datetime="2026-07-16T16:00:00.000Z" title="发表于 2026-07-17 00:00:00">2026-07-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/07/16/2026-07-16-SC-weight/" title="超流权重推导"><img src="/assets/images/SC/superfluid_weight_cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超流权重推导"/></a><div class="content"><a class="title" href="/2026/07/16/2026-07-16-SC-weight/" title="超流权重推导">超流权重推导</a><time datetime="2026-07-15T16:00:00.000Z" title="发表于 2026-07-16 00:00:00">2026-07-16</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/assets/images/SC/MZM-Spin.png);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div><div class="footer_custom_text">Welcome to  Yu-Xuan's Blog</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  const initGitalk = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGitalk = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const gitalk = new Gitalk({
+      clientID: 'Ov23li0WvZEaIAZ7RFtH',
+      clientSecret: '03fcb77b7c28dafcdde00756e27f9b5bc76639e8',
+      repo: 'yxli8023.github.io',
+      owner: 'yxli8023',
+      admin: ['yxli8023'],
+      updateCountCallback: commentCount,
+      ...option,
+      id: isShuoshuo ? path : (option && option.id) || '7cb8ce8fe1df3b8bfc697b41a3c7d03d'
+    })
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async(el, path) => {
+    if (typeof Gitalk === 'function') initGitalk(el, path)
+    else {
+      await btf.getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await btf.getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Gitalk' === 'Gitalk'
+      ? window.shuoshuoComment = { loadComment: loadGitalk }
+      : window.loadOtherComment = loadGitalk
+    return
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
