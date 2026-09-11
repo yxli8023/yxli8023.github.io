@@ -1,0 +1,494 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>超导近邻效应：从 $N/S$ 异质结到自能与诱导配对的推导 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="超导近邻效应：从 $N&#x2F;S$ 异质结到自能与诱导配对的推导本文只讨论最基本的普通金属&#x2F;常规 $s$ 波超导异质结，目标是从 $H_N+H_S+H_T$ 出发，完整推导 $G_N^{-1}&#x3D;g_N^{-1}-\Sigma_S$、$\Sigma_S&#x3D;Tg_ST^\dagger$ 以及正常层中的 anomalous Green function $F_N$。 物理问题与基本模型考虑最简单的异质结 $N|">
+<meta property="og:type" content="article">
+<meta property="og:title" content="超导近邻效应：从 $N&#x2F;S$ 异质结到自能与诱导配对的推导">
+<meta property="og:url" content="http://example.com/2026/09/11/2026-09-11-SC-Proximity/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39;s Blog">
+<meta property="og:description" content="超导近邻效应：从 $N&#x2F;S$ 异质结到自能与诱导配对的推导本文只讨论最基本的普通金属&#x2F;常规 $s$ 波超导异质结，目标是从 $H_N+H_S+H_T$ 出发，完整推导 $G_N^{-1}&#x3D;g_N^{-1}-\Sigma_S$、$\Sigma_S&#x3D;Tg_ST^\dagger$ 以及正常层中的 anomalous Green function $F_N$。 物理问题与基本模型考虑最简单的异质结 $N|">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/assets/images/SC/SC-Proximity2.png">
+<meta property="article:published_time" content="2026-09-10T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-11T12:18:01.876Z">
+<meta property="article:author" content="Yu-Xuan">
+<meta property="article:tag" content="Superconductor">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/images/SC/SC-Proximity2.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "超导近邻效应：从 $N/S$ 异质结到自能与诱导配对的推导",
+  "url": "http://example.com/2026/09/11/2026-09-11-SC-Proximity/",
+  "image": "http://example.com/assets/images/SC/SC-Proximity2.png",
+  "datePublished": "2026-09-10T16:00:00.000Z",
+  "dateModified": "2026-09-11T12:18:01.876Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yu-Xuan",
+      "url": "http://example.com/about"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/logo.png"><link rel="canonical" href="http://example.com/2026/09/11/2026-09-11-SC-Proximity/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"作者: Yu-Xuan","link":"链接: ","source":"来源: Yu-Xuan's Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'medium_zoom',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#f54966","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '超导近邻效应：从 $N/S$ 异质结到自能与诱导配对的推导',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #dbeffd;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">394</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/assets/images/SC/SC-Proximity2.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo.png" alt="Logo"><span class="site-name">Yu-Xuan's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">超导近邻效应：从 $N/S$ 异质结到自能与诱导配对的推导</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">超导近邻效应：从 $N/S$ 异质结到自能与诱导配对的推导</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-09-10T16:00:00.000Z" title="发表于 2026-09-11 00:00:00">2026-09-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-09-11T12:18:01.876Z" title="更新于 2026-09-11 20:18:01">2026-09-11</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Superconductor/">Superconductor</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>14分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;自上次更新已经过了&quot;,&quot;messageNext&quot;:&quot;天，文章内容可能已过时。&quot;,&quot;postUpdate&quot;:&quot;2026-09-11 20:18:01&quot;}" hidden></div><h1 id="超导近邻效应：从-N-S-异质结到自能与诱导配对的推导"><a href="#超导近邻效应：从-N-S-异质结到自能与诱导配对的推导" class="headerlink" title="超导近邻效应：从 $N/S$ 异质结到自能与诱导配对的推导"></a>超导近邻效应：从 $N/S$ 异质结到自能与诱导配对的推导</h1><p>本文只讨论最基本的普通金属/常规 $s$ 波超导异质结，目标是从 $H_N+H_S+H_T$ 出发，完整推导 $G_N^{-1}=g_N^{-1}-\Sigma_S$、$\Sigma_S=Tg_ST^\dagger$ 以及正常层中的 anomalous Green function $F_N$。</p>
+<h2 id="物理问题与基本模型"><a href="#物理问题与基本模型" class="headerlink" title="物理问题与基本模型"></a>物理问题与基本模型</h2><p>考虑最简单的异质结 $N|S$，其中 $N$ 是本身不超导的正常材料，$S$ 是普通 BCS $s$ 波超导体。孤立的 $N$ 中 $\langle c_{-\mathbf k\downarrow}c_{\mathbf k\uparrow}\rangle=0$，而孤立的 $S$ 中 $\langle a_{-\mathbf q\downarrow}a_{\mathbf q\uparrow}\rangle\neq0$。一旦二者通过界面隧穿耦合，$N$ 中也可以出现有限的 Cooper-pair correlation：</p>
+<script type="math/tex; mode=display">
+\langle c_{-\mathbf k\downarrow}c_{\mathbf k\uparrow}\rangle\neq0.</script><p>这就是超导近邻效应的核心。体系总 Hamiltonian 写成</p>
+<script type="math/tex; mode=display">
+H=H_N+H_S+H_T.
+\label{eq:Htotal}</script><p>正常材料取最简单的单带形式</p>
+<script type="math/tex; mode=display">
+H_N=\sum_{\mathbf k,\sigma}\xi_{\mathbf k}^N c_{\mathbf k\sigma}^\dagger c_{\mathbf k\sigma},</script><p>其中 $\xi_{\mathbf k}^N=\epsilon_{\mathbf k}^N-\mu_N$。超导体取常规自旋单冲态 $s$ 波 BCS Hamiltonian：</p>
+<script type="math/tex; mode=display">
+H_S=\sum_{\mathbf q,\sigma}\xi_{\mathbf q}^S a_{\mathbf q\sigma}^\dagger a_{\mathbf q\sigma}+\sum_{\mathbf q}\left(\Delta_S a_{\mathbf q\uparrow}^\dagger a_{-\mathbf q\downarrow}^\dagger+\Delta_S^* a_{-\mathbf q\downarrow}a_{\mathbf q\uparrow}\right).
+\label{eq:HS}</script><p>如果没有超流，可选取规范使 $\Delta_S=\Delta_S^*&gt;0$。界面单电子隧穿写成</p>
+<script type="math/tex; mode=display">
+H_T=\sum_{\mathbf k,\mathbf q,\sigma}\left[t_{\mathbf k\mathbf q}c_{\mathbf k\sigma}^\dagger a_{\mathbf q\sigma}+t_{\mathbf k\mathbf q}^*a_{\mathbf q\sigma}^\dagger c_{\mathbf k\sigma}\right].
+\label{eq:HT}</script><p>对于平整界面，通常有面内动量守恒 $\mathbf k_\parallel=\mathbf q_\parallel$。为了先讲清楚理论，后面先取 $t_{\mathbf k\mathbf q}=t_c$。</p>
+<hr>
+<p>超导 Hamiltonian 同时含有 $a^\dagger a$ 和 $a^\dagger a^\dagger$ 项，因此需要把电子和空穴放进同一个 Nambu 空间。定义</p>
+<script type="math/tex; mode=display">
+\Psi_{N,\mathbf k}=\begin{pmatrix}c_{\mathbf k\uparrow}\\c_{-\mathbf k\downarrow}^\dagger\end{pmatrix},\qquad
+\Psi_{S,\mathbf q}=\begin{pmatrix}a_{\mathbf q\uparrow}\\a_{-\mathbf q\downarrow}^\dagger\end{pmatrix}.</script><p>以下用 $\tau_i$ 表示 Nambu 空间 Pauli 矩阵。对正常材料，电子能量为 $+\xi_{\mathbf k}^N$，对应空穴能量为 $-\xi_{-\mathbf k}^N$。若 $\xi_{-\mathbf k}^N=\xi_{\mathbf k}^N$，则</p>
+<script type="math/tex; mode=display">
+H_N^{\rm BdG}=\begin{pmatrix}\xi_{\mathbf k}^N&0\\0&-\xi_{\mathbf k}^N\end{pmatrix}=\xi_{\mathbf k}^N\tau_z.
+\label{eq:HNbdg}</script><p>因此孤立正常材料的 bare Green function 为</p>
+<script type="math/tex; mode=display">
+g_N^{-1}(i\omega_n,\mathbf k)=i\omega_n-H_N^{\rm BdG}=i\omega_n-\xi_{\mathbf k}^N\tau_z.
+\label{eq:gNbare}</script><p>这里用小写 $g_N$ 表示尚未接触超导体的 bare Green function；之后用大写 $G_N$ 表示接触超导体后的 dressed Green function。对超导体，在同一 Nambu 基底下</p>
+<script type="math/tex; mode=display">
+H_S^{\rm BdG}=\begin{pmatrix}\xi_{\mathbf q}^S&\Delta_S\\\Delta_S&-\xi_{\mathbf q}^S\end{pmatrix}=\xi_{\mathbf q}^S\tau_z+\Delta_S\tau_x.
+\label{eq:HSbdg}</script><h2 id="超导体-Green-function"><a href="#超导体-Green-function" class="headerlink" title="超导体 Green function"></a>超导体 Green function</h2><p>超导体 bare Green function 为</p>
+<script type="math/tex; mode=display">
+g_S(i\omega_n,\mathbf q)=\left[i\omega_n-\xi_{\mathbf q}^S\tau_z-\Delta_S\tau_x\right]^{-1}.</script><p>由于 $\{\tau_x,\tau_z\}=0$，有 $(\xi_S\tau_z+\Delta_S\tau_x)^2=\xi_S^2+\Delta_S^2$。因此</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&\left[i\omega_n-\xi_S\tau_z-\Delta_S\tau_x\right]\left[i\omega_n+\xi_S\tau_z+\Delta_S\tau_x\right]\\
+&=-\left(\omega_n^2+\xi_S^2+\Delta_S^2\right).
+\end{aligned}</script><p>于是</p>
+<script type="math/tex; mode=display">
+g_S(i\omega_n,\mathbf q)=-\frac{i\omega_n+\xi_{\mathbf q}^S\tau_z+\Delta_S\tau_x}{\omega_n^2+(\xi_{\mathbf q}^S)^2+\Delta_S^2}.
+\label{eq:gSbulk}</script><p>矩阵形式为</p>
+<script type="math/tex; mode=display">
+g_S=-\frac{1}{\omega_n^2+\xi_S^2+\Delta_S^2}\begin{pmatrix}i\omega_n+\xi_S&\Delta_S\\\Delta_S&i\omega_n-\xi_S\end{pmatrix}.</script><p>非对角元即 anomalous Green function：</p>
+<script type="math/tex; mode=display">
+F_S(\mathbf q,i\omega_n)=-\frac{\Delta_S}{\omega_n^2+\xi_S^2+\Delta_S^2}.
+\label{eq:FS}</script><p>Matsubara anomalous Green function 定义为</p>
+<script type="math/tex; mode=display">
+F(\mathbf k,\tau)=-\left\langle T_\tau c_{\mathbf k\uparrow}(\tau)c_{-\mathbf k\downarrow}(0)\right\rangle.</script><p>在 $\tau\rightarrow0^-$ 时，$F(\mathbf k,0^-)$ 与 $\langle c_{-\mathbf k\downarrow}c_{\mathbf k\uparrow}\rangle$ 直接相关，因此 $F\neq0$ 表示存在 Cooper-pair correlation。</p>
+<blockquote>
+<p>需要特别区分 pair amplitude 和 order parameter。若正常材料内部 pairing interaction 为 $U_N$，则 $\Delta_N=-U_N\langle c_\downarrow c_\uparrow\rangle$。所以即使 $F_N\neq0$，只要 $U_N=0$，仍然有 $\Delta_N=0$。近邻效应严格来说首先诱导的是 superconducting correlation，而不一定是正常层内部自发形成的 order parameter。</p>
+</blockquote>
+<h2 id="完整-N-S-Green-function"><a href="#完整-N-S-Green-function" class="headerlink" title="完整 $N+S$ Green function"></a>完整 $N+S$ Green function</h2><p>将两部分自由度合并：</p>
+<script type="math/tex; mode=display">
+\Phi=\begin{pmatrix}\Psi_N\\\Psi_S\end{pmatrix}.</script><p>完整 BdG Hamiltonian 写成 block matrix：</p>
+<script type="math/tex; mode=display">
+\mathcal H=\begin{pmatrix}H_N&T\\T^\dagger&H_S\end{pmatrix}.
+\label{eq:Hblock}</script><p>因此完整 inverse Green function 为</p>
+<script type="math/tex; mode=display">
+\mathcal G^{-1}=i\omega-\mathcal H=\begin{pmatrix}i\omega-H_N&-T\\-T^\dagger&i\omega-H_S\end{pmatrix}.</script><p>利用 $g_N^{-1}=i\omega-H_N$ 和 $g_S^{-1}=i\omega-H_S$，有</p>
+<script type="math/tex; mode=display">
+\mathcal G^{-1}=\begin{pmatrix}g_N^{-1}&-T\\-T^\dagger&g_S^{-1}\end{pmatrix}\label{eq:Gfullinverse}</script><p>把完整 Green function 也写成 block：</p>
+<script type="math/tex; mode=display">
+\mathcal G=\begin{pmatrix}G_N&G_{NS}\\G_{SN}&G_S\end{pmatrix}.
+\label{eq:Gfull}</script><p>这里 $G_N$ 表示 $N\rightarrow N$ 的传播，$G_S$ 表示 $S\rightarrow S$，而 $G_{NS},G_{SN}$ 是跨界面的 mixed propagator。根据 $\mathcal G^{-1}\mathcal G=1$，有</p>
+<script type="math/tex; mode=display">
+\begin{pmatrix}g_N^{-1}&-T\\-T^\dagger&g_S^{-1}\end{pmatrix}
+\begin{pmatrix}G_N&G_{NS}\\G_{SN}&G_S\end{pmatrix}
+=
+\begin{pmatrix}1&0\\0&1\end{pmatrix}.</script><p>取左上角 block：</p>
+<script type="math/tex; mode=display">
+g_N^{-1}G_N-TG_{SN}=1.
+\label{eq:block1}</script><p>取左下角 block：</p>
+<script type="math/tex; mode=display">
+-T^\dagger G_N+g_S^{-1}G_{SN}=0.
+\label{eq:block2}</script><p>由式 $(\ref{eq:block2})$，$g_S^{-1}G_{SN}=T^\dagger G_N$，左乘 $g_S$ 得</p>
+<script type="math/tex; mode=display">
+G_{SN}=g_ST^\dagger G_N.
+\label{eq:GSN}</script><p>将式 $(\ref{eq:GSN})$ 代入式 $(\ref{eq:block1})$：</p>
+<script type="math/tex; mode=display">
+g_N^{-1}G_N-Tg_ST^\dagger G_N=1.</script><p>提取 $G_N$：</p>
+<script type="math/tex; mode=display">
+\left(g_N^{-1}-Tg_ST^\dagger\right)G_N=1.</script><p>因此</p>
+<script type="math/tex; mode=display">
+G_N=\left[g_N^{-1}-Tg_ST^\dagger\right]^{-1},</script><p>或者</p>
+<script type="math/tex; mode=display">
+{G_N^{-1}=g_N^{-1}-Tg_ST^\dagger.}
+\label{eq:GNdyson}</script><p>定义 superconducting self-energy</p>
+<script type="math/tex; mode=display">
+\color{magenta}\boxed{\Sigma_S=Tg_ST^\dagger,}
+\label{eq:SigmaDef}</script><p>于是式 $(\ref{eq:GNdyson})$ 变成</p>
+<script type="math/tex; mode=display">
+\boxed{G_N^{-1}=g_N^{-1}-\Sigma_S.}
+\label{eq:GNselfenergy}</script><p>这就是所谓“integrating out the superconductor”。它不是把 $S$ 忽略掉，而是不再显式保留 $S$ 的自由度，将其全部影响压缩进频率依赖的 self-energy $\Sigma_S$ 中。</p>
+<ul>
+<li>自能的物理含义</li>
+</ul>
+<p>由式 $(\ref{eq:SigmaDef})$，$\Sigma_S=Tg_ST^\dagger$。它对应的虚过程是 $N\xrightarrow{T^\dagger}S\xrightarrow{g_S}S\xrightarrow{T}N$，所以弱耦合下近邻效应天然是二阶 tunneling 过程，即 $\Sigma_S\sim t_c^2$。</p>
+<p>由于</p>
+<script type="math/tex; mode=display">
+g_S=\begin{pmatrix}G_S&F_S\\F_S^\dagger&\bar G_S\end{pmatrix},</script><p>自能中也有 anomalous block：$\Sigma_S^{eh}\propto t_c^2F_S$。对应的物理过程是</p>
+<script type="math/tex; mode=display">
+e_N\overset{t_c}{\longrightarrow}e_S\overset{\Delta_S}{\longrightarrow}h_S\overset{t_c}{\longrightarrow}h_N.</script><p>因此 SC 的 anomalous propagation 会在 $N$ 中产生 electron-hole mixing，这正是 induced pairing 的来源。电子 tunneling 为 $t_c c^\dagger a+\mathrm{h.c.}$。在 Nambu basis $(c,c^\dagger)$ 中，electron sector 的 hopping 是 $+t_c$，而 hole sector 因粒子-空穴重排得到 $-t_c^*$，所以</p>
+<script type="math/tex; mode=display">
+T=\begin{pmatrix}t_c&0\\0&-t_c^*\end{pmatrix}.</script><p>若 $t_c$ 取实数，则</p>
+<script type="math/tex; mode=display">
+{T=t_c\tau_z.}
+\label{eq:Ttauz}</script><p>严格地说，$\Sigma_S=t_c^2\tau_zg_S\tau_z$。由于 $\tau_z\tau_x\tau_z=-\tau_x$，anomalous 部分会出现一个 convention-dependent minus sign。</p>
+<hr>
+<p>对于三维 bulk SC 和二维正常层，固定面内动量 $\mathbf k_\parallel$ 后，还要对 SC 垂直方向的 $q_z$ 求和：</p>
+<script type="math/tex; mode=display">
+g_S^{\rm surf}(\mathbf k_\parallel,i\omega_n)=\sum_{q_z}g_S(\mathbf k_\parallel,q_z,i\omega_n).</script><p>在 wide-band approximation 中，取 SC Fermi level 附近 DOS 为常数 $\rho_S$，则 $\sum_{q_z}\rightarrow\rho_S\int d\xi$。利用式 $(\ref{eq:gSbulk})$：</p>
+<script type="math/tex; mode=display">
+g_S^{\rm loc}=-\rho_S\int_{-\infty}^{\infty}d\xi\frac{i\omega+\xi\tau_z+\Delta_S\tau_x}{\omega^2+\xi^2+\Delta_S^2}.
+\label{eq:gSlocInt}</script><p>其中 $\xi\tau_z$ 项是 $\xi$ 的奇函数，因此在 particle-hole symmetric wide-band approximation 下</p>
+<script type="math/tex; mode=display">
+\int_{-\infty}^{\infty}d\xi\,\frac{\xi}{\omega^2+\xi^2+\Delta_S^2}=0.</script><p>若 DOS 明显 particle-hole asymmetric，这一项一般不会严格为零，会表现为 chemical-potential renormalization。令 $A^2=\omega^2+\Delta_S^2$，则</p>
+<script type="math/tex; mode=display">
+\int_{-\infty}^{\infty}\frac{d\xi}{\xi^2+A^2}=\frac{\pi}{A}.</script><p>所以式 $(\ref{eq:gSlocInt})$ 化为</p>
+<script type="math/tex; mode=display">
+{g_S^{\rm loc}(i\omega)=-\pi\rho_S\frac{i\omega+\Delta_S\tau_x}{\sqrt{\omega^2+\Delta_S^2}}.}
+\label{eq:gSloc}</script><p>定义界面 hybridization scale</p>
+<script type="math/tex; mode=display">
+{\Gamma=\pi\rho_S|t_c|^2.}
+\label{eq:Gamma}</script><p>于是 superconducting self-energy 可写为</p>
+<script type="math/tex; mode=display">
+{\Sigma_S(i\omega)=-\Gamma\frac{i\omega+\Delta_S\tau_x}{\sqrt{\omega^2+\Delta_S^2}}.}
+\label{eq:SigmaBCS}</script><p>这里仍省略了由不同 Nambu convention 产生的 anomalous 部分整体符号差异。</p>
+<h2 id="正常层的-dressed-Green-function"><a href="#正常层的-dressed-Green-function" class="headerlink" title="正常层的 dressed Green function"></a>正常层的 dressed Green function</h2><p>由式 $(\ref{eq:gNbare})$、$(\ref{eq:GNselfenergy})$ 和 $(\ref{eq:SigmaBCS})$，</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+G_N^{-1}
+&=i\omega-\xi_N\tau_z+\Gamma\frac{i\omega+\Delta_S\tau_x}{\sqrt{\omega^2+\Delta_S^2}}=i\omega\left(1+\frac{\Gamma}{\Omega}\right)-\xi_N\tau_z+\frac{\Gamma\Delta_S}{\Omega}\tau_x,
+\end{aligned}</script><p>其中 $\Omega=\sqrt{\omega^2+\Delta_S^2}$。定义</p>
+<script type="math/tex; mode=display">
+\widetilde\omega=\omega\left(1+\frac{\Gamma}{\Omega}\right),\qquad \widetilde\Delta=\frac{\Gamma\Delta_S}{\Omega}.</script><p>则</p>
+<script type="math/tex; mode=display">
+G_N^{-1}=i\widetilde\omega-\xi_N\tau_z+\widetilde\Delta\tau_x.</script><p>要求</p>
+<script type="math/tex; mode=display">
+G_N=\left[i\widetilde\omega-\xi\tau_z+\widetilde\Delta\tau_x\right]^{-1}.</script><p>乘以对应共轭结构 $i\widetilde\omega+\xi\tau_z-\widetilde\Delta\tau_x$，并使用 $(\xi\tau_z-\widetilde\Delta\tau_x)^2=\xi^2+\widetilde\Delta^2$，得到</p>
+<script type="math/tex; mode=display">
+{G_N=-\frac{i\widetilde\omega+\xi\tau_z-\widetilde\Delta\tau_x}{\widetilde\omega^2+\xi^2+\widetilde\Delta^2}.}</script><p>矩阵形式为</p>
+<script type="math/tex; mode=display">
+G_N=-\frac1D\begin{pmatrix}i\widetilde\omega+\xi&-\widetilde\Delta\\-\widetilde\Delta&i\widetilde\omega-\xi\end{pmatrix},</script><p>其中 $D=\widetilde\omega^2+\xi^2+\widetilde\Delta^2$。因此 anomalous component 为</p>
+<script type="math/tex; mode=display">
+\boxed{F_N(\mathbf k,i\omega)=\frac{\widetilde\Delta}{\widetilde\omega^2+\xi_{\mathbf k}^2+\widetilde\Delta^2}.}
+\label{eq:FN}</script><p>所以 $t_c\neq0\Rightarrow\Gamma\neq0\Rightarrow\widetilde\Delta\neq0\Rightarrow F_N\neq0$，这就是从 microscopic tunneling 到正常层中 induced Cooper-pair amplitude 的完整推导。</p>
+<h2 id="低能近似与-induced-gap"><a href="#低能近似与-induced-gap" class="headerlink" title="低能近似与 induced gap"></a>低能近似与 induced gap</h2><p>当 $|\omega|\ll\Delta_S$ 时，$\Omega=\sqrt{\omega^2+\Delta_S^2}\simeq\Delta_S$。于是</p>
+<script type="math/tex; mode=display">
+\widetilde\omega\simeq\omega\left(1+\frac{\Gamma}{\Delta_S}\right),\qquad \widetilde\Delta\simeq\Gamma.</script><p>所以</p>
+<script type="math/tex; mode=display">
+G_N^{-1}\simeq i\omega\left(1+\frac{\Gamma}{\Delta_S}\right)-\xi\tau_z+\Gamma\tau_x.</script><p>定义 quasiparticle residue</p>
+<script type="math/tex; mode=display">
+{Z^{-1}=1+\frac{\Gamma}{\Delta_S},\qquad Z=\frac{\Delta_S}{\Delta_S+\Gamma}.}
+\label{eq:Z}</script><p>则</p>
+<script type="math/tex; mode=display">
+G_N^{-1}=Z^{-1}\left[i\omega-Z\xi\tau_z+Z\Gamma\tau_x\right].</script><p>因此低能有效 Hamiltonian 可以写成</p>
+<script type="math/tex; mode=display">
+{H_{\rm eff}=Z\xi\tau_z-\Delta_{\rm ind}\tau_x,}
+\label{eq:Heff}</script><p>其中</p>
+<script type="math/tex; mode=display">
+{\Delta_{\rm ind}=Z\Gamma=\frac{\Gamma\Delta_S}{\Gamma+\Delta_S}.}
+\label{eq:Deltaind}</script><p>弱耦合 $\Gamma\ll\Delta_S$ 时，$Z\simeq1$ 且 $\Delta_{\rm ind}\simeq\Gamma=\pi\rho_S|t_c|^2$，因此诱导 gap 在最低阶满足 $\Delta_{\rm ind}\propto t_c^2$。强耦合 $\Gamma\gg\Delta_S$ 时，$Z\simeq\Delta_S/\Gamma\ll1$，但 $\Delta_{\rm ind}\rightarrow\Delta_S$。因此低能近似下有 $\Delta_{\rm ind}\leq\Delta_S$，同时正常材料本身的低能参数被 $Z$ 强烈重整化。也就是说，近邻效应不是简单“给正常层加一个 $\Delta$”，而是同时带来 induced pairing 和 quasiparticle renormalization。</p>
+<p>式 $(\ref{eq:Deltaind})$ 是低能静态近似。严格情况下需要做解析延拓 $i\omega_n\rightarrow E+i0^+$，得到 retarded self-energy</p>
+<script type="math/tex; mode=display">
+{\Sigma_S^R(E)=-\Gamma\frac{E+\Delta_S\tau_x}{\sqrt{\Delta_S^2-(E+i0^+)^2}}.}
+\label{eq:SigmaRet}</script><p>真正的 quasiparticle poles 由</p>
+<script type="math/tex; mode=display">
+{\det\left[E-H_N-\Sigma_S^R(E)\right]=0}
+\label{eq:pole}</script><p>决定。因此严格的 induced spectral gap $E_g$ 一般不必精确等于式 $(\ref{eq:Deltaind})$，后者是低能 effective model 中非常有用的近似结果。</p>
+<blockquote>
+<p>近邻效应也可以从二阶虚过程理解。一个正常层 electron 通过 $t_c$ 进入 SC：$|e_N\rangle\overset{t_c}{\longrightarrow}|e_S\rangle$；SC 中 $\Delta_S$ 把 electron 和 hole 混合：$|e_S\rangle\overset{\Delta_S}{\longleftrightarrow}|h_S\rangle$；hole 再通过 $t_c$ 返回正常层：$|h_S\rangle\overset{t_c}{\longrightarrow}|h_N\rangle$。因此有效 electron-hole coupling 为 $\Delta_{\rm ind}\sim t_c^2F_S$，与 self-energy 形式 $\Sigma_S=Tg_ST^\dagger$ 完全一致。</p>
+</blockquote>
+<ul>
+<li>路径积分形式的“积分掉超导体”</li>
+</ul>
+<p>如果使用场论语言，作用量写成</p>
+<script type="math/tex; mode=display">
+S=\bar\psi_Ng_N^{-1}\psi_N+\bar\psi_Sg_S^{-1}\psi_S-\bar\psi_NT\psi_S-\bar\psi_ST^\dagger\psi_N.</script><p>由于关于 $\psi_S$ 是 Gaussian 二次型，可以严格积分：</p>
+<script type="math/tex; mode=display">
+Z=\int D\psi_ND\psi_S\,e^{-S}.</script><p>对 $\psi_S$ 完成平方后，得到有效作用量</p>
+<script type="math/tex; mode=display">
+S_{\rm eff}=\bar\psi_N\left[g_N^{-1}-Tg_ST^\dagger\right]\psi_N.</script><p>因此 $G_N^{-1}=g_N^{-1}-Tg_ST^\dagger$，与式 $\ref{eq:GNdyson}$ 完全一致。</p>
+<ul>
+<li>多层正常材料中的空间近邻效应</li>
+</ul>
+<p>设正常材料包含 $L$ 层，$l=1,2,\ldots,L$，且只有第一层与 SC 接触，则 self-energy 在 layer space 中为</p>
+<script type="math/tex; mode=display">
+\boxed{\Sigma_{ll'}=\delta_{l1}\delta_{l'1}\Sigma_S.}
+\label{eq:SigmaLayer}</script><p>SC 只直接作用于第一层，但由于正常材料内部存在 hopping，pair correlation 会继续传播到更深层。在 weak-proximity limit 下，$G\simeq g+g\Sigma g+\cdots$。由于 bare normal material 没有 anomalous Green function，最低阶 anomalous part 为</p>
+<script type="math/tex; mode=display">
+\boxed{F_{ll'}\simeq g^e_{l1}\Sigma_S^{eh}g^h_{1l'}.}
+\label{eq:Fmulti}</script><p>对于同层 pairing，</p>
+<script type="math/tex; mode=display">
+\boxed{F_{ll}\simeq g^e_{l1}\Sigma_S^{eh}g^h_{1l}.}
+\label{eq:Fll}</script><p>物理含义非常直接：electron 从第 $l$ 层传播到界面，在 SC 中发生 Andreev electron-hole conversion，然后 hole 再从界面传播回第 $l$ 层。</p>
+<h2 id="Inverse-proximity-effect"><a href="#Inverse-proximity-effect" class="headerlink" title="Inverse proximity effect"></a>Inverse proximity effect</h2><p>到目前为止一直把 SC 当作无限 reservoir，即假设 $\Delta_S$ 固定不变，只考虑 $S\rightarrow N$ 的影响。真实异质结中，$N$ 也会反过来影响 $S$。若 SC 内部 pairing interaction 为 $U_S$，则需要自洽求解</p>
+<script type="math/tex; mode=display">
+\boxed{\Delta_l=-U_l\langle a_{l\downarrow}a_{l\uparrow}\rangle.}
+\label{eq:selfconsistent}</script><p>靠近界面的 SC layer 通常会出现 $\Delta_l&lt;\Delta_{\rm bulk}$，这就是 inverse proximity effect。因此 proximity theory 可以分成三个层级：phenomenological 模型 $H_N+\Delta_{\rm ind}\tau_x$；microscopic self-energy 方法 $\Sigma_S=Tg_ST^\dagger$；以及显式保留 $H_N+H_S+H_T$ 并自洽求解 $\Delta_l$ 的 full heterostructure 方法。</p>
+<div class="note red flat"><p>鉴于该网站分享的大都是学习笔记，作者水平有限，若发现有问题可以发邮件给我</p>
+<ul>
+<li><strong>yxliphy@gmail.com</strong></li>
+</ul>
+<p>也非常欢迎喜欢分享的小伙伴投稿</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="/about">Yu-Xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2026/09/11/2026-09-11-SC-Proximity/">http://example.com/2026/09/11/2026-09-11-SC-Proximity/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Yu-Xuan's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Superconductor/">Superconductor</a></div><div class="post-share"><div class="social-share" data-image="/assets/images/SC/SC-Proximity2.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/assets/images/WM.png" target="_blank"><img class="post-qr-code-img" src="/assets/images/WM.png"/></a><div class="post-qr-code-desc"></div></li><li class="reward-item"><a href="/assets/images/ZM.png" target="_blank"><img class="post-qr-code-img" src="/assets/images/ZM.png"/></a><div class="post-qr-code-desc"></div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width no-desc" href="/2026/09/10/2026-09-10-cavity-SC/" title="腔量子涨落增强超导（理论推导）"><img class="cover" src="/assets/images/SC/Cavity-SC.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">腔量子涨落增强超导（理论推导）</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2019/04/17/2019-04-17-julia/" title="Majorana Corner State in High Temperature Superconductor"><img class="cover" src="/assets/images/research/juliaresult.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2019-04-17</div><div class="info-item-2">Majorana Corner State in High Temperature Superconductor</div></div><div class="info-2"><div class="info-item-1">最近刚刚学习了julia, 手头上也正好在重复一篇文章，就正好拿新学习的内容一边温习一边做研究。   导入函数库1234567# Import external package that use...</div></div></div></a><a class="pagination-related" href="/2020/09/03/2020-09-03-Hubbard-doping/" title="电子掺杂，空穴掺杂与化学势的关系"><img class="cover" src="/img/defult-cover4.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-03</div><div class="info-item-2">电子掺杂，空穴掺杂与化学势的关系</div></div><div class="info-2"><div class="info-item-1">在研究超导问题的时候，不可避免的总会遇到体系时电子掺杂还是空穴掺杂，因为这两种不同的掺杂所对应的性质是不同的，最近重新温习一下超导的相关知识，正好也利用一个具体的紧束缚近似模型来说明一下电子和空...</div></div></div></a><a class="pagination-related" href="/2020/09/25/2020-09-25-MF-BdG/" title="BCS平均场近似及Bogoliubov对角化"><img class="cover" src="/img/defult-cover4.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-25</div><div class="info-item-2">BCS平均场近似及Bogoliubov对角化</div></div><div class="info-2"><div class="info-item-1">BCS理论对解释常规超导的解释很成功,这里我就整理一下如何对BCS哈密顿量做平均场处理,使其变成两粒子算符形式,然后利用Bogoliubov变换来对这种两粒子算符进行对角化处理.   平均场近似...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description">知行合一</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">394</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yxli8023"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:yxliphy@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><div style="text-align:center;"> <img src="/assets/images/qrcode.jpg" alt="公告图" style="max-width:100%; border-radius:10px; margin-bottom:10px;"> <br> 欢迎关注公众号，有趣的内容也会在上面同步。 有密码的文章属于正在建设中或者没有通过验证的内容，若有需要可通过邮件联系。</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B6%85%E5%AF%BC%E8%BF%91%E9%82%BB%E6%95%88%E5%BA%94%EF%BC%9A%E4%BB%8E-N-S-%E5%BC%82%E8%B4%A8%E7%BB%93%E5%88%B0%E8%87%AA%E8%83%BD%E4%B8%8E%E8%AF%B1%E5%AF%BC%E9%85%8D%E5%AF%B9%E7%9A%84%E6%8E%A8%E5%AF%BC"><span class="toc-number">1.</span> <span class="toc-text">超导近邻效应：从 $N&#x2F;S$ 异质结到自能与诱导配对的推导</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%A9%E7%90%86%E9%97%AE%E9%A2%98%E4%B8%8E%E5%9F%BA%E6%9C%AC%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.1.</span> <span class="toc-text">物理问题与基本模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B6%85%E5%AF%BC%E4%BD%93-Green-function"><span class="toc-number">1.2.</span> <span class="toc-text">超导体 Green function</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4-N-S-Green-function"><span class="toc-number">1.3.</span> <span class="toc-text">完整 $N+S$ Green function</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E5%B8%B8%E5%B1%82%E7%9A%84-dressed-Green-function"><span class="toc-number">1.4.</span> <span class="toc-text">正常层的 dressed Green function</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%8E%E8%83%BD%E8%BF%91%E4%BC%BC%E4%B8%8E-induced-gap"><span class="toc-number">1.5.</span> <span class="toc-text">低能近似与 induced gap</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Inverse-proximity-effect"><span class="toc-number">1.6.</span> <span class="toc-text">Inverse proximity effect</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/09/11/2026-09-11-SC-Proximity/" title="超导近邻效应：从 $N/S$ 异质结到自能与诱导配对的推导"><img src="/assets/images/SC/SC-Proximity2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导近邻效应：从 $N/S$ 异质结到自能与诱导配对的推导"/></a><div class="content"><a class="title" href="/2026/09/11/2026-09-11-SC-Proximity/" title="超导近邻效应：从 $N/S$ 异质结到自能与诱导配对的推导">超导近邻效应：从 $N/S$ 异质结到自能与诱导配对的推导</a><time datetime="2026-09-10T16:00:00.000Z" title="发表于 2026-09-11 00:00:00">2026-09-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/09/10/2026-09-10-cavity-SC/" title="腔量子涨落增强超导（理论推导）"><img src="/assets/images/SC/Cavity-SC.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="腔量子涨落增强超导（理论推导）"/></a><div class="content"><a class="title" href="/2026/09/10/2026-09-10-cavity-SC/" title="腔量子涨落增强超导（理论推导）">腔量子涨落增强超导（理论推导）</a><time datetime="2026-09-09T16:00:00.000Z" title="发表于 2026-09-10 00:00:00">2026-09-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/09/07/2026-09-07-Spin-MZMs/" title="Majorana 诱导的自旋选择性等自旋 Andreev 反射"><img src="/assets/images/SC/MZM-Spin.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Majorana 诱导的自旋选择性等自旋 Andreev 反射"/></a><div class="content"><a class="title" href="/2026/09/07/2026-09-07-Spin-MZMs/" title="Majorana 诱导的自旋选择性等自旋 Andreev 反射">Majorana 诱导的自旋选择性等自旋 Andreev 反射</a><time datetime="2026-09-06T16:00:00.000Z" title="发表于 2026-09-07 00:00:00">2026-09-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/09/01/2026-09-01-SC-fitness/" title="超导 Fitness"><img src="/assets/images/SC/SC-fitness.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导 Fitness"/></a><div class="content"><a class="title" href="/2026/09/01/2026-09-01-SC-fitness/" title="超导 Fitness">超导 Fitness</a><time datetime="2026-08-31T16:00:00.000Z" title="发表于 2026-09-01 00:00:00">2026-09-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/07/18/2026-07-18-Skyrmion/" title="Skyrmion 晶格连续电子模型"><img src="/assets/images/QuantumGrometry/Skyrmion.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Skyrmion 晶格连续电子模型"/></a><div class="content"><a class="title" href="/2026/07/18/2026-07-18-Skyrmion/" title="Skyrmion 晶格连续电子模型">Skyrmion 晶格连续电子模型</a><time datetime="2026-07-17T16:00:00.000Z" title="发表于 2026-07-18 00:00:00">2026-07-18</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/assets/images/SC/SC-Proximity2.png);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div><div class="footer_custom_text">Welcome to  Yu-Xuan's Blog</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  const initGitalk = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGitalk = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const gitalk = new Gitalk({
+      clientID: 'Ov23li0WvZEaIAZ7RFtH',
+      clientSecret: '03fcb77b7c28dafcdde00756e27f9b5bc76639e8',
+      repo: 'yxli8023.github.io',
+      owner: 'yxli8023',
+      admin: ['yxli8023'],
+      updateCountCallback: commentCount,
+      ...option,
+      id: isShuoshuo ? path : (option && option.id) || '50f9adec7b6e5d3214a00cda52a5b851'
+    })
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async(el, path) => {
+    if (typeof Gitalk === 'function') initGitalk(el, path)
+    else {
+      await btf.getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await btf.getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Gitalk' === 'Gitalk'
+      ? window.shuoshuoComment = { loadComment: loadGitalk }
+      : window.loadOtherComment = loadGitalk
+    return
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
