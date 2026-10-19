@@ -1,0 +1,649 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Edelstein 效应 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Edelstein 效应：物理机制、对称性与微观理论的推导 该学习笔记以 V. M. Edelstein, Spin Polarization of Conduction Electrons Induced by Electric Current in Two-Dimensional Asymmetric Electron Systems, Solid State Communications 7">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Edelstein 效应">
+<meta property="og:url" content="http://example.com/2026/10/19/2026-10-19-Edelstein-Effect/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39;s Blog">
+<meta property="og:description" content="Edelstein 效应：物理机制、对称性与微观理论的推导 该学习笔记以 V. M. Edelstein, Spin Polarization of Conduction Electrons Induced by Electric Current in Two-Dimensional Asymmetric Electron Systems, Solid State Communications 7">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/assets/images/Transport/Edelstein-effect.png">
+<meta property="article:published_time" content="2026-10-18T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-10-19T08:14:37.554Z">
+<meta property="article:author" content="Yu-Xuan">
+<meta property="article:tag" content="Transport">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/images/Transport/Edelstein-effect.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Edelstein 效应",
+  "url": "http://example.com/2026/10/19/2026-10-19-Edelstein-Effect/",
+  "image": "http://example.com/assets/images/Transport/Edelstein-effect.png",
+  "datePublished": "2026-10-18T16:00:00.000Z",
+  "dateModified": "2026-10-19T08:14:37.554Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yu-Xuan",
+      "url": "http://example.com/about"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/logo.png"><link rel="canonical" href="http://example.com/2026/10/19/2026-10-19-Edelstein-Effect/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"作者: Yu-Xuan","link":"链接: ","source":"来源: Yu-Xuan's Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'medium_zoom',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#f54966","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Edelstein 效应',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #dbeffd;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">397</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/assets/images/Transport/Edelstein-effect.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo.png" alt="Logo"><span class="site-name">Yu-Xuan's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">Edelstein 效应</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Edelstein 效应</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-10-18T16:00:00.000Z" title="发表于 2026-10-19 00:00:00">2026-10-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-10-19T08:14:37.554Z" title="更新于 2026-10-19 16:14:37">2026-10-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Transport/">Transport</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">7.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>29分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;自上次更新已经过了&quot;,&quot;messageNext&quot;:&quot;天，文章内容可能已过时。&quot;,&quot;postUpdate&quot;:&quot;2026-10-19 16:14:37&quot;}" hidden></div><h1 id="Edelstein-效应：物理机制、对称性与微观理论的推导"><a href="#Edelstein-效应：物理机制、对称性与微观理论的推导" class="headerlink" title="Edelstein 效应：物理机制、对称性与微观理论的推导"></a>Edelstein 效应：物理机制、对称性与微观理论的推导</h1><blockquote>
+<p>该学习笔记以 V. M. Edelstein, <em>Spin Polarization of Conduction Electrons Induced by Electric Current in Two-Dimensional Asymmetric Electron Systems</em>, Solid State Communications <strong>73</strong>, 233–235 (1990) 为主要参考。</p>
+</blockquote>
+<h2 id="Edelstein-效应是什么"><a href="#Edelstein-效应是什么" class="headerlink" title="Edelstein 效应是什么"></a>Edelstein 效应是什么</h2><p>Edelstein 效应（Edelstein effect, EE），也称为电流诱导自旋极化（Current-Induced Spin Polarization, CISP），是指在具有适当自旋轨道耦合与晶体对称性的导电体系中，施加电场产生电流的同时，可以诱导一个非平衡自旋极化。其基本响应关系可以写成</p>
+<script type="math/tex; mode=display">
+\boxed{\delta S_i=\chi_{ij}^{\mathrm{EE}}E_j}.</script><p>其中：$\delta S_i$ 是电场诱导的自旋角动量密度，$E_j$ 是外加电场，$\chi_{ij}^{\mathrm{EE}}$ 是 Edelstein 响应张量。也可以定义电流诱导的响应：</p>
+<script type="math/tex; mode=display">
+\delta S_i=\kappa_{ij}j_j.</script><p>在各向同性的二维 Rashba 体系中，这种关系具有特别简单的形式：</p>
+<script type="math/tex; mode=display">
+\boxed{\delta\mathbf S=\chi_R\,\hat{\mathbf z}\times\mathbf E.}</script><p>即电场沿 $x$ 方向时，诱导的自旋极化沿 $y$ 方向。具体正负号由 Rashba 耦合常数的符号及其定义决定。</p>
+<p>原始论文的出发点为：二维电子气上下两个方向不等价时，哈密顿量允许出现线性动量的自旋轨道耦合。这个耦合使电子的自旋方向与动量相关。平衡时不同动量的自旋彼此抵消；外加电场改变动量空间的占据分布后，这种抵消不再完全，于是产生净自旋极化。</p>
+<h2 id="从对称性理解-Edelstein-效应"><a href="#从对称性理解-Edelstein-效应" class="headerlink" title="从对称性理解 Edelstein 效应"></a>从对称性理解 Edelstein 效应</h2><ul>
+<li>为什么普通二维电子气不能产生这种效应？</li>
+</ul>
+<p>考虑不包含自旋轨道耦合的二维自由电子模型：</p>
+<script type="math/tex; mode=display">
+H_0(\mathbf k)=\frac{\hbar^2k^2}{2m}-\mu.</script><p>其中 $\mathbf k=(k_x,k_y)$，$m$ 为电子有效质量，$\mu$ 为化学势。这个哈密顿量与自旋无关，每个动量态都有两个自旋简并的本征态。如果施加电场，电子会形成非平衡分布，但是由于向上自旋和向下自旋的电子受到完全相同的作用，$\delta n_\uparrow=\delta n_\downarrow$，因此净自旋极化为 $\delta\mathbf S=0$。</p>
+<p>更一般地，我们可以直接利用空间反演对称性来判断。空间反演操作 $\mathcal P$ 下：</p>
+<script type="math/tex; mode=display">
+\mathcal P:\quad \mathbf E\rightarrow-\mathbf E,\qquad \mathbf S\rightarrow\mathbf S.</script><p>这里电场是极矢量，而自旋是轴矢量。对于线性响应 $S_i=\chi_{ij}^{\mathrm{EE}}E_j$，如果体系具有反演对称性，反演后的物理定律必须保持不变：</p>
+<script type="math/tex; mode=display">
+S_i=-\chi_{ij}^{\mathrm{EE}}E_j.</script><p>与原来的关系比较，得到</p>
+<script type="math/tex; mode=display">
+\boxed{\chi_{ij}^{\mathrm{EE}}=0.}</script><p>因此，<strong>具有空间反演对称性的均匀体系，其均匀线性 Edelstein 响应受到对称性禁止。</strong>需要注意，这只是必要的对称性条件。破坏反演对称性并不保证一定存在非零响应；还需要考虑其他晶体对称性、自旋轨道耦合及费米面结构。</p>
+<ul>
+<li>为什么时间反演对称性不禁止 Edelstein 效应？</li>
+</ul>
+<p>时间反演操作下，</p>
+<script type="math/tex; mode=display">
+\mathcal T:\quad \mathbf S\rightarrow-\mathbf S,\qquad \mathbf E\rightarrow\mathbf E,\qquad \mathbf j\rightarrow-\mathbf j.</script><p>如果只考虑形式 $\mathbf S=\chi^{\mathrm{EE}}\mathbf E$，似乎会得到自旋为 TR-odd、电场为 TR-even，因此响应应该在时间反演对称体系中消失。</p>
+<blockquote>
+<p>但是，这一推理不适用于存在输运弛豫的直流非平衡稳态。原因在于，Edelstein 效应的自旋极化不是平衡态自旋磁化，而是由电场持续驱动、散射维持的非平衡自旋积累。从物理上看：时间反演对称性要求平衡时的净自旋极化为零，电场驱动的非平衡分布不再具有平衡态的时间反演对称性，散射弛豫使体系建立具有确定电流方向的稳态。因此，即使哈密顿量具有时间反演对称性，也可以产生 Edelstein 效应。</p>
+</blockquote>
+<p>事实上，文章的原始模型并不包含磁序或外部磁场，本身就是时间反演对称的，这一点对于区分平衡磁电效应与 Edelstein 输运效应非常重要。</p>
+<h3 id="镜面对称性决定自旋极化方向"><a href="#镜面对称性决定自旋极化方向" class="headerlink" title="镜面对称性决定自旋极化方向"></a>镜面对称性决定自旋极化方向</h3><p>二维 Rashba 体系可以具有平面内连续旋转对称性和垂直镜面对称性。其结构反演不对称方向由极矢量 $\hat{\mathbf z}$ 表示。如果只考虑平面内电场，并要求响应满足该结构的对称性，允许的张量形式为</p>
+<script type="math/tex; mode=display">
+\chi_{ij}^{\mathrm{EE}}=\chi_R\epsilon_{izj},\qquad i,j=x,y.</script><p>写成矩阵：</p>
+<script type="math/tex; mode=display">
+\begin{pmatrix}S_x\\S_y\end{pmatrix}
+=\chi_R\begin{pmatrix}0&-1\\1&0\end{pmatrix}
+\begin{pmatrix}E_x\\E_y\end{pmatrix}.</script><p>因此 $S_x=-\chi_RE_y,\quad S_y=\chi_RE_x$。这意味着 Edelstein 自旋极化方向与电场垂直。但这并不是所有 Edelstein 体系的普遍结论。对于低对称晶体，响应张量还可能具有对角元，从而产生与电场平行的自旋极化。</p>
+<h2 id="Rashba-自旋轨道耦合模型"><a href="#Rashba-自旋轨道耦合模型" class="headerlink" title="Rashba 自旋轨道耦合模型"></a>Rashba 自旋轨道耦合模型</h2><p>考虑电子被限制在 $xy$ 平面内，界面法向为 $\hat{\mathbf z}$。如果上下方向不等价，那么垂直于二维电子气的有效电势梯度不再为零：$\partial_zV\neq0$。从非相对论极限的自旋轨道耦合可以得到如下形式的作用项：</p>
+<script type="math/tex; mode=display">
+H_{\mathrm{SOC}}\propto\boldsymbol\sigma\cdot(\nabla V\times\mathbf p).</script><p>当 $\nabla V=(\partial_zV)\hat{\mathbf z}$，并且 $\mathbf p=\hbar(k_x,k_y,0)$，有</p>
+<script type="math/tex; mode=display">
+\nabla V\times\mathbf p=\hbar(\partial_zV)(-k_y,k_x,0).</script><p>因此允许的线性自旋轨道耦合为 $H_R=\alpha(k_y\sigma_x-k_x\sigma_y)$，其中 $\alpha$ 吸收了相应的系数与符号，其量纲是能量乘长度。选择这一符号约定后，总哈密顿量写为</p>
+<script type="math/tex; mode=display">
+{H(\mathbf k)=\left(\frac{\hbar^2k^2}{2m}-\mu\right)\sigma_0+\alpha(k_y\sigma_x-k_x\sigma_y).}\label{eq:rashba_H}</script><p>令 $\varepsilon_0(k)=\hbar^2k^2/(2m)-\mu$，定义 $\mathbf d(\mathbf k)=\alpha(k_y,-k_x,0)$。于是</p>
+<script type="math/tex; mode=display">
+H(\mathbf k)=\varepsilon_0(k)\sigma_0+\mathbf d(\mathbf k)\cdot\boldsymbol\sigma.\label{eq:dvector_H}</script><p>这在形式上与电子自旋处于动量依赖的有效磁场中类似。但应注意，$\mathbf d(\mathbf k)$ 并不是真实的外部磁场，其在时间反演下会随动量一起变换。利用 Pauli 矩阵性质：</p>
+<script type="math/tex; mode=display">
+(\mathbf d\cdot\boldsymbol\sigma)^2=|\mathbf d|^2\sigma_0,</script><p>可知 $|\mathbf d(\mathbf k)|=|\alpha|k$。选择分支指标 $\lambda=\pm1$，将能谱写为</p>
+<script type="math/tex; mode=display">
+\boxed{\varepsilon_\lambda(k)=\frac{\hbar^2k^2}{2m}-\mu+\lambda\alpha k.}\label{eq:dispersion}</script><p>为了明确各分支的标记，后面取 $\alpha&gt;0$。当 $\alpha&lt;0$ 时，结果可以通过保留 $\alpha$ 的符号推广。由于自旋轨道耦合，原来两重简并的抛物线能带发生劈裂。不过在 $k=0$ 处，$\varepsilon_+(0)=\varepsilon_-(0)=-\mu$，仍然存在 Kramers 简并。令 $k_x=k\cos\varphi,\quad k_y=k\sin\varphi$，则</p>
+<script type="math/tex; mode=display">
+\mathbf d(\mathbf k)=\alpha k(\sin\varphi,-\cos\varphi,0).</script><p>对两条 Rashba 分支，自旋的 Pauli 期望值满足</p>
+<script type="math/tex; mode=display">
+\langle\boldsymbol\sigma\rangle_\lambda=\lambda\frac{\mathbf d}{|\mathbf d|}.</script><p>因此</p>
+<script type="math/tex; mode=display">
+{\langle\boldsymbol\sigma\rangle_\lambda=\lambda(\sin\varphi,-\cos\varphi,0).}\label{eq:spin_texture}</script><p>各个分量为</p>
+<script type="math/tex; mode=display">
+\langle\sigma_x\rangle_\lambda=\lambda\frac{k_y}{k},\quad\langle\sigma_y\rangle_\lambda=-\lambda\frac{k_x}{k},\quad\langle\sigma_z\rangle_\lambda=0.</script><p>可见：电子自旋始终位于二维平面内，自旋与电子动量垂直，两个 Rashba 分支在相同动量处具有相反的自旋方向。这就是 Rashba 自旋—动量锁定（spin-momentum locking）。</p>
+<h3 id="为什么平衡态没有净自旋？"><a href="#为什么平衡态没有净自旋？" class="headerlink" title="为什么平衡态没有净自旋？"></a>为什么平衡态没有净自旋？</h3><p>平衡时电子遵循 Fermi–Dirac 分布</p>
+<script type="math/tex; mode=display">
+f_0(\varepsilon)=\frac{1}{e^{\beta\varepsilon}+1}.</script><p>定义单位面积的自旋角动量密度</p>
+<script type="math/tex; mode=display">
+S_i=\frac{\hbar}{2}\sum_\lambda\int\frac{d^2k}{(2\pi)^2}\langle\sigma_i\rangle_\lambda f_0(\varepsilon_\lambda).\label{eq:spin_density}</script><p>由于能谱只依赖 $k$，对 $S_x$ 的角度积分含有 $\int_0^{2\pi}\sin\varphi\,d\varphi=0$，而对 $S_y$ 的角度积分含有 $\int_0^{2\pi}\cos\varphi\,d\varphi=0$。同时 $S_z=0$，因此</p>
+<script type="math/tex; mode=display">
+\boxed{\mathbf S^{(0)}=0.}</script><p>从时间反演角度，也可以看到：</p>
+<script type="math/tex; mode=display">
+\langle\boldsymbol\sigma\rangle_\lambda(-\mathbf k)=-\langle\boldsymbol\sigma\rangle_\lambda(\mathbf k),\qquad f_0[\varepsilon_\lambda(-\mathbf k)]=f_0[\varepsilon_\lambda(\mathbf k)].</script><p>所以 $\mathbf k$ 和 $-\mathbf k$ 的贡献完全抵消。<strong>Edelstein 效应的关键就在于：施加电场后，第二个关系不再适用于非平衡分布。</strong></p>
+<h2 id="利用-Boltzmann-方程推导-Edelstein-效应"><a href="#利用-Boltzmann-方程推导-Edelstein-效应" class="headerlink" title="利用 Boltzmann 方程推导 Edelstein 效应"></a>利用 Boltzmann 方程推导 Edelstein 效应</h2><p>接下来将从电子分布函数的运动方程出发，不预先假设费米面如何移动，而是推导出电场诱导的非平衡分布，再计算净自旋。在均匀、静态电场 $\mathbf E$ 中，电子的半经典运动满足</p>
+<script type="math/tex; mode=display">
+\hbar\dot{\mathbf k}=-e\mathbf E,\label{eq:semiclassical_motion}</script><p>其中 $e&gt;0$ 表示元电荷，电子的实际电荷为 $-e$。电子在第 $\lambda$ 个能带上的群速度为</p>
+<script type="math/tex; mode=display">
+\mathbf v_\lambda(\mathbf k)=\frac{1}{\hbar}\nabla_{\mathbf k}\varepsilon_\lambda(\mathbf k).</script><p>将式 $(\ref{eq:dispersion})$ 代入：</p>
+<script type="math/tex; mode=display">
+\nabla_{\mathbf k}\varepsilon_\lambda=\left(\frac{\hbar^2k}{m}+\lambda\alpha\right)\hat{\mathbf k}.</script><p>于是</p>
+<script type="math/tex; mode=display">
+{\mathbf v_\lambda=\left(\frac{\hbar k}{m}+\frac{\lambda\alpha}{\hbar}\right)\hat{\mathbf k}.}\label{eq:band_velocity}</script><p>注意两个能带的速度除了自由电子贡献，还包含 Rashba 自旋轨道耦合产生的贡献。例如 $x$ 方向速度为</p>
+<script type="math/tex; mode=display">
+v_{\lambda x}=\left(\frac{\hbar k}{m}+\frac{\lambda\alpha}{\hbar}\right)\cos\varphi.</script><p>定义第 $\lambda$ 个能带上的分布函数为 $f_\lambda(\mathbf r,\mathbf k,t)$，半经典 Boltzmann 方程为</p>
+<script type="math/tex; mode=display">
+\frac{\partial f_\lambda}{\partial t}+\dot{\mathbf r}\cdot\nabla_{\mathbf r}f_\lambda+\dot{\mathbf k}\cdot\nabla_{\mathbf k}f_\lambda=I_{\mathrm{coll}}[f_\lambda].\label{eq:boltzmann}</script><p>碰撞积分 $I_{\mathrm{coll}}$ 描述杂质或其他散射机制对分布函数的影响。我们先作如下近似：（1）电场空间均匀且不随时间变化，（2）系统已经达到非平衡稳态，（3）电子分布相对于平衡态的偏离较小，（4）可以用一个有效输运弛豫时间 $\tau$ 描述分布函数的恢复。其中，最后一个条件是弛豫时间近似，而不是一般含自旋轨道耦合体系的严格散射解。</p>
+<p>在这些条件下，$\partial_t f_\lambda=0$，$\nabla_{\mathbf r}f_\lambda=0$，碰撞项近似为</p>
+<script type="math/tex; mode=display">
+I_{\mathrm{coll}}[f_\lambda]= -\frac{f_\lambda-f_0}{\tau}.</script><p>Boltzmann 方程因此简化为</p>
+<script type="math/tex; mode=display">
+\dot{\mathbf k}\cdot\nabla_{\mathbf k}f_\lambda=-\frac{f_\lambda-f_0}{\tau}.</script><p>利用式 $(\ref{eq:semiclassical_motion})$，得到</p>
+<script type="math/tex; mode=display">
+-\frac{e}{\hbar}\mathbf E\cdot\nabla_{\mathbf k}f_\lambda=-\frac{f_\lambda-f_0}{\tau}.</script><ul>
+<li>在电场下展开分布函数</li>
+</ul>
+<p>由于我们研究线性响应，令 $f_\lambda=f_0+\delta f_\lambda$，其中 $\delta f_\lambda=O(E)$。将其代入：</p>
+<script type="math/tex; mode=display">
+-\frac{e}{\hbar}\mathbf E\cdot\nabla_{\mathbf k}(f_0+\delta f_\lambda)=-\frac{\delta f_\lambda}{\tau}.</script><p>其中 $\mathbf E\cdot\nabla_{\mathbf k}\delta f_\lambda$ 属于电场的二阶项，在一次线性响应中忽略。因此</p>
+<script type="math/tex; mode=display">
+-\frac{e}{\hbar}\mathbf E\cdot\nabla_{\mathbf k}f_0=-\frac{\delta f_\lambda}{\tau}.</script><p>整理得</p>
+<script type="math/tex; mode=display">
+\delta f_\lambda=\frac{e\tau}{\hbar}\mathbf E\cdot\nabla_{\mathbf k}f_0.</script><p>由于平衡分布是能量的函数，</p>
+<script type="math/tex; mode=display">
+\nabla_{\mathbf k}f_0=\frac{\partial f_0}{\partial\varepsilon_\lambda}\nabla_{\mathbf k}\varepsilon_\lambda.</script><p>而 $\nabla_{\mathbf k}\varepsilon_\lambda=\hbar\mathbf v_\lambda$，所以</p>
+<script type="math/tex; mode=display">
+{\delta f_\lambda(\mathbf k)=e\tau(\mathbf E\cdot\mathbf v_\lambda)\frac{\partial f_0}{\partial\varepsilon_\lambda}.}\label{eq:delta_f}</script><p>这是 Edelstein 效应半经典推导中最核心的公式之一。在 $T=0$ 时，$f_0(\varepsilon)=\Theta(-\varepsilon)$，其中我们已经将化学势包含在 $\varepsilon_\lambda$ 中。因此 $\partial f_0/\partial\varepsilon=-\delta(\varepsilon)$。将其代入式 $(\ref{eq:delta_f})$，得到</p>
+<script type="math/tex; mode=display">
+{\color{blue}\delta f_\lambda=-e\tau(\mathbf E\cdot\mathbf v_\lambda)\delta(\varepsilon_\lambda).}\label{eq:delta_f_T0}</script><p>这说明电场诱导的非平衡占据变化主要集中在费米面上。对于 $\mathbf E=E_x\hat{\mathbf x}$，</p>
+<script type="math/tex; mode=display">
+\delta f_\lambda=-e\tau E_x\left(\frac{\hbar k}{m}+\frac{\lambda\alpha}{\hbar}\right)\cos\varphi\,\delta(\varepsilon_\lambda).</script><p>当 $\cos\varphi&gt;0$ 时，分布变化与 $\cos\varphi&lt;0$ 时符号相反。因此动量空间中原来对称的占据发生了不对称变化，正负动量的自旋贡献不再完全抵消。</p>
+<ul>
+<li>电场诱导的自旋密度</li>
+</ul>
+<p>自旋密度定义为</p>
+<script type="math/tex; mode=display">
+S_i=\frac{\hbar}{2}\sum_\lambda\int\frac{d^2k}{(2\pi)^2}\langle\sigma_i\rangle_\lambda f_\lambda.</script><p>将 $f_\lambda=f_0+\delta f_\lambda$ 代入，并减去平衡贡献，得到</p>
+<script type="math/tex; mode=display">
+\delta S_i=\frac{\hbar}{2}\sum_\lambda\int\frac{d^2k}{(2\pi)^2}\langle\sigma_i\rangle_\lambda\delta f_\lambda.\label{eq:delta_spin}</script><p>利用式 $(\ref{eq:delta_f})$：</p>
+<script type="math/tex; mode=display">
+{\delta S_i=\frac{e\tau\hbar}{2}E_j\sum_\lambda\int\frac{d^2k}{(2\pi)^2}\langle\sigma_i\rangle_\lambda v_{\lambda j}\frac{\partial f_0}{\partial\varepsilon_\lambda}.}</script><p>由此读出 Edelstein 响应系数：</p>
+<script type="math/tex; mode=display">
+{\chi_{ij}^{\mathrm{EE}}=\frac{e\tau\hbar}{2}\sum_\lambda\int\frac{d^2k}{(2\pi)^2}\langle\sigma_i\rangle_\lambda v_{\lambda j}\frac{\partial f_0}{\partial\varepsilon_\lambda}.}\label{eq:ee_chi_boltzmann}</script><p>这是在能带对角、常数弛豫时间近似下的一般表达式，可以推广到具有更复杂能带结构和自旋纹理的体系。它揭示了 Edelstein 效应的三个基本因素：<strong>自旋纹理 + 费米面输运速度 + 非平衡占据变化</strong>。由前面得到的 Rashba 自旋纹理：</p>
+<script type="math/tex; mode=display">
+\langle\sigma_x\rangle_\lambda=\lambda\sin\varphi,\qquad\langle\sigma_y\rangle_\lambda=-\lambda\cos\varphi.</script><p>对于 $E_x$，$v_{\lambda x}\propto\cos\varphi$，因此 $\delta S_x$ 的角度积分含有 $\int_0^{2\pi}\sin\varphi\cos\varphi\,d\varphi=0$，所以 $\delta S_x=0$。而 $\delta S_y$ 的角度积分含有 $\int_0^{2\pi}\cos^2\varphi\,d\varphi=\pi$，因此 $\delta S_y\neq0$ 是允许的。同时 $\delta S_z=0$。从而，在当前模型中：</p>
+<script type="math/tex; mode=display">
+\boxed{\mathbf E\parallel x\quad\Longrightarrow\quad\delta\mathbf S\parallel y.}</script><p>这与第二节的对称性分析一致。</p>
+<h2 id="完整计算-Edelstein-响应系数"><a href="#完整计算-Edelstein-响应系数" class="headerlink" title="完整计算 Edelstein 响应系数"></a>完整计算 Edelstein 响应系数</h2><p>接下来不再停留于一般积分表达式，而是显式完成角向积分和径向积分，求出 $\delta S_y$。将式 $(\ref{eq:spin_texture})$、$(\ref{eq:band_velocity})$、$(\ref{eq:delta_f_T0})$ 代入式 $(\ref{eq:delta_spin})$：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\delta S_y={}&\frac{\hbar}{2}\sum_\lambda\int\frac{d^2k}{(2\pi)^2}(-\lambda\cos\varphi)\left[-e\tau E_x\left(\frac{\hbar k}{m}+\frac{\lambda\alpha}{\hbar}\right)\cos\varphi\,\delta(\varepsilon_\lambda)\right].
+\end{aligned}</script><p>整理：</p>
+<script type="math/tex; mode=display">
+\delta S_y=\frac{e\tau E_x\hbar}{2}\sum_\lambda\lambda\int\frac{d^2k}{(2\pi)^2}v_\lambda(k)\cos^2\varphi\,\delta(\varepsilon_\lambda),</script><p>其中 $v_\lambda(k)=\hbar k/m+\lambda\alpha/\hbar$。在二维极坐标中 $d^2k=k\,dk\,d\varphi$，所以</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\delta S_y={}&\frac{e\tau E_x\hbar}{2}\sum_\lambda\lambda\int_0^\infty k\,dk\int_0^{2\pi}\frac{d\varphi}{(2\pi)^2}v_\lambda(k)\cos^2\varphi\,\delta(\varepsilon_\lambda).
+\end{aligned}</script><p>因为 $\int_0^{2\pi}\cos^2\varphi\,d\varphi=\pi$，有</p>
+<script type="math/tex; mode=display">
+{\delta S_y=\frac{e\tau E_x\hbar}{8\pi}\sum_\lambda\lambda\int_0^\infty k\,dk\,v_\lambda(k)\delta(\varepsilon_\lambda).}\label{eq:Sy_radial}</script><p>现在只剩下两个 Rashba 分支的径向积分。费米面条件为 $\varepsilon_\lambda(k)=0$，因此</p>
+<script type="math/tex; mode=display">
+\frac{\hbar^2k^2}{2m}+\lambda\alpha k-\mu=0.</script><p>两边乘以 $2m/\hbar^2$：</p>
+<script type="math/tex; mode=display">
+k^2+2\lambda\frac{m\alpha}{\hbar^2}k-\frac{2m\mu}{\hbar^2}=0.</script><p>定义 Rashba 动量尺度</p>
+<script type="math/tex; mode=display">
+k_R=\frac{m\alpha}{\hbar^2}.\label{eq:kR}</script><p>二次方程变成</p>
+<script type="math/tex; mode=display">
+k^2+2\lambda k_Rk-\frac{2m\mu}{\hbar^2}=0.</script><p>利用求根公式：</p>
+<script type="math/tex; mode=display">
+k=-\lambda k_R\pm\sqrt{k_R^2+\frac{2m\mu}{\hbar^2}}.</script><p>在 $\mu&gt;0$ 的情况下，两条分支各具有一个正的费米波矢。定义</p>
+<script type="math/tex; mode=display">
+k_0=\sqrt{k_R^2+\frac{2m\mu}{\hbar^2}},</script><p>则</p>
+<script type="math/tex; mode=display">
+{k_{F,\lambda}=k_0-\lambda k_R.}\label{eq:kF}</script><p>因此 $k_{F,+}=k_0-k_R$，$k_{F,-}=k_0+k_R$。两个费米圆之间的波矢差为</p>
+<script type="math/tex; mode=display">
+{k_{F,-}-k_{F,+}=2k_R.}\label{eq:kF_difference}</script><p>注意，这个结果不显含化学势 $\mu$。由式 $(\ref{eq:band_velocity})$：</p>
+<script type="math/tex; mode=display">
+v_\lambda(k)=\frac{\hbar k}{m}+\frac{\lambda\alpha}{\hbar}.</script><p>在费米面 $k=k_{F,\lambda}$ 处：</p>
+<script type="math/tex; mode=display">
+v_{F,\lambda}=\frac{\hbar(k_0-\lambda k_R)}{m}+\frac{\lambda\alpha}{\hbar}.</script><p>利用 $\hbar k_R/m=\alpha/\hbar$，得到</p>
+<script type="math/tex; mode=display">
+v_{F,\lambda}=\frac{\hbar k_0}{m}-\frac{\lambda\alpha}{\hbar}+\frac{\lambda\alpha}{\hbar}.</script><p>所以</p>
+<script type="math/tex; mode=display">
+{v_{F,+}=v_{F,-}=\frac{\hbar k_0}{m}\equiv v_F.}\label{eq:vF}</script><p>这个结果很有意义：<strong>虽然 Rashba 自旋轨道耦合使两个费米圆的半径不同，但在当前抛物线模型且两条分支均被占据时，它们的费米速度大小相同。</strong></p>
+<p>对于任意满足 $\varepsilon_\lambda(k_F)=0$ 的简单根，有</p>
+<script type="math/tex; mode=display">
+\delta[\varepsilon_\lambda(k)]=\frac{\delta(k-k_{F,\lambda})}{|\partial_k\varepsilon_\lambda(k_{F,\lambda})|}.</script><p>因为 $\partial_k\varepsilon_\lambda=\hbar v_\lambda(k)$，所以</p>
+<script type="math/tex; mode=display">
+\delta[\varepsilon_\lambda(k)]=\frac{\delta(k-k_{F,\lambda})}{\hbar v_F}.</script><p>于是</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+I_\lambda&=\int_0^\infty k\,dk\,v_\lambda(k)\delta[\varepsilon_\lambda(k)]=\int_0^\infty k\,dk\,v_\lambda(k)\frac{\delta(k-k_{F,\lambda})}{\hbar v_F}.
+\end{aligned}</script><p>利用 Dirac delta 函数积分性质：</p>
+<script type="math/tex; mode=display">
+I_\lambda=\frac{k_{F,\lambda}v_{F,\lambda}}{\hbar v_F}.</script><p>因此</p>
+<script type="math/tex; mode=display">
+{I_\lambda=\frac{k_{F,\lambda}}{\hbar}.}</script><p>代回式 $(\ref{eq:Sy_radial})$：</p>
+<script type="math/tex; mode=display">
+\delta S_y=\frac{e\tau E_x}{8\pi}\sum_\lambda\lambda k_{F,\lambda}.</script><p>显式求和：</p>
+<script type="math/tex; mode=display">
+\sum_\lambda\lambda k_{F,\lambda}=k_{F,+}-k_{F,-}.</script><p>利用式 $(\ref{eq:kF_difference})$：</p>
+<script type="math/tex; mode=display">
+k_{F,+}-k_{F,-}=-2k_R.</script><p>所以</p>
+<script type="math/tex; mode=display">
+\delta S_y=-\frac{e\tau E_x}{4\pi}k_R.</script><p>再利用式 $(\ref{eq:kR})$：</p>
+<script type="math/tex; mode=display">
+{\delta S_y=-\frac{e\tau m\alpha}{4\pi\hbar^2}E_x.}\label{eq:Sy_final}</script><p>这就是在我们选定的哈密顿量符号、自旋角动量归一化以及常数弛豫时间近似下，二维 Rashba 电子气的 Edelstein 响应。由旋转对称性得到一般矢量形式：</p>
+<script type="math/tex; mode=display">
+{\delta\mathbf S=-\frac{e\tau m\alpha}{4\pi\hbar^2}\hat{\mathbf z}\times\mathbf E.}\label{eq:EE_final}</script><p>因此</p>
+<script type="math/tex; mode=display">
+\chi_{yx}^{\mathrm{EE}}=-\frac{e\tau m\alpha}{4\pi\hbar^2},\qquad\chi_{xy}^{\mathrm{EE}}=+\frac{e\tau m\alpha}{4\pi\hbar^2}.</script><p>并且 $\chi_{xx}^{\mathrm{EE}}=\chi_{yy}^{\mathrm{EE}}=0$。上述系数以物理自旋角动量密度 $\mathbf S=\hbar\langle\boldsymbol\sigma\rangle/2$ 定义。如果改用 Pauli 自旋极化 $\langle\boldsymbol\sigma\rangle$，或定义为磁矩密度，必须相应修改归一化因子。</p>
+<ul>
+<li>为什么结果与化学势无关？</li>
+</ul>
+<p>式 $(\ref{eq:Sy_final})$ 中没有显式出现 $\mu$，这是因为 $k_{F,-}-k_{F,+}=2k_R$ 与 $\mu$ 无关。在计算中，两条费米面的自旋贡献具有相反符号，但因费米圆周长不同，无法完全抵消。更具体地说：</p>
+<script type="math/tex; mode=display">
+\delta S_y^{(+)}=\frac{e\tau E_x}{8\pi}k_{F,+},\qquad\delta S_y^{(-)}=-\frac{e\tau E_x}{8\pi}k_{F,-}.</script><p>二者相加：</p>
+<script type="math/tex; mode=display">
+\delta S_y=\frac{e\tau E_x}{8\pi}(k_{F,+}-k_{F,-}).</script><p>虽然每一条分支的贡献都依赖 $\mu$，它们之和仅依赖两条费米圆之间的半径差。不过，<strong>该化学势无关性不是 Edelstein 效应的普遍性质</strong>。它依赖于抛物线色散、线性 Rashba 耦合、常数弛豫时间以及两条 Rashba 分支均被占据等条件。如果化学势降低至只有下 Rashba 分支被占据，或者出现非抛物线色散，该结果一般会改变。</p>
+<h2 id="从电场响应转换为电流响应"><a href="#从电场响应转换为电流响应" class="headerlink" title="从电场响应转换为电流响应"></a>从电场响应转换为电流响应</h2><p>Edelstein 原始论文的标题强调的是电流诱导自旋极化，而不仅是电场诱导自旋极化。因此，我们还需要建立 $\delta\mathbf S$ 与电流密度 $\mathbf j$ 的关系。电子的电流密度为</p>
+<script type="math/tex; mode=display">
+\mathbf j=-e\sum_\lambda\int\frac{d^2k}{(2\pi)^2}\mathbf v_\lambda(\mathbf k)f_\lambda(\mathbf k).\label{eq:current}</script><p>由于平衡态无净电流，$\mathbf j^{(0)}=0$，因此线性电流为</p>
+<script type="math/tex; mode=display">
+j_i=-e\sum_\lambda\int\frac{d^2k}{(2\pi)^2}v_{\lambda i}\delta f_\lambda.</script><p>代入式 $(\ref{eq:delta_f})$：</p>
+<script type="math/tex; mode=display">
+{j_i=e^2\tau E_j\sum_\lambda\int\frac{d^2k}{(2\pi)^2}v_{\lambda i}v_{\lambda j}\left(-\frac{\partial f_0}{\partial\varepsilon_\lambda}\right).}</script><p>于是电导张量为</p>
+<script type="math/tex; mode=display">
+\sigma_{ij}=e^2\tau\sum_\lambda\int\frac{d^2k}{(2\pi)^2}v_{\lambda i}v_{\lambda j}\left(-\frac{\partial f_0}{\partial\varepsilon_\lambda}\right).\label{eq:sigma_boltzmann}</script><p>这是常数弛豫时间近似下的能带对角 Drude 电导公式。对于各向同性 Rashba 模型，</p>
+<script type="math/tex; mode=display">
+\sigma_{xx}=e^2\tau\sum_\lambda\int\frac{d^2k}{(2\pi)^2}v_\lambda^2(k)\cos^2\varphi\,\delta(\varepsilon_\lambda).</script><p>完成角度积分：</p>
+<script type="math/tex; mode=display">
+\sigma_{xx}=\frac{e^2\tau}{4\pi}\sum_\lambda\int_0^\infty k\,dk\,v_\lambda^2(k)\delta(\varepsilon_\lambda).</script><p>径向积分为</p>
+<script type="math/tex; mode=display">
+\int_0^\infty k\,dk\,v_\lambda^2(k)\delta(\varepsilon_\lambda)=\frac{k_{F,\lambda}v_F}{\hbar}.</script><p>因此</p>
+<script type="math/tex; mode=display">
+\sigma_{xx}=\frac{e^2\tau v_F}{4\pi\hbar}(k_{F,+}+k_{F,-}).</script><p>利用 $k_{F,+}+k_{F,-}=2k_0$，$v_F=\hbar k_0/m$，得到</p>
+<script type="math/tex; mode=display">
+{\sigma_{xx}=\frac{e^2\tau k_0^2}{2\pi m}.}\label{eq:sigma_final}</script><p>于是</p>
+<script type="math/tex; mode=display">
+j_x=\frac{e^2\tau k_0^2}{2\pi m}E_x.</script><p>这里需要注意：式 $(\ref{eq:sigma_final})$ 是我们所采用的简单能带 Boltzmann 近似的结果。若定义真实二维粒子数密度</p>
+<script type="math/tex; mode=display">
+n=\frac{k_{F,+}^2+k_{F,-}^2}{4\pi}=\frac{k_0^2+k_R^2}{2\pi},</script><p>则式 $(\ref{eq:sigma_final})$ 一般不严格等于 $ne^2\tau/m$。包含杂质诱导的自旋分布修正和相应顶角修正时，电导表达式需要一致地重新计算，不能直接将不同近似下的结果混用。将式 $(\ref{eq:sigma_final})$ 解出的 $E_x$ 代入式 $(\ref{eq:Sy_final})$：</p>
+<script type="math/tex; mode=display">
+E_x=\frac{2\pi m}{e^2\tau k_0^2}j_x.</script><p>于是</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\delta S_y&=-\frac{e\tau m\alpha}{4\pi\hbar^2}\frac{2\pi m}{e^2\tau k_0^2}j_x=-\frac{m^2\alpha}{2e\hbar^2k_0^2}j_x.
+\end{aligned}</script><p>因此</p>
+<script type="math/tex; mode=display">
+{\delta S_y=-\frac{m^2\alpha}{2e\hbar^2k_0^2}j_x.}\label{eq:EE_current}</script><blockquote>
+<p>这个结果清楚地展示出：在当前近似下，将 Edelstein 自旋极化表示为电流的函数以后，显式的弛豫时间 $\tau$ 被消去了。其物理原因是 $\delta S_y\propto\tau E_x$，$j_x\propto\tau E_x$。两者的比值不再显式依赖 $\tau$。这也正是原始论文讨论的一个重要现象：电流诱导的自旋极化与动量弛豫时间的关系，可以比电场诱导形式更加简单。原文式 (13)、(14) 采用了不同的自旋归一化、SOC 参数定义及杂质处理方法，因此在逐项比较数值系数前，需要先统一这些约定。</p>
+</blockquote>
+<h2 id="从-Kubo-线性响应理论理解-Edelstein-效应"><a href="#从-Kubo-线性响应理论理解-Edelstein-效应" class="headerlink" title="从 Kubo 线性响应理论理解 Edelstein 效应"></a>从 Kubo 线性响应理论理解 Edelstein 效应</h2><p>前面使用 Boltzmann 理论完成了计算，但原始论文采用的是格林函数与顶角修正方法。为了理解两种方法之间的关系，我们接下来建立 Edelstein 响应的 Kubo 表达式。对标准 Rashba 哈密顿量</p>
+<script type="math/tex; mode=display">
+H(\mathbf k)=\frac{\hbar^2k^2}{2m}\sigma_0+\alpha(k_y\sigma_x-k_x\sigma_y),</script><p>自旋角动量算符是 $\hat S_i=\hbar\sigma_i/2$。速度算符需要由哈密顿量对动量求导：</p>
+<script type="math/tex; mode=display">
+\hat v_i=\frac{1}{\hbar}\frac{\partial H}{\partial k_i}.\label{eq:velocity_operator}</script><p>因此</p>
+<script type="math/tex; mode=display">
+\boxed{\hat v_x=\frac{\hbar k_x}{m}\sigma_0-\frac{\alpha}{\hbar}\sigma_y,}\label{eq:vx_operator}</script><script type="math/tex; mode=display">
+\boxed{\hat v_y=\frac{\hbar k_y}{m}\sigma_0+\frac{\alpha}{\hbar}\sigma_x.}\label{eq:vy_operator}</script><p>这里特别需要注意：<strong>速度算符本身包含自旋矩阵。</strong>电流算符为 $\hat j_i=-e\hat v_i$。因此，外加电场不仅改变电子的动量分布，同时也通过自旋轨道耦合影响电流与自旋算符之间的响应关联。在空间均匀的电场下，可以使用随时间变化的矢势：</p>
+<script type="math/tex; mode=display">
+\mathbf E(t)=-\frac{\partial\mathbf A(t)}{\partial t}.</script><p>以最小耦合引入矢势：</p>
+<script type="math/tex; mode=display">
+\hbar\mathbf k\rightarrow\hbar\mathbf k+e\mathbf A.</script><p>将哈密顿量按 $\mathbf A$ 展开到一阶：</p>
+<script type="math/tex; mode=display">
+H(\mathbf k+e\mathbf A/\hbar)\simeq H(\mathbf k)+eA_j\hat v_j.</script><p>由于 $\hat j_j=-e\hat v_j$，得到微扰项</p>
+<script type="math/tex; mode=display">
+{H'(t)=-\hat j_jA_j(t).}\label{eq:perturbation}</script><p>这样就把电场诱导的自旋极化转换成了自旋算符与电流算符之间的线性响应问题。</p>
+<p>定义推迟自旋—电流关联函数：</p>
+<script type="math/tex; mode=display">
+\boxed{\Pi_{ij}^{R}(t)=-\frac{i}{\hbar}\Theta(t)\left\langle[\hat S_i(t),\hat j_j(0)]\right\rangle.}\label{eq:Pi_retarded}</script><p>这里的算符应理解为总自旋和总电流；对均匀体系还需除以面积，才能得到自旋密度响应。进行 Fourier 变换：</p>
+<script type="math/tex; mode=display">
+\Pi_{ij}^{R}(\omega)=\int_{-\infty}^{\infty}dt\,e^{i\omega t}\Pi_{ij}^{R}(t).</script><p>根据 Kubo 公式，电场诱导自旋密度为</p>
+<script type="math/tex; mode=display">
+\delta S_i(\omega)=\Pi_{ij}^{R}(\omega)A_j(\omega).</script><p>采用时间依赖 $e^{-i\omega t}$，有 $E_j(\omega)=i\omega A_j(\omega)$。</p>
+<p>于是</p>
+<script type="math/tex; mode=display">
+\delta S_i(\omega)=\frac{\Pi_{ij}^{R}(\omega)}{i\omega}E_j(\omega).</script><p>因此形式上可以定义</p>
+<script type="math/tex; mode=display">
+\chi_{ij}^{\mathrm{EE}}(\omega)=\frac{\Pi_{ij}^{R}(\omega)}{i\omega}.</script><p>更严谨地讲，在规范不变的完整响应理论中，需要正确处理静态矢势及平衡响应的抵消，可以写成</p>
+<script type="math/tex; mode=display">
+{\chi_{ij}^{\mathrm{EE}}(\omega)=\frac{\Pi_{ij}^{R}(\omega)-\Pi_{ij}^{R}(0)}{i\omega}.}\label{eq:Kubo_EE}</script><p>在使用这一表达式时，频率极限、无序平均以及顶角修正必须采用一致的处理方式。非相互作用电子的 Matsubara 格林函数为</p>
+<script type="math/tex; mode=display">
+G(\mathbf k,i\omega_n)=\left[i\hbar\omega_n-H(\mathbf k)\right]^{-1}.</script><p>引入 Rashba 分支的投影算符：</p>
+<script type="math/tex; mode=display">
+P_\lambda(\mathbf k)=\frac12\left[\sigma_0+\lambda\hat{\mathbf d}(\mathbf k)\cdot\boldsymbol\sigma\right].\label{eq:projectors}</script><p>其中 $\hat{\mathbf d}=\mathbf d/|\mathbf d|$。格林函数可以写成谱分解形式：</p>
+<script type="math/tex; mode=display">
+{G(\mathbf k,i\omega_n)=\sum_{\lambda=\pm}\frac{P_\lambda(\mathbf k)}{i\hbar\omega_n-\varepsilon_\lambda(k)}.}\label{eq:greens_projected}</script><p>忽略顶角修正时，自旋—电流关联函数由单个泡图给出：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\Pi_{ij}(i\Omega_m)={}&-\frac1\beta\sum_{\omega_n}\int\frac{d^2k}{(2\pi)^2}\operatorname{Tr}\left[\hat S_iG(\mathbf k,i\omega_n+i\Omega_m)\hat j_jG(\mathbf k,i\omega_n)\right],
+\end{aligned}\label{eq:kubo_bubble}</script><p>这里默认采用单粒子迹及与式 $(\ref{eq:Pi_retarded})$ 一致的归一化约定。代入式 $(\ref{eq:greens_projected})$，得到</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\Pi_{ij}(i\Omega_m)={}&-\frac1\beta\sum_{\omega_n}\sum_{\lambda,\lambda'}\int\frac{d^2k}{(2\pi)^2}\frac{\operatorname{Tr}[\hat S_iP_\lambda\hat j_jP_{\lambda'}]}{(i\hbar\omega_n+i\hbar\Omega_m-\varepsilon_\lambda)(i\hbar\omega_n-\varepsilon_{\lambda'})}.
+\end{aligned}</script><p>执行 Matsubara 频率求和之后：</p>
+<script type="math/tex; mode=display">
+{\Pi_{ij}(i\Omega_m)=\sum_{\lambda,\lambda'}\int\frac{d^2k}{(2\pi)^2}\mathcal M_{ij}^{\lambda\lambda'}(\mathbf k)\frac{f_0(\varepsilon_\lambda)-f_0(\varepsilon_{\lambda'})}{i\hbar\Omega_m+\varepsilon_\lambda-\varepsilon_{\lambda'}}.}\label{eq:Pi_band}</script><p>其中矩阵元 $\mathcal M$ 根据上述算符顺序定义，适当交换分支指标后即可写为这一形式。由式 $(\ref{eq:Pi_band})$，可以区分两类过程：</p>
+<ul>
+<li>$\lambda=\lambda’$：同一能带内的响应，与费米面附近的占据变化密切相关。</li>
+<li>$\lambda\neq\lambda’$：不同 Rashba 分支之间的相干响应，包含带间矩阵元。</li>
+</ul>
+<p>这种分解在复杂多能带体系中非常有用，因为 Edelstein 效应不一定完全由简单的费米面移动描述。</p>
+<h2 id="Edelstein-效应与时间反演对称性"><a href="#Edelstein-效应与时间反演对称性" class="headerlink" title="Edelstein 效应与时间反演对称性"></a>Edelstein 效应与时间反演对称性</h2><blockquote>
+<p>平衡自旋极化为什么被时间反演禁止?</p>
+</blockquote>
+<p>自旋是时间反演奇的物理量：</p>
+<script type="math/tex; mode=display">
+\mathcal T\hat{\mathbf S}\mathcal T^{-1}=-\hat{\mathbf S}.</script><p>如果哈密顿量具有时间反演对称性，</p>
+<script type="math/tex; mode=display">
+\mathcal TH(\mathbf k)\mathcal T^{-1}=H(-\mathbf k),</script><p>则热平衡态也满足相应的时间反演不变性。因此平衡自旋期望值必须满足</p>
+<script type="math/tex; mode=display">
+\langle\mathbf S\rangle_{\rm eq}=-\langle\mathbf S\rangle_{\rm eq},</script><p>得到</p>
+<script type="math/tex; mode=display">
+\boxed{\langle\mathbf S\rangle_{\rm eq}=0.}</script><blockquote>
+<p>为什么非平衡 Edelstein 自旋极化可以不为零？</p>
+</blockquote>
+<p>关键是电流本身属于时间反演奇的物理量：</p>
+<script type="math/tex; mode=display">
+\mathcal T\mathbf j=-\mathbf j.</script><p>Edelstein 效应也可以定义为 $S_i=\kappa_{ij}j_j$。在时间反演下，自旋和电流同时改变符号：</p>
+<script type="math/tex; mode=display">
+-S_i=\kappa_{ij}(-j_j).</script><p>因此这种关系并不与时间反演对称的哈密顿量矛盾。不过，必须强调：这只是直观的对称性说明，不能取代对非平衡响应函数的严格分析。有限电流的稳态不是平衡态，它的维持依赖外部驱动和耗散。真正能够判断响应是否存在的，是完整动力学和相应的输运系数。</p>
+<blockquote>
+<p>Edelstein 效应是否一定属于 TR-even 响应？</p>
+</blockquote>
+<p>这里最重要的是先明确对响应系数的定义。如果所谓 TR-even 是指：将某一体系的全部磁性序参量 $M$ 反转以后，比较响应系数 $\chi^{\mathrm{EE}}(M)$ 与 $\chi^{\mathrm{EE}}(-M)$，则可以定义</p>
+<script type="math/tex; mode=display">
+\chi_{\mathrm{even}}=\frac{\chi(M)+\chi(-M)}2,\qquad\chi_{\mathrm{odd}}=\frac{\chi(M)-\chi(-M)}2.\label{eq:TR_decomposition}</script><p>它们分别满足</p>
+<script type="math/tex; mode=display">
+\chi_{\mathrm{even}}(M)=\chi_{\mathrm{even}}(-M),\qquad\chi_{\mathrm{odd}}(M)=-\chi_{\mathrm{odd}}(-M).</script><p>对于本文研究的普通 Rashba 电子气，不存在磁性序参量，因此传统 Edelstein 效应无需时间反演对称性破缺即可存在。但是，在磁性 Rashba 体系或更复杂的自旋轨道耦合磁体中，可以进一步研究反转磁序时自旋响应系数的不同变化。不能简单根据自旋是 TR-odd、电场是 TR-even，就断言所有电场诱导自旋响应系数必然是 TR-odd。</p>
+<h2 id="Edelstein-效应的几个重要物理特点"><a href="#Edelstein-效应的几个重要物理特点" class="headerlink" title="Edelstein 效应的几个重要物理特点"></a>Edelstein 效应的几个重要物理特点</h2><p>由式 $(\ref{eq:Sy_final})$ 可知：$\delta S_y\propto\alpha$。因此，在当前模型及近似下：</p>
+<script type="math/tex; mode=display">
+\lim_{\alpha\to0}\delta S_y=0.</script><p>如果没有 Rashba 自旋轨道耦合，动量与自旋不再锁定，电场驱动的动量分布不对称不能产生这一自旋极化机制。此外，当 $\alpha$ 反号时，$\delta S_y(\alpha)=-\delta S_y(-\alpha)$，即诱导自旋的方向反转。</p>
+<p>在固定电场的条件下：$\delta S_y\propto\tau$。弛豫时间越长，电场引起的动量分布偏离越明显，非平衡自旋极化也越大，但在固定电流下，简单 Drude 近似给出的显式 $\tau$ 依赖会消去。这两个结论并不冲突，因为它们描述的是不同的实验控制条件。还应强调，固定电场下的 $\tau\to\infty$ 极限不能直接用上述稳态公式外推。无散射体系中的直流电场未必能建立同样的稳态分布。</p>
+<h3 id="与自旋-Hall-效应的区别"><a href="#与自旋-Hall-效应的区别" class="headerlink" title="与自旋 Hall 效应的区别"></a>与自旋 Hall 效应的区别</h3><p>虽然 Edelstein 效应和自旋 Hall 效应都与自旋轨道耦合有关，但它们研究的响应量不同。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>性质</th>
+<th>Edelstein 效应</th>
+<th>自旋 Hall 效应</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>外部驱动</td>
+<td>电场或电流</td>
+<td>电场或电流</td>
+</tr>
+<tr>
+<td>核心响应</td>
+<td>自旋密度 $S_i$</td>
+<td>自旋流 $J_i^{s_a}$</td>
+</tr>
+<tr>
+<td>典型结果</td>
+<td>均匀非平衡自旋极化</td>
+<td>横向自旋输运</td>
+</tr>
+<tr>
+<td>常见后果</td>
+<td>电流诱导自旋积累或自旋力矩</td>
+<td>边界自旋积累、自旋注入</td>
+</tr>
+<tr>
+<td>一般条件</td>
+<td>受到反演及其他点群对称性约束</td>
+<td>可以存在于某些中心对称体系</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>两者之间还可以存在联系。例如，在具有自旋弛豫的体系中，自旋 Hall 流与电流诱导的自旋密度可能通过自旋动力学方程相互耦合。</p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p><a target="_blank" rel="noopener" href="https://linkinghub.elsevier.com/retrieve/pii/003810989090963C">Spin polarization of conduction electrons induced by electric current in two-dimensional asymmetric electron systems</a></p>
+<div class="note red flat"><p>鉴于该网站分享的大都是学习笔记，作者水平有限，若发现有问题可以发邮件给我</p>
+<ul>
+<li><strong>yxliphy@gmail.com</strong></li>
+</ul>
+<p>也非常欢迎喜欢分享的小伙伴投稿</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="/about">Yu-Xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2026/10/19/2026-10-19-Edelstein-Effect/">http://example.com/2026/10/19/2026-10-19-Edelstein-Effect/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Yu-Xuan's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Transport/">Transport</a></div><div class="post-share"><div class="social-share" data-image="/assets/images/Transport/Edelstein-effect.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/assets/images/WM.png" target="_blank"><img class="post-qr-code-img" src="/assets/images/WM.png"/></a><div class="post-qr-code-desc"></div></li><li class="reward-item"><a href="/assets/images/ZM.png" target="_blank"><img class="post-qr-code-img" src="/assets/images/ZM.png"/></a><div class="post-qr-code-desc"></div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/10/11/2026-10-11-Hubbard-Spin/" title="二维 Hubbard 模型中自旋涨落、非常规超导与自旋共振"><img class="cover" src="/assets/images/SC/Hubbard-spin.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">二维 Hubbard 模型中自旋涨落、非常规超导与自旋共振</div></div><div class="info-2"><div class="info-item-1">二维 Hubbard 模型中自旋涨落、非常规超导与自旋共振考虑二维正方晶格上的单轨道电子体系： $H=H_0+H_U,$ 其中  \begin{aligned} H_0={}& -t\sum_{...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2020/09/16/2020-09-16-Kubo/" title="Kubo公式推导(线性响应理论)"><img class="cover" src="/img/defult-cover7.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-16</div><div class="info-item-2">Kubo公式推导(线性响应理论)</div></div><div class="info-2"><div class="info-item-1">物理是个实验学科,在凝聚态物理中,若想知道一个给定物理系统的特性,首先是以某种方式扰动系统(如加外场或者通过粒子辐射),然后观察系统的物理量因外加扰动所引起的改变—-响应.通过扰动于响应的关系即...</div></div></div></a><a class="pagination-related" href="/2022/03/25/2022-03-25-edge-polarization/" title="Title"><img class="cover" src="/img/defult-cover7.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-25</div><div class="info-item-2">Title</div></div><div class="info-2"><div class="info-item-1">本 Blog 提供计算边界极化的完整代码，理论部分参考边界极化这篇 Blog。  代码串行1234567891011121314151617181920212223242526272829303...</div></div></div></a><a class="pagination-related" href="/2025/07/12/2025-07-12-symmetry-response/" title="对称性约束响应系数"><img class="cover" src="/assets/images/Transport/current-symmetry.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-07-12</div><div class="info-item-2">对称性约束响应系数</div></div><div class="info-2"><div class="info-item-1">这里先用一个具体的例子来展示一下对称性是如何约束响应系数分量的。   这里来分析一下，在系统具有 $C_{2x}$ 对称性（即关于 $x$轴的二重旋转对称性）时，一阶电导率张量$\sigma_{...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description">知行合一</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">397</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yxli8023"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:yxliphy@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><div style="text-align:center;"> <img src="/assets/images/qrcode.jpg" alt="公告图" style="max-width:100%; border-radius:10px; margin-bottom:10px;"> <br> 欢迎关注公众号，有趣的内容也会在上面同步。 有密码的文章属于正在建设中或者没有通过验证的内容，若有需要可通过邮件联系。</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Edelstein-%E6%95%88%E5%BA%94%EF%BC%9A%E7%89%A9%E7%90%86%E6%9C%BA%E5%88%B6%E3%80%81%E5%AF%B9%E7%A7%B0%E6%80%A7%E4%B8%8E%E5%BE%AE%E8%A7%82%E7%90%86%E8%AE%BA%E7%9A%84%E6%8E%A8%E5%AF%BC"><span class="toc-number">1.</span> <span class="toc-text">Edelstein 效应：物理机制、对称性与微观理论的推导</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Edelstein-%E6%95%88%E5%BA%94%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">1.1.</span> <span class="toc-text">Edelstein 效应是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E5%AF%B9%E7%A7%B0%E6%80%A7%E7%90%86%E8%A7%A3-Edelstein-%E6%95%88%E5%BA%94"><span class="toc-number">1.2.</span> <span class="toc-text">从对称性理解 Edelstein 效应</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%95%9C%E9%9D%A2%E5%AF%B9%E7%A7%B0%E6%80%A7%E5%86%B3%E5%AE%9A%E8%87%AA%E6%97%8B%E6%9E%81%E5%8C%96%E6%96%B9%E5%90%91"><span class="toc-number">1.2.1.</span> <span class="toc-text">镜面对称性决定自旋极化方向</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rashba-%E8%87%AA%E6%97%8B%E8%BD%A8%E9%81%93%E8%80%A6%E5%90%88%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.3.</span> <span class="toc-text">Rashba 自旋轨道耦合模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%B9%B3%E8%A1%A1%E6%80%81%E6%B2%A1%E6%9C%89%E5%87%80%E8%87%AA%E6%97%8B%EF%BC%9F"><span class="toc-number">1.3.1.</span> <span class="toc-text">为什么平衡态没有净自旋？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A9%E7%94%A8-Boltzmann-%E6%96%B9%E7%A8%8B%E6%8E%A8%E5%AF%BC-Edelstein-%E6%95%88%E5%BA%94"><span class="toc-number">1.4.</span> <span class="toc-text">利用 Boltzmann 方程推导 Edelstein 效应</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E8%AE%A1%E7%AE%97-Edelstein-%E5%93%8D%E5%BA%94%E7%B3%BB%E6%95%B0"><span class="toc-number">1.5.</span> <span class="toc-text">完整计算 Edelstein 响应系数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E7%94%B5%E5%9C%BA%E5%93%8D%E5%BA%94%E8%BD%AC%E6%8D%A2%E4%B8%BA%E7%94%B5%E6%B5%81%E5%93%8D%E5%BA%94"><span class="toc-number">1.6.</span> <span class="toc-text">从电场响应转换为电流响应</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E-Kubo-%E7%BA%BF%E6%80%A7%E5%93%8D%E5%BA%94%E7%90%86%E8%AE%BA%E7%90%86%E8%A7%A3-Edelstein-%E6%95%88%E5%BA%94"><span class="toc-number">1.7.</span> <span class="toc-text">从 Kubo 线性响应理论理解 Edelstein 效应</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Edelstein-%E6%95%88%E5%BA%94%E4%B8%8E%E6%97%B6%E9%97%B4%E5%8F%8D%E6%BC%94%E5%AF%B9%E7%A7%B0%E6%80%A7"><span class="toc-number">1.8.</span> <span class="toc-text">Edelstein 效应与时间反演对称性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Edelstein-%E6%95%88%E5%BA%94%E7%9A%84%E5%87%A0%E4%B8%AA%E9%87%8D%E8%A6%81%E7%89%A9%E7%90%86%E7%89%B9%E7%82%B9"><span class="toc-number">1.9.</span> <span class="toc-text">Edelstein 效应的几个重要物理特点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8E%E8%87%AA%E6%97%8B-Hall-%E6%95%88%E5%BA%94%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.9.1.</span> <span class="toc-text">与自旋 Hall 效应的区别</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">2.</span> <span class="toc-text">参考文献</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/10/19/2026-10-19-Edelstein-Effect/" title="Edelstein 效应"><img src="/assets/images/Transport/Edelstein-effect.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Edelstein 效应"/></a><div class="content"><a class="title" href="/2026/10/19/2026-10-19-Edelstein-Effect/" title="Edelstein 效应">Edelstein 效应</a><time datetime="2026-10-18T16:00:00.000Z" title="发表于 2026-10-19 00:00:00">2026-10-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/10/11/2026-10-11-Hubbard-Spin/" title="二维 Hubbard 模型中自旋涨落、非常规超导与自旋共振"><img src="/assets/images/SC/Hubbard-spin.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="二维 Hubbard 模型中自旋涨落、非常规超导与自旋共振"/></a><div class="content"><a class="title" href="/2026/10/11/2026-10-11-Hubbard-Spin/" title="二维 Hubbard 模型中自旋涨落、非常规超导与自旋共振">二维 Hubbard 模型中自旋涨落、非常规超导与自旋共振</a><time datetime="2026-10-10T16:00:00.000Z" title="发表于 2026-10-11 00:00:00">2026-10-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/10/10/2026-10-10-Nonliner-Hall/" title="二阶非线性电导的半经典理论"><img src="/assets/images/QuantumGrometry/Hall-semi.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="二阶非线性电导的半经典理论"/></a><div class="content"><a class="title" href="/2026/10/10/2026-10-10-Nonliner-Hall/" title="二阶非线性电导的半经典理论">二阶非线性电导的半经典理论</a><time datetime="2026-10-09T16:00:00.000Z" title="发表于 2026-10-10 00:00:00">2026-10-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/09/11/2026-09-11-SC-Proximity/" title="超导近邻效应：从 $N/S$ 异质结到自能与诱导配对的推导"><img src="/assets/images/SC/SC-Proximity2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超导近邻效应：从 $N/S$ 异质结到自能与诱导配对的推导"/></a><div class="content"><a class="title" href="/2026/09/11/2026-09-11-SC-Proximity/" title="超导近邻效应：从 $N/S$ 异质结到自能与诱导配对的推导">超导近邻效应：从 $N/S$ 异质结到自能与诱导配对的推导</a><time datetime="2026-09-10T16:00:00.000Z" title="发表于 2026-09-11 00:00:00">2026-09-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/09/10/2026-09-10-cavity-SC/" title="腔量子涨落增强超导（理论推导）"><img src="/assets/images/SC/Cavity-SC.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="腔量子涨落增强超导（理论推导）"/></a><div class="content"><a class="title" href="/2026/09/10/2026-09-10-cavity-SC/" title="腔量子涨落增强超导（理论推导）">腔量子涨落增强超导（理论推导）</a><time datetime="2026-09-09T16:00:00.000Z" title="发表于 2026-09-10 00:00:00">2026-09-10</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/assets/images/Transport/Edelstein-effect.png);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div><div class="footer_custom_text">Welcome to  Yu-Xuan's Blog</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  const initGitalk = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGitalk = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const gitalk = new Gitalk({
+      clientID: 'Ov23li0WvZEaIAZ7RFtH',
+      clientSecret: '03fcb77b7c28dafcdde00756e27f9b5bc76639e8',
+      repo: 'yxli8023.github.io',
+      owner: 'yxli8023',
+      admin: ['yxli8023'],
+      updateCountCallback: commentCount,
+      ...option,
+      id: isShuoshuo ? path : (option && option.id) || '688bd9f1dcff5f93bcb7e08466d7ae56'
+    })
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async(el, path) => {
+    if (typeof Gitalk === 'function') initGitalk(el, path)
+    else {
+      await btf.getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await btf.getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Gitalk' === 'Gitalk'
+      ? window.shuoshuoComment = { loadComment: loadGitalk }
+      : window.loadOtherComment = loadGitalk
+    return
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
