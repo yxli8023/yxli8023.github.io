@@ -1,0 +1,608 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Hall 电导的定义、物理本质与耗散性质 | Yu-Xuan's Blog</title><meta name="author" content="Yu-Xuan"><meta name="copyright" content="Yu-Xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Hall 电导的定义、物理本质与耗散性质从欧姆定律重新认识 Hall 电导 电流是否一定与电场平行？  在最简单的各向同性金属中，欧姆定律为 $\boldsymbol j&#x3D;\sigma\boldsymbol E$，因为电导率 $\sigma$ 是标量，所以电流始终与电场平行。但是，在一般晶体中，电导率是一个张量：  j_a&#x3D;\sum_b\sigma_{ab}E_b. \label{eq:ohm}对">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hall 电导的定义、物理本质与耗散性质">
+<meta property="og:url" content="http://example.com/2026/10/23/2026-10-23-Hall-cond/index.html">
+<meta property="og:site_name" content="Yu-Xuan&#39;s Blog">
+<meta property="og:description" content="Hall 电导的定义、物理本质与耗散性质从欧姆定律重新认识 Hall 电导 电流是否一定与电场平行？  在最简单的各向同性金属中，欧姆定律为 $\boldsymbol j&#x3D;\sigma\boldsymbol E$，因为电导率 $\sigma$ 是标量，所以电流始终与电场平行。但是，在一般晶体中，电导率是一个张量：  j_a&#x3D;\sum_b\sigma_{ab}E_b. \label{eq:ohm}对">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/assets/images/Transport/Hall-Illustrate.png">
+<meta property="article:published_time" content="2026-10-22T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-10-23T02:32:35.787Z">
+<meta property="article:author" content="Yu-Xuan">
+<meta property="article:tag" content="Topology">
+<meta property="article:tag" content="Transport">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/images/Transport/Hall-Illustrate.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Hall 电导的定义、物理本质与耗散性质",
+  "url": "http://example.com/2026/10/23/2026-10-23-Hall-cond/",
+  "image": "http://example.com/assets/images/Transport/Hall-Illustrate.png",
+  "datePublished": "2026-10-22T16:00:00.000Z",
+  "dateModified": "2026-10-23T02:32:35.787Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Yu-Xuan",
+      "url": "http://example.com/about"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/logo.png"><link rel="canonical" href="http://example.com/2026/10/23/2026-10-23-Hall-cond/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"作者: Yu-Xuan","link":"链接: ","source":"来源: Yu-Xuan's Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'medium_zoom',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#f54966","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Hall 电导的定义、物理本质与耗散性质',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #dbeffd;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">405</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/assets/images/Transport/Hall-Illustrate.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo.png" alt="Logo"><span class="site-name">Yu-Xuan's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">Hall 电导的定义、物理本质与耗散性质</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 博客标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 博客分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于作者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Hall 电导的定义、物理本质与耗散性质</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-10-22T16:00:00.000Z" title="发表于 2026-10-23 00:00:00">2026-10-23</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-10-23T02:32:35.787Z" title="更新于 2026-10-23 10:32:35">2026-10-23</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Transport/">Transport</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">4.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>18分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;自上次更新已经过了&quot;,&quot;messageNext&quot;:&quot;天，文章内容可能已过时。&quot;,&quot;postUpdate&quot;:&quot;2026-10-23 10:32:35&quot;}" hidden></div><h1 id="Hall-电导的定义、物理本质与耗散性质"><a href="#Hall-电导的定义、物理本质与耗散性质" class="headerlink" title="Hall 电导的定义、物理本质与耗散性质"></a>Hall 电导的定义、物理本质与耗散性质</h1><h2 id="从欧姆定律重新认识-Hall-电导"><a href="#从欧姆定律重新认识-Hall-电导" class="headerlink" title="从欧姆定律重新认识 Hall 电导"></a>从欧姆定律重新认识 Hall 电导</h2><blockquote>
+<p>电流是否一定与电场平行？</p>
+</blockquote>
+<p>在最简单的各向同性金属中，欧姆定律为 $\boldsymbol j=\sigma\boldsymbol E$，因为电导率 $\sigma$ 是标量，所以电流始终与电场平行。但是，在一般晶体中，电导率是一个张量：</p>
+<script type="math/tex; mode=display">
+j_a=\sum_b\sigma_{ab}E_b.
+\label{eq:ohm}</script><p>对于二维体系，</p>
+<script type="math/tex; mode=display">
+\begin{pmatrix}
+j_x\\
+j_y
+\end{pmatrix}
+=
+\begin{pmatrix}
+\sigma_{xx}&\sigma_{xy}\\
+\sigma_{yx}&\sigma_{yy}
+\end{pmatrix}
+\begin{pmatrix}
+E_x\\
+E_y
+\end{pmatrix}.</script><p>假设只施加沿 $x$ 方向的电场，即 $E_y=0$，则 $j_x=\sigma_{xx}E_x$，$j_y=\sigma_{yx}E_x$。因此，只要 $\sigma_{yx}\ne0$，就会产生横向电流。但这里必须区分：<strong>产生横向电流不等于一定发生 Hall 效应，</strong>因为横向电流可以来自晶体各向异性，也可以来自真正的反对称 Hall 响应。</p>
+<p>考虑二维各向异性导体。假设沿其两个主轴的电导率不同：</p>
+<script type="math/tex; mode=display">
+\hat\sigma'=\begin{pmatrix}\sigma_1&0\\0&\sigma_2\end{pmatrix}.</script><p>如果实验坐标系相对主轴旋转角度 $\theta$，那么新坐标系下的电导张量为 $\hat\sigma=R(\theta)\hat\sigma’R^T(\theta)$，其中</p>
+<script type="math/tex; mode=display">
+R(\theta)=\begin{pmatrix}
+\cos\theta&-\sin\theta\\
+\sin\theta&\cos\theta
+\end{pmatrix}.</script><p>直接矩阵相乘：</p>
+<script type="math/tex; mode=display">
+\hat\sigma=
+\begin{pmatrix}
+\sigma_1\cos^2\theta+\sigma_2\sin^2\theta&
+(\sigma_1-\sigma_2)\sin\theta\cos\theta\\
+(\sigma_1-\sigma_2)\sin\theta\cos\theta&
+\sigma_1\sin^2\theta+\sigma_2\cos^2\theta
+\end{pmatrix}.</script><p>所以$\sigma_{xy}=\sigma_{yx}=(\sigma_1-\sigma_2)\sin\theta\cos\theta$，当 $\sigma_1\ne\sigma_2$ 且 $\theta$ 为一般角度时，两个非对角元均不为零。可是，这个体系完全可以保持时间反演对称性，没有磁场，也没有反常 Hall 效应，为什么会有横向电流？但是：因为电流更倾向沿高电导率主轴流动，而这个主轴与施加电场的方向不一致。所以，$\sigma_{xy}\ne0$ 是存在某种非对角响应的条件，却不是识别反对称 Hall 响应的充分条件。</p>
+<p><img src="/assets/images/Transport/hall_response_comparison.png" alt="对称横向响应与反对称 Hall 响应示意图"></p>
+<h2 id="Hall-电导为什么定义为反对称部分"><a href="#Hall-电导为什么定义为反对称部分" class="headerlink" title="Hall 电导为什么定义为反对称部分"></a>Hall 电导为什么定义为反对称部分</h2><p>对电导张量进行唯一分解，任意实数或复数矩阵都可以分解为转置对称与转置反对称两部分：$\hat\sigma=\hat\sigma^{\mathrm S}+\hat\sigma^{\mathrm A}$，其中</p>
+<script type="math/tex; mode=display">
+{
+\sigma_{ab}^{\mathrm S}=\frac{\sigma_{ab}+\sigma_{ba}}2,
+\qquad
+\sigma_{ab}^{\mathrm A}=\frac{\sigma_{ab}-\sigma_{ba}}2.
+}
+\label{eq:SA}</script><p>满足 $(\hat\sigma^{\mathrm S})^T=\hat\sigma^{\mathrm S}$，$(\hat\sigma^{\mathrm A})^T=-\hat\sigma^{\mathrm A}$。在二维空间中，反对称矩阵只能写成</p>
+<script type="math/tex; mode=display">
+\hat\sigma^{\mathrm A}=
+\begin{pmatrix}0&\sigma_{\mathrm{Hall}}\\-\sigma_{\mathrm{Hall}}&0\end{pmatrix}.</script><p>因此定义</p>
+<script type="math/tex; mode=display">
+\sigma_{\mathrm{Hall}}=\frac{\sigma_{xy}-\sigma_{yx}}2.\label{eq:Hall}</script><p>这里 $\sigma_{\mathrm{Hall}}$ 的正负号取决于选择 $xy$ 还是 $yx$ 作为定义方向，但物理内容相同。注意，我们没有假设体系各向同性，也没有预先假设时间反演对称性是否破缺，这是一个普遍的张量分解。</p>
+<p>为什么反对称部分在物理上特殊？把反对称电导代入欧姆定律：</p>
+<script type="math/tex; mode=display">
+\begin{pmatrix}j_x^{\mathrm{Hall}}\\j_y^{\mathrm{Hall}}\end{pmatrix}
+=
+\begin{pmatrix}0&\sigma_{\mathrm{Hall}}\\-\sigma_{\mathrm{Hall}}&0\end{pmatrix}
+\begin{pmatrix}E_x\\E_y\end{pmatrix}.</script><p>得到</p>
+<script type="math/tex; mode=display">
+{j_x^{\mathrm{Hall}}=\sigma_{\mathrm{Hall}}E_y,\qquad j_y^{\mathrm{Hall}}=-\sigma_{\mathrm{Hall}}E_x.}</script><p>引入二维 Levi-Civita 符号 $\epsilon_{xy}=1$，可以写成 $j_a^{\mathrm{Hall}}=\sigma_{\mathrm{Hall}}\epsilon_{ab}E_b$，这意味着 Hall 电流具有一个非常特殊的结构：它相当于将电场方向旋转 $90^\circ$，再乘上 Hall 电导系数。直接计算：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\boldsymbol E\cdot\boldsymbol j^H
+&=E_x\sigma_{\mathrm{Hall}}E_y-E_y\sigma_{\mathrm{Hall}}E_x=0.
+\end{aligned}</script><p>因此</p>
+<script type="math/tex; mode=display">
+\boldsymbol E\cdot\boldsymbol j^H=0.
+\label{eq:Hallpower}</script><p><strong>对于实直流电场，反对称 Hall 电流始终垂直于电场，不直接贡献焦耳热，</strong>这不仅是一个数学性质，还是 Hall 响应与耗散之间关系的核心。</p>
+<p>再看一个重要性质，设二维坐标旋转矩阵为 $R$，则电导变换为 $\hat\sigma’=R\hat\sigma R^T$，二维反对称张量满足</p>
+<script type="math/tex; mode=display">
+R\begin{pmatrix}0&1\\-1&0\end{pmatrix}R^T
+=\begin{pmatrix}0&1\\-1&0\end{pmatrix}.</script><p>因此，在保持坐标手性的面内旋转下，$\sigma_{\mathrm{Hall}}$ 不变，这说明，反对称 Hall 响应不会像各向异性引起的对称非对角响应那样，因为旋转到晶体主轴坐标系就消失，它是二维系统在给定取向下一个独立的物理响应系数。</p>
+<h2 id="从耗散角度理解-Hall-响应"><a href="#从耗散角度理解-Hall-响应" class="headerlink" title="从耗散角度理解 Hall 响应"></a>从耗散角度理解 Hall 响应</h2><p>电流产生的焦耳热，电场对单位体积电子体系所做的功率为</p>
+<script type="math/tex; mode=display">
+{p=\boldsymbol j\cdot\boldsymbol E.}
+\label{eq:power}</script><p>将欧姆定律代入：$p=\boldsymbol E^T\hat\sigma\boldsymbol E$，进一步将电导张量拆分</p>
+<script type="math/tex; mode=display">
+{\color{blue}p=\boldsymbol E^T\hat\sigma^{\mathrm S}\boldsymbol E
++\boldsymbol E^T\hat\sigma^{\mathrm A}\boldsymbol E.}</script><p>对于任意实矢量 $\boldsymbol E$ 与实反对称矩阵，都有 $\boldsymbol E^T\hat\sigma^{\mathrm A}\boldsymbol E=0$。证明很简单，令 $X=\boldsymbol E^T\hat\sigma^{\mathrm A}\boldsymbol E$，由于 $X$ 是标量，</p>
+<script type="math/tex; mode=display">
+X=X^T
+=\boldsymbol E^T(\hat\sigma^{\mathrm A})^T\boldsymbol E
+=-X.</script><p>于是 $X=0$，所以</p>
+<script type="math/tex; mode=display">
+{\color{blue}p=\boldsymbol E^T\hat\sigma^{\mathrm S}\boldsymbol E.}
+\label{eq:dc_dissipation}</script><p>这意味着：<strong>在直流线性输运中，焦耳耗散由电导张量的对称部分决定，而反对称 Hall 部分不直接耗散能量。</strong>例如，</p>
+<script type="math/tex; mode=display">
+\hat\sigma=\begin{pmatrix}\sigma_0&\sigma_{\mathrm{Hall}}\\-\sigma_{\mathrm{Hall}}&\sigma_0\end{pmatrix},</script><p>对应</p>
+<script type="math/tex; mode=display">
+\boldsymbol j=
+\begin{pmatrix}
+\sigma_0E_x+\sigma_{\mathrm{Hall}}E_y\\
+-\sigma_{\mathrm{Hall}}E_x+\sigma_0E_y
+\end{pmatrix}.</script><p>计算总功率：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+p&=E_xj_x+E_yj_y=\sigma_0(E_x^2+E_y^2)+\sigma_{\mathrm{Hall}}E_xE_y-\sigma_{\mathrm{Hall}}E_yE_x=\sigma_0|\boldsymbol E|^2.
+\end{aligned}</script><p>Hall 项严格抵消，因此，即使 $\sigma_{\mathrm{Hall}}$ 很大，它本身也不会增加这一电场下的局域焦耳耗散。这是否意味着有 Hall 效应的材料完全没有耗散？假设体系同时具有纵向和 Hall 电导：</p>
+<script type="math/tex; mode=display">
+\hat\sigma=\begin{pmatrix}\sigma_{xx}&\sigma_{\mathrm{Hall}}\\-\sigma_{\mathrm{Hall}}&\sigma_{yy}\end{pmatrix}.</script><p>即使 Hall 部分不直接耗散，纵向电导仍然产生焦耳热：$p=\sigma_{xx}E_x^2+\sigma_{yy}E_y^2$。因此，普通金属可以同时具有很强的 Hall 效应和很大的纵向电阻。此外，在固定外加电流而非固定电场的实验条件下，Hall 响应还可能改变系统内部所需的电场分布，从而间接影响总耗散。所以需要准确区分：</p>
+<ul>
+<li>Hall 电流分量本身不直接做功；</li>
+<li>整个具有 Hall 效应的导体不一定无耗散。</li>
+</ul>
+<p>理想量子 Hall 平台满足</p>
+<script type="math/tex; mode=display">
+\sigma_{xx}\rightarrow0,
+\qquad
+\sigma_{xy}=-\sigma_{yx}=\nu\frac{e^2}{h},</script><p>其中 $\nu$ 为适当的填充因子或拓扑量子数。此时</p>
+<script type="math/tex; mode=display">
+\hat\sigma=\begin{pmatrix}0&\sigma_{\mathrm{Hall}}\\-\sigma_{\mathrm{Hall}}&0\end{pmatrix}.</script><p>于是 $\boldsymbol j=\hat\sigma^{\mathrm A}\boldsymbol E$，$\boldsymbol j\cdot\boldsymbol E=0$，这里整个直流输运响应都是反对称的，因此其体内局域焦耳耗散为零，这才是通常称理想量子 Hall 输运为无耗散的原因。它比一般金属的 Hall 响应具有更强的条件：不仅存在反对称 Hall 电导，而且纵向耗散部分也消失。</p>
+<h1 id="有限频率Hall电导"><a href="#有限频率Hall电导" class="headerlink" title="有限频率Hall电导"></a>有限频率Hall电导</h1><p>有限频率下，Hall 电导仍然无耗散吗？<strong>不一定。这是从直流 Hall 效应推广到光学 Hall 效应时，最容易出现的概念错误。</strong>原因在于，有限频率下的电导率一般是复数，而且电场的不同分量之间可以有相位差。采用傅里叶约定 $e^{-i\omega t}$，实际电场为</p>
+<script type="math/tex; mode=display">
+\boldsymbol E(t)
+=\operatorname{Re}\left[\boldsymbol{\mathcal E}e^{-i\omega t}\right],</script><p>其中 $\boldsymbol{\mathcal E}$ 是复振幅，诱导电流为</p>
+<script type="math/tex; mode=display">
+\boldsymbol j(t)
+=\operatorname{Re}\left[
+\hat\sigma(\omega)\boldsymbol{\mathcal E}e^{-i\omega t}
+\right].</script><p>时间平均吸收功率密度定义为</p>
+<script type="math/tex; mode=display">
+\overline p=\frac1T\int_0^Tdt\,\boldsymbol E(t)\cdot\boldsymbol j(t).</script><p>利用周期平均关系</p>
+<script type="math/tex; mode=display">
+\overline{\operatorname{Re}(Ae^{-i\omega t})\operatorname{Re}(Be^{-i\omega t})}
+=\frac12\operatorname{Re}(A^*B),</script><p>可以得到</p>
+<script type="math/tex; mode=display">
+{
+\overline p
+=\frac12\operatorname{Re}\left[
+\boldsymbol{\mathcal E}^{\dagger}\hat\sigma(\omega)\boldsymbol{\mathcal E}
+\right].
+}
+\label{eq:acpower}</script><p>由于一个复数的实部满足 $2\operatorname{Re}z=z+z^*$，上式进一步变为</p>
+<script type="math/tex; mode=display">
+\boxed{
+\overline p
+=\frac12\boldsymbol{\mathcal E}^{\dagger}
+\underbrace{\frac{\hat\sigma+\hat\sigma^\dagger}{2}}_{\displaystyle\hat\sigma^{\mathrm H}}
+\boldsymbol{\mathcal E}.
+}
+\label{eq:Hermitian}</script><p>这里上标 $\mathrm H$ 专指 <strong>Hermitian（厄米）</strong>，而 Hall 电导始终记为 $\sigma_{\mathrm{Hall}}$，两者不可混淆。$\hat\sigma^{\mathrm H}=(\hat\sigma+\hat\sigma^\dagger)/2$ 称为光电导矩阵的 <strong>Hermitian 部分</strong>，它才是判断有限频率光吸收与耗散的正确对象。特别注意：</p>
+<script type="math/tex; mode=display">
+{\text{转置对称部分}\ne\text{Hermitian 部分}.}\nonumber</script><p>这两种分解有不同的物理目的：</p>
+<ul>
+<li>转置对称与反对称分解，用于区分 Hall 响应和对称横向响应；</li>
+<li>Hermitian 与 anti-Hermitian 分解，用于区分周期平均吸收功率与纯反应性响应。</li>
+</ul>
+<p>在直流实电导极限下，这两个概念具有简单对应关系；但在有限频率复光电导下，不能混为一谈。</p>
+<h3 id="反对称-Hall-电导对吸收的贡献"><a href="#反对称-Hall-电导对吸收的贡献" class="headerlink" title="反对称 Hall 电导对吸收的贡献"></a>反对称 Hall 电导对吸收的贡献</h3><p>考虑一个面内各向同性、具有光学 Hall 响应的体系：</p>
+<script type="math/tex; mode=display">
+\hat\sigma(\omega)=
+\begin{pmatrix}\sigma_L(\omega)&\sigma_{\mathrm{Hall}}(\omega)\\-\sigma_{\mathrm{Hall}}(\omega)&\sigma_L(\omega)\end{pmatrix}.</script><p>将电导率分成实部和虚部：$\sigma_L=\sigma_L’+i\sigma_L’’$，$\sigma_{\mathrm{Hall}}=\sigma_{\mathrm{Hall}}’+i\sigma_{\mathrm{Hall}}’’$。其 Hermitian 部分为</p>
+<script type="math/tex; mode=display">
+{
+\hat\sigma^{\mathrm H}=
+\begin{pmatrix}
+\sigma_L'&i\sigma_{\mathrm{Hall}}''\\
+-i\sigma_{\mathrm{Hall}}''&\sigma_L'
+\end{pmatrix}.
+}
+\label{eq:opticalabsorption}</script><p>这个式子非常重要。可以看出：</p>
+<ul>
+<li>$\sigma_L’$ 进入吸收矩阵，对应通常的纵向光学耗散；</li>
+<li>$\sigma_{\mathrm{Hall}}’$ 不进入 Hermitian 部分；</li>
+<li>$\sigma_{\mathrm{Hall}}’’$ 可以进入 Hermitian 部分，因此可能导致偏振依赖的吸收。</li>
+</ul>
+<p>这意味着：</p>
+<script type="math/tex; mode=display">
+{\operatorname{Re}\sigma_{\mathrm{Hall}}(\omega)\text{ 本身不贡献周期平均吸收，}}\nonumber</script><p>但是</p>
+<script type="math/tex; mode=display">
+{\operatorname{Im}\sigma_{\mathrm{Hall}}(\omega)\text{ 可以产生圆偏振相关的吸收。}}\nonumber</script><p>注意这里讨论的是反对称 Hall 电导对吸收功率的贡献，而不是说 $\operatorname{Re}\sigma_{\mathrm{Hall}}$ 在实验上没有物理作用。实际上，它可以影响偏振旋转，包括 Faraday 和 Kerr 光学响应。这与光学 Hall 效应和圆二色性的研究结论相一致。</p>
+<hr>
+<p>为什么线偏振与圆偏振的情况不同？先考虑沿任意固定方向的线偏振光。其复电场振幅可以写成</p>
+<script type="math/tex; mode=display">
+\boldsymbol{\mathcal E}=E_0e^{i\phi}
+\begin{pmatrix}\cos\theta\\\sin\theta\end{pmatrix}.</script><p>这里两个分量具有共同相位。由于</p>
+<script type="math/tex; mode=display">
+\boldsymbol{\mathcal E}^{\dagger}
+\begin{pmatrix}0&\sigma_{\mathrm{Hall}}\\-\sigma_{\mathrm{Hall}}&0\end{pmatrix}
+\boldsymbol{\mathcal E}=0,</script><p>所以 Hall 部分对这种线偏振光的周期平均吸收贡献为零，即使 $\sigma_{\mathrm{Hall}}$ 是复数。但是，对圆偏振光而言，情况不同。定义</p>
+<script type="math/tex; mode=display">
+\boldsymbol e_\pm=\frac1{\sqrt2}\begin{pmatrix}1\\\pm i\end{pmatrix}.</script><p>它们是上述各向同性光电导张量的本征矢：$\hat\sigma\boldsymbol e_\pm=\sigma_\pm\boldsymbol e_\pm$，其中</p>
+<script type="math/tex; mode=display">
+{\sigma_\pm=\sigma_L\pm i\sigma_{\mathrm{Hall}}.}
+\label{eq:circularconductivity}</script><p>因此，两种圆偏振光对应的吸收电导分别为</p>
+<script type="math/tex; mode=display">
+{\operatorname{Re}\sigma_\pm
+=\operatorname{Re}\sigma_L\mp\operatorname{Im}\sigma_{\mathrm{Hall}}.}
+\label{eq:CD}</script><p>于是</p>
+<script type="math/tex; mode=display">
+{\operatorname{Re}\sigma_+-\operatorname{Re}\sigma_-=-2\operatorname{Im}\sigma_{\mathrm{Hall}}.}</script><p>这正是为什么在圆二色性研究中，光学 Hall 电导的虚部具有重要意义。<strong>不同电导分量的物理意义：</strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">分量</th>
+<th style="text-align:center">主要物理意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$\operatorname{Re}\sigma_L$</td>
+<td style="text-align:center">通常的纵向光吸收与耗散</td>
+</tr>
+<tr>
+<td style="text-align:center">$\operatorname{Im}\sigma_L$</td>
+<td style="text-align:center">纵向反应性响应、光学色散</td>
+</tr>
+<tr>
+<td style="text-align:center">$\operatorname{Re}\sigma_{\mathrm{Hall}}$</td>
+<td style="text-align:center">反对称无功率贡献，与偏振旋转有关</td>
+</tr>
+<tr>
+<td style="text-align:center">$\operatorname{Im}\sigma_{\mathrm{Hall}}$</td>
+<td style="text-align:center">两种圆偏振光的吸收不对称</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>因此，我们终于可以回答一个容易混淆的问题：<strong>Hall 电流无耗散，是针对直流反对称输运的准确说法；有限频率 Hall 电导则不能笼统称为完全无耗散。</strong>尤其当 $\operatorname{Im}\sigma_{\mathrm{Hall}}\ne0$ 时，左右圆偏振的吸收差异可以直接体现 Hall 响应。</p>
+<h2 id="从时间反演对称性和-Onsager-关系理解-Hall-电导"><a href="#从时间反演对称性和-Onsager-关系理解-Hall-电导" class="headerlink" title="从时间反演对称性和 Onsager 关系理解 Hall 电导"></a>从时间反演对称性和 Onsager 关系理解 Hall 电导</h2><p>前面是从张量和功率的角度定义 Hall 响应。现在进一步解释：为什么 Hall 响应通常与时间反演对称性破缺有关？对于处于热平衡、满足微观可逆性条件的体系，电导张量满足 Onsager–Casimir 关系：</p>
+<script type="math/tex; mode=display">
+{\sigma_{ab}(\omega,\boldsymbol B)=\sigma_{ba}(\omega,-\boldsymbol B).}
+\label{eq:Onsager}</script><p>这里 $\boldsymbol B$ 表示破坏时间反演对称性的外磁场。对于具有自发磁序的体系，应更一般地将磁序参量 $\boldsymbol M$ 也一起反转：</p>
+<script type="math/tex; mode=display">
+\sigma_{ab}(\omega,\boldsymbol B,\boldsymbol M)
+=\sigma_{ba}(\omega,-\boldsymbol B,-\boldsymbol M).</script><p>这里默认局域响应或 $\boldsymbol q=0$；非局域情况下还应考虑波矢反转。当体系保持时间反演对称性、没有时间反演奇的序参量时，$\sigma_{ab}(\omega)=\sigma_{ba}(\omega)$。因而</p>
+<script type="math/tex; mode=display">
+{\sigma_{\mathrm{Hall}}(\omega)=0.}</script><p>所以，保持时间反演对称性的均匀平衡体系，不能具有这里定义的零磁场、局域反对称电荷 Hall 电导。但反过来并不成立，<strong>时间反演对称性破缺是允许非零反常 Hall 电导的重要条件，却不是充分条件。</strong>体系还可能受到镜面对称性、旋转与反演相关组合对称性等限制，使 Hall 响应严格消失。</p>
+<blockquote>
+<p>Hall 电导为什么在磁场反向时变号？</p>
+</blockquote>
+<p>定义 $\sigma_{\mathrm{Hall}}(\boldsymbol B)=[\sigma_{xy}(\boldsymbol B)-\sigma_{yx}(\boldsymbol B)]/2$，根据 Onsager 关系，</p>
+<script type="math/tex; mode=display">
+\sigma_{xy}(\boldsymbol B)=\sigma_{yx}(-\boldsymbol B),
+\qquad
+\sigma_{yx}(\boldsymbol B)=\sigma_{xy}(-\boldsymbol B).</script><p>所以</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\sigma_{\mathrm{Hall}}(-\boldsymbol B)
+&=\frac{\sigma_{xy}(-\boldsymbol B)-\sigma_{yx}(-\boldsymbol B)}2\\
+&=\frac{\sigma_{yx}(\boldsymbol B)-\sigma_{xy}(\boldsymbol B)}2\\
+&=-\sigma_{\mathrm{Hall}}(\boldsymbol B).
+\end{aligned}</script><p>因此</p>
+<script type="math/tex; mode=display">
+{\sigma_{\mathrm{Hall}}(-\boldsymbol B)=-\sigma_{\mathrm{Hall}}(\boldsymbol B).}
+\label{eq:Hallodd}</script><p>这就是通常所说 Hall 响应的时间反演奇性质，与之对应，对称部分满足 $\sigma_{ab}^{\mathrm S}(-\boldsymbol B)=\sigma_{ab}^{\mathrm S}(\boldsymbol B)$。这也提供了一种实验上区分普通 Hall 响应与对称横向信号的方法：比较时间反演奇参量反转前后的响应。</p>
+<h2 id="Hall-电导与-Berry-曲率之间的关系"><a href="#Hall-电导与-Berry-曲率之间的关系" class="headerlink" title="Hall 电导与 Berry 曲率之间的关系"></a>Hall 电导与 Berry 曲率之间的关系</h2><p>前面解释了 Hall 电导的定义及其无耗散性质，但还没有回答它的微观来源，对于本征反常 Hall 效应，Berry 曲率正是连接量子态几何与 Hall 电流的重要物理量。考虑一个处于 Bloch 能带 $n$ 中的电子波包，其半经典运动方程为</p>
+<script type="math/tex; mode=display">
+\dot{\boldsymbol r}
+=\frac1\hbar\nabla_{\boldsymbol k}\varepsilon_{n\boldsymbol k}
+-\dot{\boldsymbol k}\times\boldsymbol\Omega_n(\boldsymbol k),</script><p>其中 $\boldsymbol\Omega_n(\boldsymbol k)$ 是第 $n$ 条能带的 Berry 曲率。在无磁场、存在均匀电场的情况下，$\hbar\dot{\boldsymbol k}=-e\boldsymbol E$，其中 $e&gt;0$ 为元电荷，代入运动方程：</p>
+<script type="math/tex; mode=display">
+{
+\dot{\boldsymbol r}
+=\frac1\hbar\nabla_{\boldsymbol k}\varepsilon_{n\boldsymbol k}
++\frac e\hbar\boldsymbol E\times\boldsymbol\Omega_n.
+}</script><p>这里出现了两种速度：</p>
+<ul>
+<li>第一项是通常的能带群速度；</li>
+<li>第二项是 Berry 曲率引起的反常速度。</li>
+</ul>
+<p>对于二维体系，Berry 曲率沿 $z$ 方向：$\boldsymbol\Omega_n=\Omega_n^z\hat{\boldsymbol z}$，若外电场沿 $x$：$\boldsymbol E=E_x\hat{\boldsymbol x}$，则反常速度为</p>
+<script type="math/tex; mode=display">
+\dot{\boldsymbol r}_{\mathrm{anom}}
+=-\frac{eE_x}{\hbar}\Omega_n^z\hat{\boldsymbol y}.</script><p>也就是说，即使没有外加磁场，电子也可能出现垂直于电场的反常速度。电子电流密度为</p>
+<script type="math/tex; mode=display">
+\boldsymbol j
+=-e\sum_n\int_{\mathrm{BZ}}
+\frac{d^d k}{(2\pi)^d}f_{n\boldsymbol k}\dot{\boldsymbol r}.</script><p>取反常速度部分：</p>
+<script type="math/tex; mode=display">
+\boldsymbol j_{\mathrm{Hall}}
+=-\frac{e^2}{\hbar}
+\sum_n\int_{\mathrm{BZ}}
+\frac{d^d k}{(2\pi)^d}
+f_{n\boldsymbol k}\boldsymbol E\times\boldsymbol\Omega_n.</script><p>按照前面采用的 $\sigma_{\mathrm{Hall}}=\sigma_{xy}$ 的符号约定，得到</p>
+<script type="math/tex; mode=display">
+{
+\sigma_{\mathrm{Hall}}=-\frac{e^2}{\hbar}
+\sum_n\int_{\mathrm{BZ}}
+\frac{d^d k}{(2\pi)^d}
+f_{n\boldsymbol k}\Omega_n^z(\boldsymbol k).
+}
+\label{eq:BerryHall}</script><p>Berry 曲率的符号定义若改变，表达式的整体符号也会随之改变。</p>
+<blockquote>
+<p>Berry 曲率产生的 Hall 电流为什么无耗散？</p>
+</blockquote>
+<p>回到反常速度：$\dot{\boldsymbol r}_{\mathrm{anom}}=(e/\hbar)\boldsymbol E\times\boldsymbol\Omega$，电场对电子做功的速率为 $d\varepsilon/dt=-e\boldsymbol E\cdot\dot{\boldsymbol r}$，反常速度的贡献为</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\left(\frac{d\varepsilon}{dt}\right)_{\mathrm{anom}}
+&=-\frac{e^2}{\hbar}\boldsymbol E\cdot(\boldsymbol E\times\boldsymbol\Omega)=0.
+\end{aligned}</script><p>因此，Berry 曲率引起的反常速度始终垂直于电场，其 Hall 电流不直接获得电场做功，这与我们从反对称电导张量得到的式 $(\ref{eq:Hallpower})$ 完全一致。<strong>两种理解是统一的：宏观上，Hall 电导是反对称输运系数；微观上，本征 Hall 电流可以来源于 Berry 曲率导致的横向反常速度。</strong>不过，Berry 曲率并不是所有 Hall 效应的唯一来源。普通磁场 Hall 效应、杂质产生的 skew scattering、side jump 等机制也能贡献 Hall 响应。</p>
+<h2 id="实验测量中的-Hall-电压与理论-Hall-电导"><a href="#实验测量中的-Hall-电压与理论-Hall-电导" class="headerlink" title="实验测量中的 Hall 电压与理论 Hall 电导"></a>实验测量中的 Hall 电压与理论 Hall 电导</h2><p>为了把定义理解完整，还需要区分实验测量的 Hall 电压与理论计算的 Hall 电导，通常实验在 $x$ 方向施加电流，并测量 $y$ 方向的横向电压，在开路横向边界条件下，$j_y=0$。实验中常使用电阻率张量：$\boldsymbol E=\hat\rho\boldsymbol j$，$\hat\rho=\hat\sigma^{-1}$，因此 $E_y=\rho_{yx}j_x$，这意味着实验测得的横向电压直接反映的是 $\rho_{yx}$，而不是 $\sigma_{xy}$。对于二维 Hall 型电导张量</p>
+<script type="math/tex; mode=display">
+\hat\sigma=\begin{pmatrix}
+\sigma_{xx}&\sigma_{\mathrm{Hall}}\\
+-\sigma_{\mathrm{Hall}}&\sigma_{yy}
+\end{pmatrix},</script><p>其逆矩阵为</p>
+<script type="math/tex; mode=display">
+{
+\hat\rho
+=\frac{1}{\sigma_{xx}\sigma_{yy}+\sigma_{\mathrm{Hall}}^2}
+\begin{pmatrix}
+\sigma_{yy}&-\sigma_{\mathrm{Hall}}\\
+\sigma_{\mathrm{Hall}}&\sigma_{xx}
+\end{pmatrix}.
+}</script><p>因此</p>
+<script type="math/tex; mode=display">
+{\rho_{yx}=\frac{\sigma_{\mathrm{Hall}}}{\sigma_{xx}\sigma_{yy}+\sigma_{\mathrm{Hall}}^2}.}</script><p>如果材料各向同性，且 Hall 电导远小于纵向电导，即 $|\sigma_{\mathrm{Hall}}|\ll\sigma_{xx}$，那么 $\rho_{yx}\approx\sigma_{\mathrm{Hall}}/\sigma_{xx}^2$，但这一近似不能用于量子 Hall 平台，因为在那里 $\sigma_{xx}\rightarrow0$。在实际实验中，还需要区分反对称 Hall 电阻率与对称横向电阻率。例如，平面 Hall 效应（planar Hall effect）虽然也叫 Hall effect，但其经典电阻率张量贡献可以是对称的。因而本文讨论的是 Kubo 理论和反常 Hall 文献中采用的<strong>反对称电荷 Hall 响应</strong>，而不是所有带有 Hall 名称的横向实验现象。</p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p>N. Nagaosa, J. Sinova, S. Onoda, A. H. MacDonald, and N. P. Ong, <a target="_blank" rel="noopener" href="https://doi.org/10.1103/RevModPhys.82.1539">Anomalous Hall effect</a>, Reviews of Modern Physics 82, 1539 (2010).<br>D. Xiao, M.-C. Chang, and Q. Niu, <a target="_blank" rel="noopener" href="https://doi.org/10.1103/RevModPhys.82.1959">Berry phase effects on electronic properties</a>, Reviews of Modern Physics 82, 1959 (2010).<br>R. Kubo, <a target="_blank" rel="noopener" href="https://doi.org/10.1143/JPSJ.12.570">Statistical-Mechanical Theory of Irreversible Processes. I</a>, Journal of the Physical Society of Japan 12, 570 (1957).<br>F. R. Pratama, M. S. Ukhtary, and R. Saito, <a target="_blank" rel="noopener" href="https://doi.org/10.1103/PhysRevB.101.045426">Circular dichroism and Faraday and Kerr rotation in two-dimensional materials with intrinsic Hall conductivities</a>, Physical Review B 101, 045426 (2020).</p>
+<div class="note red flat"><p>鉴于该网站分享的大都是学习笔记，作者水平有限，若发现有问题可以发邮件给我</p>
+<ul>
+<li><strong>yxliphy@gmail.com</strong></li>
+</ul>
+<p>也非常欢迎喜欢分享的小伙伴投稿</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="/about">Yu-Xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2026/10/23/2026-10-23-Hall-cond/">http://example.com/2026/10/23/2026-10-23-Hall-cond/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Yu-Xuan's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Topology/">Topology</a><a class="post-meta__tags" href="/tags/Transport/">Transport</a></div><div class="post-share"><div class="social-share" data-image="/assets/images/Transport/Hall-Illustrate.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/assets/images/WM.png" target="_blank"><img class="post-qr-code-img" src="/assets/images/WM.png"/></a><div class="post-qr-code-desc"></div></li><li class="reward-item"><a href="/assets/images/ZM.png" target="_blank"><img class="post-qr-code-img" src="/assets/images/ZM.png"/></a><div class="post-qr-code-desc"></div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/10/22/2026-10-22-SC-Unitary/" title="从 BdG 方程理解单重态、三重态与幺正、非幺正超导配对"><img class="cover" src="/assets/images/SC/BdG-Pairing.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">从 BdG 方程理解单重态、三重态与幺正、非幺正超导配对</div></div><div class="info-2"><div class="info-item-1">从 BdG 方程理解单重态、三重态与幺正、非幺正超导配对超导配对可以从两个不同的角度进行分类：  单重态（spin-singlet）与三重态（spin-triplet）：描述 Cooper 对的...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related no-desc" href="/2025/12/08/2025-12-08-SC-weight/" title="超流权重推导(能带无简并)"><img class="cover" src="/assets/images/SC/sc-weight.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-08</div><div class="info-item-2">超流权重推导(能带无简并)</div></div></div></a><a class="pagination-related no-desc" href="/2025/12/19/2025-12-19-Berry-metric/" title="Berry曲率与量子度规的可加性差异"><img class="cover" src="/assets/images/QuantumGrometry/qgt-2.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-19</div><div class="info-item-2">Berry曲率与量子度规的可加性差异</div></div></div></a><a class="pagination-related no-desc" href="/2025/12/19/2025-12-19-Position-operator-QGT/" title="位置算符与量子几何张量之间的关系"><img class="cover" src="/assets/images/QuantumGrometry/qgt-3.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-19</div><div class="info-item-2">位置算符与量子几何张量之间的关系</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Yu-Xuan</div><div class="author-info-description">知行合一</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">405</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yxli8023"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/yxli8023" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:yxliphy@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><div style="text-align:center;"> <img src="/assets/images/qrcode.jpg" alt="公告图" style="max-width:100%; border-radius:10px; margin-bottom:10px;"> <br> 欢迎关注公众号，有趣的内容也会在上面同步。 有密码的文章属于正在建设中或者没有通过验证的内容，若有需要可通过邮件联系。</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Hall-%E7%94%B5%E5%AF%BC%E7%9A%84%E5%AE%9A%E4%B9%89%E3%80%81%E7%89%A9%E7%90%86%E6%9C%AC%E8%B4%A8%E4%B8%8E%E8%80%97%E6%95%A3%E6%80%A7%E8%B4%A8"><span class="toc-number">1.</span> <span class="toc-text">Hall 电导的定义、物理本质与耗散性质</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E6%AC%A7%E5%A7%86%E5%AE%9A%E5%BE%8B%E9%87%8D%E6%96%B0%E8%AE%A4%E8%AF%86-Hall-%E7%94%B5%E5%AF%BC"><span class="toc-number">1.1.</span> <span class="toc-text">从欧姆定律重新认识 Hall 电导</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hall-%E7%94%B5%E5%AF%BC%E4%B8%BA%E4%BB%80%E4%B9%88%E5%AE%9A%E4%B9%89%E4%B8%BA%E5%8F%8D%E5%AF%B9%E7%A7%B0%E9%83%A8%E5%88%86"><span class="toc-number">1.2.</span> <span class="toc-text">Hall 电导为什么定义为反对称部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E8%80%97%E6%95%A3%E8%A7%92%E5%BA%A6%E7%90%86%E8%A7%A3-Hall-%E5%93%8D%E5%BA%94"><span class="toc-number">1.3.</span> <span class="toc-text">从耗散角度理解 Hall 响应</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%89%E9%99%90%E9%A2%91%E7%8E%87Hall%E7%94%B5%E5%AF%BC"><span class="toc-number">2.</span> <span class="toc-text">有限频率Hall电导</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E5%AF%B9%E7%A7%B0-Hall-%E7%94%B5%E5%AF%BC%E5%AF%B9%E5%90%B8%E6%94%B6%E7%9A%84%E8%B4%A1%E7%8C%AE"><span class="toc-number">2.0.1.</span> <span class="toc-text">反对称 Hall 电导对吸收的贡献</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E6%97%B6%E9%97%B4%E5%8F%8D%E6%BC%94%E5%AF%B9%E7%A7%B0%E6%80%A7%E5%92%8C-Onsager-%E5%85%B3%E7%B3%BB%E7%90%86%E8%A7%A3-Hall-%E7%94%B5%E5%AF%BC"><span class="toc-number">2.1.</span> <span class="toc-text">从时间反演对称性和 Onsager 关系理解 Hall 电导</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hall-%E7%94%B5%E5%AF%BC%E4%B8%8E-Berry-%E6%9B%B2%E7%8E%87%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">2.2.</span> <span class="toc-text">Hall 电导与 Berry 曲率之间的关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E6%B5%8B%E9%87%8F%E4%B8%AD%E7%9A%84-Hall-%E7%94%B5%E5%8E%8B%E4%B8%8E%E7%90%86%E8%AE%BA-Hall-%E7%94%B5%E5%AF%BC"><span class="toc-number">2.3.</span> <span class="toc-text">实验测量中的 Hall 电压与理论 Hall 电导</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">3.</span> <span class="toc-text">参考文献</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/10/23/2026-10-23-Hall-cond/" title="Hall 电导的定义、物理本质与耗散性质"><img src="/assets/images/Transport/Hall-Illustrate.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hall 电导的定义、物理本质与耗散性质"/></a><div class="content"><a class="title" href="/2026/10/23/2026-10-23-Hall-cond/" title="Hall 电导的定义、物理本质与耗散性质">Hall 电导的定义、物理本质与耗散性质</a><time datetime="2026-10-22T16:00:00.000Z" title="发表于 2026-10-23 00:00:00">2026-10-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/10/22/2026-10-22-Real-Band/" title="从实空间原子轨道到能带表示"><img src="/assets/images/Note/Real-Band.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="从实空间原子轨道到能带表示"/></a><div class="content"><a class="title" href="/2026/10/22/2026-10-22-Real-Band/" title="从实空间原子轨道到能带表示">从实空间原子轨道到能带表示</a><time datetime="2026-10-21T16:00:00.000Z" title="发表于 2026-10-22 00:00:00">2026-10-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/10/22/2026-10-22-SC-Unitary/" title="从 BdG 方程理解单重态、三重态与幺正、非幺正超导配对"><img src="/assets/images/SC/BdG-Pairing.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="从 BdG 方程理解单重态、三重态与幺正、非幺正超导配对"/></a><div class="content"><a class="title" href="/2026/10/22/2026-10-22-SC-Unitary/" title="从 BdG 方程理解单重态、三重态与幺正、非幺正超导配对">从 BdG 方程理解单重态、三重态与幺正、非幺正超导配对</a><time datetime="2026-10-21T16:00:00.000Z" title="发表于 2026-10-22 00:00:00">2026-10-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/10/21/2026-10-21-Lattice-Orbit/" title="晶格、Wyckoff 位置、原子轨道与能带表示"><img src="/assets/images/Note/Lattice-Orbit.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="晶格、Wyckoff 位置、原子轨道与能带表示"/></a><div class="content"><a class="title" href="/2026/10/21/2026-10-21-Lattice-Orbit/" title="晶格、Wyckoff 位置、原子轨道与能带表示">晶格、Wyckoff 位置、原子轨道与能带表示</a><time datetime="2026-10-20T16:00:00.000Z" title="发表于 2026-10-21 00:00:00">2026-10-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/10/20/2026-10-20-CLS2/" title="菱形链中的紧致局域态"><img src="/assets/images/FlatBand/ill-1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="菱形链中的紧致局域态"/></a><div class="content"><a class="title" href="/2026/10/20/2026-10-20-CLS2/" title="菱形链中的紧致局域态">菱形链中的紧致局域态</a><time datetime="2026-10-19T16:00:00.000Z" title="发表于 2026-10-20 00:00:00">2026-10-20</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/assets/images/Transport/Hall-Illustrate.png);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Yu-Xuan</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div><div class="footer_custom_text">Welcome to  Yu-Xuan's Blog</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  const initGitalk = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGitalk = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const gitalk = new Gitalk({
+      clientID: 'Ov23li0WvZEaIAZ7RFtH',
+      clientSecret: '03fcb77b7c28dafcdde00756e27f9b5bc76639e8',
+      repo: 'yxli8023.github.io',
+      owner: 'yxli8023',
+      admin: ['yxli8023'],
+      updateCountCallback: commentCount,
+      ...option,
+      id: isShuoshuo ? path : (option && option.id) || '83dbd93e9928ed4842e3aa43fe2f7a4e'
+    })
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async(el, path) => {
+    if (typeof Gitalk === 'function') initGitalk(el, path)
+    else {
+      await btf.getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await btf.getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Gitalk' === 'Gitalk'
+      ? window.shuoshuoComment = { loadComment: loadGitalk }
+      : window.loadOtherComment = loadGitalk
+    return
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
